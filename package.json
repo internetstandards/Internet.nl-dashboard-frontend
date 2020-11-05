@@ -8,17 +8,17 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.12",
     "@popperjs/core": "^2.5.4",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
+    "core-js": "^3.6.5",
     "debounce": "^1.2.0",
     "headroom.js": "^0.12.0",
     "matomo-tracker": "^2.2.4",
     "portal-vue": "^2.1.7",
+    "vue": "^2.6.12",
     "vue-i18n": "^8.22.1",
     "vue-moment": "^4.1.0",
     "vue-router": "^3.4.8",
@@ -28,17 +28,17 @@
     "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.5.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.12",
-    "@kazupon/vue-i18n-loader": "^0.5.0",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
-    "vue-loader": "^15.9.4"
+    "vue-loader": "^15.9.4",
+    "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
     "root": true,
@@ -58,5 +58,7 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "_id": "dashboard_frontend@0.1.0",
+  "readme": "ERROR: No README data found!"
 }
