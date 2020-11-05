@@ -25,6 +25,9 @@ build-gui-staging: vue-cli
 build-gui-production: vue-cli
 	npm run build -- --mode production
 
+build-gui-deploy: vue-cli
+	npm run build -- --mode deploy
+
 pull_image:
 	# optimize build by caching previously build image
 	-docker pull ${docker_image_name}
