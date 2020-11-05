@@ -7,7 +7,6 @@ import createPersistedState from "vuex-persistedstate";
 import VueRouter from 'vue-router'
 import VueI18n from 'vue-i18n'
 import vSelect from 'vue-select'
-import {Tabs, Tab} from 'vue-tabs-component';
 import autorefresh from './components/autorefresh'
 import loading from './components/loading'
 import internet_nl_modal from './components/modal'
@@ -36,8 +35,6 @@ import moment from 'moment'
 Vue.use(VueMoment, { moment });
 
 Vue.component('v-select', vSelect);
-Vue.component('tabs', Tabs);
-Vue.component('tab', Tab);
 Vue.use(PortalVue)
 Vue.use(VueI18n)
 Vue.use(VueRouter)
