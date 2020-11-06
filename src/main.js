@@ -21,6 +21,7 @@ import InstantAddAccount from './components/admin/InstantAddAccount'
 import Account from './components/account/Account'
 import Demo from './components/Demo'
 import Unsubscribe from './components/mail/Unsubscribe'
+import Probe from './components/probe'
 import collapse_panel from './components/collapse_panel'
 import App from './App'
 import Beta from './components/beta'
@@ -47,6 +48,7 @@ Vue.component('loading', loading)
 Vue.component('internet_nl_modal', internet_nl_modal)
 Vue.component('server-response', server_response)
 Vue.component('collapse-panel', collapse_panel)
+Vue.component('probe', Probe)
 
 Vue.config.productionTip = false
 
