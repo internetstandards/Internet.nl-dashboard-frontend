@@ -1,11 +1,14 @@
 docker_image_name = internetstandards/dashboard-static
 
-all: lint test
+all: lint audit test
 
 setup:
 
 lint:
 	npm run lint
+
+audit:
+	npm run audit
 
 test:
 	# TODO
