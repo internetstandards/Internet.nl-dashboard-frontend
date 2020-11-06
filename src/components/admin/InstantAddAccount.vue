@@ -1,7 +1,7 @@
 <template>
     <div id="switch-account" class="block fullwidth">
 
-        <h2>{{ $t("title") }}</h2>
+        <h1>{{ $t("title") }}</h1>
         <p>{{ $t("intro") }}</p>
 
         <p>
@@ -47,11 +47,18 @@ export default {
 <i18n>
 {
     "en": {
-        "title": "Instant User Creation Form",
+        "title": "Instant User Creation",
         "intro": "This creates a standard user, an Account to internet.nl and the bridge between it (DashboardUser).\n There are minimal password checks on this form. This form is intended to quickly migrate API user accounts and\n give them access to the dashboard with the same username and password.",
         "username": "Username",
         "password": "Password",
-        "save": "Save!"
+        "save": "Add user"
+    },
+    "nl": {
+        "title": "Direct gebruikers toevoegen",
+        "intro": "Met dit formulier kan een gebruiker worden gemaakt, het voegt meteen een account voor de gebruiker toe waarbij het gebruikersnaam en wachtwoord ook voor de API wordt gebruikt. Er zijn geen controles op kwaliteit van het wachtwoord in dit formulier, het is bedoeld om de huidige API gebruikers makkelijk toegang te geven.",
+        "username": "Gebruikersnaam",
+        "password": "Wachtwoord",
+        "save": "Toevoegen"
     }
 }
 </i18n>

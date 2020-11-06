@@ -1,11 +1,14 @@
 docker_image_name = internetstandards/dashboard-static
 
-all: lint test
+all: lint audit test
 
-setup:
+setup: vue-cli
 
 lint:
-	# TODO
+	npm run lint
+
+audit:
+	npm audit
 
 test:
 	# TODO

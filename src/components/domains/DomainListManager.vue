@@ -106,7 +106,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                     <button class='altbutton' @click="stop_adding_new()">{{
                             $t("new_list.button_close_label")
                         }}
-                    </button>&nbsp;
+                    </button> &nbsp;
                     <button class="defaultbutton modal-default-button" @click="create_list()">
                         {{ $t("new_list.button_create_list_label") }}
                     </button>

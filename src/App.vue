@@ -342,7 +342,7 @@ export default {
 			"sitetitle": "Internet.nl"
 		},
 		"report_issues": {
-			"link_text": "onze GitHub pagina.",
+			"link_text": "onze GitHub pagina",
 			"report_issues": "Meld fouten of suggesties op",
 			"thank_you": "Bedankt voor het gebruiken van het internet.nl Dashboard."
 		}

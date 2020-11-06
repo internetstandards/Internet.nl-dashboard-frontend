@@ -1,6 +1,6 @@
 <template>
     <div id="switch-account" class="block fullwidth" style="min-height: 600px;">
-        <h2>{{ $t("title") }}</h2>
+        <h1>{{ $t("title") }}</h1>
         <p> {{ $t('intro') }}</p>
         <p><b>{{ $t('reload_page_warning') }}</b></p>
 

@@ -1,9 +1,10 @@
 dist: xenial
-language: minimal
+language: node_js
+node_js:
+  - 15
 jobs:
   include:
   - stage: test
-    install: make setup
     script: make
   - stage: build & push
     script:
