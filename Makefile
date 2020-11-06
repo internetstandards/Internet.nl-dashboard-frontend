@@ -8,7 +8,7 @@ lint:
 	npm run lint
 
 audit:
-	npm run audit
+	npm audit
 
 test:
 	# TODO
