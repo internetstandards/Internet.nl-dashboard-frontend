@@ -43,7 +43,7 @@
                     <span role="img" :aria-label="$t('icons.settings')">📝</span>
                     {{ $t("button_labels.configure") }}</button> &nbsp;
                 <button @click="start_bulk_add_new()">
-                    <span role="img" :aria-label="$t('icons.bulk_add_new')">💖</span>
+                    <span role="img" :aria-label="$t('icons.bulk_add_new')">🌐</span>
                     {{ $t("button_labels.add_domains") }}</button> &nbsp;
                 <template v-if="urls.length">
                     <template v-if="list.enable_scans">
@@ -132,7 +132,7 @@
             <br>
 
             <div v-if="!urls.length">
-                <button @click="start_bulk_add_new()">💖 {{ $t("button_labels.add_domains") }}</button>
+                <button @click="start_bulk_add_new()">🌐 {{ $t("button_labels.add_domains") }}</button>
             </div>
 
             <loading :loading="loading"></loading>
@@ -231,35 +231,34 @@
                 <server-response :response="settings_update_response"></server-response>
 
                 <label for="name">{{ $t("urllist.field_label_name") }}:</label><br>
-                <input id="name" type="text" maxlength="120" v-model="list.name"><br><br>
+                <b-form-input id="name" type="text" maxlength="120" v-model="list.name"></b-form-input><br>
 
                 <label for="scan_type">{{ $t("urllist.field_label_scan_type") }}:</label><br>
-                <select id="scan_type" v-model="list.scan_type">
-                    <option value="web">{{ $t("urllist.scan_type_web") }}</option>
-                    <option value="mail">{{ $t("urllist.scan_type_mail") }}</option>
-                </select><br><br>
+                <b-form-select id="scan_type" v-model="list.scan_type">
+                        <b-form-select-option value="web">{{ $t("urllist.scan_type_web") }}</b-form-select-option>
+                        <b-form-select-option value="mail">{{ $t("urllist.scan_type_mail") }}</b-form-select-option>
+                    </b-form-select><br><br>
 
                 <label for="automated_scan_frequency">{{
                         $t("urllist.field_label_automated_scan_frequency")
                     }}:</label><br>
-                <select id="automated_scan_frequency" v-model="list.automated_scan_frequency">
-                    <option value="disabled">{{ $t("urllist.automated_scan_frequency.disabled") }}</option>
-                    <option value="every half year">{{
-                            $t("urllist.automated_scan_frequency.every_half_year")
-                        }}
-                    </option>
-                    <option value="at the start of every quarter">
+                <b-form-select id="automated_scan_frequency" v-model="list.automated_scan_frequency">
+                    <b-form-select-option value="disabled">
+                        {{ $t("urllist.automated_scan_frequency.disabled") }}
+                    </b-form-select-option>
+                    <b-form-select-option value="every half year">
+                        {{ $t("urllist.automated_scan_frequency.every_half_year") }}
+                    </b-form-select-option>
+                    <b-form-select-option value="at the start of every quarter">
                         {{ $t("urllist.automated_scan_frequency.every_quarter") }}
-                    </option>
-                    <option value="every 1st day of the month">{{
-                            $t("urllist.automated_scan_frequency.every_month")
-                        }}
-                    </option>
-                    <option value="twice per month">{{
-                            $t("urllist.automated_scan_frequency.twice_per_month")
-                        }}
-                    </option>
-                </select>
+                    </b-form-select-option>
+                    <b-form-select-option value="every 1st day of the month">
+                        {{ $t("urllist.automated_scan_frequency.every_month") }}
+                    </b-form-select-option>
+                    <b-form-select-option value="twice per month">
+                        {{ $t("urllist.automated_scan_frequency.twice_per_month") }}
+                    </b-form-select-option>
+                </b-form-select>
 
             </div>
             <div slot="footer">
@@ -331,7 +330,7 @@
         </internet_nl_modal>
 
         <internet_nl_modal v-if="show_bulk_add_new" @close="stop_bulk_add_new()">
-            <h3 slot="header">💖 {{ $t("bulk_add_form.title") }}</h3>
+            <h3 slot="header">🌐 {{ $t("bulk_add_form.title") }}</h3>
             <div slot="body">
 
                 <server-response :response="bulk_add_new_server_response"
@@ -921,7 +920,7 @@ export default {
         },
         "bulk_add_form": {
             "title": "Domeinen toevoegen",
-            "domains_label": "Voer nieuwe domeinen in:",
+            "domains_label": "Voer nieuwe domeinen in",
             "message": "Domeinen worden gescheiden door een komma, spatie, nieuwe regel. Deze mogen ook door elkaar worden gebruikt. Bijvoorbeeld: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com\n\nhttps://my.example.com:80/index.html",
             "ok": "Voeg bovenstaande domeinen toe aan de lijst",
             "status": "Status",

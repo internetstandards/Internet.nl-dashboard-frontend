@@ -71,35 +71,35 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                     <server-response :response="add_new_server_response"></server-response>
 
                     <label for="name">{{ $t("urllist.field_label_name") }}:</label><br>
-                    <input id="name" type="text" maxlength="120" v-model="add_new_new_list.name"><br><br>
+                    <b-form-input id="name" type="text" maxlength="120" v-model="add_new_new_list.name"></b-form-input><br>
 
                     <label for="scan_type">{{ $t("urllist.field_label_scan_type") }}:</label><br>
-                    <select id="scan_type" v-model="add_new_new_list.scan_type">
-                        <option value="web">{{ $t("urllist.scan_type_web") }}</option>
-                        <option value="mail">{{ $t("urllist.scan_type_mail") }}</option>
-                    </select><br><br>
+                    <b-form-select id="scan_type" v-model="add_new_new_list.scan_type">
+                        <b-form-select-option value="web">{{ $t("urllist.scan_type_web") }}</b-form-select-option>
+                        <b-form-select-option value="mail">{{ $t("urllist.scan_type_mail") }}</b-form-select-option>
+                    </b-form-select><br><br>
 
-                    <label for="automated_scan_frequency">{{
-                            $t("urllist.field_label_automated_scan_frequency")
-                        }}:</label><br>
-                    <select id="automated_scan_frequency" v-model="add_new_new_list.automated_scan_frequency">
-                        <option value="disabled">{{ $t("urllist.automated_scan_frequency.disabled") }}</option>
-                        <option value="every half year">{{
-                                $t("urllist.automated_scan_frequency.every_half_year")
-                            }}
-                        </option>
-                        <option value="at the start of every quarter">
+                    <label for="automated_scan_frequency">
+                        {{ $t("urllist.field_label_automated_scan_frequency") }}:
+                    </label>
+
+                    <b-form-select id="automated_scan_frequency" v-model="add_new_new_list.automated_scan_frequency">
+                        <b-form-select-option value="disabled">
+                            {{ $t("urllist.automated_scan_frequency.disabled") }}
+                        </b-form-select-option>
+                        <b-form-select-option value="every half year">
+                            {{ $t("urllist.automated_scan_frequency.every_half_year") }}
+                        </b-form-select-option>
+                        <b-form-select-option value="at the start of every quarter">
                             {{ $t("urllist.automated_scan_frequency.every_quarter") }}
-                        </option>
-                        <option value="every 1st day of the month">{{
-                                $t("urllist.automated_scan_frequency.every_month")
-                            }}
-                        </option>
-                        <option value="twice per month">{{
-                                $t("urllist.automated_scan_frequency.twice_per_month")
-                            }}
-                        </option>
-                    </select>
+                        </b-form-select-option>
+                        <b-form-select-option value="every 1st day of the month">
+                            {{ $t("urllist.automated_scan_frequency.every_month") }}
+                        </b-form-select-option>
+                        <b-form-select-option value="twice per month">
+                            {{ $t("urllist.automated_scan_frequency.twice_per_month") }}
+                        </b-form-select-option>
+                    </b-form-select>
 
                 </div>
                 <div slot="footer">
