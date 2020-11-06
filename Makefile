@@ -5,7 +5,7 @@ all: lint test
 setup:
 
 lint:
-	# TODO
+	npm run lint
 
 test:
 	# TODO
