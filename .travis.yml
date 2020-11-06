@@ -1,5 +1,7 @@
 dist: xenial
 language: node_js
+node_js:
+  - 15
 jobs:
   include:
   - stage: test
