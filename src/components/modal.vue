@@ -22,7 +22,7 @@ Vue Modal
 
 .modal-container {
     max-height: 90vh;
-    overflow: scroll;
+
 
     width: 600px;
     margin: 0px auto;
@@ -65,53 +65,6 @@ Vue Modal
     transform: scale(1.1);
 }
 
-.defaultbutton {
-    display: block;
-    margin: 0 auto .5em;
-    background: #fff;
-    border: solid .3em #ffab4c;
-    font-family: arial, sans-serif;
-    font-weight: bold;
-    font-size: 100%;
-    border-radius: 18px;
-    padding: .2em .5em
-}
-
-.defaultbutton button:hover, .block button:focus, .block button:active {
-    background: #ffab4c
-}
-
-.defaultbutton button:hover {
-    cursor: pointer
-}
-
-.defaultbutton button:focus {
-    outline: none
-}
-
-.altbutton {
-    display: block;
-    margin: 0 auto .5em;
-    background: #fff;
-    border: solid .3em #878f96;
-    font-family: arial, sans-serif;
-    font-weight: bold;
-    font-size: 100%;
-    border-radius: 18px;
-    padding: .2em .5em
-}
-
-.altbutton button:hover, .block button:focus, .block button:active {
-    background: #ffab4c
-}
-
-.altbutton button:hover {
-    cursor: pointer
-}
-
-.altbutton button:focus {
-    outline: none
-}
 
 .dialog_warning {
     font-weight: bold;
@@ -143,10 +96,14 @@ Vue Modal
     margin-bottom: 0 !important;
 }
 
+.inl-modal-body {
+        /*Todo: only overflow the main section of the container, not the footer or header */
+    overflow: scroll;
+}
+
 </style>
 <template>
-    <transition name="modal">
-        <div class="modal-mask" @keyup.esc="$emit('close');">
+    <b-modal scrollable :id="id">
             <div class="modal-wrapper">
                 <div class="modal-container">
 
@@ -176,8 +133,7 @@ Vue Modal
                     </div>
                 </div>
             </div>
-        </div>
-    </transition>
+    </b-modal>
 </template>
 <script>
 export default {
@@ -186,5 +142,11 @@ export default {
         // todo: should it be the first input, and how do you do that easily / sanely
         document.getElementsByClassName('modal-default-button')[0].focus();
     },
+    props: {
+        id: {
+            type: String,
+            default: "modal"
+        }
+    }
 }
 </script>
