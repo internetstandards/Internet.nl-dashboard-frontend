@@ -584,60 +584,11 @@ article img {
     display: block
 }
 
-.block input[type="url"], .block input[type="text"] {
-    width: 100%
-}
-
-.block input[type="email"], .block input[type="url"], .block input[type="text"], .block select {
-    border: 2px solid #dadada;
-    border-radius: 4px;
-    font-size: 1em;
-    padding-left: .5em;
-    margin-top: .5em;
-    height: 1.875em
-}
-
-.block .emailfield {
-    display: block;
-    background: white;
-    width: auto;
-    padding: 0 0 0 0;
-    border: 2px solid #dadada;
-    border-radius: 4px;
-    margin-top: .5em;
-    margin-bottom: 1em;
-    overflow: hidden;
-    height: 1.875em
-}
-
-.block .emailfield:before {
-    content: '@';
-    background: #dadada;
-    width: 8%;
-    display: block;
-    float: left;
-    text-align: center;
-    height: 100%;
-    overflow: hidden;
-    padding: 2px 0
-}
-
-.block .emailfield input {
-    margin: 0 3px;
-    border-width: 0;
-    border-radius: 0 4px 4px 0;
-    width: 89%;
-    width: calc(92% - 6px);
-    float: right;
-    height: 1.875em;
-    height: 1.5em
-}
-
 .block form label span {
     line-height: 1
 }
 
-.block p, .block a, .block input, .block ul, .block ol, .block select {
+.block p, .block a, .block ul, .block ol, .block select {
     margin-bottom: 1em
 }
 
