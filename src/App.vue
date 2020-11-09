@@ -1,29 +1,29 @@
 <template>
     <div id="app">
         <div class="skiplink"><a href="#content">
-            {% trans "page gotocontents" %}
+            {{ $t('skiplink.gotocontents') }}
         </a></div>
         <div class="skiplink" id="skiplink-sitenav"><a href="#sitenav">
-            {% trans "page gotomainmenu" %}
+            {{ $t('skiplink.gotomainmenu') }}
         </a></div>
         <div class="skiplink"><a href="#footer">
-            {% trans "page gotofooter" %}
+            {{ $t('skiplink.gotofooter') }}
         </a></div>
 
         <header>
             <div class="wrap">
                 <div class="hidethis" aria-hidden="true">
                     <span id="panel-button-show">
-                        Show details
+                        {{ $t('menu.show_details') }}
                     </span>
                     <span id="panel-button-hide">
-                        Hide details
+                        {{ $t('menu.hide_details') }}
                     </span>
                     <span id="panel-item-open">
-                        open
+                        {{ $t('menu.open') }}
                     </span>
                     <span id="panel-item-close">
-                        close
+                        {{ $t('menu.close') }}
                     </span>
                 </div>
 
@@ -40,7 +40,7 @@
 
                             @click="toggleHamburgerMenuExpand"
                             class="menu-button">
-                        <span style="white-space: nowrap;"><i>≡</i><b style="padding-left: 4px">{{ $t('menu') }}</b></span>
+                        <span style="white-space: nowrap;"><i>≡</i><b style="padding-left: 4px">{{ $t('menu.title') }}</b></span>
                     </button>
 
                     <div id="language-switch-header-container" aria-hidden="true">
@@ -312,7 +312,13 @@ export default {
 		},
 		"en": "English",
 		"nl": "Nederlands",
-        "menu": "menu",
+        "menu": {
+            "title": "menu",
+            "open": "open",
+            "close": "close",
+            "show_details": "show details",
+            "hide_details": "hide details"
+        },
 		"page": {
 			"sitedescription": "Test for modern Internet Standards like IPv6, DNSSEC, HTTPS, DMARC, STARTTLS and DANE.",
 			"sitetitle": "Internet.nl"
@@ -321,7 +327,12 @@ export default {
 			"link_text": "this GitHub page",
 			"report_issues": "Please report issues on ",
 			"thank_you": "Thank you for using the internet.nl dashboard."
-		}
+		},
+        "skiplink": {
+            "gotocontents": "Skip to contents",
+            "gotomainmenu": "Skip to main menu",
+            "gotofooter": "Skip to footer"
+        }
 	},
 	"nl": {
 		"base": {
@@ -333,7 +344,13 @@ export default {
 		},
 		"en": "English",
 		"nl": "Nederlands",
-        "menu": "menu",
+        "menu": {
+            "title": "menu",
+            "open": "openen",
+            "close": "sluiten",
+            "show_details": "toon details",
+            "hide_details": "verberg details"
+        },
 		"page": {
 			"sitedescription": "Test voor moderne Internetstandaarden zoals IPv6, DNSSEC, HTTPS, DMARC, STARTTLS en DANE.",
 			"sitetitle": "Internet.nl"
@@ -342,7 +359,12 @@ export default {
 			"link_text": "onze GitHub pagina",
 			"report_issues": "Meld fouten of suggesties op",
 			"thank_you": "Bedankt voor het gebruiken van het internet.nl Dashboard."
-		}
+		},
+        "skiplink": {
+            "gotocontents": "Skip naar inhoud",
+            "gotomainmenu": "Skip naar menu",
+            "gotofooter": "Skip naar footer"
+        }
 	}
 }
 </i18n>
