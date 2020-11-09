@@ -63,10 +63,6 @@ a.anchor {
 }
 
 
-.home main:first-of-type {
-    /* After bootstrap was imported the first block on the page was moved up. */
-    margin-top: 1.75em !important;
-}
 
 label {
     font-weight: bold;
