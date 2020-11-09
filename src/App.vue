@@ -45,7 +45,7 @@
 
                             @click="toggleHamburgerMenuExpand"
                             class="menu-button">
-                        <i>≡</i><b>&nbsp;menu</b>
+                        <span style="white-space: nowrap;"><i>≡</i><b style="padding-left: 4px">{{ $t('menu') }}</b></span>
                     </button>
 
                     <div id="language-switch-header-container" aria-hidden="true">
@@ -317,6 +317,7 @@ export default {
 		},
 		"en": "English",
 		"nl": "Nederlands",
+        "menu": "menu",
 		"page": {
 			"sitedescription": "Test for modern Internet Standards like IPv6, DNSSEC, HTTPS, DMARC, STARTTLS and DANE.",
 			"sitetitle": "Internet.nl"
@@ -337,6 +338,7 @@ export default {
 		},
 		"en": "English",
 		"nl": "Nederlands",
+        "menu": "menu",
 		"page": {
 			"sitedescription": "Test voor moderne Internetstandaarden zoals IPv6, DNSSEC, HTTPS, DMARC, STARTTLS en DANE.",
 			"sitetitle": "Internet.nl"
