@@ -3,6 +3,11 @@
     font-weight: bold;
     border-bottom: 3px solid #ffab4c;
 }
+
+ul {
+    margin-bottom: 0;
+}
+
 </style>
 <template>
     <ul>

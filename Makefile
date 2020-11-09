@@ -20,7 +20,7 @@ vue-cli: | $(vue-cli)
 
 run-gui-development: vue-cli ## only run the gui
 	# the extra -- is because of hell and fail. https://github.com/vuejs/vue-cli/issues/1528
-	cd dashboard_frontend; npm run serve -- --mode development
+	npm run serve -- --mode development
 
 build-gui-staging: vue-cli
 	npm run build -- --mode staging
