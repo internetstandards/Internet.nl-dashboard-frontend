@@ -1,10 +1,5 @@
 <template>
     <div id="app">
-        <div class="hidethis" aria-hidden="true">
-            <span id="matomo-url">//matomo.internet.nl/</span>
-            <span id="matomo-siteid">2</span>
-            <span id="matomo-subdomain-tracking">*.internet.nl</span>
-        </div>
         <div class="skiplink"><a href="#content">
             {% trans "page gotocontents" %}
         </a></div>
