@@ -7,7 +7,9 @@
 ul {
     margin-bottom: 0;
 }
-
+a, a:hover, a:active {
+    color: black;
+}
 </style>
 <template>
     <ul>
