@@ -1,21 +1,5 @@
 export default {
     en: {
-        icons: {
-            list_closed: "List closed",
-            list_opened: "List opened",
-
-            settings: "settings",
-
-            scan: "scan",
-            can_connect: "Can connect icon",
-            unknown_connectivity: "Unknown connectivity icon",
-            cannot_connect: "Can not connect",
-
-            bulk_add_new: "Add domains in bulk",
-            remove_filter: 'Show categories',
-            report: "report",
-        },
-
         urllist: {
             field_label_id: 'id',
             field_label_name: 'Name',
@@ -37,23 +21,6 @@ export default {
 
     },
     nl: {
-
-        icons: {
-            list_closed: "Lijst geopend",
-            list_opened: "Lijst gesloten",
-
-            settings: "Instellingen",
-
-            scan: "scannen",
-            can_connect: "Icoon: verbinding is mogelijk",
-            unknown_connectivity: "Icoon: verbinding is onbekend",
-            cannot_connect: "Icoon: kan niet verbinden",
-
-            bulk_add_new: "Voeg domeinen toe in bulk",
-            remove_filter: 'Bekijk categorien',
-            report: "rapport",
-        },
-
         urllist: {
             field_label_id: 'id',
             field_label_name: 'Naam',
