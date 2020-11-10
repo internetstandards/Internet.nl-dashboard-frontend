@@ -9,7 +9,6 @@ import VueI18n from 'vue-i18n'
 import vSelect from 'vue-select'
 import autorefresh from './components/autorefresh'
 import loading from './components/loading'
-import internet_nl_modal from './components/modal'
 import server_response from './components/server-response'
 import Login from './components/Login'
 import DomainListManager from './components/domains/DomainListManager'
@@ -45,7 +44,6 @@ Vue.use(BootstrapVue)
 
 Vue.component('autorefresh', autorefresh)
 Vue.component('loading', loading)
-Vue.component('internet_nl_modal', internet_nl_modal)
 Vue.component('server-response', server_response)
 Vue.component('collapse-panel', collapse_panel)
 Vue.component('probe', Probe)
@@ -344,6 +342,10 @@ Vue.mixin(
             this.$i18n.locale = this.locale;
         },
         methods: {
+            copy_json_value: function (obj) {
+                // does not copy methods.
+                return JSON.parse(JSON.stringify(obj));
+            },
             isEmptyObject: function (my_object) {
                 // This replaces the jQuery.isEmptyObject(), which is not a good reason to include the entirity of jquery
                 // Documentation: https://www.samanthaming.com/tidbits/94-how-to-check-if-object-is-empty/

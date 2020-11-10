@@ -92,50 +92,9 @@
                     </li>
                 </ul>
                 <template v-if="!['finished', 'cancelled'].includes(scan.state)">
-                    <button @click="start_stop_scan(scan)">{{ $t("stop_scan") }}</button>
+                    <button @click="visible.stop_scan = true">{{ $t("stop_scan") }}</button>
 
-                    <!-- This element is duplicated so that cancelling this dialog will put you on the right place on the
-                    page if you navigate the site by keyboard. -->
-                    <internet_nl_modal v-if="show_stop_scan" @close="stop_stop_scan()">
-                        <h3 slot="header">🛑 {{ $t("cancel.are_you_sure") }}</h3>
-                        <div slot="body">
-
-                            <server-response :response="stop_scan_server_response"></server-response>
-
-                            <div class="wrapper" style="width: 100%">
-                            <span><probe /></span> &nbsp;
-                                <b>{{ stop_scan.type }} {{ $t("id") }}{{ stop_scan.id }}</b><br>
-                                <br>
-                                📘 {{ stop_scan.list }}<br>
-                                <br>
-                                <b>{{ $t("runtime") }}</b><br>
-                                {{ humanize_duration(stop_scan.runtime) }}<br>
-                                <br>
-                                <b>{{ $t("message") }}</b>
-                                <p>{{ $t('progress.' + stop_scan.state) }}</p>
-                                <b>{{ $t("last_check") }}</b><br>
-                                <span :title="stop_scan.last_check">
-                                {{ humanize_date(stop_scan.last_check) }},<br>
-                                {{ humanize_relative_date(stop_scan.last_check) }}
-                            </span><br>
-                                <br>
-                                <b>{{ $t("started_on") }}</b><br>
-                                <span :title="stop_scan.started_on">
-                                {{ humanize_date(stop_scan.started_on) }},<br>
-                                {{ humanize_relative_date(stop_scan.started_on) }}
-                            </span><br>
-                            </div>
-
-                        </div>
-                        <div slot="footer">
-                            <button class="altbutton" @click="stop_stop_scan()">{{ $t("cancel.cancel") }}</button>
-                            &nbsp;
-                            <button class="modal-default-button defaultbutton" @click="confirm_stop_scan()">{{
-                                    $t("cancel.ok")
-                                }}
-                            </button>
-                        </div>
-                    </internet_nl_modal>
+                    <StopScan :scan="scan" :show="visible.stop_scan" :visible="visible.stop_scan" @cancel="visible.stop_scan = false" @scan-stopped="scan_stopped()" ></StopScan>
 
                 </template>
             </div>
@@ -158,15 +117,22 @@
 
 
 <script>
+
+import StopScan from './stop'
+
 export default {
+    components: {
+        StopScan
+    },
     name: 'scan_monitor',
 
     data: function () {
         return {
             // cancellations:
-            show_stop_scan: false,
-            stop_scan: null, // the scan that will be cancelled when you hit OK
-            stop_scan_server_response: {},
+
+            visible: {
+                stop_scan: false,
+            },
 
             // states of a scan, to visualize a progress bar:
             scan_state_and_progress: {
@@ -211,22 +177,6 @@ export default {
         }
     },
     methods: {
-        start_stop_scan: function (scan) {
-            this.stop_scan = scan;
-            this.show_stop_scan = true;
-        },
-        stop_stop_scan: function () {
-            this.stop_scan = null;
-            this.show_stop_scan = false;
-        },
-        confirm_stop_scan: function () {
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/scan/cancel/`, {'id': this.stop_scan.id}, () => {
-                    this.$emit('scan-stopped', this.stop_scan.id)
-                    this.stop_stop_scan();
-                }
-            );
-        },
         progress_bar_data: function (current_scan_state) {
             let data = this.scan_state_and_progress[current_scan_state]
             if (data === undefined) {
@@ -234,6 +184,11 @@ export default {
             }
             return data
         },
+        scan_stopped: function() {
+            this.visible.stop_scan = false;
+            // events don't bubble up, so trigger it again here.
+            this.$emit('scan-stopped', this.scan.id)
+        }
     }
 }
 </script>

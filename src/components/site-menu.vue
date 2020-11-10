@@ -3,6 +3,13 @@
     font-weight: bold;
     border-bottom: 3px solid #ffab4c;
 }
+
+ul {
+    margin-bottom: 0;
+}
+a, a:hover, a:active {
+    color: black;
+}
 </style>
 <template>
     <ul>

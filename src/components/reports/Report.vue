@@ -255,16 +255,15 @@ export default {
 
         this.get_recent_reports();
         // this supports: http://localhost:8000/reports/83/
-        // todo: this can be replaced by $route.params.report, which is much more readable.
 
         // why is this not done at nextTick?
         // because the report selection has not been loaded yet, so move this to the result of get latest reports...
         // and you only want to do this at load of the page, not every time latest report is called.
         setTimeout(() => {
-            if (window.location.href.split('/').length > 3) {
-                let primary_report_id = window.location.href.split('/')[6];
-                let secondary_report_id = window.location.href.split('/')[7];
-                // can we change the select2 to a certain value?
+
+            if (this.$router.history.current.params.report) {
+                let primary_report_id = this.$router.history.current.params.report;
+                let secondary_report_id = this.$router.history.current.params.compare_with;
 
                 this.filtered_recent_reports.forEach((option) => {
                     // Create label

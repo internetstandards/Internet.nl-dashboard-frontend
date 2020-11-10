@@ -39,7 +39,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
             <p>
-                <button @click="start_adding_new()" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
+                <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
                 &nbsp;
                 <router-link tag="button" to="/domains/upload">📓 {{ $t("bulk_upload_link") }}</router-link>
             </p>
@@ -63,11 +63,10 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                 </div>
             </collapse-panel>
 
-            <internet_nl_modal v-if="show_add_new" @close="stop_adding_new()">
-                <h3 slot="header">📚 {{ $t("new_list.add_new_list") }}</h3>
+            <b-modal id="show_add_new" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+                <h3 slot="modal-title">📚 {{ $t("new_list.add_new_list") }}</h3>
 
-                <div slot="body">
-
+                <div slot="default">
                     <server-response :response="add_new_server_response"></server-response>
 
                     <label for="name">{{ $t("urllist.field_label_name") }}:</label><br>
@@ -102,16 +101,15 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                     </b-form-select>
 
                 </div>
-                <div slot="footer">
-                    <button class='altbutton' @click="stop_adding_new()">{{
-                            $t("new_list.button_close_label")
-                        }}
+                <div slot="modal-footer">
+                    <button class='altbutton' @click="$bvModal.hide('show_add_new')">
+                        {{ $t("new_list.button_close_label") }}
                     </button> &nbsp;
                     <button class="defaultbutton modal-default-button" @click="create_list()">
                         {{ $t("new_list.button_create_list_label") }}
                     </button>
                 </div>
-            </internet_nl_modal>
+            </b-modal>
 
         </div>
 
@@ -141,7 +139,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 
         <div v-if="!lists.length" class="no-content block fullwidth">
             {{ $t("inital_list.start") }} <br>
-            <button @click="start_adding_new()">{{ $t("new_list.add_new_list") }}</button>
+            <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
             <br>
             <br>
             <p>
@@ -172,13 +170,17 @@ export default {
             maximum_domains_per_list: 10000,
 
             // everything that has something to do with adding a new list:
-            show_add_new: false,
             add_new_server_response: {},
             add_new_new_list: {},
         }
     },
     mounted: function () {
         this.get_lists();
+        this.$root.$on('bv::modal::show', (bvEvent, modalId) => {
+            if (modalId === "show_add_new"){
+                this.reset_add_new_form()
+            }
+        })
     },
     methods: {
         removelist: function (list_id) {
@@ -201,17 +203,13 @@ export default {
                 console.log('A loading error occurred: ' + fail);
             });
         },
-        start_adding_new: function () {
+        reset_add_new_form: function () {
             // Fixes #105: we don't need an explicit enable scans checkmark.
             this.add_new_new_list = {
                 'id': -1, 'name': '', 'enable_scans': true, 'scan_type': 'web',
                 'automated_scan_frequency': 'disabled', 'scheduled_next_scan': '1'
             };
-            this.show_add_new = true;
             this.add_new_server_response = {};
-        },
-        stop_adding_new: function () {
-            this.show_add_new = false;
         },
         create_list: function () {
             this.asynchronous_json_post(
@@ -229,7 +227,7 @@ export default {
                         // item of the lists was cloned.
                         // Doing it properly retains reactivity such as unshifting and reversing the list.
                         this.lists.unshift(this.add_new_server_response.data);
-                        this.show_add_new = false;
+                        this.$bvModal.hide('show_add_new')
                     }
                 });
         }

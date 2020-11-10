@@ -1,3 +1,10 @@
+<style scoped>
+
+input {
+    margin-bottom: 1em;
+}
+</style>
+
 <template>
     <div class="account">
         <div class="block fullwidth">
@@ -13,13 +20,11 @@
                 <h2>{{ $t("personalia") }}</h2>
                 <label class='ad_hoc_label' for="first_name">{{ $t("first_name") }}:</label>
                 <b-form-input id="first_name" type="text" maxlength="120" v-model="user.first_name" :placeholder="$t('first_name')"></b-form-input>
-                <br><br>
-                <br>
+
 
                 <label class='ad_hoc_label' for="last_name">{{ $t("last_name") }}:</label>
                 <b-form-input id="last_name" type="text" maxlength="120" v-model="user.last_name" :placeholder="$t('last_name')"></b-form-input>
-                <br><br>
-                <br>
+
                 <button id="save" type="button" @click="save">{{ $t("save") }}</button>
             </div>
 
@@ -37,16 +42,12 @@
                     :unchecked-value="false"
                     switch>{{ $t(`check_${user.mail_send_mail_after_scan_finished}`) }}
                 </b-form-checkbox>
-                <br><br>
 
                 <label class='ad_hoc_label' for="mail_preferred_mail_address">{{
                         $t("mail_preferred_mail_address")
                     }}</label>
 
                 <b-form-input id="last_name" type="email" v-model="user.mail_preferred_mail_address"></b-form-input>
-
-                <br><br>
-                <br>
 
                 <label class='ad_hoc_label' for="mail_preferred_language">{{ $t("mail_preferred_language") }}</label>
                 <b-form-select v-model="user.mail_preferred_language" class="mb-3">
@@ -55,7 +56,6 @@
                     <b-form-select-option value="nl">{{ $t("nl") }}</b-form-select-option>
                 </b-form-select>
 
-                <br>
                 <button id="save" type="button" @click="save">{{ $t("save") }}</button>
             </div>
         </div>

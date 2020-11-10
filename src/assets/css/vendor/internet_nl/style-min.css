@@ -50,14 +50,6 @@ h1, h2, h3, h4 {
     font-weight: bold
 }
 
-blockquote {
-    padding-top: .5em;
-    border-top: 1px solid #E2E2E2;
-    border-bottom: 1px solid #E2E2E2;
-    margin: 2em 3em 2em 2em;
-    font-size: 95%
-}
-
 hr {
     border: 0;
     height: 1px;
@@ -82,15 +74,6 @@ pre {
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word
-}
-
-blockquote, q {
-    quotes: none
-}
-
-blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
-    content: none
 }
 
 table {
@@ -329,11 +312,6 @@ header .language-switch-list li button.active-language:hover, header .language-s
         padding: 0;
         position: absolute;
         width: 1px
-    }
-
-    hall-of-fame #content li, footer li {
-        margin-top: .5em;
-        margin-bottom: .5em
     }
 }
 
@@ -584,125 +562,16 @@ article img {
     display: block
 }
 
-.block input[type="url"], .block input[type="text"] {
-    width: 100%
-}
-
-.block input[type="email"], .block input[type="url"], .block input[type="text"], .block select {
-    border: 2px solid #dadada;
-    border-radius: 4px;
-    font-size: 1em;
-    padding-left: .5em;
-    margin-top: .5em;
-    height: 1.875em
-}
-
-.block .emailfield {
-    display: block;
-    background: white;
-    width: auto;
-    padding: 0 0 0 0;
-    border: 2px solid #dadada;
-    border-radius: 4px;
-    margin-top: .5em;
-    margin-bottom: 1em;
-    overflow: hidden;
-    height: 1.875em
-}
-
-.block .emailfield:before {
-    content: '@';
-    background: #dadada;
-    width: 8%;
-    display: block;
-    float: left;
-    text-align: center;
-    height: 100%;
-    overflow: hidden;
-    padding: 2px 0
-}
-
-.block .emailfield input {
-    margin: 0 3px;
-    border-width: 0;
-    border-radius: 0 4px 4px 0;
-    width: 89%;
-    width: calc(92% - 6px);
-    float: right;
-    height: 1.875em;
-    height: 1.5em
-}
-
 .block form label span {
     line-height: 1
 }
 
-.block p, .block a, .block input, .block ul, .block ol, .block select {
+.block p, .block a, .block ul, .block ol, .block select {
     margin-bottom: 1em
 }
 
 .block ol ol, .block ol ul, .block ul ol, .block ul ul {
     margin-bottom: 0
-}
-
-.block.dark.stats h3 {
-    margin-top: .5em
-}
-
-.block.dark.stats li {
-    padding-left: 1em;
-    text-indent: -.7em
-}
-
-.block.dark.stats table {
-    width: 100%
-}
-
-.block.dark.stats th {
-    padding-top: 0;
-    font-weight: normal
-}
-
-.block.dark.stats th, .block.dark.stats td {
-    text-align: right;
-    background-color: #575757
-}
-
-.block.stats span {
-    display: inline-block;
-    width: 52%;
-    float: right;
-    padding: 0;
-    margin-left: 5%
-}
-
-.block.stats .almost-there {
-    list-style: url("/static/li-shield-warning.png");
-    list-style: url("/static/li-shield-warning.svg")
-}
-
-.block.stats .notpassed {
-    list-style: url("/static/li-shield-error.png");
-    list-style: url("/static/li-shield-error.svg")
-}
-
-.block.stats .passed {
-    list-style: url("/static/li-shield-ok.png");
-    list-style: url("/static/li-shield-ok.svg")
-}
-
-.block.stats ol, .block.hall-of-fame ol {
-    overflow: hidden;
-    padding-left: 14px
-}
-
-.block.stats li {
-    margin-left: 14px;
-    clear: both
-}
-
-.block.hall-of-fame li {
-    margin-left: 7px
 }
 
 aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, aside .further-testing li a, aside .further-testing li p, .block.hall-of-fame li {
@@ -786,122 +655,9 @@ aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, asid
     min-height: 28px
 }
 
-.news li a {
-    display: inline-block;
-    color: #000000;
-    text-decoration: none;
-    vertical-align: top;
-    padding-top: .5em;
-    padding-bottom: .5em;
-    margin-bottom: 0;
-    display: block;
-    overflow: hidden
-}
-
-.news li a:hover, .news li a:active, .news li a:focus {
-    background-color: #f6f6f6
-}
-
-.news li a:hover .dateshield, .news li a:active .dateshield, .news li a:focus .dateshield {
-    border-color: #111111;
-    background: white
-}
-
-.dateshield {
-    display: inline-block;
-    float: left;
-    width: 2.4em;
-    border: 1px solid #dfdfdf;
-    text-align: center;
-    margin-right: .5em
-}
-
-.dateshield span {
-    font-family: Helvetica, sans-serif;
-    font-size: 1.6em;
-    color: #111111;
-    display: block;
-    line-height: 1.2
-}
-
-.dateshield abbr {
-    font-size: .5em;
-    color: #111;
-    text-transform: uppercase;
-    display: block;
-    padding: .1em 0 0 0;
-    text-decoration: none;
-    line-height: 1
-}
-
-.dateshield abbr + span {
-    font-family: Helvetica, sans-serif;
-    font-size: .45em;
-    padding-top: .1em;
-    padding-bottom: .2em
-}
-
-.overview a {
-    text-decoration: none;
-    color: #000000;
-    display: block;
-    padding-right: 1.5em;
-    background: url("/static/icon-arrow-right.png") top right no-repeat;
-    background-image: url("/static/icon-arrow-right.svg"), none
-}
-
-.overview a:hover, .overview a:active, .overview a:focus {
-    text-decoration: underline;
-    background: url("/static/icon-arrow-right.png") top right no-repeat;
-    background-image: url("/static/icon-arrow-right.svg"), none
-}
-
-.overview a:focus {
-    outline: 2px solid #14C9DF
-}
-
-.overview div div a, .overview div div a:hover, .overview div div a:active, .overview div div a:focus {
-    display: inline;
-    background: none;
-    padding-right: inherit;
-    text-decoration: underline
-}
-
-.newsitem article img {
-    width: 100%
-}
-
-.newsitem article img.blogphoto {
-    width: auto;
-    float: left;
-    width: 8.125em;
-    max-width: 40%;
-    margin-right: .5em
-}
-
 .intro {
     font-size: 110%;
     line-height: 1.4em
-}
-
-.block.hall-of-fame {
-    background: white url("/static/badge-simple-flat.png") center right no-repeat;
-    background-image: url("/static/badge-simple-flat.svg"), none;
-    background-size: 62px 80px;
-    background-position: 95% .5em
-}
-
-.block.hall-of-fame h2, .block.hall-of-fame p {
-    margin-right: 70px
-}
-
-.block.hall-of-fame p.read-more {
-    margin-right: 0
-}
-
-.hall-of-fame main ol, .hall-of-fame main ul {
-    margin-bottom: 1em;
-    list-style: none
 }
 
 .hidethis {
@@ -1182,59 +938,6 @@ table td {
     margin-bottom: .2em
 }
 
-.score-container {
-    overflow: hidden;
-    border: 1px solid #b3b3b3;
-    height: 2.5em
-}
-
-.score-container .score {
-    background: #ffab4c;
-    color: black;
-    width: 2.5em;
-    text-align: center;
-    line-height: 2.4;
-    border-right: 1px solid #666;
-    font-family: 'robotobold', arial, sans-serif;
-    font-weight: bold;
-    border-left: 1px solid #b3b3b3
-}
-
-.score-container .score, .score-container .meter {
-    display: block;
-    float: left;
-    clear: none;
-    overflow: hidden;
-    height: 100%;
-    padding: 0;
-    margin: 0
-}
-
-.meter {
-    width: 90%;
-    width: calc(100% - 2.5em);
-    position: relative;
-    background-color: #fff;
-    padding: 0;
-    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
-    position: relative
-}
-
-.meter > span {
-    display: block;
-    height: 62%;
-    overflow: hidden;
-    position: absolute;
-    left: 0;
-    top: 19%;
-    margin: 0 1px 0 0;
-    padding: 0 0 10px 0;
-    border-radius: 0 5px 5px 0;
-    background-color: #05BFD6;
-    background-color: rgba(5, 191, 214, 0.95);
-    background-image: linear-gradient(center bottom, #2bc253 37%, #54f054 69%)
-}
-
 #testresults-overview ul, #testresults-overview ul li {
     list-style: none;
     margin-left: 0;
@@ -1333,29 +1036,6 @@ footer ul li:first-child {
 
 footer ul li:last-child {
     padding-right: 0
-}
-
-.tweet {
-    background: url("/static/icon-twitter.svg");
-    background: url("/static/icon-twitter.png");
-    background-color: #e3e3e3;
-    background-repeat: no-repeat;
-    background-position: 5px center;
-    background-size: 1.25em 1.25em;
-    color: #ffffff;
-    padding: .1em .75em .15em 2em;
-    border: solid .15em #e3e3e3;
-    border-radius: 1em;
-    font-family: 'robotobold', arial, sans-serif;
-    font-weight: bold;
-    font-size: 100%;
-    text-decoration: none;
-    display: block;
-    float: right
-}
-
-.tweet:hover {
-    background-color: #ffffff
 }
 
 .twitterfollow {
