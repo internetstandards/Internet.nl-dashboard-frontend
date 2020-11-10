@@ -807,20 +807,22 @@ export default {
 
         score_comparison: function(url) {
             if (this.compare_charts.length < 2) {
-                return `<span><img src="/static/images/vendor/internet_nl/favicon.png"
-                                         style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
+                return `<span><img src="/static/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
             } else {
-                if (this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0] === undefined) {
-                    return `<span><img src="/static/images/vendor/internet_nl/favicon.png"
-                                         style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
+
+                if (url === undefined ||
+                    url.endpoints[0].ratings_by_type === undefined ||
+                    url.endpoints[0].ratings_by_type.internet_nl_score === undefined ||
+                    this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0] === undefined ||
+                    this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score === undefined) {
+                    return `<span><img src="/static/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
                 }
 
                 let current_score = url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
                 let other_score = this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
                 // console.log(`current score: ${current_score} other score: ${other_score}`)
                 if (current_score === undefined || other_score === undefined)
-                    return `<span><img src="/static/images/vendor/internet_nl/favicon.png"
-                                         style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
+                    return `<span><img src="/static/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}%</span>`
 
                 let comparison = ""
                 if (current_score > other_score) {
@@ -829,8 +831,7 @@ export default {
                 if (current_score < other_score) {
                     comparison = "<img src='/static/images/report_comparison_regressed.png'>"
                 }
-                return `<span style="white-space: nowrap "><img src="/static/images/vendor/internet_nl/favicon.png"
-                                         style="height: 16px;"> ${current_score}% ${comparison}</span>`
+                return `<span style="white-space: nowrap "><img src="/static/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}% ${comparison}</span>`
             }
         },
 
