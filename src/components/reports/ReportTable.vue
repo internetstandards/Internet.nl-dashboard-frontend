@@ -191,57 +191,57 @@ div.rotate > span {
 }
 
 .category_passed {
-    background-image: url("/static/images/vendor/internet_nl/icon-circle-check.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.svg");
 }
 
 .passed {
-    background-image: url("/static/images/vendor/internet_nl/li-shield-ok.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/li-shield-ok.svg");
 }
 
 .category_failed {
-    background-image: url("/static/images/vendor/internet_nl/icon-circle-error.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-error.svg");
 }
 
 .failed {
-    background-image: url("/static/images/vendor/internet_nl/icon-error.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-error.svg");
 }
 
 .warning {
-    background-image: url("/static/images/vendor/internet_nl/icon-warning.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-warning.svg");
 }
 
 .category_info {
-    background-image: url("/static/images/vendor/internet_nl/icon-info.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg");
 }
 
 .category_unknown {
-    background-image: url("/static/images/vendor/internet_nl/icon-circle-check.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.svg");
 }
 
 
 .category_warning {
-    background-image: url("/static/images/vendor/internet_nl/icon-circle-warning.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-warning.svg");
 }
 
 .category_error {
-    background-image: url("/static/images/vendor/internet_nl/probe-error.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/probe-error.svg");
 }
 
 .info {
-    background-image: url("/static/images/vendor/internet_nl/icon-info.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg");
 }
 
 /* First name was old internet.nl v1 api, second is v2 api.*/
 .good_not_tested {
-    background-image: url("/static/images/vendor/internet_nl/icon-not-tested-question-mark.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-question-mark.svg");
 }
 
 .error_in_test, .error, .not_testable, .unreachable {
-    background-image: url("/static/images/vendor/internet_nl/icon-not-tested-bolt.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-bolt.svg");
 }
 
 .not_applicable, .not_tested, .no_mx {
-    background-image: url("/static/images/vendor/internet_nl/icon-not-tested.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested.svg");
 }
 
 .compared_with_next_report_neutral:before {
@@ -256,7 +256,7 @@ div.rotate > span {
 
 .compared_with_next_report_improved:before {
     content: '';
-    background-image: url("/static/images/report_comparison_improved.png");
+    background-image: url("/static_frontend/images/report_comparison_improved.png");
     width: 32px;
     height: 100%;
     background-repeat: no-repeat;
@@ -266,7 +266,7 @@ div.rotate > span {
 
 .compared_with_next_report_regressed:before {
     content: '';
-    background-image: url("/static/images/report_comparison_regressed.png");
+    background-image: url("/static_frontend/images/report_comparison_regressed.png");
     width: 32px;
     height: 100%;
     background-repeat: no-repeat;
@@ -276,53 +276,53 @@ div.rotate > span {
 
 .faq-subtest {
     padding-left: 1.5em;
-    background-image: url("/static/images/vendor/internet_nl/icon-testresult-default.svg");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-testresult-default.svg");
     background-size: 1.125em 1.125em
 }
 
 .testresult.passed, .faq-subtest.passed {
-    background-image: url("/static/images/vendor/internet_nl/icon-check.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-check.svg") !important
 }
 
 .testresult.failed, .faq-subtest.failed {
-    background-image: url("/static/images/vendor/internet_nl/icon-error.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-error.svg") !important
 }
 
 .testresult.warning, .faq-subtest.warning {
-    background-image: url("/static/images/vendor/internet_nl/icon-warning.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-warning.svg") !important
 }
 
 .testresult.info, .faq-subtest.info {
-    background-image: url("/static/images/vendor/internet_nl/icon-info.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg") !important
 }
 
 .testresult.good-not-tested, .faq-subtest.good-not-tested {
-    background-image: url("/static/images/vendor/internet_nl/icon-not-tested-question-mark.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-question-mark.svg") !important
 }
 
 .testresult.not-tested, .faq-subtest.not-tested {
-    background-image: url("/static/images/vendor/internet_nl/icon-not-tested.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested.svg") !important
 }
 
 
 .testresults h2.error, .faq-test.error, #testresults-overview ul li.error {
-    background-image: url("/static/images/vendor/internet_nl/probe-error.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/probe-error.svg") !important
 }
 
 .testresults h2.warning, .faq-test.warning, .test-header .test-title h2.warning, #testresults-overview ul li.warning {
-    background-image: url("/static/images/vendor/internet_nl/icon-circle-warning.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-warning.svg") !important
 }
 
 .testresults h2.failed, .faq-test.failed, .test-header .test-title h2.failed, #testresults-overview ul li.failed {
-    background-image: url("/static/images/vendor/internet_nl/icon-circle-error.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-error.svg") !important
 }
 
 .testresults h2.info, .faq-test.info, .test-header .test-title h2.info, #testresults-overview ul li.info {
-    background-image: url("/static/images/vendor/internet_nl/icon-info.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg") !important
 }
 
 .testresults h2.passed, .faq-test.passed, .test-header .test-title h2.passed, #testresults-overview ul li.passed {
-    background-image: url("/static/images/vendor/internet_nl/icon-circle-check.svg") !important
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.svg") !important
 }
 
 </style>
@@ -807,7 +807,7 @@ export default {
 
         score_comparison: function(url) {
             if (this.compare_charts.length < 2) {
-                return `<span><img src="/static/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
+                return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
             } else {
 
                 if (url === undefined ||
@@ -815,23 +815,23 @@ export default {
                     url.endpoints[0].ratings_by_type.internet_nl_score === undefined ||
                     this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0] === undefined ||
                     this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score === undefined) {
-                    return `<span><img src="/static/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
+                    return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
                 }
 
                 let current_score = url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
                 let other_score = this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
                 // console.log(`current score: ${current_score} other score: ${other_score}`)
                 if (current_score === undefined || other_score === undefined)
-                    return `<span><img src="/static/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}%</span>`
+                    return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}%</span>`
 
                 let comparison = ""
                 if (current_score > other_score) {
-                    comparison = "<img src='/static/images/report_comparison_improved.png'>"
+                    comparison = "<img src='/static_frontend/images/report_comparison_improved.png'>"
                 }
                 if (current_score < other_score) {
-                    comparison = "<img src='/static/images/report_comparison_regressed.png'>"
+                    comparison = "<img src='/static_frontend/images/report_comparison_regressed.png'>"
                 }
-                return `<span style="white-space: nowrap "><img src="/static/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}% ${comparison}</span>`
+                return `<span style="white-space: nowrap "><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}% ${comparison}</span>`
             }
         },
 

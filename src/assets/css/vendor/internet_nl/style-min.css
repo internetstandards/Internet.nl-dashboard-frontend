@@ -1,15 +1,15 @@
 @font-face {
     font-family: 'robotobold';
-    src: url("/static/fonts/robotobold.eot");
-    src: url("/static/fonts/robotobold.eot?#iefix") format("embedded-opentype"), url("/static/fonts/robotobold.woff") format("woff"), url("/static/fonts/robotobold.ttf") format("truetype"), url("/static/fonts/robotobold.svg#robotobold") format("svg");
+    src: url("/static_frontend/fonts/robotobold.eot");
+    src: url("/static_frontend/fonts/robotobold.eot?#iefix") format("embedded-opentype"), url("/static/fonts/robotobold.woff") format("woff"), url("/static/fonts/robotobold.ttf") format("truetype"), url("/static/fonts/robotobold.svg#robotobold") format("svg");
     font-weight: bold;
     font-style: normal
 }
 
 @font-face {
     font-family: 'robotoregular';
-    src: url("/static/fonts/robotoregular.eot");
-    src: url("/static/fonts/robotoregular.eot?#iefix") format("embedded-opentype"), url("/static/fonts/robotoregular.woff") format("woff"), url("/static/fonts/robotoregular.ttf") format("truetype"), url("/static/fonts/robotoregular.svg#robotoregular") format("svg");
+    src: url("/static_frontend/fonts/robotoregular.eot");
+    src: url("/static_frontend/fonts/robotoregular.eot?#iefix") format("embedded-opentype"), url("/static/fonts/robotoregular.woff") format("woff"), url("/static/fonts/robotoregular.ttf") format("truetype"), url("/static/fonts/robotoregular.svg#robotoregular") format("svg");
     font-weight: normal;
     font-style: normal
 }

@@ -54,10 +54,10 @@
                         {{ $t("upload.open_document_spreadsheet") }}
                     </td>
                     <td>
-                        <a href="/static/sample_spreadsheets/libre_office_spreadsheet_empty.ods">Empty.ods</a>
+                        <a href="/static_frontend/sample_spreadsheets/libre_office_spreadsheet_empty.ods">Empty.ods</a>
                     </td>
                     <td>
-                        <a href="/static/sample_spreadsheets/libre_office_spreadsheet_with_example_data.ods">Example.ods</a>
+                        <a href="/static_frontend/sample_spreadsheets/libre_office_spreadsheet_with_example_data.ods">Example.ods</a>
                     </td>
                 </tr>
                 <tr>
@@ -65,10 +65,10 @@
                         {{ $t("upload.microsoft_office_excel") }}
                     </td>
                     <td>
-                        <a href="/static/sample_spreadsheets/microsoft_office_spreadsheet_empty.xlsx">Empty.xlsx</a>
+                        <a href="/static_frontend/sample_spreadsheets/microsoft_office_spreadsheet_empty.xlsx">Empty.xlsx</a>
                     </td>
                     <td>
-                        <a href="/static/sample_spreadsheets/microsoft_office_spreadsheet_with_example_data.xlsx">Example.xlsx</a>
+                        <a href="/static_frontend/sample_spreadsheets/microsoft_office_spreadsheet_with_example_data.xlsx">Example.xlsx</a>
                     </td>
                 </tr>
                 <tr>
@@ -76,10 +76,10 @@
                         {{ $t("upload.comma_separated") }}
                     </td>
                     <td>
-                        <a href="/static/sample_spreadsheets/text_spreadsheet_empty.csv">Empty.csv</a>
+                        <a href="/static_frontend/sample_spreadsheets/text_spreadsheet_empty.csv">Empty.csv</a>
                     </td>
                     <td>
-                        <a href="/static/sample_spreadsheets/text_spreadsheet_with_example_data.csv">Example.csv</a>
+                        <a href="/static_frontend/sample_spreadsheets/text_spreadsheet_with_example_data.csv">Example.csv</a>
                     </td>
                 </tr>
             </table>

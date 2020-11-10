@@ -270,32 +270,32 @@ export default {
 <style>
 @media (max-width: 499px) {
     #site-title a {
-        background-image: url("/static/images/vendor/internet_nl/logo_en.svg") !important;
+        background-image: url("/static_frontend/images/vendor/internet_nl/logo_en.svg") !important;
     }
 }
 
 @media (min-width: 500px) and (max-width: 739px) {
     #site-title a {
-        background-image: url("/static/images/vendor/internet_nl/logo-tablet_en.svg") !important;
+        background-image: url("/static_frontend/images/vendor/internet_nl/logo-tablet_en.svg") !important;
     }
 }
 
 @media (min-width: 740px) {
     #site-title a {
-        background-image: url("/static/images/vendor/internet_nl/logo_en.svg") !important;
+        background-image: url("/static_frontend/images/vendor/internet_nl/logo_en.svg") !important;
     }
 }
 
 @media print {
     #site-title a {
-        background-image: url("/static/images/vendor/internet_nl/logo_en.png") !important;
+        background-image: url("/static_frontend/images/vendor/internet_nl/logo_en.png") !important;
         /* The SVG logo doesn't print correct
         background-image: url("/static/images/vendor/internet_nl/logo_en.svg") !important; */
     }
 }
 
 .twitterfollow {
-    background: transparent url("/static/images/vendor/internet_nl/icon-twitterfollow.svg") no-repeat 5px center !important;
+    background: transparent url("/static_frontend/images/vendor/internet_nl/icon-twitterfollow.svg") no-repeat 5px center !important;
     background-size: 1.25em 1.25em !important;
     padding-left: 2em !important;
 }

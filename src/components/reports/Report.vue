@@ -54,9 +54,9 @@
                 <h2>
                     📊 #{{ selected_report[0].id }} - {{ selected_report[0].list_name }}</h2>
                 <span>{{ $t("report_header.type_of_scan_performed") }}:
-                    <img src="/static/images/vendor/internet_nl/icon-website-test.svg" style="height: 1em;"
+                    <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg" style="height: 1em;"
                          v-if="selected_report[0].type === 'web'">
-                    <img src="/static/images/vendor/internet_nl/icon-emailtest.svg" style="height: 1em;"
+                    <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg" style="height: 1em;"
                          v-if="selected_report[0].type === 'mail'"> {{ selected_report[0].type }}<br>
                     {{ $t("report_header.number_of_domains") }}: {{
                         selected_report[0].number_of_urls
