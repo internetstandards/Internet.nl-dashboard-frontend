@@ -68,7 +68,7 @@ button:hover {
         >
             <span :class="`panel-title ${custom_title_class}`">
                <div :class="status_visible ? 'animate_opening open' : 'animate_opening'">
-                    <img src="/static/images/vendor/internet_nl/push-open.png" alt="open panel">
+                    <img src="/static_frontend/images/vendor/internet_nl/push-open.png" alt="open panel">
                 </div>
                 {{ title }}
             </span>

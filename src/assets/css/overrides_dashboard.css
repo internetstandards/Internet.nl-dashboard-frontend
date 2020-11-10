@@ -20,7 +20,7 @@ small {
     transition: all 200ms ease 0s;
     width: 1em;
     height: 1em;
-    background-image: url("/static/images/vendor/internet_nl/icon-arrow-down.svg") !important;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-arrow-down.svg") !important;
     background-size: contain
 }
 
@@ -30,7 +30,7 @@ small {
 }
 
 #menu-button i {
-    background-image: url("/static/images/vendor/internet_nl/icon-menu.svg") !important;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-menu.svg") !important;
 }
 
 /* https://stackoverflow.com/questions/10732690/offsetting-an-html-anchor-to-adjust-for-fixed-header */

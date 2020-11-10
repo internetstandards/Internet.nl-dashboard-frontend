@@ -6,7 +6,7 @@ function ImageCheck() {
         var objCSS_noimages = objHead[0].appendChild(document.createElement('link'));
         objCSS_noimages.id = 'noimages';
         objCSS_noimages.rel = 'stylesheet';
-        objCSS_noimages.href = '/static/css/alt-min.css' + '#' + unique;
+        objCSS_noimages.href = '/static_frontend/css/alt-min.css' + '#' + unique;
         objCSS_noimages.type = 'text/css';
     }
     if (check_if_browser_in_high_contrast()) {
@@ -14,7 +14,7 @@ function ImageCheck() {
         var objCSS_highcontrast = objHead[0].appendChild(document.createElement('link'));
         objCSS_highcontrast.id = 'highcontrast';
         objCSS_highcontrast.rel = 'stylesheet';
-        objCSS_highcontrast.href = '/static/css/high-contrast-min.css' + '#' + unique;
+        objCSS_highcontrast.href = '/static_frontend/css/high-contrast-min.css' + '#' + unique;
         objCSS_highcontrast.type = 'text/css';
     }
 }
