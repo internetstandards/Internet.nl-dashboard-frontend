@@ -450,13 +450,13 @@ export default {
                 history.pushState(
                     {},
                     null,
-                    '/spa/#/report/' + new_value[0].id + '/' + new_value[1].id
+                    '/#/report/' + new_value[0].id + '/' + new_value[1].id
                 );
             } else {
                 history.pushState(
                     {},
                     null,
-                    '/spa/#/report/' + new_value[0].id
+                    '/#/report/' + new_value[0].id
                 );
             }
 
