@@ -810,6 +810,11 @@ export default {
                 return `<span><img src="/static/images/vendor/internet_nl/favicon.png"
                                          style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
             } else {
+                if (this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0] === undefined) {
+                    return `<span><img src="/static/images/vendor/internet_nl/favicon.png"
+                                         style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
+                }
+
                 let current_score = url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
                 let other_score = this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
                 // console.log(`current score: ${current_score} other score: ${other_score}`)
