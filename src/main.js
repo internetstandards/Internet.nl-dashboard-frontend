@@ -198,9 +198,90 @@ router.beforeEach((to, from, next) => {
 // these methods are used over and over.
 Vue.mixin(
     {
-        data: function () {
-            return {
-                metric_visibility: {
+        // add some properties to each and every object.
+        beforeMount: function () {
+            // translate everything.
+            this.$i18n.locale = this.locale;
+        },
+        methods: {
+            copy_json_value: function (obj) {
+                // does not copy methods.
+                return JSON.parse(JSON.stringify(obj));
+            },
+            isEmptyObject: function (my_object) {
+                // This replaces the jQuery.isEmptyObject(), which is not a good reason to include the entirity of jquery
+                // Documentation: https://www.samanthaming.com/tidbits/94-how-to-check-if-object-is-empty/
+                return Object.keys(my_object).length === 0 && my_object.constructor === Object
+            },
+            // this can probably be replaced with axios or whatever. Or not if we want tos ave on dependencies.
+            asynchronous_json_post: function (url, data, callback) {
+                // the context parameter is somewhat dangerous, but this allows us to say 'self.' in the callback.
+                // which could be done somewhat better.
+                // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
+                let server_response = {};
+                // console.log(`Posting to ${url}, with data ${data}`)
+                (async () => {
+                    const rawResponse = await fetch(url, {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': this.get_cookie('csrftoken'),
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    try {
+                        // here is your synchronous part.
+                        server_response = await rawResponse.json();
+                    } catch (e) {
+                        // SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+                        server_response = {'error': true, 'message': 'Server error'}
+                    }
+                    callback(server_response)
+                })();
+            },
+            get_cookie: function (name) {
+                let value = "; " + document.cookie;
+                let parts = value.split("; " + name + "=");
+                if (parts.length === 2) return parts.pop().split(";").shift();
+            },
+            // https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
+            set_cookie: function (name, value, days) {
+                let expires = "";
+                if (days) {
+                    let date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            },
+            // humanize mixin:
+            humanize_date: function (date) {
+                // Uses localized date and time format with day name, which is pretty advanced and complete
+                return this.$moment(date).format('LLLL');
+            },
+            humanize_date_date_only: function (date) {
+                // Uses localized date and time format with day name, which is pretty advanced and complete
+                return this.$moment(date).format('LL');
+            },
+            humanize_relative_date: function (date) {
+                // says things like 'days ago'...
+                return this.$moment(date).fromNow();
+            },
+            humanize_duration: function (duration_in_milliseconds) {
+                return this.$moment.duration(duration_in_milliseconds).humanize()
+            },
+            humanize_filesize: function (size_in_bytes, decimals = 0) {
+                if (size_in_bytes === 0) return '0 Bytes';
+                let k = 1024,
+                    dm = decimals <= 0 ? 0 : decimals || 2,
+                    sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+                    i = Math.floor(Math.log(size_in_bytes) / Math.log(k));
+                return parseFloat((size_in_bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            },
+            load_visible_metrics: function () {
+                const default_metric_visibility = {
                     // contains all fields in the application and some default values
                     web: {visible: true, show_dynamic_average: true},
                     web_legacy: {visible: false, show_dynamic_average: true},
@@ -333,96 +414,12 @@ Vue.mixin(
                     internet_nl_mail_legacy_tls_1_3: {visible: false},
                     internet_nl_mail_legacy_category_ipv6: {visible: false},
                     internet_nl_web_legacy_category_ipv6: {visible: false},
-                }
-            }
-        },
-        // add some properties to each and every object.
-        beforeMount: function () {
-            // translate everything.
-            this.$i18n.locale = this.locale;
-        },
-        methods: {
-            copy_json_value: function (obj) {
-                // does not copy methods.
-                return JSON.parse(JSON.stringify(obj));
-            },
-            isEmptyObject: function (my_object) {
-                // This replaces the jQuery.isEmptyObject(), which is not a good reason to include the entirity of jquery
-                // Documentation: https://www.samanthaming.com/tidbits/94-how-to-check-if-object-is-empty/
-                return Object.keys(my_object).length === 0 && my_object.constructor === Object
-            },
-            // this can probably be replaced with axios or whatever. Or not if we want tos ave on dependencies.
-            asynchronous_json_post: function (url, data, callback) {
-                // the context parameter is somewhat dangerous, but this allows us to say 'self.' in the callback.
-                // which could be done somewhat better.
-                // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
-                let server_response = {};
-                // console.log(`Posting to ${url}, with data ${data}`)
-                (async () => {
-                    const rawResponse = await fetch(url, {
-                        method: 'POST',
-                        credentials: 'include',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': this.get_cookie('csrftoken'),
-                        },
-                        body: JSON.stringify(data)
-                    });
-                    try {
-                        // here is your synchronous part.
-                        server_response = await rawResponse.json();
-                    } catch (e) {
-                        // SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
-                        server_response = {'error': true, 'message': 'Server error'}
-                    }
-                    callback(server_response)
-                })();
-            },
-            get_cookie: function (name) {
-                let value = "; " + document.cookie;
-                let parts = value.split("; " + name + "=");
-                if (parts.length === 2) return parts.pop().split(";").shift();
-            },
-            // https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
-            set_cookie: function (name, value, days) {
-                let expires = "";
-                if (days) {
-                    let date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                    expires = "; expires=" + date.toUTCString();
-                }
-                document.cookie = name + "=" + (value || "") + expires + "; path=/";
-            },
-            // humanize mixin:
-            humanize_date: function (date) {
-                // Uses localized date and time format with day name, which is pretty advanced and complete
-                return this.$moment(date).format('LLLL');
-            },
-            humanize_date_date_only: function (date) {
-                // Uses localized date and time format with day name, which is pretty advanced and complete
-                return this.$moment(date).format('LL');
-            },
-            humanize_relative_date: function (date) {
-                // says things like 'days ago'...
-                return this.$moment(date).fromNow();
-            },
-            humanize_duration: function (duration_in_milliseconds) {
-                return this.$moment.duration(duration_in_milliseconds).humanize()
-            },
-            humanize_filesize: function (size_in_bytes, decimals = 0) {
-                if (size_in_bytes === 0) return '0 Bytes';
-                let k = 1024,
-                    dm = decimals <= 0 ? 0 : decimals || 2,
-                    sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-                    i = Math.floor(Math.log(size_in_bytes) / Math.log(k));
-                return parseFloat((size_in_bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-            },
-            load_visible_metrics: function () {
+                };
+
                 fetch(`${this.$store.state.dashboard_endpoint}/data/account/report_settings/get/`, {credentials: 'include'}).then(response => response.json()).then(data => {
                     if (!this.isEmptyObject(data.data)) {
                         // Get all possible issue fields before overwriting them with whatever is stored.
-                        const all_possible_fields = Object.keys(this.metric_visibility);
+                        const all_possible_fields = Object.keys(default_metric_visibility);
 
                         // now overwrite with the custom settings
                         let issue_filters = data.data;
@@ -433,7 +430,12 @@ Vue.mixin(
                             this.upgrade_issue_filter_with_new_field(issue_filters, field_name);
                         })
                         this.$store.commit("set_visible_metrics", issue_filters);
+                    } else {
+                        // no issue filters at all, set it to the default:
+                        console.log('Using default visible metrics, to change this, set visible metrics in the report page.');
+                        this.$store.commit("set_visible_metrics", default_metric_visibility);
                     }
+
                 });
             },
             upgrade_issue_filter_with_new_field: function (issue_filters, field_name) {
