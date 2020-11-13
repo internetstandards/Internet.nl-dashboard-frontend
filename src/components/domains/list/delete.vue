@@ -69,12 +69,10 @@ export default {
         confirm_deletion: function () {
             this.asynchronous_json_post(
                 `${this.$store.state.dashboard_endpoint}/data/urllist/delete/`, {'id': this.list.id}, (server_response) => {
-                    this.delete_response = server_response;
-
                     if (server_response.success) {
-                        // remove / hide this thing...
                         this.$emit('removelist', this.list.id);
-                        this.stop_deleting();
+                    } else {
+                        this.delete_response = server_response;
                     }
                 }
             );
