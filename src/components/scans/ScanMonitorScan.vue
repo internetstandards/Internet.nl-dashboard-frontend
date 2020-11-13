@@ -15,7 +15,7 @@
             <span v-if="scan.state === 'cancelled'">⭕</span>
             <span v-if="!['finished', 'cancelled'].includes(scan.state)">
             <probe /></span>
-            &nbsp; {{ scan.type }} {{ $t("id") }}{{ scan.id }}</h2><br>
+            &nbsp; {{ scan.type }} {{ $t("scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</h2><br>
         <br>
         <template v-if="scan.finished && (scan.state !== 'cancelled')">
             <template v-if="scan.last_report_id">
@@ -32,9 +32,8 @@
             </template>
         </template>
         📘
-        <router-link :to="{ name: 'numbered_lists', params: { list: scan.list_id }}">{{
-                scan.list
-            }}
+        <router-link :to="{ name: 'numbered_lists', params: { list: scan.list_id }}">
+            {{ scan.list }}
         </router-link>
         <br><br>
 
@@ -81,6 +80,10 @@
         <span :title="scan.started_on">{{
                 humanize_date(scan.started_on)
             }},<br>{{ humanize_relative_date(scan.started_on) }}</span><br>
+        <br>
+
+        <b>{{ $t("scan_support_id") }}</b><br>
+        <span>Scan #{{ scan.id }}</span><br>
         <br>
 
         <collapse-panel :title='$t("scan history")'>
@@ -188,14 +191,25 @@ export default {
             this.visible.stop_scan = false;
             // events don't bubble up, so trigger it again here.
             this.$emit('scan-stopped', this.scan.id)
-        }
+        },
+        abbreviate: function(text, max_length){
+
+            if (max_length === undefined){
+                max_length = 30;
+            }
+
+            if (text.length < (max_length + 3))
+                return text
+
+            return `${text.substring(0, max_length)}...`
+        },
     }
 }
 </script>
 <i18n>
 {
     "en": {
-        "id": " scan #",
+        "scan": "scan",
         "type": "Type",
         "list": "List",
         "started_on": "Started",
@@ -213,6 +227,7 @@ export default {
         "progress_bar": "Progress",
         "scan history": "Performed tasks in this scan",
         "stop_scan": "Stop scan",
+        "scan_support_id": "Scan Support ID",
         "cancel": {
             "are_you_sure": "Do you want to cancel this scan?",
             "scan_id": "scan",
@@ -253,7 +268,7 @@ export default {
         }
     },
     "nl": {
-        "id": "scan #",
+        "id": "scan",
         "type": "Soort",
         "list": "Lijst",
         "started_on": "Gestart",
@@ -271,6 +286,7 @@ export default {
         "progress_bar": "Voortgang",
         "scan history": "Uitgevoerde stappen in scan",
         "stop_scan": "Stop scan",
+        "scan_support_id": "Scan supportnummer",
         "cancel": {
             "are_you_sure": "Deze scan stoppen?",
             "scan_id": "scan",

@@ -10,7 +10,7 @@
 </style>
 
 <template>
-    <article class="managed-url-list block fullwidth" :id="list.id">
+    <article class="managed-url-list block fullwidth" :id="list.id" v-if="!is_deleted">
         <span>
             <a :name="list.id"></a>
             <h2>
@@ -61,10 +61,10 @@
             <h3>{{ $t("domains.header") }}</h3>
             <p v-html="$t('domains.intro')"></p>
 
-            <template v-if="this.list.list_warnings.indexOf('WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED') > -1">
+            <template v-if="list.list_warnings.indexOf('WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED') > -1">
                 <div class="server-response-error">
                     <span role="img" :aria-label="$t('icon.list_warning')">⚠️</span>{{
-                        $t("warnings.domains_exceed_maximum", [this.maximum_domains])
+                        $t("warnings.domains_exceed_maximum", [maximum_domains])
                     }}
                 </div>
             </template>
@@ -82,15 +82,21 @@
                 </li>
             </ul>
             <br>
-            <button v-if="urls.length" @click="this.view_csv = !this.view_csv" value="load">
+            <button v-if="urls.length" @click="view_csv = !view_csv" value="load">
                 📋 {{ $t("button.view_csv") }}
             </button>
             <br>
-            <textarea v-if="view_csv" class="view-csv" :value="csv_value"></textarea>
+            <b-form-textarea
+              id="textarea"
+              v-model="csv_value"
+              style="border: 1px solid silver; padding: 5px;"
+              v-if="view_csv"
+              plaintext
+            ></b-form-textarea>
         </div>
 
         <Configure :list="list" :show="visible.configure" :visible="visible.configure" @cancel="visible.configure = false" @done="visible.configure = false" ></Configure>
-        <Delete :list="list" :show="visible.delete" :visible="visible.delete" @cancel="visible.delete = false"></Delete>
+        <Delete :list="list" :show="visible.delete" :visible="visible.delete" @cancel="visible.delete = false" @removelist="is_deleted = true; visible.delete = false"></Delete>
         <Scan :list="list" :show="visible.scan" :visible="visible.scan" @cancel="visible.scan = false" @started="visible.scan = false"></Scan>
         <AddDomains :list="list" :show="visible.add_domains" :visible="visible.add_domains" @cancel="visible.add_domains = false" @added="get_urls()"></AddDomains>
 
@@ -126,6 +132,8 @@ export default {
         return {
             urls: [],
             is_opened: false,
+
+            is_deleted: false,
 
             loading: false,
 

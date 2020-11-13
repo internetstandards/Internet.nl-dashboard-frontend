@@ -37,9 +37,9 @@
                             </a>
                         </span>
 
-                        <div v-for="category in category.categories" :key="category.name">
-                            <div class="test-subsection">{{ category.label }}<br></div>
-                            <div v-for="field in category.fields" :key="field.name" class="testresult_without_icon">
+                        <div v-for="subcategory in category.categories" :key="subcategory.name">
+                            <div class="test-subsection">{{ subcategory.label }}<br></div>
+                            <div v-for="field in subcategory.fields" :key="field.name" class="testresult_without_icon">
 
                                 <b-form-checkbox
                                     v-model="issue_filters[field.name].visible" :id="field.name + '_visible'"
@@ -156,7 +156,6 @@ export default {
             // console.log(category_name);
 
             let fields = this.all_subcategory_fields_from_category(category_name);
-            // console.log(fields)
 
             let should_be_visible = false;
             for (let i = 0; i < fields.length; i++) {
@@ -167,11 +166,13 @@ export default {
                 }
 
                 if (this.issue_filters[fields[i]].visible) {
+                    console.log(` ${fields[i]} is visible, so should the category.`)
                     should_be_visible = true;
                     break;
                 }
             }
 
+            console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
             this.issue_filters[category_name.key].visible = should_be_visible;
         },
         all_subcategory_fields_from_category(category_name) {
@@ -197,6 +198,30 @@ export default {
     watch: {
         visible_metrics: function (new_value) {
             this.issue_filters = new_value;
+        },
+        issue_filters: function() {
+            /**
+             * Using the 'switch' button has a side effect: the value is set _after_ the @change is performed.
+             * Therefore there is no up to date data inside the data. What we will do is iterate over all fields
+             * and make sure that the correct categories are set. This is a hack to be somewhat efficient and not
+             * go over the scan methods object. This will bite if there is more demand for doing things dynamically.
+             * */
+
+            const categories = [
+                {key: 'internet_nl_web_ipv6'},
+                {key: 'internet_nl_web_dnssec'},
+                {key: 'internet_nl_web_tls'},
+                {key: 'internet_nl_web_appsecpriv'},
+                {key: 'web_legacy'},
+                {key: 'internet_nl_mail_dashboard_ipv6'},
+                {key: 'internet_nl_mail_dashboard_dnssec'},
+                {key: 'internet_nl_mail_dashboard_auth'},
+                {key: 'internet_nl_mail_dashboard_tls'},
+                {key: 'mail_legacy'}
+            ];
+            categories.forEach((category) => {
+                this.visible_metrics_see_if_category_is_relevant(category)
+            });
         }
     }
 }
