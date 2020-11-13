@@ -8,8 +8,8 @@
 
             <div v-if="!user.is_authenticated">
                 <p>
-                    You are currently not logged in. Enter your credentials to log into the dashboard.<br>
-                    <i><small>If second factor authentication is enabled, use this alternate login link: <a
+                    {{ $t('not_logged_in') }}<br>
+                    <i><small>{{ $t('secondfactor_message') }}: <a
                         :href="$store.state.dashboard_endpoint + '/account/login/'">{{
                             $store.state.dashboard_endpoint
                         }}/account/login/</a></small></i>
@@ -131,18 +131,24 @@ export default {
         "invalid_credentials": "Username or password not correct.",
         "user_not_active": "User is not active.",
         "logged_in": "You have succesfully logged in.",
-        "logged_out": "You have succesfully logged out."
+        "logged_out": "You have succesfully logged out.",
+        "secondfactor_message": "If second factor authentication is enabled, use this alternate login link",
+        "second_factor_login_required": "Second factor authentication is enabled for this user, please use the alternative login form linked on this page."
     },
     "nl": {
         "title": "Inloggen",
         "intro": "Log in op het dashboard.",
         "username": "gebruikersnaam",
         "password": "wachtwoord",
+        "login": "Inloggen",
+        "not_logged_in": "Je bent niet ingelogd. Voer je gebruikersnaam en wachtwoord in om in te loggen op het dashboard.",
         "no_credentials_supplied": "Voer een gebruikersnaam en wachtwoord in.",
         "invalid_credentials": "Gebruikersnaam of wachtwoord niet correct.",
         "user_not_active": "Gebruiker is niet actief.",
         "logged_in": "Succesvol ingelogd.",
-        "logged_out": "Succesvol uitgelogd."
+        "logged_out": "Succesvol uitgelogd.",
+        "secondfactor_message": "Als tweetrapsverificatie is ingeschakeld, gebruik dan de alternatieve inlogpagina op de volgende link",
+        "second_factor_login_required": "Tweetrapsverificatie is ingeschakeld, gebruik de alternatieve inlogpagina die op deze pagina staat aangegeven."
     }
 }
 
