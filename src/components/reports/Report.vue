@@ -186,42 +186,39 @@ export default {
     mounted: function () {
         this.load_visible_metrics();
 
-        this.get_recent_reports();
-        // this supports: http://localhost:8000/reports/83/
-
-        // why is this not done at nextTick?
-        // because the report selection has not been loaded yet, so move this to the result of get latest reports...
-        // and you only want to do this at load of the page, not every time latest report is called.
-        setTimeout(() => {
-
-            if (this.$router.history.current.params.report) {
-                let primary_report_id = this.$router.history.current.params.report;
-                let secondary_report_id = this.$router.history.current.params.compare_with;
-
-                this.filtered_recent_reports.forEach((option) => {
-                    // Create label
-                    option.label = `#${option.id} - ${option.list_name} - type: ${option.type} - from: ${this.humanize_date(option.at_when)}`;
-                });
-
-                let reports_to_select = [];
-                // The primary report
-                this.filtered_recent_reports.forEach((option) => {
-                    if (option.id + "" === primary_report_id) {
-                        reports_to_select.push(option);
-                    }
-                });
-
-                // loop again, so we're sure the first report is the primary report,
-                // and a compared report is compared:
-                this.filtered_recent_reports.forEach((option) => {
-                    if (option.id + "" === secondary_report_id) {
-                        reports_to_select.push(option);
-                    }
-                });
-
-                this.selected_report = reports_to_select;
+        this.get_recent_reports(() => {
+            console.log(this.$router.history.current.params.report);
+            if (this.$router.history.current.params.report === undefined) {
+                return
             }
-        }, 1500)
+
+            let primary_report_id = parseInt(this.$router.history.current.params.report);
+            let secondary_report_id = parseInt(this.$router.history.current.params.compare_with);
+
+            this.filtered_recent_reports.forEach((option) => {
+                // Create label
+                option.label = `#${option.id} - ${option.list_name} - type: ${option.type} - from: ${this.humanize_date(option.at_when)}`;
+            });
+
+            let reports_to_select = [];
+            // The primary report
+            this.filtered_recent_reports.forEach((option) => {
+                if (option.id === primary_report_id) {
+                    reports_to_select.push(option);
+                }
+            });
+
+            // loop again, so we're sure the first report is the primary report,
+            // and a compared report is compared:
+            this.filtered_recent_reports.forEach((option) => {
+                if (option.id === secondary_report_id) {
+                    reports_to_select.push(option);
+                }
+            });
+
+            this.selected_report = reports_to_select;
+
+        });
     },
 
     methods: {
@@ -311,7 +308,7 @@ export default {
             });
         },
 
-        get_recent_reports: function () {
+        get_recent_reports: function (callback) {
             // reload the select
             fetch(`${this.$store.state.dashboard_endpoint}/data/report/recent/`, {credentials: 'include'}).then(response => response.json()).then(data => {
                 // console.log("Get recent reports");
@@ -322,6 +319,9 @@ export default {
                 }
                 this.available_recent_reports = options;
                 this.filtered_recent_reports = options;
+                if (callback !== undefined) {
+                    callback()
+                }
             }).catch((fail) => {
                 console.log('A loading error occurred: ' + fail);
             });
@@ -332,28 +332,36 @@ export default {
 
         // support keep alive routing
         $route: function (to) {
-            // https://router.vuejs.org/guide/essentials/dynamic-matching.html
-            if (undefined !== to.params.report) {
-                // See if we can find a report to mach. Has to updated in 1 go due to the watch.
-                let reports_to_select = [];
-
-                // The primary report
-                this.available_recent_reports.forEach((item) => {
-                    if (item.id === to.params.report) {
-                        reports_to_select.push(item);
+            console.log(to);
+            this.get_recent_reports(() => {
+                    // https://router.vuejs.org/guide/essentials/dynamic-matching.html
+                    if (undefined === to.params.report) {
+                        return;
                     }
-                });
 
-                // loop again, so we're sure the first report is the primary report,
-                // and a compared report is compared:
-                this.available_recent_reports.forEach((item) => {
-                    if (item.id === to.params.compare_with) {
-                        reports_to_select.push(item);
-                    }
-                });
+                    // See if we can find a report to mach. Has to updated in 1 go due to the watch.
+                    let reports_to_select = [];
 
-                this.selected_report = reports_to_select;
-            }
+                    // The primary report
+                    this.available_recent_reports.forEach((item) => {
+                        if (item.id === to.params.report) {
+                            reports_to_select.push(item);
+                        }
+                    });
+
+                    // loop again, so we're sure the first report is the primary report,
+                    // and a compared report is compared:
+                    this.available_recent_reports.forEach((item) => {
+                        if (item.id === to.params.compare_with) {
+                            reports_to_select.push(item);
+                        }
+                    });
+
+                    this.selected_report = reports_to_select;
+
+                }
+            );
+
         },
 
         selected_report: function (new_value) {
