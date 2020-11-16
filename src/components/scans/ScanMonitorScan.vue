@@ -7,6 +7,10 @@
     margin: 0;
     margin-top: -0.3em;
 }
+
+ol {
+    list-style: decimal;
+}
 </style>
 <template>
     <div class="wrapper">
@@ -88,12 +92,12 @@
 
         <collapse-panel :title='$t("scan history")'>
             <div slot="content">
-                <ul style="font-size: 0.7em;">
+                <ol style="font-size: 0.7em;" reversed>
                     <li v-for="log_item in scan.log" :key="log_item.id">
-                        - {{ $t('progress.' + log_item.state) }},
+                        {{ $t('progress.' + log_item.state) }},
                         {{ humanize_relative_date(log_item.at_when) }}
                     </li>
-                </ul>
+                </ol>
                 <template v-if="!['finished', 'cancelled'].includes(scan.state)">
                     <button @click="visible.stop_scan = true">{{ $t("stop_scan") }}</button>
 
@@ -225,7 +229,7 @@ export default {
         "report_is_being_generated": "Report is being generated.",
         "processing_results": "Processing results.",
         "progress_bar": "Progress",
-        "scan history": "Performed tasks in this scan",
+        "scan history": "Performed tasks",
         "stop_scan": "Stop scan",
         "scan_support_id": "Scan Support ID",
         "cancel": {
@@ -284,7 +288,7 @@ export default {
         "report_is_being_generated": "Report wordt gemaakt.",
         "processing_results": "Resultaten worden verwerkt.",
         "progress_bar": "Voortgang",
-        "scan history": "Uitgevoerde stappen in scan",
+        "scan history": "Uitgevoerde stappen",
         "stop_scan": "Stop scan",
         "scan_support_id": "Scan supportnummer",
         "cancel": {

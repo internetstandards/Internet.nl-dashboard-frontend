@@ -17,19 +17,61 @@
             <br><br>
             <label for="account_selection">{{ $t("select") }}:</label>
 
-            <v-select
-                id="account_selection"
-                v-model="current_account"
-                placeholder="Select account..."
-                :options="accounts"
-                code="id"
-                label="label"
-                :multiple="false"
-                :size="accounts.length"
-                @input="set_account"
+            <!--
+            We want to see everything, :sticky-header="true" disabled.
+            -->
+            <b-form-input
+                v-model="filter"
+                type="search"
+                id="filterInput"
+                placeholder="Type to Search"
+            ></b-form-input>
+
+            <b-table striped hover selectable
+                     ref="selectableTable"
+                     :responsive="'sm'"
+                     :select-mode="'single'"
+                     :no-border-collapse="true"
+                     :items="accounts"
+                     :fields="fields"
+                     :primary-key="'id'"
+                     :busy="loading"
+                     :filter-included-fields="filterOn"
+                     :sort-by.sync="sortBy"
+                     :sort-desc.sync="sortDesc"
+                     sort-icon-left
+                     :per-page="perPage"
+                     :filter="filter"
+                     @row-selected="onRowSelected"
             >
-                <slot name="no-options">No options...</slot>
-            </v-select>
+                <template #cell(selected)="{ rowSelected }">
+                    <template v-if="rowSelected">
+                        <span aria-hidden="true">&check;</span>
+                        <span class="sr-only">Selected</span>
+                    </template>
+                    <template v-else>
+                        <span aria-hidden="true">&nbsp;</span>
+                        <span class="sr-only">Not selected</span>
+                    </template>
+                </template>
+
+                <template #cell(users)="data">
+                   {{ data.value.join(", ") }}
+                </template>
+
+                <template #table-busy>
+                    <loading :loading="loading"/>
+                </template>
+            </b-table>
+
+            <b-pagination
+                v-model="currentPage"
+                :total-rows="totalRows"
+                :per-page="perPage"
+                pills
+                size="sm"
+                class="my-0"
+            ></b-pagination>
         </p>
     </div>
 </template>
@@ -38,36 +80,76 @@
 export default {
     data: function () {
         return {
+            fields: [
+                {key: "selected", sortable: false, label: 'Activated'},
+                {key: "id", sortable: true, label: 'Id'},
+                {key: "name", sortable: true, label: 'Name'},
+                {key: "scans", sortable: true, label: 'Scans'},
+                {key: "lists", sortable: true, label: 'Lists'},
+                {key: "users", sortable: true, label: 'Users'}
+            ],
+            sortBy: 'id',
+            sortDesc: false,
+            filter: "",
+            filterOn: ['name', 'id', 'users'],
+            perPage: 10,
+            totalRows: 1,
+            currentPage: 1,
+
             accounts: [],
-            current_account: 0,
+            current_account: {},
             server_response: {},
+            loading: false,
+            selected: [],
+            initial_selected: {}
         }
     },
     mounted: function () {
         this.get_accounts();
     },
     methods: {
+        onRowSelected(items) {
+            if (this.initial_selected.id !== items[0]['id']) {
+                this.set_account(items[0]['id'])
+                this.selected = items;
+                this.initial_selected = items[0];
+            }
+        },
+        selectAccountRow() {
+            for (let i = 0; i < this.$refs.selectableTable.items.length; i++) {
+                if (this.$refs.selectableTable.items[i]['id'] === this.current_account['id']) {
+                    this.$refs.selectableTable.selectRow(i);
+                }
+            }
+        },
         get_accounts: function () {
+            this.loading = true;
             fetch(`${this.$store.state.dashboard_endpoint}/data/powertools/get_accounts/`, {credentials: 'include'})
                 .then(response => response.json()).then(data => {
                 this.accounts = data['accounts'];
                 this.current_account = data['current_account'];
-
-                // create options for nice accounts.
+                this.selected = [data['current_account']];
+                this.initial_selected = data['current_account'];
+                this.totalRows = this.accounts.length;
+                this.loading = false;
+                // set the initial value.
+                this.$nextTick(() => {
+                    this.selectAccountRow();
+                })
 
             }).catch((fail) => {
                 console.log('A loading error occurred: ' + fail);
+                this.loading = false;
             });
         },
-        set_account: function () {
-            let data = {'id': this.current_account.id};
+        set_account: function (account_id) {
+            let data = {'id': account_id};
             this.asynchronous_json_post(
                 `${this.$store.state.dashboard_endpoint}/data/powertools/set_account/`, data, (server_response) => {
-                    if (server_response) {
-                        this.server_response = server_response;
-                        this.get_accounts();
-                        // destroy all components, as the other user is now active (or should be)
-                    }
+                    this.server_response = server_response;
+
+                    // enabling this will flash the table, which is annoying
+                    // this.get_accounts();
                 }
             );
         }

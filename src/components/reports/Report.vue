@@ -1,5 +1,30 @@
 <style>
 
+.v-select button, .v-select button:hover, .vs__clear, .vs__deselect {
+    margin: 0 auto 0em !important;
+    background: transparent !important;
+    border: solid 0 #ffab4c !important;
+}
+
+.vs__open-indicator {
+    margin-top: 3px;
+    margin-right: 5px;
+    margin-left: 20px;
+}
+
+.vs__dropdown-option {
+    min-width: 100%;
+}
+
+.v-select li:nth-child(even) {
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+.v-select li:nth-child(even):hover {
+    background-color: #5897FB !important;
+}
+
+
 </style>
 
 <template>
@@ -14,12 +39,29 @@
                     :placeholder="$t('header.select_report')"
                     :options="filtered_recent_reports"
                     label="label"
+                    :spinner="recent_reports_loading"
                     :multiple="true"
                     :selectable="() => selected_report.length < 6"
                 >
                     <slot name="no-options">{{ $t('header.no_options') }}</slot>
-
+                    <template v-slot:option="option">
+                        <div style="width: 4em; display:inline-block;">{{ option.id }}</div>
+                        <div v-if="option.type === 'web'" style="width: 4em; display:inline-block;">
+                            <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg"
+                                 style="height: 16px;"> {{ option.type }}
+                        </div>
+                        <div v-else style="width: 4em; display:inline-block;">
+                            <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg"
+                                 style="height: 16px;"> {{ option.type }}
+                        </div>
+                        <div style="display:inline-block;">{{ option.list_name }}</div>
+                        <div style="display:inline-block; float: right;">{{ humanize_date(option.at_when) }}
+                            ({{ humanize_relative_date(option.at_when) }})
+                        </div>
+                    </template>
                 </v-select>
+                <br>
+                <button role="link" @click="get_recent_reports">{{ $t("header.reload_list") }}</button>
             </div>
 
             <template v-if="reports.length && !is_loading">
@@ -141,80 +183,13 @@ export default {
     },
     i18n: {
         sharedMessages: field_translations,
-        messages: {
-            en: {
-                mail: 'E-Mail',
-                web: 'Web',
-                settings: {
-                    title: "Select visible metrics",
-                },
-                header: {
-                    title: 'Reports',
-                    intro: 'It is possible to select one or multiple reports. Selecting a single report shows all data of that report, ' +
-                        'including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. ' +
-                        'Selecting more than two reports, only graphs are shown.',
-                    select_report: 'Select report...',
-                    max_elements: 'Maximum number of reports selected.',
-                    no_options: 'No reports available.',
-                },
-                download: {
-                    title: 'Download metrics as a spreadsheet',
-                    intro: 'Report data is available in the following formats:',
-                    xlsx: 'Excel Spreadsheet (Microsoft Office), .xlsx',
-                    ods: 'Open Document Spreadsheet (Libre Office), .ods',
-                    csv: 'Comma Separated (for programmers), .csv',
-                },
-                // These fields do not have a hierarchical translation, this is how they are in websecmap.
-                // they are not 1-1 with the frontend. So have their own label for greater consistency.
-                // Test results
-                not_testable: 'Not testable',
-                not_applicable: 'Not applicable',
-                error_in_test: "Test error",
-                report_header: {
-                    type_of_scan_performed: "Type of scan performed",
-                    compared_to: "Compared to",
-                    number_of_domains: "Number of domains",
-                    data_from: "Data from",
-                    only_graphs: "Only showing the timeline and graphs because there are more than two reports selected.",
-                }
-            },
-            nl: {
-                mail: 'E-Mail',
-                web: 'Web',
-                settings: {
-                    title: "Selecteer zichtbare meetwaarden",
-                },
-                header: {
-                    title: 'Rapporten',
-                    intro: 'Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. ' +
-                        'Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van ' +
-                        'meer dan twee rapporten zijn alleen de grafieken zichtbaar.',
-                    select_report: 'Selecteer rapport...',
-                    max_elements: 'Maximum aantal rapporten geselecteerd.',
-                    no_options: 'Geen rapporten beschikbaar.',
-                },
-                download: {
-                    title: 'Downloaden',
-                    intro: 'De data in dit rapport is beschikbaar in de volgende formaten:',
-                    xlsx: 'Excel Spreadsheet (voor o.a. Microsoft Office), .xlsx',
-                    ods: 'Open Document Spreadsheet (voor o.a. Libre Office), .ods',
-                    csv: 'Comma Separated (voor programmeurs), .csv',
-                },
-                report_header: {
-                    type_of_scan_performed: "Uitgevoerde scan",
-                    compared_to: "Vergeleken met",
-                    number_of_domains: "Aantal domeinen",
-                    data_from: "Rapportage van",
-                    only_graphs: "Enkel de tijdlijn en grafieken worden getoond omdat er meer dan twee rapporten zijn geselecteerd.",
-                }
-            }
-        }
     },
     name: 'report',
     data: function () {
         return {
+            recent_reports_loading: false,
 
-            is_loading: false,
+            is_loading: false, // report
 
             // Supporting multiple reports at the same time is hard to understand. Don't know how / if we can do
             // comparisons.
@@ -253,42 +228,39 @@ export default {
     mounted: function () {
         this.load_visible_metrics();
 
-        this.get_recent_reports();
-        // this supports: http://localhost:8000/reports/83/
-
-        // why is this not done at nextTick?
-        // because the report selection has not been loaded yet, so move this to the result of get latest reports...
-        // and you only want to do this at load of the page, not every time latest report is called.
-        setTimeout(() => {
-
-            if (this.$router.history.current.params.report) {
-                let primary_report_id = this.$router.history.current.params.report;
-                let secondary_report_id = this.$router.history.current.params.compare_with;
-
-                this.filtered_recent_reports.forEach((option) => {
-                    // Create label
-                    option.label = `#${option.id} - ${option.list_name} - type: ${option.type} - from: ${this.humanize_date(option.at_when)}`;
-                });
-
-                let reports_to_select = [];
-                // The primary report
-                this.filtered_recent_reports.forEach((option) => {
-                    if (option.id + "" === primary_report_id) {
-                        reports_to_select.push(option);
-                    }
-                });
-
-                // loop again, so we're sure the first report is the primary report,
-                // and a compared report is compared:
-                this.filtered_recent_reports.forEach((option) => {
-                    if (option.id + "" === secondary_report_id) {
-                        reports_to_select.push(option);
-                    }
-                });
-
-                this.selected_report = reports_to_select;
+        this.get_recent_reports(() => {
+            console.log(this.$router.history.current.params.report);
+            if (this.$router.history.current.params.report === undefined) {
+                return
             }
-        }, 1500)
+
+            let primary_report_id = parseInt(this.$router.history.current.params.report);
+            let secondary_report_id = parseInt(this.$router.history.current.params.compare_with);
+
+            this.filtered_recent_reports.forEach((option) => {
+                // Create label
+                option.label = `#${option.id} - ${option.list_name} - type: ${option.type} - from: ${this.humanize_date(option.at_when)}`;
+            });
+
+            let reports_to_select = [];
+            // The primary report
+            this.filtered_recent_reports.forEach((option) => {
+                if (option.id === primary_report_id) {
+                    reports_to_select.push(option);
+                }
+            });
+
+            // loop again, so we're sure the first report is the primary report,
+            // and a compared report is compared:
+            this.filtered_recent_reports.forEach((option) => {
+                if (option.id === secondary_report_id) {
+                    reports_to_select.push(option);
+                }
+            });
+
+            this.selected_report = reports_to_select;
+
+        });
     },
 
     methods: {
@@ -378,8 +350,9 @@ export default {
             });
         },
 
-        get_recent_reports: function () {
+        get_recent_reports: function (callback) {
             // reload the select
+            this.recent_reports_loading = true;
             fetch(`${this.$store.state.dashboard_endpoint}/data/report/recent/`, {credentials: 'include'}).then(response => response.json()).then(data => {
                 // console.log("Get recent reports");
                 let options = [];
@@ -389,8 +362,13 @@ export default {
                 }
                 this.available_recent_reports = options;
                 this.filtered_recent_reports = options;
+                if (callback !== undefined) {
+                    callback()
+                }
+                this.recent_reports_loading = false;
             }).catch((fail) => {
                 console.log('A loading error occurred: ' + fail);
+                this.recent_reports_loading = false;
             });
         },
 
@@ -399,28 +377,36 @@ export default {
 
         // support keep alive routing
         $route: function (to) {
-            // https://router.vuejs.org/guide/essentials/dynamic-matching.html
-            if (undefined !== to.params.report) {
-                // See if we can find a report to mach. Has to updated in 1 go due to the watch.
-                let reports_to_select = [];
-
-                // The primary report
-                this.available_recent_reports.forEach((item) => {
-                    if (item.id === to.params.report) {
-                        reports_to_select.push(item);
+            console.log(to);
+            this.get_recent_reports(() => {
+                    // https://router.vuejs.org/guide/essentials/dynamic-matching.html
+                    if (undefined === to.params.report) {
+                        return;
                     }
-                });
 
-                // loop again, so we're sure the first report is the primary report,
-                // and a compared report is compared:
-                this.available_recent_reports.forEach((item) => {
-                    if (item.id === to.params.compare_with) {
-                        reports_to_select.push(item);
-                    }
-                });
+                    // See if we can find a report to mach. Has to updated in 1 go due to the watch.
+                    let reports_to_select = [];
 
-                this.selected_report = reports_to_select;
-            }
+                    // The primary report
+                    this.available_recent_reports.forEach((item) => {
+                        if (item.id === to.params.report) {
+                            reports_to_select.push(item);
+                        }
+                    });
+
+                    // loop again, so we're sure the first report is the primary report,
+                    // and a compared report is compared:
+                    this.available_recent_reports.forEach((item) => {
+                        if (item.id === to.params.compare_with) {
+                            reports_to_select.push(item);
+                        }
+                    });
+
+                    this.selected_report = reports_to_select;
+
+                }
+            );
+
         },
 
         selected_report: function (new_value) {
@@ -1043,3 +1029,71 @@ export default {
     }
 }
 </script>
+<i18n>
+{
+    "en": {
+        "mail": "E-Mail",
+        "web": "Web",
+        "settings": {
+            "title": "Select visible metrics"
+        },
+        "header": {
+            "title": "Reports",
+            "intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",
+            "select_report": "Select report...",
+            "max_elements": "Maximum number of reports selected.",
+            "no_options": "No reports available.",
+            "reload_list": "Reload available reports"
+        },
+        "download": {
+            "title": "Download metrics as a spreadsheet",
+            "intro": "Report data is available in the following formats:",
+            "xlsx": "Excel Spreadsheet (Microsoft Office), .xlsx",
+            "ods": "Open Document Spreadsheet (Libre Office), .ods",
+            "csv": "Comma Separated (for programmers), .csv"
+        },
+        "not_testable": "Not testable",
+        "not_applicable": "Not applicable",
+        "error_in_test": "Test error",
+        "report_header": {
+            "type_of_scan_performed": "Type of scan performed",
+            "compared_to": "Compared to",
+            "number_of_domains": "Number of domains",
+            "data_from": "Data from",
+            "only_graphs": "Only showing the timeline and graphs because there are more than two reports selected."
+        }
+    },
+    "nl": {
+        "mail": "E-Mail",
+        "web": "Web",
+        "settings": {
+            "title": "Selecteer zichtbare meetwaarden"
+        },
+        "header": {
+            "title": "Rapporten",
+            "intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar.",
+            "select_report": "Selecteer rapport...",
+            "max_elements": "Maximum aantal rapporten geselecteerd.",
+            "no_options": "Geen rapporten beschikbaar.",
+            "reload_list": "Lijst met beschikbare rapporten opnieuw laden"
+        },
+        "download": {
+            "title": "Downloaden",
+            "intro": "De data in dit rapport is beschikbaar in de volgende formaten:",
+            "xlsx": "Excel Spreadsheet (voor o.a. Microsoft Office), .xlsx",
+            "ods": "Open Document Spreadsheet (voor o.a. Libre Office), .ods",
+            "csv": "Comma Separated (voor programmeurs), .csv"
+        },
+        "not_testable": "Niet testbaar",
+        "not_applicable": "Niet van toepassing",
+        "error_in_test": "Testfout",
+        "report_header": {
+            "type_of_scan_performed": "Uitgevoerde scan",
+            "compared_to": "Vergeleken met",
+            "number_of_domains": "Aantal domeinen",
+            "data_from": "Rapportage van",
+            "only_graphs": "Enkel de tijdlijn en grafieken worden getoond omdat er meer dan twee rapporten zijn geselecteerd."
+        }
+    }
+}
+</i18n>

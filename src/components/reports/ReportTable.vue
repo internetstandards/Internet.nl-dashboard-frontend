@@ -236,7 +236,7 @@ div.rotate > span {
     background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-question-mark.svg");
 }
 
-.error_in_test, .error, .not_testable, .unreachable {
+.error_in_test, .error, .not_testable, .unreachable, .untestable {
     background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-bolt.svg");
 }
 
@@ -908,7 +908,7 @@ export default {
             if (simple_value === other_simple_value)
                 comparison_verdict = "neutral";
 
-            const neutral_values = ["unknown", "not_applicable", "not_testable", 'no_mx', 'unreachable', 'error_in_test', 'error', 'not_tested'];
+            const neutral_values = ["unknown", "not_applicable", "not_testable", 'no_mx', 'untestable', 'unreachable', 'error_in_test', 'error', 'not_tested'];
 
             if (neutral_values.includes(simple_value) || neutral_values.includes(other_simple_value))
                 comparison_verdict = "neutral";

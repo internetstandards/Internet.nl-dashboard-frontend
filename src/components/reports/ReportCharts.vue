@@ -72,6 +72,8 @@
                 </h2>
                 <p>{{ $t("chart_info.adoption_bar_chart.annotation.intro") }}</p>
 
+                <b-alert show>{{ $t("how_charts_work") }}</b-alert>
+
                 <!-- :key is used because that key changes when chaning the language, causing the graph to rerender and thus translate.
                 this cannot be done inside the graph, even with rerender title unfortunately. Perhaps it can, but cant figure it out. -->
                 <div v-for="scan_form in scan_methods" :key="$i18n.t(scan_form.name)">
@@ -503,6 +505,7 @@ export default {
 <i18n>
 {
     "en": {
+        "how_charts_work": "By clicking on legend labels, it's possible to toggle certain categories. The 'failed' category is disabled by default and can be enabled by clicking on it.",
         "charts": {
             "adoption_timeline": {
                 "title": "Average internet.nl score over time.",
@@ -554,6 +557,7 @@ export default {
         }
     },
     "nl": {
+        "how_charts_work": "Door te klikken op de leganda in deze grafieken, kunnen beoordelingen worden getoond en verborgen. De 'gezakt' categorie wordt standaard altijd verborgen.",
         "charts": {
             "adoption_timeline": {
                 "title": "Adoptie van standaarden over tijd.",
