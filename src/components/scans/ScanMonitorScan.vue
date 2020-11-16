@@ -229,7 +229,7 @@ export default {
         "report_is_being_generated": "Report is being generated.",
         "processing_results": "Processing results.",
         "progress_bar": "Progress",
-        "scan history": "Performed tasks in this scan",
+        "scan history": "Performed tasks",
         "stop_scan": "Stop scan",
         "scan_support_id": "Scan Support ID",
         "cancel": {
@@ -288,7 +288,7 @@ export default {
         "report_is_being_generated": "Report wordt gemaakt.",
         "processing_results": "Resultaten worden verwerkt.",
         "progress_bar": "Voortgang",
-        "scan history": "Uitgevoerde stappen in scan",
+        "scan history": "Uitgevoerde stappen",
         "stop_scan": "Stop scan",
         "scan_support_id": "Scan supportnummer",
         "cancel": {
