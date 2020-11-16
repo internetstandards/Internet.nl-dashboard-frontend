@@ -307,7 +307,7 @@ export default {
         },
         "domains": {
             "header": "Domains",
-            "intro": "These domains will be included in the scan. Their eligibility for scanning is checked just before requesting the scan, the information shown here may be outdated."
+            "intro": "These domains will be included in the scan. Eligibility for scanning is checked just before requesting the scan. The icons before each domain is based on archived information on the most recent reachability of services. This is checked and updated prior to every scan."
 
         },
         "warnings": {
@@ -336,7 +336,7 @@ export default {
         },
         "domains": {
             "header": "Domeinen",
-            "intro": "Deze domeinen worden meegenomen in een scan. De mogelijkheid om te scannen wordt voor aanvang van de scan bijgewerkt. De iconen geven een beeld van de bereikbaarheid van deze domeinen, maar deze status kan mogelijk anders zijn bij een scan."
+            "intro": "Deze domeinen worden meegenomen in een scan. De mogelijkheid om te scannen wordt voor aanvang van de scan bijgewerkt. De iconen geven een beeld van de bereikbaarheid van deze domeinen op basis van archiefinformatie. De bereikbaarheid wordt voor aanvang van iedere scan opnieuw gecontroleerd en bijgewerkt."
 
         },
         "warnings": {
