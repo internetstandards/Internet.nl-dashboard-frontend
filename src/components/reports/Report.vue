@@ -1,5 +1,30 @@
 <style>
 
+.v-select button, .v-select button:hover, .vs__clear, .vs__deselect {
+    margin: 0 auto 0em !important;
+    background: transparent !important;
+    border: solid 0 #ffab4c !important;
+}
+
+.vs__open-indicator {
+    margin-top: 3px;
+    margin-right: 5px;
+    margin-left: 20px;
+}
+
+.vs__dropdown-option {
+    min-width: 100%;
+}
+
+.v-select li:nth-child(even) {
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+.v-select li:nth-child(even):hover {
+    background-color: #5897FB !important;
+}
+
+
 </style>
 
 <template>
@@ -14,12 +39,28 @@
                     :placeholder="$t('header.select_report')"
                     :options="filtered_recent_reports"
                     label="label"
+                    :spinner="recent_reports_loading"
                     :multiple="true"
                     :selectable="() => selected_report.length < 6"
                 >
                     <slot name="no-options">{{ $t('header.no_options') }}</slot>
-
+                    <template v-slot:option="option">
+                        <div style="width: 4em; display:inline-block;">{{ option.id }}</div>
+                        <div v-if="option.type === 'web'" style="width: 4em; display:inline-block;">
+                            <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg"
+                                 style="height: 16px;"> {{ option.type }}
+                        </div>
+                        <div v-else style="width: 4em; display:inline-block;">
+                            <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg"
+                                 style="height: 16px;"> {{ option.type }}
+                        </div>
+                        <div style="display:inline-block;">{{ option.list_name }}</div>
+                        <div style="display:inline-block; float: right;">{{ humanize_date(option.at_when) }}
+                            ({{ humanize_relative_date(option.at_when) }})
+                        </div>
+                    </template>
                 </v-select>
+                <br>
                 <button role="link" @click="get_recent_reports">{{ $t("header.reload_list") }}</button>
             </div>
 
@@ -146,8 +187,9 @@ export default {
     name: 'report',
     data: function () {
         return {
+            recent_reports_loading: false,
 
-            is_loading: false,
+            is_loading: false, // report
 
             // Supporting multiple reports at the same time is hard to understand. Don't know how / if we can do
             // comparisons.
@@ -310,6 +352,7 @@ export default {
 
         get_recent_reports: function (callback) {
             // reload the select
+            this.recent_reports_loading = true;
             fetch(`${this.$store.state.dashboard_endpoint}/data/report/recent/`, {credentials: 'include'}).then(response => response.json()).then(data => {
                 // console.log("Get recent reports");
                 let options = [];
@@ -322,8 +365,10 @@ export default {
                 if (callback !== undefined) {
                     callback()
                 }
+                this.recent_reports_loading = false;
             }).catch((fail) => {
                 console.log('A loading error occurred: ' + fail);
+                this.recent_reports_loading = false;
             });
         },
 
