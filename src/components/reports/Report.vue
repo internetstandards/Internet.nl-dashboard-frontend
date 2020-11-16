@@ -20,6 +20,7 @@
                     <slot name="no-options">{{ $t('header.no_options') }}</slot>
 
                 </v-select>
+                <button role="link" @click="get_recent_reports">{{ $t("header.reload_list") }}</button>
             </div>
 
             <template v-if="reports.length && !is_loading">
@@ -141,74 +142,6 @@ export default {
     },
     i18n: {
         sharedMessages: field_translations,
-        messages: {
-            en: {
-                mail: 'E-Mail',
-                web: 'Web',
-                settings: {
-                    title: "Select visible metrics",
-                },
-                header: {
-                    title: 'Reports',
-                    intro: 'It is possible to select one or multiple reports. Selecting a single report shows all data of that report, ' +
-                        'including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. ' +
-                        'Selecting more than two reports, only graphs are shown.',
-                    select_report: 'Select report...',
-                    max_elements: 'Maximum number of reports selected.',
-                    no_options: 'No reports available.',
-                },
-                download: {
-                    title: 'Download metrics as a spreadsheet',
-                    intro: 'Report data is available in the following formats:',
-                    xlsx: 'Excel Spreadsheet (Microsoft Office), .xlsx',
-                    ods: 'Open Document Spreadsheet (Libre Office), .ods',
-                    csv: 'Comma Separated (for programmers), .csv',
-                },
-                // These fields do not have a hierarchical translation, this is how they are in websecmap.
-                // they are not 1-1 with the frontend. So have their own label for greater consistency.
-                // Test results
-                not_testable: 'Not testable',
-                not_applicable: 'Not applicable',
-                error_in_test: "Test error",
-                report_header: {
-                    type_of_scan_performed: "Type of scan performed",
-                    compared_to: "Compared to",
-                    number_of_domains: "Number of domains",
-                    data_from: "Data from",
-                    only_graphs: "Only showing the timeline and graphs because there are more than two reports selected.",
-                }
-            },
-            nl: {
-                mail: 'E-Mail',
-                web: 'Web',
-                settings: {
-                    title: "Selecteer zichtbare meetwaarden",
-                },
-                header: {
-                    title: 'Rapporten',
-                    intro: 'Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. ' +
-                        'Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van ' +
-                        'meer dan twee rapporten zijn alleen de grafieken zichtbaar.',
-                    select_report: 'Selecteer rapport...',
-                    max_elements: 'Maximum aantal rapporten geselecteerd.',
-                    no_options: 'Geen rapporten beschikbaar.',
-                },
-                download: {
-                    title: 'Downloaden',
-                    intro: 'De data in dit rapport is beschikbaar in de volgende formaten:',
-                    xlsx: 'Excel Spreadsheet (voor o.a. Microsoft Office), .xlsx',
-                    ods: 'Open Document Spreadsheet (voor o.a. Libre Office), .ods',
-                    csv: 'Comma Separated (voor programmeurs), .csv',
-                },
-                report_header: {
-                    type_of_scan_performed: "Uitgevoerde scan",
-                    compared_to: "Vergeleken met",
-                    number_of_domains: "Aantal domeinen",
-                    data_from: "Rapportage van",
-                    only_graphs: "Enkel de tijdlijn en grafieken worden getoond omdat er meer dan twee rapporten zijn geselecteerd.",
-                }
-            }
-        }
     },
     name: 'report',
     data: function () {
@@ -1043,3 +976,71 @@ export default {
     }
 }
 </script>
+<i18n>
+{
+    "en": {
+        "mail": "E-Mail",
+        "web": "Web",
+        "settings": {
+            "title": "Select visible metrics"
+        },
+        "header": {
+            "title": "Reports",
+            "intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",
+            "select_report": "Select report...",
+            "max_elements": "Maximum number of reports selected.",
+            "no_options": "No reports available.",
+            "reload_list": "Reload available reports"
+        },
+        "download": {
+            "title": "Download metrics as a spreadsheet",
+            "intro": "Report data is available in the following formats:",
+            "xlsx": "Excel Spreadsheet (Microsoft Office), .xlsx",
+            "ods": "Open Document Spreadsheet (Libre Office), .ods",
+            "csv": "Comma Separated (for programmers), .csv"
+        },
+        "not_testable": "Not testable",
+        "not_applicable": "Not applicable",
+        "error_in_test": "Test error",
+        "report_header": {
+            "type_of_scan_performed": "Type of scan performed",
+            "compared_to": "Compared to",
+            "number_of_domains": "Number of domains",
+            "data_from": "Data from",
+            "only_graphs": "Only showing the timeline and graphs because there are more than two reports selected."
+        }
+    },
+    "nl": {
+        "mail": "E-Mail",
+        "web": "Web",
+        "settings": {
+            "title": "Selecteer zichtbare meetwaarden"
+        },
+        "header": {
+            "title": "Rapporten",
+            "intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar.",
+            "select_report": "Selecteer rapport...",
+            "max_elements": "Maximum aantal rapporten geselecteerd.",
+            "no_options": "Geen rapporten beschikbaar.",
+            "reload_list": "Lijst met beschikbare rapporten opnieuw laden"
+        },
+        "download": {
+            "title": "Downloaden",
+            "intro": "De data in dit rapport is beschikbaar in de volgende formaten:",
+            "xlsx": "Excel Spreadsheet (voor o.a. Microsoft Office), .xlsx",
+            "ods": "Open Document Spreadsheet (voor o.a. Libre Office), .ods",
+            "csv": "Comma Separated (voor programmeurs), .csv"
+        },
+        "not_testable": "Niet testbaar",
+        "not_applicable": "Niet van toepassing",
+        "error_in_test": "Testfout",
+        "report_header": {
+            "type_of_scan_performed": "Uitgevoerde scan",
+            "compared_to": "Vergeleken met",
+            "number_of_domains": "Aantal domeinen",
+            "data_from": "Rapportage van",
+            "only_graphs": "Enkel de tijdlijn en grafieken worden getoond omdat er meer dan twee rapporten zijn geselecteerd."
+        }
+    }
+}
+</i18n>
