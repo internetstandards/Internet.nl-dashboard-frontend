@@ -1,5 +1,5 @@
 <template>
-    <div id="switch-account" class="block fullwidth" style="min-height: 600px;">
+    <content-block>
         <h1>{{ $t("title") }}</h1>
         <p> {{ $t('intro') }}</p>
         <p><b>{{ $t('reload_page_warning') }}</b></p>
@@ -26,6 +26,16 @@
                 id="filterInput"
                 placeholder="Type to Search"
             ></b-form-input>
+            <br />
+                        <b-pagination
+                v-model="currentPage"
+                :total-rows="totalRows"
+                :per-page="perPage"
+                pills
+                size="sm"
+                class="my-0"
+            ></b-pagination>
+            <br />
 
             <b-table striped hover selectable
                      ref="selectableTable"
@@ -64,17 +74,8 @@
                     <loading :loading="loading"/>
                 </template>
             </b-table>
-
-            <b-pagination
-                v-model="currentPage"
-                :total-rows="totalRows"
-                :per-page="perPage"
-                pills
-                size="sm"
-                class="my-0"
-            ></b-pagination>
         </p>
-    </div>
+    </content-block>
 </template>
 
 <script>

@@ -2,7 +2,7 @@
     <div>
         <h1>This is a beta to test BootstrapVue components.</h1>
 
-        <div class="block fullwidth do-not-print">
+        <content-block>
             <h2>Spinner</h2>
             <div class="text-center">
                 <b-spinner label="Spinning"></b-spinner>
@@ -12,10 +12,10 @@
                 <b-spinner variant="info" label="Spinning" style="width: 3rem; height: 3rem;"></b-spinner>
                 <b-spinner variant="info" type="grow" label="Spinning" style="width: 3rem; height: 3rem;"></b-spinner>
             </div>
-        </div>
+        </content-block>
         <loading :loading="true"></loading>
 
-        <div class="block fullwidth do-not-print">
+        <content-block>
             <h2>Modal</h2>
               <b-button v-b-modal="'my-modal'">Launch demo modal</b-button>
               <b-modal id="my-modal">Hello From My Modal!</b-modal>
@@ -46,17 +46,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth do-not-print">
+        <content-block>
             <h2>Collapse</h2>
             <b-button v-b-toggle.collapse-2 class="m-1">Toggle Collapse</b-button>
             <b-collapse id="collapse-2">
                 <b-card>I am collapsible content!</b-card>
             </b-collapse>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth do-not-print">
+        <content-block>
             <h2>Progress</h2>
             <b-progress :value="value" :max="max" show-progress animated></b-progress>
             <b-progress class="mt-2" :max="max" show-value>
@@ -66,9 +66,9 @@
             </b-progress>
 
             <b-button class="mt-3" @click="randomValue">Click me</b-button>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth do-not-print">
+        <content-block>
             <h2>Toast</h2>
             <b-button class="mb-2" variant="primary" @click="$bvToast.show('example-toast')">
                 Show toast
@@ -76,10 +76,10 @@
             <b-toast id="example-toast" title="BootstrapVue" static no-auto-hide>
                 Hello, world! This is a toast message.
             </b-toast>
-        </div>
+        </content-block>
 
 
-        <div class="block fullwidth do-not-print">
+        <content-block>
             <h2>Tabs</h2>
             <b-card no-body>
                 <b-tabs card>
@@ -91,10 +91,10 @@
                     </b-tab>
                 </b-tabs>
             </b-card>
-        </div>
+        </content-block>
 
 
-        <div class="block fullwidth do-not-print">
+        <content-block>
             <h2>Tabs</h2>
 
             <b-tabs>
@@ -106,7 +106,7 @@
                 </b-tab>
             </b-tabs>
 
-        </div>
+        </content-block>
 
     </div>
 </template>

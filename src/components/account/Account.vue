@@ -1,5 +1,4 @@
 <style scoped>
-
 input {
     margin-bottom: 1em;
 }
@@ -7,33 +6,20 @@ input {
 
 <template>
     <div class="account">
-        <div class="block fullwidth">
+        <content-block>
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
             <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
             <loading :loading="loading"></loading>
-        </div>
+        </content-block>
 
         <div class="wrap" v-if="!first_load">
 
-            <div class="block">
-                <h2>{{ $t("personalia") }}</h2>
-                <label class='ad_hoc_label' for="first_name">{{ $t("first_name") }}:</label>
-                <b-form-input id="first_name" type="text" maxlength="120" v-model="user.first_name" :placeholder="$t('first_name')"></b-form-input>
-
-
-                <label class='ad_hoc_label' for="last_name">{{ $t("last_name") }}:</label>
-                <b-form-input id="last_name" type="text" maxlength="120" v-model="user.last_name" :placeholder="$t('last_name')"></b-form-input>
-
-                <button id="save" type="button" @click="save">{{ $t("save") }}</button>
-            </div>
-
-            <div class="block">
+            <content-block>
                 <h2>{{ $t("notification_settings") }}</h2>
-
-                <label class='ad_hoc_label' for="mail_send_mail_after_scan_finished">{{
-                        $t("mail_send_mail_after_scan_finished")
-                    }}</label>
+                <label class='ad_hoc_label' for="mail_send_mail_after_scan_finished">
+                    {{ $t("mail_send_mail_after_scan_finished") }}
+                </label>
                 <b-form-checkbox
                     id="checkbox-1"
                     v-model="user.mail_send_mail_after_scan_finished"
@@ -41,13 +27,20 @@ input {
                     :value="true"
                     :unchecked-value="false"
                     switch>{{ $t(`check_${user.mail_send_mail_after_scan_finished}`) }}
-                </b-form-checkbox>
+                </b-form-checkbox><br>
 
-                <label class='ad_hoc_label' for="mail_preferred_mail_address">{{
-                        $t("mail_preferred_mail_address")
-                    }}</label>
-
+                <label class='ad_hoc_label' for="mail_preferred_mail_address">
+                    {{ $t("mail_preferred_mail_address") }}
+                </label>
                 <b-form-input id="last_name" type="email" v-model="user.mail_preferred_mail_address"></b-form-input>
+
+                <label class='ad_hoc_label' for="first_name">{{ $t("first_name") }}:</label>
+                <b-form-input id="first_name" type="text" maxlength="120" v-model="user.first_name" :placeholder="$t('first_name')"></b-form-input>
+
+
+                <label class='ad_hoc_label' for="last_name">{{ $t("last_name") }}:</label>
+                <b-form-input id="last_name" type="text" maxlength="120" v-model="user.last_name" :placeholder="$t('last_name')"></b-form-input>
+
 
                 <label class='ad_hoc_label' for="mail_preferred_language">{{ $t("mail_preferred_language") }}</label>
                 <b-form-select v-model="user.mail_preferred_language" class="mb-3">
@@ -56,16 +49,16 @@ input {
                     <b-form-select-option value="nl">{{ $t("nl") }}</b-form-select-option>
                 </b-form-select>
 
-                <button id="save" type="button" @click="save">{{ $t("save") }}</button>
-            </div>
+                <button @click="save">{{ $t("save") }}</button>
+            </content-block>
         </div>
         <div class="wrap">
-            <div class="block">
+            <content-block>
                 <h2>{{ $t("authentication_options") }}</h2>
                 <p>{{ $t("authentication_options_secondfactor") }}</p>
                 <a :href="`${this.$store.state.dashboard_endpoint}/account/two_factor/`"
                    target="_blank">{{ $t("two_factor_options") }}</a>
-            </div>
+            </content-block>
         </div>
 
     </div>
@@ -128,8 +121,8 @@ export default {
         "title": "Account",
         "intro": "Manage your account.",
         "personalia": "Personal data",
-        "first_name": "First name",
-        "last_name": "Last name",
+        "first_name": "Addressee, first name",
+        "last_name": "Addressee, last name",
         "notification_settings": "Notification settings",
         "mail_preferred_mail_address": "E-mail address",
         "mail_preferred_language": "E-mail language",
@@ -153,8 +146,8 @@ export default {
         "title": "Account",
         "intro": "Beheer je account.",
         "personalia": "Personalia",
-        "first_name": "Voornaam",
-        "last_name": "Achternaam",
+        "first_name": "Aanhef: voornaam",
+        "last_name": "Aanhef: achternaam",
         "notification_settings": "Instellingen voor meldingen",
         "mail_preferred_mail_address": "E-mail adres",
         "mail_preferred_language": "E-mail taal",

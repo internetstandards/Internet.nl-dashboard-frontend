@@ -1,26 +1,8 @@
 <style scoped>
 /* Todo: add toast notification */
-.server-response-error {
-    border: 1px solid silver;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #f9e0e4;
-    color: darkred;
-}
-
-.server-response-success{
-    border: 1px solid silver;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #daffda;
-    color: #004f00;
-}
 
 h2{
     font-size: 1.5em;
-    padding-bottom: 0.5em;
 }
 
 p {
@@ -29,22 +11,22 @@ p {
 </style>
 <template>
     <div>
-        <div v-if="response.error" class="server-response-error">
+        <b-alert show variant="danger" v-if="response.error">
             <h2>❌ {{ $t('error') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
             <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }} ({{ time_ago }}).</small></span>
-        </div>
-        <div v-if="response.success" class="server-response-success hideMe">
+        </b-alert>
+        <b-alert show variant="success" v-if="response.success">
             <h2>✅ {{ $t('success') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
             <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }} ({{ time_ago }}).</small></span>
-        </div>
+        </b-alert>
     </div>
 </template>
 <script>

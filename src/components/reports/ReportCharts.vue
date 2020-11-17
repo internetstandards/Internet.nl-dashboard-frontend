@@ -6,7 +6,7 @@
 <template>
 
     <div v-if="color_scheme.incremental.length > 1">
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("chart_info.adoption_timeline.annotation.title") }}</h2>
             <a class="anchor" name="charts"></a>
             <p>{{ $t("chart_info.adoption_timeline.annotation.intro") }}</p>
@@ -58,15 +58,15 @@
 
                 </div>
             </div>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth" v-if="!can_show_charts()">
+        <content-block v-if="!can_show_charts()">
             <h2>⚠️ {{ $t("selected_report_is_from_before_api_2.title") }}</h2>
             <p>{{ $t("selected_report_is_from_before_api_2.intro") }}</p>
-        </div>
+        </content-block>
 
         <div v-else>
-            <div class="block fullwidth" style="page-break-before: always;" v-if='compare_charts.length > 0'>
+            <content-block style="page-break-before: always;" v-if='compare_charts.length > 0'>
                 <h2>
                     {{ $t("chart_info.adoption_bar_chart.annotation.title") }}
                 </h2>
@@ -161,9 +161,9 @@
                         </div>
                     </template>
                 </div>
-            </div>
+            </content-block>
 
-            <div class="block fullwidth" style="page-break-before: always;" aria-hidden="true"
+            <content-block style="page-break-before: always;" aria-hidden="true"
                  v-if='compare_charts.length > 1'>
 
                 <h2>
@@ -262,7 +262,7 @@
                         </div>
                     </template>
                 </div>
-            </div>
+            </content-block>
         </div>
     </div>
 </template>

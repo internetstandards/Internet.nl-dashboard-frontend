@@ -37,7 +37,7 @@
 </style>
 <template>
     <div id="my-spreadsheet-upload-template">
-        <div class="block fullwidth">
+        <content-block>
             <p>&nbsp;
                 <router-link tag="button" to="/domains">📚 {{ $t("back_to_domains") }}</router-link>
             </p>
@@ -83,8 +83,8 @@
                     </td>
                 </tr>
             </table>
-        </div>
-        <div class="block fullwidth">
+        </content-block>
+        <content-block>
             <h3>{{ $t("upload.drag_and_drop_uploader.title") }}</h3>
             <p>{{ $t("upload.drag_and_drop_uploader.first_instruction") }}</p>
             <p>{{ $t("upload.drag_and_drop_uploader.nomouse") }}</p>
@@ -110,8 +110,8 @@
                 <input type="hidden" name="csrfmiddlewaretoken" :value="csrf_token">
             </form>
 
-        </div>
-        <div class="block fullwidth">
+        </content-block>
+        <content-block>
             <h3>{{ $t("upload.recent_uploads.title") }}</h3>
             <p>{{ $t("upload.recent_uploads.intro") }}</p>
             <table v-if="upload_history">
@@ -136,7 +136,7 @@
                 </tbody>
             </table>
             <span v-if="!upload_history.length">{{ $t("upload.recent_uploads.no_uploads") }}</span>
-        </div>
+        </content-block>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="switch-account" class="block fullwidth">
+        <content-block>
 
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
@@ -10,9 +10,10 @@
                 </li>
             </ol>
             <loading :loading="loading"/>
-        </div>
+        </content-block>
+
         <template v-if="s">
-            <div class="block fullwidth">
+            <content-block>
                 <b-table-simple hover small caption-top responsive>
                     <caption>{{ s.users.total }} Users Last login moment in N days (logging in is not something that is needed often, users stay logged in for longer periods of time to increase usability)</caption>
                     <b-tr>
@@ -54,7 +55,7 @@
                         <b-td>{{ s.users.logged_in_the_past_300_days }}</b-td>
                     </b-tr>
                 </b-table-simple>
-            </div>
+            </content-block>
             <stats_yearview :data="s.scans" :total="s.scans.total" title="Scans"></stats_yearview>
             <stats_yearview :data="s.domains" :total="s.domains.total" title="Domains"></stats_yearview>
             <stats_yearview :data="s.actions['logged in']" :total="s.actions['logged in'].total"

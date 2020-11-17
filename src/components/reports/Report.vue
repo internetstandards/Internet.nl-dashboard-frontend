@@ -29,11 +29,11 @@
 
 <template>
     <div id="report-template">
-        <div class="block fullwidth do-not-print">
+        <content-block class="do-not-print">
             <h1>{{ $t("header.title") }}</h1>
             <p>{{ $t("header.intro") }}</p>
 
-            <div aria-live="polite" style="margin-bottom: 30px;">
+            <div aria-live="polite">
                 <v-select
                     v-model="selected_report"
                     :placeholder="$t('header.select_report')"
@@ -86,15 +86,16 @@
 
             </template>
 
-        </div>
+        </content-block>
 
         <loading :loading="is_loading"></loading>
 
         <div v-if="reports.length && !is_loading">
 
-            <div class="block fullwidth">
+            <content-block>
                 <h2>
-                    📊 #{{ selected_report[0].id }} - {{ selected_report[0].list_name }}</h2>
+                    📊 #{{ selected_report[0].id }} - {{ selected_report[0].list_name }}
+                </h2>
                 <span>{{ $t("report_header.type_of_scan_performed") }}:
                     <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg" style="height: 1em;"
                          v-if="selected_report[0].type === 'web'">
@@ -129,7 +130,7 @@
                     <p style="padding-top: 1em;">⚠️ {{ $t("report_header.only_graphs") }}</p>
                 </template>
 
-            </div>
+            </content-block>
 
             <ReportCharts
                 :selected_report="selected_report"
@@ -142,7 +143,7 @@
             </ReportCharts>
 
             <!-- The table is only displayed with up to two reports (the first as the source of the table, the second as a comparison). -->
-            <div v-if="original_urls !== undefined && selected_report.length < 3" class="block fullwidth"
+            <content-block v-if="original_urls !== undefined && selected_report.length < 3"
                  style="page-break-before: always;">
 
                 <ReportTable
@@ -153,7 +154,7 @@
                     :scan_methods="scan_methods"
                     :compare_charts="compare_charts"
                 ></ReportTable>
-            </div>
+            </content-block>
 
         </div>
         <!-- The dropdown with recent reports is updated automatically when scans finish. But if that page

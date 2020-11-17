@@ -1,7 +1,7 @@
 <template>
     <div class="account">
 
-        <div class="block fullwidth">
+        <content-block>
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
             <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
@@ -31,7 +31,7 @@
             <div v-else>
                 {{ $t('logged_in') }}
             </div>
-        </div>
+        </content-block>
 
     </div>
 </template>

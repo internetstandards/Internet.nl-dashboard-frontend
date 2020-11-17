@@ -1,16 +1,12 @@
-<style>
-.managed-url-list h2 {
+<style scoped>
+h2 {
     display: inline;
     font-size: 1.2em;
-}
-.view-csv {
-    width: 100%;
-    height: 200px;
 }
 </style>
 
 <template>
-    <article class="managed-url-list block fullwidth" :id="list.id" v-if="!is_deleted">
+    <content-block :id="list.id" v-if="!is_deleted">
         <span>
             <a :name="list.id"></a>
             <h2>
@@ -51,9 +47,10 @@
                 <button @click="visible.delete = true">🗑️ {{ $t("button.delete") }}</button>
             </div>
         </span>
-        <br>
+
 
         <div v-if="is_opened">
+            <br>
             <About :list="list" :urls="urls"></About>
 
             <br>
@@ -103,7 +100,7 @@
         <!-- This is already auto-refreshed by a watch, but we keep this as a backup solution for edge cases like
          the monitor page not loading or the used did not open the monitor page. -->
         <autorefresh :visible="false" :callback="get_scan_status_of_list" :refresh_per_seconds="600"></autorefresh>
-    </article>
+    </content-block>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="block fullwidth">
+    <content-block>
         <b-table-simple hover small caption-top striped responsive="true">
             <caption>{{ total }} {{ title }}</caption>
             <b-tr>
@@ -35,7 +35,7 @@
                 <b-td>{{data.per_month[year][12]}}</b-td>
             </b-tr>
         </b-table-simple>
-    </div>
+    </content-block>
 </template>
 <script>
 export default {

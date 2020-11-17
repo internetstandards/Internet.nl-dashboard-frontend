@@ -2,8 +2,9 @@
     <div>
         <p>{{ $t("intro") }}</p>
         <div v-for="scan_form in scan_methods" :key="scan_form.name">
-            <b-tabs v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
-                <b-tab :title="$t('main_category')">
+            <b-card no-body>
+            <b-tabs pills card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
+                <b-tab :title="$t('main_category')"  class="p-3">
                     <h4>{{ $t("main_category") }}</h4>
 
                     <b-form-checkbox v-model="issue_filters[scan_form.name].show_dynamic_average" switch>
@@ -12,7 +13,7 @@
                     <br><br>
                 </b-tab>
 
-                <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label">
+                <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label"  class="p-3">
                     <section class="test-header">
                         <div class="test-title">
                             <h4>{{ category.label }}</h4>
@@ -23,7 +24,7 @@
                                                      switch>
                                         {{ $t("show_dynamic_average") }}
                                     </b-form-checkbox>
-                                    <br>
+
                                 </span>
                             </p>
                         </div>
@@ -55,6 +56,7 @@
                     </section>
                 </b-tab>
             </b-tabs>
+            </b-card>
         </div>
         <div>
             <button @click="reset_issue_filters()">{{ $t("buttons.reset") }}</button>

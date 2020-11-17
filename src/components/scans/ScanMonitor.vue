@@ -2,11 +2,12 @@
 </style>
 <template>
     <div style="width: 100%;">
-        <div class="block fullwidth">
+
+        <content-block>
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
             <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60"></autorefresh>
-        </div>
+        </content-block>
 
         <b-container>
             <b-row cols="3">
@@ -18,7 +19,7 @@
             </b-row>
         </b-container>
 
-        <div class='block fullwidth' v-if="!scans.length">{{ $t("no_scans") }}</div>
+        <content-block v-if="!scans.length">{{ $t("no_scans") }}</content-block>
 
     </div>
 </template>
