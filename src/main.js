@@ -17,6 +17,7 @@ import ScanMonitor from './components/scans/ScanMonitor'
 import Report from './components/reports/Report'
 import SwitchAccount from './components/admin/SwitchAccount'
 import InstantAddAccount from './components/admin/InstantAddAccount'
+import Usage from './components/admin/usage'
 import Account from './components/account/Account'
 import Demo from './components/Demo'
 import Unsubscribe from './components/mail/Unsubscribe'
@@ -167,6 +168,7 @@ const routes = [
     {path: '/unsubscribe', component: Unsubscribe, meta: {title: 'Internet.nl Dashboard / Unsubscribe'}},
     {path: '/profile', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
     {path: '/account', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
+    {path: '/usage', component: Usage, meta: {title: 'Internet.nl Dashboard / Usage'}},
     {path: '/beta', component: Beta, meta: {title: 'Internet.nl Dashboard / Beta'}},
 ];
 

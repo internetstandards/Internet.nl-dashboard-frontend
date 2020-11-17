@@ -38,6 +38,7 @@
                      :busy="loading"
                      :filter-included-fields="filterOn"
                      :sort-by.sync="sortBy"
+                     :current-page="currentPage"
                      :sort-desc.sync="sortDesc"
                      sort-icon-left
                      :per-page="perPage"
