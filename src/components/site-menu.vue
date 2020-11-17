@@ -21,6 +21,9 @@ a, a:hover, a:active {
                 <li>
                     <router-link to="/switch-account">🔀</router-link>
                 </li>
+                <li>
+                    <router-link to="/usage">📈</router-link>
+                </li>
             </template>
 
             <li>
