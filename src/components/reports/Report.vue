@@ -16,6 +16,10 @@
     min-width: 100%;
 }
 
+.v-select li {
+    display: inline-block;
+}
+
 .v-select li:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.1) !important;
 }
@@ -23,7 +27,6 @@
 .v-select li:nth-child(even):hover {
     background-color: #5897FB !important;
 }
-
 
 </style>
 
@@ -45,18 +48,20 @@
                 >
                     <slot name="no-options">{{ $t('header.no_options') }}</slot>
                     <template v-slot:option="option">
-                        <div style="width: 4em; display:inline-block;">{{ option.id }}</div>
-                        <div v-if="option.type === 'web'" style="width: 4em; display:inline-block;">
-                            <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg"
-                                 style="height: 16px;"> {{ option.type }}
-                        </div>
-                        <div v-else style="width: 4em; display:inline-block;">
-                            <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg"
-                                 style="height: 16px;"> {{ option.type }}
-                        </div>
-                        <div style="display:inline-block;">{{ option.list_name }}</div>
-                        <div style="display:inline-block; float: right;">{{ humanize_date(option.at_when) }}
-                            ({{ humanize_relative_date(option.at_when) }})
+                        <div style="display:block;" class="rowline">
+                            <div style="width: 4em; display:inline-block;">{{ option.id }}</div>
+                            <div v-if="option.type === 'web'" style="width: 4em; display:inline-block;">
+                                <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg"
+                                     style="height: 16px;"> {{ option.type }}
+                            </div>
+                            <div v-else style="width: 4em; display:inline-block;">
+                                <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg"
+                                     style="height: 16px;"> {{ option.type }}
+                            </div>
+                            <div style="display:inline-block;">{{ option.list_name }}</div>
+                            <div style="display:inline-block; float: right;">{{ humanize_date(option.at_when) }}
+                                ({{ humanize_relative_date(option.at_when) }})
+                            </div>
                         </div>
                     </template>
                 </v-select>
