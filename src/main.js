@@ -15,6 +15,7 @@ import DomainListManager from './components/domains/DomainListManager'
 import SpreadsheetUpload from './components/domains/SpreadsheetUpload'
 import ScanMonitor from './components/scans/ScanMonitor'
 import Report from './components/reports/Report'
+import ContentBlock from './components/content_block'
 import SwitchAccount from './components/admin/SwitchAccount'
 import InstantAddAccount from './components/admin/InstantAddAccount'
 import Usage from './components/admin/usage'
@@ -36,6 +37,7 @@ import moment from 'moment'
 Vue.use(VueMoment, { moment });
 
 Vue.component('v-select', vSelect);
+Vue.component('content-block', ContentBlock);
 Vue.use(PortalVue)
 Vue.use(VueI18n)
 Vue.use(VueRouter)

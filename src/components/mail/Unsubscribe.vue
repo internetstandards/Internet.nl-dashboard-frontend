@@ -1,6 +1,6 @@
 <template type="text/x-template" id="unsubscribe_template">
     <div>
-        <div class="block fullwidth">
+        <content-block>
             <h1>{{ $t("title") }}</h1>
 
             <loading :loading="loading"></loading>
@@ -37,7 +37,7 @@
                 </template>
             </template>
 
-        </div>
+        </content-block>
     </div>
 </template>
 

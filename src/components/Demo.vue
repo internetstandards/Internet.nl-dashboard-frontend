@@ -23,13 +23,13 @@
 
 <template>
     <div id="demo-template">
-        <div class="block fullwidth">
+        <content-block>
             <h1>{{ $t("title") }}</h1>
             <p v-html="$t('introduction')"></p>
             <p>{{ $t("contact_information") }}<a href='mailto:vraag@internet.nl@subject=dashboard%20access%20request'>vraag@internet.nl</a></p>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("feature.create_list.title") }}</h2>
             <p>{{ $t("feature.create_list.introduction") }}</p>
 
@@ -37,9 +37,9 @@
               <img src="/static/images/demo/domain_list.png" class="scaled" alt="example list">
               <figcaption>{{ $t("feature.create_list.caption") }}</figcaption>
             </figure>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("feature.create_list.upload_title") }}</h2>
             <p>{{ $t("feature.create_list.spreadsheet_upload") }}</p>
 
@@ -59,9 +59,9 @@
                     </td>
                 </tr>
             </table>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("feature.scan_monitor.title") }}</h2>
             <p>{{ $t("feature.scan_monitor.introduction") }}</p>
 
@@ -69,9 +69,9 @@
               <img src="/static/images/demo/scan_progress.png" class="scaled" alt="example list">
               <figcaption>{{ $t("feature.scan_monitor.caption") }}</figcaption>
             </figure>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("feature.reporting.title") }}</h2>
             <p>{{ $t("feature.reporting.introduction") }}</p>
 
@@ -80,48 +80,48 @@
               <img src="/static/images/demo/report_configuration.png" class="scaled" alt="example list">
               <figcaption>{{ $t("feature.reporting.caption_configuration") }}</figcaption>
             </figure>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("feature.timeline.title") }}</h2>
             <p>{{ $t("feature.timeline.introduction") }}</p>
             <figure>
               <img src="/static/images/demo/graph_timeline.png" class="scaled" alt="example list">
               <figcaption>{{ $t("feature.timeline.caption") }}</figcaption>
             </figure>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("feature.bar_charts.title") }}</h2>
             <p>{{ $t("feature.bar_charts.introduction") }}</p>
             <figure>
               <img src="/static/images/demo/bar_chart.png" class="scaled" alt="example list">
               <figcaption>{{ $t("feature.bar_charts.caption") }}</figcaption>
             </figure>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("feature.table.title") }}</h2>
             <p>{{ $t("feature.table.introduction") }}</p>
             <figure>
               <img src="/static/images/demo/result_table.png" class="scaled" alt="example list">
               <figcaption>{{ $t("feature.table.caption") }}</figcaption>
             </figure>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("feature.spreadsheet.title") }}</h2>
             <p>{{ $t("feature.spreadsheet.introduction") }}</p>
             <figure>
               <img src="/static/images/demo/spreadsheet.png" class="scaled" alt="example list">
               <figcaption>{{ $t("feature.spreadsheet.caption") }}</figcaption>
             </figure>
-        </div>
+        </content-block>
 
-        <div class="block fullwidth">
+        <content-block>
             <h2>{{ $t("contact.title") }}</h2>
             <p v-html='$t("contact_information")'></p>
-        </div>
+        </content-block>
 
     </div>
 </template>

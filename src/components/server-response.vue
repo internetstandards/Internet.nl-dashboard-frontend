@@ -1,26 +1,8 @@
 <style scoped>
 /* Todo: add toast notification */
-.server-response-error {
-    border: 1px solid silver;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #f9e0e4;
-    color: darkred;
-}
 
-.server-response-success{
-    border: 1px solid silver;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #daffda;
-    color: #004f00;
-}
-
-h2{
+h2 {
     font-size: 1.5em;
-    padding-bottom: 0.5em;
 }
 
 p {
@@ -29,22 +11,22 @@ p {
 </style>
 <template>
     <div>
-        <div v-if="response.error" class="server-response-error">
+        <b-alert v-model="show" variant="danger" v-if="response.error" dismissible fade>
             <h2>❌ {{ $t('error') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
             <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }} ({{ time_ago }}).</small></span>
-        </div>
-        <div v-if="response.success" class="server-response-success hideMe">
+        </b-alert>
+        <b-alert v-model="show" variant="success" v-if="response.success" dismissible fade>
             <h2>✅ {{ $t('success') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
             <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }} ({{ time_ago }}).</small></span>
-        </div>
+        </b-alert>
     </div>
 </template>
 <script>
@@ -54,23 +36,41 @@ export default {
     created: function () {
         this.timer = setInterval(this.update, 30000)
     },
-    mounted: function(){
+    mounted: function () {
         this.update();
     },
-    beforeDestroy () {
+    beforeDestroy() {
         clearInterval(this.timer)
     },
     methods: {
-        update: function (){
+        update: function () {
             if (this.response !== undefined) {
                 this.time_ago = this.humanize_relative_date(this.response.timestamp)
             }
         }
     },
-    data:  function () {
+    data: function () {
         return {
             timer: '',
             time_ago: '',
+            show: false
+        }
+    },
+    watch: {
+        response: function () {
+            // a new response, means this should be visible again:
+            this.show = true;
+
+            // a new response is made. Let's add a toast message.
+            this.$bvToast.toast(this.message ? this.message : this.response.message, {
+                title: this.response.error ? `❌ ${this.$i18n.t('error')}` : `✅ ${this.$i18n.t('success')}`,
+                autoHideDelay: 8000,
+                variant: this.response.error ? 'danger' : 'success',
+                solid: true,
+                isStatus: true,  // message is also displayed on the page using more accessible methods
+
+                appendToast: false,
+            })
         }
     },
     props: {

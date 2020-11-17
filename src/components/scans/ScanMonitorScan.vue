@@ -1,26 +1,39 @@
 <style scoped>
-
-.monitor-block h2 {
-    color: white;
-    font-size: 1.2em;
-    display: inline-block;
-    margin: 0;
-    margin-top: -0.3em;
-}
-
 ol {
     list-style: decimal;
 }
+.card-header {
+    min-height: 5em;
+}
 </style>
 <template>
-    <div class="wrapper">
-        <h2>
+    <b-card class="shadow"
+        header-bg-variant="info"
+        header-text-variant="light"
+        footer-bg-variant="info-outline"
+        footer-text-variant="light"
+        header-tag="header"
+        footer-tag="footer"
+
+        >
+        <template #header>
+
             <span v-if="scan.state === 'finished'">✅</span>
             <span v-if="scan.state === 'cancelled'">⭕</span>
             <span v-if="!['finished', 'cancelled'].includes(scan.state)">
             <probe /></span>
-            &nbsp; {{ scan.type }} {{ $t("scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</h2><br>
+            <b>&nbsp; {{ scan.type }} {{ $t("scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</b>
+
+        </template>
+
+        <b-card-text>
+
+        <small>{{ $t("started_on") }}:
+        <span :title="scan.started_on">{{
+                humanize_date(scan.started_on)
+            }},<br>{{ humanize_relative_date(scan.started_on) }}</span></small><br>
         <br>
+
         <template v-if="scan.finished && (scan.state !== 'cancelled')">
             <template v-if="scan.last_report_id">
                 📊
@@ -37,7 +50,7 @@ ol {
         </template>
         📘
         <router-link :to="{ name: 'numbered_lists', params: { list: scan.list_id }}">
-            {{ scan.list }}
+            {{ $t("open_list") }}
         </router-link>
         <br><br>
 
@@ -107,19 +120,21 @@ ol {
             </div>
         </collapse-panel>
 
-        <br>
+        </b-card-text>
 
-        <template v-if="scan.status_url">
-            🔖
-            <template v-if="scan.state === 'finished'">
-                <a :href="scan.status_url + '/results'" target="_blank">{{ $t("open_in_api") }}</a>
+        <template #footer>
+            <template v-if="scan.status_url">
+                🔖
+                <template v-if="scan.state === 'finished'">
+                    <a :href="scan.status_url + '/results'" target="_blank">{{ $t("open_in_api") }}</a>
+                </template>
+                <template v-else>
+                    <a :href="scan.status_url" target="_blank">{{ $t("open_in_api") }}</a>
+                </template>
+                <br>
             </template>
-            <template v-else>
-                <a :href="scan.status_url" target="_blank">{{ $t("open_in_api") }}</a>
-            </template>
-            <br>
         </template>
-    </div>
+    </b-card>
 </template>
 
 
@@ -225,6 +240,7 @@ export default {
         "runtime": "Runtime",
         "open_in_api": "Open on internet.nl API",
         "open_report": "Open report",
+        "open_list": "Open list",
         "last_check": "Last status update",
         "report_is_being_generated": "Report is being generated.",
         "processing_results": "Processing results.",
@@ -284,6 +300,7 @@ export default {
         "runtime": "Looptijd",
         "open_in_api": "Open internet.nl API resultaat",
         "open_report": "Open rapport",
+        "open_list": "Bekijk lijst",
         "last_check": "Laatste status update",
         "report_is_being_generated": "Report wordt gemaakt.",
         "processing_results": "Resultaten worden verwerkt.",

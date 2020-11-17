@@ -1,5 +1,5 @@
 <template>
-    <div id="switch-account" class="block fullwidth">
+    <content-block>
 
         <h1>{{ $t("title") }}</h1>
         <p>{{ $t("intro") }}</p>
@@ -9,16 +9,16 @@
 
             {{ $t("username") }}:<br>
             <b-form-input id="username" type="text" maxlength="120" v-model="username"
-                          :placeholder="$t('username')"></b-form-input>
+                          :placeholder="$t('username')"></b-form-input><br>
 
             {{ $t("password") }}:<br>
             <b-form-input id="password" type="password" maxlength="120" v-model="password"
                           :placeholder="$t('password')"></b-form-input>
-            <br/><br/>
+            <br/>
             <button type="button" @click="save_instant_account()">{{ $t("save") }}</button>
         </p>
 
-    </div>
+    </content-block>
 </template>
 <script>
 export default {

@@ -98,18 +98,16 @@
 
             </div>
 
-            <div class="wrap">
-                <section class="block do-not-print">
-                    <div class="wrapper">
-                        <p style="font-size: 0.9em; font-style: italic; margin-bottom: 0em;">
+            <div class="wrap do-not-print">
+                <content-block>
+                    <p style="font-size: 0.9em; font-style: italic; margin-bottom: 0em;">
                             {{ $t('report_issues.thank_you') }}
                             {{ $t('report_issues.report_issues') }}
                             <a href="https://github.com/internetstandards/Internet.nl-dashboard/issues" target="_blank">{{
                                     $t('report_issues.link_text')
                                 }}</a>.
                         </p>
-                    </div>
-                </section>
+                </content-block>
             </div>
 
         </main>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="switch-account" class="block fullwidth">
+        <content-block>
 
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
@@ -10,12 +10,20 @@
                 </li>
             </ol>
             <loading :loading="loading"/>
-        </div>
+        </content-block>
+
         <template v-if="s">
-            <div class="block fullwidth">
+            <content-block>
                 <b-table-simple hover small caption-top responsive>
-                    <caption>{{ s.users.total }} Users, per-user login in the past N days</caption>
+                    <caption>{{ s.users.total }} Users Last login moment in N days (logging in is not something that is needed often, users stay logged in for longer periods of time to increase usability)</caption>
                     <b-tr>
+                        <b-th>1</b-th>
+                        <b-th>2</b-th>
+                        <b-th>3</b-th>
+                        <b-th>5</b-th>
+                        <b-th>7</b-th>
+                        <b-th>14</b-th>
+                        <b-th>21</b-th>
                         <b-th>30</b-th>
                         <b-th>60</b-th>
                         <b-th>90</b-th>
@@ -28,6 +36,13 @@
                         <b-th>300</b-th>
                     </b-tr>
                     <b-tr>
+                        <b-td>{{ s.users.logged_in_the_past_1_days }}</b-td>
+                        <b-td>{{ s.users.logged_in_the_past_2_days }}</b-td>
+                        <b-td>{{ s.users.logged_in_the_past_3_days }}</b-td>
+                        <b-td>{{ s.users.logged_in_the_past_5_days }}</b-td>
+                        <b-td>{{ s.users.logged_in_the_past_7_days }}</b-td>
+                        <b-td>{{ s.users.logged_in_the_past_14_days }}</b-td>
+                        <b-td>{{ s.users.logged_in_the_past_21_days }}</b-td>
                         <b-td>{{ s.users.logged_in_the_past_30_days }}</b-td>
                         <b-td>{{ s.users.logged_in_the_past_60_days }}</b-td>
                         <b-td>{{ s.users.logged_in_the_past_90_days }}</b-td>
@@ -40,7 +55,7 @@
                         <b-td>{{ s.users.logged_in_the_past_300_days }}</b-td>
                     </b-tr>
                 </b-table-simple>
-            </div>
+            </content-block>
             <stats_yearview :data="s.scans" :total="s.scans.total" title="Scans"></stats_yearview>
             <stats_yearview :data="s.domains" :total="s.domains.total" title="Domains"></stats_yearview>
             <stats_yearview :data="s.actions['logged in']" :total="s.actions['logged in'].total"

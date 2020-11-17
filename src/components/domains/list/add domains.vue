@@ -3,7 +3,7 @@
     width: 100%; background-color: #ffd9d9; height: 60px; overflow: scroll;
 }
 .url_textarea {
-    width: 100%; height: 150px;
+    width: 100%; height: 180px;
 }
 </style>
 
@@ -108,7 +108,7 @@ export default {
     "en": {
         "title": "Add domains",
         "domains_label": "Add domains in the text field below",
-        "message": "Domains are separated by a comma, space or new line. These can be mixed. For example: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com, \n\nhttps://my.example.com:80/index.html",
+        "message": "Domains are separated by a comma, space or new line. These can be mixed. For example: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com, \nhttps://my.example.com:80/index.html",
         "ok": "Add the above domains to the list",
         "cancel": "Close",
         "status": "Status",
@@ -126,7 +126,7 @@ export default {
     "nl": {
         "title": "Domeinen toevoegen",
         "domains_label": "Voer nieuwe domeinen in",
-        "message": "Domeinen worden gescheiden door een komma, spatie, nieuwe regel. Deze mogen ook door elkaar worden gebruikt. Bijvoorbeeld: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com\n\nhttps://my.example.com:80/index.html",
+        "message": "Domeinen worden gescheiden door een komma, spatie, nieuwe regel. Deze mogen ook door elkaar worden gebruikt. Bijvoorbeeld: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com\nhttps://my.example.com:80/index.html",
         "ok": "Voeg bovenstaande domeinen toe aan de lijst",
         "status": "Status",
         "cancel": "Sluiten",

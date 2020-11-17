@@ -24,18 +24,14 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
  (most of the above errors would be solved if we would only add things to the end of the list?).
 -->
 <style>
-#lists_ {
-    width: 100%;
-}
-
 #lists_ .list_warning {
     font-size: 1.2em;
     font-weight: bold;
 }
 </style>
 <template>
-    <div id="lists_">
-        <div class="block fullwidth">
+    <div>
+        <content-block>
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
             <p>
@@ -46,7 +42,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 
             <collapse-panel :title='$t("icon_legend.title")'>
                 <div slot="content">
-                <p>{{ $t("icon_legend.intro") }}</p>
+                    <p>{{ $t("icon_legend.intro") }}</p>
                     <ul>
                         <li>
                             <span role="img" :aria-label="$t('icons.can_connect')">🌍️</span>
@@ -70,13 +66,15 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                     <server-response :response="add_new_server_response"></server-response>
 
                     <label for="name">{{ $t("urllist.field_label_name") }}:</label><br>
-                    <b-form-input id="name" type="text" maxlength="120" v-model="add_new_new_list.name"></b-form-input><br>
+                    <b-form-input id="name" type="text" maxlength="120" v-model="add_new_new_list.name"></b-form-input>
+                    <br>
 
                     <label for="scan_type">{{ $t("urllist.field_label_scan_type") }}:</label><br>
                     <b-form-select id="scan_type" v-model="add_new_new_list.scan_type">
                         <b-form-select-option value="web">{{ $t("urllist.scan_type_web") }}</b-form-select-option>
                         <b-form-select-option value="mail">{{ $t("urllist.scan_type_mail") }}</b-form-select-option>
-                    </b-form-select><br><br>
+                    </b-form-select>
+                    <br><br>
 
                     <label for="automated_scan_frequency">
                         {{ $t("urllist.field_label_automated_scan_frequency") }}:
@@ -111,15 +109,15 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                 </div>
             </b-modal>
 
-        </div>
+        </content-block>
 
         <loading :loading="loading"></loading>
 
-        <div v-if="one_of_the_lists_contains_warnings" class="managed-url-list block fullwidth">
+        <content-block v-if="one_of_the_lists_contains_warnings" class="managed-url-list">
             <span class="list_warning">
                 <span role="img" :aria-label="$t('icons.list_warning')">⚠️</span> {{ $t("warning_found_in_list") }}
             </span>
-        </div>
+        </content-block>
 
         <!--
         The usage of v-bind:key="list.id" makes sure that data + props match. Would you not use a key, the
@@ -137,7 +135,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
             v-on:removelist="removelist"
             v-for="list in lists"></managed_url_list>
 
-        <div v-if="!lists.length" class="no-content block fullwidth">
+        <content-block v-if="!lists.length" class="no-content">
             {{ $t("inital_list.start") }} <br>
             <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
             <br>
@@ -145,7 +143,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
             <p>
                 <router-link to="/domains/upload">{{ $t('inital_list.alternative_start') }}</router-link>
             </p>
-        </div>
+        </content-block>
 
     </div>
 </template>
@@ -177,7 +175,7 @@ export default {
     mounted: function () {
         this.get_lists();
         this.$root.$on('bv::modal::show', (bvEvent, modalId) => {
-            if (modalId === "show_add_new"){
+            if (modalId === "show_add_new") {
                 this.reset_add_new_form()
             }
         })
