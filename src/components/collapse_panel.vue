@@ -26,10 +26,6 @@ button {
     font-weight: bold !important;
 }
 
-button:hover {
-    background-color: inherit;
-}
-
 .animate_opening {
     transition: transform 300ms linear;
     transform: rotate(0deg);
@@ -41,8 +37,8 @@ button:hover {
     transition: transform 300ms linear;
 }
 
-.block button:hover, .block button:focus, .block button:active {
-    background: white
+.collapse_panel button:hover, .collapse_panel button:focus, .collapse_panel button:active, .collapse_panel button:visited {
+    background-color: white;
 }
 
 .level_two {

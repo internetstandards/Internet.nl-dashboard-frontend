@@ -70,7 +70,30 @@ Note that chrome has issues making thead and tr sticky. Therefore it is applied 
 
 #report-template th.sticky-header {
     position: sticky;
-    top: -1px;
+}
+
+/* only safari: https://solvit.io/bcf61b6, https://www.codegrepper.com/code-examples/css/Safari+only+CSS+hack */
+@media not all and (min-resolution:.001dpcm) {
+     @supports (-webkit-appearance:none) {
+    /*
+      In safari the search bar shows too low.
+     */
+    #report-template td.sticky_search {
+        top: -1px !important;
+    }
+
+}}
+
+/* Chrome 29+  https://stackoverflow.com/questions/9328832/how-to-apply-specific-css-rules-to-chrome-only */
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    #report-template th.sticky-header {
+        /**
+        * Using top attaches the header to the scrollbar in safari. So it moves with the scrollbar which is weird.
+        * Removing the top declaration fixes it, but chrome needs it. Sticky headers are still very much IE6 development
+        */
+        /* top: -1px; */
+         top: -1px !important;
+    }
 }
 
 #report-template td.sticky_search {
