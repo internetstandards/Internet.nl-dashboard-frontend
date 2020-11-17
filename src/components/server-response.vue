@@ -1,7 +1,7 @@
 <style scoped>
 /* Todo: add toast notification */
 
-h2{
+h2 {
     font-size: 1.5em;
 }
 
@@ -11,7 +11,7 @@ p {
 </style>
 <template>
     <div>
-        <b-alert show variant="danger" v-if="response.error">
+        <b-alert v-model="show" variant="danger" v-if="response.error" dismissible fade>
             <h2>❌ {{ $t('error') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
@@ -19,7 +19,7 @@ p {
             </p>
             <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }} ({{ time_ago }}).</small></span>
         </b-alert>
-        <b-alert show variant="success" v-if="response.success">
+        <b-alert v-model="show" variant="success" v-if="response.success" dismissible fade>
             <h2>✅ {{ $t('success') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
@@ -36,23 +36,41 @@ export default {
     created: function () {
         this.timer = setInterval(this.update, 30000)
     },
-    mounted: function(){
+    mounted: function () {
         this.update();
     },
-    beforeDestroy () {
+    beforeDestroy() {
         clearInterval(this.timer)
     },
     methods: {
-        update: function (){
+        update: function () {
             if (this.response !== undefined) {
                 this.time_ago = this.humanize_relative_date(this.response.timestamp)
             }
         }
     },
-    data:  function () {
+    data: function () {
         return {
             timer: '',
             time_ago: '',
+            show: false
+        }
+    },
+    watch: {
+        response: function () {
+            // a new response, means this should be visible again:
+            this.show = true;
+
+            // a new response is made. Let's add a toast message.
+            this.$bvToast.toast(this.message ? this.message : this.response.message, {
+                title: this.response.error ? `❌ ${this.$i18n.t('error')}` : `✅ ${this.$i18n.t('success')}`,
+                autoHideDelay: 8000,
+                variant: this.response.error ? 'danger' : 'success',
+                solid: true,
+                isStatus: true,  // message is also displayed on the page using more accessible methods
+
+                appendToast: false,
+            })
         }
     },
     props: {

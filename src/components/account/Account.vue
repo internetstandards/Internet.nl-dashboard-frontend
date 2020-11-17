@@ -9,14 +9,14 @@ input {
         <content-block>
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
-            <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
-            <loading :loading="loading"></loading>
         </content-block>
 
         <div class="wrap" v-if="!first_load">
-
+            <loading :loading="loading"></loading>
             <content-block>
                 <h2>{{ $t("notification_settings") }}</h2>
+                <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
+
                 <label class='ad_hoc_label' for="mail_send_mail_after_scan_finished">
                     {{ $t("mail_send_mail_after_scan_finished") }}
                 </label>
