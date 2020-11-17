@@ -1,14 +1,15 @@
 <style scoped>
 .router-link-active {
-    font-weight: bold;
+    font-weight: 600;
     border-bottom: 3px solid #ffab4c;
 }
 
 ul {
     margin-bottom: 0;
 }
-a, a:hover, a:active {
+a, a:hover, a:active, a:visited, a:link {
     color: black;
+    text-decoration: none;
 }
 </style>
 <template>
