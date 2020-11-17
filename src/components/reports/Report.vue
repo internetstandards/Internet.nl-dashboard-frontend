@@ -17,7 +17,7 @@
 }
 
 .v-select li:nth-child(even) {
-    background-color: rgba(0,0,0,0.1) !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 .v-select li:nth-child(even):hover {
@@ -61,32 +61,32 @@
                     </template>
                 </v-select>
                 <br>
-                <button role="link" @click="get_recent_reports">{{ $t("header.reload_list") }}</button>
+                <button role="link" @click="get_recent_reports">🔁 {{ $t("header.reload_list") }}</button>
             </div>
-
-            <template v-if="reports.length && !is_loading">
-
-                <collapse-panel :title='$t("download.title") ' class="do-not-print" v-if="selected_report.length < 2">
-                    <div slot="content">
-                        <p>{{ $t("download.intro") }}</p>
-                        <ul style="list-style: disc !important; padding-left: 20px">
-                            <li><a :href="make_downloadlink(reports[0].id, 'xlsx')">{{ $t("download.xlsx") }}</a></li>
-                            <li><a :href="make_downloadlink(reports[0].id, 'ods')">{{ $t("download.ods") }}</a></li>
-                            <li><a :href="make_downloadlink(reports[0].id, 'csv')">{{ $t("download.csv") }}</a></li>
-                        </ul>
-                    </div>
-                </collapse-panel>
-
-                <collapse-panel :title='$t("settings.title")' class="do-not-print">
-                    <div slot="content">
-                        <VisibleMetrics :scan_methods="scan_methods"
-                                        :report_type="selected_report[0].type"></VisibleMetrics>
-                    </div>
-                </collapse-panel>
-
-            </template>
-
         </content-block>
+
+        <content-block class="do-not-print" v-if="reports.length && !is_loading && selected_report.length < 2">
+            <collapse-panel :title='`⬇️  ${$t("download.title")} `' class="do-not-print">
+                <div slot="content">
+                    <p>{{ $t("download.intro") }}</p>
+                    <ul style="list-style: none !important;">
+                        <li><a :href="make_downloadlink(reports[0].id, 'xlsx')">⬇️ {{ $t("download.xlsx") }}</a></li>
+                        <li><a :href="make_downloadlink(reports[0].id, 'ods')">⬇️ {{ $t("download.ods") }}</a></li>
+                        <li><a :href="make_downloadlink(reports[0].id, 'csv')">⬇️ {{ $t("download.csv") }}</a></li>
+                    </ul>
+                </div>
+            </collapse-panel>
+        </content-block>
+
+        <content-block class="do-not-print" v-if="reports.length && !is_loading">
+            <collapse-panel :title='`🔢 ${$t("settings.title")}`' class="do-not-print">
+                <div slot="content">
+                    <VisibleMetrics :scan_methods="scan_methods"
+                                    :report_type="selected_report[0].type"></VisibleMetrics>
+                </div>
+            </collapse-panel>
+        </content-block>
+
 
         <loading :loading="is_loading"></loading>
 
@@ -144,7 +144,7 @@
 
             <!-- The table is only displayed with up to two reports (the first as the source of the table, the second as a comparison). -->
             <content-block v-if="original_urls !== undefined && selected_report.length < 3"
-                 style="page-break-before: always;">
+                           style="page-break-before: always;">
 
                 <ReportTable
                     :differences_compared_to_current_list="differences_compared_to_current_list"

@@ -3,33 +3,24 @@
         <p>{{ $t("intro") }}</p>
         <div v-for="scan_form in scan_methods" :key="scan_form.name">
             <b-card no-body>
-            <b-tabs pills card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
-                <b-tab :title="$t('main_category')"  class="p-3">
-                    <h4>{{ $t("main_category") }}</h4>
-
-                    <b-form-checkbox v-model="issue_filters[scan_form.name].show_dynamic_average" switch>
-                        {{ $t("show_dynamic_average") }}
-                    </b-form-checkbox>
-                    <br><br>
-                </b-tab>
-
-                <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label"  class="p-3">
-                    <section class="test-header">
-                        <div class="test-title">
-                            <h4>{{ category.label }}</h4>
-                            <p>
+                <b-tabs pills card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
+                    <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label"
+                           class="p-3">
+                        <section class="test-header">
+                            <div class="test-title">
+                                <h4>{{ category.label }}</h4>
+                                <p>
                                 <span v-for="field in category.fields" :key="field.id">
                                     <b-form-checkbox v-model="issue_filters[field.name].show_dynamic_average"
                                                      @change="visible_metrics_see_if_category_is_relevant(category)"
                                                      switch>
                                         {{ $t("show_dynamic_average") }}
                                     </b-form-checkbox>
-
                                 </span>
-                            </p>
-                        </div>
-                    </section>
-                    <section class="testresults">
+                                </p>
+                            </div>
+                        </section>
+                        <section class="testresults">
                         <span class="select-deselect-category">
                             <a @click="check_fields(all_field_names_from_categories(category))"> {{ $t("check") }} </a>
                             /
@@ -38,39 +29,42 @@
                             </a>
                         </span>
 
-                        <div v-for="subcategory in category.categories" :key="subcategory.name">
-                            <div class="test-subsection">{{ subcategory.label }}<br></div>
-                            <div v-for="field in subcategory.fields" :key="field.name" class="testresult_without_icon">
+                            <div v-for="subcategory in category.categories" :key="subcategory.name">
+                                <div class="test-subsection">{{ subcategory.label }}<br></div>
+                                <div v-for="field in subcategory.fields" :key="field.name"
+                                     class="testresult_without_icon">
 
-                                <b-form-checkbox
-                                    v-model="issue_filters[field.name].visible" :id="field.name + '_visible'"
-                                    switch>
-                                    {{ $t(field.name) }}
-                                </b-form-checkbox>
+                                    <b-form-checkbox
+                                        v-model="issue_filters[field.name].visible" :id="field.name + '_visible'"
+                                        switch>
+                                        {{ $t(field.name) }}
+                                    </b-form-checkbox>
 
-                                <template v-if="field.explanation">
-                                    <p><i>{{ $t(field.name + "_explanation") }}</i></p>
-                                </template>
+                                    <template v-if="field.explanation">
+                                        <p><i>{{ $t(field.name + "_explanation") }}</i></p>
+                                    </template>
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                </b-tab>
-            </b-tabs>
+                        </section>
+                    </b-tab>
+                    <b-tab :title="$t('main_category')" class="p-3">
+                        <h4>{{ $t("main_category") }}</h4>
+
+                        <b-form-checkbox v-model="issue_filters[scan_form.name].show_dynamic_average" switch>
+                            {{ $t("show_dynamic_average") }}
+                        </b-form-checkbox>
+                    </b-tab>
+
+                </b-tabs>
             </b-card>
         </div>
-        <div>
-            <button @click="reset_issue_filters()">{{ $t("buttons.reset") }}</button>
-            <button @click="save_visible_metrics()">{{ $t("buttons.save") }}</button>
-            <br>
-            <template v-if="issue_filters_response.success || issue_filters_response.error">
-                <div :class="'server-response-' + issue_filters_response.state">
-                        <span>
-                            {{ $t(issue_filters_response.message) }}
-                            on {{ humanize_date(issue_filters_response.timestamp) }}.
-                        </span>
-                </div>
-            </template>
-        </div>
+        <br>
+        <button @click="reset_issue_filters()">{{ $t("buttons.reset") }}</button> &nbsp;
+        <button @click="save_visible_metrics()">{{ $t("buttons.save") }}</button>
+        <br><br>
+        <server-response :response="issue_filters_response"
+                         :message="$t(issue_filters_response.message)"></server-response>
+
     </div>
 </template>
 
@@ -201,7 +195,7 @@ export default {
         visible_metrics: function (new_value) {
             this.issue_filters = new_value;
         },
-        issue_filters: function() {
+        issue_filters: function () {
             /**
              * Using the 'switch' button has a side effect: the value is set _after_ the @change is performed.
              * Therefore there is no up to date data inside the data. What we will do is iterate over all fields
@@ -246,7 +240,7 @@ export default {
         "uncheck": "Deselect all",
         "title": "Select visible metrics",
         "main_category": "Average adoption of standards",
-        "intro": "To retain focus, select the fields that are relevant to your organization.",
+        "intro": "Focusing on specific metrics is possibly using this this selection tool. For example it's possible to only select HTTPS metrics or DNSSEC. Visible metrics are applied to all users of your organization.",
         "buttons": {
             "reset": "Reset",
             "reset_label": "Resets all values to their original status.",
@@ -266,7 +260,7 @@ export default {
         "uncheck": "Deselecteer alle",
         "title": "Selecteer zichtbare meetwaarden",
         "main_category": "Adoptie van standaarden",
-        "intro": "Selecteer de velden die relevant zijn voor uw organisatie.",
+        "intro": "Het richten op specifieke meetwaarden is mogelijk met onderstaande selectie-tool. Hiermee is het mogelijk om enkel HTTPS of DNSSEC informatie in de rapportages te zien. De zichtbare meetwaarden gelden voor alle gebruikers in je organisatie.",
         "buttons": {
             "reset": "Reset",
             "reset_label": "Zet de originele waardes terug naar de waardes in de database",

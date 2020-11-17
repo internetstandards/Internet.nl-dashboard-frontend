@@ -13,7 +13,7 @@
         </template>
 
         <p>
-            <button role="link" @click="get_accounts">{{ $t("reload_list") }}</button>
+            <button role="link" @click="get_accounts">🔁 {{ $t("reload_list") }}</button>
             <br><br>
             <label for="account_selection">{{ $t("select") }}:</label>
 
