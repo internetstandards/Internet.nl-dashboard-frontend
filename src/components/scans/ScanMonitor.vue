@@ -1,25 +1,22 @@
 <style scoped>
-.monitor-block {
-    background-color: white;
-    background: linear-gradient(180deg, #00BFD6 0%, #00BFD6 3em, white 3em, rgba(255, 255, 255, 1) 100%);
-    border-radius: 4px;
-}
-
 </style>
 <template>
     <div style="width: 100%;">
         <div class="block fullwidth">
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
-
             <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60"></autorefresh>
         </div>
 
-        <div class="wrap" v-if="scans">
-            <div v-for="scan in scans" :key="scan.id" class="block monitor-block">
-                <ScanMonitorScan :scan="scan" @scan-stopped="load"></ScanMonitorScan>
-            </div>
-        </div>
+        <b-container>
+            <b-row cols="3">
+                <template v-for="scan in scans">
+                    <b-col class="p-1" v-bind:key="scan.id">
+                        <ScanMonitorScan :scan="scan" @scan-stopped="load"></ScanMonitorScan>
+                    </b-col>
+                </template>
+            </b-row>
+        </b-container>
 
         <div class='block fullwidth' v-if="!scans.length">{{ $t("no_scans") }}</div>
 

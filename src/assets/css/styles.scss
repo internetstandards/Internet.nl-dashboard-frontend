@@ -1,7 +1,13 @@
-//@import "dropzone/dist/basic.css";
-//@import "dropzone/dist/dropzone.css";
+/* https://bootstrap-vue.org/docs/reference/theming */
+// https://www.bootstrapdash.com/bootstrap-css-styles/
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+$theme-colors: (
+    info: #05BFD6,
+);
+
+
 @import "vue-select/src/scss/vue-select.scss";
-// @import "chart.js/dist/Chart.css";
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
 
