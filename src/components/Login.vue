@@ -10,9 +10,9 @@
                 <p>
                     {{ $t('not_logged_in') }}<br>
                     <i><small>{{ $t('secondfactor_message') }}: <a
-                        :href="$store.state.dashboard_endpoint + '/account/login/'">{{
-                            $store.state.dashboard_endpoint
-                        }}/account/login/</a></small></i>
+                        :href="$store.state.dashboard_endpoint + '/account/login/'">
+                        {{ $store.state.dashboard_endpoint }}/account/login/</a>
+                    </small></i>
                 </p>
 
                 <form v-on:submit.prevent="login">
@@ -24,7 +24,7 @@
                     <b-form-input id="password" type="password" maxlength="120" v-model="password" :placeholder="$t('password')"></b-form-input>
 
                     <br>
-                    <button id="login" type="submit" @click="login">{{ $t("login") }}</button>
+                    <button id="login" type="submit">{{ $t("login") }}</button>
                 </form>
 
             </div>
