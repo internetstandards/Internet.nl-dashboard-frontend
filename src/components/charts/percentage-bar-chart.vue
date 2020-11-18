@@ -4,7 +4,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import chart_mixin from './chart_mixin.vue'
 
 // this prevents the legend being written over the 100% scores
-Chart.Legend.prototype.afterFit = function() {
+Chart.Legend.prototype.afterFit = function () {
     this.height = this.height + 20;
 };
 
@@ -12,120 +12,8 @@ export default {
     mixins: [chart_mixin],
     plugins: [ChartDataLabels],
     methods: {
-
-        buildChart: function(){
-            let context = this.$refs.canvas.getContext('2d');
-            this.chart = new Chart(context, {
-                type: 'bar',
-                data: {},
-                options: {
-
-                    // can prevent data falling off the chart.
-                    layout: {
-                        padding: {
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 0
-                        }
-                    },
-                    plugins:{
-                        datalabels: {
-                            color: '#ffffff',
-                            clamp: true, // always shows the number, also when the number 100%
-                            anchor: 'center', // show the number at the top of the bar.
-                            align: 'center', // shows the value outside of the bar,
-                            // backgroundColor: '#ffffff',
-                            font: {
-                                weight: 'bold'
-                            },
-                            // borderRadius: 4,
-                            display: function(context) {
-                                let index = context.dataIndex;
-                                let value = context.dataset.data[index];
-                                return Math.round(value) > 1;
-                            },
-                            // format as a percentage
-                            formatter: function(value) {
-                                // The data labels should be rounded, while the rest of the data on hover etc is not.
-                                // https://github.com/internetstandards/Internet.nl-dashboard/issues/37
-                                return Math.round(value)+ '%';
-                            }
-                        }
-                    },
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: {
-                            padding: 15,
-                            filter: function(item, data) {
-                                // Only shows legend labels for data types that are actually available
-                                // dataset 0 = good, dataset 1 is info etc...
-                                let dsIndex = item.datasetIndex;
-                                let currentDataValue =  data.datasets[dsIndex].data.reduce((a, b) => a + b, 0);
-                                return currentDataValue > 0;
-                            },
-                        },
-
-                    },
-                    responsive: true,
-                    // setting this to false will not show the charts in collapse panels. See
-                    // https://github.com/chartjs/Chart.js/issues/762
-                    maintainAspectRatio: true,
-                    title: {
-                        position: 'top',
-                        display: true,
-                        text: this.title,
-                    },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: false,
-                        filter: function(item) {
-                            return item.value > 0
-                        },
-                    },
-                    hover: {
-                        mode: 'nearest',
-                        intersect: true
-                    },
-                    // this is now a percentage graph.
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                min: 0,
-                                max: 100,
-                                callback: function(label) {
-                                    return label + '%';
-                                }
-                            },
-                            scaleLabel: {
-								display: true,
-								labelString: this.$i18n.t(this.translation_key + '.yAxis_label')
-							},
-                        }]
-                    },
-                    onClick: (event, item) => {
-                        if (item[0] === undefined) {
-                            return;
-                        }
-
-                        if (item[0]._chart.tooltip._lastActive[0] === undefined){
-                            return;
-                        }
-
-                        // todo: handle zooming, this is optional / a nice to have.
-                        let localChart = item[0]._chart;
-                        let activeIndex = localChart.tooltip._lastActive[0]._index;
-                        let clickCoordinates = Chart.helpers.getRelativePosition(event, localChart.chart);
-                        if (clickCoordinates.y >= 0) { //custom value, depends on chart style,size, etc
-                            this.$emit('bar_click', localChart.data.axis_names[activeIndex]);
-                            // console.log("clicked on " + localChart.data.labels[activeIndex]);
-                        }
-                    }
-                }
-            });
-        },
-        renderData: function(){
+        renderData: function () {
+            this.configure_barchart();
             // console.log("Rendering bar chart.");
 
             // prevent the grapsh from ever growing (it's called twice at first render)
@@ -133,7 +21,7 @@ export default {
             this.chart.data.labels = [];
             this.chart.data.datasets = [];
 
-            for(let i=0; i < this.chart_data.length; i++){
+            for (let i = 0; i < this.chart_data.length; i++) {
                 // console.log(`Rendering set ${i}`);
 
                 // it's possible the report data is not yet in, but the item in the array has been made.
@@ -187,8 +75,8 @@ export default {
                         // the extra fields are never in the first graph. If we recognize the first graph, then
                         // deduct 1 axis.length
                         if (['internet_nl_web_ipv6', 'internet_nl_web_dnssec', 'internet_nl_web_tls', 'internet_nl_web_appsecpriv',
-                        'internet_nl_mail_dashboard_ipv6', 'internet_nl_mail_dashboard_dnssec', 'internet_nl_mail_dashboard_auth',
-                        'internet_nl_mail_dashboard_tls'].includes(this.axis[0])) {
+                            'internet_nl_mail_dashboard_ipv6', 'internet_nl_mail_dashboard_dnssec', 'internet_nl_mail_dashboard_auth',
+                            'internet_nl_mail_dashboard_tls'].includes(this.axis[0])) {
                             chartdata.push(Math.round((average / (this.axis.length - 1)) * 100) / 100);
                         } else {
                             chartdata.push(Math.round((average / this.axis.length) * 100) / 100);
@@ -213,12 +101,11 @@ export default {
                 });
 
 
-
             }
 
             this.chart.update();
         },
-        renderTitle: function(){
+        renderTitle: function () {
             this.chart.options.title.text = this.title;
         },
     }

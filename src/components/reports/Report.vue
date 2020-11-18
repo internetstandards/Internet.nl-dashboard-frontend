@@ -66,7 +66,7 @@
                     </template>
                 </v-select>
                 <br>
-                <button role="link" @click="get_recent_reports">🔁 {{ $t("header.reload_list") }}</button>
+                <button role="link" @click="get_recent_reports()">🔁 {{ $t("header.reload_list") }}</button>
             </div>
         </content-block>
 
