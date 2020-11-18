@@ -6,7 +6,7 @@
         <content-block>
             <h1>{{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
-            <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60"></autorefresh>
+            <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60" v-if="$store.state.user.is_authenticated"></autorefresh>
         </content-block>
 
         <b-container>

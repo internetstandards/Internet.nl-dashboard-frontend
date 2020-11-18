@@ -5,102 +5,13 @@ import chart_mixin from './chart_mixin.vue'
 
 // this prevents the legend being written over the 100% scores
 Chart.Legend.prototype.afterFit = function() {
-    this.height = this.height + 20;
+    this.height = this.height + 40;
 };
 
 export default {
     mixins: [chart_mixin],
     plugins: [ChartDataLabels],
     methods: {
-        buildChart: function(){
-            let context = this.$refs.canvas.getContext('2d');
-            this.chart = new Chart(context, {
-                type: 'line',
-                data: {
-                    datasets: []
-                },
-                options: {
-                    plugins:{
-                        datalabels: {
-                            color: '#262626',
-                            display: true,
-                            clamp: true, // always shows the number, also when the number 100%
-                            anchor: 'end', // show the number at the top of the bar.
-                            align: 'end', // shows the value outside of the bar,
-                            // format as a percentage
-                            formatter: function(value) {
-                                if (value.is_selected) {
-                                    return `#${value.report}\n${Math.round(value.y)}%`;
-                                } else {
-                                    // https://github.com/internetstandards/Internet.nl-dashboard/issues/37
-                                    return Math.round(value.y) + '%';
-                                }
-                            }
-                        }
-                    },
-                    legend: {
-                        display: true
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    title: {
-                        display: true,
-                        text: this.$i18n.t(this.translation_key + '.title')
-                    },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: false,
-
-                        // add the Z axis to the data, is harder, so (n) is unclear...
-                    },
-                    hover: {
-                        mode: 'nearest',
-                        intersect: true
-                    },
-                    layout: {
-                        padding: {
-                            left: 0,
-                            right: 20,
-                            top: 0,
-                            bottom: 0
-                        }
-                    },
-                    scales: {
-                        xAxes: [{
-                            barPercentage: 0.9,
-                            categoryPercentage: 0.55,
-
-                            display: true,
-                            type: 'time',
-                            distribution: 'linear',
-                            time: {
-                                unit: 'month'
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: this.$i18n.t(this.translation_key + '.month'),
-                            }
-                        }],
-                        yAxes: [{
-                            display: true,
-                            stacked: false,
-                            ticks: {
-                                padding: 20,
-                                min: 0,
-                                max: 100,
-                                callback: function(label) {
-                                    return label + '%';
-                                }
-                            },
-                            scaleLabel: {
-								display: true,
-								labelString: this.$i18n.t(this.translation_key + '.yAxis_label'),
-							},
-                        }]
-                    }
-                }
-            });
-        },
 
         /*
         * [
@@ -127,6 +38,8 @@ export default {
               },
         * */
         renderData: function(){
+            this.configure_linechart();
+
             let data = this.chart_data;
 
             let labels = Array();

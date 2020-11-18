@@ -66,7 +66,7 @@
                     </template>
                 </v-select>
                 <br>
-                <button role="link" @click="get_recent_reports">🔁 {{ $t("header.reload_list") }}</button>
+                <button role="link" @click="get_recent_reports()">🔁 {{ $t("header.reload_list") }}</button>
             </div>
         </content-block>
 
@@ -164,7 +164,7 @@
         </div>
         <!-- The dropdown with recent reports is updated automatically when scans finish. But if that page
          had never loaded, this is a fallback that still tries to get the recent report every ten minutes. -->
-        <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600"></autorefresh>
+        <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600" v-if="$store.state.user.is_authenticated"></autorefresh>
     </div>
 </template>
 
@@ -235,7 +235,7 @@ export default {
         this.load_visible_metrics();
 
         this.get_recent_reports(() => {
-            console.log(this.$router.history.current.params.report);
+            // console.log(this.$router.history.current.params.report);
             if (this.$router.history.current.params.report === undefined) {
                 return
             }

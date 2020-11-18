@@ -91,6 +91,14 @@ export default {
                 this.$store.commit("set_user", data);
                 this.loading = false;
                 if (!this.$store.state.user.is_authenticated) {
+                    this.$bvToast.toast(this.$i18n.t('logged_out_successfully'), {
+                        title: `✅ ${this.$i18n.t('logged_out_successfully')}`,
+                        autoHideDelay: 5000,
+                        variant: 'success',
+                        solid: true,
+                        isStatus: false,
+                        appendToast: false,
+                    })
                     this.$router.push({'name': 'login'});
                 }
             }).catch((fail) => {
@@ -110,7 +118,8 @@ export default {
 		"log_in": "Log in",
 		"log_off": "Log off",
 		"reports": "Reports",
-		"scans": "Scans"
+		"scans": "Scans",
+        "logged_out_successfully": "You have logged out successfully"
 	},
 	"nl": {
 		"account": "Account",
@@ -119,7 +128,8 @@ export default {
 		"log_in": "Inloggen",
 		"log_off": "Uitloggen",
 		"reports": "Rapporten",
-		"scans": "  Scans"
+		"scans": "  Scans",
+        "logged_out_successfully": "Je bent uitgelogd"
 	}
 }
 </i18n>

@@ -239,7 +239,7 @@ export default {
         "upload": {
             "bulk_data_uploader": {
                 "title": "Domain Spreadsheet Uploader",
-                "introduction": "It\"s possible to upload large amounts of internet addresses and lists using spreadsheets. To do so, please expand on the example spreadsheets listed below. This shows how the data has to be structured. Examples with and without data are provided as Open Document Spreadsheet, Microsoft Office Excel and Comma Separated."
+                "introduction": "It's possible to upload large amounts of internet addresses and lists using spreadsheets. To do so, please expand on the example spreadsheets listed below. This shows how the data has to be structured. Examples with and without data are provided as Open Document Spreadsheet, Microsoft Office Excel and Comma Separated."
             },
             "empty_file": "Empty file",
             "file_with_example_data": "File with example data",

@@ -470,12 +470,12 @@ export default {
             // fixing https://github.com/internetstandards/Internet.nl-dashboard/issues/65
             // 1 report:
             if (this.selected_report.length === 1) {
-                return `📊 #${this.selected_report[0].id}: ${this.selected_report[0].list_name} ${this.$moment(this.selected_report[0].at_when).format('LL')} n=${this.selected_report[0].number_of_urls}`;
+                return `📊 #${this.selected_report[0].id}: ${this.selected_report[0].list_name} ${this.humanize_date_date_only(this.selected_report[0].at_when)} n=${this.selected_report[0].number_of_urls}`;
             } else {
                 let titles = [];
 
                 this.selected_report.forEach((report) => {
-                    titles.push(`📊 #${report.id}: ${report.list_name} ${this.$moment(report.at_when).format('LL')} n=${report.number_of_urls}`);
+                    titles.push(`📊 #${report.id}: ${report.list_name} ${this.humanize_date_date_only(report.at_when)} n=${report.number_of_urls}`);
                 });
 
                 return titles.join(" vs ");
@@ -487,12 +487,12 @@ export default {
             // 1 report:
             if (this.selected_report.length === 1) {
                 // not relevant
-                return `📊 #${this.selected_report[0].id}: ${this.selected_report[0].list_name} ${this.$moment(this.selected_report[0].at_when).format('LL')} n=${this.selected_report[0].number_of_urls}`;
+                return `📊 #${this.selected_report[0].id}: ${this.selected_report[0].list_name} ${this.humanize_date_date_only(this.selected_report[0].at_when)} n=${this.selected_report[0].number_of_urls}`;
             } else {
                 let titles = [];
 
                 this.selected_report.forEach((report) => {
-                    titles.push(`📊 #${report.id}: ${report.list_name} ${this.$moment(report.at_when).format('LL')} n=${report.number_of_urls}`);
+                    titles.push(`📊 #${report.id}: ${report.list_name} ${this.humanize_date_date_only(report.at_when)} n=${report.number_of_urls}`);
                 });
 
                 let title_text = titles.join(" + ");

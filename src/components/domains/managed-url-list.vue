@@ -99,7 +99,7 @@ h2 {
 
         <!-- This is already auto-refreshed by a watch, but we keep this as a backup solution for edge cases like
          the monitor page not loading or the used did not open the monitor page. -->
-        <autorefresh :visible="false" :callback="get_scan_status_of_list" :refresh_per_seconds="600"></autorefresh>
+        <autorefresh :visible="false" :callback="get_scan_status_of_list" :refresh_per_seconds="600" v-if="$store.state.user.is_authenticated"></autorefresh>
     </content-block>
 </template>
 

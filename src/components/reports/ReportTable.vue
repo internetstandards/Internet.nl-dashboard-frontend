@@ -645,7 +645,7 @@ export default {
     },
     watch: {
         original_urls: function (new_value) {
-            console.log('Setting original urls')
+            // console.log('Setting original urls')
             this.filtered_urls = new_value;
             this.filter_urls();
         },
@@ -673,7 +673,7 @@ export default {
         filter_urls(keyword) {
             // in case of filter reset, or initializiation of this value.
             if (keyword === "") {
-                console.log("Removing filter");
+                // console.log("Removing filter");
                 this.filtered_urls = this.order_urls(this.original_urls)
                 return
             }
@@ -1005,7 +1005,7 @@ export default {
         "domain": "Domain",
         "report": {
             "title": "Report",
-            "intro": "This table shows detailed results per category. It is possible to compare this report to a second report. In that case, progress incidators are added to the first report where applicable. The domains of the second report are only compared, not displayed.",
+            "intro": "This table shows detailed results per category. It is possible to compare this report to a second report. In that case, progress indicators are added to the first report where applicable. The domains of the second report are only compared, not displayed.",
             "url_filter": "Filter on domain...",
             "not_eligeble_for_scanning": "Domain did not match scanning criteria at the time the scan was initiated. The scanning criteria are an SOA DNS record (not NXERROR) for mail and an A or AAAA DNS record for web. This domain is ignored in all statistics.",
             "zoom": {
@@ -1042,10 +1042,10 @@ export default {
         },
         "icon_legend": {
             "title": "Legend of used icons",
-            "category_error_in_test": "Error occured while testing ⇒ null score",
+            "category_error_in_test": "Error occurred while testing ⇒ null score",
             "subtest_not_applicable": "Not applicable ⇒ no score impact",
             "subtest_not_tested": "Not tested ⇒ no score impact",
-            "subtest_error_in_test": "Error occured while testing ⇒ null score"
+            "subtest_error_in_test": "Error occurred while testing ⇒ null score"
         },
         "differences_compared_to_current_list": {
             "equal": "The domains in this report are equal to the domains in the associated list of domains.",

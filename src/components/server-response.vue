@@ -1,6 +1,4 @@
 <style scoped>
-/* Todo: add toast notification */
-
 h2 {
     font-size: 1.5em;
 }
@@ -64,7 +62,7 @@ export default {
             // a new response is made. Let's add a toast message.
             this.$bvToast.toast(this.message ? this.message : this.response.message, {
                 title: this.response.error ? `❌ ${this.$i18n.t('error')}` : `✅ ${this.$i18n.t('success')}`,
-                autoHideDelay: 8000,
+                autoHideDelay: 5000,
                 variant: this.response.error ? 'danger' : 'success',
                 solid: true,
                 isStatus: true,  // message is also displayed on the page using more accessible methods

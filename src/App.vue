@@ -150,8 +150,6 @@ export default {
     },
     mounted: function () {
         this.login_status();
-        // set default locale
-        this.$moment.locale(this.locale);
 
         this.$nextTick(function () {
 
@@ -190,16 +188,15 @@ export default {
     },
     methods: {
         set_locale: function (locale) {
-            console.log(`Switching app to language: ${locale}.`);
+            // console.log(`Switching app to language: ${locale}.`);
             if (!this.supported_languages.includes(locale)) {
-                console.log(`Language ${locale} not supported`)
+                // console.log(`Language ${locale} not supported`)
                 return
             }
 
             // todo: moment does not yet switch locale live.
             // there is no way to set it to locale, it always says 'en', even though NL is being required.
             this.$store.commit("set_locale", locale);
-            this.$moment.locale(locale);
 
             // Using this cookie Django knows what language translations need to be (if still applicable)
             // this should not matter in the future though.
@@ -304,7 +301,7 @@ export default {
 		"base": {
 			"copyright": "Copyright",
 			"disclosure": "Responsible disclosure",
-			"followtwitter": "Folllow us on Twitter",
+			"followtwitter": "Follow us on Twitter",
 			"info": "Internet.nl is an initiative of the Internet community and the Dutch government.",
 			"privacy": "Privacy statement"
 		},

@@ -29,12 +29,9 @@ import Beta from './components/beta'
 // https://stackoverflow.com/questions/50925793/proper-way-of-adding-css-file-in-vue-js-application
 import './assets/css/styles.scss';
 import PortalVue from 'portal-vue'
-import { BootstrapVue } from 'bootstrap-vue'
-// Requiring moment is a little bit evil:
-// https://github.com/brockpetrie/vue-moment/issues/121
-import VueMoment from 'vue-moment';
-import moment from 'moment'
-Vue.use(VueMoment, { moment });
+import {LayoutPlugin, ModalPlugin, CardPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin, AlertPlugin, FormCheckboxPlugin, PaginationPlugin, FormSelectPlugin, BVModalPlugin, BVToastPlugin} from 'bootstrap-vue'
+import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
+import {enGB, nl} from 'date-fns/locale'
 
 Vue.component('v-select', vSelect);
 Vue.component('content-block', ContentBlock);
@@ -43,7 +40,19 @@ Vue.use(VueI18n)
 Vue.use(VueRouter)
 
 Vue.use(Vuex);
-Vue.use(BootstrapVue)
+Vue.use(LayoutPlugin);
+Vue.use(ModalPlugin)
+Vue.use(CardPlugin)
+Vue.use(TablePlugin)
+Vue.use(TabsPlugin)
+Vue.use(FormInputPlugin)
+Vue.use(CollapsePlugin)
+Vue.use(FormCheckboxPlugin)
+Vue.use(FormSelectPlugin)
+Vue.use(PaginationPlugin)
+Vue.use(AlertPlugin)
+Vue.use(BVModalPlugin)
+Vue.use(BVToastPlugin)
 
 Vue.component('autorefresh', autorefresh)
 Vue.component('loading', loading)
@@ -63,7 +72,7 @@ const i18n = new VueI18n({
     locale: 'en',
     fallbackLocale: 'en',
     silentFallbackWarn: true,
-    // it's required this is called messages.
+    // it's requformatDistanceired this is called messages.
     messages: {
         en: {
             "title_domains": "Internet.nl Dashboard / Domains",
@@ -260,21 +269,29 @@ Vue.mixin(
                 }
                 document.cookie = name + "=" + (value || "") + expires + "; path=/";
             },
-            // humanize mixin:
             humanize_date: function (date) {
-                // Uses localized date and time format with day name, which is pretty advanced and complete
-                return this.$moment(date).format('LLLL');
+                return format(parseISO(date), 'PPPP', {locale: this.dateLocales[this.locale]});
             },
             humanize_date_date_only: function (date) {
-                // Uses localized date and time format with day name, which is pretty advanced and complete
-                return this.$moment(date).format('LL');
+                return format(parseISO(date), 'PPP', {locale: this.dateLocales[this.locale]});
             },
             humanize_relative_date: function (date) {
-                // says things like 'days ago'...
-                return this.$moment(date).fromNow();
+                return formatDistanceToNow(parseISO(date), {addSuffix: true, locale: this.dateLocales[this.locale]})
             },
             humanize_duration: function (duration_in_milliseconds) {
-                return this.$moment.duration(duration_in_milliseconds).humanize()
+                console.log(duration_in_milliseconds);
+                return formatDuration(
+                    intervalToDuration(
+                        {
+                            start: new Date(2019, 1, 1),
+                            end: add(new Date(2019, 1, 1), {seconds: duration_in_milliseconds / 1000})
+                        }
+                    ),
+                    {
+                        delimiter: ', ',
+                        format: ['hours', 'minutes'],
+                        locale: this.dateLocales[this.locale]
+                    })
             },
             humanize_filesize: function (size_in_bytes, decimals = 0) {
                 if (size_in_bytes === 0) return '0 Bytes';
@@ -549,6 +566,9 @@ Vue.mixin(
                     return 'en';
                 }
             },
+            dateLocales: function () {
+                return {nl: nl, en: enGB}
+            }
         },
         watch: {
             locale() {

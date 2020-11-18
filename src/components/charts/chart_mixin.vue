@@ -1,6 +1,7 @@
 <script>
-import { debounce } from "debounce";
+import {debounce} from "debounce";
 import field_translations from "@/components/field_translations";
+import Chart from "chart.js";
 
 export default {
     i18n: {
@@ -21,7 +22,20 @@ export default {
     },
     data: function () {
         return {
-            chart: {}
+            chart: {},
+
+            // some bar chart settings
+            shown_values: ['pct_ok', 'pct_low', 'pct_medium', 'pct_high', 'pct_not_testable', 'pct_not_applicable', 'pct_error_in_test'],
+            background_colors: {
+                'pct_ok': "#009E46",
+                'pct_low': "#08236B",
+                'pct_medium': "#FFAA56",
+                'pct_high': "#A71810",
+
+                'pct_not_applicable': "rgba(41,41,41,0.73)",
+                'pct_error_in_test': "rgba(41,41,41,0.73)",
+                'pct_not_testable': "rgba(109,109,109,0.8)",
+            },
         }
     },
     render: function (createElement) {
@@ -45,7 +59,6 @@ export default {
         )
     },
     mounted: function () {
-        this.buildChart();
         this.renderData();
     },
     methods: {
@@ -66,7 +79,210 @@ export default {
                 if (a[i] !== b[i]) return false;
             }
             return true;
-        }
+        },
+        configure_linechart: function () {
+            let context = this.$refs.canvas.getContext('2d');
+            this.chart = new Chart(context, {
+                type: 'line',
+                data: {
+                    datasets: []
+                },
+                options: {
+                    plugins: {
+                        datalabels: {
+                            color: '#262626',
+                            display: true,
+                            clamp: true, // always shows the number, also when the number 100%
+                            anchor: 'end', // show the number at the top of the bar.
+                            align: 'end', // shows the value outside of the bar,
+                            // format as a percentage
+                            formatter: function (value) {
+                                if (value.is_selected) {
+                                    return `#${value.report}\n${Math.round(value.y)}%`;
+                                } else {
+                                    // https://github.com/internetstandards/Internet.nl-dashboard/issues/37
+                                    return Math.round(value.y) + '%';
+                                }
+                            }
+                        }
+                    },
+                    legend: {
+                        display: true
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: this.$i18n.t(this.translation_key + '.title')
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            // https://www.chartjs.org/docs/latest/configuration/tooltip.html#label-callback
+                            label: function (tooltipItem, data) {
+                                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                return label + "%";
+                            }
+                        },
+                        // add the Z axis to the data, is harder, so (n) is unclear...
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 20,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            barPercentage: 0.9,
+                            categoryPercentage: 0.55,
+
+                            display: true,
+                            type: 'time',
+                            distribution: 'linear',
+                            time: {
+                                unit: 'month'
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: this.$i18n.t(this.translation_key + '.month'),
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            stacked: false,
+                            ticks: {
+                                padding: 20,
+                                min: 0,
+                                max: 100,
+                                callback: function (label) {
+                                    return label + '%';
+                                }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: this.$i18n.t(this.translation_key + '.yAxis_label'),
+                            },
+                        }]
+                    }
+                }
+            });
+        },
+        configure_barchart: function () {
+            let context = this.$refs.canvas.getContext('2d');
+            this.chart = new Chart(context, {
+                type: 'bar',
+                data: {},
+                options: {
+
+                    // can prevent data falling off the chart.
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            color: '#ffffff',
+                            clamp: true, // always shows the number, also when the number 100%
+                            anchor: 'center', // show the number at the top of the bar.
+                            align: 'center', // shows the value outside of the bar,
+                            font: {
+                                weight: 'bold'
+                            },
+                            display: function (context) {
+                                let index = context.dataIndex;
+                                let value = context.dataset.data[index];
+                                return Math.round(value) > 1;
+                            },
+                            // format as a percentage
+                            formatter: function (value) {
+                                // https://github.com/internetstandards/Internet.nl-dashboard/issues/37
+                                return Math.round(value) + '%';
+                            }
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            padding: 15,
+                            filter: function (item, data) {
+                                // Only shows legend labels for data types that are actually available
+                                // dataset 0 = good, dataset 1 is info etc...
+                                let dsIndex = item.datasetIndex;
+                                let currentDataValue = data.datasets[dsIndex].data.reduce((a, b) => a + b, 0);
+                                return currentDataValue > 0;
+                            },
+                        },
+
+                    },
+                    responsive: true,
+                    // setting this to false will not show the charts in collapse panels. See
+                    // https://github.com/chartjs/Chart.js/issues/762
+                    maintainAspectRatio: true,
+                    title: {
+                        position: 'top',
+                        display: true,
+                        text: this.title,
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        callbacks: {
+                            // https://www.chartjs.org/docs/latest/configuration/tooltip.html#label-callback
+                            label: function (tooltipItem, data) {
+                                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                return label + "%";
+                            }
+                        },
+                        intersect: false,
+                        filter: function (item) {
+                            return item.value > 0
+                        },
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    // this is now a percentage graph.
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: 100,
+                                callback: function (label) {
+                                    return label + '%';
+                                }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: this.$i18n.t(this.translation_key + '.yAxis_label')
+                            },
+                        }]
+                    },
+                }
+            });
+        },
     },
     created() {
         // When the chart data is downloaded, it might be that a ton of stuff is processed. To prevent

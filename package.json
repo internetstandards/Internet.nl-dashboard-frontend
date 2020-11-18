@@ -5,22 +5,24 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "clean": "rm -rf node_modules",
+    "reinstall": "npm run clean && npm install",
+    "rebuild": "npm run clean && npm install && npm run build"
   },
   "dependencies": {
-    "@popperjs/core": "^2.5.4",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
     "core-js": "^3.6.5",
+    "date-fns": "^2.16.1",
     "debounce": "^1.2.0",
     "headroom.js": "^0.12.0",
     "matomo-tracker": "^2.2.4",
     "portal-vue": "^2.1.7",
     "vue": "^2.6.12",
     "vue-i18n": "^8.22.1",
-    "vue-moment": "^4.1.0",
     "vue-router": "^3.4.8",
     "vue-select": "^3.10.8",
     "vue2-dropzone": "^3.6.0",

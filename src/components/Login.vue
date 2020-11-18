@@ -10,9 +10,9 @@
                 <p>
                     {{ $t('not_logged_in') }}<br>
                     <i><small>{{ $t('secondfactor_message') }}: <a
-                        :href="$store.state.dashboard_endpoint + '/account/login/'">{{
-                            $store.state.dashboard_endpoint
-                        }}/account/login/</a></small></i>
+                        :href="$store.state.dashboard_endpoint + '/account/login/'">
+                        {{ $store.state.dashboard_endpoint }}/account/login/</a>
+                    </small></i>
                 </p>
 
                 <form v-on:submit.prevent="login">
@@ -24,7 +24,7 @@
                     <b-form-input id="password" type="password" maxlength="120" v-model="password" :placeholder="$t('password')"></b-form-input>
 
                     <br>
-                    <button id="login" type="submit" @click="login">{{ $t("login") }}</button>
+                    <button id="login" type="submit">{{ $t("login") }}</button>
                 </form>
 
             </div>
@@ -130,8 +130,8 @@ export default {
         "no_credentials_supplied": "Enter a username and password to log in.",
         "invalid_credentials": "Username or password not correct.",
         "user_not_active": "User is not active.",
-        "logged_in": "You have succesfully logged in.",
-        "logged_out": "You have succesfully logged out.",
+        "logged_in": "You have successfully logged in.",
+        "logged_out": "You have successfully logged out.",
         "secondfactor_message": "If second factor authentication is enabled, use this alternate login link",
         "second_factor_login_required": "Second factor authentication is enabled for this user, please use the alternative login form linked on this page."
     },
