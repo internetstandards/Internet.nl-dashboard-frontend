@@ -173,12 +173,12 @@ export default {
     "en": {
         "start_editing_url": "Edit {0}.",
         "cancel_editing_url": "Cancel editing and store the original value: {0}",
-        "eligeble_mail": "{0} is eligeble for e-mail scans",
-        "unknown_eligeble_mail": "Not yet known if {0} is scanable for mail",
-        "not_eligeble_mail": "{0} is not eligeble for e-mail scans. Will be checked again when starting a scan.",
-        "eligeble_web": "{0} is eligeble for web scans",
-        "unknown_eligeble_web": "Not yet known if {0} is scannable for web",
-        "not_eligeble_web": "{0} is not eligeble for web scans. Will be checked again when starting a scan.",
+        "eligeble_mail": "{0} is eligible for e-mail scans",
+        "unknown_eligeble_mail": "Not yet known if {0} can be mail scanned.",
+        "not_eligeble_mail": "{0} is not eligible for e-mail scans. Will be checked again when starting a scan.",
+        "eligeble_web": "{0} is eligible for web scans",
+        "unknown_eligeble_web": "Not yet known if {0} can be web scanned.",
+        "not_eligeble_web": "{0} is not eligible for web scans. Will be checked again when starting a scan.",
         "save_edited_url": "Save changes, the change will be applied to {0}.",
         "delete_edited_url": "Delete {0} from this list.",
         "button_labels": {

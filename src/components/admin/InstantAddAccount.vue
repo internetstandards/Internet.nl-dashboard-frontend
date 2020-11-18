@@ -48,7 +48,7 @@ export default {
 {
     "en": {
         "title": "Instant User Creation",
-        "intro": "This creates a standard user, an Account to internet.nl and the bridge between it (DashboardUser).\n There are minimal password checks on this form. This form is intended to quickly migrate API user accounts and\n give them access to the dashboard with the same username and password.",
+        "intro": "This creates a standard user, an Account to internet.nl and the bridge between it (DashboardUser). There are minimal password checks on this form. This form is intended to quickly migrate API user accounts and give them access to the dashboard with the same username and password.",
         "username": "Username",
         "password": "Password",
         "save": "Add user"

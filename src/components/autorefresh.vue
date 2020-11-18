@@ -80,7 +80,7 @@ export default {
 {
     "en": {
         "refresh_happening_in": "Auto refresh in:",
-        "units": "s",
+        "units": "seconds",
         "refresh_now": "refresh data now"
     },
     "nl": {

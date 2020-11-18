@@ -130,8 +130,8 @@ export default {
         "no_credentials_supplied": "Enter a username and password to log in.",
         "invalid_credentials": "Username or password not correct.",
         "user_not_active": "User is not active.",
-        "logged_in": "You have succesfully logged in.",
-        "logged_out": "You have succesfully logged out.",
+        "logged_in": "You have successfully logged in.",
+        "logged_out": "You have successfully logged out.",
         "secondfactor_message": "If second factor authentication is enabled, use this alternate login link",
         "second_factor_login_required": "Second factor authentication is enabled for this user, please use the alternative login form linked on this page."
     },

@@ -304,7 +304,7 @@ export default {
 		"base": {
 			"copyright": "Copyright",
 			"disclosure": "Responsible disclosure",
-			"followtwitter": "Folllow us on Twitter",
+			"followtwitter": "Follow us on Twitter",
 			"info": "Internet.nl is an initiative of the Internet community and the Dutch government.",
 			"privacy": "Privacy statement"
 		},

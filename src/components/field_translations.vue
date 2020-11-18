@@ -208,9 +208,9 @@ function interpolate_translations(internet_nl_messages) {
             internet_nl_mail_legacy_mail_sending_domain_explanation: 'Checks if the domain is configured for sending email. For this test this is translated as being the anything else than:\n' +
                 '    SPF record with v=spf1 -all, and\n' +
                 '    DMARC record with v=DMARC1;p=reject;.\n',
-            internet_nl_mail_legacy_mail_server_testable_explanation: 'All mailservers communicated back and results are complete.',
-            internet_nl_mail_legacy_mail_server_reachable_explanation: 'Network connectivity was possible with at least one mailserver.',
-            internet_nl_mail_legacy_domain_has_mx_explanation: 'Mailservers are configured for the domain.',
+            internet_nl_mail_legacy_mail_server_testable_explanation: 'All mail servers communicated back and results are complete.',
+            internet_nl_mail_legacy_mail_server_reachable_explanation: 'Network connectivity was possible with at least one mail server.',
+            internet_nl_mail_legacy_domain_has_mx_explanation: 'Mail servers are configured for the domain.',
             internet_nl_mail_legacy_tls_1_3_explanation: 'Derives TLS1.3 support through the 0-RTT test. Explicitly testing for TLS1.3 support is not part of the compliance tool. However, TLS1.3 support could be derived from the 0-RTT test as the function is only available starting from TLS1.3. As there is no explicit TLS1.3 connection during testing, the test assumes that the server chose TLS1.3 when given the opportunity to do so.',
             internet_nl_mail_legacy_category_ipv6: "IPv6 mail",
             internet_nl_web_legacy_category_ipv6: "IPv6 web",

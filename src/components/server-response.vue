@@ -1,6 +1,4 @@
 <style scoped>
-/* Todo: add toast notification */
-
 h2 {
     font-size: 1.5em;
 }
