@@ -164,7 +164,7 @@
         </div>
         <!-- The dropdown with recent reports is updated automatically when scans finish. But if that page
          had never loaded, this is a fallback that still tries to get the recent report every ten minutes. -->
-        <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600"></autorefresh>
+        <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600" v-if="$store.state.user.is_authenticated"></autorefresh>
     </div>
 </template>
 
