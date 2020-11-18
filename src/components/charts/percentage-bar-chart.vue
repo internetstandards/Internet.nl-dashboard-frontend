@@ -1,12 +1,6 @@
 <script>
-import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import chart_mixin from './chart_mixin.vue'
-
-// this prevents the legend being written over the 100% scores
-Chart.Legend.prototype.afterFit = function () {
-    this.height = this.height + 20;
-};
 
 export default {
     mixins: [chart_mixin],
@@ -41,19 +35,7 @@ export default {
                     return;
                 }
 
-                let shown_values = ['pct_ok', 'pct_low', 'pct_medium', 'pct_high', 'pct_not_testable', 'pct_not_applicable', 'pct_error_in_test'];
-                let background_colors = {
-                    'pct_ok': "#009E46",
-                    'pct_low': "#08236B",
-                    'pct_medium': "#FFAA56",
-                    'pct_high': "#A71810",
-
-                    'pct_not_applicable': "rgba(41,41,41,0.73)",
-                    'pct_error_in_test': "rgba(41,41,41,0.73)",
-                    'pct_not_testable': "rgba(109,109,109,0.8)",
-                };
-
-                shown_values.forEach((shown_value) => {
+                this.shown_values.forEach((shown_value) => {
                     let axis_names = [];
                     let labels = [];
                     let chartdata = [];
@@ -91,7 +73,7 @@ export default {
                         // The stack name has to be pretty unique, even if the list names are the same a comparsion must be made.
                         stack: this.chart_data[i].id,
                         data: chartdata,
-                        backgroundColor: background_colors[shown_value],
+                        backgroundColor: this.background_colors[shown_value],
                         borderWidth: 0,
                         lineTension: 0,
                         hidden: shown_value === "pct_high",
@@ -99,10 +81,7 @@ export default {
                         // ${this.chart_data[i].calculation.name} ${moment(this.chart_data[i].at_when).format('LL')} n=${this.chart_data[i].total_urls}
                     });
                 });
-
-
             }
-
             this.chart.update();
         },
         renderTitle: function () {

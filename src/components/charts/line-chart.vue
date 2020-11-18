@@ -5,7 +5,7 @@ import chart_mixin from './chart_mixin.vue'
 
 // this prevents the legend being written over the 100% scores
 Chart.Legend.prototype.afterFit = function() {
-    this.height = this.height + 20;
+    this.height = this.height + 40;
 };
 
 export default {

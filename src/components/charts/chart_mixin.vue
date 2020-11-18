@@ -22,7 +22,20 @@ export default {
     },
     data: function () {
         return {
-            chart: {}
+            chart: {},
+
+            // some bar chart settings
+            shown_values: ['pct_ok', 'pct_low', 'pct_medium', 'pct_high', 'pct_not_testable', 'pct_not_applicable', 'pct_error_in_test'],
+            background_colors: {
+                'pct_ok': "#009E46",
+                'pct_low': "#08236B",
+                'pct_medium': "#FFAA56",
+                'pct_high': "#A71810",
+
+                'pct_not_applicable': "rgba(41,41,41,0.73)",
+                'pct_error_in_test': "rgba(41,41,41,0.73)",
+                'pct_not_testable': "rgba(109,109,109,0.8)",
+            },
         }
     },
     render: function (createElement) {
@@ -105,7 +118,18 @@ export default {
                     tooltips: {
                         mode: 'index',
                         intersect: false,
+                        callbacks: {
+                            // https://www.chartjs.org/docs/latest/configuration/tooltip.html#label-callback
+                            label: function (tooltipItem, data) {
+                                var label = data.datasets[tooltipItem.datasetIndex].label || '';
 
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                return label + "%";
+                            }
+                        },
                         // add the Z axis to the data, is harder, so (n) is unclear...
                     },
                     hover: {
@@ -219,6 +243,18 @@ export default {
                     },
                     tooltips: {
                         mode: 'index',
+                        callbacks: {
+                            // https://www.chartjs.org/docs/latest/configuration/tooltip.html#label-callback
+                            label: function (tooltipItem, data) {
+                                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                return label + "%";
+                            }
+                        },
                         intersect: false,
                         filter: function (item) {
                             return item.value > 0
