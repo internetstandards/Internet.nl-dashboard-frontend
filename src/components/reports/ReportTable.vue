@@ -645,7 +645,7 @@ export default {
     },
     watch: {
         original_urls: function (new_value) {
-            console.log('Setting original urls')
+            // console.log('Setting original urls')
             this.filtered_urls = new_value;
             this.filter_urls();
         },
@@ -673,7 +673,7 @@ export default {
         filter_urls(keyword) {
             // in case of filter reset, or initializiation of this value.
             if (keyword === "") {
-                console.log("Removing filter");
+                // console.log("Removing filter");
                 this.filtered_urls = this.order_urls(this.original_urls)
                 return
             }

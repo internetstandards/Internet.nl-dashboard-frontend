@@ -190,9 +190,9 @@ export default {
     },
     methods: {
         set_locale: function (locale) {
-            console.log(`Switching app to language: ${locale}.`);
+            // console.log(`Switching app to language: ${locale}.`);
             if (!this.supported_languages.includes(locale)) {
-                console.log(`Language ${locale} not supported`)
+                // console.log(`Language ${locale} not supported`)
                 return
             }
 

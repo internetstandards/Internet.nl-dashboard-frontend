@@ -27,7 +27,7 @@ export default {
 
                 if (data === undefined) {
                     // nothing to show
-                    console.log('nothing to show, probably because not all reports in compare charts are in...');
+                    // console.log('nothing to show, probably because not all reports in compare charts are in...');
                     this.chart.data.axis_names = [];
                     this.chart.data.labels = [];
                     this.chart.data.datasets = [];

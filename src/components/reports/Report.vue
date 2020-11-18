@@ -235,7 +235,7 @@ export default {
         this.load_visible_metrics();
 
         this.get_recent_reports(() => {
-            console.log(this.$router.history.current.params.report);
+            // console.log(this.$router.history.current.params.report);
             if (this.$router.history.current.params.report === undefined) {
                 return
             }
