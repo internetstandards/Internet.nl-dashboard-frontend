@@ -29,7 +29,7 @@ import Beta from './components/beta'
 // https://stackoverflow.com/questions/50925793/proper-way-of-adding-css-file-in-vue-js-application
 import './assets/css/styles.scss';
 import PortalVue from 'portal-vue'
-import {BootstrapVue} from 'bootstrap-vue'
+import {LayoutPlugin, ModalPlugin, CardPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin, AlertPlugin, FormCheckboxPlugin, PaginationPlugin, FormSelectPlugin, BVModalPlugin, BVToastPlugin} from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl} from 'date-fns/locale'
 
@@ -40,7 +40,19 @@ Vue.use(VueI18n)
 Vue.use(VueRouter)
 
 Vue.use(Vuex);
-Vue.use(BootstrapVue)
+Vue.use(LayoutPlugin);
+Vue.use(ModalPlugin)
+Vue.use(CardPlugin)
+Vue.use(TablePlugin)
+Vue.use(TabsPlugin)
+Vue.use(FormInputPlugin)
+Vue.use(CollapsePlugin)
+Vue.use(FormCheckboxPlugin)
+Vue.use(FormSelectPlugin)
+Vue.use(PaginationPlugin)
+Vue.use(AlertPlugin)
+Vue.use(BVModalPlugin)
+Vue.use(BVToastPlugin)
 
 Vue.component('autorefresh', autorefresh)
 Vue.component('loading', loading)
