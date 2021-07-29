@@ -247,6 +247,7 @@ Vue.mixin(
                 return format(parseISO(date), 'PPP', {locale: this.dateLocales[this.locale]});
             },
             humanize_relative_date: function (date) {
+                console.log(date);
                 return formatDistanceToNow(parseISO(date), {addSuffix: true, locale: this.dateLocales[this.locale]})
             },
             humanize_duration: function (duration_in_milliseconds) {

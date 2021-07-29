@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         update: function () {
-            if (this.response !== undefined) {
+            if (this.response !== undefined && this.response.timestamp !== undefined) {
                 this.time_ago = this.humanize_relative_date(this.response.timestamp)
             }
         }
