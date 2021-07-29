@@ -25,8 +25,8 @@
         </template>
 
         <template v-if="list.scan_type === 'web'">
-            <span v-if="url.has_web_endpoint === true" :title="$t('not_eligeble_web', [edited_url_value])">
-                <span role="img" :aria-label="$t('not_eligeble_web', [edited_url_value])">🌍</span>
+            <span v-if="url.has_web_endpoint === true" :title="$t('eligeble_web', [edited_url_value])">
+                <span role="img" :aria-label="$t('eligeble_web', [edited_url_value])">🌍</span>
             </span>
             <span v-if="url.has_web_endpoint === 'unknown'" :title="$t('unknown_eligeble_web', [edited_url_value])">
                 <span role="img" :aria-label="$t('unknown_eligeble_web', [edited_url_value])">❓</span>
