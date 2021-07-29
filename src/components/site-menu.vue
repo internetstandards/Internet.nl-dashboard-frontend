@@ -43,7 +43,8 @@ a, a:hover, a:active, a:visited, a:link {
             <li class=""><a @click="logout" accesskey="l">{{ $t("log_off") }}</a></li>
         </template>
         <template v-if="!is_authenticated">
-            <router-link to="/login" accesskey="a">{{ $t("log_in") }}</router-link>
+          <li><router-link to="/login" accesskey="a">{{ $t("log_in") }}</router-link></li>
+          <li><router-link to="/tour" accesskey="a">{{ $t("tour") }}</router-link></li>
         </template>
     </ul>
 </template>
@@ -105,6 +106,7 @@ export default {
 		"log_in": "Log in",
 		"log_off": "Log off",
 		"reports": "Reports",
+    "tour": "Tour",
 		"scans": "Scans",
         "logged_out_successfully": "You have logged out successfully"
 	},
@@ -115,6 +117,7 @@ export default {
 		"log_in": "Inloggen",
 		"log_off": "Uitloggen",
 		"reports": "Rapporten",
+    "tour": "Rondleiding",
 		"scans": "  Scans",
         "logged_out_successfully": "Je bent uitgelogd"
 	}

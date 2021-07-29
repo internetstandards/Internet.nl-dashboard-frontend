@@ -20,7 +20,7 @@ import SwitchAccount from './components/admin/SwitchAccount'
 import InstantAddAccount from './components/admin/InstantAddAccount'
 import Usage from './components/admin/usage'
 import Account from './components/account/Account'
-import Demo from './components/Demo'
+import Demo from './components/tour/Demo'
 import Unsubscribe from './components/mail/Unsubscribe'
 import Probe from './components/probe'
 import collapse_panel from './components/collapse_panel'
@@ -29,7 +29,7 @@ import Beta from './components/beta'
 // https://stackoverflow.com/questions/50925793/proper-way-of-adding-css-file-in-vue-js-application
 import './assets/css/styles.scss';
 import PortalVue from 'portal-vue'
-import {LayoutPlugin, ModalPlugin, CardPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin, AlertPlugin, FormCheckboxPlugin, PaginationPlugin, FormSelectPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons} from 'bootstrap-vue'
+import {LayoutPlugin, ModalPlugin, CardPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin, AlertPlugin, ImagePlugin, FormCheckboxPlugin, PaginationPlugin, FormSelectPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons} from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl} from 'date-fns/locale'
 
@@ -54,6 +54,7 @@ Vue.use(AlertPlugin)
 Vue.use(FormTextareaPlugin)
 Vue.use(SpinnerPlugin)
 Vue.use(ProgressPlugin)
+Vue.use(ImagePlugin)
 Vue.use(BVModalPlugin)
 Vue.use(BVToastPlugin)
 Vue.use(BootstrapVueIcons)
@@ -175,8 +176,8 @@ const routes = [
     {path: '/report', component: Report, meta: {title: 'Internet.nl Dashboard / Reports'}},
     {path: '/switch-account', component: SwitchAccount, meta: {title: 'Internet.nl Dashboard / Switch Account'}},
     {path: '/add-user', component: InstantAddAccount, meta: {title: 'Internet.nl Dashboard / Add User'}},
-    {path: '/tour', component: Demo, meta: {title: 'Internet.nl Dashboard / Tour'}},
-    {path: '/demo', component: Demo, meta: {title: 'Internet.nl Dashboard / Tour'}},
+    {path: '/tour', component: Demo, meta: {title: 'Internet.nl Dashboard / Tour'}, name: 'tour'},
+    {path: '/demo', component: Demo, meta: {title: 'Internet.nl Dashboard / Tour'}, name: 'demo'},
     {path: '/unsubscribe', component: Unsubscribe, meta: {title: 'Internet.nl Dashboard / Unsubscribe'}},
     {path: '/profile', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
     {path: '/account', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
@@ -204,7 +205,7 @@ router.beforeEach((to, from, next) => {
     }
 
     // https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards
-    if (to.name !== 'login' && !store.state.user.is_authenticated) next({name: 'login'})
+    if (!['login', 'demo', 'tour'].includes(to.name) && !store.state.user.is_authenticated) next({name: 'login'})
     else next()
 });
 
