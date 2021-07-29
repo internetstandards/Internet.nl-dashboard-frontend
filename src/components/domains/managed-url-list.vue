@@ -39,7 +39,7 @@ h2 {
                                 :title='$t("button.scan_now_scanning")'>
                             <probe /> {{ $t("button.scan_now_scanning") }}
                         </button>
-                    </template> &nbsp;
+                    </template>
                     <button v-else disabled="disabled" :title='$t("button.scanning_disabled")'>
                         <span role="img" :aria-label="$t('icon.scan')">🔬</span> {{ $t("button.scanning_disabled") }}
                     </button> &nbsp;
