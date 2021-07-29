@@ -375,7 +375,6 @@ export default {
 
         // support keep alive routing
         $route: function (to) {
-            console.log(to);
             this.get_recent_reports(() => {
                     // https://router.vuejs.org/guide/essentials/dynamic-matching.html
                     if (undefined === to.params.report) {
