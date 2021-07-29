@@ -17,13 +17,13 @@ a, a:hover, a:active, a:visited, a:link {
         <template v-if="is_authenticated">
             <template v-if="is_superuser">
                 <li>
-                    <router-link to="/add-user">👤</router-link>
+                  <router-link to="/switch-account"><b-icon icon="person-circle"></b-icon> {{this.account_name}}</router-link>
                 </li>
                 <li>
-                    <router-link to="/switch-account">🔀</router-link>
+                    <router-link to="/add-user"><b-icon icon="person-plus"></b-icon></router-link>
                 </li>
                 <li>
-                    <router-link to="/usage">📈</router-link>
+                    <router-link to="/usage"><b-icon icon="graph-up"></b-icon></router-link>
                 </li>
             </template>
 
@@ -59,6 +59,10 @@ export default {
         is_superuser: {
             type: Boolean,
             default: false,
+        },
+        account_name: {
+            type: String,
+            default: "",
         }
     },
     name: 'site-menu',

@@ -29,7 +29,7 @@ import Beta from './components/beta'
 // https://stackoverflow.com/questions/50925793/proper-way-of-adding-css-file-in-vue-js-application
 import './assets/css/styles.scss';
 import PortalVue from 'portal-vue'
-import {LayoutPlugin, ModalPlugin, CardPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin, AlertPlugin, FormCheckboxPlugin, PaginationPlugin, FormSelectPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, BVModalPlugin, BVToastPlugin} from 'bootstrap-vue'
+import {LayoutPlugin, ModalPlugin, CardPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin, AlertPlugin, FormCheckboxPlugin, PaginationPlugin, FormSelectPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons} from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl} from 'date-fns/locale'
 
@@ -56,6 +56,7 @@ Vue.use(SpinnerPlugin)
 Vue.use(ProgressPlugin)
 Vue.use(BVModalPlugin)
 Vue.use(BVToastPlugin)
+Vue.use(BootstrapVueIcons)
 
 Vue.component('autorefresh', autorefresh)
 Vue.component('loading', loading)
@@ -105,6 +106,7 @@ const store = new Vuex.Store({
         user: {
             is_authenticated: false,
             is_superuser: false,
+            account_name: '',
         },
 
         // Visible metrics in report, report graphs and visible metrics configuration pane

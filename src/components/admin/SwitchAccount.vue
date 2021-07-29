@@ -144,11 +144,13 @@ export default {
         },
         set_account: function (account_id) {
             http.post('/data/powertools/set_account/', {'id': account_id}).then(server_response => {
-                    this.server_response = server_response.data;
-                    // enabling this will flash the table, which is annoying
-                    // this.get_accounts();
-                }
-            );
+                this.server_response = server_response.data;
+                // enabling this will flash the table, which is annoying
+                // this.get_accounts();
+
+                // not the nicest solution, but it works and prevents mistakes by not reloading the page...
+                location.reload();
+            });
         }
     }
 }

@@ -57,7 +57,9 @@
 
                     <nav id="sitenav" aria-hidden="true" aria-labelledby="menu-button">
                         <SiteMenu :is_authenticated="user.is_authenticated"
-                                  :is_superuser="user.is_superuser"></SiteMenu>
+                                  :is_superuser="user.is_superuser"
+                                  :account_name="user.account_name"
+                        ></SiteMenu>
                     </nav>
                 </template>
                 <template v-else>
@@ -76,7 +78,9 @@
 
                     <nav id="sitenav">
                         <SiteMenu :is_authenticated="user.is_authenticated"
-                                  :is_superuser="user.is_superuser"></SiteMenu>
+                                  :is_superuser="user.is_superuser"
+                                  :account_name="user.account_name"
+                        ></SiteMenu>
                     </nav>
                 </template>
             </div>
