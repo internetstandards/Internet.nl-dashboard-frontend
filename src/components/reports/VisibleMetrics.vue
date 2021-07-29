@@ -71,6 +71,7 @@
 <script>
 import field_translations from './../field_translations'
 import {mapState} from 'vuex'
+import http from "@/httpclient";
 
 export default {
     i18n: {
@@ -97,14 +98,13 @@ export default {
     },
     methods: {
         reset_issue_filters: function () {
-            fetch(`${this.$store.state.dashboard_endpoint}/data/account/report_settings/get/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-                if (!this.isEmptyObject(data)) {
-                    this.issue_filters = data.data;
-                    this.issue_filters_response = data;
+            http.get(`/data/account/report_settings/get/`).then(data => {
+                if (!this.isEmptyObject(data.data)) {
+                    this.issue_filters = data.data.data;
+                    this.issue_filters_response = data.data;
                 }
             });
             this.load_issue_filters();
-
         },
 
         all_field_names_from_categories(categories) {
@@ -126,15 +126,13 @@ export default {
             * a lot of time of development while end users can still have an organization wide consistent experience
             * on what they are focussing on. Humans > tech.
             * */
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/account/report_settings/save/`, {'filters': this.issue_filters}, (server_response) => {
-                    this.issue_filters_response = server_response;
-                    if (server_response.success) {
-                        // load the metrics into the application
-                        this.load_visible_metrics();
-                    }
+            http.post(`/data/account/report_settings/save/`, {'filters': this.issue_filters}).then(server_response => {
+                this.issue_filters_response = server_response.data;
+                if (server_response.data.success) {
+                    // load the metrics into the application
+                    this.load_visible_metrics();
                 }
-            );
+            });
         },
         check_fields: function (list_of_fields) {
             list_of_fields.forEach((field) => {

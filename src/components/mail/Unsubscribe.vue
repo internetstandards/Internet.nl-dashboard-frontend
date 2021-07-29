@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import http from "@/httpclient";
+
 export default {
     data: function () {
         return {
@@ -78,15 +80,12 @@ export default {
             this.loading = true;
             this.unsubscribed = false;
             this.error = false;
-            fetch(`/mail/unsubscribe/${this.feed}/${this.unsubscribe_code}/`).then(response => response.json()).then(data => {
-                if (data['unsubscribed']) {
+            http.get(`/mail/unsubscribe/${this.feed}/${this.unsubscribe_code}/`).then(data => {
+                if (data.data['unsubscribed']) {
                     this.unsubscribed = true;
                     this.error_occurred = false;
                 }
                 this.loading = false;
-            }).catch((fail) => {
-                this.error_occurred = true;
-                console.log('A loading error occurred: ' + fail);
             });
         },
     },

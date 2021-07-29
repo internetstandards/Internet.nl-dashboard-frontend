@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import http from "@/httpclient";
+
 export default {
     name: "AddDomains",
     props: {
@@ -84,20 +86,17 @@ export default {
             this.response = {};
         },
         bulk_add_new: function () {
-            let data = {'urls': this.new_domains, 'list_id': this.list.id};
             this.loading = true;
 
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/urllist/url/add/`, data, (response) => {
-                    // {'incorrect_urls': [], 'added_to_list': int, 'already_in_list': int}
-                    this.response = response;
-                    this.loading = false;
+            http.post('/data/urllist/url/add/', {'urls': this.new_domains, 'list_id': this.list.id}).then(data => {
+                // {'incorrect_urls': [], 'added_to_list': int, 'already_in_list': int}
+                this.response = data.data;
+                this.loading = false;
 
-                    if (response.success) {
-                        this.$emit('added')
-                    }
+                if (data.data.success) {
+                    this.$emit('added')
                 }
-            );
+            });
         },
     }
 }

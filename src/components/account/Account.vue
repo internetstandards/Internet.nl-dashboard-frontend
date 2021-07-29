@@ -56,7 +56,7 @@ input {
             <content-block>
                 <h2>{{ $t("authentication_options") }}</h2>
                 <p>{{ $t("authentication_options_secondfactor") }}</p>
-                <a :href="`${this.$store.state.dashboard_endpoint}/account/two_factor/`"
+                <a :href="`${$baseUrl}/account/two_factor/`"
                    target="_blank">{{ $t("two_factor_options") }}</a>
             </content-block>
         </div>
@@ -65,6 +65,7 @@ input {
 </template>
 
 <script>
+import http from "@/httpclient";
 
 export default {
     data: function () {
@@ -82,34 +83,23 @@ export default {
         get: function () {
             this.server_response = {};
             this.loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/data/user/get/`, {
-                    method: 'GET',
-                    credentials: 'include'
-                }
-            ).then(response => response.json()).then(data => {
-                this.user = data;
+            http.get('/data/user/get/').then(data => {
+                this.user = data.data;
                 this.loading = false;
                 this.first_load = false;
-            }).catch((fail) => {
-                this.error_occurred = true;
-                console.log('A loading error occurred: ' + fail);
             });
         },
         save: function () {
-
-            let data = {
+            http.post('/data/user/save/', {
                 'first_name': this.user.first_name,
                 'last_name': this.user.last_name,
                 'mail_preferred_mail_address': this.user.mail_preferred_mail_address,
                 'mail_preferred_language': this.user.mail_preferred_language,
                 'mail_send_mail_after_scan_finished': this.user.mail_send_mail_after_scan_finished
-            };
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/user/save/`, data, (server_response) => {
-                    if (server_response)
-                        this.server_response = server_response;
-                }
-            );
+            }).then(data => {
+              if (data.data)
+                this.server_response = data.data;
+            });
         },
     },
     name: 'account',

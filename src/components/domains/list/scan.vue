@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import http from "@/httpclient";
+
 export default {
     name: "scan-list.vue",
     props: {
@@ -50,22 +52,20 @@ export default {
 
             this.scan_now_confirmed = true;
 
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/urllist/scan_now/`, data, (server_response) => {
-                    this.response = server_response;
+            http.post('/data/urllist/scan_now/', data).then(server_response => {
+                this.response = server_response.data;
 
-                    if (server_response.success) {
-                        this.list.scan_now_available = false;
-                        this.response = {};
-                        this.scan_now_confirmed = false;
-                        this.$emit('started')
-                    }
-
-                    if (server_response.error) {
-                        this.scan_now_confirmed = false;
-                    }
+                if (server_response.data.success) {
+                    this.list.scan_now_available = false;
+                    this.response = {};
+                    this.scan_now_confirmed = false;
+                    this.$emit('started')
                 }
-            );
+
+                if (server_response.data.error) {
+                    this.scan_now_confirmed = false;
+                }
+            });
         },
     }
 }

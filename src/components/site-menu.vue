@@ -48,6 +48,8 @@ a, a:hover, a:active, a:visited, a:link {
     </ul>
 </template>
 <script>
+import http from "@/httpclient";
+
 export default {
     props: {
         is_authenticated: {
@@ -63,32 +65,16 @@ export default {
     methods: {
         logout: function () {
             this.loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/session/logout/`, {
-                    method: 'GET',
-                    credentials: 'include',
-                }
-            ).then(response => response.json()).then(() => {
+            http.get('/session/logout/').then(() => {
                 this.loading = false;
                 this.status();
-            }).catch((fail) => {
-                this.error_occurred = true;
-                console.log('A loading error occurred: ' + fail);
             });
         },
         status: function () {
             this.server_response = {};
             this.loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/session/status/`, {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': this.get_cookie('csrftoken')
-                    }
-                }
-            ).then(response => response.json()).then(data => {
-                this.$store.commit("set_user", data);
+            http.get('/session/status/').then(data => {
+                this.$store.commit("set_user", data.data);
                 this.loading = false;
                 if (!this.$store.state.user.is_authenticated) {
                     this.$bvToast.toast(this.$i18n.t('logged_out_successfully'), {
@@ -101,9 +87,6 @@ export default {
                     })
                     this.$router.push({'name': 'login'});
                 }
-            }).catch((fail) => {
-                this.error_occurred = true;
-                console.log('A loading error occurred: ' + fail);
             });
         },
     }

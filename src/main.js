@@ -65,6 +65,8 @@ Vue.component('probe', Probe)
 
 Vue.config.productionTip = false
 
+Vue.prototype.$baseUrl = process.env.VUE_APP_DJANGO_PATH;
+
 var MatomoTracker = require('matomo-tracker');
 var matomo = new MatomoTracker(2, '//matomo.internet.nl/matomo.php');
 matomo.on('error', function (err) {
@@ -99,9 +101,6 @@ const store = new Vuex.Store({
         // active language:
         locale: 'en',
 
-        // It's always port 8000.
-        dashboard_endpoint: process.env.VUE_APP_DJANGO_PATH,
-
         // login states
         user: {
             is_authenticated: false,
@@ -122,9 +121,6 @@ const store = new Vuex.Store({
         },
         set_locale(state, value) {
             state.locale = value;
-        },
-        set_dashboard_endpoint(state, value) {
-            state.dashboard_endpoint = value;
         },
         set_user(state, value) {
             state.user = value;
@@ -228,34 +224,6 @@ Vue.mixin(
                 // This replaces the jQuery.isEmptyObject(), which is not a good reason to include the entirity of jquery
                 // Documentation: https://www.samanthaming.com/tidbits/94-how-to-check-if-object-is-empty/
                 return Object.keys(my_object).length === 0 && my_object.constructor === Object
-            },
-            // this can probably be replaced with axios or whatever. Or not if we want tos ave on dependencies.
-            asynchronous_json_post: function (url, data, callback) {
-                // the context parameter is somewhat dangerous, but this allows us to say 'self.' in the callback.
-                // which could be done somewhat better.
-                // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
-                let server_response = {};
-                // console.log(`Posting to ${url}, with data ${data}`)
-                (async () => {
-                    const rawResponse = await fetch(url, {
-                        method: 'POST',
-                        credentials: 'include',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': this.get_cookie('csrftoken'),
-                        },
-                        body: JSON.stringify(data)
-                    });
-                    try {
-                        // here is your synchronous part.
-                        server_response = await rawResponse.json();
-                    } catch (e) {
-                        // SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
-                        server_response = {'error': true, 'message': 'Server error'}
-                    }
-                    callback(server_response)
-                })();
             },
             get_cookie: function (name) {
                 let value = "; " + document.cookie;

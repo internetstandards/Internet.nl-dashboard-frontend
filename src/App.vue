@@ -141,6 +141,7 @@ import Headroom from "headroom.js";
 // todo make sure the menu works
 import SiteMenu from './components/site-menu.vue'
 import {mapState} from 'vuex'
+import http from "@/httpclient";
 
 export default {
     i18n: {
@@ -212,21 +213,9 @@ export default {
         login_status: function () {
             this.server_response = {};
             this.loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/session/status/`, {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': this.get_cookie('csrftoken')
-                    }
-                }
-            ).then(response => response.json()).then(data => {
-                this.$store.commit("set_user", data);
+            http.get('/session/status/').then(data => {
+                this.$store.commit("set_user", data.data);
                 this.loading = false;
-            }).catch((fail) => {
-                this.error_occurred = true;
-                console.log('A loading error occurred: ' + fail);
             });
         },
         toggleHamburgerMenuExpand: function () {

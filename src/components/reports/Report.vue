@@ -179,7 +179,7 @@ import field_translations from './../field_translations'
 import ReportCharts from './ReportCharts'
 import VisibleMetrics from './VisibleMetrics'
 import ReportTable from './ReportTable'
-
+import http from "@/httpclient";
 
 export default {
     components: {
@@ -272,7 +272,7 @@ export default {
     methods: {
 
         make_downloadlink: function (report_id, filetype) {
-            return `${this.$store.state.dashboard_endpoint}/data/download-spreadsheet/${report_id}/${filetype}/`
+            return `${process.env.VUE_APP_DJANGO_PATH}/data/download-spreadsheet/${report_id}/${filetype}/`
         },
 
         load: function (report_id) {
@@ -282,8 +282,8 @@ export default {
         get_report_data: function (report_id) {
             this.is_loading = true;
             // You'll notice a load time at a random point in this function, this means Vue is processing the response.
-            fetch(`${this.$store.state.dashboard_endpoint}/data/report/get/${report_id}/`, {credentials: 'include'})
-                .then(response => response.json()).then(data => {
+            http.get(`/data/report/get/${report_id}/`).then(response => {
+                let data = response.data;
                 this.reports = data;
                 this.report_category = this.selected_report[0].urllist_scan_type;
                 this.original_urls = data[0].calculation.urls.sort(this.alphabet_sorting);
@@ -300,14 +300,10 @@ export default {
                 this.$nextTick(() => {
                     this.$forceUpdate()
                 });
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
             });
 
-            fetch(`${this.$store.state.dashboard_endpoint}/data/report/differences_compared_to_current_list/${report_id}/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-                this.differences_compared_to_current_list = data;
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
+            http.get(`/data/report/differences_compared_to_current_list/${report_id}/`).then(data => {
+                this.differences_compared_to_current_list = data.data;
             });
         },
 
@@ -323,7 +319,8 @@ export default {
         },
 
         compare_with: function (id, compare_chart_id) {
-            fetch(`${this.$store.state.dashboard_endpoint}/data/report/get/${id}/`, {credentials: 'include'}).then(response => response.json()).then(report => {
+            http.get(`/data/report/get/${id}/`).then(response => {
+                let report = response.data;
 
                 if (!this.isEmptyObject(report)) {
                     // The comparison report require direct data access to urls to be able to compare
@@ -350,16 +347,14 @@ export default {
                         this.$forceUpdate();
                     });
                 }
-
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
             });
         },
 
         get_recent_reports: function (callback) {
             // reload the select
             this.recent_reports_loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/data/report/recent/`, {credentials: 'include'}).then(response => response.json()).then(data => {
+            http.get(`/data/report/recent/`).then(response => {
+                let data = response.data;
                 // console.log("Get recent reports");
                 let options = [];
                 for (let i = 0; i < data.length; i++) {
@@ -371,9 +366,6 @@ export default {
                 if (callback !== undefined) {
                     callback()
                 }
-                this.recent_reports_loading = false;
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
                 this.recent_reports_loading = false;
             });
         },

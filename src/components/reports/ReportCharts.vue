@@ -274,6 +274,7 @@ import CumulativePercentageBarChart from './../charts/cumulative-percentage-bar-
 import LineChart from './../charts/line-chart'
 import PercentageBarChart from './../charts/percentage-bar-chart'
 import chart_collapse_panel from './../chart_collapse_panel'
+import http from "@/httpclient";
 
 export default {
     components: {
@@ -373,10 +374,8 @@ export default {
                 report_ids.push(item.urllist_id)
             });
 
-            fetch(`${this.$store.state.dashboard_endpoint}/data/report/urllist_timeline_graph/${report_ids.join(",")}/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-                this.issue_timeline_of_related_urllists = data;
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
+            http.get(`/data/report/urllist_timeline_graph/${report_ids.join(",")}/`).then(data => {
+                this.issue_timeline_of_related_urllists = data.data;
             });
 
         },

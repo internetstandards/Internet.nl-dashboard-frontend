@@ -79,6 +79,8 @@
 </template>
 
 <script>
+import http from "@/httpclient";
+
 export default {
     data: function () {
         return {
@@ -126,12 +128,11 @@ export default {
         },
         get_accounts: function () {
             this.loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/data/powertools/get_accounts/`, {credentials: 'include'})
-                .then(response => response.json()).then(data => {
-                this.accounts = data['accounts'];
-                this.current_account = data['current_account'];
-                this.selected = [data['current_account']];
-                this.initial_selected = data['current_account'];
+            http.get('/data/powertools/get_accounts/').then(data => {
+                this.accounts = data.data['accounts'];
+                this.current_account = data.data['current_account'];
+                this.selected = [data.data['current_account']];
+                this.initial_selected = data.data['current_account'];
                 this.totalRows = this.accounts.length;
                 this.loading = false;
                 // set the initial value.
@@ -139,17 +140,11 @@ export default {
                     this.selectAccountRow();
                 })
 
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
-                this.loading = false;
             });
         },
         set_account: function (account_id) {
-            let data = {'id': account_id};
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/powertools/set_account/`, data, (server_response) => {
-                    this.server_response = server_response;
-
+            http.post('/data/powertools/set_account/', {'id': account_id}).then(server_response => {
+                    this.server_response = server_response.data;
                     // enabling this will flash the table, which is annoying
                     // this.get_accounts();
                 }

@@ -100,7 +100,7 @@
                 </div>
             </vue-dropzone>
 
-            <form :action="`${this.$store.state.dashboard_endpoint}/data/upload-spreadsheet/`" method="POST"
+            <form :action="`${$baseUrl}/data/upload-spreadsheet/`" method="POST"
                   enctype="multipart/form-data">
                 <div class="fallback">
                     <p>{{ $t("upload.drag_and_drop_uploader.fallback_select_a_file") }}</p>
@@ -143,6 +143,7 @@
 <script>
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import http from "@/httpclient";
 
 export default {
     mixins: [],
@@ -152,7 +153,7 @@ export default {
             csrf_token: "",
             upload_history: [],
             dropzoneOptions: {
-                url: `${this.$store.state.dashboard_endpoint}/data/upload-spreadsheet/`,
+                url: `${this.$baseUrl}/data/upload-spreadsheet/`,
                 thumbnailWidth: 150,
                 maxFilesize: 1,
 
@@ -218,11 +219,9 @@ export default {
         },
 
         get_recent_uploads: function () {
-            fetch(`${this.$store.state.dashboard_endpoint}/data/upload-history/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-                this.upload_history = data;
-                this.$store.commit("set_uploads_performed", data.length);
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
+            http.get(`/data/upload-history/`).then(data => {
+                this.upload_history = data.data;
+                this.$store.commit("set_uploads_performed", data.data.length);
             });
         },
     }

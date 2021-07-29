@@ -42,6 +42,7 @@
 
 <script>
 import sharedMessages from './../../translations/dashboard.js'
+import http from "@/httpclient";
 
 export default {
     name: "delete-list",
@@ -67,15 +68,13 @@ export default {
             this.$emit('cancel')
         },
         confirm_deletion: function () {
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/urllist/delete/`, {'id': this.list.id}, (server_response) => {
-                    if (server_response.success) {
-                        this.$emit('removelist', this.list.id);
-                    } else {
-                        this.delete_response = server_response;
-                    }
+            http.post(`/data/urllist/delete/`, {'id': this.list.id}).then(server_response => {
+                if (server_response.data.success) {
+                    this.$emit('removelist', this.list.id);
+                } else {
+                    this.delete_response = server_response.data;
                 }
-            );
+            });
         },
     },
     mounted: function () {

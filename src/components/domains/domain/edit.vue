@@ -80,6 +80,8 @@
 </template>
 
 <script>
+import http from "@/httpclient";
+
 export default {
     name: "edit",
     data: function () {
@@ -125,19 +127,17 @@ export default {
         },
         remove_edit_url: function (list_id, url_id) {
             let data = {'list_id': list_id, 'url_id': url_id};
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/urllist/url/delete/`, data, (server_response) => {
-                    this.delete_response = server_response;
+            http.post('/data/urllist/url/delete/', data).then(server_response => {
+                this.delete_response = server_response.data;
 
-                    if (server_response.success) {
-                        this.is_edited = false;
-                        this.$emit('domain_deleted');
+                if (server_response.data.success) {
+                    this.is_edited = false;
+                    this.$emit('domain_deleted');
 
-                        // hide yourself from the list, instead of destroying yourself.
-                        this.visible = false;
-                    }
+                    // hide yourself from the list, instead of destroying yourself.
+                    this.visible = false;
                 }
-            );
+            });
         },
         save_edit_url: function () {
             /*
@@ -145,24 +145,21 @@ export default {
             * The save does not 'alter' the existing URL in the database. It will do some list operations.
             * */
             let data = {'list_id': this.list.id, 'url_id': this.url.id, 'new_url_string': this.edited_url_value}
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/urllist/url/save/`, data, (server_response) => {
-                    if (server_response.success === true) {
-                        // now that saving was succesful, undo=ing should be to the newely saved url.
-                        this.original_url_value = this.edited_url_value;
+            http.post('/data/urllist/url/save/', data).then(server_response => {
+                if (server_response.data.success === true) {
+                    // now that saving was succesful, undo=ing should be to the newely saved url.
+                    this.original_url_value = this.edited_url_value;
 
-                        // in case the url is the same as the original, do not update it.
-                        this.displayed_url.subdomain = server_response.data.created.subdomain;
-                        this.displayed_url.domain = server_response.data.created.domain;
-                        this.displayed_url.suffix = server_response.data.created.suffix;
+                    // in case the url is the same as the original, do not update it.
+                    this.displayed_url.subdomain = server_response.data.data.created.subdomain;
+                    this.displayed_url.domain = server_response.data.data.created.domain;
+                    this.displayed_url.suffix = server_response.data.data.created.suffix;
 
-                        this.is_edited = false;
-                    } else {
-                        this.edited_url_value = this.original_url_value;
-                    }
+                    this.is_edited = false;
+                } else {
+                    this.edited_url_value = this.original_url_value;
                 }
-            );
-
+            });
         },
     }
 }

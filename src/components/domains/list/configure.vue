@@ -1,7 +1,3 @@
-<style scoped>
-
-</style>
-
 <template>
     <b-modal :visible="visible" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade
              scrollable>
@@ -54,6 +50,7 @@
 
 <script>
 import sharedMessages from "@/components/translations/dashboard";
+import http from "@/httpclient";
 
 export default {
     name: "configure-list",
@@ -83,14 +80,13 @@ export default {
             this.$emit('cancel')
         },
         update_list_settings: function () {
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/urllist/update_list_settings/`, this.list, (server_response) => {
-                    this.response = server_response;
-                    if (server_response.success) {
-                        this.old_list_settings = this.copy_json_value(server_response.data);
-                        this.$emit("done")
-                    }
-                });
+            http.post('/data/urllist/update_list_settings/', this.list).then(server_response => {
+                this.response = server_response.data;
+                if (server_response.data.success) {
+                    this.old_list_settings = this.copy_json_value(server_response.data.data);
+                    this.$emit("done")
+                }
+            });
         },
     },
     mounted: function () {

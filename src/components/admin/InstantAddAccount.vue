@@ -21,6 +21,8 @@
     </content-block>
 </template>
 <script>
+import http from "@/httpclient";
+
 export default {
     data: function () {
         return {
@@ -31,15 +33,11 @@ export default {
     },
     methods: {
         save_instant_account: function () {
-            let data = {'username': this.username, 'password': this.password};
-
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/powertools/save_instant_account/`, data, (server_response) => {
-                    if (server_response) {
-                        this.server_response = server_response;
-                    }
-                }
-            );
+            http.post('/data/powertools/save_instant_account/', {'username': this.username, 'password': this.password})
+                .then(server_response => {
+                    if (server_response.data)
+                        this.server_response = server_response.data;
+            });
         },
     }
 }

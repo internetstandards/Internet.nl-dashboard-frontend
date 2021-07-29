@@ -28,6 +28,7 @@
 <script>
 
 import ScanMonitorScan from './ScanMonitorScan'
+import http from "@/httpclient";
 
 export default {
     components: {
@@ -48,11 +49,9 @@ export default {
             this.update_scan_data();
         },
         update_scan_data: function () {
-            fetch(`${this.$store.state.dashboard_endpoint}/data/scan-monitor/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-                this.scans = data;
-                this.$store.commit("update_scan_monitor_data", data);
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
+            http.get('/data/scan-monitor/').then(data => {
+                this.scans = data.data;
+                this.$store.commit("update_scan_monitor_data", data.data);
             });
         },
     }
