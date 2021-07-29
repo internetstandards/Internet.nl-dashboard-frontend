@@ -15,6 +15,7 @@ import DomainListManager from './components/domains/DomainListManager'
 import SpreadsheetUpload from './components/domains/SpreadsheetUpload'
 import ScanMonitor from './components/scans/ScanMonitor'
 import Report from './components/reports/Report'
+import SharedReport from './components/reports/SharedReport'
 import ContentBlock from './components/content_block'
 import SwitchAccount from './components/admin/SwitchAccount'
 import InstantAddAccount from './components/admin/InstantAddAccount'
@@ -174,6 +175,10 @@ const routes = [
         meta: {title: 'Internet.nl Dashboard / Reports'}
     },
     {path: '/report', component: Report, meta: {title: 'Internet.nl Dashboard / Reports'}},
+
+    {path: '/shared/:report', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}},
+    {path: '/shared/:report/:compare_with', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}},
+
     {path: '/switch-account', component: SwitchAccount, meta: {title: 'Internet.nl Dashboard / Switch Account'}},
     {path: '/add-user', component: InstantAddAccount, meta: {title: 'Internet.nl Dashboard / Add User'}},
     {path: '/tour', component: Demo, meta: {title: 'Internet.nl Dashboard / Tour'}, name: 'tour'},
@@ -196,6 +201,9 @@ const router = new VueRouter({
         }
     },
 });
+
+import http from "@/httpclient";
+
 
 // https://www.digitalocean.com/community/tutorials/vuejs-vue-router-modify-head
 router.beforeEach((to, from, next) => {
@@ -410,7 +418,8 @@ Vue.mixin(
                     internet_nl_web_legacy_category_ipv6: {visible: false},
                 };
 
-                fetch(`${this.$store.state.dashboard_endpoint}/data/account/report_settings/get/`, {credentials: 'include'}).then(response => response.json()).then(data => {
+                http.get(`/data/account/report_settings/get/`).then(settings => {
+                    let data = settings.data;
                     if (!this.isEmptyObject(data.data)) {
                         // Get all possible issue fields before overwriting them with whatever is stored.
                         const all_possible_fields = Object.keys(default_metric_visibility);
