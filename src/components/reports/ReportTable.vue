@@ -584,27 +584,18 @@ div.rotate > span {
 <script>
 
 import field_translations from './../field_translations'
+import report_mixin from "@/components/reports/report_mixin";
+import http from "@/httpclient";
 
 export default {
+  mixins: [report_mixin],
+
     i18n: {
         sharedMessages: field_translations,
     },
     name: "ReportTable",
     props: {
-        differences_compared_to_current_list: {
-            type: Object
-        },
-        field_name_to_category_names: {type: Object, required: false},
-        original_urls: {
-            type: Array, required: true
-        },
-        report_category: {
-            type: String
-        },
-        scan_methods: {
-            type: Array
-        },
-        compare_charts: {
+        reports: {
             type: Array,
             required: true
         },
@@ -641,9 +632,16 @@ export default {
 
             // category selection with report category as fallback.
             selected_category: '',
+
+            differences_compared_to_current_list: {},
+            original_urls: [],
         }
     },
     watch: {
+        reports() {
+          if (this.reports.length>0)
+            this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
+        },
         original_urls: function (new_value) {
             // console.log('Setting original urls')
             this.filtered_urls = new_value;
@@ -661,9 +659,27 @@ export default {
         this.filtered_urls = this.original_urls;
 
         // fall back to defailt category
-        this.select_category()
+        this.select_category();
+
+        // The first report is displayed in the table, it is desired to see if there are different with the
+        // current list.
+        http.get(`/data/report/differences_compared_to_current_list/${this.reports[0]}/`).then(data => {
+          this.differences_compared_to_current_list = data.data;
+        });
+
+
     },
     methods: {
+        add_comparison_urls_to_report(report) {
+          // The comparison report require direct data access to urls to be able to compare
+          // by simply reading data directly without scanning the table.
+          report.calculation.urls_by_url = {};
+          report.calculation.urls.forEach((url) => {
+            report.calculation.urls_by_url[url.url] = url;
+          });
+          return report;
+        },
+
         select_category: function (category_name) {
             if (Object.keys(this.categories).includes(category_name))
                 this.selected_category = category_name;
@@ -798,14 +814,14 @@ export default {
             let verdicts = url.endpoints[0].ratings_by_type[category_name];
             let simple_value = this.category_verdict_to_simple_value(verdicts, category_name);
 
-            if (this.compare_charts.length < 2 || this.compare_charts[1].calculation.urls_by_url[url.url] === undefined)
+            if (this.reports.length < 2 || this.reports[1].calculation.urls_by_url[url.url] === undefined)
                 return `<span class="category_${simple_value}">${simple_value}</span>`;
 
             // in case there is no endpoint (exceptional case)
-            if (this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0] === undefined)
+            if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined)
                 return `<span class="category_${simple_value}">${simple_value}</span>`;
 
-            let other_verdicts = this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
+            let other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
             let other_simple_value = this.category_verdict_to_simple_value(other_verdicts, category_name);
 
             // console.log(`current score: ${simple_value} other score: ${other_simple_value}`)
@@ -829,20 +845,20 @@ export default {
         },
 
         score_comparison: function(url) {
-            if (this.compare_charts.length < 2) {
+            if (this.reports.length < 2) {
                 return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
             } else {
 
                 if (url === undefined ||
                     url.endpoints[0].ratings_by_type === undefined ||
                     url.endpoints[0].ratings_by_type.internet_nl_score === undefined ||
-                    this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0] === undefined ||
-                    this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score === undefined) {
+                    this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined ||
+                    this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score === undefined) {
                     return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }%</span>`
                 }
 
                 let current_score = url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
-                let other_score = this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
+                let other_score = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
                 // console.log(`current score: ${current_score} other score: ${other_score}`)
                 if (current_score === undefined || other_score === undefined)
                     return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}%</span>`
@@ -887,16 +903,16 @@ export default {
             // If we're not in comparison mode, just return the value.
             // a template string litteral is slower than just an ordinary string that will be parsen by the browser...
             // https://jsperf.com/es6-string-literals-vs-string-concatenation
-            if (this.compare_charts.length < 2)
+            if (this.reports.length < 2)
                 return "<span class='" + simple_value + "'>" + simple_value + "</span>";
 
             // if we _are_ comparing, but the comparison is empty because there is nothing to compare to:
             // This is done separately to prevent another call to something undefined
-            if (this.compare_charts[1].calculation.urls_by_url[url.url] === undefined)
+            if (this.reports[1].calculation.urls_by_url[url.url] === undefined)
                 return `<span class="${simple_value}">${simple_value}</span>`;
 
             // in case there is no endpoint (exceptional case)
-            if (this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0] === undefined)
+            if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined)
                 return `<span class="${simple_value}">${simple_value}</span>`;
 
             /*
@@ -908,7 +924,7 @@ export default {
             * */
 
             // older, previous...
-            let other_verdicts = this.compare_charts[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
+            let other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
             let other_simple_value = "";
             let other_simple_progression = "";
 
@@ -954,6 +970,11 @@ export default {
 
     },
     computed: {
+    report_category() {
+      if (this.reports.length > 0)
+        return this.reports.report_type;
+      return ""
+    },
         relevant_categories_based_on_settings: function () {
             let preferred_fields = [];  // this.categories[this.selected_category];
             this.scan_methods.forEach((scan_method) => {
