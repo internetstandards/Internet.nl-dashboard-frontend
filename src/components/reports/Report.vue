@@ -11,7 +11,9 @@
 
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
-      <report_download :report_id="report.id" v-for="report in reports" :key="report.id"></report_download>
+      <report_download :report_id="report.id" v-for="report in reports" :key="`d${report.id}`"></report_download>
+
+      <sharing-configuration :report="report" v-for="report in reports" :key="`s${report.id}`"></sharing-configuration>
 
       <content-block class="do-not-print">
         <collapse-panel :title='`🔢 ${$t("settings")}`' class="do-not-print">
@@ -47,6 +49,7 @@ import report_header from './report_header'
 import report_download from './report_download'
 import report_selection from "@/components/reports/report_selection";
 import {mapState} from 'vuex'
+import SharingConfiguration from './SharingConfiguration'
 
 export default {
   components: {
@@ -56,6 +59,7 @@ export default {
     ReportTable,
     report_header,
     report_download,
+    SharingConfiguration
   },
   mixins: [report_mixin],
   name: 'report',
@@ -94,6 +98,7 @@ export default {
     },
 
     requested_report_ids(report_ids) {
+      console.log(`Loading reports: ${report_ids}`)
       this.reports_to_load = report_ids.length;
       this.reports = [];
 

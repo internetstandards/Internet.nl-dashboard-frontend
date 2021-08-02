@@ -1,6 +1,7 @@
 <style scoped>
 .panel-content {
-    padding-bottom: 10px;
+    padding-top: 1em;
+    padding-bottom: 1em;
     padding-left: 20px;
 }
 
@@ -14,6 +15,7 @@
 .panel-title {
     font-size: 1.0em;
     font-weight: normal;
+
 }
 
 .panel-title:hover {
@@ -21,6 +23,7 @@
 }
 
 button {
+  margin: 0.3em;
     border: 0 !important;
     color: dimgray;
     font-weight: bold !important;
@@ -71,9 +74,11 @@ button {
         </button>
 
         <b-collapse :id="'collapse-' + id" v-model="status_visible" class="panel-content">
+
             <slot name="content">
                 default content
             </slot>
+
         </b-collapse>
     </div>
 </template>

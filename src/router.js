@@ -41,6 +41,7 @@ const routes = [
         meta: {title: 'Internet.nl Dashboard / Domains / Upload'}
     },
     {path: '/scans', component: ScanMonitor, meta: {title: 'Internet.nl Dashboard / Scan Monitor'}},
+
     {
         path: '/report/:report/:compare_with',
         component: Report,
@@ -55,8 +56,8 @@ const routes = [
     },
     {path: '/report', component: Report, meta: {title: 'Internet.nl Dashboard / Reports'}},
 
-    {path: '/shared/:report', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}},
-    {path: '/shared/:report/:compare_with', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}},
+    {path: '/shared/report/:report', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'shared_report'},
+    {path: '/shared/report/:report/:compare_with', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}},
 
     {path: '/switch-account', component: SwitchAccount, meta: {title: 'Internet.nl Dashboard / Switch Account'}},
     {path: '/add-user', component: InstantAddAccount, meta: {title: 'Internet.nl Dashboard / Add User'}},

@@ -19,12 +19,34 @@ import App from './App'
 import router from './router';
 import './assets/css/styles.scss';
 import PortalVue from 'portal-vue'
-import {LayoutPlugin, ModalPlugin, CardPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin, AlertPlugin, ImagePlugin, FormCheckboxPlugin, PaginationPlugin, FormSelectPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons} from 'bootstrap-vue'
+import {
+    LayoutPlugin,
+    ModalPlugin,
+    CardPlugin,
+    ButtonPlugin,
+    FormGroupPlugin,
+    TablePlugin,
+    TabsPlugin,
+    FormInputPlugin,
+    CollapsePlugin,
+    AlertPlugin,
+    ImagePlugin,
+    FormCheckboxPlugin,
+    PaginationPlugin,
+    FormSelectPlugin,
+    FormTextareaPlugin,
+    SpinnerPlugin,
+    ProgressPlugin,
+    BVModalPlugin,
+    BVToastPlugin,
+    BootstrapVueIcons,
+    InputGroupPlugin
+} from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl} from 'date-fns/locale'
 
 
-const plugins = [PortalVue, VueI18n, VueRouter, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
+const plugins = [PortalVue, VueI18n, VueRouter, InputGroupPlugin, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, ButtonPlugin, FormGroupPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
 FormCheckboxPlugin, FormSelectPlugin, PaginationPlugin, AlertPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin,
 ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons]
 plugins.forEach(plugin => Vue.use(plugin))
