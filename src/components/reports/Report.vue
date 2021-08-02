@@ -16,18 +16,20 @@
       <content-block class="do-not-print">
         <collapse-panel :title='`🔢 ${$t("settings")}`' class="do-not-print">
           <div slot="content">
-            <VisibleMetrics :scan_methods="scan_methods" :report_type="report_category"/>
+            <VisibleMetrics :report_type="report_category"/>
           </div>
         </collapse-panel>
       </content-block>
 
-      <report_header :reports="reports"></report_header>
+      <content-block>
+        <report_header :reports="reports"></report_header>
+      </content-block>
 
-      <ReportCharts :reports="reports" />
+      <ReportCharts :reports="reports"/>
 
       <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
       <content-block v-if="reports.length < 3" style="page-break-before: always;">
-        <ReportTable :compare_charts="reports"/>
+        <ReportTable :reports="reports"/>
       </content-block>
 
     </div>
@@ -44,6 +46,7 @@ import report_mixin from './report_mixin'
 import report_header from './report_header'
 import report_download from './report_download'
 import report_selection from "@/components/reports/report_selection";
+import {mapState} from 'vuex'
 
 export default {
   components: {
@@ -73,39 +76,41 @@ export default {
   mounted() {
     this.load_visible_metrics();
     let router_params = this.$router.history.current.params;
+
+    // the route to this component can determine what is shown
     this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
   },
 
   watch: {
+    // The route can change because the url is adjusted
     $route(to) {
       // .filter(Boolean) https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
       this.requested_report_ids = [to.params.report, to.params.compare_with].filter(Boolean);
     },
 
-    requested_report_ids(report_ids) {
-      if (report_ids.length < 1)
-        return
+    // Report selection control can select a number of reports
+    report_ids(report_ids) {
+        this.requested_report_ids = report_ids;
+    },
 
+    requested_report_ids(report_ids) {
       this.reports_to_load = report_ids.length;
       this.reports = [];
 
-      // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
-      http.get(`/data/report/get/${report_ids[0]}/`).then(response => {
-        // This keeps reports in order, regardless of asynchronous loading
-        this.$set(this.reports, 0, response.data[0]);
-        this.reports_to_load--;
-        this.$nextTick(() => this.$forceUpdate());
-      });
-
-      for (let i = 1; i < report_ids.length; i++) {
+      for(let i=0; i<this.reports_to_load; i++) {
+        // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
         http.get(`/data/report/get/${report_ids[i]}/`).then(response => {
+          // This keeps reports in order, regardless of asynchronous loading
           this.$set(this.reports, i, response.data[0]);
           this.reports_to_load--;
-          this.$nextTick(() => this.$forceUpdate());
         });
       }
     },
 
+    reports_to_load(reports_to_load) {
+      // Loading is done, refresh the UI.
+      if (reports_to_load === 0) this.$nextTick(() => this.$forceUpdate());
+    }
   },
   computed: {
     report_category() {
@@ -113,6 +118,7 @@ export default {
         return this.reports.report_type;
       return ""
     },
+    ...mapState(['report_ids']),
   }
 }
 </script>

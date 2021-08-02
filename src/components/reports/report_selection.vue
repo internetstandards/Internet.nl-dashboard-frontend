@@ -142,6 +142,8 @@ export default {
         this.selected_report_ids.push(dropdown_items[i].id);
       }
 
+      this.$store.commit("set_report_ids", this.selected_report_ids);
+
 
       // Always update the URL to reflect the latest report, so it can be easily shared and the page reloaded
       if (dropdown_items[1] !== undefined)

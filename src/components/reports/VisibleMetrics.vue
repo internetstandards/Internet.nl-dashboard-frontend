@@ -81,9 +81,6 @@ export default {
   },
   name: "VisibleMetrics",
   props: {
-    scan_methods: {
-      type: Array
-    },
     report_type: {
       type: String,
       default: "web",

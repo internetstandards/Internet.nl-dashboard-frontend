@@ -72,12 +72,12 @@
         </h2>
         <p>{{ $t("chart_info.adoption_bar_chart.annotation.intro") }}</p>
 
-        <b-alert show>{{ $t("how_charts_work") }}</b-alert>
+        <b-alert show dismissible><b-icon icon="info-circle" /> {{ $t("how_charts_work") }}</b-alert>
 
         <!-- :key is used because that key changes when chaning the language, causing the graph to rerender and thus translate.
         this cannot be done inside the graph, even with rerender title unfortunately. Perhaps it can, but cant figure it out. -->
         <div v-for="scan_form in scan_methods" :key="$i18n.t(scan_form.name)">
-          <template v-if="scan_form.name === reports[0].type">
+          <template v-if="scan_form.name === reports[0].report_type">
 
             <div style="overflow: auto; width: 100%"
                  v-if="visible_fields_from_scan_form(scan_form).length > 0">
@@ -172,7 +172,7 @@
         <p>{{ $t("chart_info.cumulative_adoption_bar_chart.annotation.intro") }}</p>
 
         <div v-for="scan_form in scan_methods" :key="scan_form.name">
-          <template v-if="scan_form.name === reports[0].type">
+          <template v-if="scan_form.name === reports[0].report_type">
 
             <div style="overflow: auto; width: 100%"
                  v-if="visible_fields_from_scan_form(scan_form).length > 0">
@@ -472,38 +472,28 @@ export default {
       this.reports.forEach((report) => {ids.push(report.id)})
       return ids;
     },
+
+    report_titles() {
+      let titles = [];
+      this.reports.forEach((report) => {
+        titles.push(`📊 #${report.id}: ${report.list_name} ${this.humanize_date_date_only(report.at_when)} n=${report.total_urls}`);
+      });
+      return titles;
+    },
+
     graph_bar_chart_title: function () {
-      // fixing https://github.com/internetstandards/Internet.nl-dashboard/issues/65
-      // 1 report:
-      if (this.reports.length === 1) {
-        return `📊 #${this.reports[0].id}: ${this.reports[0].list_name} ${this.humanize_date_date_only(this.reports[0].at_when)} n=${this.reports[0].number_of_urls}`;
-      } else {
-        let titles = [];
+      if (this.reports.length === 1)
+        return this.report_titles[0]
 
-        this.reports.forEach((report) => {
-          titles.push(`📊 #${report.id}: ${report.list_name} ${this.humanize_date_date_only(report.at_when)} n=${report.number_of_urls}`);
-        });
+      return this.report_titles.join(" vs ");
 
-        return titles.join(" vs ");
-      }
     },
 
     graph_cumulative_bar_chart_title: function () {
-      // fixing https://github.com/internetstandards/Internet.nl-dashboard/issues/65
-      // 1 report:
-      if (this.reports.length === 1) {
-        // not relevant
-        return `📊 #${this.reports[0].id}: ${this.reports[0].list_name} ${this.humanize_date_date_only(this.reports[0].at_when)} n=${this.reports[0].number_of_urls}`;
-      } else {
-        let titles = [];
+      if (this.reports.length === 1)
+        return this.report_titles[0]
 
-        this.reports.forEach((report) => {
-          titles.push(`📊 #${report.id}: ${report.list_name} ${this.humanize_date_date_only(report.at_when)} n=${report.number_of_urls}`);
-        });
-
-        let title_text = titles.join(" + ");
-        return `(${title_text}) / ${this.reports.length}`
-      }
+      return `(${this.report_titles.join(" + ")}) / ${this.reports.length}`
     },
   }
 }

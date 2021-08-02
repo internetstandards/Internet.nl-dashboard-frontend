@@ -1,17 +1,16 @@
 <template>
-  <content-block>
+  <div>
     <h2>
-      📊 #{{ reports[0].id }} - {{ reports[0].list_name }}
+      📊 #{{ reports[0].id }} - {{ reports[0].urllist_name }}
     </h2>
     <span>{{ $t("type_of_scan_performed") }}:
-      <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg" style="height: 1em;"
-           v-if="reports[0].type === 'web'">
-      <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg" style="height: 1em;"
-           v-if="reports[0].type === 'mail'"> {{ reports[0].type }}<br>
-      {{ $t("number_of_domains") }}: {{reports[0].number_of_urls }}<br>
+      <Scan_type_icon :type="reports[0].report_type" />
+
+      {{ reports[0].report_type }}<br>
+      {{ $t("number_of_domains") }}: {{reports[0].total_urls }}<br>
       {{ $t("data_from") }} {{ humanize_date(reports[0].at_when) }}<br>
       📘 <router-link :to="{ name: 'numbered_lists', params: { list: reports[0].urllist_id }}">
-        {{reports[0].list_name }}
+        {{reports[0].urllist_name }}
       </router-link><br>
     </span><br>
 
@@ -19,12 +18,12 @@
       <div v-for="report in reports" style="padding-left: 10px" :key="report.id">
         <!-- Skip the first report -->
         <template v-if="report.id !== reports[0].id">
-          <h3>{{ $t("compared_to") }}: #{{ report.id }} - {{ report.list_name }}</h3>
+          <h3>{{ $t("compared_to") }}: #{{ report.id }} - {{ report.urllist_name }}</h3>
           <span>
-            {{ $t("number_of_domains") }}: {{ report.number_of_urls }}<br>
+            {{ $t("number_of_domains") }}: {{ report.total_urls }}<br>
             {{ $t("data_from") }} {{ humanize_date(report.at_when) }}<br>
             📘 <router-link :to="{ name: 'numbered_lists', params: { list: report.urllist_id }}">
-            {{report.list_name }}</router-link><br>
+            {{report.urllist_name }}</router-link><br>
           </span>
         </template>
       </div>
@@ -34,11 +33,13 @@
       <p style="padding-top: 1em;">⚠️ {{ $t("only_graphs") }}</p>
     </template>
 
-  </content-block>
+  </div>
 </template>
 <script>
 
+import Scan_type_icon from "@/components/scan_type_icon";
 export default {
+  components: {Scan_type_icon},
   props: {
     reports: {type: Array, required: true},
   },

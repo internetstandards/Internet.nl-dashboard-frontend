@@ -84,6 +84,9 @@ const store = new Vuex.Store({
 
         // Visible metrics in report, report graphs and visible metrics configuration pane
         visible_metrics: {},
+
+        // What reports need to be shown on the reporting page: list of integers
+        report_ids: []
     },
 
     mutations: {
@@ -102,6 +105,9 @@ const store = new Vuex.Store({
         },
         set_visible_metrics(state, value) {
             state.visible_metrics = value;
+        },
+        set_report_ids(state, value) {
+            state.report_ids = value;
         }
     },
 
