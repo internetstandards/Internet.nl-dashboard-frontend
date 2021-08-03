@@ -18,6 +18,7 @@
                         id="share-code"
                         :value="`${$baseUrl}/#/shared/report/${report['public_report_code']}`"
                         maxlength="64"
+                        :description="report['public_share_code'] ? 'bla' : 'bla'"
                         :disabled="true"
                     ></b-form-input>
                     <template #append>
@@ -33,8 +34,11 @@
                 </b-form-group>
                 <template v-if='report["public_share_code"]'>
                   <span style="font-size: 0.8em; font-style: italic; color: gray;">{{ $t("with_password") }}: {{ report["public_share_code"] }}</span>
-                  <br>
                 </template>
+                <template v-else>
+                  <span style="font-size: 0.8em; font-style: italic; color: gray;">{{ $t("without_password") }}</span>
+                </template>
+                <br>
                 <br>
                 <button size="lg" @click="update_report_code">🔁 {{ $t("change_link") }}</button> &nbsp;
                 <button size="lg" @click="unshare">🔴 {{ $t("stop_sharing") }}</button>
@@ -71,11 +75,11 @@
 
           <b-row>
             <b-col style="width: 50%;">
-
-              <button variant="warning" @click="share">🟢 {{ $t("share_to_anyone_with_url") }} {{
+              <button variant="warning" @click="share" class="mb-4">🟢 {{ $t("share_to_anyone_with_url") }} {{
                   report['public_share_code'] ? $t("and_password") : ''
                 }}
               </button>
+
             </b-col>
 
             <b-col style="width: 50%;">
@@ -85,14 +89,16 @@
                   :label="$t('configure_password')"
                   label-for="share-code"
                   :description="$t('password_description')"
-                  class="mb-0"
+                  class=""
               >
                 <b-form-input
                     id="share-code"
                     v-model="report['public_share_code']"
-                    maxlength="120"
+                    maxlength="64"
                 ></b-form-input>
               </b-form-group>
+
+
 
             </b-col>
           </b-row>
@@ -179,6 +185,7 @@ export default {
     "intro": "Sharing options for this report:",
     "shared_at_url": "The report is shared on the following url",
     "with_password": "with the password set to",
+    "without_password": "without a password.",
     "change_link": "New link",
     "stop_sharing": "Stop Sharing",
     "share_to_anyone_with_url": "Share report to anyone with the url",
@@ -201,6 +208,7 @@ export default {
     "intro": "Deelopties voor dit rapport:",
     "shared_at_url": "Rapport gedeeld op de volgende link",
     "with_password": "met het wachtwoord ",
+    "without_password": "zonder wachtwoord.",
     "change_link": "Nieuwe link",
     "stop_sharing": "Stop delen",
     "share_to_anyone_with_url": "Deel voor iedereen met de link ",
