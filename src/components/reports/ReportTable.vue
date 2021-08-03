@@ -739,9 +739,6 @@ export default {
 
     category_value_with_comparison: function (category_name, url) {
 
-      if (this.reports[1] === undefined)
-        return
-
       let verdicts = url.endpoints[0].ratings_by_type[category_name];
       let simple_value = this.category_verdict_to_simple_value(verdicts, category_name);
 
