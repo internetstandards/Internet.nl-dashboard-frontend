@@ -97,7 +97,7 @@ export default {
   computed: {
     report_category() {
       if (this.reports.length > 0)
-        return this.reports.report_type;
+        return this.reports[0].report_type;
       return ""
     },
     ...mapState(['report_ids']),
