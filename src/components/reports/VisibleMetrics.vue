@@ -103,7 +103,7 @@ export default {
           this.issue_filters_response = data.data;
         }
       });
-      this.load_issue_filters();
+      this.load_visible_metrics();
     },
 
     all_field_names_from_categories(categories) {

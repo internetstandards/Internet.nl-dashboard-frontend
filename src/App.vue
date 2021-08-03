@@ -142,7 +142,6 @@
 
 <script>
 import Headroom from "headroom.js";
-// todo make sure the menu works
 import SiteMenu from './components/site-menu.vue'
 import {mapState} from 'vuex'
 import http from "@/httpclient";

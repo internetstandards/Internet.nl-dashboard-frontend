@@ -248,6 +248,10 @@ Vue.mixin(
 );
 
 
+function is_public_page(page_name){
+    return !!['login', 'demo', 'tour', 'shared_report', 'compared_shared_report'].includes(page_name);
+}
+
 
 // https://www.digitalocean.com/community/tutorials/vuejs-vue-router-modify-head
 router.beforeEach((to, from, next) => {
@@ -257,7 +261,7 @@ router.beforeEach((to, from, next) => {
     }
 
     // https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards
-    if (!['login', 'demo', 'tour'].includes(to.name) && !store.state.user.is_authenticated) next({name: 'login'})
+    if (!is_public_page(to.name) && !store.state.user.is_authenticated) next({name: 'login'})
     else next()
 });
 
