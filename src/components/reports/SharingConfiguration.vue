@@ -11,14 +11,13 @@
                 <b-form-group
                     :label="$t('shared_at_url')"
                     label-for="share-code"
-
                     class="mb-0"
                 >
                   <b-input-group>
                     <b-form-input
                         id="share-code"
                         :value="`${$baseUrl}/#/shared/report/${report['public_report_code']}`"
-                        maxlength="120"
+                        maxlength="64"
                         :disabled="true"
                     ></b-form-input>
                     <template #append>
@@ -38,7 +37,7 @@
                 </template>
                 <br>
                 <button size="lg" @click="update_report_code">🔁 {{ $t("change_link") }}</button> &nbsp;
-                <button size="lg" @click="unshare">🟣 {{ $t("stop_sharing") }}</button>
+                <button size="lg" @click="unshare">🔴 {{ $t("stop_sharing") }}</button>
               </p>
             </b-col>
             <b-col>
@@ -53,7 +52,7 @@
                   <b-form-input
                       id="share-code"
                       v-model="report['public_share_code']"
-                      maxlength="120"
+                      maxlength="64"
                   ></b-form-input>
                 </b-form-group>
                 <br>
@@ -123,7 +122,7 @@ export default {
     sharing_status(status) {
       if (status)
         return `🟢 ${this.$i18n.t("shared")}`
-      return `🟣 ${this.$i18n.t("not_shared")}`
+      return `🔴 ${this.$i18n.t("not_shared")}`
     },
     share() {
       this.loading = true;
@@ -133,6 +132,7 @@ export default {
       }).then(data => {
         this.response = data.data;
         this.report.is_publicly_shared = data.data.data.is_publicly_shared;
+        this.report.public_report_code = data.data.data.public_report_code;
         this.loading = false;
       });
     },

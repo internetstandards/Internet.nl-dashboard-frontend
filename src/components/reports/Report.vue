@@ -43,8 +43,8 @@
 import ReportCharts from './ReportCharts'
 import VisibleMetrics from './VisibleMetrics'
 import ReportTable from './ReportTable'
-import http from "@/httpclient"
 import report_mixin from './report_mixin'
+import report_mixin_2 from './report_mixin_2'
 import report_header from './report_header'
 import report_download from './report_download'
 import report_selection from "@/components/reports/report_selection";
@@ -61,19 +61,12 @@ export default {
     report_download,
     SharingConfiguration
   },
-  mixins: [report_mixin],
+  mixins: [report_mixin, report_mixin_2],
   name: 'report',
   data() {
     return {
-      // Complete reports with all data and metadata to make a nice representation.
-      reports: [],
-
       // list of report ids that should be shown as a report
       requested_report_ids: [],
-
-      // number of reports that still need to be retrieved. If this is 0 all reports are in. Up to 6 reports
-      // can be loaded and compared with graphs in a somewhat meaningful way.
-      reports_to_load: 0,
     }
   },
 
@@ -98,24 +91,8 @@ export default {
     },
 
     requested_report_ids(report_ids) {
-      console.log(`Loading reports: ${report_ids}`)
-      this.reports_to_load = report_ids.length;
-      this.reports = [];
-
-      for(let i=0; i<this.reports_to_load; i++) {
-        // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
-        http.get(`/data/report/get/${report_ids[i]}/`).then(response => {
-          // This keeps reports in order, regardless of asynchronous loading
-          this.$set(this.reports, i, response.data[0]);
-          this.reports_to_load--;
-        });
-      }
+      this.load_reports_by_ids(report_ids);
     },
-
-    reports_to_load(reports_to_load) {
-      // Loading is done, refresh the UI.
-      if (reports_to_load === 0) this.$nextTick(() => this.$forceUpdate());
-    }
   },
   computed: {
     report_category() {

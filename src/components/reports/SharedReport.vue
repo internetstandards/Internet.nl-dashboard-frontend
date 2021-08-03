@@ -12,16 +12,22 @@
     </content-block>
 
     <div v-if="reports.length > 0 && reports_to_load === 0">
-      <content-block>
-        <report_header :reports="reports"></report_header>
-      </content-block>
 
-      <ReportCharts :reports="reports"/>
+      <template v-if="reports_require_authentication">
+        <ReportPasswords :reports="reports" @retry="retry"></ReportPasswords>
+      </template>
+      <template v-else>
+        <content-block>
+          <report_header :reports="reports"></report_header>
+        </content-block>
 
-      <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
-      <content-block v-if="reports.length < 3" style="page-break-before: always;">
-        <ReportTable :reports="reports"/>
-      </content-block>
+        <ReportCharts :reports="reports"/>
+
+        <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
+        <content-block v-if="reports.length < 3" style="page-break-before: always;">
+          <ReportTable :reports="reports"/>
+        </content-block>
+      </template>
     </div>
 
   </div>
@@ -29,30 +35,26 @@
 
 <script>
 import ReportCharts from './ReportCharts'
+import ReportPasswords from './ReportPasswords'
 import ReportTable from './ReportTable'
-import http from "@/httpclient"
 import report_mixin from './report_mixin'
+import report_mixin_2 from './report_mixin_2'
 import report_header from './report_header'
+
 
 export default {
   components: {
     ReportCharts,
     ReportTable,
+    ReportPasswords,
     report_header,
   },
-  mixins: [report_mixin],
+  mixins: [report_mixin, report_mixin_2],
   name: 'report',
   data() {
     return {
-      // Complete reports with all data and metadata to make a nice representation.
-      reports: [],
-
       // list of report ids that should be shown as a report
       requested_report_ids: [],
-
-      // number of reports that still need to be retrieved. If this is 0 all reports are in. Up to 6 reports
-      // can be loaded and compared with graphs in a somewhat meaningful way.
-      reports_to_load: 0,
     }
   },
 
@@ -63,28 +65,28 @@ export default {
     this.requested_report_ids = [router_params.report, router_params.compare_with].filter(Boolean);
   },
 
-  watch: {
-    requested_report_ids(report_ids) {
-      this.reports_to_load = report_ids.length;
-      this.reports = [];
-
-      for (let i = 0; i < this.reports_to_load; i++) {
-        // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
-        http.get(`/data/report/shared/${report_ids[i]}/`).then(response => {
-          // The report might be empty, because the wrong code has been sent:
-          if (response.data[0] !== undefined) {
-            this.$set(this.reports, i, response.data[0]);
-          }
-          this.reports_to_load--;
-        });
-      }
-    },
-
-    reports_to_load(reports_to_load) {
-      // Loading is done, refresh the UI.
-      if (reports_to_load === 0) this.$nextTick(() => this.$forceUpdate());
+  methods: {
+    retry(){
+      this.load_shared_reports_by_ids(this.requested_report_ids);
     }
   },
+
+  watch: {
+    requested_report_ids(report_ids) {
+      this.load_shared_reports_by_ids(report_ids);
+    },
+  },
+
+  computed: {
+    reports_require_authentication(){
+      for (let i =0; i<this.reports.length; i++){
+        if (this.reports[i].authentication_required === true)
+          return true
+      }
+      return false
+    },
+
+  }
 }
 </script>
 <i18n>

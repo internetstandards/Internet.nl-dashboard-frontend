@@ -108,7 +108,11 @@ const store = new Vuex.Store({
         visible_metrics: {},
 
         // What reports need to be shown on the reporting page: list of integers
-        report_ids: []
+        report_ids: [],
+
+        // List of report codes with an attached public share code. The public share code is used as a password.
+        // these codes are stored in local storage. They are not treated as a password as the data is not sensitive
+        public_share_codes: {}
     },
 
     mutations: {
