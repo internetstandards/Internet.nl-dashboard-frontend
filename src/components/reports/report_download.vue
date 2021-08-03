@@ -1,21 +1,27 @@
 <template>
   <content-block class="do-not-print">
-    <collapse-panel :title='`⬇️  ${$t("title", [report_id])} `' class="do-not-print">
-      <div slot="content">
-        <p>{{ $t("intro") }}</p>
-        <ul style="list-style: none !important;">
-          <li><a :href="make_downloadlink(report_id, 'xlsx')">⬇️ {{ $t("xlsx") }}</a></li>
-          <li><a :href="make_downloadlink(report_id, 'ods')">⬇️ {{ $t("ods") }}</a></li>
-          <li><a :href="make_downloadlink(report_id, 'csv')">⬇️ {{ $t("csv") }}</a></li>
-        </ul>
-      </div>
-    </collapse-panel>
+    <b-container>
+    <b-row>
+      <b-col cols="3">
+        ⬇️ {{$t("title", [report.id, report.urllist_name])}}
+      </b-col>
+      <b-col>
+        <b-icon icon="file-earmark-spreadsheet"/> <a :href="make_downloadlink(report.id, 'xlsx')">{{ $t("xlsx") }}</a>
+      </b-col>
+      <b-col>
+        <b-icon icon="file-earmark-spreadsheet"/> <a :href="make_downloadlink(report.id, 'ods')">{{ $t("ods") }}</a>
+      </b-col>
+      <b-col>
+       <b-icon icon="file-text"/> <a :href="make_downloadlink(report.id, 'csv')">{{ $t("csv") }}</a>
+      </b-col>
+    </b-row>
+    </b-container>
   </content-block>
 </template>
 <script>
 export default {
   props: {
-    report_id: {type: Number, required: true}
+    report: {type: Object, required: true}
   },
   methods: {
     make_downloadlink: function (report_id, filetype) {
@@ -27,18 +33,18 @@ export default {
 <i18n>
 {
   "en": {
-    "title": "Download metrics of report {0}",
+    "title": "Download report #{0} as",
     "intro": "Report data is available in the following formats:",
-    "xlsx": "Excel Spreadsheet (Microsoft Office), .xlsx",
-    "ods": "Open Document Spreadsheet (Libre Office), .ods",
-    "csv": "Comma Separated (for programmers), .csv"
+    "xlsx": "Microsoft Excel (xlsx)",
+    "ods": "Open Spreadsheet (ods)",
+    "csv": "Comma Separated (csv)"
   },
   "nl": {
-    "title": "Download meetwaarden van rapport {0}",
+    "title": "Download rapport #{0} als",
     "intro": "De data in dit rapport is beschikbaar in de volgende formaten:",
-    "xlsx": "Excel Spreadsheet (voor o.a. Microsoft Office), .xlsx",
-    "ods": "Open Document Spreadsheet (voor o.a. Libre Office), .ods",
-    "csv": "Comma Separated (voor programmeurs), .csv"
+    "xlsx": "Microsoft Excel (xlsx)",
+    "ods": "Open Document (ods)",
+    "csv": "Kommagescheiden (csv)"
   }
 }
 </i18n>

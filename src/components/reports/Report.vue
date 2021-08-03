@@ -11,7 +11,7 @@
 
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
-      <report_download :report_id="report.id" v-for="report in reports" :key="`d${report.id}`"></report_download>
+      <report_download :report="report" v-for="report in reports" :key="`d${report.id}`"></report_download>
 
       <sharing-configuration :report="report" v-for="report in reports" :key="`s${report.id}`"></sharing-configuration>
 

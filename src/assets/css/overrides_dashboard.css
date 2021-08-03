@@ -119,3 +119,7 @@ label {
 .altbutton button:focus {
     outline: none
 }
+
+button:focus  {
+    text-decoration: underline;
+}
