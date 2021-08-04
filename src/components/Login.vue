@@ -1,3 +1,9 @@
+<style scoped>
+.subtext {
+  font-size: 0.8em;
+  font-style: italic;
+}
+</style>
 <template>
   <div class="account">
 
@@ -9,10 +15,9 @@
       <div v-if="!user.is_authenticated">
         <p>
           {{ $t('not_logged_in') }}<br>
-          <i><small>{{ $t('secondfactor_message') }}: <a
-              :href="$baseUrl + '/account/login/'">
-            {{ $baseUrl }}/account/login/</a>
-          </small></i>
+          <span class="subtext">
+            {{ $t('secondfactor_message') }}:<a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
+          </span>
         </p>
 
         <form v-on:submit.prevent="login">
@@ -56,19 +61,21 @@ export default {
     this.login_status();
   },
   methods: {
+    reset() {
+        // don't keep the 'succesful login' message:
+        this.server_response = {};
+        // clear the login form, which contains the password in cache
+        this.username = "";
+        this.password = "";
+    },
+
     login_status: function () {
-      this.server_response = {};
       this.loading = true;
       http.get('/session/status/').then(data => {
         this.$store.commit("set_user", data.data);
         this.loading = false;
         if (this.$store.state.user.is_authenticated) {
-          // don't keep the 'succesful login' message:
-          this.server_response = {};
-          // clear the login form, which contains the password in cache
-          this.username = "";
-          this.password = "";
-
+          this.reset();
           // This is not a solution to double navigation, but i think the error is weird and incorrect.
           // https://stackoverflow.com/questions/62462276/how-to-solve-avoided-redundant-navigation-to-current-location-error-in-vue
           if (this.$router.name !== 'domains') {
@@ -79,14 +86,11 @@ export default {
       });
     },
     login: function () {
-      // on first load there is no csrf at all:
       this.loading = true;
       http.post('/session/login/', {'username': this.username, 'password': this.password}).then(data => {
         if (data.data) {
-          this.login_status();
-          // redirect to desired page? Or is that not possible anymore?
           this.server_response = data.data;
-          this.loading = false;
+          this.login_status();
         }
       })
     },

@@ -1,10 +1,16 @@
+<template>
+  <div>
+    <canvas ref="canvas" role="img" class="graph-image" :aria-label="title">
+      <p>{{accessibility_text}}</p>
+    </canvas>
+  </div>
+</template>
+
 <script>
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import chart_mixin from './chart_mixin.vue'
 
 export default {
     mixins: [chart_mixin],
-    plugins: [ChartDataLabels],
     methods: {
         renderData: function () {
             this.configure_barchart();
