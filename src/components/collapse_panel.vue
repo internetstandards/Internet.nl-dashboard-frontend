@@ -41,12 +41,12 @@ button {
   background-color: white;
 }
 
-.level_two {
+.level_2 {
   padding-left: 2em;
   font-size: 0.9em;
 }
 
-.level_three {
+.level_3 {
   padding-left: 4em;
   font-size: 0.8em;
 }
@@ -62,12 +62,12 @@ button {
         :aria-controls="'collapse-' + id"
         @click="status_visible = !status_visible"
     >
-            <span :class="`panel-title ${custom_title_class}`">
-               <div :class="status_visible ? 'animate_opening open' : 'animate_opening'">
-                    <img src="/static_frontend/images/vendor/internet_nl/push-open.png" alt="open panel">
-                </div>
-                {{ title }}
-            </span>
+      <span :class="`panel-title ${custom_title_class}`">
+        <div :class="status_visible ? 'animate_opening open' : 'animate_opening'">
+          <img src="/static_frontend/images/vendor/internet_nl/push-open.png" alt="open panel">
+        </div>
+        {{ title }}
+      </span>
     </button>
 
     <b-collapse :id="'collapse-' + id" v-model="status_visible" class="panel-content">

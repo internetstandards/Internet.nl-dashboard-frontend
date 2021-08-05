@@ -5,7 +5,7 @@
 
     <b-tabs content-class="mt-3">
       <b-tab :title="$t('graph')" active>
-        <line-chart style="height:300px;"
+        <line-chart
             :chart_data="timeline_data"
             :highlight_report_ids="highlight_report_ids"
             :accessibility_text="$t('accessibility_text')"

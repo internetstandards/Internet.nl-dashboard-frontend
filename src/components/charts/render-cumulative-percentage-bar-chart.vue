@@ -1,7 +1,7 @@
 <template>
   <div>
     <canvas ref="canvas" role="img" class="graph-image" :aria-label="title">
-      <p>{{accessibility_text}}</p>
+      <p>{{ $t("accessibility_text") }}</p>
     </canvas>
   </div>
 </template>
@@ -120,10 +120,10 @@ export default {
     },
   computed: {
     title() {
-      if (this.reports.length === 1)
+      if (this.chart_data.length === 1)
         return this.report_titles[0]
 
-      return `(${this.report_titles.join(" + ")}) / ${this.reports.length}`
+      return `(${this.report_titles.join(" + ")}) / ${this.chart_data.length}`
     },
   }
 

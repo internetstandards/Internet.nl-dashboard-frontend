@@ -87,10 +87,14 @@ export default {
   },
   methods: {
 
-    download(){
-      let data = this.chart.toBase64Image();
+    download(file_type){
+      let data = ""
+      if (file_type === "png")
+        data = this.chart.toBase64Image();
+      if (file_type === "jpg")
+        data = this.chart.toBase64Image('image/jpeg', 1)
       let aDownloadLink = document.createElement('a');
-      aDownloadLink.download = "graph.png"
+      aDownloadLink.download = `graph.${file_type}`
       aDownloadLink.href = data;
       aDownloadLink.click();
     },
@@ -167,7 +171,7 @@ export default {
               type: 'time',
               time: {
                 unit: 'month',
-                tooltipFormat: 'DD T'
+                tooltipFormat: 'dd'
               },
               title: {
                 display: true,
@@ -312,15 +316,10 @@ export default {
       return this.$i18n.locale;
     },
     report_titles() {
-      let titles = [];
+      if (this.chart_data === undefined)
+        return [];
 
-      if (this.reports === undefined)
-        return titles;
-
-      this.reports.forEach((report) => {
-        titles.push(`📊 #${report.id}: ${report.list_name} ${this.humanize_date_date_only(report.at_when)} n=${report.total_urls}`);
-      });
-      return titles;
+      return this.chart_data.map(report => `📊 #${report.id}: ${report.urllist_name} ${this.humanize_date_date_only(report.at_when)} n=${report.total_urls}`)
     },
   },
   watch: {
@@ -343,25 +342,3 @@ export default {
   }
 };
 </script>
-<i18n>
-{
-  "en": {
-    "pct_ok": "passed",
-    "pct_low": "info",
-    "pct_medium": "warning",
-    "pct_high": "failed",
-    "pct_not_applicable": "not applicable",
-    "pct_not_testable": "not testable",
-    "pct_error_in_test": "test error"
-  },
-  "nl": {
-    "pct_ok": "geslaagd",
-    "pct_low": "info",
-    "pct_medium": "waarschuwing",
-    "pct_high": "gezakt",
-    "pct_not_applicable": "niet van toepassing",
-    "pct_not_testable": "niet testbaar",
-    "pct_error_in_test": "testfout"
-  }
-}
-</i18n>

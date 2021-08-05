@@ -1,9 +1,11 @@
 <template>
   <div>
-    <canvas ref="canvas" role="img" class="graph-image" :aria-label="title">
-      <p>{{accessibility_text}}</p>
+    <div style="height:300px;">
+    <canvas ref="canvas" role="img" class="graph-image" >
+      <p>{{ $t("accessibility_text") }}</p>
     </canvas>
-    <button @click="download">Download PNG</button>
+    </div>
+    <button @click="download('png')">Download PNG</button> <button @click="download('jpg')">Download JPG</button>
   </div>
 </template>
 
@@ -106,9 +108,6 @@ export default {
       this.chart.data.datasets = datasets;
 
       this.chart.update();
-    },
-    renderTitle: function () {
-      this.chart.options.title.text = this.title;
     },
   }
 }
