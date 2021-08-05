@@ -15,14 +15,6 @@
 
       <sharing-configuration :report="report" v-for="report in reports" :key="`s${report.id}`"></sharing-configuration>
 
-      <content-block class="do-not-print">
-        <collapse-panel :title='`🔢 ${$t("settings")}`' class="do-not-print">
-          <div slot="content">
-            <VisibleMetrics :report_type="report_category"/>
-          </div>
-        </collapse-panel>
-      </content-block>
-
       <content-block>
         <report_header :reports="reports"></report_header>
       </content-block>
@@ -41,7 +33,6 @@
 
 <script>
 import ReportCharts from './ReportCharts'
-import VisibleMetrics from './VisibleMetrics'
 import ReportTable from './ReportTable'
 import report_mixin from './report_mixin'
 import report_mixin_2 from './report_mixin_2'
@@ -55,7 +46,6 @@ export default {
   components: {
     report_selection,
     ReportCharts,
-    VisibleMetrics,
     ReportTable,
     report_header,
     report_download,

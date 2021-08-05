@@ -40,14 +40,16 @@ import {
     BVModalPlugin,
     BVToastPlugin,
     BootstrapVueIcons,
-    InputGroupPlugin
+    InputGroupPlugin,
+    NavbarPlugin,
+    NavPlugin
 } from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl} from 'date-fns/locale'
 
 
 const plugins = [PortalVue, VueI18n, VueRouter, InputGroupPlugin, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, ButtonPlugin, FormGroupPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
-FormCheckboxPlugin, FormSelectPlugin, PaginationPlugin, AlertPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin,
+FormCheckboxPlugin, FormSelectPlugin, PaginationPlugin, AlertPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, NavbarPlugin, NavPlugin,
 ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons]
 plugins.forEach(plugin => Vue.use(plugin))
 

@@ -1,6 +1,9 @@
 <template>
   <div>
     <p>{{ $t("intro") }}</p>
+    <server-response :response="issue_filters_response"
+                     :message="$t(issue_filters_response.message)"></server-response>
+
     <div v-for="scan_form in scan_methods" :key="scan_form.name">
       <b-card no-body>
         <b-tabs pills card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
@@ -62,9 +65,6 @@
     <button @click="reset_issue_filters()">{{ $t("buttons.reset") }}</button> &nbsp;
     <button @click="save_visible_metrics()">{{ $t("buttons.save") }}</button>
     <br><br>
-    <server-response :response="issue_filters_response"
-                     :message="$t(issue_filters_response.message)"></server-response>
-
   </div>
 </template>
 
@@ -72,7 +72,7 @@
 import field_translations from './../field_translations'
 import {mapState} from 'vuex'
 import http from "@/httpclient";
-import report_mixin from './report_mixin'
+import report_mixin from "@/components/reports/report_mixin"
 
 export default {
   mixins: [report_mixin],
