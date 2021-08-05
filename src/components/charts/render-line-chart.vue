@@ -15,16 +15,14 @@ export default {
 
   data() {
     return {
-      color_scheme: {
-        incremental: [
+      color_scheme: [
           {background: 'rgba(21, 66, 115, 1)', border: 'rgba(21, 66, 115, 1)'},
           {background: 'rgba(225, 112, 0, 1)', border: 'rgba(225, 112, 0, 1)'},
           {background: 'rgba(57, 135, 12, 1)', border: 'rgba(57, 135, 12, 1)'},
           {background: 'rgba(115, 21, 66, 1)', border: 'rgba(115, 21, 66, 1)'},
           {background: 'rgb(89, 88, 92)', border: 'rgb(89, 88, 92)'},
           {background: 'rgb(0, 0, 0)', border: 'rgba(0, 0, 0, 1)'},
-        ],
-      },
+      ],
     }
   },
 
@@ -95,8 +93,8 @@ export default {
               data: line_data,
               // backgrounds do not work with multiple sets, only lines.
               fill: false,
-              backgroundColor: this.color_scheme.incremental[colorset].background,
-              borderColor: this.color_scheme.incremental[colorset].border,
+              backgroundColor: this.color_scheme[colorset].background,
+              borderColor: this.color_scheme[colorset].border,
               borderWidth: 3,
               lineTension: 0,
             };
@@ -115,3 +113,23 @@ export default {
   }
 }
 </script>
+<i18n>
+{
+  "en": {
+    "title": "Average internet.nl score over time.",
+    "month": "Month",
+    "yAxis_label": "Average internet.nl score",
+    "xAxis_label": "Date",
+    "average_internet_nl_score": "Average internet.nl score",
+    "accessibility_text": "A table with the content of this graph is shown below."
+  },
+  "nl": {
+    "title": "Adoptie van standaarden over tijd.",
+    "month": "Maand",
+    "yAxis_label": "Gemiddelde internet.nl score",
+    "xAxis_label": "Datum",
+    "average_internet_nl_score": "Gemiddelde internet.nl score",
+    "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
+  }
+}
+</i18n>

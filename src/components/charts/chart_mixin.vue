@@ -25,6 +25,8 @@ Chart.register(LineController, LineElement, PointElement, LinearScale, Title, Do
 import 'chartjs-adapter-date-fns';
 import {nl} from 'date-fns/locale';
 
+// for field_name_to_category_names
+import report_mixin from "@/components/reports/report_mixin";
 
 // this prevents the legend being written over the 100% scores
 // Legend.prototype.afterFit = function() {
@@ -53,15 +55,12 @@ export default {
   i18n: {
     sharedMessages: field_translations,
   },
+  mixins: [report_mixin],
   props: {
     chart_data: {type: Array, required: true},
     axis: {type: Array, required: false},
-    title: {type: String, required: false},
-    translation_key: {type: String, required: false},
-    accessibility_text: {type: String, required: true},
-    show_dynamic_average: {type: Boolean, required: false},
+    show_average: {type: Boolean, required: false},
     only_show_dynamic_average: {type: Boolean, required: false},
-    field_name_to_category_names: {type: Object, required: false},
     highlight_report_ids: {type: Array, required: false}
   },
   data: function () {
@@ -83,6 +82,7 @@ export default {
     }
   },
   mounted: function () {
+    this.issue_filters = this.$store.state.visible_metrics;
     this.renderData();
   },
   methods: {
@@ -147,7 +147,7 @@ export default {
             tooltip: tooltip_configuration,
             title: {
               display: true,
-              text: this.$i18n.t(this.translation_key + '.title')
+              text: this.$i18n.t('title')
             },
           },
           responsive: true,
@@ -171,7 +171,7 @@ export default {
               },
               title: {
                 display: true,
-                text: this.$i18n.t(this.translation_key + '.month'),
+                text: this.$i18n.t('month'),
               }
             },
             y: {
@@ -187,7 +187,7 @@ export default {
               },
               title: {
                 display: true,
-                text: this.$i18n.t(this.translation_key + '.yAxis_label'),
+                text: this.$i18n.t('yAxis_label'),
               },
             }
           }
@@ -280,7 +280,7 @@ export default {
               },
               title: {
                 display: true,
-                labelString: this.$i18n.t(this.translation_key + '.yAxis_label')
+                labelString: this.$i18n.t('yAxis_label')
               },
             }
           },
@@ -310,7 +310,18 @@ export default {
   computed: {
     locale() {
       return this.$i18n.locale;
-    }
+    },
+    report_titles() {
+      let titles = [];
+
+      if (this.reports === undefined)
+        return titles;
+
+      this.reports.forEach((report) => {
+        titles.push(`📊 #${report.id}: ${report.list_name} ${this.humanize_date_date_only(report.at_when)} n=${report.total_urls}`);
+      });
+      return titles;
+    },
   },
   watch: {
     locale: function () {
@@ -320,7 +331,7 @@ export default {
     axis: function (new_value, old_value) {
       this.change_on_difference(new_value, old_value);
     },
-    show_dynamic_average: function () {
+    show_average: function () {
       this.renderData();
     },
     only_show_dynamic_average: function () {
@@ -341,30 +352,7 @@ export default {
     "pct_high": "failed",
     "pct_not_applicable": "not applicable",
     "pct_not_testable": "not testable",
-    "pct_error_in_test": "test error",
-    "charts": {
-      "adoption_timeline": {
-        "title": "Average internet.nl score over time.",
-        "month": "Month",
-        "yAxis_label": "Average internet.nl score",
-        "xAxis_label": "Date",
-        "average_internet_nl_score": "Average internet.nl score",
-        "accessibility_text": "A table with the content of this graph is shown below."
-      },
-      "adoption_bar_chart": {
-        "title_single": "Average adoption of standards, %{list_information}, %{number_of_domains} domains.",
-        "title_multiple": "Comparison of adoption of standards between %{number_of_reports} reports.",
-        "yAxis_label": "Adoption",
-        "average": "Average",
-        "accessibility_text": "A table with the content of this graph is shown below."
-      },
-      "cumulative_adoption_bar_chart": {
-        "title": "Average adoption of standards over %{number_of_reports} reports.",
-        "yAxis_label": "Adoption",
-        "average": "Average",
-        "accessibility_text": "A table with the content of this graph is shown below."
-      }
-    }
+    "pct_error_in_test": "test error"
   },
   "nl": {
     "pct_ok": "geslaagd",
@@ -373,30 +361,7 @@ export default {
     "pct_high": "gezakt",
     "pct_not_applicable": "niet van toepassing",
     "pct_not_testable": "niet testbaar",
-    "pct_error_in_test": "testfout",
-    "charts": {
-      "adoption_timeline": {
-        "title": "Adoptie van standaarden over tijd.",
-        "month": "Maand",
-        "yAxis_label": "Gemiddelde internet.nl score",
-        "xAxis_label": "Datum",
-        "average_internet_nl_score": "Gemiddelde internet.nl score",
-        "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
-      },
-      "adoption_bar_chart": {
-        "title_single": "Adoptie van standaarden, %{list_information}, %{number_of_domains} domeinen.",
-        "title_multiple": "Vergelijking adoptie van standaarden tussen %{number_of_reports} rapporten.",
-        "yAxis_label": "Adoptiegraad",
-        "average": "Gemiddeld",
-        "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
-      },
-      "cumulative_adoption_bar_chart": {
-        "title": "Gemiddelde adoptie van standaarden van %{number_of_reports} rapporten.",
-        "yAxis_label": "Adoptiegraad",
-        "average": "Gemiddeld",
-        "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
-      }
-    }
+    "pct_error_in_test": "testfout"
   }
 }
 </i18n>

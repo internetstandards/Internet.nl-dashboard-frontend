@@ -59,17 +59,20 @@ export default {
           });
 
           // add the average of all these to the report, not as a line, but as an additional bar
-          if ((labels.length > 1 && this.show_dynamic_average) || this.only_show_dynamic_average) {
+          if ((labels.length > 1 && this.show_average) || this.only_show_dynamic_average) {
             // the extra fields are never in the first graph. If we recognize the first graph, then
             // deduct 1 axis.length
             if (['internet_nl_web_ipv6', 'internet_nl_web_dnssec', 'internet_nl_web_tls', 'internet_nl_web_appsecpriv',
               'internet_nl_mail_dashboard_ipv6', 'internet_nl_mail_dashboard_dnssec', 'internet_nl_mail_dashboard_auth',
               'internet_nl_mail_dashboard_tls'].includes(this.axis[0])) {
+
+              // todo: but only if one of the legacy fields is enabled... This is bug #280
+
               chartdata.push(Math.round((average / (this.axis.length - 1)) * 100) / 100);
             } else {
               chartdata.push(Math.round((average / this.axis.length) * 100) / 100);
             }
-            labels.push(this.$i18n.t(this.translation_key + '.average'));
+            labels.push(this.$i18n.t('average'));
             axis_names.push("Average");
           }
 
@@ -93,6 +96,35 @@ export default {
     renderTitle: function () {
       this.chart.options.title.text = this.title;
     },
+  },
+  computed: {
+    title: function () {
+      if (this.reports.length === 1)
+        return this.report_titles[0]
+
+      return this.report_titles.join(" vs ");
+
+    },
+
   }
+
 }
 </script>
+<i18n>
+{
+  "en": {
+    "title_single": "Average adoption of standards, %{list_information}, %{number_of_domains} domains.",
+    "title_multiple": "Comparison of adoption of standards between %{number_of_reports} reports.",
+    "yAxis_label": "Adoption",
+    "average": "Average",
+    "accessibility_text": "A table with the content of this graph is shown below."
+  },
+  "nl": {
+    "title_single": "Adoptie van standaarden, %{list_information}, %{number_of_domains} domeinen.",
+    "title_multiple": "Vergelijking adoptie van standaarden tussen %{number_of_reports} rapporten.",
+    "yAxis_label": "Adoptiegraad",
+    "average": "Gemiddeld",
+    "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
+  }
+}
+</i18n>

@@ -6,7 +6,6 @@
     <b-tabs content-class="mt-3">
       <b-tab :title="$t('graph')" active>
         <line-chart style="height:300px;"
-            :translation_key="'charts.adoption_timeline'"
             :chart_data="timeline_data"
             :highlight_report_ids="highlight_report_ids"
             :accessibility_text="$t('accessibility_text')"
