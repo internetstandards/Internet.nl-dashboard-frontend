@@ -1,3 +1,7 @@
+<style scoped>
+
+
+</style>
 <template>
   <div id="app">
     <div class="skiplink"><a href="#content">{{ $t('skiplink.gotocontents') }}</a></div>

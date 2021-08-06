@@ -196,81 +196,10 @@ header .wrap {
     overflow: hidden
 }
 
-#language-switch-header-container {
-    float: right;
-    margin-right: .25em
-}
-
-#language-switch-header-container.active {
-    width: 100%;
-    margin-top: .5em;
-    margin-bottom: .5em;
-    border-top: 1px solid #E2E2E2;
-    border-bottom: 1px solid #E2E2E2
-}
-
 .menu-with-js-actions.active #sitenav a {
     font-size: 125%
 }
 
-.language-switch-list li {
-    display: inline;
-    float: left;
-    margin-bottom: .5em;
-    text-align: right;
-    font-size: 80%;
-    margin: 0 0 0 1em
-}
-
-#language-switch-header-container.active li {
-    padding: .2em;
-    margin: .5em 3px .5em 3px
-}
-
-header .language-switch-list li a {
-    color: #575757;
-    text-decoration: none
-}
-
-header .language-switch-list li a:hover, header .language-switch-list li a:active, header .language-switch-list li a:focus {
-    text-decoration: underline
-}
-
-header .language-switch-list li button {
-    color: #000;
-    background-color: white;
-    text-decoration: none;
-    border: none;
-    border-radius: 0px;
-    margin: 0px;
-    padding: 0px;
-    font: inherit
-}
-
-header .language-switch-list li button {
-    text-transform: capitalize
-}
-
-header .language-switch-list li button:hover, header .language-switch-list li button:active, header .language-switch-list li button:focus {
-    text-decoration: underline
-}
-
-header .language-switch-list li button:hover {
-    cursor: pointer
-}
-
-header .language-switch-list li button:focus {
-    outline: 2px solid #14C9DF
-}
-
-header .language-switch-list li button.active-language {
-    color: #000;
-    text-decoration: underline
-}
-
-header .language-switch-list li button.active-language:hover, header .language-switch-list li button.active-language:active, header .language-switch-list li button.active-language:focus {
-    cursor: default
-}
 
 #menu-button {
     position: absolute;
@@ -421,10 +350,6 @@ h2:first-child {
     margin-bottom: .5em
 }
 
-.hall-of-fame h2:first-child {
-    margin-bottom: 1em
-}
-
 .faqs h2 {
     margin-top: .8em;
     margin-bottom: .5em
@@ -526,7 +451,7 @@ article img {
     margin-bottom: 0
 }
 
-aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, aside .further-testing li a, aside .further-testing li p, .block.hall-of-fame li {
+aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, aside .further-testing li a, aside .further-testing li p {
     list-style: none;
     clear: both;
     -ms-word-break: break-all;
@@ -537,10 +462,6 @@ aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, asid
     hyphens: auto
 }
 
-.block.hall-of-fame li {
-    list-style: url("/static/li-check-green.png");
-    list-style: url("/static/li-check-green.svg")
-}
 
 .block h3 a {
     color: #000000
@@ -1136,12 +1057,12 @@ footer ul li:last-child {
         border-color: #008297 transparent
     }
 
-    .home .block.news, .home .block.hall-of-fame {
+    .home .block.news, .home {
         position: relative;
         padding-bottom: 32px
     }
 
-    .home .block.news .read-more, .home .block.hall-of-fame .read-more {
+    .home .block.news .read-more, .home .read-more {
         position: absolute;
         bottom: 0;
         right: 0;
@@ -1189,11 +1110,6 @@ footer ul li:last-child {
         font-size: 100%
     }
 
-    .hall-of-fame main ul {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2
-    }
 
     .site-titel a {
         padding-bottom: .25em
@@ -1213,12 +1129,6 @@ footer ul li:last-child {
     header .wrap, footer .wrap {
         width: 1036px
     }
-
-    #language-switch-header-container {
-        padding: 0 .5em 0 0
-    }
-
-
 
     main .wrap {
         width: 64.750em;
@@ -1259,11 +1169,5 @@ footer ul li:last-child {
         margin-right: auto;
         padding-top: .5em;
         padding-bottom: .5em
-    }
-
-    .hall-of-fame main ul {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
-        column-count: 3
     }
 }

@@ -42,7 +42,8 @@ import {
     BootstrapVueIcons,
     InputGroupPlugin,
     NavbarPlugin,
-    NavPlugin
+    NavPlugin,
+
 } from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl} from 'date-fns/locale'

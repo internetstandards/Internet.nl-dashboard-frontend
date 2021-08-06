@@ -16,7 +16,7 @@
         <p>
           {{ $t('not_logged_in') }}<br>
           <span class="subtext">
-            {{ $t('secondfactor_message') }}:<a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
+            {{ $t('secondfactor_message') }}: <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
           </span>
         </p>
 
