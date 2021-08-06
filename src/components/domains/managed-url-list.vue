@@ -14,8 +14,7 @@ h2 {
                     <span role="img" v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')">⚠️</span>
                     <span role="img" :aria-label="$t('icon.list_closed')">📘</span> {{ list.name }}
                 </button>
-            </h2>
-            <h2>
+
                 <button v-if="is_opened" @click="close_list()" aria-expanded="true">
                     <span role="img" v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')">⚠️</span>
                     <span role="img" :aria-label="$t('icon.list_opened')">📖</span> {{ list.name }}

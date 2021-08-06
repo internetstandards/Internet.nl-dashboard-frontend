@@ -201,60 +201,9 @@ header .wrap {
 }
 
 
-#menu-button {
-    position: absolute;
-    right: .5em;
-    top: .5em;
-    border: 1px solid black;
-    border-radius: 2px;
-    background: white;
-    text-transform: uppercase;
-    padding: .5em;
-    font-size: 80%;
-    min-width: 40px
-}
-
-@media (max-width: 500px) {
-    #menu-button {
-        height: 36px;
-        width: 36px;
-        padding: 0
-    }
-
-    #menu-button i {
-        font-size: 3em;
-        line-height: .5;
-        height: 24px;
-        width: 36px
-    }
-
-    #menu-button b {
-        border: 0;
-        clip: rect(0, 0, 0, 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px
-    }
-}
-
 @media (min-width: 500px) {
     #masthead {
         width: calc(100% - 80px)
-    }
-
-    #menu-button {
-        height: 36px;
-        width: auto;
-        padding: .5em
-    }
-
-    #menu-button i {
-        float: left;
-        height: 16px;
-        width: 16px
     }
 }
 
@@ -405,7 +354,7 @@ article img {
 }
 
 .block button {
-    display: block;
+    
     margin: 0 auto .5em;
     background: #fff;
     border: solid .3em #ffab4c;
