@@ -94,7 +94,7 @@ export default {
       this.chart.update();
     },
     renderTitle: function () {
-      this.chart.options.title.text = this.title;
+      this.chart.options.plugins.title.text = this.title;
     },
   },
   computed: {
@@ -103,11 +103,8 @@ export default {
         return this.report_titles[0]
 
       return this.report_titles.join(" vs ");
-
     },
-
   }
-
 }
 </script>
 <i18n>

@@ -115,7 +115,7 @@ export default {
             this.chart.update();
         },
         renderTitle: function () {
-            this.chart.options.title.text = this.title;
+            this.chart.options.plugins.title.text = this.title;
         },
     },
   computed: {

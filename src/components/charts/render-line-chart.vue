@@ -5,7 +5,7 @@
       <p>{{ $t("accessibility_text") }}</p>
     </canvas>
     </div>
-    <button @click="download('png')">Download PNG</button> <button @click="download('jpg')">Download JPG</button>
+    <!-- <button @click="download('png')">Download PNG</button> <button @click="download('jpg')">Download JPG</button> -->
   </div>
 </template>
 
@@ -108,6 +108,9 @@ export default {
       this.chart.data.datasets = datasets;
 
       this.chart.update();
+    },
+    renderTitle: function () {
+      this.chart.options.plugins.title.text = this.$i18n.t('title');
     },
   }
 }
