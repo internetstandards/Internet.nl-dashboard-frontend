@@ -170,7 +170,6 @@ export default {
         })
       });
 
-      console.log(charts);
       // remove all charts that do not have any axis, as that would result in an empty chart.
       return charts.filter(chart => chart.axis.length > 0);
     },

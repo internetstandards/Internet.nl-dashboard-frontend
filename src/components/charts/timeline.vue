@@ -5,15 +5,18 @@
 
     <b-tabs content-class="mt-3">
       <b-tab :title="$t('graph')" active>
-        <line-chart
-            :chart_data="timeline_data"
+        <time-line-chart
+            :timeline_data="timeline_data"
             :highlight_report_ids="highlight_report_ids"
-            :accessibility_text="$t('accessibility_text')"
+            :i18n="$i18n"
+            @graph-data-updated="graph_data_to_table"
             :axis="['average_internet_nl_score']">
-        </line-chart>
+        </time-line-chart>
       </b-tab>
+
       <b-tab :title="$t('table')">
-        <b-table striped hover small :items="tabular_data" :fields="table_fields">
+        <download-data :data="data_from_graph" :fields="table_fields"></download-data>
+        <b-table striped hover small :items="data_from_graph" :fields="table_fields">
           <template #table-caption>{{ $t("title") }}</template>
           <template #cell(value)="data">
             {{ data.value }}%
@@ -26,13 +29,14 @@
 </template>
 
 <script>
-import LineChart from './../charts/render-line-chart'
+import TimeLineChart from './../charts/render-line-chart'
+import DownloadData from './../charts/DownloadData'
 // where do normal reports get theri data from? from a mixin? I mean? timeline graph is just 1 graph right?
 import http from "@/httpclient";
 
 export default {
   name: "timeline",
-  components: {LineChart},
+  components: {TimeLineChart, DownloadData},
 
   mounted() {
     this.get_timeline();
@@ -45,6 +49,8 @@ export default {
   data() {
     return {
       timeline_data: [],
+
+      data_from_graph: [],
 
       table_fields: [
         {key: 'series', label: this.$i18n.t("series"), sortable: true},
@@ -64,28 +70,30 @@ export default {
     }
   },
 
-  computed: {
-    tabular_data() {
-      let data = [];
-      this.timeline_data.forEach((series) => {
-        series.data.forEach((row) => {
-          data.push({
-            'series': series.name,
-            'report': row.report,
-            'date': this.humanize_date_date_only(row.date),
-            'value': row.average_internet_nl_score}
-            )
-        })
-      })
-      return data;
-    }
-  },
-
   methods: {
     get_timeline() {
       http.get(`/data/report/urllist_timeline_graph/${this.urllist_ids}/`).then(data => {
         this.timeline_data = data.data;
       });
+    },
+    graph_data_to_table(graph_data) {
+      // Prints the table from the chart, this is done to have any rules from the chart incorporated in the table.
+      // perhaps this is logically wrong and the data should be rendered here, but is the chart still reactive then?
+      if (!graph_data || graph_data.length === 0)
+        return
+
+      let data = [];
+      graph_data.forEach((series) => {
+        series.data.forEach((row) => {
+          data.push({
+            'series': series.label,
+            'report': row.report,
+            'date': this.humanize_date_date_only(row.x),
+            'value': row.y
+          })
+        })
+      });
+      this.data_from_graph = data;
     }
   }
 }
@@ -95,22 +103,19 @@ export default {
   "en": {
     "title": "Average internet.nl score over time.",
     "y_axis_label": "Average internet.nl score",
-    "x_axis_label": "Date",
+    "x_axis_label": "Month",
     "average_internet_nl_score": "Average internet.nl score",
-    "accessibility_text": "A table with the content of this graph is shown in the table.",
     "intro": "This graph compares the average internet.nl score over time.",
     "series": "Series",
     "report": "Report",
     "graph": "Graph",
     "table": "Table"
-
   },
   "nl": {
     "title": "Adoptie van standaarden over tijd.",
     "y_axis_label": "Gemiddelde internet.nl score",
-    "x_axis_label": "Datum",
+    "x_axis_label": "Maand",
     "average_internet_nl_score": "Gemiddelde internet.nl score",
-    "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt in de tabel getoond.",
     "intro": "Deze grafiek toont de gemiddelde internet.nl score over tijd.",
     "series": "Reeks",
     "report": "Rapport",

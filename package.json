@@ -11,6 +11,7 @@
     "rebuild": "npm run clean && npm install && npm run build"
   },
   "dependencies": {
+    "@vue/composition-api": "^1.0.5",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
@@ -24,6 +25,7 @@
     "matomo-tracker": "^2.2.4",
     "portal-vue": "^2.1.7",
     "vue": "^2.6.12",
+    "vue-chart-3": "^0.5.7",
     "vue-i18n": "^8.22.1",
     "vue-router": "^3.4.8",
     "vue-select": "^3.10.8",

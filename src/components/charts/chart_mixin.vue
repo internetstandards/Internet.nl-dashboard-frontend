@@ -22,8 +22,7 @@ import {
 
 Chart.register(LineController, LineElement, PointElement, LinearScale, Title, DoughnutController, ArcElement, Legend, CategoryScale, ChartDataLabels, BarController, BarElement, Tooltip, TimeScale);
 
-import 'chartjs-adapter-date-fns';
-import {nl} from 'date-fns/locale';
+
 
 // for field_name_to_category_names
 import report_mixin from "@/components/reports/report_mixin";
@@ -117,87 +116,7 @@ export default {
       }
       return true;
     },
-    configure_linechart() {
-      // Don't need to reconfigure for reuse.
-      if (this.chart !== undefined) {
-        return;
-      }
 
-      let context = this.$refs.canvas.getContext('2d');
-
-      this.chart = new Chart(context, {
-        type: 'line',
-        data: {
-          datasets: []
-        },
-        options: {
-          plugins: {
-            datalabels: {
-              color: '#262626',
-              display: true,
-              clamp: true, // always shows the number, also when the number 100%
-              anchor: 'end', // show the number at the top of the bar.
-              align: 'end', // shows the value outside of the bar,
-              // format as a percentage
-              formatter: function (value) {
-                if (value.is_selected) {
-                  return `#${value.report}\n${Math.round(value.y)}%`;
-                } else {
-                  // https://github.com/internetstandards/Internet.nl-dashboard/issues/37
-                  return Math.round(value.y) + '%';
-                }
-              }
-            },
-            tooltip: tooltip_configuration,
-            title: {
-              display: true,
-              text: this.$i18n.t('title')
-            },
-          },
-          responsive: true,
-          maintainAspectRatio: false,
-          hover: {
-            mode: 'index',
-            intersect: false
-          },
-          scales: {
-            x: {
-              adapters: {
-                locale: nl,
-                date: {
-                  locale: nl
-                }
-              },
-              type: 'time',
-              time: {
-                unit: 'month',
-                tooltipFormat: 'dd'
-              },
-              title: {
-                display: true,
-                text: this.$i18n.t('month'),
-              }
-            },
-            y: {
-              stacked: false,
-              min: 0,
-              max: 100,
-              ticks: {
-                padding: 20,
-                stepSize: 10,
-                callback: function (label) {
-                  return label + '%';
-                }
-              },
-              title: {
-                display: true,
-                text: this.$i18n.t('yAxis_label'),
-              },
-            }
-          }
-        }
-      });
-    },
     configure_barchart: function () {
 
       if (this.chart !== undefined) {
