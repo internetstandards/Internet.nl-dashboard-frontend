@@ -1,45 +1,37 @@
 <template>
   <div>
     <p>{{ $t("intro") }}</p>
-    <server-response :response="issue_filters_response"
-                     :message="$t(issue_filters_response.message)"></server-response>
+    <server-response :response="issue_filters_response" :message="$t(issue_filters_response.message)"></server-response>
 
     <div v-for="scan_form in scan_methods" :key="scan_form.name">
       <b-card no-body>
         <b-tabs pills card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
-          <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label"
-                 class="p-3">
+          <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label" class="p-3">
             <section class="test-header">
               <div class="test-title">
                 <h4>{{ category.label }}</h4>
-                <p>
-                                <span v-for="field in category.fields" :key="field.id">
-                                    <b-form-checkbox v-model="issue_filters[field.name].show_dynamic_average"
-                                                     @change="visible_metrics_see_if_category_is_relevant(category)"
-                                                     switch>
-                                        {{ $t("show_dynamic_average") }}
-                                    </b-form-checkbox>
-                                </span>
-                </p>
+
+                <span v-for="field in category.fields" :key="field.id">
+                  <b-form-checkbox v-model="issue_filters[field.name].show_dynamic_average"
+                                   @change="visible_metrics_see_if_category_is_relevant(category)" switch>
+                      {{ $t("show_dynamic_average") }}
+                  </b-form-checkbox>
+                </span>
+
               </div>
             </section>
             <section class="testresults">
-                        <span class="select-deselect-category">
-                            <a @click="check_fields(all_field_names_from_categories(category))"> {{ $t("check") }} </a>
-                            /
-                            <a @click="uncheck_fields(all_field_names_from_categories(category))">
-                                {{ $t("uncheck") }}
-                            </a>
-                        </span>
+              <span class="select-deselect-category">
+                  <a @click="check_fields(all_field_names_from_categories(category))"> {{ $t("check") }} </a>
+                  /
+                  <a @click="uncheck_fields(all_field_names_from_categories(category))">{{ $t("uncheck") }} </a>
+              </span>
 
               <div v-for="subcategory in category.categories" :key="subcategory.name">
                 <div class="test-subsection">{{ subcategory.label }}<br></div>
-                <div v-for="field in subcategory.fields" :key="field.name"
-                     class="testresult_without_icon">
+                <div v-for="field in subcategory.fields" :key="field.name" class="testresult_without_icon">
 
-                  <b-form-checkbox
-                      v-model="issue_filters[field.name].visible" :id="field.name + '_visible'"
-                      switch>
+                  <b-form-checkbox v-model="issue_filters[field.name].visible" :id="field.name + '_visible'" switch>
                     {{ $t(field.name) }}
                   </b-form-checkbox>
 
@@ -125,6 +117,10 @@ export default {
       * a lot of time of development while end users can still have an organization wide consistent experience
       * on what they are focussing on. Humans > tech.
       * */
+      this.automatically_set_category();
+      console.log(this.issue_filters['internet_nl_web_ipv6']['visible'])
+      this.automatically_set_category();
+      console.log(this.issue_filters['internet_nl_web_ipv6']['visible'])
       http.post(`/data/account/report_settings/save/`, {'filters': this.issue_filters}).then(server_response => {
         this.issue_filters_response = server_response.data;
         if (server_response.data.success) {
@@ -154,9 +150,9 @@ export default {
       for (let i = 0; i < fields.length; i++) {
 
         // alerting if fields are missing:
-        if (this.issue_filters[fields[i]] === undefined) {
-          // console.log(`Missing field ${fields[i]} in issue filters.`)
-        }
+        // if (this.issue_filters[fields[i]] === undefined) {
+        // console.log(`Missing field ${fields[i]} in issue filters.`)
+        // }
 
         if (this.issue_filters[fields[i]].visible) {
           // console.log(` ${fields[i]} is visible, so should the category.`)
@@ -165,7 +161,7 @@ export default {
         }
       }
 
-      // console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
+      console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
       this.issue_filters[category_name.key].visible = should_be_visible;
     },
     all_subcategory_fields_from_category(category_name) {
@@ -186,13 +182,7 @@ export default {
       });
       return fields;
     },
-  },
-  computed: mapState(['visible_metrics']),
-  watch: {
-    visible_metrics(new_value) {
-      this.issue_filters = new_value;
-    },
-    issue_filters() {
+    automatically_set_category(){
       /**
        * Using the 'switch' button has a side effect: the value is set _after_ the @change is performed.
        * Therefore there is no up to date data inside the data. What we will do is iterate over all fields
@@ -215,6 +205,17 @@ export default {
       categories.forEach((category) => {
         this.visible_metrics_see_if_category_is_relevant(category)
       });
+    }
+
+  },
+  computed: mapState(['visible_metrics']),
+  watch: {
+    visible_metrics(new_value) {
+      console.log('Visible metrics changed, saved to issue filters...')
+      this.issue_filters = new_value;
+    },
+    issue_filters() {
+      this.automatically_set_category()
     }
   }
 }

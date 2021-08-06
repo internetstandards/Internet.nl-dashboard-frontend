@@ -174,6 +174,7 @@ export default {
           all_possible_fields.forEach((field_name) => {
             this.upgrade_issue_filter_with_new_field(issue_filters, field_name);
           })
+          // console.log(issue_filters);
           this.$store.commit("set_visible_metrics", issue_filters);
         } else {
           // no issue filters at all, set it to the default:
@@ -186,6 +187,7 @@ export default {
     },
     upgrade_issue_filter_with_new_field: function (issue_filters, field_name) {
       if (!Object.keys(issue_filters).includes(field_name)) {
+        // console.log(`Field ${field_name} is not in the issue filters, setting the default value.`)
 
         // web and mail and default categories are always visible by default.: otherwise we'd never see any categories when this data is malformed.
         // in totally empty data, all fields are invisible, which is ok.

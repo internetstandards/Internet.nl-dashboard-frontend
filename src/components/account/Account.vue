@@ -18,12 +18,12 @@
 
         <b-tab>
           <span slot="title"> <scan_type_icon type="web"></scan_type_icon> {{$t('visible_metrics_mail')}}</span>
-          <VisibleMetrics report_type="web"/>
+          <VisibleMetrics report_type="web" :key="'a'"/>
         </b-tab>
 
         <b-tab>
           <span slot="title"> <scan_type_icon type="mail"></scan_type_icon> {{$t('visible_metrics_web')}}</span>
-          <VisibleMetrics report_type="mail"/>
+          <VisibleMetrics report_type="mail" :key="'b'"/>
         </b-tab>
 
       </b-tabs>

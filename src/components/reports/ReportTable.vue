@@ -373,8 +373,8 @@ div.rotate > span {
           <th style="width: 78px; min-width: 78px; border: 0; background-color: white;"
               class="sticky-header">
             <div class="rotate">
-                                    <span @click="sortBy('score')" class="arrow"
-                                          :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></span>
+              <span @click="sortBy('score')" class="arrow"
+                    :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></span>
               <span @click="sortBy('score')">{{ $t("score") }}</span>
             </div>
           </th>
@@ -393,8 +393,8 @@ div.rotate > span {
               <div style="border: 0; float: left; width: 100px"
                    v-for="category in relevant_categories_based_on_settings" :key="category">
                 <div class="rotate">
-                                            <span @click="sortBy(category)" class="arrow"
-                                                  :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></span>
+                  <span @click="sortBy(category)" class="arrow"
+                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></span>
                   <span @click="sortBy(category)">{{ $t("" + category) }}</span>
                 </div>
               </div>
@@ -409,8 +409,7 @@ div.rotate > span {
                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></div>
                   <div @click="sortBy(category)" style="display: inline-block;">
                     {{ $t("" + category) }}
-                    <div
-                        style="font-size: 0.7em; color: gray; margin-top: -3px; padding-left: 13px;"
+                    <div style="font-size: 0.7em; color: gray; margin-top: -3px; padding-left: 13px;"
                         v-html="category_from_field_name(category)"></div>
                   </div>
                 </div>
@@ -595,7 +594,7 @@ export default {
     this.select_category();
 
     if (this.reports[0] !== undefined) {
-        this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
+      this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
     }
   },
   methods: {
@@ -929,18 +928,8 @@ export default {
           });
         }
       });
-      // console.log("Prefered fields: " + preferred_fields)
-
-      // now determine for each field if they should be visible or not. Perhaps this should be in
-      // the new_categories
-      let returned_fields = [];
-      preferred_fields.forEach((preferred_field) => {
-        if (this.$store.state.visible_metrics[preferred_field].visible) {
-          returned_fields.push(preferred_field)
-        }
-      });
-      // console.log("Returned fields: " + returned_fields)
-      return returned_fields;
+      // console.log("Preferred fields: " + preferred_fields)
+      return preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
     },
   }
 }
