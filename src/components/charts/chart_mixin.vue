@@ -60,7 +60,6 @@ export default {
     axis: {type: Array, required: false},
     show_average: {type: Boolean, required: false},
     only_show_dynamic_average: {type: Boolean, required: false},
-    highlight_report_ids: {type: Array, required: false}
   },
   data: function () {
     return {
