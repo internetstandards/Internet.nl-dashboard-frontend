@@ -356,7 +356,7 @@ div.rotate > span {
     <a class="anchor" name="report"></a>
     <p>{{ $t("report.intro") }}</p>
 
-    <Differences_to_current_list :report_id="reports[0].id"></Differences_to_current_list>
+    <Differences_to_current_list :report_id="reports[0].id" v-if="load_comparison_with_current"></Differences_to_current_list>
 
     <collapse-panel :title='$t("icon_legend.title")' class="do-not-print">
       <div slot="content">
@@ -537,6 +537,11 @@ export default {
       type: Array,
       required: true
     },
+      load_comparison_with_current: {
+        type: Boolean,
+          default: true,
+          required: false
+      }
   },
   data: function () {
     return {
