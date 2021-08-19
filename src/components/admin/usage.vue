@@ -76,6 +76,7 @@
 <script>
 
 import stats_yearview from './usage_yearview'
+import http from "@/httpclient";
 
 export default {
     components: {
@@ -93,13 +94,9 @@ export default {
     methods: {
         load: function () {
             this.loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/data/usage/`, {credentials: 'include'})
-                .then(response => response.json()).then(data => {
+            http.get(`/data/usage/`).then(data => {
                 this.loading = false;
-                this.s = data;
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
-                this.loading = false;
+                this.s = data.data;
             });
         },
     }

@@ -1,6 +1,9 @@
 <template>
     <div>
         <p>{{ $t("intro") }}</p>
+        <server-response :response="issue_filters_response"
+                         :message="$t(issue_filters_response.message)"></server-response>
+
         <div v-for="scan_form in scan_methods" :key="scan_form.name">
             <b-card no-body>
                 <b-tabs pills card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
@@ -9,34 +12,30 @@
                         <section class="test-header">
                             <div class="test-title">
                                 <h4>{{ category.label }}</h4>
-                                <p>
+
                                 <span v-for="field in category.fields" :key="field.id">
-                                    <b-form-checkbox v-model="issue_filters[field.name].show_dynamic_average"
-                                                     @change="visible_metrics_see_if_category_is_relevant(category)"
-                                                     switch>
-                                        {{ $t("show_dynamic_average") }}
-                                    </b-form-checkbox>
-                                </span>
-                                </p>
+                  <b-form-checkbox v-model="issue_filters[field.name].show_dynamic_average"
+                                   @change="visible_metrics_see_if_category_is_relevant(category)" switch>
+                      {{ $t("show_dynamic_average") }}
+                  </b-form-checkbox>
+                </span>
+
                             </div>
                         </section>
                         <section class="testresults">
-                        <span class="select-deselect-category">
-                            <a @click="check_fields(all_field_names_from_categories(category))"> {{ $t("check") }} </a>
-                            /
-                            <a @click="uncheck_fields(all_field_names_from_categories(category))">
-                                {{ $t("uncheck") }}
-                            </a>
-                        </span>
+              <span class="select-deselect-category">
+                  <a @click="check_fields(all_field_names_from_categories(category))"> {{ $t("check") }} </a>
+                  /
+                  <a @click="uncheck_fields(all_field_names_from_categories(category))">{{ $t("uncheck") }} </a>
+              </span>
 
                             <div v-for="subcategory in category.categories" :key="subcategory.name">
                                 <div class="test-subsection">{{ subcategory.label }}<br></div>
                                 <div v-for="field in subcategory.fields" :key="field.name"
                                      class="testresult_without_icon">
 
-                                    <b-form-checkbox
-                                        v-model="issue_filters[field.name].visible" :id="field.name + '_visible'"
-                                        switch>
+                                    <b-form-checkbox v-model="issue_filters[field.name].visible"
+                                                     :id="field.name + '_visible'" switch>
                                         {{ $t(field.name) }}
                                     </b-form-checkbox>
 
@@ -62,25 +61,22 @@
         <button @click="reset_issue_filters()">{{ $t("buttons.reset") }}</button> &nbsp;
         <button @click="save_visible_metrics()">{{ $t("buttons.save") }}</button>
         <br><br>
-        <server-response :response="issue_filters_response"
-                         :message="$t(issue_filters_response.message)"></server-response>
-
     </div>
 </template>
 
 <script>
 import field_translations from './../field_translations'
 import {mapState} from 'vuex'
+import http from "@/httpclient";
+import report_mixin from "@/components/reports/report_mixin"
 
 export default {
+    mixins: [report_mixin],
     i18n: {
         sharedMessages: field_translations,
     },
     name: "VisibleMetrics",
     props: {
-        scan_methods: {
-            type: Array
-        },
         report_type: {
             type: String,
             default: "web",
@@ -97,14 +93,13 @@ export default {
     },
     methods: {
         reset_issue_filters: function () {
-            fetch(`${this.$store.state.dashboard_endpoint}/data/account/report_settings/get/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-                if (!this.isEmptyObject(data)) {
-                    this.issue_filters = data.data;
-                    this.issue_filters_response = data;
+            http.get(`/data/account/report_settings/get/`).then(data => {
+                if (!this.isEmptyObject(data.data)) {
+                    this.issue_filters = data.data.data;
+                    this.issue_filters_response = data.data;
                 }
             });
-            this.load_issue_filters();
-
+            this.load_visible_metrics();
         },
 
         all_field_names_from_categories(categories) {
@@ -117,7 +112,7 @@ export default {
             return fields;
         },
 
-        save_visible_metrics: function () {
+        save_visible_metrics() {
             /*
             * This overrides the account level issue filters. Filters are saved per account and this is done by
             * design. This prevents the 'having to reset for each report or for each user' dilemma, which results
@@ -126,28 +121,28 @@ export default {
             * a lot of time of development while end users can still have an organization wide consistent experience
             * on what they are focussing on. Humans > tech.
             * */
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/account/report_settings/save/`, {'filters': this.issue_filters}, (server_response) => {
-                    this.issue_filters_response = server_response;
-                    if (server_response.success) {
-                        // load the metrics into the application
-                        this.load_visible_metrics();
-                    }
+            this.automatically_set_category();
+
+            http.post(`/data/account/report_settings/save/`, {'filters': this.issue_filters}).then(server_response => {
+                this.issue_filters_response = server_response.data;
+                if (server_response.data.success) {
+                    // load the metrics into the application
+                    this.load_visible_metrics();
                 }
-            );
+            });
         },
-        check_fields: function (list_of_fields) {
+        check_fields(list_of_fields) {
             list_of_fields.forEach((field) => {
                 this.issue_filters[field].visible = true;
             })
         },
 
-        uncheck_fields: function (list_of_fields) {
+        uncheck_fields(list_of_fields) {
             list_of_fields.forEach((field) => {
                 this.issue_filters[field].visible = false;
             })
         },
-        visible_metrics_see_if_category_is_relevant: function (category_name) {
+        visible_metrics_see_if_category_is_relevant(category_name) {
             // if all fields in the category are deselected, deselect the category, otherwise, select it.
             // console.log(category_name);
 
@@ -157,9 +152,9 @@ export default {
             for (let i = 0; i < fields.length; i++) {
 
                 // alerting if fields are missing:
-                if (this.issue_filters[fields[i]] === undefined) {
-                    // console.log(`Missing field ${fields[i]} in issue filters.`)
-                }
+                // if (this.issue_filters[fields[i]] === undefined) {
+                // console.log(`Missing field ${fields[i]} in issue filters.`)
+                // }
 
                 if (this.issue_filters[fields[i]].visible) {
                     // console.log(` ${fields[i]} is visible, so should the category.`)
@@ -168,7 +163,7 @@ export default {
                 }
             }
 
-            // console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
+            console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
             this.issue_filters[category_name.key].visible = should_be_visible;
         },
         all_subcategory_fields_from_category(category_name) {
@@ -189,13 +184,7 @@ export default {
             });
             return fields;
         },
-    },
-    computed: mapState(['visible_metrics']),
-    watch: {
-        visible_metrics: function (new_value) {
-            this.issue_filters = new_value;
-        },
-        issue_filters: function () {
+        automatically_set_category() {
             /**
              * Using the 'switch' button has a side effect: the value is set _after_ the @change is performed.
              * Therefore there is no up to date data inside the data. What we will do is iterate over all fields
@@ -203,21 +192,45 @@ export default {
              * go over the scan methods object. This will bite if there is more demand for doing things dynamically.
              * */
 
-            const categories = [
-                {key: 'internet_nl_web_ipv6'},
-                {key: 'internet_nl_web_dnssec'},
-                {key: 'internet_nl_web_tls'},
-                {key: 'internet_nl_web_appsecpriv'},
-                {key: 'web_legacy'},
-                {key: 'internet_nl_mail_dashboard_ipv6'},
-                {key: 'internet_nl_mail_dashboard_dnssec'},
-                {key: 'internet_nl_mail_dashboard_auth'},
-                {key: 'internet_nl_mail_dashboard_tls'},
-                {key: 'mail_legacy'}
-            ];
+            this.debug_state("automatically_set_category")
+            let categories = []
+            if (this.report_type === 'web'){
+                categories = [
+                    {key: 'internet_nl_web_ipv6'},
+                    {key: 'internet_nl_web_dnssec'},
+                    {key: 'internet_nl_web_tls'},
+                    {key: 'internet_nl_web_appsecpriv'},
+                    {key: 'web_legacy'},
+                ]
+            } else {
+                categories = [
+                    {key: 'internet_nl_mail_dashboard_ipv6'},
+                    {key: 'internet_nl_mail_dashboard_dnssec'},
+                    {key: 'internet_nl_mail_dashboard_auth'},
+                    {key: 'internet_nl_mail_dashboard_tls'},
+                    {key: 'mail_legacy'}
+                ];
+            }
             categories.forEach((category) => {
                 this.visible_metrics_see_if_category_is_relevant(category)
             });
+
+        },
+        debug_state(where) {
+            console.log(where)
+            console.log(this.issue_filters['internet_nl_mail_starttls_tls_available']['visible'])
+            console.log(this.issue_filters['internet_nl_web_https_tls_version']['visible'])
+        }
+    },
+    computed: mapState(['visible_metrics']),
+    watch: {
+        visible_metrics(new_value) {
+            console.log('Visible metrics changed, saved to issue filters...')
+            this.issue_filters = new_value;
+            this.debug_state("watch")
+        },
+        issue_filters() {
+            this.automatically_set_category()
         }
     }
 }

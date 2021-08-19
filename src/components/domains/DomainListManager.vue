@@ -151,6 +151,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 <script>
 import managed_url_list from './managed-url-list.vue'
 import sharedMessages from './../translations/dashboard.js'
+import http from "@/httpclient";
 
 export default {
     components: {
@@ -191,14 +192,10 @@ export default {
         },
         get_lists: function () {
             this.loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/data/urllists/get/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-
-                this.lists = data['lists'];
-                this.maximum_domains_per_list = data['maximum_domains_per_list'];
+            http.get('/data/urllists/get/').then(data => {
+                this.lists = data.data['lists'];
+                this.maximum_domains_per_list = data.data['maximum_domains_per_list'];
                 this.loading = false;
-
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
             });
         },
         reset_add_new_form: function () {
@@ -210,24 +207,23 @@ export default {
             this.add_new_server_response = {};
         },
         create_list: function () {
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/urllist/create_list/`, this.add_new_new_list, (server_response) => {
-                    this.add_new_server_response = server_response;
-                    // if we get data back, the addition was succesful.
-                    if (!this.isEmptyObject(this.add_new_server_response.data)) {
+            http.post(`/data/urllist/create_list/`, this.add_new_new_list).then(server_response => {
+                this.add_new_server_response = server_response.data;
+                // if we get data back, the addition was succesful.
+                if (!this.isEmptyObject(this.add_new_server_response.data)) {
 
-                        // The managed url list has a property and internal list object. This internal list object is
-                        // updated using a watch. This pattern is required to retain reactivity of the 'lists' object
-                        // in this manager.
+                    // The managed url list has a property and internal list object. This internal list object is
+                    // updated using a watch. This pattern is required to retain reactivity of the 'lists' object
+                    // in this manager.
 
-                        // If we would not do this, it's not possible to add to the top of the list, as the list is
-                        // not truely reactive. You could then only add to the bottom of the list. Otherwise the last
-                        // item of the lists was cloned.
-                        // Doing it properly retains reactivity such as unshifting and reversing the list.
-                        this.lists.unshift(this.add_new_server_response.data);
-                        this.$bvModal.hide('show_add_new')
-                    }
-                });
+                    // If we would not do this, it's not possible to add to the top of the list, as the list is
+                    // not truely reactive. You could then only add to the bottom of the list. Otherwise the last
+                    // item of the lists was cloned.
+                    // Doing it properly retains reactivity such as unshifting and reversing the list.
+                    this.lists.unshift(this.add_new_server_response.data);
+                    this.$bvModal.hide('show_add_new')
+                }
+            });
         }
     },
     watch: {

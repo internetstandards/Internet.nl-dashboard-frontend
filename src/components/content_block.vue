@@ -1,7 +1,6 @@
 <style>
 
 button {
-    display: block;
     margin: 0 auto .5em;
     background: #fff;
     border: solid .3em #ffab4c;

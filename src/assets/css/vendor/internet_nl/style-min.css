@@ -14,7 +14,7 @@
     font-style: normal
 }
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -23,7 +23,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, section {
     display: block
 }
 
@@ -165,10 +165,6 @@ main .wrap {
     margin-right: 0em
 }
 
-nav ul li {
-    display: inline-block;
-    padding: .2em
-}
 
 header .wrap {
     overflow: hidden
@@ -200,136 +196,14 @@ header .wrap {
     overflow: hidden
 }
 
-#language-switch-header-container {
-    float: right;
-    margin-right: .25em
-}
-
-#language-switch-header-container.active {
-    width: 100%;
-    margin-top: .5em;
-    margin-bottom: .5em;
-    border-top: 1px solid #E2E2E2;
-    border-bottom: 1px solid #E2E2E2
-}
-
 .menu-with-js-actions.active #sitenav a {
     font-size: 125%
 }
 
-.language-switch-list li {
-    display: inline;
-    float: left;
-    margin-bottom: .5em;
-    text-align: right;
-    font-size: 80%;
-    margin: 0 0 0 1em
-}
-
-#language-switch-header-container.active li {
-    padding: .2em;
-    margin: .5em 3px .5em 3px
-}
-
-header .language-switch-list li a {
-    color: #575757;
-    text-decoration: none
-}
-
-header .language-switch-list li a:hover, header .language-switch-list li a:active, header .language-switch-list li a:focus {
-    text-decoration: underline
-}
-
-header .language-switch-list li button {
-    color: #000;
-    background-color: white;
-    text-decoration: none;
-    border: none;
-    border-radius: 0px;
-    margin: 0px;
-    padding: 0px;
-    font: inherit
-}
-
-header .language-switch-list li button {
-    text-transform: capitalize
-}
-
-header .language-switch-list li button:hover, header .language-switch-list li button:active, header .language-switch-list li button:focus {
-    text-decoration: underline
-}
-
-header .language-switch-list li button:hover {
-    cursor: pointer
-}
-
-header .language-switch-list li button:focus {
-    outline: 2px solid #14C9DF
-}
-
-header .language-switch-list li button.active-language {
-    color: #000;
-    text-decoration: underline
-}
-
-header .language-switch-list li button.active-language:hover, header .language-switch-list li button.active-language:active, header .language-switch-list li button.active-language:focus {
-    cursor: default
-}
-
-#menu-button {
-    position: absolute;
-    right: .5em;
-    top: .5em;
-    border: 1px solid black;
-    border-radius: 2px;
-    background: white;
-    text-transform: uppercase;
-    padding: .5em;
-    font-size: 80%;
-    min-width: 40px
-}
-
-@media (max-width: 500px) {
-    #menu-button {
-        height: 36px;
-        width: 36px;
-        padding: 0
-    }
-
-    #menu-button i {
-        font-size: 3em;
-        line-height: .5;
-        height: 24px;
-        width: 36px
-    }
-
-    #menu-button b {
-        border: 0;
-        clip: rect(0, 0, 0, 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px
-    }
-}
 
 @media (min-width: 500px) {
     #masthead {
         width: calc(100% - 80px)
-    }
-
-    #menu-button {
-        height: 36px;
-        width: auto;
-        padding: .5em
-    }
-
-    #menu-button i {
-        float: left;
-        height: 16px;
-        width: 16px
     }
 }
 
@@ -344,46 +218,6 @@ header .language-switch-list li button.active-language:hover, header .language-s
         min-height: 65px;
         padding-left: 75px
     }
-}
-
-header nav {
-    overflow: hidden;
-    display: block;
-    float: none;
-    clear: both
-}
-
-header nav li {
-    font-size: .8em;
-    border-bottom: 3px solid white
-}
-
-header nav a {
-    color: #000;
-    text-decoration: none;
-    margin: 3px;
-    display: block
-}
-
-header nav a:hover, header nav a:active, header nav a:focus {
-    text-decoration: underline
-}
-
-header nav li.current {
-    font-weight: bold;
-    border-color: #ffab4c
-}
-
-header nav li.current a {
-    margin: 0
-}
-
-nav[aria-hidden=true] {
-    display: none
-}
-
-nav[aria-hidden=false] {
-    display: block
 }
 
 .introwrap {
@@ -445,10 +279,6 @@ aside .block {
     color: #ffffff
 }
 
-main ul li, main ol li {
-    margin-bottom: .3em
-}
-
 main ul, main ol {
     margin-top: .3em
 }
@@ -467,10 +297,6 @@ h2 {
 h2:first-child {
     margin-top: .5em;
     margin-bottom: .5em
-}
-
-.hall-of-fame h2:first-child {
-    margin-bottom: 1em
 }
 
 .faqs h2 {
@@ -528,7 +354,7 @@ article img {
 }
 
 .block button {
-    display: block;
+    
     margin: 0 auto .5em;
     background: #fff;
     border: solid .3em #ffab4c;
@@ -574,7 +400,7 @@ article img {
     margin-bottom: 0
 }
 
-aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, aside .further-testing li a, aside .further-testing li p, .block.hall-of-fame li {
+aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, aside .further-testing li a, aside .further-testing li p {
     list-style: none;
     clear: both;
     -ms-word-break: break-all;
@@ -585,10 +411,6 @@ aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, asid
     hyphens: auto
 }
 
-.block.hall-of-fame li {
-    list-style: url("/static/li-check-green.png");
-    list-style: url("/static/li-check-green.svg")
-}
 
 .block h3 a {
     color: #000000
@@ -1152,10 +974,6 @@ footer ul li:last-child {
         line-height: 1.5
     }
 
-    header nav {
-        float: right;
-        clear: right
-    }
 
     footer ul li {
         display: inline-block;
@@ -1188,12 +1006,12 @@ footer ul li:last-child {
         border-color: #008297 transparent
     }
 
-    .home .block.news, .home .block.hall-of-fame {
+    .home .block.news, .home {
         position: relative;
         padding-bottom: 32px
     }
 
-    .home .block.news .read-more, .home .block.hall-of-fame .read-more {
+    .home .block.news .read-more, .home .read-more {
         position: absolute;
         bottom: 0;
         right: 0;
@@ -1236,19 +1054,11 @@ footer ul li:last-child {
         padding-bottom: 0
     }
 
-    header nav {
-        margin-top: 10px
-    }
 
     table th, table td {
         font-size: 100%
     }
 
-    .hall-of-fame main ul {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2
-    }
 
     .site-titel a {
         padding-bottom: .25em
@@ -1267,16 +1077,6 @@ footer ul li:last-child {
 
     header .wrap, footer .wrap {
         width: 1036px
-    }
-
-    #language-switch-header-container {
-        padding: 0 .5em 0 0
-    }
-
-    nav ul li {
-        padding: .5em .2em .2em .2em;
-        margin-left: .3em;
-        font-size: 1em
     }
 
     main .wrap {
@@ -1318,11 +1118,5 @@ footer ul li:last-child {
         margin-right: auto;
         padding-top: .5em;
         padding-bottom: .5em
-    }
-
-    .hall-of-fame main ul {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
-        column-count: 3
     }
 }

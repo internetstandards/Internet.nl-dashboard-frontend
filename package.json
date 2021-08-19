@@ -11,10 +11,13 @@
     "rebuild": "npm run clean && npm install && npm run build"
   },
   "dependencies": {
+    "@vue/composition-api": "^1.0.5",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
-    "chart.js": "^2.9.4",
-    "chartjs-plugin-datalabels": "^0.7.0",
+    "chart.js": "^3.5.0",
+    "chartjs-adapter-date-fns": "^2.0.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
     "core-js": "^3.6.5",
     "date-fns": "^2.16.1",
     "debounce": "^1.2.0",
@@ -22,6 +25,7 @@
     "matomo-tracker": "^2.2.4",
     "portal-vue": "^2.1.7",
     "vue": "^2.6.12",
+    "vue-chart-3": "^0.5.7",
     "vue-i18n": "^8.22.1",
     "vue-router": "^3.4.8",
     "vue-select": "^3.10.8",
@@ -32,14 +36,13 @@
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.5.0",
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-eslint": "^3.1.1",
+    "@vue/cli-service": "^4.5.13",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
-    "vue-loader": "^15.9.4",
     "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {

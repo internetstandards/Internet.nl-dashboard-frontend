@@ -1,6 +1,3 @@
-<style scoped>
-
-</style>
 <template>
     <b-modal :visible="visible" @hidden="stop()" header-bg-variant="info"
              header-text-variant="light" no-fade scrollable>
@@ -47,6 +44,8 @@
 
 
 <script>
+import http from "@/httpclient";
+
 export default {
     name: 'stop_scan',
 
@@ -73,13 +72,11 @@ export default {
             this.$emit('cancel')
         },
         confirm_stop_scan: function () {
-            this.asynchronous_json_post(
-                `${this.$store.state.dashboard_endpoint}/data/scan/cancel/`, {'id': this.scan.id}, (response) => {
-                    if (response.success) {
-                        this.$emit('scan-stopped', this.scan.id)
-                    }
+            http.post('/data/scan/cancel/', {'id': this.scan.id}).then(response => {
+                if (response.data.success) {
+                    this.$emit('scan-stopped', this.scan.id)
                 }
-            );
+            });
         },
     }
 }

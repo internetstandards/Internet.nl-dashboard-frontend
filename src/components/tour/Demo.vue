@@ -26,7 +26,7 @@
         <content-block>
             <h1>{{ $t("title") }}</h1>
             <p v-html="$t('introduction')"></p>
-            <p>{{ $t("contact_information") }}<a href='mailto:vraag@internet.nl@subject=dashboard%20access%20request'>vraag@internet.nl</a></p>
+            <p v-html='$t("contact_information")'></p>
         </content-block>
 
         <content-block>
@@ -34,9 +34,11 @@
             <p>{{ $t("feature.create_list.introduction") }}</p>
 
             <figure>
-              <img src="/static/images/demo/domain_list.png" class="scaled" alt="example list">
-              <figcaption>{{ $t("feature.create_list.caption") }}</figcaption>
-            </figure>
+            <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/domain_list.png" alt="example list">
+
+            </b-img-lazy>
+            <figcaption>{{ $t("feature.create_list.caption") }}</figcaption>
+              </figure>
         </content-block>
 
         <content-block>
@@ -47,13 +49,13 @@
                 <tr>
                     <td style="vertical-align: top; text-align: left">
                         <figure>
-                          <img src="/static/images/demo/text_upload.png" class="scaled" alt="example list">
+                          <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/text_upload.png" class="scaled" alt="Text upload"></b-img-lazy>
                           <figcaption>{{ $t("feature.create_list.text_upload_caption") }}</figcaption>
                         </figure>
                     </td>
                     <td style="vertical-align: top; text-align: left">
                         <figure>
-                          <img src="/static/images/demo/spreadsheet_upload.png" class="scaled" alt="example list">
+                          <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/spreadsheet_upload.png" class="scaled" alt="example list"></b-img-lazy>
                           <figcaption>{{ $t("feature.create_list.spreadsheet_upload_caption") }}</figcaption>
                         </figure>
                     </td>
@@ -66,7 +68,7 @@
             <p>{{ $t("feature.scan_monitor.introduction") }}</p>
 
             <figure>
-              <img src="/static/images/demo/scan_progress.png" class="scaled" alt="example list">
+              <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/scan_progress.png" class="scaled" alt="example list"></b-img-lazy>
               <figcaption>{{ $t("feature.scan_monitor.caption") }}</figcaption>
             </figure>
         </content-block>
@@ -77,7 +79,7 @@
 
             <p>{{ $t("feature.reporting.configuration") }}</p>
             <figure>
-              <img src="/static/images/demo/report_configuration.png" class="scaled" alt="example list">
+              <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/report_configuration.png" class="scaled" alt="example list"></b-img-lazy>
               <figcaption>{{ $t("feature.reporting.caption_configuration") }}</figcaption>
             </figure>
         </content-block>
@@ -86,7 +88,7 @@
             <h2>{{ $t("feature.timeline.title") }}</h2>
             <p>{{ $t("feature.timeline.introduction") }}</p>
             <figure>
-              <img src="/static/images/demo/graph_timeline.png" class="scaled" alt="example list">
+              <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/graph_timeline.png" class="scaled" alt="example list"></b-img-lazy>
               <figcaption>{{ $t("feature.timeline.caption") }}</figcaption>
             </figure>
         </content-block>
@@ -95,7 +97,7 @@
             <h2>{{ $t("feature.bar_charts.title") }}</h2>
             <p>{{ $t("feature.bar_charts.introduction") }}</p>
             <figure>
-              <img src="/static/images/demo/bar_chart.png" class="scaled" alt="example list">
+              <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/bar_chart.png" class="scaled" alt="example list"></b-img-lazy>
               <figcaption>{{ $t("feature.bar_charts.caption") }}</figcaption>
             </figure>
         </content-block>
@@ -104,7 +106,7 @@
             <h2>{{ $t("feature.table.title") }}</h2>
             <p>{{ $t("feature.table.introduction") }}</p>
             <figure>
-              <img src="/static/images/demo/result_table.png" class="scaled" alt="example list">
+              <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/result_table.png" class="scaled" alt="example list"></b-img-lazy>
               <figcaption>{{ $t("feature.table.caption") }}</figcaption>
             </figure>
         </content-block>
@@ -113,7 +115,7 @@
             <h2>{{ $t("feature.spreadsheet.title") }}</h2>
             <p>{{ $t("feature.spreadsheet.introduction") }}</p>
             <figure>
-              <img src="/static/images/demo/spreadsheet.png" class="scaled" alt="example list">
+              <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/spreadsheet.png" class="scaled" alt="example list"></b-img-lazy>
               <figcaption>{{ $t("feature.spreadsheet.caption") }}</figcaption>
             </figure>
         </content-block>
@@ -135,7 +137,7 @@ export default {
     "en": {
         "title": "Internet.nl Dashboard Tour",
         "introduction": "The internet.nl allows bulk scans and reporting up to thousands of domains. Scan for IPv6, TLS, DMARC, SPF, DANE, DKIM, DNSSEC, HTTP Headers and more. Below is an overview of features included in the dashboard:",
-        "contact_information": "To use the dashboard on internet.nl, contact: ",
+        "contact_information": "To use the dashboard on internet.nl, contact: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
         "feature": {
             "create_list": {
                 "title": "Bulk domain scans for web and mail",

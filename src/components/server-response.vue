@@ -23,7 +23,7 @@ p {
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
-            <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }} ({{ time_ago }}).</small></span>
+            <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago"> ({{ time_ago }})</span>.</small></span>
         </b-alert>
     </div>
 </template>
@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         update: function () {
-            if (this.response !== undefined) {
+            if (this.response !== undefined && this.response.timestamp !== undefined) {
                 this.time_ago = this.humanize_relative_date(this.response.timestamp)
             }
         }

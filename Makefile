@@ -18,7 +18,7 @@ $(vue-cli):
 	npm install
 vue-cli: | $(vue-cli)
 
-run-gui-development: vue-cli ## only run the gui
+run: vue-cli ## only run the gui
 	# the extra -- is because of hell and fail. https://github.com/vuejs/vue-cli/issues/1528
 	npm run serve -- --mode development
 

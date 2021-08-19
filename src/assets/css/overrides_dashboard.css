@@ -3,13 +3,6 @@ This CSS file has some fixes for standard components. These create their own HTM
 This is a quick workaround to make sure the components look better. The next step might be templating.
 */
 
-button {
-    display: inline !important;
-}
-
-th {
-    border-bottom: 0 !important;
-}
 
 small {
     font-size: 0.8em;
@@ -73,7 +66,6 @@ label {
 
 
 .defaultbutton {
-    display: block;
     margin: 0 auto .5em;
     background: #fff;
     border: solid .3em #ffab4c;
@@ -97,7 +89,6 @@ label {
 }
 
 .altbutton {
-    display: block;
     margin: 0 auto .5em;
     background: #fff;
     border: solid .3em #878f96;
@@ -118,4 +109,8 @@ label {
 
 .altbutton button:focus {
     outline: none
+}
+
+button:focus  {
+    text-decoration: underline;
 }

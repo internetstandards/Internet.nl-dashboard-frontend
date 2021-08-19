@@ -14,8 +14,7 @@ h2 {
                     <span role="img" v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')">⚠️</span>
                     <span role="img" :aria-label="$t('icon.list_closed')">📘</span> {{ list.name }}
                 </button>
-            </h2>
-            <h2>
+
                 <button v-if="is_opened" @click="close_list()" aria-expanded="true">
                     <span role="img" v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')">⚠️</span>
                     <span role="img" :aria-label="$t('icon.list_opened')">📖</span> {{ list.name }}
@@ -39,7 +38,7 @@ h2 {
                                 :title='$t("button.scan_now_scanning")'>
                             <probe /> {{ $t("button.scan_now_scanning") }}
                         </button>
-                    </template> &nbsp;
+                    </template>
                     <button v-else disabled="disabled" :title='$t("button.scanning_disabled")'>
                         <span role="img" :aria-label="$t('icon.scan')">🔬</span> {{ $t("button.scanning_disabled") }}
                     </button> &nbsp;
@@ -112,6 +111,7 @@ import AddDomains from './list/add domains'
 import Configure from './list/configure'
 import About from './list/about-this-list'
 import EditDomain from './domain/edit'
+import http from "@/httpclient";
 
 export default {
     components: {
@@ -211,23 +211,19 @@ export default {
         },
         get_urls: function () {
             this.loading = true;
-            fetch(`${this.$store.state.dashboard_endpoint}/data/urllist_content/get/${this.list.id}/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-                this.urls = data.urls;
+            http.get(`/data/urllist_content/get/${this.list.id}/`).then(data => {
+                this.urls = data.data.urls;
                 this.loading = false;
                 this.update_list_warnings();
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
             });
         },
         // update the list with the most recent data regarding reports and scanning, not intruding on the UI experience
         // this can be autorefreshed to show the most current scanning and report information
         get_scan_status_of_list: function () {
-            fetch(`${this.$store.state.dashboard_endpoint}/data/urllist/get_scan_status_of_list/${this.list.id}/`, {credentials: 'include'}).then(response => response.json()).then(data => {
-                this.list['last_report_id'] = data['last_report_id'];
-                this.list['scan_now_available'] = data['scan_now_available'];
-                this.list['last_report_date'] = data['last_report_date'];
-            }).catch((fail) => {
-                console.log('A loading error occurred: ' + fail);
+            http.get(`/data/urllist/get_scan_status_of_list/${this.list.id}/`).then(data => {
+                this.list['last_report_id'] = data.data['last_report_id'];
+                this.list['scan_now_available'] = data.data['scan_now_available'];
+                this.list['last_report_date'] = data.data['last_report_date'];
             });
         },
 
