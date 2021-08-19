@@ -102,8 +102,6 @@ export default {
 
   mounted() {
     this.get_recent_reports();
-
-    // todo: reflect content based on url values.
   },
 
   methods: {
@@ -114,22 +112,40 @@ export default {
         let data = response.data;
         data.forEach(o => {o.label = `#${o.id} - ${o.list_name} - type: ${o.type} - from: ${o.at_when.human_date()}`});
         this.available_recent_reports = this.filtered_recent_reports = data;
+        this.match_with_environment(this.$router.history.current);
         this.loading = false;
-
-        // See if we can reflect the select box based on the parameters in the url:
-
       });
     },
 
+      match_with_environment(to){
+        let request_parameters = []
+
+      if (to.params.report !== undefined)
+          request_parameters.push(parseInt(to.params.report));
+
+      if (to.params.compare_with !== undefined)
+          request_parameters.push(parseInt(to.params.compare_with));
+
+      // do not update anything if there is nothing to update, otherwise selection gets lost with navigation on the site
+          if (request_parameters.length === 0) {
+              return
+          }
+
+       this.selected_reports = this.available_recent_reports.filter(item => request_parameters.includes(item.id))
+      }
   },
 
   watch: {
+
+    $route(to) {
+      this.match_with_environment(to)
+    },
+
     selected_reports(dropdown_items) {
 
       // Nothing in the list, for example when the cross hair was used or all items where deleted: reset this object
       if (dropdown_items[0] === undefined) {
         this.filtered_recent_reports = this.available_recent_reports;
-        this.loading = false;
         return;
       }
 
@@ -137,15 +153,11 @@ export default {
       this.filtered_recent_reports = this.available_recent_reports.filter(item => item.type === dropdown_items[0].type);
 
       // create a list of id's, these id's are shared in the app for other controls.
-      this.selected_report_ids = [];
-      for (let i = 0; i < dropdown_items.length; i++) {
-        this.selected_report_ids.push(dropdown_items[i].id);
-      }
-
+      this.selected_report_ids = dropdown_items.map(item => item.id);
       this.$store.commit("set_report_ids", this.selected_report_ids);
 
-
       // Always update the URL to reflect the latest report, so it can be easily shared and the page reloaded
+
       if (dropdown_items[1] !== undefined)
         history.pushState({}, null, `/#/report/${dropdown_items[0].id}/${dropdown_items[1].id}`);
       else

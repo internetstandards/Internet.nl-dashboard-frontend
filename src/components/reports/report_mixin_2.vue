@@ -45,7 +45,7 @@ export default {
   watch: {
     reports_to_load(reports_to_load) {
       // Loading is done, refresh the UI.
-      if (reports_to_load === 0) this.$nextTick(() => this.$forceUpdate());
+      if (reports_to_load === 0) this.$nextTick(() => {this.$forceUpdate();});
     }
   }
 
