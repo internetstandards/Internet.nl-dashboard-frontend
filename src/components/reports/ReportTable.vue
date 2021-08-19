@@ -598,15 +598,6 @@ export default {
     }
   },
   methods: {
-    add_comparison_urls_to_report(report) {
-      // The comparison report require direct data access to urls to be able to compare
-      // by simply reading data directly without scanning the table.
-      report.calculation.urls_by_url = {};
-      report.calculation.urls.forEach((url) => {
-        report.calculation.urls_by_url[url.url] = url;
-      });
-      return report;
-    },
 
     select_category: function (category_name) {
       if (Object.keys(this.categories).includes(category_name))
@@ -779,6 +770,7 @@ export default {
         if (url === undefined ||
             url.endpoints[0].ratings_by_type === undefined ||
             url.endpoints[0].ratings_by_type.internet_nl_score === undefined ||
+            this.reports[1].calculation.urls_by_url[url.url] === undefined ||
             this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined ||
             this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score === undefined) {
           return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score}%</span>`
