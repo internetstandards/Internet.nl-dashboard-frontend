@@ -3,8 +3,8 @@
     <content-block>
       <h1>{{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
-
-      <b-tabs content-class="mt-3">
+        <!-- use lazy so that the visiblemetrics is updated when that's visited, instead of manually reloading. -->
+      <b-tabs content-class="mt-3" lazy>
         <b-tab active>
           <span slot="title">📨 {{$t('notifications')}}</span>
           <notification-settings></notification-settings>
@@ -17,12 +17,12 @@
         </b-tab>
 
         <b-tab>
-          <span slot="title"> <scan_type_icon type="web"></scan_type_icon> {{$t('visible_metrics_mail')}}</span>
+          <span slot="title"> <scan_type_icon type="web"></scan_type_icon> {{$t('visible_metrics_web')}}</span>
           <VisibleMetrics report_type="web" :key="'a'"/>
         </b-tab>
 
         <b-tab>
-          <span slot="title"> <scan_type_icon type="mail"></scan_type_icon> {{$t('visible_metrics_web')}}</span>
+          <span slot="title"> <scan_type_icon type="mail"></scan_type_icon> {{$t('visible_metrics_mail')}}</span>
           <VisibleMetrics report_type="mail" :key="'b'"/>
         </b-tab>
 

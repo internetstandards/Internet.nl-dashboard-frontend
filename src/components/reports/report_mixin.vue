@@ -182,8 +182,10 @@ export default {
           this.$store.commit("set_visible_metrics", default_metric_visibility);
         }
 
-      });
-      // todo: add fallback for when the url cannot be reached, the default should be used.
+      }).catch(() => {});
+        // When a user is not logged in, defaults are used.
+        console.log("Using fallback visible metrics.")
+        this.$store.commit("set_visible_metrics", default_metric_visibility);
     },
     upgrade_issue_filter_with_new_field: function (issue_filters, field_name) {
       if (!Object.keys(issue_filters).includes(field_name)) {
