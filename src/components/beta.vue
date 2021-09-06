@@ -17,7 +17,7 @@
           <donut :data="donut_data['statistics_per_issue_type']['zeros']" title="zeros"/>
         </b-col>
         <b-col>
-          <donut :data="donut_data['statistics_per_issue_type']['hundreds']" :axis="['pct_high', 'pct_low', 'pct_medium', 'pct_ok']" title="hundreds"/>
+          <donut :data="donut_data['statistics_per_issue_type']['hundreds']" :axis="['pct_high', 'pct_low', 'pct_ok']" title="Different first axis and too much data"/>
         </b-col>
       </b-row>
     </content-block>

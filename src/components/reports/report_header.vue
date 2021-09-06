@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>
-      📊 #{{ reports[0].id }} - {{ reports[0].urllist_name }}
+        📊 <span v-if="show_application_links">#{{ reports[0].id }} - </span>{{ reports[0].urllist_name }}
     </h2>
     <span>{{ $t("type_of_scan_performed") }}:
       <Scan_type_icon :type="reports[0].report_type" />
@@ -9,21 +9,25 @@
       {{ reports[0].report_type }}<br>
       {{ $t("number_of_domains") }}: {{reports[0].total_urls }}<br>
       {{ $t("data_from") }} {{ humanize_date(reports[0].at_when) }}<br>
+        <template v-if="show_application_links">
       📘 <router-link :to="{ name: 'numbered_lists', params: { list: reports[0].urllist_id }}">
         {{reports[0].urllist_name }}
-      </router-link><br>
+        </router-link><br>
+             </template>
     </span><br>
 
     <template v-if="reports.length > 1">
       <div v-for="report in reports" style="padding-left: 10px" :key="report.id">
         <!-- Skip the first report -->
         <template v-if="report.id !== reports[0].id">
-          <h3>{{ $t("compared_to") }}: #{{ report.id }} - {{ report.urllist_name }}</h3>
+          <h3>{{ $t("compared_to") }}: <span v-if="show_application_links">#{{ report.id }} - </span>{{ report.urllist_name }}</h3>
           <span>
             {{ $t("number_of_domains") }}: {{ report.total_urls }}<br>
-            {{ $t("data_from") }} {{ humanize_date(report.at_when) }}<br>
+            {{ $t("data_from") }}: {{ humanize_date(report.at_when) }}<br>
+              <template v-if="show_application_links">
             📘 <router-link :to="{ name: 'numbered_lists', params: { list: report.urllist_id }}">
             {{report.urllist_name }}</router-link><br>
+                  </template>
           </span>
         </template>
       </div>
@@ -42,6 +46,7 @@ export default {
   components: {Scan_type_icon},
   props: {
     reports: {type: Array, required: true},
+      show_application_links: {type: Boolean, default: true, required:false}
   },
 }
 
@@ -50,14 +55,14 @@ export default {
 <i18n>
 {
   "en": {
-    "type_of_scan_performed": "Type of scan performed",
+    "type_of_scan_performed": "Type of rapport",
     "compared_to": "Compared to",
     "number_of_domains": "Number of domains",
     "data_from": "Data from",
     "only_graphs": "Only showing the timeline and graphs because there are more than two reports selected."
   },
   "nl": {
-    "type_of_scan_performed": "Uitgevoerde scan",
+    "type_of_scan_performed": "Soort rapport",
     "compared_to": "Vergeleken met",
     "number_of_domains": "Aantal domeinen",
     "data_from": "Rapportage van",

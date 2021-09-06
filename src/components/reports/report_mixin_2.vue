@@ -22,6 +22,18 @@ export default {
         this.load_reports_by_ids_at('/data/report/shared/', report_ids)
     },
 
+      // this.reports.forEach((report) => this.add_comparison_urls_to_report(report))
+    add_comparison_urls_to_report(report) {
+      console.log("adding comparison urls")
+      // The comparison report require direct data access to urls to be able to compare
+      // by simply reading data directly without scanning the table.
+      report.calculation.urls_by_url = {};
+      report.calculation.urls.forEach((url) => {
+        report.calculation.urls_by_url[url.url] = url;
+      });
+      // return report;
+    },
+
     load_reports_by_ids_at(link, report_ids){
       this.reports_to_load = report_ids.length;
       this.reports = [];
@@ -33,7 +45,13 @@ export default {
         // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
         http.post(`${link}${report_ids[i]}/`, data).then(response => {
           // The report might be empty, because the wrong code has been sent:
+
           if (response.data !== undefined) {
+
+              // only add comparison data to the second report, because we want to quickly access urls of that one.
+              if (i > 0)
+                  this.add_comparison_urls_to_report(response.data)
+
             this.$set(this.reports, i, response.data);
           }
           this.reports_to_load--;
@@ -45,7 +63,7 @@ export default {
   watch: {
     reports_to_load(reports_to_load) {
       // Loading is done, refresh the UI.
-      if (reports_to_load === 0) this.$nextTick(() => this.$forceUpdate());
+      if (reports_to_load === 0) this.$nextTick(() => {this.$forceUpdate();});
     }
   }
 

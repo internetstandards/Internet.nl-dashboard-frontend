@@ -18,14 +18,14 @@
       </template>
       <template v-else>
         <content-block>
-          <report_header :reports="reports"></report_header>
+          <report_header :show_application_links="false" :reports="reports"></report_header>
         </content-block>
 
-        <ReportCharts :reports="reports"/>
+        <ReportCharts :show_timeline="false" :reports="reports"/>
 
         <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
         <content-block v-if="reports.length < 3" style="page-break-before: always;">
-          <ReportTable :reports="reports"/>
+          <ReportTable :load_comparison_with_current="false" :reports="reports"/>
         </content-block>
       </template>
     </div>

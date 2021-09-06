@@ -62,18 +62,13 @@ export default {
 
   mounted() {
     this.load_visible_metrics();
-    let router_params = this.$router.history.current.params;
-
+    // only do this when there is no report selection component, otherwise let that component handle it...
+    //let router_params = this.$router.history.current.params;
     // the route to this component can determine what is shown
-    this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
+    //this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
   },
 
   watch: {
-    // The route can change because the url is adjusted
-    $route(to) {
-      // .filter(Boolean) https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
-      this.requested_report_ids = [to.params.report, to.params.compare_with].filter(Boolean);
-    },
 
     // Report selection control can select a number of reports
     report_ids(report_ids) {

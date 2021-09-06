@@ -1,7 +1,7 @@
 <template>
   <div>
     <a class="anchor" name="charts"></a>
-    <content-block>
+    <content-block v-if="show_timeline">
       <timeline :urllist_ids="report_urllist_ids" :highlight_report_ids="$store.state.report_ids"></timeline>
     </content-block>
 
@@ -36,6 +36,7 @@ export default {
 
   props: {
     reports: {type: Array, required: true},
+      show_timeline: {type: Boolean, required: false, default: true},
   },
 
   computed: {
