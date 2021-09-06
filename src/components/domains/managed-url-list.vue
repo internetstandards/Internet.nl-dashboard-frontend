@@ -10,15 +10,18 @@ h2 {
         <span>
             <a :name="list.id"></a>
             <h2>
+
                 <button v-if="!is_opened" @click="open_list()" aria-expanded="false">
                     <span role="img" v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')">⚠️</span>
-                    <span role="img" :aria-label="$t('icon.list_closed')">📘</span> {{ list.name }}
+                    <span role="img" :aria-label="$t('icon.list_closed')">📘</span> {{ list.name }} <scan-type-icon :type="list.scan_type" />
                 </button>
 
                 <button v-if="is_opened" @click="close_list()" aria-expanded="true">
                     <span role="img" v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')">⚠️</span>
-                    <span role="img" :aria-label="$t('icon.list_opened')">📖</span> {{ list.name }}
+                    <span role="img" :aria-label="$t('icon.list_opened')">📖</span> {{ list.name }} <scan-type-icon :type="list.scan_type" />
                 </button>
+
+                <probe v-if="list.enable_scans && !list.scan_now_available" class="m-2 pb-1"/>
             </h2>
 
             <div v-if="is_opened" style="float:right;">
@@ -27,7 +30,7 @@ h2 {
                 </button> &nbsp;
 
                 <button @click="visible.add_domains = true">
-                    <span role="img" :aria-label="$t('icon.bulk_add_new')">🌐</span>{{ $t("button.add_domains") }}
+                    <span role="img" :aria-label="$t('icon.bulk_add_new')">🌐</span> {{ $t("button.add_domains") }}
                 </button> &nbsp;
                 <template v-if="urls.length">
                     <template v-if="list.enable_scans">
@@ -112,9 +115,11 @@ import Configure from './list/configure'
 import About from './list/about-this-list'
 import EditDomain from './domain/edit'
 import http from "@/httpclient";
+import ScanTypeIcon from "@/components/scan_type_icon";
 
 export default {
     components: {
+      ScanTypeIcon,
         Delete,
         Scan,
         AddDomains,

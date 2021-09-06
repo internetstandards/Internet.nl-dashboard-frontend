@@ -41,3 +41,8 @@ push_image:
 image:
 	docker build -t ${docker_image_name} .
 
+
+promote_staging_to_live:
+	docker pull ${docker_image_name}:latest
+	docker tag ${docker_image_name}:latest ${docker_image_name}:live
+	docker push ${docker_image_name}:live

@@ -14,13 +14,8 @@
             <template class="scan-configuration">
                 <div v-if="list.enable_scans">
                     {{ $t("type_of_scan_performed") }}:
-                    <span title="Mail scans will be performed" v-if="list.enable_scans && list.scan_type === 'mail'">
-                            <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg" style="height: 16px;">
-                        {{ list.scan_type }}
-                    </span>
-                    <span title="Web scans will be performed" v-if="list.enable_scans && list.scan_type === 'web'">
-                            <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg" style="height: 16px;">
-                            {{ list.scan_type }}
+                    <span v-if="list.enable_scans">
+                      <scan-type-icon :type="list.scan_type" /> {{ list.scan_type }}
                     </span>
                     <span title="No scans will be performed" v-if="!list.enable_scans">
                         🚫 {{ list.scan_type }}
@@ -47,9 +42,11 @@
 </template>
 
 <script>
+import ScanTypeIcon from "@/components/scan_type_icon";
 export default {
     name: "about-this-list",
-    props: {
+  components: {ScanTypeIcon},
+  props: {
         list: {
             type: Object
         },

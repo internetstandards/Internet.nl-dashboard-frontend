@@ -20,6 +20,17 @@ npm run build
 npm run lint
 ```
 
+# Deployment
+
+## On staging
+`/usr/local/bin/dashboard-frontend-update`
+
+
+## For live
+
+1: make promote_staging_to_live on this repo
+2: on the server: `/usr/local/bin/dashboard-frontend-update`
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
