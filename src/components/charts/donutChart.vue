@@ -15,8 +15,17 @@
   text-align: center;
 }
 
-.nice-label {
+.nice-label-1 {
+  font-size: 1em;
+}
+.nice-label-2 {
+  font-size: 2em;
+}
+.nice-label-3 {
   font-size: 3em;
+}
+.nice-label-4 {
+  font-size: 4em;
 }
 
 .pct_ok {
@@ -35,12 +44,23 @@
   color: #08236B;
 }
 
+.internetnlscore, .score{
+  color: #05BFD6;
+}
+
+.internetnlscore_rest, .rest{
+  color: #FFAC40;
+}
+
+.clear{
+  color: #FFFFFF00;
+}
 
 </style>
 <template>
   <div class="relative">
-    <DoughnutChart :chartData="testData" :height="300" :options="options"></DoughnutChart>
-    <div class="absolute-center text-center"><span :class="'nice-label ' +  axis[0]">{{donut_data[axis[0]]}}%</span></div>
+    <DoughnutChart :chartData="testData" :height="height" :options="options"></DoughnutChart>
+    <div class="absolute-center text-center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{donut_data[axis[0]]}}%</span></div>
   </div>
 </template>
 
@@ -57,6 +77,9 @@ export default defineComponent({
 
   props: {
     donut_data: {type: Object, required: true},
+    height: {type: Number, required: false, default: 300},
+    datalabels: {type: Boolean, required: false, default: true},
+    tooltip: {type: Boolean, required: false, default: true},
     axis: {
       type: Array, required: false, default: () => {
         return ['pct_ok', 'pct_high', 'pct_medium', 'pct_low']
@@ -79,6 +102,11 @@ export default defineComponent({
         'pct_low': "#08236B",
         'pct_medium': "#FFAA56",
         'pct_high': "#A71810",
+        'internetnlscore': "#05BFD6",
+        'score': "#05BFD6",
+        'internetnlscore_rest': "#FFAC40",
+        'rest': "#FFAC40",
+        'clear': "#FFFFFF00",
 
         'pct_not_applicable': "rgba(41,41,41,0.73)",
         'pct_error_in_test': "rgba(41,41,41,0.73)",
@@ -110,7 +138,7 @@ export default defineComponent({
 
         datalabels: {
           color: "#ffffff",
-          display: true,
+          display: props.datalabels,
           formatter: function (value) {
             // Needs to be wide enough to show the label.
             if (value < 10)
@@ -124,6 +152,7 @@ export default defineComponent({
         },
         tooltip: {
           mode: 'index',
+          enabled: props.tooltip,
           intersect: true,
           callbacks: {
             // https://www.chartjs.org/docs/latest/configuration/tooltip.html#label-callback

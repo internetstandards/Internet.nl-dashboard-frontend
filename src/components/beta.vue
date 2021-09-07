@@ -17,7 +17,29 @@
           <donut :data="donut_data['statistics_per_issue_type']['zeros']" title="zeros"/>
         </b-col>
         <b-col>
-          <donut :data="donut_data['statistics_per_issue_type']['hundreds']" :axis="['pct_high', 'pct_low', 'pct_ok']" title="Different first axis and too much data"/>
+          <donut :data="donut_data['statistics_per_issue_type']['hundreds']" :axis="['pct_high', 'pct_low', 'pct_ok']"
+                 title="Different first axis and too much data"/>
+        </b-col>
+        <b-col>
+          <donut :data="internetnlscore" :axis="['internetnlscore', 'internetnlscore_rest']" title="Internet.nl score"/>
+        </b-col>
+        <b-col>
+          <donut :data="internetnlscore" :axis="['internetnlscore', 'clear']" :height='300' title="Internet.nl score"/>
+        </b-col>
+        <b-col>
+          <donut :data="internetnlscore" :axis="['internetnlscore', 'clear']" :datalabels="false" :height='100' title="height: 100, no datalabels"/>
+        </b-col>
+        <b-col>
+          <donut :data="internetnlscore" :axis="['internetnlscore', 'clear']" :datalabels="false" :height='200' title="height: 200, no datalabels"/>
+        </b-col>
+        <b-col>
+          <donut :data="internetnlscore" :axis="['internetnlscore', 'clear']" :height='300' title="height: 300, rest defaults"/>
+        </b-col>
+        <b-col>
+          <donut :data="internetnlscore" :axis="['internetnlscore', 'clear']" :tooltip="false" :height='400' title="height: 400, tooltip disabled, only donut" :elements="['donut']" />
+        </b-col>
+        <b-col>
+          <donut :data="{'score': 42, 'clear': 58}" :axis="['score', 'clear']" :tooltip="false" :datalabels="false" :height='100' :elements="['donut']" />
         </b-col>
       </b-row>
     </content-block>
@@ -192,7 +214,14 @@ export default {
             "pct_not_ok": 100.0
           },
         }
-      }
+      },
+
+      internetnlscore: {
+        "internetnlscore": 42,
+        "internetnlscore_rest": 58,
+        "clear": 58,
+      },
+
     }
   },
   methods: {

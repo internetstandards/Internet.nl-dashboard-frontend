@@ -30,29 +30,47 @@ h3 {
 </style>
 <template>
   <div>
-    <h3 v-if="title">{{$t(title)}}</h3>
-    <b-tabs content-class="mt-3" pills end>
-      <b-tab :title="$t('graph')" active>
-        <donutChart
-            :donut_data="data"
-            :i18n="$i18n"
-            :axis="axis"
-            @graph-data-updated="graph_data_to_table"
-        >
-        </donutChart>
-      </b-tab>
+    <h3 v-if="elements.includes('title')">{{ $t(title) }}</h3>
 
-      <b-tab :title="$t('table')">
-        <b-table striped hover small :items="data_from_graph" :fields="table_fields">
-          <template #table-caption>{{ $t(title) }}</template>
-          <template #cell(value)="data">
-            {{ data.value }}%
-          </template>
-        </b-table>
-        <download-data :data="data_from_graph" :fields="table_fields"></download-data>
-      </b-tab>
+    <template v-if="elements.includes('donut') && elements.length === 1">
+      <donutChart
+          :donut_data="data"
+          :i18n="$i18n"
+          :axis="axis"
+          :datalabels="datalabels"
+          :tooltip="tooltip"
+          :height="height"
+          @graph-data-updated="graph_data_to_table"
+      >
+      </donutChart>
+    </template>
+    <template v-else>
+      <b-tabs content-class="mt-3" pills end>
+        <b-tab :title="$t('graph')" active v-if="elements.includes('donut')">
+          <donutChart
+              :donut_data="data"
+              :i18n="$i18n"
+              :axis="axis"
+              :datalabels="datalabels"
+              :tooltip="tooltip"
+              :height="height"
+              @graph-data-updated="graph_data_to_table"
+          >
+          </donutChart>
+        </b-tab>
 
-    </b-tabs>
+        <b-tab :title="$t('table')" v-if="elements.includes('table')">
+          <b-table striped hover small :items="data_from_graph" :fields="table_fields">
+            <template #table-caption>{{ $t(title) }}</template>
+            <template #cell(value)="data">
+              {{ data.value }}%
+            </template>
+          </b-table>
+          <download-data :data="data_from_graph" :fields="table_fields"></download-data>
+        </b-tab>
+
+      </b-tabs>
+    </template>
   </div>
 </template>
 
@@ -71,6 +89,14 @@ export default {
   props: {
     data: {type: Object, required: true},
     title: {type: String, required: false},
+    datalabels: {type: Boolean, required: false, default: true},
+    tooltip: {type: Boolean, required: false, default: true},
+    height: {type: Number, required: false, default: 300},
+    elements: {
+      type: Array, required: false, default: () => {
+        return ['donut', 'table', 'title']
+      }
+    },
     axis: {
       type: Array, required: false, default: () => {
         return ['pct_ok', 'pct_high', 'pct_medium', 'pct_low']
