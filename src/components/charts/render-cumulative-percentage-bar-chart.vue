@@ -76,7 +76,7 @@ export default {
                 this.axis.forEach((ax) => {
                     if (ax in data) {
                         if (!this.only_show_dynamic_average) {
-                            labels.push([this.$i18n.t(ax), this.field_name_to_category_names ? this.field_name_to_category_names[ax] : ""]);
+                            labels.push([this.$i18n.t(ax), this.field_name_to_category_names[ax] ? this.field_name_to_category_names[ax] : ""]);
                             axis_names.push(ax);
                             chartdata.push((Math.round(cumulative_axis_data[ax][shown_value] / this.chart_data.length * 100)) / 100);
                         }
