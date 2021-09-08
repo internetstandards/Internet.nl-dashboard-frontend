@@ -32,7 +32,7 @@ h3 {
   <div>
     <h3 v-if="elements.includes('title')">{{ $t(title) }}</h3>
 
-    <template v-if="elements.includes('donut') && elements.length === 1">
+    <template v-if="elements.includes('donut') && !elements.includes('table')">
       <donutChart
           :donut_data="data"
           :i18n="$i18n"
@@ -61,22 +61,23 @@ h3 {
 
         <b-tab :title="$t('table')" v-if="elements.includes('table')">
           <b-table striped hover small :items="data_from_graph" :fields="table_fields">
-            <template #table-caption>{{ $t(title) }}</template>
+            <!-- <template #table-caption>{{ $t(title) }}</template>-->
             <template #cell(value)="data">
               {{ data.value }}%
             </template>
           </b-table>
-          <download-data :data="data_from_graph" :fields="table_fields"></download-data>
+          <!-- <download-data :data="data_from_graph" :fields="table_fields"></download-data> -->
         </b-tab>
 
       </b-tabs>
     </template>
+    <p class="text-center mt-2 font-weight-bolder" v-if="elements.includes('subtitle')">{{ $t(title) }}</p>
   </div>
 </template>
 
 <script>
 import donutChart from './../charts/donutChart'
-import DownloadData from './../charts/DownloadData'
+// import DownloadData from './../charts/DownloadData'
 import field_translations from './../field_translations'
 
 export default {
@@ -84,7 +85,7 @@ export default {
     sharedMessages: field_translations,
   },
 
-  components: {donutChart, DownloadData},
+  components: {donutChart},
 
   props: {
     data: {type: Object, required: true},
@@ -99,7 +100,7 @@ export default {
     },
     axis: {
       type: Array, required: false, default: () => {
-        return ['pct_ok', 'pct_high', 'pct_medium', 'pct_low']
+        return ['pct_ok', 'pct_low', 'pct_medium', 'pct_high']
       }
     },
   },
@@ -136,7 +137,6 @@ export default {
       graph_data.forEach((series) => {
         let i = 0;
         series.data.forEach((row) => {
-          console.log(row);
           data.push({
             'measurement': this.$i18n.t(this.axis[i]),
             'value': row
