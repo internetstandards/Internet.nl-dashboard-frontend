@@ -926,8 +926,10 @@ export default {
           });
         }
       });
-      // console.log("Preferred fields: " + preferred_fields)
-      return preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
+      console.log("Preferred fields: " + preferred_fields)
+      let visible_preferred_fields = preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
+      console.log("Visible preferred fields: " + visible_preferred_fields)
+      return visible_preferred_fields
     },
   }
 }
