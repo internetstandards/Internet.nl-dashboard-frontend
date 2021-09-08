@@ -355,7 +355,7 @@ div.rotate > span {
   <div>
     <h2>{{ $t("report.title") }}</h2>
     <a class="anchor" name="report"></a>
-    <p>{{ $t("report.intro") }}</p>
+    <p v-if="load_comparison_with_current">{{ $t("report.intro") }}</p>
 
     <Differences_to_current_list :report_id="reports[0].id" v-if="load_comparison_with_current"></Differences_to_current_list>
 
@@ -940,7 +940,7 @@ export default {
     "score": "Score",
     "domain": "Domain",
     "report": {
-      "title": "Report",
+      "title": "Metrics table",
       "intro": "This table shows detailed results per category. It is possible to compare this report to a second report. In that case, progress indicators are added to the first report where applicable. The domains of the second report are only compared, not displayed.",
       "url_filter": "Filter on domain...",
       "not_eligeble_for_scanning": "Domain did not match scanning criteria at the time the scan was initiated. The scanning criteria are an SOA DNS record (not NXERROR) for mail and an A or AAAA DNS record for web. This domain is ignored in all statistics.",
@@ -988,7 +988,7 @@ export default {
     "score": "Score",
     "domain": "Domein",
     "report": {
-      "title": "Rapport",
+      "title": "Meetwaardentabel",
       "intro": "Deze tabel toont de details van het rapport. Het is mogelijk dit rapport te vergelijken met een vorig of ander rapport. Wanneer deze vergelijking wordt gemaakt, wordt bij de gegevens van het eerste rapport voortgangsindicatoren geplaats waar relevant. De domeinen van het tweede rapport worden alleen vergeleken, niet getoond.",
       "not_eligeble_for_scanning": "Dit domein voldeed niet aan de scan-criteria op het moment van scannen. Deze criteria zijn een SOA DNS record (geen NXERROR) voor mail en een A of AAAA DNS record voor web. Dit domein komt niet terug in de statistieken.",
       "url_filter": "Filter op domein...",
