@@ -66,6 +66,7 @@ export default {
                 variant: this.response.error ? 'danger' : 'success',
                 solid: true,
                 isStatus: true,  // message is also displayed on the page using more accessible methods
+              toaster: 'b-toaster-bottom-right',
 
                 appendToast: false,
             })
