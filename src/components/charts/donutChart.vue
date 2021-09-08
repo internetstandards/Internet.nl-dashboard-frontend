@@ -60,7 +60,7 @@
 <template>
   <div class="relative">
     <DoughnutChart :chartData="testData" :height="height" :options="options"></DoughnutChart>
-    <div class="absolute-center text-center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{donut_data[axis[0]]}}%</span></div>
+    <div class="absolute-center text-center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{round_one_decimal(donut_data[axis[0]])}}%</span></div>
   </div>
 </template>
 
@@ -86,6 +86,12 @@ export default defineComponent({
       }
     },
     i18n: {type: Object, required: false},
+  },
+
+  methods: {
+      round_one_decimal(some_value) {
+        return Math.round(some_value * 10) / 10
+      }
   },
 
   setup(props, {emit}) {
