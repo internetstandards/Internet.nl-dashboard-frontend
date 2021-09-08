@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
 .inline-edit input {
     margin-bottom: 0 !important;

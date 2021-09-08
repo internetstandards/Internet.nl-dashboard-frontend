@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <!--
 Input data is reports['statistics_per_issue_type'].
 Specify the issue type, for example: internet_nl_mail_auth_dkim_exist

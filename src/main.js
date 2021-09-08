@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // Note that there is a little hate going on with multiple vue instances.
 // See here: https://github.com/LinusBorg/portal-vue/issues/201#issuecomment-484452281
 // This explains why there are some extra definitions in the bundler thingies.

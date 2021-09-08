@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <content-block>
         <h1>{{ $t("title") }}</h1>

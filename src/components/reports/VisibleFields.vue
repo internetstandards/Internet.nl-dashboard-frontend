@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
 import report_mixin from "@/components/reports/report_mixin";
 

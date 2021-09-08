@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
 .loading {
     padding: 17px;

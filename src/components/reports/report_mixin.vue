@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
 // Done: order of the fields, and possible sub sub categories
 // Done: allow filtering on what results to show

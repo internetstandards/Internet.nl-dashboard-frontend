@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
     <canvas ref="canvas" role="img" class="graph-image" :aria-label="title">

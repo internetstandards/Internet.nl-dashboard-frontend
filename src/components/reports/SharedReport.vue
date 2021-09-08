@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div id="report-template">
     <content-block v-if="reports.length === 0 && reports_to_load === 0">

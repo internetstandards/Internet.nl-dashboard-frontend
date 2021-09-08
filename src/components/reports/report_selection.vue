@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style>
 
 .v-select button, .v-select button:hover, .vs__clear, .vs__deselect {

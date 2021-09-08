@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
 .incorrect_urls {
     width: 100%; background-color: #ffd9d9; height: 60px; overflow: scroll;

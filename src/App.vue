@@ -1,7 +1,4 @@
-<style scoped>
-
-
-</style>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div id="app">
     <div class="skiplink"><a href="#content">{{ $t('skiplink.gotocontents') }}</a></div>

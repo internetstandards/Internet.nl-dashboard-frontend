@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <div>
         <p>{{ $t("intro") }}</p>
@@ -163,7 +164,7 @@ export default {
                 }
             }
 
-            console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
+            // console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
             this.issue_filters[category_name.key].visible = should_be_visible;
         },
         all_subcategory_fields_from_category(category_name) {
@@ -192,7 +193,7 @@ export default {
              * go over the scan methods object. This will bite if there is more demand for doing things dynamically.
              * */
 
-            this.debug_state("automatically_set_category")
+            // this.debug_state("automatically_set_category")
             let categories = []
             if (this.report_type === 'web'){
                 categories = [
@@ -225,9 +226,9 @@ export default {
     computed: mapState(['visible_metrics']),
     watch: {
         visible_metrics(new_value) {
-            console.log('Visible metrics changed, saved to issue filters...')
+            // console.log('Visible metrics changed, saved to issue filters...')
             this.issue_filters = new_value;
-            this.debug_state("watch")
+            // this.debug_state("watch")
         },
         issue_filters() {
             this.automatically_set_category()

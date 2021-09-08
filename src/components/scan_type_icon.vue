@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
   .mail_icon {
     background: url("/static_frontend/images/vendor/internet_nl/icon-emailtest.svg");

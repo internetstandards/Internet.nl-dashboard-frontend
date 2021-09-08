@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <content-block class="do-not-print" v-if="reports !== undefined" style="background-color: #fff7f7 !important;">
     <h2>⚠️ {{ $t('Authentication required') }}</h2>

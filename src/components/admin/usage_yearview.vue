@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <content-block>
         <b-table-simple hover small caption-top striped responsive="true">

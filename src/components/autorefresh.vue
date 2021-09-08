@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <div v-if='visible' style='margin-bottom: 0 !important;'>
         <button @click="reload_now()">🔁 {{ $t("refresh_now") }}</button>

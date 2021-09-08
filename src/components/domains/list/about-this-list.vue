@@ -1,6 +1,4 @@
-<style scoped>
-
-</style>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <div>
         <h3>{{ $t("header") }}</h3>

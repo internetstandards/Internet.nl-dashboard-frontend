@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style>
 #my-spreadsheet-upload-template .block form {
     overflow: visible;

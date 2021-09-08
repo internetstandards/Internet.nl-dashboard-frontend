@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <b-modal :visible="visible" @hidden="stop()" header-bg-variant="info"
              header-text-variant="light" no-fade scrollable>
