@@ -49,7 +49,7 @@ h2 {
                         <span role="img" :aria-label="$t('icon.scan')">🔬</span> {{ $t("button.scanning_disabled") }}
                     </button> &nbsp;
                 </template>
-                <button @click="visible.delete = true">🗑️ {{ $t("button.delete") }}</button>
+                <button @click="visible.delete = true" class="border-danger">🗑️ {{ $t("button.delete") }}</button>
             </div>
         </span>
 
@@ -80,12 +80,15 @@ h2 {
 
       <DomainTable :urls="urls" :loading="loading" :urllist="list"></DomainTable>
 
+      <!--
       <ul style="column-count: 2; list-style: none;">
         <li v-for="url in urls" :key="url.id">
           <EditDomain :list="list" :url="url" @domain_deleted="update_list_warnings()"></EditDomain>
         </li>
-      </ul>
+      </ul>EditDomain
       <br>
+      -->
+
       <button v-if="urls.length" @click="view_csv = !view_csv" value="load">
         📋 {{ $t("button.view_csv") }}
       </button>
@@ -123,7 +126,6 @@ import Scan from './list/scan'
 import AddDomains from './list/add domains'
 import Configure from './list/configure'
 import About from './list/about-this-list'
-import EditDomain from './domain/edit'
 import http from "@/httpclient";
 import ScanTypeIcon from "@/components/scan_type_icon";
 import DomainTable from "@/components/domains/DomainTable";
@@ -137,7 +139,6 @@ export default {
     AddDomains,
     Configure,
     About,
-    EditDomain
   },
   i18n: {
     sharedMessages: sharedMessages,
