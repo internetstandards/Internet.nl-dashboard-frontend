@@ -6,13 +6,14 @@
 .intermediatebutton {
   border-radius: 0 0 0 0 !important;
 }
+
 .lastbutton {
   border-radius: 0 4px 4px 0 !important;
 }
 </style>
 <style>
-.vs__dropdown-toggle{
-  min-height:38px;
+.vs__dropdown-toggle {
+  min-height: 38px;
   border-radius: 4px 0 0 4px !important;
 }
 </style>
@@ -38,65 +39,64 @@
 
       <template #thead-top="">
 
-      <b-tr>
-        <b-th colspan='3' class="col-6">
-          <b-form-group
-              label-for="filter-input"
-              label-align-sm="right"
-              class="mr-0"
-          >
-            <b-input-group>
-              <b-form-input
-                  debounce="400"
-                  id="filter-input"
-                  v-model="filter"
-                  type="search"
-                  placeholder="-- type to filter"
-              ></b-form-input>
+        <b-tr>
+          <b-th colspan='3' class="col-6">
+            <b-form-group
+                label-for="filter-input"
+                label-align-sm="right"
+                class="mr-0"
+            >
+              <b-input-group>
+                <b-form-input
+                    debounce="400"
+                    id="filter-input"
+                    v-model="filter"
+                    type="search"
+                    placeholder="-- type to filter"
+                ></b-form-input>
 
-              <b-input-group-append>
-                <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">Clear</b-button>
-              </b-input-group-append>
-            </b-input-group>
-          </b-form-group>
-
-        </b-th>
-        <b-th class="col-6">
-
-          <div class="float-left" style="width: 350px">
-            <b-input-group>
-            <v-select :options="tags" v-model="selected_tag" taggable style="width: 240px;" placeholder="-- add or select tag">
-              <template v-slot:option="option">
-                <tag :value="option.label"/>
-              </template>
-            </v-select>
-            <b-input-group-append>
-              <b-button variant="success" @click="add_tags" class="intermediatebutton">+</b-button>
-              <b-button variant="danger" @click="remove_tags" class="lastbutton">-</b-button>
-            </b-input-group-append>
+                <b-input-group-append>
+                  <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">Clear</b-button>
+                </b-input-group-append>
               </b-input-group>
-          </div>
+            </b-form-group>
 
-          <button class="border-danger float-right" @click="remove_urls" v-if="selected.length > 0">🗑️ Remove</button>
+          </b-th>
+          <b-th class="col-6">
 
-        </b-th>
+            <div class="float-left" style="width: 350px">
+              <b-input-group>
+                <v-select :options="tags" v-model="selected_tag" taggable style="width: 240px;" placeholder="-- add or select tag">
+                  <template v-slot:option="option">
+                    <tag :value="option.label"/>
+                  </template>
+                </v-select>
+                <b-input-group-append>
+                  <b-button variant="success" @click="add_tags" class="intermediatebutton">+</b-button>
+                  <b-button variant="danger" @click="remove_tags" class="lastbutton">-</b-button>
+                </b-input-group-append>
+              </b-input-group>
+            </div>
+
+            <button class="border-danger float-right" @click="remove_urls" v-if="selected.length > 0">🗑️ Remove</button>
+
+          </b-th>
         </b-tr>
 
         <b-tr v-if="urls.length > perPage">
           <b-th colspan='4' class="col-12">
-              <b-pagination
-                  v-model="currentPage"
-                  :total-rows="visibleRows"
-                  :per-page="perPage"
-
-                  class="my-0"
-                  first-number
-                  hide-ellipsis
-                  :limit="8"
-                  last-number
-                  pills
-                  @page-click="nextpage"
-    ></b-pagination>
+            <b-pagination
+                v-model="currentPage"
+                :total-rows="visibleRows"
+                :per-page="perPage"
+                class="my-0"
+                first-number
+                hide-ellipsis
+                :limit="8"
+                last-number
+                pills
+                @page-click="nextpage"
+            ></b-pagination>
           </b-th>
         </b-tr>
 
@@ -161,10 +161,10 @@
       <template #table-caption v-if="urls.length>0">
 
         <span v-if="filter">
-          Page {{currentPage}}/{{Math.ceil(urls.length/perPage)}} of {{ visibleRows }} filtered from {{ urls.length }} domains.
+          Page {{ currentPage }}/{{ Math.ceil(urls.length / perPage) }} of {{ visibleRows }} filtered from {{ urls.length }} domains.
         </span>
         <span v-else>
-          Page {{currentPage}}/{{Math.ceil(urls.length/perPage)}} of {{ urls.length }} domains.
+          Page {{ currentPage }}/{{ Math.ceil(urls.length / perPage) }} of {{ urls.length }} domains.
         </span>
 
       </template>
@@ -244,7 +244,7 @@ export default {
   },
   methods: {
     nextpage() {
-      this.allSelected=false;
+      this.allSelected = false;
     },
     onFiltered(filteredItems) {
       this.visibleRows = filteredItems.length;
@@ -305,25 +305,25 @@ export default {
         this.remove_url(item)
       });
     },
-    remove_url(item){
+    remove_url(item) {
       let url_object = this.urls.filter(function (el) {
-          return el.id === item.id;
-        });
-        if (url_object) {
-          http.post('/data/urllist/url/delete/', {'urllist_id': this.urllist.id, 'url_id': item.id});
+        return el.id === item.id;
+      });
+      if (url_object) {
+        http.post('/data/urllist/url/delete/', {'urllist_id': this.urllist.id, 'url_id': item.id});
 
-          const index = this.urls.indexOf(url_object[0]);
-          if (index > -1) {
-            this.urls.splice(index, 1);
-          }
+        const index = this.urls.indexOf(url_object[0]);
+        if (index > -1) {
+          this.urls.splice(index, 1);
         }
+      }
     }
   },
 
-  watch:{
-    selected_tag(new_value){
+  watch: {
+    selected_tag(new_value) {
       if (new_value)
-      this.selected_tag = new_value.toLowerCase()
+        this.selected_tag = new_value.toLowerCase()
     }
   }
 
