@@ -50,13 +50,12 @@
 
     <b-pagination v-if="urls.length > perPage"
           v-model="currentPage"
-          :total-rows="urls.length"
+          :total-rows="visibleRows"
           :per-page="perPage"
           align="left"
           class="my-0"
           first-number
           hide-ellipsis
-          variant="info"
           :limit="8"
           last-number
           pills
@@ -67,9 +66,10 @@
              :fields="table_fields"
              :filter="filter"
              show-empty
-               :current-page="currentPage"
-              :per-page="perPage"
+             :current-page="currentPage"
+             :per-page="perPage"
              primary-key="url"
+             :filter-function="myFilterFunction"
              :filter-included-fields="['tags', 'url']"
              selected-variant="info"
              ref="selectableTable"
@@ -182,13 +182,19 @@ export default {
   computed: {
     // can also do this in a request. but that will require updating every time something happens.
     tags() {
+      console.log("listing tags")
       let tags = []
       this.urls.forEach(url => {
         tags = tags.concat(url.tags);
       })
       // uniques and alphabetical sorting
-      return tags.filter((x, i, a) => a.indexOf(x) === i).sort()
+      let z = tags.filter((x, i, a) => a.indexOf(x) === i).sort()
+      console.log("done listing tags")
+      return z
     }
+  },
+  mounted() {
+    this.visibleRows = this.urls.length;
   },
   data() {
     return {
@@ -197,7 +203,7 @@ export default {
       selected_tag: null,
       allSelected: false,
       selected: [],
-      currentPage: 0,
+      currentPage: 1,
       perPage: 100,
       table_fields: [
         {
@@ -233,7 +239,7 @@ export default {
   methods: {
     onFiltered(filteredItems) {
       this.visibleRows = filteredItems.length;
-      this.currentPage = 0;
+      this.currentPage = 1;
     },
     onRowSelected(items) {
       this.selected = items
@@ -250,6 +256,14 @@ export default {
       } else {
         this.clearSelected()
       }
+    },
+    myFilterFunction(row, search_term) {
+      if (row['url'].includes(search_term))
+        return true
+      if (row['tags'].includes(search_term))
+        return true
+
+      return false
     },
     add_tags() {
       // todo: push changes to server
