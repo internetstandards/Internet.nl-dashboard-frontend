@@ -291,7 +291,13 @@ export default {
           }
         }
     }
+  },
 
+  watch:{
+    selected_tag(new_value){
+      if (new_value)
+      this.selected_tag = new_value.toLowerCase()
+    }
   }
 
 }
