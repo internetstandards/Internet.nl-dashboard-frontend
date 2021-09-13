@@ -1,64 +1,24 @@
 <style scoped>
+.form-group {
+  margin-bottom: 0 !important;
+}
 
 </style>
 
 <template>
   <div>
 
-    <b-row>
-      <b-col cols="4">
-        <b-form-group
-            label-for="filter-input"
-            label-align-sm="right"
-            class="mr-0"
-        >
-          <b-input-group>
-            <b-form-input
-                debounce="400"
-                id="filter-input"
-                v-model="filter"
-                type="search"
-                placeholder="Type to Search"
-            ></b-form-input>
-
-            <b-input-group-append>
-              <button :disabled="!filter" @click="filter = ''">Clear</button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-      <b-col cols="6">
-
-        <b-input-group>
-          <v-select style="width: 60%" :options="tags" v-model="selected_tag" taggable>
-            <template v-slot:option="option">
-              <tag :value="option.label"/>
-            </template>
-          </v-select>
-          <b-input-group-append>
-            <button variant="success" @click="add_tags">+</button>
-            <button variant="danger" @click="remove_tags">-</button>
-          </b-input-group-append>
-        </b-input-group>
-      </b-col>
-
-      <b-col cols="2">
-        <button class="border-danger" @click="remove_urls">🗑️ Remove</button>
-      </b-col>
-    </b-row>
-
-
     <b-pagination v-if="urls.length > perPage"
-          v-model="currentPage"
-          :total-rows="visibleRows"
-          :per-page="perPage"
-          align="left"
-          class="my-0"
-          first-number
-          hide-ellipsis
-          :limit="8"
-          last-number
-          pills
+                  v-model="currentPage"
+                  :total-rows="visibleRows"
+                  :per-page="perPage"
+                  align="left"
+                  class="my-0"
+                  first-number
+                  hide-ellipsis
+                  :limit="8"
+                  last-number
+                  pills
     ></b-pagination>
 
     <b-table :busy="loading" striped hover small selectable responsive select-mode="multi"
@@ -76,6 +36,52 @@
              @filtered="onFiltered"
              @row-selected="onRowSelected"
     >
+
+      <template #thead-top="">
+
+        <b-th colspan='3' class="col-6">
+          <b-form-group
+              label-for="filter-input"
+              label-align-sm="right"
+              class="mr-0"
+          >
+            <b-input-group>
+              <b-form-input
+                  debounce="400"
+                  id="filter-input"
+                  v-model="filter"
+                  type="search"
+                  placeholder="Type to Search"
+              ></b-form-input>
+
+              <b-input-group-append>
+                <button :disabled="!filter" @click="filter = ''">Clear</button>
+              </b-input-group-append>
+            </b-input-group>
+          </b-form-group>
+
+        </b-th>
+        <b-th class="col-6">
+
+          <div class="float-left" style="width: 350px" v-if="selected.length > 0">
+            <b-input-group>
+            <v-select :options="tags" v-model="selected_tag" taggable style="width: 240px">
+              <template v-slot:option="option">
+                <tag :value="option.label"/>
+              </template>
+            </v-select>
+            <b-input-group-append>
+              <button variant="success" @click="add_tags">+</button>
+              <button variant="danger" @click="remove_tags">-</button>
+            </b-input-group-append>
+              </b-input-group>
+          </div>
+
+          <button class="border-danger float-right" @click="remove_urls" v-if="selected.length > 0">🗑️ Remove</button>
+
+        </b-th>
+
+      </template>
 
       <template #head(selected)="">
         <b-check v-model="allSelected" @change="toggleSelected"></b-check>
@@ -125,25 +131,12 @@
         </template>
       </template>
 
-      <template #cell(edit)="data">
-        <button style="font-size: 12px;" class="inline-edit"
-                :title="$t('start_editing_url', [data.item.url])"
-                @click="start_url_editing()" aria-expanded="false">
-          🖊
-          <span class="visuallyhidden">{{ $t('start_editing_url', [data.item.url]) }}</span>
-        </button>
-
-      </template>
-
       <template #cell(tags)="data">
-        <tag v-for="tag in data.item.tags" :key="tag" :value="tag"/>
+        <tag v-for="tag in data.item.tags" :key="tag" :value="tag" @tag_clicked="selected_tag=tag"/>
       </template>
 
       <template #cell(url)="data">
-        <template v-if="data.item.subdomain">
-          {{ data.item.subdomain }}.
-        </template>
-        <b>{{ data.item.domain }}.{{ data.item.suffix }}</b>
+        <edit-domain :list="urllist" :url="data.item" @domain_deleted="remove_url(data.item)"></edit-domain>
       </template>
 
       <template #table-caption>
@@ -164,10 +157,12 @@
 
 <script>
 import Tag from "@/components/domains/domain/tag";
+import EditDomain from "@/components/domains/domain/editDomain";
+import http from "@/httpclient";
 
 export default {
   name: "DomainTable",
-  components: {Tag},
+  components: {EditDomain, Tag},
   props: {
     urls: {
       type: Array, required: true,
@@ -182,15 +177,12 @@ export default {
   computed: {
     // can also do this in a request. but that will require updating every time something happens.
     tags() {
-      console.log("listing tags")
       let tags = []
       this.urls.forEach(url => {
         tags = tags.concat(url.tags);
       })
       // uniques and alphabetical sorting
-      let z = tags.filter((x, i, a) => a.indexOf(x) === i).sort()
-      console.log("done listing tags")
-      return z
+      return tags.filter((x, i, a) => a.indexOf(x) === i).sort()
     }
   },
   mounted() {
@@ -208,11 +200,6 @@ export default {
       table_fields: [
         {
           key: 'selected',
-          sortable: false,
-          label: ""
-        },
-        {
-          key: 'edit',
           sortable: false,
           label: ""
         },
@@ -258,11 +245,14 @@ export default {
       }
     },
     myFilterFunction(row, search_term) {
+      // The original filter function is slow because it stringifies all items inline, of which tags is an array.
+      // With these modifications searching 10.000 domains takes way less than a second, instead of 10 seconds.
       if (row['url'].includes(search_term))
         return true
       if (row['tags'].includes(search_term))
         return true
 
+      // using !! in a statement is not simplification, pycharm :)
       return false
     },
     add_tags() {
@@ -285,17 +275,22 @@ export default {
     remove_urls() {
       // todo: make a list of url id's, add that with the list id and send it to the server
       this.selected.forEach((item) => {
-        let url_object = this.urls.filter(function (el) {
+        this.remove_url(item)
+      });
+    },
+    remove_url(item){
+      let url_object = this.urls.filter(function (el) {
           return el.id === item.id;
         });
         if (url_object) {
+          http.post('/data/urllist/url/delete/', {'list_id': this.urllist.id, 'url_id': item.id});
+
           const index = this.urls.indexOf(url_object[0]);
           if (index > -1) {
             this.urls.splice(index, 1);
           }
         }
-      });
-    },
+    }
 
   }
 
