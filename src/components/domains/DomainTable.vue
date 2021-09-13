@@ -3,23 +3,22 @@
   margin-bottom: 0 !important;
 }
 
+.intermediatebutton {
+  border-radius: 0 0 0 0 !important;
+}
+.lastbutton {
+  border-radius: 0 4px 4px 0 !important;
+}
+</style>
+<style>
+.vs__dropdown-toggle{
+  min-height:38px;
+  border-radius: 4px 0 0 4px !important;
+}
 </style>
 
 <template>
   <div>
-
-    <b-pagination v-if="urls.length > perPage"
-                  v-model="currentPage"
-                  :total-rows="visibleRows"
-                  :per-page="perPage"
-                  align="left"
-                  class="my-0"
-                  first-number
-                  hide-ellipsis
-                  :limit="8"
-                  last-number
-                  pills
-    ></b-pagination>
 
     <b-table :busy="loading" striped hover small selectable responsive select-mode="multi"
              :items="urls"
@@ -39,6 +38,7 @@
 
       <template #thead-top="">
 
+      <b-tr>
         <b-th colspan='3' class="col-6">
           <b-form-group
               label-for="filter-input"
@@ -51,11 +51,11 @@
                   id="filter-input"
                   v-model="filter"
                   type="search"
-                  placeholder="Type to Search"
+                  placeholder="-- type to filter"
               ></b-form-input>
 
               <b-input-group-append>
-                <button :disabled="!filter" @click="filter = ''">Clear</button>
+                <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">Clear</b-button>
               </b-input-group-append>
             </b-input-group>
           </b-form-group>
@@ -63,16 +63,16 @@
         </b-th>
         <b-th class="col-6">
 
-          <div class="float-left" style="width: 350px" v-if="selected.length > 0">
+          <div class="float-left" style="width: 350px">
             <b-input-group>
-            <v-select :options="tags" v-model="selected_tag" taggable style="width: 240px">
+            <v-select :options="tags" v-model="selected_tag" taggable style="width: 240px;" placeholder="-- add or select tag">
               <template v-slot:option="option">
                 <tag :value="option.label"/>
               </template>
             </v-select>
             <b-input-group-append>
-              <button variant="success" @click="add_tags">+</button>
-              <button variant="danger" @click="remove_tags">-</button>
+              <b-button variant="success" @click="add_tags" class="intermediatebutton">+</b-button>
+              <b-button variant="danger" @click="remove_tags" class="lastbutton">-</b-button>
             </b-input-group-append>
               </b-input-group>
           </div>
@@ -80,6 +80,25 @@
           <button class="border-danger float-right" @click="remove_urls" v-if="selected.length > 0">🗑️ Remove</button>
 
         </b-th>
+        </b-tr>
+
+        <b-tr v-if="urls.length > perPage">
+          <b-th colspan='4' class="col-12">
+              <b-pagination
+                  v-model="currentPage"
+                  :total-rows="visibleRows"
+                  :per-page="perPage"
+
+                  class="my-0"
+                  first-number
+                  hide-ellipsis
+                  :limit="8"
+                  last-number
+                  pills
+                  @page-click="nextpage"
+    ></b-pagination>
+          </b-th>
+        </b-tr>
 
       </template>
 
@@ -139,13 +158,13 @@
         <edit-domain :list="urllist" :url="data.item" @domain_deleted="remove_url(data.item)"></edit-domain>
       </template>
 
-      <template #table-caption>
+      <template #table-caption v-if="urls.length>0">
 
         <span v-if="filter">
-          Showing {{ visibleRows }} of {{ urls.length }} domains.
+          Page {{currentPage}}/{{Math.ceil(urls.length/perPage)}} of {{ visibleRows }} filtered from {{ urls.length }} domains.
         </span>
         <span v-else>
-          Showing {{ urls.length }} domains.
+          Page {{currentPage}}/{{Math.ceil(urls.length/perPage)}} of {{ urls.length }} domains.
         </span>
 
       </template>
@@ -224,9 +243,13 @@ export default {
     }
   },
   methods: {
+    nextpage() {
+      this.allSelected=false;
+    },
     onFiltered(filteredItems) {
       this.visibleRows = filteredItems.length;
       this.currentPage = 1;
+      this.allSelected = false;
     },
     onRowSelected(items) {
       this.selected = items
@@ -262,15 +285,19 @@ export default {
           item.tags.push(this.selected_tag)
         }
       })
+      http.post('/data/urllist/tag/add/', {'urllist_id': this.urllist.id, 'url_ids': this.selected.map(item => item.id), 'tag': this.selected_tag});
     },
     remove_tags() {
       // todo: push changes to server
+      let ids = []
       this.selected.forEach((item) => {
         const index = item.tags.indexOf(this.selected_tag);
         if (index > -1) {
           item.tags.splice(index, 1);
+          ids.push(item.id)
         }
       })
+      http.post('/data/urllist/tag/remove/', {'urllist_id': this.urllist.id, 'url_ids': this.selected.map(item => item.id), 'tag': this.selected_tag});
     },
     remove_urls() {
       // todo: make a list of url id's, add that with the list id and send it to the server
@@ -283,7 +310,7 @@ export default {
           return el.id === item.id;
         });
         if (url_object) {
-          http.post('/data/urllist/url/delete/', {'list_id': this.urllist.id, 'url_id': item.id});
+          http.post('/data/urllist/url/delete/', {'urllist_id': this.urllist.id, 'url_id': item.id});
 
           const index = this.urls.indexOf(url_object[0]);
           if (index > -1) {
