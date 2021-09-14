@@ -60,9 +60,6 @@ h2 {
 
       <br>
 
-      <h3>{{ $t("domains.header") }}</h3>
-      <p v-html="$t('domains.intro')"></p>
-
       <template v-if="list.list_warnings.indexOf('WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED') > -1">
         <div class="server-response-error">
           <span role="img" :aria-label="$t('icon.list_warning')">⚠️</span>{{
@@ -70,7 +67,7 @@ h2 {
           }}
         </div>
       </template>
-      <br>
+
 
       <div v-if="!urls.length">
         <button @click="visible.add_domains = true">🌐 {{ $t("button.add_domains") }}</button>
@@ -79,6 +76,8 @@ h2 {
       <loading :loading="loading"></loading>
 
       <DomainTable :urls="urls" :loading="loading" :urllist="list"></DomainTable>
+
+      <p><i v-html="$t('domains.intro')"></i></p>
 
       <!--
       <ul style="column-count: 2; list-style: none;">

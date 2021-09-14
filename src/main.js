@@ -116,7 +116,11 @@ const store = new Vuex.Store({
 
         // List of report codes with an attached public share code. The public share code is used as a password.
         // these codes are stored in local storage. They are not treated as a password as the data is not sensitive
-        public_share_codes: {}
+        public_share_codes: {},
+
+
+        // what tags are used to filter reports
+        tags: [],
     },
 
     mutations: {
@@ -138,6 +142,9 @@ const store = new Vuex.Store({
         },
         set_report_ids(state, value) {
             state.report_ids = value;
+        },
+        set_tags(state, value) {
+            state.tags = value;
         }
     },
 

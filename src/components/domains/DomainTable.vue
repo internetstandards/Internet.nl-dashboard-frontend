@@ -48,7 +48,7 @@
             >
               <b-input-group>
                 <b-form-input
-                    debounce="400"
+                    debounce="200"
                     id="filter-input"
                     v-model="filter"
                     type="search"

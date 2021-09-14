@@ -6,11 +6,14 @@
       <p>{{ $t("intro") }}</p>
 
       <report_selection></report_selection>
+
     </content-block>
 
     <loading :loading="reports_to_load > 0"></loading>
 
     <div v-if="reports.length > 0 && reports_to_load === 0">
+
+      <report-tag-filter :urllist_id="reports[0].urllist_id" @tags_applied="apply_tags"/>
 
       <report_download :report="report" v-for="report in reports" :key="`d${report.id}`"></report_download>
 
@@ -42,9 +45,11 @@ import report_download from './report_download'
 import report_selection from "@/components/reports/report_selection";
 import {mapState} from 'vuex'
 import SharingConfiguration from './SharingConfiguration'
+import ReportTagFilter from "@/components/reports/ReportTagFilter";
 
 export default {
   components: {
+    ReportTagFilter,
     report_selection,
     ReportCharts,
     ReportTable,
@@ -68,6 +73,11 @@ export default {
     // the route to this component can determine what is shown
     //this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
   },
+  methods: {
+      apply_tags() {
+        this.load_reports_by_ids(this.report_ids, this.tags);
+      }
+  },
 
   watch: {
 
@@ -86,7 +96,7 @@ export default {
         return this.reports[0].report_type;
       return ""
     },
-    ...mapState(['report_ids']),
+    ...mapState(['report_ids', 'tags']),
   }
 }
 </script>
