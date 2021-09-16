@@ -43,7 +43,7 @@ import {
     BootstrapVueIcons,
     InputGroupPlugin,
     NavbarPlugin,
-    NavPlugin,
+    NavPlugin, BadgePlugin,
 
 } from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
@@ -52,7 +52,7 @@ import {enGB, nl} from 'date-fns/locale'
 
 const plugins = [PortalVue, VueI18n, VueRouter, InputGroupPlugin, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, ButtonPlugin, FormGroupPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
 FormCheckboxPlugin, FormSelectPlugin, PaginationPlugin, AlertPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, NavbarPlugin, NavPlugin,
-ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons]
+ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons, BadgePlugin]
 plugins.forEach(plugin => Vue.use(plugin))
 
 Vue.component('v-select', vSelect);

@@ -1,4 +1,10 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
+<style scoped>
+.lastbutton {
+  border-radius: 0 4px 4px 0 !important;
+}
+</style>
+
 <style>
 
 .v-select button, .v-select button:hover, .vs__clear, .vs__deselect {
@@ -32,12 +38,14 @@
 </style>
 <template>
   <div aria-live="polite">
+    <b-input-group>
     <v-select
         v-model="selected_reports"
         :placeholder="$t('select_report')"
         :options="filtered_recent_reports"
         label="label"
         :spinner="loading"
+        style="min-width: 840px;"
         :multiple="true"
         :selectable="() => selected_reports.length < 6"
     >
@@ -60,8 +68,14 @@
         </div>
       </template>
     </v-select>
+
+    <b-input-group-append>
+    <b-button class="lastbutton" role="link" @click="get_recent_reports()">🔁 {{ $t("reload_list") }}</b-button>
+      </b-input-group-append>
+    </b-input-group>
+
     <br>
-    <button role="link" @click="get_recent_reports()">🔁 {{ $t("reload_list") }}</button>
+    <report-tag-filter :urllist_id="this.selected_reports[0].urllist_id" v-if="this.selected_reports.length > 0" @tags_applied="$emit('tags_applied')"/>
 
     <!-- The dropdown with recent reports is updated automatically when scans finish. But if that page
      had never loaded, this is a fallback that still tries to get the recent report every ten minutes. -->
@@ -71,8 +85,10 @@
 </template>
 <script>
 import http from "@/httpclient";
+import ReportTagFilter from "@/components/reports/ReportTagFilter";
 
 export default {
+  components: {ReportTagFilter},
   /**
    * Manipulates the following globals:
    * - Current report type, a string in one of the following: ["web", "mail"]
@@ -202,12 +218,12 @@ export default {
   "en": {
     "select_report": "Select report...",
     "no_options": "No reports available.",
-    "reload_list": "Reload available reports"
+    "reload_list": "Update"
   },
   "nl": {
     "select_report": "Selecteer rapport...",
     "no_options": "Geen rapporten beschikbaar.",
-    "reload_list": "Lijst met beschikbare rapporten opnieuw laden"
+    "reload_list": "Bijwerken"
   }
 }
 </i18n>

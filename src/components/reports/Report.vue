@@ -5,7 +5,7 @@
       <h1>{{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
 
-      <report_selection></report_selection>
+      <report_selection @tags_applied="apply_tags"></report_selection>
 
     </content-block>
 
@@ -13,17 +13,16 @@
 
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
-      <report-tag-filter :urllist_id="reports[0].urllist_id" @tags_applied="apply_tags"/>
-
-      <report_download :report="report" v-for="report in reports" :key="`d${report.id}`"></report_download>
-
-      <sharing-configuration :report="report" v-for="report in reports" :key="`s${report.id}`"></sharing-configuration>
+      <template v-if="!tags_applied">
+        <report_download :report="report" v-for="report in reports" :key="`d${report.id}`"></report_download>
+        <sharing-configuration :report="report" v-for="report in reports" :key="`s${report.id}`"></sharing-configuration>
+      </template>
 
       <content-block>
         <report_header :reports="reports"></report_header>
       </content-block>
 
-      <ReportCharts :reports="reports"/>
+      <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
 
       <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
       <content-block v-if="reports.length < 3" style="page-break-before: always;">
@@ -45,11 +44,10 @@ import report_download from './report_download'
 import report_selection from "@/components/reports/report_selection";
 import {mapState} from 'vuex'
 import SharingConfiguration from './SharingConfiguration'
-import ReportTagFilter from "@/components/reports/ReportTagFilter";
 
 export default {
   components: {
-    ReportTagFilter,
+
     report_selection,
     ReportCharts,
     ReportTable,
@@ -63,6 +61,7 @@ export default {
     return {
       // list of report ids that should be shown as a report
       requested_report_ids: [],
+      tags_applied: false,
     }
   },
 
@@ -75,6 +74,7 @@ export default {
   },
   methods: {
       apply_tags() {
+        this.tags_applied = this.tags.length > 0;
         this.load_reports_by_ids(this.report_ids, this.tags);
       }
   },
@@ -87,6 +87,7 @@ export default {
     },
 
     requested_report_ids(report_ids) {
+      this.tags_applied = false;
       this.load_reports_by_ids(report_ids);
     },
   },

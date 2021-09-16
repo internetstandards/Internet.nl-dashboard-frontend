@@ -4,13 +4,12 @@
 }
 </style>
 <template>
-  <content-block v-if="available_tags.length > 0">[beta]
-    Dit rapport ondersteund tags, hierop kan worden gefilterd. Dit gebeurd live op de database, dus het kan even duren voordat dit is toegepast.
-    Meerdere tags selecteren betekent dat alle tags zijn toegepast op domeinen.
-    Todo: timeline, sharing en download verbergen met ad-hoc rapporten.
-    
+  <div v-if="available_tags.length > 0">
+    <beta-label />
+    Dit rapport ondersteund tags, hierop kan worden gefilterd. Dit gebeurd live op de database, hierdoor kan het even duren voordat dit is toegepast.
+    Meerdere tags selecteren betekent dat deze allemaal zijn toegepast per domein.
     <b-input-group>
-      <v-select :options="available_tags" v-model="selected_tags" multiple taggable style="width: 240px;" placeholder="-- filter by tag">
+      <v-select :options="available_tags" v-model="selected_tags" multiple taggable style="width: 80%;" placeholder="-- filter by tag">
         <template v-slot:option="option">
           <tag :value="option.label"/>
         </template>
@@ -20,19 +19,22 @@
       </b-input-group-append>
     </b-input-group>
 
-  </content-block>
+  </div>
 </template>
 
 <script>
 import http from "@/httpclient";
 import Tag from "@/components/domains/domain/tag";
 import {mapState} from 'vuex'
+import BetaLabel from "@/components/BetaLabel";
 
 export default {
   name: "ReportTagFilter",
-  components: {Tag},
+  components: {BetaLabel, Tag},
   mounted() {
     this.load();
+    // empty list of selected tags on reloads etc to make the UI more intuitive:
+    this.$store.commit("set_tags", []);
     this.selected_tags = this.$store.state.tags;
   },
   data() {
@@ -40,6 +42,10 @@ export default {
       available_tags: [],
       selected_tags: [],
     }
+  },
+  beforeDestroy() {
+    // empty list of selected tags on reloads etc to make the UI more intuitive:
+    this.$store.commit("set_tags", []);
   },
   props: {
     urllist_id: {type: Number, required: true}
