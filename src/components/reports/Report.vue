@@ -75,7 +75,7 @@ export default {
   methods: {
       apply_tags() {
         this.tags_applied = this.tags.length > 0;
-        this.load_reports_by_ids(this.report_ids, this.tags);
+        this.load_reports_by_ids(this.report_ids, {tags: this.tags, custom_date: this.ad_hoc_report_custom_date, custom_time: this.ad_hoc_report_custom_time});
       }
   },
 
@@ -88,7 +88,7 @@ export default {
 
     requested_report_ids(report_ids) {
       this.tags_applied = false;
-      this.load_reports_by_ids(report_ids);
+      this.load_reports_by_ids(report_ids, {});
     },
   },
   computed: {
@@ -97,7 +97,7 @@ export default {
         return this.reports[0].report_type;
       return ""
     },
-    ...mapState(['report_ids', 'tags']),
+    ...mapState(['report_ids', 'tags', 'ad_hoc_report_custom_date', 'ad_hoc_report_custom_time']),
   }
 }
 </script>

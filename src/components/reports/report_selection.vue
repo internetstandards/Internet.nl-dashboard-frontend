@@ -45,7 +45,7 @@
         :options="filtered_recent_reports"
         label="label"
         :spinner="loading"
-        style="min-width: 840px;"
+        style="width: calc(100% - 106px);"
         :multiple="true"
         :selectable="() => selected_reports.length < 6"
     >
@@ -70,7 +70,7 @@
     </v-select>
 
     <b-input-group-append>
-    <b-button class="lastbutton" role="link" @click="get_recent_reports()">🔁 {{ $t("reload_list") }}</b-button>
+    <b-button class="lastbutton" variant="info" role="link" @click="get_recent_reports()">🔁 {{ $t("reload_list") }}</b-button>
       </b-input-group-append>
     </b-input-group>
 
@@ -158,7 +158,11 @@ export default {
       this.match_with_environment(to)
     },
 
-    selected_reports(dropdown_items) {
+    selected_reports(dropdown_items, old_value) {
+
+      // don't reload the page uselessly
+      if (dropdown_items === old_value)
+        return;
 
       // Nothing in the list, for example when the cross hair was used or all items where deleted: reset this object
       if (dropdown_items[0] === undefined) {

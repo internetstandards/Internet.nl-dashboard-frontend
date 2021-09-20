@@ -43,7 +43,7 @@ import {
     BootstrapVueIcons,
     InputGroupPlugin,
     NavbarPlugin,
-    NavPlugin, BadgePlugin,
+    NavPlugin, BadgePlugin, FormTimepickerPlugin, FormDatepickerPlugin, ButtonGroupPlugin, TooltipPlugin,
 
 } from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
@@ -52,7 +52,7 @@ import {enGB, nl} from 'date-fns/locale'
 
 const plugins = [PortalVue, VueI18n, VueRouter, InputGroupPlugin, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, ButtonPlugin, FormGroupPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
 FormCheckboxPlugin, FormSelectPlugin, PaginationPlugin, AlertPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, NavbarPlugin, NavPlugin,
-ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons, BadgePlugin]
+ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons, BadgePlugin, FormTimepickerPlugin, FormDatepickerPlugin, ButtonGroupPlugin, TooltipPlugin]
 plugins.forEach(plugin => Vue.use(plugin))
 
 Vue.component('v-select', vSelect);
@@ -145,6 +145,12 @@ const store = new Vuex.Store({
         },
         set_tags(state, value) {
             state.tags = value;
+        },
+        set_ad_hoc_report_custom_date(state, value){
+            state.ad_hoc_report_custom_date = value;
+        },
+        set_ad_hoc_report_custom_time(state, value){
+            state.ad_hoc_report_custom_time = value;
         }
     },
 

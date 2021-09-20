@@ -485,7 +485,9 @@ div.rotate > span {
               <td style="width: 78px; min-width: 78px;">
                 <a class='direct_link_to_report'
                    :href='url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_url'
-                   target="_blank">
+                   target="_blank"
+                  v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type.internet_nl_score.last_scan ? `since ${humanize_date(url.endpoints[0].ratings_by_type.internet_nl_score.last_scan)}` : ``"
+                >
                   <div v-html="score_comparison(url)"></div>
                   <span class="visuallyhidden"> {{ $t('report.link_to_report', {'url': url}) }}</span>
                 </a>
@@ -494,15 +496,18 @@ div.rotate > span {
               <template v-if="['web', 'mail'].includes(selected_category)">
                 <td class="testresultcell" style="width: 100px"
                     v-for="category_name in relevant_categories_based_on_settings"
-                    :key="category_name">
+                    :key="category_name"
+                    v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type[category_name] && url.endpoints[0].ratings_by_type[category_name]['last_scan'] ? `${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}` : ``"
+                  >
                   <div v-html="category_value_with_comparison(category_name, url)"></div>
                 </td>
               </template>
               <template v-else>
                 <td class="testresultcell" style="width: 56px"
                     v-for="category_name in relevant_categories_based_on_settings"
-                    :key="category_name">
+                    :key="category_name" v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type[category_name]['last_scan'] ? `${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}` : ``">
                   <div v-html="detail_value_with_comparison(category_name, url)"></div>
+                  <span v-if="url.endpoints[0].ratings_by_type[category_name]['last_scan']">since: {{humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}}</span>
                 </td>
               </template>
               <td>
@@ -926,9 +931,9 @@ export default {
           });
         }
       });
-      console.log("Preferred fields: " + preferred_fields)
+      // console.log("Preferred fields: " + preferred_fields)
       let visible_preferred_fields = preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
-      console.log("Visible preferred fields: " + visible_preferred_fields)
+      // console.log("Visible preferred fields: " + visible_preferred_fields)
       return visible_preferred_fields
     },
   }
