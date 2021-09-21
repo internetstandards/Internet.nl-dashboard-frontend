@@ -41,12 +41,12 @@
         </b-input-group>
     </template>
 
-    <b-button-group class="float-right">
-      <b-button variant="danger" @click="clear" class="firstbutton">Reset</b-button>
-      <b-button variant="success" @click="apply" class="lastbutton">Apply</b-button>
-    </b-button-group>
 
-    <b-button variant="secondary" @click="save_ad_hoc_report" class="normalbutton">Save as new report</b-button>
+    <b-button variant="danger" @click="clear" class="normalbutton mr-2">Reset</b-button>
+    <b-button variant="success" @click="apply" class="normalbutton">Apply</b-button>
+
+
+    <b-button variant="secondary" @click="save_ad_hoc_report" class="normalbutton float-right">🌟 Save as new report</b-button>
 
     <server-response :response="server_response" class="mt-2"></server-response>
 

@@ -514,10 +514,11 @@ aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, asid
     font-weight: bold
 }
 
+/*
 div[aria-hidden=true] {
     display: none
 }
-
+*/
 .test-in-progress #content ul {
     display: block;
     width: 100%
