@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import axios from "axios";
 
 // https://stackoverflow.com/questions/39254562/csrf-with-django-reactredux-using-axios

@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: Apache-2.0 */
 @font-face {
     font-family: 'robotobold';
     src: url("/static_frontend/fonts/robotobold.eot");
@@ -354,7 +355,7 @@ article img {
 }
 
 .block button {
-    
+
     margin: 0 auto .5em;
     background: #fff;
     border: solid .3em #ffab4c;
@@ -513,10 +514,11 @@ aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, asid
     font-weight: bold
 }
 
+/*
 div[aria-hidden=true] {
     display: none
 }
-
+*/
 .test-in-progress #content ul {
     display: block;
     width: 100%

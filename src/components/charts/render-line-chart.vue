@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <LineChart :chartData="testData" :height="300" :options="options"><p>{{ $t("accessibility_text") }}</p></LineChart>
 </template>

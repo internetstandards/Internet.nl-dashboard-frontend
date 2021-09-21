@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <content-block class="do-not-print" v-if="report !== undefined">
     <collapse-panel :title='`${$t("title", [report.id, sharing_status(report["is_publicly_shared"])])} `'

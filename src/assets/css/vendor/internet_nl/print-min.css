@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: Apache-2.0 */
 @media print {
     main .wrap, aside, main .wrap .block, main .wrap .result {
         display: block;

@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style>
 #report-template {
   width: 100%;
@@ -354,9 +355,9 @@ div.rotate > span {
   <div>
     <h2>{{ $t("report.title") }}</h2>
     <a class="anchor" name="report"></a>
-    <p>{{ $t("report.intro") }}</p>
+    <p v-if="load_comparison_with_current">{{ $t("report.intro") }}</p>
 
-    <Differences_to_current_list :report_id="reports[0].id"></Differences_to_current_list>
+    <Differences_to_current_list :report_id="reports[0].id" v-if="load_comparison_with_current"></Differences_to_current_list>
 
     <collapse-panel :title='$t("icon_legend.title")' class="do-not-print">
       <div slot="content">
@@ -484,7 +485,9 @@ div.rotate > span {
               <td style="width: 78px; min-width: 78px;">
                 <a class='direct_link_to_report'
                    :href='url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_url'
-                   target="_blank">
+                   target="_blank"
+                  v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type.internet_nl_score.last_scan ? `since ${humanize_date(url.endpoints[0].ratings_by_type.internet_nl_score.last_scan)}` : ``"
+                >
                   <div v-html="score_comparison(url)"></div>
                   <span class="visuallyhidden"> {{ $t('report.link_to_report', {'url': url}) }}</span>
                 </a>
@@ -493,15 +496,18 @@ div.rotate > span {
               <template v-if="['web', 'mail'].includes(selected_category)">
                 <td class="testresultcell" style="width: 100px"
                     v-for="category_name in relevant_categories_based_on_settings"
-                    :key="category_name">
+                    :key="category_name"
+                    v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type[category_name] && url.endpoints[0].ratings_by_type[category_name]['last_scan'] ? `${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}` : ``"
+                  >
                   <div v-html="category_value_with_comparison(category_name, url)"></div>
                 </td>
               </template>
               <template v-else>
                 <td class="testresultcell" style="width: 56px"
                     v-for="category_name in relevant_categories_based_on_settings"
-                    :key="category_name">
+                    :key="category_name" v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type[category_name]['last_scan'] ? `${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}` : ``">
                   <div v-html="detail_value_with_comparison(category_name, url)"></div>
+                  <span v-if="url.endpoints[0].ratings_by_type[category_name]['last_scan']">since: {{humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}}</span>
                 </td>
               </template>
               <td>
@@ -537,6 +543,11 @@ export default {
       type: Array,
       required: true
     },
+      load_comparison_with_current: {
+        type: Boolean,
+          default: true,
+          required: false
+      }
   },
   data: function () {
     return {
@@ -921,7 +932,9 @@ export default {
         }
       });
       // console.log("Preferred fields: " + preferred_fields)
-      return preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
+      let visible_preferred_fields = preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
+      // console.log("Visible preferred fields: " + visible_preferred_fields)
+      return visible_preferred_fields
     },
   }
 }
@@ -934,7 +947,7 @@ export default {
     "score": "Score",
     "domain": "Domain",
     "report": {
-      "title": "Report",
+      "title": "Metrics table",
       "intro": "This table shows detailed results per category. It is possible to compare this report to a second report. In that case, progress indicators are added to the first report where applicable. The domains of the second report are only compared, not displayed.",
       "url_filter": "Filter on domain...",
       "not_eligeble_for_scanning": "Domain did not match scanning criteria at the time the scan was initiated. The scanning criteria are an SOA DNS record (not NXERROR) for mail and an A or AAAA DNS record for web. This domain is ignored in all statistics.",
@@ -982,7 +995,7 @@ export default {
     "score": "Score",
     "domain": "Domein",
     "report": {
-      "title": "Rapport",
+      "title": "Meetwaardentabel",
       "intro": "Deze tabel toont de details van het rapport. Het is mogelijk dit rapport te vergelijken met een vorig of ander rapport. Wanneer deze vergelijking wordt gemaakt, wordt bij de gegevens van het eerste rapport voortgangsindicatoren geplaats waar relevant. De domeinen van het tweede rapport worden alleen vergeleken, niet getoond.",
       "not_eligeble_for_scanning": "Dit domein voldeed niet aan de scan-criteria op het moment van scannen. Deze criteria zijn een SOA DNS record (geen NXERROR) voor mail en een A of AAAA DNS record voor web. Dit domein komt niet terug in de statistieken.",
       "url_filter": "Filter op domein...",

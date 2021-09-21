@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // Note that there is a little hate going on with multiple vue instances.
 // See here: https://github.com/LinusBorg/portal-vue/issues/201#issuecomment-484452281
 // This explains why there are some extra definitions in the bundler thingies.
@@ -42,7 +43,7 @@ import {
     BootstrapVueIcons,
     InputGroupPlugin,
     NavbarPlugin,
-    NavPlugin,
+    NavPlugin, BadgePlugin, FormTimepickerPlugin, FormDatepickerPlugin, ButtonGroupPlugin, TooltipPlugin,
 
 } from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
@@ -51,7 +52,7 @@ import {enGB, nl} from 'date-fns/locale'
 
 const plugins = [PortalVue, VueI18n, VueRouter, InputGroupPlugin, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, ButtonPlugin, FormGroupPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
 FormCheckboxPlugin, FormSelectPlugin, PaginationPlugin, AlertPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, NavbarPlugin, NavPlugin,
-ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons]
+ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons, BadgePlugin, FormTimepickerPlugin, FormDatepickerPlugin, ButtonGroupPlugin, TooltipPlugin]
 plugins.forEach(plugin => Vue.use(plugin))
 
 Vue.component('v-select', vSelect);
@@ -115,7 +116,11 @@ const store = new Vuex.Store({
 
         // List of report codes with an attached public share code. The public share code is used as a password.
         // these codes are stored in local storage. They are not treated as a password as the data is not sensitive
-        public_share_codes: {}
+        public_share_codes: {},
+
+
+        // what tags are used to filter reports
+        tags: [],
     },
 
     mutations: {
@@ -137,6 +142,15 @@ const store = new Vuex.Store({
         },
         set_report_ids(state, value) {
             state.report_ids = value;
+        },
+        set_tags(state, value) {
+            state.tags = value;
+        },
+        set_ad_hoc_report_custom_date(state, value){
+            state.ad_hoc_report_custom_date = value;
+        },
+        set_ad_hoc_report_custom_time(state, value){
+            state.ad_hoc_report_custom_time = value;
         }
     },
 

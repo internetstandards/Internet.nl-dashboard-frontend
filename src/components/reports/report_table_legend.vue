@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div><h3>{{ $t("test_title") }}</h3>
     <ul>

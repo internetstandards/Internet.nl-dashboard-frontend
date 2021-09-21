@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
 .inline-edit input {
     margin-bottom: 0 !important;
@@ -60,6 +61,8 @@
             </a>
         </template>
 
+        <tag v-for="tag in this.displayed_url.tags" :key="tag" :value="tag" />
+
         <span class="inline-edit" v-if="is_edited">
             <input autofocus :placeholder="edited_url_value" v-model="edited_url_value">&nbsp;
             <button @click="save_edit_url()" :title="$t('save_edited_url', [edited_url_value])">
@@ -81,10 +84,12 @@
 
 <script>
 import http from "@/httpclient";
+import Tag from "@/components/domains/domain/tag";
 
 export default {
     name: "edit",
-    data: function () {
+  components: {Tag},
+  data: function () {
         return {
             is_edited: false,
             visible: true,
@@ -113,7 +118,7 @@ export default {
         this.displayed_url.subdomain = this.url.subdomain;
         this.displayed_url.domain = this.url.domain;
         this.displayed_url.suffix = this.url.suffix;
-
+        this.displayed_url.tags = this.url.tags;
         this.original_url_value = this.url.url;
     },
     methods: {

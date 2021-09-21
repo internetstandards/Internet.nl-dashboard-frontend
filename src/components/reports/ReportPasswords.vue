@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <content-block class="do-not-print" v-if="reports !== undefined" style="background-color: #fff7f7 !important;">
     <h2>⚠️ {{ $t('Authentication required') }}</h2>
@@ -16,6 +17,7 @@
               class="mb-0"
           >
             <b-form-input
+                type="password"
                 id="share-code"
                 v-model="$store.state.public_share_codes[report.public_report_code]"
                 maxlength="64"
@@ -53,7 +55,7 @@ export default {
     "supply_password": "Please enter the password for this report:",
     "Stored password is valid": "Stored password is valid",
     "No password needed": "No password needed",
-    "Retry with above settings": "Retry with above settings",
+    "Retry with above settings": "Open with this password",
     "Authentication required": "Authentication required",
     "Some reports require authentication": "Some reports require authentication, please fill in the password / 'share code' for each report:",
     "code": "Report",
@@ -66,7 +68,7 @@ export default {
     "supply_password": "Voer een wachtwoord in voor dit rapport:",
     "Stored password is valid": "Het opgeslagen wachtwoord is geldig",
     "No password needed": "Geen wachtwoord vereist",
-    "Retry with above settings": "Haal rapporten opnieuw op",
+    "Retry with above settings": "Probeer met dit wachtwoord",
     "code": "Rapport",
     "name": "Naam",
     "created_on": "Gemaakt op"

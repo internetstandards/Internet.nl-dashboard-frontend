@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
 const internet_nl_field_mapping = {
   internet_nl_web_tls: 'test_sitetls',

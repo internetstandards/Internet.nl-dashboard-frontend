@@ -1,16 +1,22 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
     <a class="anchor" name="charts"></a>
-    <content-block>
+    <content-block v-if="show_timeline">
       <timeline :urllist_ids="report_urllist_ids" :highlight_report_ids="$store.state.report_ids"></timeline>
     </content-block>
 
     <content-block style="page-break-before: always;" v-if='reports.length > 0'>
       <h2>{{ $t("adoption_bar_chart.title") }}</h2>
+
+      <donuts :reports="reports"></donuts>
+
+    </content-block>
+
+    <content-block style="page-break-before: always;" v-if='reports.length > 0'>
+      <h2>{{ $t("adoption_bar_chart.title") }}</h2>
       <p>{{ $t("adoption_bar_chart.intro") }}</p>
-
       <nested-report-charts component="percentage-bar-chart" :reports="reports"></nested-report-charts>
-
     </content-block>
 
     <content-block style="page-break-before: always;" v-if='reports.length > 1'>
@@ -27,15 +33,18 @@
 <script>
 import Timeline from "@/components/charts/timeline";
 import NestedReportCharts from "@/components/reports/NestedReportCharts";
+import Donuts from "@/components/charts/donuts";
 
 export default {
   components: {
+    Donuts,
     Timeline,
     NestedReportCharts
   },
 
   props: {
     reports: {type: Array, required: true},
+    show_timeline: {type: Boolean, required: false, default: true},
   },
 
   computed: {

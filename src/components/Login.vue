@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
 .subtext {
   font-size: 0.8em;

@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <collapse-panel :title='title' :custom_title_class="`level_${level}`">
     <div slot="content">

@@ -1,39 +1,43 @@
-<style scoped>
-
-</style>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <div>
-        <h3>{{ $t("header") }}</h3>
+        <!-- <h3>{{ $t("header") }}</h3> -->
         <p>
+          <b-iconstack font-scale="1.3">
+                    <b-icon stacked icon="circle-fill" variant="info"></b-icon>
+                    <b-icon stacked icon="hourglass-split" scale="0.7" variant="white"></b-icon>
+            </b-iconstack>
             <span v-if="list.last_scan">
-                {{ $t("last_scan_started") }}: {{ humanize_date(list.last_scan) }}. ({{ list.last_scan_state }})
+                {{ $t("last_scan_started") }}: {{ humanize_date(list.last_scan) }}, {{ list.last_scan_state }}.
             </span>
             <span v-if="!list.last_scan">
                 {{ $t("last_scan_started") }}: {{ $t("not_scanned_before") }}.
             </span>
+            <br>
             <template class="scan-configuration">
-                <div v-if="list.enable_scans">
+                <span v-if="list.enable_scans">
+                  <b-iconstack font-scale="1.3">
+                      <b-icon stacked icon="circle-fill" variant="info"></b-icon>
+                      <b-icon stacked icon="link" scale="0.7" variant="white"></b-icon>
+              </b-iconstack>
                     {{ $t("type_of_scan_performed") }}:
-                    <span title="Mail scans will be performed" v-if="list.enable_scans && list.scan_type === 'mail'">
-                            <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg" style="height: 16px;">
-                        {{ list.scan_type }}
-                    </span>
-                    <span title="Web scans will be performed" v-if="list.enable_scans && list.scan_type === 'web'">
-                            <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg" style="height: 16px;">
-                            {{ list.scan_type }}
+                    <span v-if="list.enable_scans">
+                      <scan-type-icon :type="list.scan_type" /> {{ list.scan_type }}
                     </span>
                     <span title="No scans will be performed" v-if="!list.enable_scans">
                         🚫 {{ list.scan_type }}
                     </span><br>
-                    <span v-if="urls">{{ $t("number_of_domains") }}: {{ urls.length }}</span>
-                    <span v-if="!urls">{{ $t("number_of_domains") }}: {{ list.num_urls }}</span>
-                    <br>
+                  <b-iconstack font-scale="1.3">
+                    <b-icon stacked icon="circle-fill" variant="info"></b-icon>
+                    <b-icon stacked icon="arrow-repeat" scale="0.8" variant="white"></b-icon>
+                  </b-iconstack>
+
                     {{ $t("scan_frequency") }}: {{ $t(`${list.automated_scan_frequency}`) }} <br>
-                    <div v-if="list.automated_scan_frequency !== 'disabled'">
+                    <span v-if="list.automated_scan_frequency !== 'disabled'">
                         {{ $t("next_scheduled_scan") }}: {{ humanize_date(list.scheduled_next_scan) }} <br>
-                    </div>
-                </div>
-                <div v-if="!list.enable_scans"> {{ $t("scanning_disabled") }} </div>
+                    </span>
+                </span>
+                <span v-if="!list.enable_scans"> {{ $t("scanning_disabled") }} </span>
             </template>
             <span v-if="list.last_report_id">
                 <router-link :to="{ name: 'numbered_report', params: { report: list.last_report_id }}">
@@ -47,9 +51,11 @@
 </template>
 
 <script>
+import ScanTypeIcon from "@/components/scan_type_icon";
 export default {
     name: "about-this-list",
-    props: {
+  components: {ScanTypeIcon},
+  props: {
         list: {
             type: Object
         },
@@ -66,7 +72,7 @@ export default {
         "report": "report",
         "header": "About this list",
         "number_of_domains": "Number of domains",
-        "last_scan_started": "Last scan started",
+        "last_scan_started": "Last scan started at",
         "still_running": "still running",
         "finished": "finished",
         "not_scanned_before": "Not scanned before",

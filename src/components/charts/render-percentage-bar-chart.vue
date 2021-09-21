@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
     <canvas ref="canvas" role="img" class="graph-image" :aria-label="title">
@@ -50,7 +51,7 @@ export default {
           this.axis.forEach((ax) => {
             if (ax in data) {
               if (!this.only_show_dynamic_average) {
-                labels.push([this.$i18n.t(ax), this.field_name_to_category_names ? this.field_name_to_category_names[ax] : ""]);
+                labels.push([this.$i18n.t(ax), this.field_name_to_category_names[ax] ? this.field_name_to_category_names[ax] : ""]);
                 axis_names.push(ax);
                 chartdata.push(data[ax][shown_value]);
               }
@@ -58,16 +59,10 @@ export default {
             }
           });
 
-          // add the average of all these to the report, not as a line, but as an additional bar
           if ((labels.length > 1 && this.show_average) || this.only_show_dynamic_average) {
-            // the extra fields are never in the first graph. If we recognize the first graph, then
-            // deduct 1 axis.length
-            if (['internet_nl_web_ipv6', 'internet_nl_web_dnssec', 'internet_nl_web_tls', 'internet_nl_web_appsecpriv',
-              'internet_nl_mail_dashboard_ipv6', 'internet_nl_mail_dashboard_dnssec', 'internet_nl_mail_dashboard_auth',
-              'internet_nl_mail_dashboard_tls'].includes(this.axis[0])) {
-
-              // todo: but only if one of the legacy fields is enabled... This is bug #280
-
+            // Remove the extra fields, they are never in the first graph. Extra fields categories are enabled
+            // automatically if one of the field is selected. And are disabled when none of the fields is selected.
+            if (["mail_legacy", "web_legacy"].includes(this.axis[this.axis.length - 1])) {
               chartdata.push(Math.round((average / (this.axis.length - 1)) * 100) / 100);
             } else {
               chartdata.push(Math.round((average / this.axis.length) * 100) / 100);
