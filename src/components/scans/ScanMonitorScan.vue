@@ -8,22 +8,21 @@ ol {
 }
 </style>
 <template>
-    <b-card class="shadow"
-        header-bg-variant="info"
+    <b-card class="shadow ml-1 mr-1"
+        :header-bg-variant="header_color"
         header-text-variant="light"
         footer-bg-variant="info-outline"
         footer-text-variant="light"
         header-tag="header"
         footer-tag="footer"
-
         >
         <template #header>
 
             <span v-if="scan.state === 'finished'">✅</span>
-            <span v-if="scan.state === 'cancelled'">⭕</span>
+            <span v-if="scan.state === 'cancelled'">🛑️</span>
             <span v-if="!['finished', 'cancelled'].includes(scan.state)">
             <probe /></span>
-            <b>&nbsp; {{ scan.type }} {{ $t("scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</b>
+            <b>&nbsp; {{ scan.type }} {{ $t("scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</b> <scan_type_icon :type="scan.type" />
 
         </template>
 
@@ -113,7 +112,7 @@ ol {
                     </li>
                 </ol>
                 <template v-if="!['finished', 'cancelled'].includes(scan.state)">
-                    <button @click="visible.stop_scan = true">{{ $t("stop_scan") }}</button>
+                    <button @click="visible.stop_scan = true" class="border-danger">🛑 {{ $t("stop_scan") }}</button>
 
                     <StopScan :scan="scan" :show="visible.stop_scan" :visible="visible.stop_scan" @cancel="visible.stop_scan = false" @scan-stopped="scan_stopped()" ></StopScan>
 
@@ -142,9 +141,11 @@ ol {
 <script>
 
 import StopScan from './stop'
+import scan_type_icon from "@/components/scan_type_icon";
 
 export default {
     components: {
+      scan_type_icon,
         StopScan
     },
     name: 'scan_monitor',
@@ -225,7 +226,20 @@ export default {
 
             return `${text.substring(0, max_length)}...`
         },
-    }
+    },
+  computed: {
+      header_color() {
+        if (['cancelled'].includes(this.scan.state))
+          return 'danger'
+
+        if (['finished'].includes(this.scan.state))
+          return 'success'
+
+        return 'info'
+      }
+
+
+  }
 }
 </script>
 <i18n>

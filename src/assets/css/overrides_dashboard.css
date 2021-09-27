@@ -5,6 +5,30 @@ This is a quick workaround to make sure the components look better. The next ste
 */
 
 
+button {
+    margin: 0 auto .5em;
+    background: #fff;
+    border: solid .3em #ffab4c;
+    font-family: 'robotobold', arial, sans-serif;
+    font-weight: bold;
+    font-size: 100%;
+    border-radius: 18px !important;
+    padding: .2em .5em
+}
+
+button:hover, .block button:focus, .block button:active {
+    background: #ffab4c
+}
+
+button:hover {
+    cursor: pointer
+}
+
+button:focus {
+    outline: none
+}
+
+
 small {
     font-size: 0.8em;
     font-style: italic;

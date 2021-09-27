@@ -3,10 +3,8 @@
     <div>
         <!-- <h3>{{ $t("header") }}</h3> -->
         <p>
-          <b-iconstack font-scale="1.3">
-                    <b-icon stacked icon="circle-fill" variant="info"></b-icon>
-                    <b-icon stacked icon="hourglass-split" scale="0.7" variant="white"></b-icon>
-            </b-iconstack>
+          <DashboardIcon icon="hourglass-split" />
+
             <span v-if="list.last_scan">
                 {{ $t("last_scan_started") }}: {{ humanize_date(list.last_scan) }}, {{ list.last_scan_state }}.
             </span>
@@ -16,10 +14,10 @@
             <br>
             <template class="scan-configuration">
                 <span v-if="list.enable_scans">
-                  <b-iconstack font-scale="1.3">
-                      <b-icon stacked icon="circle-fill" variant="info"></b-icon>
-                      <b-icon stacked icon="link" scale="0.7" variant="white"></b-icon>
-              </b-iconstack>
+
+                  <DashboardIcon icon="link" />
+
+
                     {{ $t("type_of_scan_performed") }}:
                     <span v-if="list.enable_scans">
                       <scan-type-icon :type="list.scan_type" /> {{ list.scan_type }}
@@ -27,10 +25,9 @@
                     <span title="No scans will be performed" v-if="!list.enable_scans">
                         🚫 {{ list.scan_type }}
                     </span><br>
-                  <b-iconstack font-scale="1.3">
-                    <b-icon stacked icon="circle-fill" variant="info"></b-icon>
-                    <b-icon stacked icon="arrow-repeat" scale="0.8" variant="white"></b-icon>
-                  </b-iconstack>
+
+                  <DashboardIcon icon="arrow-repeat" :scale="0.8" />
+
 
                     {{ $t("scan_frequency") }}: {{ $t(`${list.automated_scan_frequency}`) }} <br>
                     <span v-if="list.automated_scan_frequency !== 'disabled'">
@@ -52,9 +49,10 @@
 
 <script>
 import ScanTypeIcon from "@/components/scan_type_icon";
+import DashboardIcon from "@/components/DashboardIcon";
 export default {
     name: "about-this-list",
-  components: {ScanTypeIcon},
+  components: {DashboardIcon, ScanTypeIcon},
   props: {
         list: {
             type: Object

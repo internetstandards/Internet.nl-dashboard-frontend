@@ -70,14 +70,15 @@ h2 {
 
 
       <div v-if="!urls.length">
-        <button @click="visible.add_domains = true">🌐 {{ $t("button.add_domains") }}</button>
+        <button @click="visible.add_domains = true" class="border-success">🌐 {{ $t("button.add_domains") }}</button>
       </div>
 
       <loading :loading="loading"></loading>
 
-      <DomainTable :urls="urls" :loading="loading" :urllist="list"></DomainTable>
-
-      <p><i v-html="$t('domains.intro')"></i></p>
+      <template v-if="urls.length">
+        <DomainTable :urls="urls" :loading="loading" :urllist="list"></DomainTable>
+        <p><i v-html="$t('domains.intro')" ></i></p>
+      </template>
 
       <!--
       <ul style="column-count: 2; list-style: none;">
@@ -175,7 +176,11 @@ export default {
     maximum_domains: {type: Number, required: true, default: 10000},
 
     // given via router, when there is a url parameter given
-    initial_list_id: {type: Number}
+    initial_list_id: {type: Number},
+
+    start_opened: {
+      type: Boolean, required: false, default: false
+    }
   },
   watch: {
     initial_list: function (new_value) {
@@ -216,6 +221,9 @@ export default {
       if (this.list.id === parseInt(this.$router.history.current.params.list)) {
         this.open_list();
       }
+    }
+    if (this.start_opened){
+      this.is_opened = true;
     }
   },
   methods: {

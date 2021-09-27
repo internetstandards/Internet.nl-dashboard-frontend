@@ -34,14 +34,14 @@ export default {
 <i18n>
 {
   "en": {
-    "title": "Download report #{0} as",
+    "title": "Download #{0} as",
     "intro": "Report data is available in the following formats:",
     "xlsx": "Microsoft Excel (xlsx)",
     "ods": "Open Spreadsheet (ods)",
     "csv": "Comma Separated (csv)"
   },
   "nl": {
-    "title": "Download rapport #{0} als",
+    "title": "Download #{0} als",
     "intro": "De data in dit rapport is beschikbaar in de volgende formaten:",
     "xlsx": "Microsoft Excel (xlsx)",
     "ods": "Open Document (ods)",

@@ -15,6 +15,7 @@
             <b-form-select id="scan_type" v-model="list.scan_type">
                 <b-form-select-option value="web">{{ $t("urllist.scan_type_web") }}</b-form-select-option>
                 <b-form-select-option value="mail">{{ $t("urllist.scan_type_mail") }}</b-form-select-option>
+                <b-form-select-option value="all">{{ $t("urllist.scan_type_all") }}</b-form-select-option>
             </b-form-select>
             <br><br>
 

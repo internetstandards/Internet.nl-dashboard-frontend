@@ -3,7 +3,7 @@
   <div>
     <a class="anchor" name="charts"></a>
     <content-block v-if="show_timeline">
-      <timeline :urllist_ids="report_urllist_ids" :highlight_report_ids="$store.state.report_ids"></timeline>
+      <timeline :urllist_ids="report_urllist_ids" :highlight_report_ids="$store.state.report_ids" :report_type="reports[0].report_type"></timeline>
     </content-block>
 
     <content-block style="page-break-before: always;" v-if='reports.length > 0'>

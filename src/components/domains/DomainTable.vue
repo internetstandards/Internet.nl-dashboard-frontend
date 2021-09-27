@@ -125,7 +125,7 @@
       </template>
 
       <template #cell(scannable)="data">
-        <template v-if="urllist.scan_type === 'mail'">
+        <template v-if="urllist.scan_type === 'mail' || urllist.scan_type === 'all'">
             <span v-if="data.item.has_mail_endpoint === true" :title="$t('eligeble_mail', [data.item.url])">
                 <span role="img" :aria-label="$t('eligeble_mail', [data.item.url])">🌍</span>
             </span>
@@ -137,7 +137,7 @@
             </span>
         </template>
 
-        <template v-if="urllist.scan_type === 'web'">
+        <template v-if="urllist.scan_type === 'web' || urllist.scan_type === 'all'">
             <span v-if="data.item.has_web_endpoint === true" :title="$t('eligeble_web', [data.item.url])">
                 <span role="img" :aria-label="$t('eligeble_web', [data.item.url])">🌍</span>
             </span>

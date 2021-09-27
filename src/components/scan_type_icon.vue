@@ -1,25 +1,28 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
-  .mail_icon {
-    background: url("/static_frontend/images/vendor/internet_nl/icon-emailtest.svg");
-    height: 1em;
-    width: 1em;
-    background-size: cover;
-    display: inline-block;
-  }
-  .web_icon {
-    background: url("/static_frontend/images/vendor/internet_nl/icon-website-test.svg");
-    height: 1em;
-    width: 1em;
-    background-size: cover;
-    display: inline-block;
-  }
+.my_icon {
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+}
+
+.mail_icon {
+  background: url("/static_frontend/images/vendor/internet_nl/icon-emailtest.svg");
+  background-size: cover;
+
+}
+
+.web_icon {
+  background: url("/static_frontend/images/vendor/internet_nl/icon-website-test.svg");
+  background-size: cover;
+
+}
 </style>
 
 <template>
   <span>
-    <span class="web_icon" v-if="type === 'web'" />
-    <span class="mail_icon" v-if="type === 'mail'" />
+    <span class="my_icon web_icon mx-1" v-if="type === 'web' || type === 'all'"/>
+    <span class="my_icon mail_icon mx-1" v-if="type === 'mail' || type === 'all'"/>
   </span>
 </template>
 

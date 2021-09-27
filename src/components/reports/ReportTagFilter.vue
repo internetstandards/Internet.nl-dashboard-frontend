@@ -19,7 +19,7 @@
 
     <b-input-group class="mb-2">
 
-      <v-select :options="available_tags" v-model="selected_tags" multiple taggable style="width: calc(100% - 45px);" placeholder="-- filter by tag">
+      <v-select :options="available_tags" v-model="selected_tags" multiple taggable style="width: calc(100% - 50px);" placeholder="-- filter by tag">
         <template v-slot:option="option">
           <tag :value="option.label"/>
         </template>

@@ -45,7 +45,7 @@
         :options="filtered_recent_reports"
         label="label"
         :spinner="loading"
-        style="width: calc(100% - 106px);"
+        style="width: calc(100% - 130px);"
         :multiple="true"
         :selectable="() => selected_reports.length < 6"
     >

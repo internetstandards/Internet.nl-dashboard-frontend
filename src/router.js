@@ -67,6 +67,7 @@ const routes = [
     {path: '/unsubscribe', component: Unsubscribe, meta: {title: 'Internet.nl Dashboard / Unsubscribe'}},
     {path: '/profile', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
     {path: '/account', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
+    {path: '/account/:active_tab', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
     {path: '/usage', component: Usage, meta: {title: 'Internet.nl Dashboard / Usage'}},
     {path: '/beta', component: Beta, meta: {title: 'Internet.nl Dashboard / Beta'}},
 ];
