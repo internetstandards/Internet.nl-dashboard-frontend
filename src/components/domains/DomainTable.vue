@@ -10,6 +10,10 @@
 .lastbutton {
   border-radius: 0 4px 4px 0 !important;
 }
+
+.normalbutton {
+  border-radius: 4px !important;
+}
 </style>
 <style>
 .vs__dropdown-toggle {
@@ -64,9 +68,9 @@
           </b-th>
           <b-th class="col-6">
 
-            <div class="float-left" style="width: 350px">
+            <div class="float-left" style="width: 330px">
               <b-input-group>
-                <v-select :options="tags" v-model="selected_tag" taggable style="width: 240px;" placeholder="-- add or select tag">
+                <v-select :options="tags" v-model="selected_tag" taggable style="width: 250px;" placeholder="-- add or select tag">
                   <template v-slot:option="option">
                     <tag :value="option.label"/>
                   </template>
@@ -78,7 +82,9 @@
               </b-input-group>
             </div>
 
-            <button class="border-danger float-right" @click="remove_urls" v-if="selected.length > 0">🗑️ Remove</button>
+
+            <b-button class="float-right normalbutton" variant="info" @click="$emit('update')">🔁<span class="sr-only">update domain list</span></b-button>
+            <button class="border-danger float-right mr-2" @click="remove_urls" v-if="selected.length > 0">🗑️ Remove</button>
 
           </b-th>
         </b-tr>

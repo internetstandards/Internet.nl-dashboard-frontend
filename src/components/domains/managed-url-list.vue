@@ -56,6 +56,7 @@ h2 {
 
     <div v-if="is_opened">
       <br>
+      <SubdomainDiscovery  v-if="urls.length" :list_id="list.id" class="float-right" @finished="get_urls"/>
       <About :list="list" :urls="urls"></About>
 
       <br>
@@ -73,21 +74,12 @@ h2 {
         <button @click="visible.add_domains = true" class="border-success">🌐 {{ $t("button.add_domains") }}</button>
       </div>
 
-      <loading :loading="loading"></loading>
-
       <template v-if="urls.length">
-        <DomainTable :urls="urls" :loading="loading" :urllist="list"></DomainTable>
+        <DomainTable :urls="urls" :loading="loading" :urllist="list" @update="get_urls()" />
         <p><i v-html="$t('domains.intro')" ></i></p>
       </template>
 
-      <!--
-      <ul style="column-count: 2; list-style: none;">
-        <li v-for="url in urls" :key="url.id">
-          <EditDomain :list="list" :url="url" @domain_deleted="update_list_warnings()"></EditDomain>
-        </li>
-      </ul>EditDomain
-      <br>
-      -->
+      <loading :loading="loading"></loading>
 
       <button v-if="urls.length" @click="view_csv = !view_csv" value="load">
         📋 {{ $t("button.view_csv") }}
@@ -129,9 +121,11 @@ import About from './list/about-this-list'
 import http from "@/httpclient";
 import ScanTypeIcon from "@/components/scan_type_icon";
 import DomainTable from "@/components/domains/DomainTable";
+import SubdomainDiscovery from "@/components/domains/SubdomainDiscovery";
 
 export default {
   components: {
+    SubdomainDiscovery,
     DomainTable,
     ScanTypeIcon,
     Delete,
