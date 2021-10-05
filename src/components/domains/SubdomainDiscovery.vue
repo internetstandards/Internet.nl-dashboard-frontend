@@ -7,7 +7,7 @@
         {{ $t('Scanning done, click to reload domain list') }}
       </b-button>
 
-      <b-button size="sm" v-if="!success_while_visible" @click="request" variant="info" :disabled="loading">{{ $t("Find 'www.' subdomains") }}<span
+      <b-button size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" variant="info" :disabled="loading">{{ $t("Find 'www.' subdomains") }}<span
           v-if="state_changed_on">{{ $t(', last scan finished ') }}{{ humanize_relative_date(state_changed_on) }}</span></b-button>
     </template>
     <template v-else>
@@ -16,14 +16,17 @@
         {{ $t("... finding 'www.' subdomains ") }}({{ $t(state) }}, {{ humanize_relative_date(state_changed_on) }})
       </b-button>
     </template>
+     <subdomain-discovery-modal :id="`subdomain_discovery_modal_${list_id}`" @ok="request" />
   </div>
 </template>
 
 <script>
 import http from "@/httpclient";
+import SubdomainDiscoveryModal from "@/components/domains/SubdomainDiscoveryModal";
 
 export default {
   name: "SubdomainDiscovery",
+  components: {SubdomainDiscoveryModal},
   props: {
     list_id: {type: Number}
   },
@@ -112,15 +115,12 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
 <i18n>
 {
   "en": {
     "Scanning done, click to reload domain list": "Scanning done, click to reload domain list",
-    "Find 'www.' subdomains": "Find 'www.' subdomains",
-    ", last scan finished ": ", last scan finished ",
+    "Find 'www.' subdomains": "Add 'www.' subdomains",
+    ", last scan finished ": ", last index finished ",
     "... finding 'www.' subdomains ": "... finding 'www.' subdomains ",
     "requested": "requested",
     "scanning": "scanning",
@@ -129,7 +129,7 @@ export default {
   },
   "nl": {
     "Scanning done, click to reload domain list": "Klaar met zoeken, klik om de domeinlijst te herladen",
-    "Find 'www.' subdomains": "Zoek 'www.' subdomeinen",
+    "Find 'www.' subdomains": "Voeg 'www.' domeinen toe",
     ", last scan finished ":  ", laatste keer was ",
     "... finding 'www.' subdomains ": "... zoekt 'www.' subdomeinen ",
     "requested": "aangevraagd",
