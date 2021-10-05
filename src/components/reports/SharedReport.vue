@@ -25,7 +25,7 @@
         <ReportCharts :show_timeline="false" :reports="reports"/>
 
         <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
-        <content-block v-if="reports.length < 3" style="page-break-before: always;">
+        <content-block v-if="reports.length < 3" class="start-on-new-page">
           <ReportTable :load_comparison_with_current="false" :reports="reports"/>
         </content-block>
       </template>

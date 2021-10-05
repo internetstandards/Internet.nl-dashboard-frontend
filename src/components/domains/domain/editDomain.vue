@@ -14,7 +14,7 @@ button {
 <template>
   <div>
 
-    <button style="font-size: 12px;" @click="start_url_editing()" aria-expanded="false"> 🖊 </button> &nbsp;
+    <button @click="start_url_editing()" aria-expanded="false"> 🖊 </button> &nbsp;
 
     <a v-if="!editing" @click="start_url_editing()">
       <template v-if="displayed_url.subdomain">

@@ -51,18 +51,14 @@
     >
       <slot name="no-options">{{ $t('no_options') }}</slot>
       <template v-slot:option="option">
-        <div style="display:block;" class="rowline">
-          <div style="width: 4em; display:inline-block;">{{ option.id }}</div>
-          <div v-if="option.type === 'web'" style="width: 4em; display:inline-block;">
-            <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg"
-                 style="height: 16px;"> {{ option.type }}
+        <div class="rowline d-block">
+          <div class="d-inline-block" style="width: 4em;">{{ option.id }}</div>
+          <div class="d-inline-block" style="width: 4em;">
+            <scan_type_icon :type="option.type"/>
+            {{ option.type }}
           </div>
-          <div v-else style="width: 4em; display:inline-block;">
-            <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg"
-                 style="height: 16px;"> {{ option.type }}
-          </div>
-          <div style="display:inline-block;">{{ option.list_name }}</div>
-          <div style="display:inline-block; float: right;">{{ humanize_date(option.at_when) }}
+          <div class="d-inline-block">{{ option.list_name }}</div>
+          <div class="d-inline-block float-right">{{ humanize_date(option.at_when) }}
             ({{ humanize_relative_date(option.at_when) }})
           </div>
         </div>
@@ -86,9 +82,10 @@
 <script>
 import http from "@/httpclient";
 import ReportTagFilter from "@/components/reports/ReportTagFilter";
+import scan_type_icon from "@/components/scan_type_icon";
 
 export default {
-  components: {ReportTagFilter},
+  components: {scan_type_icon, ReportTagFilter},
   /**
    * Manipulates the following globals:
    * - Current report type, a string in one of the following: ["web", "mail"]

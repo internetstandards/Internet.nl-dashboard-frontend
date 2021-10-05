@@ -37,13 +37,13 @@
             </span>
         </template>
         &nbsp;
-        <button style="font-size: 12px;" v-if="!is_edited" class="inline-edit"
+        <button v-if="!is_edited" class="inline-edit"
                 :title="$t('start_editing_url', [edited_url_value])"
                 @click="start_url_editing()" aria-expanded="false">
             🖊
             <span class="visuallyhidden">{{ $t('start_editing_url', [edited_url_value]) }}</span>
         </button>
-        <button style="font-size: 12px;" v-if="is_edited" class="inline-edit"
+        <button v-if="is_edited" class="inline-edit"
                 :title="$t('cancel_editing_url', [edited_url_value])"
                 @click="cancel_edit_url()" aria-expanded="true">
             🖊

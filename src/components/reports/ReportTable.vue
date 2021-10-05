@@ -365,30 +365,30 @@ div.rotate > span {
       </div>
     </collapse-panel>
 
-    <div class="sticky-table-container" style="position: relative; page-break-before: always;">
+    <div class="sticky-table-container start-on-new-page position-relative">
       <div id="horrible-chrome-td-sticky-white-background-fix"></div>
       <table class="table table-striped">
         <thead class="sticky_labels">
 
         <tr class="sticky_labels">
-          <th style="width: 78px; min-width: 78px; border: 0; background-color: white;"
-              class="sticky-header">
+          <th style="width: 78px; min-width: 78px; border: 0;"
+              class="sticky-header bg-white">
             <div class="rotate">
               <span @click="sortBy('score')" class="arrow"
                     :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></span>
               <span @click="sortBy('score')">{{ $t("score") }}</span>
             </div>
           </th>
-          <th style="width: 225px; min-width: 225px; border: 0; background-color: white;"
-              class="sticky-header">
+          <th style="width: 225px; min-width: 225px; border: 0;"
+              class="sticky-header bg-white">
             <div class="rotate">
               <div @click="sortBy('url')" class="arrow"
                    :class="sortOrders['url'] === -1 ? 'dsc' : (sortOrders['url'] === 1 ? 'asc' : 'unknown')"></div>
-              <div @click="sortBy('url')" style="display: inline-block;">{{ $t("domain") }}</div>
+              <div @click="sortBy('url')" class="d-inline-block">{{ $t("domain") }}</div>
             </div>
           </th>
 
-          <th colspan="200" class="sticky-header" style="background-color: white;">
+          <th colspan="200" class="sticky-header bg-white">
             <template v-if="['web', 'mail'].includes(selected_category)">
 
               <div style="border: 0; float: left; width: 100px"
@@ -405,12 +405,12 @@ div.rotate > span {
 
               <div style="border: 0; float: left; width: 56px"
                    v-for="category in relevant_categories_based_on_settings" :key="category">
-                <div class="rotate" style="white-space: nowrap;">
+                <div class="rotate nowrap">
                   <div @click="sortBy(category)" class="arrow"
                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></div>
-                  <div @click="sortBy(category)" style="display: inline-block;">
+                  <div @click="sortBy(category)" class="d-inline-block">
                     {{ $t("" + category) }}
-                    <div style="font-size: 0.7em; color: gray; margin-top: -3px; padding-left: 13px;"
+                    <div class="small text-secondary pl-3" style="margin-top: -3px"
                         v-html="category_from_field_name(category)"></div>
                   </div>
                 </div>
@@ -445,12 +445,12 @@ div.rotate > span {
                     }}</span>
                 </button>
               </td>
-              <td class="sticky_search" style="width: 100%"></td>
+              <td class="sticky_search w-100"></td>
             </template>
             <template v-else>
               <td :colspan="relevant_categories_based_on_settings.length + 1"
-                  style="text-align: center" class="sticky_search">
-                <button style='width: 100%'
+                  class="sticky_search text-center">
+                <button class="w-100"
                         @click="select_category(report_category)">
                   <span role="img" :aria-label="$t('icons.remove_filter')">❌</span>
                   {{ $t("report.zoom.buttons.remove_zoom") }}
@@ -465,7 +465,7 @@ div.rotate > span {
 
         <tr v-if="filtered_urls.length < 1">
           <td :colspan="relevant_categories_based_on_settings.length + 2"
-              style="text-align: center;">😱 {{ $t("report.empty_report") }}
+              class="text-center">😱 {{ $t("report.empty_report") }}
           </td>
         </tr>
 

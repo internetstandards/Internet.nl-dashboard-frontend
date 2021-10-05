@@ -34,10 +34,10 @@
                   </b-input-group>
                 </b-form-group>
                 <template v-if='report["public_share_code"]'>
-                  <span style="font-size: 0.8em; font-style: italic; color: gray;">{{ $t("with_password") }}: {{ report["public_share_code"] }}</span>
+                  <span class="small text-secondary font-italic">{{ $t("with_password") }}: {{ report["public_share_code"] }}</span>
                 </template>
                 <template v-else>
-                  <span style="font-size: 0.8em; font-style: italic; color: gray;">{{ $t("without_password") }}</span>
+                  <span class="small text-secondary font-italic">{{ $t("without_password") }}</span>
                 </template>
                 <br>
                 <br>
@@ -75,7 +75,7 @@
         <template v-else>
 
           <b-row>
-            <b-col style="width: 50%;">
+            <b-col class="w-50">
               <button variant="warning" @click="share" class="mb-4">🟢 {{ $t("share_to_anyone_with_url") }} {{
                   report['public_share_code'] ? $t("and_password") : ''
                 }}
@@ -83,7 +83,7 @@
 
             </b-col>
 
-            <b-col style="width: 50%;">
+            <b-col class="w-50">
 
 
               <b-form-group

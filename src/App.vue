@@ -15,7 +15,7 @@
 
     <main id="content" tabindex="-1">
       <div class="wrap mt-3">
-        <div style="width: 100%;">
+        <div class="w-100">
           <keep-alive>
             <router-view></router-view>
           </keep-alive>

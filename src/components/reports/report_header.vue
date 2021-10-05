@@ -19,7 +19,7 @@
     </span><br>
 
     <template v-if="reports.length > 1">
-      <div v-for="report in reports" style="padding-left: 10px" :key="report.id">
+      <div v-for="report in reports"  class="pl-1" :key="report.id">
         <!-- Skip the first report -->
         <template v-if="report.id !== reports[0].id">
           <h3>{{ $t("compared_to") }}: <span v-if="show_application_links">#{{ report.id }} - </span>{{ report.urllist_name }}</h3>
@@ -36,7 +36,7 @@
     </template>
 
     <template v-if="reports.length > 2">
-      <p style="padding-top: 1em;">⚠️ {{ $t("only_graphs") }}</p>
+      <p class="pt-2">⚠️ {{ $t("only_graphs") }}</p>
     </template>
 
   </div>

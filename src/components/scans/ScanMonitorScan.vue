@@ -105,7 +105,7 @@ ol {
 
         <collapse-panel :title='$t("scan history")'>
             <div slot="content">
-                <ol style="font-size: 0.7em;" reversed>
+                <ol class="small" reversed>
                     <li v-for="log_item in scan.log" :key="log_item.id">
                         {{ $t('progress.' + log_item.state) }},
                         {{ humanize_relative_date(log_item.at_when) }}

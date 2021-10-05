@@ -2,8 +2,8 @@
 <template>
   <collapse-panel :title='title' :custom_title_class="`level_${level}`">
     <div slot="content">
-      <div style="overflow: auto; width: 100%; height: 500px; position: relative;">
-        <div class="chart-container" style="position: relative; height: 500px; min-height: 500px; width: 100%;">
+      <div class="w-100 overflow-auto position-relative" style="height: 500px;">
+        <div class="chart-container w-100 position-relative" style="height: 500px; min-height: 500px;">
           <slot name="chart_content">
             Default Content
           </slot>

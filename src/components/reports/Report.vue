@@ -25,7 +25,7 @@
       <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
 
       <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
-      <content-block v-if="reports.length < 3" style="page-break-before: always;">
+      <content-block v-if="reports.length < 3" class="start-on-new-page">
         <ReportTable :reports="reports" :load_comparison_with_current="!tags_applied"/>
       </content-block>
 

@@ -27,7 +27,7 @@ h2 {
                 <probe v-if="list.enable_scans && !list.scan_now_available" class="m-2 pb-1"/>
             </h2>
 
-            <div v-if="is_opened" style="float:right;">
+            <div v-if="is_opened" class="float-right">
                 <button @click="visible.configure = true">
                     <span role="img" :aria-label="$t('icon.settings')">📝</span> {{ $t("button.configure") }}
                 </button> &nbsp;
@@ -88,7 +88,7 @@ h2 {
       <b-form-textarea
           id="textarea"
           v-model="csv_value"
-          style="border: 1px solid silver; padding: 5px;"
+          class="border-secondary border-left border-right p-2 mt-2"
           v-if="view_csv"
           plaintext
       ></b-form-textarea>

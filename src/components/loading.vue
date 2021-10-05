@@ -10,11 +10,16 @@
     font-size: 2em;
     color: dimgray;
 }
+
+.fixed-spinner {
+  width: 2rem; height: 2rem;
+}
+
 </style>
 <template>
     <div v-if="loading" class="fullwidth loading">
         <div class="loading">
-            <b-spinner variant="info" label="Spinning" style="width: 2rem; height: 2rem;"></b-spinner>
+            <b-spinner variant="info" label="Spinning" class="fixed-spinner"></b-spinner>
             &nbsp;
             <span>{{ $t("loading") }}</span>
         </div>

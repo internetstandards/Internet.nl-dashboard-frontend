@@ -135,10 +135,14 @@ li a {
   padding-bottom: 0;
 }
 
+.max_container_width {
+  max-width: 1064px;
+}
+
 </style>
 <template>
   <b-navbar toggleable="md">
-    <b-container style="max-width: 1064px;">
+    <b-container class="max_container_width">
       <b-navbar-brand to="domains">
         <p id="site-title"><a><span class="hidden">{{ $t('sitetitle') }}</span></a></p>
         <p id="site-description"><span class="hidden">{{ $t('sitedescription') }}</span></p>
@@ -151,7 +155,7 @@ li a {
         <!-- sorry for the table here, after hours of fiddling with css to get two ul's below each other i'm done and
          just use the worst option that works. -->
         <table class="retro-vintage-table"><tr><td class="ml-auto">
-        <b-navbar-nav id="language-switch-header-container" class="language-switch-list" style="float: right;">
+        <b-navbar-nav id="language-switch-header-container" class="language-switch-list float-right">
           <b-nav-item v-if="is_superuser">{{ account_name }}</b-nav-item>
           <b-nav-item v-for="(lang_code, index) in supported_languages" :key="index" :disabled="lang_code === locale" @click="set_locale(lang_code)">
             <b-icon icon="check" v-if="lang_code === locale"></b-icon>
@@ -161,7 +165,7 @@ li a {
 
         </td></tr><tr><td>
 
-        <b-navbar-nav style="float: right;">
+        <b-navbar-nav class="float-right">
           <template v-if="is_authenticated">
             <template v-if="is_superuser">
 

@@ -3,11 +3,11 @@
   <div>
     <template v-for="chart in charts_to_render">
       <div v-if="chart.level === 1" :key="chart.axis.join('.')">
-        <div class="chart-container" style="position: relative; height:500px; width:100%; min-width: 950px;">
+        <div class="chart-container w-100 position-relative" style="height:500px; min-width: 950px;">
           <component :is="my_component" :chart_data="reports" :show_average="chart.average" :axis="chart.axis"/>
         </div>
       </div>
-      <div v-else style="page-break-inside: avoid;" :key="chart.axis.join('.')">
+      <div v-else class="not-on-new-page" :key="chart.axis.join('.')">
         <chart-collapse-panel :title="chart.label" :level="chart.level">
           <component :is="my_component" slot="chart_content" :chart_data="reports" :show_average="chart.average"
                                 :only_show_dynamic_average="chart.only_average" :axis="chart.axis"/>

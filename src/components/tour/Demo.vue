@@ -48,13 +48,13 @@
 
             <table>
                 <tr>
-                    <td style="vertical-align: top; text-align: left">
+                    <td class="align-top text-left">
                         <figure>
                           <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/text_upload.png" class="scaled" alt="Text upload"></b-img-lazy>
                           <figcaption>{{ $t("feature.create_list.text_upload_caption") }}</figcaption>
                         </figure>
                     </td>
-                    <td style="vertical-align: top; text-align: left">
+                    <td class="align-top text-left">
                         <figure>
                           <b-img-lazy fluid rounded blank-color="#777" src="/static_frontend/images/demo/spreadsheet_upload.png" class="scaled" alt="example list"></b-img-lazy>
                           <figcaption>{{ $t("feature.create_list.spreadsheet_upload_caption") }}</figcaption>

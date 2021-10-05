@@ -6,20 +6,20 @@
       <timeline :urllist_ids="report_urllist_ids" :highlight_report_ids="$store.state.report_ids" :report_type="reports[0].report_type"></timeline>
     </content-block>
 
-    <content-block style="page-break-before: always;" v-if='reports.length > 0'>
+    <content-block class="start-on-new-page" v-if='reports.length > 0'>
       <h2>{{ $t("adoption_bar_chart.title") }}</h2>
 
       <donuts :reports="reports"></donuts>
 
     </content-block>
 
-    <content-block style="page-break-before: always;" v-if='reports.length > 0'>
+    <content-block class="start-on-new-page"  v-if='reports.length > 0'>
       <h2>{{ $t("adoption_bar_chart.title") }}</h2>
       <p>{{ $t("adoption_bar_chart.intro") }}</p>
       <nested-report-charts component="percentage-bar-chart" :reports="reports"></nested-report-charts>
     </content-block>
 
-    <content-block style="page-break-before: always;" v-if='reports.length > 1'>
+    <content-block class="start-on-new-page"  v-if='reports.length > 1'>
       <h2>{{ $t("cumulative_adoption_bar_chart.title") }}</h2>
       <p>{{ $t("cumulative_adoption_bar_chart.intro") }}</p>
 

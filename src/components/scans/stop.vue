@@ -7,7 +7,7 @@
 
             <server-response :response="response"></server-response>
 
-            <div class="wrapper" style="width: 100%">
+            <div class="wrapper w-100">
             <span><probe /></span> &nbsp;
                 <b>{{ scan.type }} {{ $t("id") }}{{ scan.id }}</b><br>
                 <br>

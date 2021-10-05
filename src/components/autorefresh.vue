@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-    <div v-if='visible' style='margin-bottom: 0 !important;'>
+    <div v-if='visible' class="mb-0">
         <button @click="reload_now()">🔁 {{ $t("refresh_now") }}</button>
         {{ $t("refresh_happening_in") }} <span v-html="this.current_step_inverted"></span>
         {{ $t("units") }}
