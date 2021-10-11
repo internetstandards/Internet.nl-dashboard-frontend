@@ -35,6 +35,10 @@
   background-color: #5897FB !important;
 }
 
+.w-87 {
+  width: 87%
+}
+
 </style>
 <template>
   <div aria-live="polite">
@@ -45,15 +49,15 @@
         :options="filtered_recent_reports"
         label="label"
         :spinner="loading"
-        style="width: calc(100% - 130px);"
+        class="w-87"
         :multiple="true"
         :selectable="() => selected_reports.length < 6"
     >
       <slot name="no-options">{{ $t('no_options') }}</slot>
       <template v-slot:option="option">
         <div class="rowline d-block">
-          <div class="d-inline-block" style="width: 4em;">{{ option.id }}</div>
-          <div class="d-inline-block" style="width: 4em;">
+          <div class="d-inline-block col-1">{{ option.id }}</div>
+          <div class="d-inline-block col-2" >
             <scan_type_icon :type="option.type"/>
             {{ option.type }}
           </div>

@@ -68,9 +68,9 @@
           </b-th>
           <b-th class="col-6">
 
-            <div class="float-left" style="width: 330px">
+            <div class="float-left w-75" >
               <b-input-group>
-                <v-select :options="tags" v-model="selected_tag" taggable style="width: 250px;" placeholder="-- add or select tag">
+                <v-select :options="tags" v-model="selected_tag" class="w-75" taggable placeholder="-- add or select tag">
                   <template v-slot:option="option">
                     <tag :value="option.label"/>
                   </template>
@@ -84,7 +84,7 @@
 
 
             <b-button class="float-right normalbutton" variant="info" @click="$emit('update')">🔁<span class="sr-only">update domain list</span></b-button>
-            <button class="border-danger float-right mr-2" @click="remove_urls" v-if="selected.length > 0">🗑️ Remove</button>
+            <button class="border-danger float-right mr-2" @click="remove_urls" v-if="selected.length > 0">🗑️</button>
 
           </b-th>
         </b-tr>

@@ -1,9 +1,14 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
+<style scoped>
+.fixed_ratio {
+  height:500px; min-width: 950px;
+}
+</style>
 <template>
   <div>
     <template v-for="chart in charts_to_render">
       <div v-if="chart.level === 1" :key="chart.axis.join('.')">
-        <div class="chart-container w-100 position-relative" style="height:500px; min-width: 950px;">
+        <div class="chart-container w-100 position-relative fixed_ratio">
           <component :is="my_component" :chart_data="reports" :show_average="chart.average" :axis="chart.axis"/>
         </div>
       </div>
@@ -104,7 +109,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

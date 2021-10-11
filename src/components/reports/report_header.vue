@@ -4,7 +4,7 @@
     <h2>
         📊 <span v-if="show_application_links">#{{ reports[0].id }} - </span>{{ reports[0].urllist_name }}
     </h2>
-    <donut class="mr-2 d-inline-block float-left" style="width:100px" :data="{'score': reports[0].average_internet_nl_score, 'rest': 100-reports[0].average_internet_nl_score}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='100' :elements="['donut']" />
+    <donut class="mr-2 d-inline-block float-left col-2" :data="{'score': reports[0].average_internet_nl_score, 'rest': 100-reports[0].average_internet_nl_score}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='100' :elements="['donut']" />
     <span>{{ $t("type_of_scan_performed") }}:
       <Scan_type_icon :type="reports[0].report_type" />
 
