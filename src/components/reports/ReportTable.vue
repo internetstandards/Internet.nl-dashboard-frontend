@@ -531,7 +531,7 @@ div.rotate > span {
                 <td class="testresultcell px-100"
                     v-for="category_name in relevant_categories_based_on_settings"
                     :key="category_name"
-                    v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type[category_name] && url.endpoints[0].ratings_by_type[category_name]['last_scan'] ? `${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}` : ``"
+                    v-b-tooltip.hover :title="make_tooltip(url, category_name)"
                   >
                   <div v-html="category_value_with_comparison(category_name, url)"></div>
                 </td>
@@ -539,7 +539,7 @@ div.rotate > span {
               <template v-else>
                 <td class="testresultcell px-56"
                     v-for="category_name in relevant_categories_based_on_settings"
-                    :key="category_name" v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type[category_name]['last_scan'] ? `${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}` : ``">
+                    :key="category_name" v-b-tooltip.hover :title="make_tooltip(url, category_name)">
                   <div v-html="detail_value_with_comparison(category_name, url)"></div>
 
                 </td>
@@ -643,7 +643,15 @@ export default {
     }
   },
   methods: {
-
+    make_tooltip(url, category_name) {
+      if (!url.endpoints[0])
+        return ''
+      if (!url.endpoints[0].ratings_by_type[category_name])
+        return ''
+      if (!url.endpoints[0].ratings_by_type[category_name]['last_scan'])
+        return ''
+          return`${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${this.humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}`
+    },
     select_category: function (category_name) {
       if (Object.keys(this.categories).includes(category_name))
         this.selected_category = category_name;
