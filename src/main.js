@@ -202,15 +202,23 @@ Vue.mixin(
                 document.cookie = name + "=" + (value || "") + expires + "; path=/";
             },
             humanize_date: function (date) {
+                if ([undefined, null, "", 0].includes(date))
+                    return ""
                 return format(parseISO(date), 'PPPP', {locale: this.dateLocales[this.locale]});
             },
             humanize_date_date_only: function (date) {
+                if ([undefined, null, "", 0].includes(date))
+                    return ""
                 return format(parseISO(date), 'PPP', {locale: this.dateLocales[this.locale]});
             },
             humanize_relative_date: function (date) {
+                if ([undefined, null, "", 0].includes(date))
+                    return ""
                 return formatDistanceToNow(parseISO(date), {addSuffix: true, locale: this.dateLocales[this.locale]})
             },
             humanize_duration: function (duration_in_milliseconds) {
+                if ([undefined, null, "", 0].includes(duration_in_milliseconds))
+                    return ""
                 return formatDuration(
                     intervalToDuration(
                         {
