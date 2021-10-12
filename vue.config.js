@@ -4,11 +4,16 @@
 const path = require('path')
 
 module.exports = {
+    // webpack uses eval() in the development server, which will be blocked by CSP. Using this feature the eval is removed.
+    // see: https://stackoverflow.com/questions/48047150/chrome-extension-compiled-by-webpack-throws-unsafe-eval-error/49100966#49100966
+    configureWebpack: {
+        devtool: 'cheap-module-source-map'
+    },
     devServer: {
         // // To test CSP, set the server to production (see makefile) and enable below CSP header.
         // the data: part is explained here: https://security.stackexchange.com/questions/94993/is-including-the-data-scheme-in-your-content-security-policy-safe/167244#167244
         // Issue about the data part is here: https://github.com/bootstrap-vue/bootstrap-vue/issues/6805
-        // headers: {"Content-Security-Policy": "default-src 'self' http://localhost:8000; img-src 'self' data:"}
+        headers: {"Content-Security-Policy": "default-src 'self'; connect-src http://localhost:8000 https://matomo.internet.nl; script-src 'self' https://matomo.internet.nl; img-src 'self' data: https://matomo.internet.nl;"}
     },
     chainWebpack: config => {
         config.module

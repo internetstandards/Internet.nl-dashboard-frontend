@@ -27,6 +27,7 @@
     "vue": "^2.6.12",
     "vue-chart-3": "^0.5.7",
     "vue-i18n": "^8.22.1",
+    "vue-matomo": "^4.1.0",
     "vue-router": "^3.4.8",
     "vue-select": "^3.10.8",
     "vue2-dropzone": "^3.6.0",
