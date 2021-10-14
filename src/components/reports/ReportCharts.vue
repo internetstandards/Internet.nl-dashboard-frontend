@@ -7,7 +7,7 @@
     </content-block>
 
     <content-block class="start-on-new-page" v-if='reports.length > 0'>
-      <h2>{{ $t("adoption_bar_chart.title") }}</h2>
+      <h2>{{ $t("adoption_circle_chart.title") }}</h2>
 
       <donuts :reports="reports"></donuts>
 
@@ -63,8 +63,11 @@ export default {
       "intro": "This graph shows the average adoption per standard averaged over multiple reports."
     },
     "adoption_bar_chart": {
-      "title": "Adoption of standards",
+      "title": "Adoption of standards per category",
       "intro": "This graph shows the average adoption per standard per report."
+    },
+    "adoption_circle_chart": {
+      "title": "Adoption of standards"
     }
   },
   "nl": {
@@ -74,8 +77,11 @@ export default {
       "intro": "In deze grafiek worden de geselecteerde rapporten bij elkaar opgeteld, en daar het gemiddelde van getoond."
     },
     "adoption_bar_chart": {
-      "title": "Adoptie van standaarden",
+      "title": "Adoptie van standaarden per categorie",
       "intro": "Deze grafiek toont het percentage adoptie per categorie en onderliggende metingen."
+    },
+    "adoption_circle_chart": {
+      "title": "Adoptie van standaarden"
     }
   }
 }
