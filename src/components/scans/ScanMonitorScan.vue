@@ -22,7 +22,7 @@ ol {
             <span v-if="scan.state === 'cancelled'">🛑️</span>
             <span v-if="!['finished', 'cancelled'].includes(scan.state)">
             <probe /></span>
-            <b>&nbsp; {{ scan.type }} {{ $t("scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</b> <scan_type_icon :type="scan.type" />
+            <b>&nbsp; {{ scan.type }} {{ $t("scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</b> <scan-type-icon :type="scan.type" />
 
         </template>
 
@@ -141,11 +141,11 @@ ol {
 <script>
 
 import StopScan from './stop'
-import scan_type_icon from "@/components/scan_type_icon";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 
 export default {
     components: {
-      scan_type_icon,
+      ScanTypeIcon,
         StopScan
     },
     name: 'scan_monitor',

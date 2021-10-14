@@ -2,7 +2,7 @@
 <template>
     <content-block>
 
-        <h1>{{ $t("title") }}</h1>
+        <h1><b-icon icon="person-plus" /> {{ $t("title") }}</h1>
         <p>{{ $t("intro") }}</p>
 
         <p>

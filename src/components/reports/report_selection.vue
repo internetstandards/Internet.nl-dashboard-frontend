@@ -58,7 +58,7 @@
         <div class="rowline d-block">
           <div class="d-inline-block col-1">{{ option.id }}</div>
           <div class="d-inline-block col-2" >
-            <scan_type_icon :type="option.type"/>
+            <scan-type-icon :type="option.type"/>
             {{ option.type }}
           </div>
           <div class="d-inline-block">{{ option.list_name }}</div>
@@ -86,10 +86,10 @@
 <script>
 import http from "@/httpclient";
 import ReportTagFilter from "@/components/reports/ReportTagFilter";
-import scan_type_icon from "@/components/scan_type_icon";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 
 export default {
-  components: {scan_type_icon, ReportTagFilter},
+  components: {ScanTypeIcon, ReportTagFilter},
   /**
    * Manipulates the following globals:
    * - Current report type, a string in one of the following: ["web", "mail"]

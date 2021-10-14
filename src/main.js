@@ -268,7 +268,7 @@ Vue.mixin(
 
 
 function is_public_page(page_name){
-    return !!['login', 'demo', 'tour', 'shared_report', 'compared_shared_report'].includes(page_name);
+    return !!['login', 'demo', 'tour', 'shared_report', 'compared_shared_report', 'home'].includes(page_name);
 }
 
 

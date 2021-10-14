@@ -25,7 +25,7 @@
 <template>
     <div id="demo-template">
         <content-block>
-            <h1>{{ $t("title") }}</h1>
+            <h1><b-icon icon="info-circle" /> {{ $t("title") }}</h1>
             <p v-html="$t('introduction')"></p>
             <p v-html='$t("contact_information")'></p>
         </content-block>
@@ -136,7 +136,7 @@ export default {
 <i18n>
 {
     "en": {
-        "title": "Internet.nl Dashboard Tour",
+        "title": "Internet.nl dashboard features",
         "introduction": "The internet.nl allows bulk scans and reporting up to thousands of domains. Scan for IPv6, TLS, DMARC, SPF, DANE, DKIM, DNSSEC, HTTP Headers and more. Below is an overview of features included in the dashboard:",
         "contact_information": "To use the dashboard on internet.nl, contact: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
         "feature": {
@@ -188,7 +188,7 @@ export default {
         }
     },
     "nl": {
-
+      "title": "Internet.nl dashboard rondleiding"
     }
 }
 

@@ -166,10 +166,16 @@ li a {
         </td></tr><tr><td>
 
         <b-navbar-nav class="float-right">
+
+          <b-nav-item to="/home" accesskey="h" exact exact-active-class="active"><b-icon icon="house" /> {{
+                $t("home")
+              }}
+          </b-nav-item>
+
           <template v-if="is_authenticated">
             <template v-if="is_superuser">
 
-               <b-nav-item-dropdown exact exact-active-class="active">
+           <b-nav-item-dropdown exact exact-active-class="active">
             <template #text>
               <b-icon icon="person-badge-fill" />  {{ $t("admin") }}
             </template>
@@ -194,8 +200,8 @@ li a {
             </template>
             <b-dropdown-item to="/account/notifications" accesskey="a">📨 {{$t("notifications") }}</b-dropdown-item>
             <b-dropdown-item to="/account/authentication" >📱 {{$t("authentication") }}</b-dropdown-item>
-            <b-dropdown-item to="/account/web_metrics" ><scan_type_icon type="web" /> {{$t("web_metrics") }}</b-dropdown-item>
-            <b-dropdown-item to="/account/mail_metrics"><scan_type_icon type="mail" /> {{$t("mail_metrics") }}</b-dropdown-item>
+            <b-dropdown-item to="/account/web_metrics" ><scan-type-icon type="web" /> {{$t("web_metrics") }}</b-dropdown-item>
+            <b-dropdown-item to="/account/mail_metrics"><scan-type-icon type="mail" /> {{$t("mail_metrics") }}</b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item @click="logout" accesskey="l" ><b-icon icon="box-arrow-right" /> {{
                 $t("log_off")
@@ -218,10 +224,10 @@ li a {
 </template>
 <script>
 import http from "@/httpclient";
-import scan_type_icon from "@/components/scan_type_icon";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 
 export default {
-  components: {scan_type_icon},
+  components: {ScanTypeIcon},
   props: {
     is_authenticated: {
       type: Boolean,
@@ -300,7 +306,8 @@ export default {
     "log_off": "Log off",
     "reports": "Reports",
     "tour": "Tour",
-    "scans": "  Scans",
+    "scans": "Scans",
+    "home": "Home",
     "notifications": "Notifications",
     "authentication": "Authentication",
     "web_metrics": "Web metrics",
@@ -322,7 +329,8 @@ export default {
     "log_off": "Uitloggen",
     "reports": "Rapporten",
     "tour": "Rondleiding",
-    "scans": "  Scans",
+    "scans": "Scans",
+    "home": "Begin",
     "notifications": "Notificaties",
     "authentication": "Authenticatie",
     "web_metrics": "Web meetwaarden",

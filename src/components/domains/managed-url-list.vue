@@ -119,7 +119,7 @@ import AddDomains from './list/add domains'
 import Configure from './list/configure'
 import About from './list/about-this-list'
 import http from "@/httpclient";
-import ScanTypeIcon from "@/components/scan_type_icon";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 import DomainTable from "@/components/domains/DomainTable";
 import SubdomainDiscovery from "@/components/domains/SubdomainDiscovery";
 

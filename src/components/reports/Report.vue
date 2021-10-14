@@ -2,7 +2,7 @@
 <template>
   <div id="report-template">
     <content-block class="do-not-print">
-      <h1>{{ $t("title") }}</h1>
+      <h1><b-icon icon="file-bar-graph" /> {{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
 
       <report_selection @tags_applied="apply_tags"></report_selection>

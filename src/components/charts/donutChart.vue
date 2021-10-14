@@ -16,6 +16,10 @@
   text-align: center;
 }
 
+.nice-label-0\.5 {
+  font-size: 0.0em;
+}
+
 .nice-label-1 {
   font-size: 1em;
 }

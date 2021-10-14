@@ -28,7 +28,6 @@
 
 <script>
 export default {
-  name: "scan_type_icon",
   props: {
     type: {type: String, requred: true}
   }

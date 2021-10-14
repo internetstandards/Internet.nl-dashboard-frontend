@@ -3,7 +3,7 @@
     <div>
         <content-block>
 
-            <h1>{{ $t("title") }}</h1>
+            <h1><b-icon icon="graph-up" /> {{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
             <p>{{ $t("annotations") }}:</p>
             <ol>

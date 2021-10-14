@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import ScanTypeIcon from "@/components/scan_type_icon";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 import DashboardIcon from "@/components/DashboardIcon";
 export default {
     name: "about-this-list",

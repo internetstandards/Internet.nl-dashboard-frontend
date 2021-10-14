@@ -4,7 +4,7 @@
 <template>
   <div>
     <content-block>
-      <h1>{{ $t("title") }}</h1>
+      <h1><b-icon icon="search" /> {{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
       <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60" v-if="$store.state.user.is_authenticated"></autorefresh>
     </content-block>

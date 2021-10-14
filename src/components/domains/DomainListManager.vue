@@ -33,7 +33,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 <template>
     <div>
         <content-block>
-            <h1>{{ $t("title") }}</h1>
+            <h1><b-icon icon="card-list" /> {{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
             <p>
                 <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>

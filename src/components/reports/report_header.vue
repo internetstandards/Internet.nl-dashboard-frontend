@@ -6,7 +6,7 @@
     </h2>
     <donut class="mr-2 d-inline-block float-left col-2" :data="{'score': reports[0].average_internet_nl_score, 'rest': 100-reports[0].average_internet_nl_score}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='100' :elements="['donut']" />
     <span>{{ $t("type_of_scan_performed") }}:
-      <Scan_type_icon :type="reports[0].report_type" />
+      <scan-type-icon :type="reports[0].report_type" />
 
       {{ reports[0].report_type }}<br>
       {{ $t("number_of_domains") }}: {{reports[0].total_urls }}<br>
@@ -43,10 +43,10 @@
 </template>
 <script>
 
-import Scan_type_icon from "@/components/scan_type_icon";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 import Donut from "@/components/charts/donut";
 export default {
-  components: {Donut, Scan_type_icon},
+  components: {Donut, ScanTypeIcon},
   props: {
     reports: {type: Array, required: true},
       show_application_links: {type: Boolean, default: true, required:false}
