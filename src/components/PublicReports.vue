@@ -80,7 +80,7 @@ export default {
     "Name": "Report",
     "Published": "Publication date",
     "View": "View",
-    "Contains": "Measures"
+    "Contains": "Contains"
   },
   "nl": {
     "domains": "domeinen",
@@ -91,7 +91,7 @@ export default {
     "Name": "Rapport",
     "Published": "Gepubliceerd op",
     "View": "Bekijken",
-    "Contains": "Meet"
+    "Contains": "Bevat"
   }
 }
 
