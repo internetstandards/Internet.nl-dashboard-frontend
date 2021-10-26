@@ -56,11 +56,11 @@
                     id="filter-input"
                     v-model="filter"
                     type="search"
-                    placeholder="-- type to filter"
+                    :placeholder="$t('type to filter')"
                 ></b-form-input>
 
                 <b-input-group-append>
-                  <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">Clear</b-button>
+                  <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t('Clear') }}</b-button>
                 </b-input-group-append>
               </b-input-group>
             </b-form-group>
@@ -68,9 +68,9 @@
           </b-th>
           <b-th class="col-6">
 
-            <div class="float-left w-75" >
+            <div class="float-left w-75" v-if="selected.length > 0">
               <b-input-group>
-                <v-select :options="tags" v-model="selected_tag" class="w-75" taggable placeholder="-- add or select tag">
+                <v-select :options="tags" v-model="selected_tag" class="w-75" taggable :placeholder="$t('select label')">
                   <template v-slot:option="option">
                     <tag :value="option.label"/>
                   </template>
@@ -83,7 +83,7 @@
             </div>
 
 
-            <b-button class="float-right normalbutton" variant="info" @click="$emit('update')">🔁<span class="sr-only">update domain list</span></b-button>
+            <b-button class="float-right normalbutton" variant="info" @click="$emit('update')">🔁<span class="sr-only">{{ $t('update domain list') }}</span></b-button>
             <button class="border-danger float-right mr-2" @click="remove_urls" v-if="selected.length > 0">🗑️</button>
 
           </b-th>
@@ -115,45 +115,23 @@
       <template #cell(selected)="{ rowSelected }">
         <template v-if="rowSelected">
           <span aria-hidden="true">&check;</span>
-          <span class="sr-only">Selected</span>
+          <span class="sr-only">{{ $t('Selected') }}</span>
         </template>
         <template v-else>
           <span aria-hidden="true">&nbsp;</span>
-          <span class="sr-only">Not selected</span>
+          <span class="sr-only">{{ $t('Not selected') }}</span>
         </template>
       </template>
 
-      <template #empty="scope">
-        <h4>{{ scope.emptyText }}</h4>
+      <template #empty="">
+        <h4>{{ $t('Table empty') }}</h4>
       </template>
-      <template #emptyfiltered="scope">
-        <h4>{{ scope.emptyFilteredText }}</h4>
+      <template #emptyfiltered="">
+        <h4>{{ $t('No filtered results') }}</h4>
       </template>
 
       <template #cell(scannable)="data">
-        <template v-if="urllist.scan_type === 'mail' || urllist.scan_type === 'all'">
-            <span v-if="data.item.has_mail_endpoint === true" :title="$t('eligeble_mail', [data.item.url])">
-                <span role="img" :aria-label="$t('eligeble_mail', [data.item.url])">🌍</span>
-            </span>
-          <span v-if="data.item.has_mail_endpoint === 'unknown'" :title="$t('unknown_eligeble_mail', [data.item.url])">
-                <span role="img" :aria-label="$t('unknown_eligeble_mail', [data.item.url])">❓</span>
-            </span>
-          <span v-if="data.item.has_mail_endpoint === false" :title="$t('not_eligeble_mail', [data.item.url])">
-                <span role="img" :aria-label="$t('not_eligeble_mail', [data.item.url])">🚫</span>
-            </span>
-        </template>
-
-        <template v-if="urllist.scan_type === 'web' || urllist.scan_type === 'all'">
-            <span v-if="data.item.has_web_endpoint === true" :title="$t('eligeble_web', [data.item.url])">
-                <span role="img" :aria-label="$t('eligeble_web', [data.item.url])">🌍</span>
-            </span>
-          <span v-if="data.item.has_web_endpoint === 'unknown'" :title="$t('unknown_eligeble_web', [data.item.url])">
-                <span role="img" :aria-label="$t('unknown_eligeble_web', [data.item.url])">❓</span>
-            </span>
-          <span v-if="data.item.has_web_endpoint === false" :title="$t('not_eligeble_web', [data.item.url])">
-                <span role="img" :aria-label="$t('not_eligeble_web', [data.item.url])">🚫</span>
-            </span>
-        </template>
+        <format-scan-eligibility :scan_type="urllist.scan_type" :url="data.item" />
       </template>
 
       <template #cell(tags)="data">
@@ -167,10 +145,10 @@
       <template #table-caption v-if="urls.length>0">
 
         <span v-if="filter">
-          Page {{ currentPage }}/{{ Math.ceil(urls.length / perPage) }} of {{ visibleRows }} filtered from {{ urls.length }} domains.
+          {{$t('filtered pagination', [currentPage, Math.ceil(urls.length / perPage), visibleRows, urls.length])}}
         </span>
         <span v-else>
-          Page {{ currentPage }}/{{ Math.ceil(urls.length / perPage) }} of {{ urls.length }} domains.
+          {{$t('pagination', [currentPage, Math.ceil(urls.length / perPage), urls.length])}}
         </span>
 
       </template>
@@ -184,10 +162,11 @@
 import Tag from "@/components/domains/domain/tag";
 import EditDomain from "@/components/domains/domain/editDomain";
 import http from "@/httpclient";
+import FormatScanEligibility from "@/components/domains/FormatScanEligibility";
 
 export default {
   name: "DomainTable",
-  components: {EditDomain, Tag},
+  components: {FormatScanEligibility, EditDomain, Tag},
   props: {
     urls: {
       type: Array, required: true,
@@ -236,14 +215,14 @@ export default {
         {
           key: 'url',
           sortable: true,
-          label: "Domain",
+          label: this.$t("Domain"),
           thStyle: 'min-width: 300px',
           tdClass: 'nowrap'
         },
         {
           key: 'tags',
           sortable: true,
-          label: "Tags"
+          label: this.$t("tags")
         },
       ],
     }
@@ -339,35 +318,32 @@ export default {
 <i18n>
 {
   "en": {
-    "start_editing_url": "Edit {0}.",
-    "cancel_editing_url": "Cancel editing and store the original value: {0}",
-    "eligeble_mail": "{0} is eligible for e-mail scans",
-    "unknown_eligeble_mail": "Not yet known if {0} can be mail scanned.",
-    "not_eligeble_mail": "{0} is not eligible for e-mail scans. Will be checked again when starting a scan.",
-    "eligeble_web": "{0} is eligible for web scans",
-    "unknown_eligeble_web": "Not yet known if {0} can be web scanned.",
-    "not_eligeble_web": "{0} is not eligible for web scans. Will be checked again when starting a scan.",
-    "save_edited_url": "Save changes, the change will be applied to {0}.",
-    "delete_edited_url": "Delete {0} from this list.",
-    "button_labels": {
-      "save": "Save",
-      "cancel": "Cancel",
-      "remove": "Remove"
-    }
+    "Domain": "Domain",
+    "tags": "Labels",
+    "type to filter": "-- type to filter",
+    "Clear": "Clear",
+    "select label": "select label",
+    "update domain list": "update domain list",
+    "Selected": "Selected",
+    "Not selected": "Not selected",
+    "Table empty": "No domains in this list yet... added domains will be displayed here.",
+    "No filtered results": "The filter yielded no results. You can only search for complete tags.",
+    "filtered pagination": "Page {0}/{1} of {2} filtered from {3} domains.",
+    "pagination": "Page {0}/{1} of {2} domains."
   },
   "nl": {
-    "eligeble_mail": "E-mail scannen is mogelijk",
-    "start_editing_url": "Bewerk {0}.",
-    "unknown_eligeble_mail": "Onbekend of E-mail scannen mogelijk is",
-    "not_eligeble_mail": "Kan geen E-mail scan uitvoeren (wordt opnieuw gecheckt bij het starten van de scan)",
-    "eligeble_web": "Web scan is mogelijk",
-    "unknown_eligeble_web": "Niet bekend of het mogelijk is een web scan uit te voeren",
-    "not_eligeble_web": "Web scan kan niet worden uitgevoerd. Dit wordt opnieuw gecheckt bij het starten van de scan.",
-    "button_labels": {
-      "save": "Opslaan",
-      "cancel": "Annuleren",
-      "remove": "Verwijderen"
-    }
+    "Domain": "Domein",
+    "tags": "Labels",
+    "type to filter": "-- tik hier om te zoeken",
+    "Clear": "Wis",
+    "select label": "selecteer label",
+    "update domain list": "domeinlijst bijwerken",
+    "Selected": "Geslecteerd",
+    "Not selected": "Niet geselecteerd",
+    "Table empty": "Geen domeinen in deze lijst, domeinen die worden toegevoegd verschijnen hier...",
+    "No filtered results": "De zoekopdracht had geen resultaat. Let op: tags moeten volledig worden ingevoerd.",
+    "filtered pagination": "Pagina {0}/{1} van {2} zoekresultaten uit {3} domeinen.",
+    "pagination": "Pagina {0}/{1} van {2} domeinen."
   }
 }
 </i18n>

@@ -76,7 +76,7 @@ h2 {
 
       <template v-if="urls.length">
         <DomainTable :urls="urls" :loading="loading" :urllist="list" @update="get_urls()" />
-        <p><i v-html="$t('domains.intro')" ></i></p>
+        <p><small><i v-html="$t('domains.intro')" ></i></small></p>
       </template>
 
       <loading :loading="loading"></loading>

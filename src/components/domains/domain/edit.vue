@@ -13,29 +13,8 @@
 
 <template>
     <div v-if="visible">
-        <template v-if="list.scan_type === 'mail'">
-            <span v-if="url.has_mail_endpoint === true" :title="$t('eligeble_mail', [edited_url_value])">
-                <span role="img" :aria-label="$t('eligeble_mail', [edited_url_value])">🌍</span>
-            </span>
-            <span v-if="url.has_mail_endpoint === 'unknown'" :title="$t('unknown_eligeble_mail', [edited_url_value])">
-                <span role="img" :aria-label="$t('unknown_eligeble_mail', [edited_url_value])">❓</span>
-            </span>
-            <span v-if="url.has_mail_endpoint === false" :title="$t('not_eligeble_mail', [edited_url_value])">
-                <span role="img" :aria-label="$t('not_eligeble_mail', [edited_url_value])">🚫</span>
-            </span>
-        </template>
 
-        <template v-if="list.scan_type === 'web'">
-            <span v-if="url.has_web_endpoint === true" :title="$t('eligeble_web', [edited_url_value])">
-                <span role="img" :aria-label="$t('eligeble_web', [edited_url_value])">🌍</span>
-            </span>
-            <span v-if="url.has_web_endpoint === 'unknown'" :title="$t('unknown_eligeble_web', [edited_url_value])">
-                <span role="img" :aria-label="$t('unknown_eligeble_web', [edited_url_value])">❓</span>
-            </span>
-            <span v-if="url.has_web_endpoint === false" :title="$t('not_eligeble_web', [edited_url_value])">
-                <span role="img" :aria-label="$t('not_eligeble_web', [edited_url_value])">🚫</span>
-            </span>
-        </template>
+        <format-scan-eligibility :scan_type="list.scan_type" :url="url" />
         &nbsp;
         <button v-if="!is_edited" class="inline-edit"
                 :title="$t('start_editing_url', [edited_url_value])"
@@ -85,10 +64,11 @@
 <script>
 import http from "@/httpclient";
 import Tag from "@/components/domains/domain/tag";
+import FormatScanEligibility from "@/components/domains/FormatScanEligibility";
 
 export default {
     name: "edit",
-  components: {Tag},
+  components: {FormatScanEligibility, Tag},
   data: function () {
         return {
             is_edited: false,
@@ -175,12 +155,6 @@ export default {
     "en": {
         "start_editing_url": "Edit {0}.",
         "cancel_editing_url": "Cancel editing and store the original value: {0}",
-        "eligeble_mail": "{0} is eligible for e-mail scans",
-        "unknown_eligeble_mail": "Not yet known if {0} can be mail scanned.",
-        "not_eligeble_mail": "{0} is not eligible for e-mail scans. Will be checked again when starting a scan.",
-        "eligeble_web": "{0} is eligible for web scans",
-        "unknown_eligeble_web": "Not yet known if {0} can be web scanned.",
-        "not_eligeble_web": "{0} is not eligible for web scans. Will be checked again when starting a scan.",
         "save_edited_url": "Save changes, the change will be applied to {0}.",
         "delete_edited_url": "Delete {0} from this list.",
         "button_labels": {
@@ -192,11 +166,6 @@ export default {
     "nl": {
         "eligeble_mail": "E-mail scannen is mogelijk",
         "start_editing_url": "Bewerk {0}.",
-        "unknown_eligeble_mail": "Onbekend of E-mail scannen mogelijk is",
-        "not_eligeble_mail": "Kan geen E-mail scan uitvoeren (wordt opnieuw gecheckt bij het starten van de scan)",
-        "eligeble_web": "Web scan is mogelijk",
-        "unknown_eligeble_web": "Niet bekend of het mogelijk is een web scan uit te voeren",
-        "not_eligeble_web": "Web scan kan niet worden uitgevoerd. Dit wordt opnieuw gecheckt bij het starten van de scan.",
         "button_labels": {
             "save": "Opslaan",
             "cancel": "Annuleren",
