@@ -25,6 +25,11 @@
         <template v-slot:option="option">
           <tag :value="option.label"/>
         </template>
+        <!-- cannot call deselect just yet, so keep the ugly container
+        <template #selected-option-container="{ option, deselect, multiple}">
+          <div class="vs__selected"><tag :value="option.label"/> <button v-if="multiple" class="vs_deselect" type="button" @click="deselect(option)"  ref="deselectButtons" :title="`Deselect ${option.label}`" :aria-label="`Deselect ${option.label}`">❌</button></div>
+        </template>
+        -->
       </v-select>
       <b-input-group-append>
         <b-button @click="load" variant="info" class="lastbutton">🔁 <span class="sr-only">Reload</span></b-button>
