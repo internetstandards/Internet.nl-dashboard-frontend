@@ -33,6 +33,8 @@
     </b-input-group>
 
     <template v-if="$store.state.user.is_superuser">
+      <b-row>
+        <b-col>
       <label for="datepicker">
         <b-badge pill variant="info">expert feature</b-badge>
         Date of report</label>
@@ -43,6 +45,8 @@
           </b-button>
         </b-input-group-append>
       </b-input-group>
+
+          </b-col><b-col>
       <label for="timepicker">
         <b-badge pill variant="info">expert feature</b-badge>
         Time of report</label>
@@ -53,6 +57,9 @@
           </b-button>
         </b-input-group-append>
       </b-input-group>
+        </b-col>
+        </b-row>
+
     </template>
 
 

@@ -143,8 +143,6 @@ function interpolate_translations(internet_nl_messages) {
         },
       },
 
-      mail_legacy: 'Extra Fields',
-      web_legacy: 'Extra Fields',
       internet_nl_web_legacy_category: 'Extra Fields',
       internet_nl_mail_legacy_category: "Extra Fields",
 
@@ -250,8 +248,6 @@ function interpolate_translations(internet_nl_messages) {
         },
       },
 
-      mail_legacy: 'Extra Velden',
-      web_legacy: 'Extra Velden',
       internet_nl_web_legacy_category: "Extra Velden",
       internet_nl_mail_legacy_category: "Extra Velden",
 

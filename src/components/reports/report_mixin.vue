@@ -29,7 +29,6 @@ export default {
       const default_metric_visibility = {
         // contains all fields in the application and some default values
         web: {visible: true, show_dynamic_average: true},
-        web_legacy: {visible: false, show_dynamic_average: true},
         internet_nl_web_legacy_category: {visible: false, show_dynamic_average: true},
         internet_nl_mail_legacy_category: {visible: false, show_dynamic_average: true},
         internet_nl_web_tls: {visible: true, show_dynamic_average: true},
@@ -37,7 +36,6 @@ export default {
         internet_nl_web_ipv6: {visible: true, show_dynamic_average: true},
         internet_nl_web_appsecpriv: {visible: true, show_dynamic_average: true},
         mail: {visible: true, show_dynamic_average: true},
-        mail_legacy: {visible: false, show_dynamic_average: true},
         internet_nl_mail_dashboard_tls: {visible: true, show_dynamic_average: true},
         internet_nl_mail_dashboard_auth: {visible: true, show_dynamic_average: true},
         internet_nl_mail_dashboard_dnssec: {visible: true, show_dynamic_average: true},
