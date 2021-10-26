@@ -13,13 +13,15 @@
 </style>
 <template>
   <div v-if="available_tags.length > 0">
-    Dit rapport ondersteund tags, hierop kan worden gefilterd. Dit gebeurd direct op de database, daardoor kan het even duren voordat het filter is toegepast.
+    Dit rapport ondersteund tags, hierop kan worden gefilterd. Dit gebeurd direct op de database, daardoor kan het even
+    duren voordat het filter is toegepast.
     Meerdere tags selecteren betekent dat deze per domein allemaal worden gebruikt.
     <loading :loading="loading"/>
 
     <b-input-group class="mb-2">
 
-      <v-select :options="available_tags" v-model="selected_tags" multiple taggable class="w-75" placeholder="-- filter by tag">
+      <v-select :options="available_tags" v-model="selected_tags" multiple taggable class="w-75"
+                placeholder="-- filter by tag">
         <template v-slot:option="option">
           <tag :value="option.label"/>
         </template>
@@ -30,15 +32,27 @@
 
     </b-input-group>
 
-    <template v-if="$store.state.user.is_superuser" >
-      <label for="datepicker"><b-badge pill variant="info">expert feature</b-badge> Date of report</label>
-      <b-input-group class="mb-2"><b-form-datepicker id="datepicker" v-model="custom_date"></b-form-datepicker>
-
+    <template v-if="$store.state.user.is_superuser">
+      <label for="datepicker">
+        <b-badge pill variant="info">expert feature</b-badge>
+        Date of report</label>
+      <b-input-group class="mb-2">
+        <b-form-datepicker id="datepicker" v-model="custom_date"></b-form-datepicker>
+        <b-input-group-append>
+          <b-button @click="custom_date = null" variant="info" class="lastbutton">❌ <span class="sr-only">Clear</span>
+          </b-button>
+        </b-input-group-append>
       </b-input-group>
-      <label for="timepicker"><b-badge pill variant="info">expert feature</b-badge> Time of report</label>
-        <b-input-group class="mb-2"><b-form-timepicker id="timepicker" hourCycle="23h" :hour12="false" v-model="custom_time"></b-form-timepicker>
-
-        </b-input-group>
+      <label for="timepicker">
+        <b-badge pill variant="info">expert feature</b-badge>
+        Time of report</label>
+      <b-input-group class="mb-2">
+        <b-form-timepicker id="timepicker" hourCycle="23h" :hour12="false" v-model="custom_time"></b-form-timepicker>
+        <b-input-group-append>
+          <b-button @click="custom_time = null" variant="info" class="lastbutton">❌ <span class="sr-only">Clear</span>
+          </b-button>
+        </b-input-group-append>
+      </b-input-group>
     </template>
 
 
@@ -46,7 +60,8 @@
     <b-button variant="success" @click="apply" class="normalbutton">Apply</b-button>
 
 
-    <b-button variant="secondary" @click="save_ad_hoc_report" class="normalbutton float-right">🌟 Save as new report</b-button>
+    <b-button variant="secondary" @click="save_ad_hoc_report" class="normalbutton float-right">🌟 Save as new report
+    </b-button>
 
     <server-response :response="server_response" class="mt-2"></server-response>
 
@@ -107,14 +122,14 @@ export default {
       this.$store.commit("set_ad_hoc_report_custom_time", this.custom_time);
       this.$emit('tags_applied')
     },
-    save_ad_hoc_report(){
-       http.post(`/data/report/ad_hoc_save/${this.$store.state.report_ids[0]}/`,
-           {tags: this.selected_tags, custom_date: this.custom_date, custom_time: this.custom_time}).then(response => {
-          // The report might be empty, because the wrong code has been sent:
-         // if the report has been saved, then reload the list report list and give a success message
-         this.server_response = response.data;
-         this.$emit('ad-report-saved')
-        });
+    save_ad_hoc_report() {
+      http.post(`/data/report/ad_hoc_save/${this.$store.state.report_ids[0]}/`,
+          {tags: this.selected_tags, custom_date: this.custom_date, custom_time: this.custom_time}).then(response => {
+        // The report might be empty, because the wrong code has been sent:
+        // if the report has been saved, then reload the list report list and give a success message
+        this.server_response = response.data;
+        this.$emit('ad-report-saved')
+      });
     }
   },
   ...mapState(['report_ids', 'tags']),
