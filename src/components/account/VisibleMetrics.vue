@@ -201,7 +201,7 @@ export default {
                     {key: 'internet_nl_web_dnssec'},
                     {key: 'internet_nl_web_tls'},
                     {key: 'internet_nl_web_appsecpriv'},
-                    {key: 'web_legacy'},
+                    {key: 'internet_nl_web_legacy_category'},
                 ]
             } else {
                 categories = [
@@ -209,7 +209,7 @@ export default {
                     {key: 'internet_nl_mail_dashboard_dnssec'},
                     {key: 'internet_nl_mail_dashboard_auth'},
                     {key: 'internet_nl_mail_dashboard_tls'},
-                    {key: 'mail_legacy'}
+                    {key: 'internet_nl_mail_legacy_category'}
                 ];
             }
             categories.forEach((category) => {

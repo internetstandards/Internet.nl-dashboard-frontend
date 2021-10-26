@@ -594,13 +594,13 @@ export default {
         'internet_nl_web_dnssec': [],
         'internet_nl_web_tls': [],
         'internet_nl_web_appsecpriv': [],
-        'web_legacy': [],
+        'internet_nl_web_legacy_category': [],
         'mail': [],
         'internet_nl_mail_dashboard_ipv6': [],
         'internet_nl_mail_dashboard_dnssec': [],
         'internet_nl_mail_dashboard_auth': [],
         'internet_nl_mail_dashboard_tls': [],
-        'mail_legacy': [],
+        'internet_nl_mail_legacy_category': [],
       },
 
       // simple sorting a la bootstrapvue.
