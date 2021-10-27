@@ -79,8 +79,7 @@
 
     <!-- The dropdown with recent reports is updated automatically when scans finish. But if that page
      had never loaded, this is a fallback that still tries to get the recent report every ten minutes. -->
-    <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600"
-                 v-if="$store.state.user.is_authenticated"></autorefresh>
+    <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600"></autorefresh>
   </div>
 </template>
 <script>
@@ -120,6 +119,7 @@ export default {
 
   mounted() {
     this.get_recent_reports();
+    this.match_with_environment(this.$router.history.current);
   },
 
   methods: {
@@ -130,7 +130,6 @@ export default {
         let data = response.data;
         data.forEach(o => {o.label = `#${o.id} - ${o.list_name} - type: ${o.type} - from: ${o.at_when.human_date()}`});
         this.available_recent_reports = this.filtered_recent_reports = data;
-        this.match_with_environment(this.$router.history.current);
         this.loading = false;
       });
     },
@@ -160,6 +159,9 @@ export default {
     },
 
     selected_reports(dropdown_items, old_value) {
+      console.log("Selected reports changed...")
+      console.log(dropdown_items)
+      console.log(old_value)
 
       // don't reload the page uselessly
       if (dropdown_items === old_value)
@@ -170,6 +172,12 @@ export default {
         this.filtered_recent_reports = this.available_recent_reports;
         return;
       }
+
+      // prevent useless reloading
+      // if (old_value !== undefined) {
+      //   if (dropdown_items[0].id === old_value[0].id)
+      //     return;
+      // }
 
       // All reports in the list have to match the type of the first selected item, otherwise they cannot be compared
       this.filtered_recent_reports = this.available_recent_reports.filter(item => item.type === dropdown_items[0].type);
