@@ -109,7 +109,7 @@
       </template>
 
       <template #head(selected)="">
-        <b-check v-model="allSelected" @change="toggleSelected"></b-check>
+        <b-check v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected"></b-check>
       </template>
 
       <template #cell(selected)="{ rowSelected }">
@@ -198,6 +198,7 @@ export default {
       visibleRows: 0,
       selected_tag: null,
       allSelected: false,
+      allSelectedIndeterminate: false,
       selected: [],
       currentPage: 1,
       perPage: 100,
@@ -246,6 +247,19 @@ export default {
       this.$refs.selectableTable.clearSelected()
     },
     toggleSelected() {
+      console.log(`allSelectedIndeterminate: ${this.allSelectedIndeterminate}`)
+      console.log(`allSelected: ${this.allSelected}`)
+
+      // indeterminate state can reset all selected.
+      if (this.allSelectedIndeterminate === true) {
+        this.allSelectedIndeterminate = false;
+        this.allSelected = false;
+        this.clearSelected();
+        return
+      }
+
+      // otherwise normal selection happens: either all on or off... (todo: when selecting all, the items per page should increase to really select everything(?)
+      this.allSelectedIndeterminate = false;
       if (this.allSelected) {
         this.selectAllRows()
       } else {
@@ -309,7 +323,26 @@ export default {
     selected_tag(new_value) {
       if (new_value)
         this.selected_tag = new_value.toLowerCase()
+    },
+    selected(new_value) {
+      console.log(`${new_value.length} / ${ this.visibleRows}`)
+      if (new_value.length === this.visibleRows){
+        this.allSelectedIndeterminate = false
+        this.allSelected = true
+        return
+      }
+
+      if (new_value.length === 0){
+        this.allSelectedIndeterminate = false
+        this.allSelected = false
+        return
+      }
+
+      console.log("all the things")
+      this.allSelectedIndeterminate = true
+
     }
+
   }
 
 }
