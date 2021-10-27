@@ -391,6 +391,8 @@ div.rotate > span {
   <div>
     <h2>{{ $t("report.title") }}</h2>
     <a class="anchor" name="report"></a>
+
+    <applied-tags/>
     <p v-if="load_comparison_with_current">{{ $t("report.intro") }}</p>
 
     <Differences_to_current_list :report_id="reports[0].id" v-if="load_comparison_with_current"></Differences_to_current_list>
@@ -563,9 +565,10 @@ import report_mixin from "@/components/reports/report_mixin";
 
 import Report_table_legend from "@/components/reports/report_table_legend";
 import Differences_to_current_list from "@/components/reports/differences_to_current_list";
+import AppliedTags from "@/components/reports/AppliedTags";
 
 export default {
-  components: {Differences_to_current_list, Report_table_legend},
+  components: {AppliedTags, Differences_to_current_list, Report_table_legend},
   mixins: [report_mixin],
 
   i18n: {

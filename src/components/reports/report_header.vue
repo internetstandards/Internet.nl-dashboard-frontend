@@ -4,6 +4,7 @@
     <h2>
         📊 <span v-if="show_application_links">#{{ reports[0].id }} - </span>{{ reports[0].urllist_name }}
     </h2>
+    <applied-tags/>
     <donut class="mr-2 d-inline-block float-left col-2" :data="{'score': reports[0].average_internet_nl_score, 'rest': 100-reports[0].average_internet_nl_score}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='100' :elements="['donut']" />
     <span>{{ $t("type_of_scan_performed") }}:
       <scan-type-icon :type="reports[0].report_type" />
@@ -45,8 +46,9 @@
 
 import ScanTypeIcon from "@/components/ScanTypeIcon";
 import Donut from "@/components/charts/donut";
+import AppliedTags from "@/components/reports/AppliedTags";
 export default {
-  components: {Donut, ScanTypeIcon},
+  components: {AppliedTags, Donut, ScanTypeIcon},
   props: {
     reports: {type: Array, required: true},
       show_application_links: {type: Boolean, default: true, required:false}

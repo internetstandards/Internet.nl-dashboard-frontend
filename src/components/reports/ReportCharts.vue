@@ -8,6 +8,7 @@
 
     <content-block class="start-on-new-page" v-if='reports.length > 0'>
       <h2>{{ $t("adoption_circle_chart.title") }}</h2>
+      <applied-tags/>
 
       <donuts :reports="reports"></donuts>
 
@@ -16,12 +17,14 @@
     <content-block class="start-on-new-page"  v-if='reports.length > 0'>
       <h2>{{ $t("adoption_bar_chart.title") }}</h2>
       <p>{{ $t("adoption_bar_chart.intro") }}</p>
+      <applied-tags/>
       <nested-report-charts component="percentage-bar-chart" :reports="reports"></nested-report-charts>
     </content-block>
 
     <content-block class="start-on-new-page"  v-if='reports.length > 1'>
       <h2>{{ $t("cumulative_adoption_bar_chart.title") }}</h2>
       <p>{{ $t("cumulative_adoption_bar_chart.intro") }}</p>
+      <applied-tags/>
 
       <nested-report-charts component="cumulative-percentage-bar-chart" :reports="reports"></nested-report-charts>
 
@@ -34,9 +37,11 @@
 import Timeline from "@/components/charts/timeline";
 import NestedReportCharts from "@/components/reports/NestedReportCharts";
 import Donuts from "@/components/charts/donuts";
+import AppliedTags from "@/components/reports/AppliedTags";
 
 export default {
   components: {
+    AppliedTags,
     Donuts,
     Timeline,
     NestedReportCharts
