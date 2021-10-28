@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import field_translations from './../field_translations'
+import field_translations from '../FieldTranslations'
 import {mapState} from 'vuex'
 import http from "@/httpclient";
 import report_mixin from "@/components/reports/report_mixin"

@@ -42,7 +42,7 @@
 
 <script>
 import Headroom from "headroom.js";
-import SiteMenu from './components/site-menu.vue'
+import SiteMenu from './components/SiteMenu'
 import {mapState} from 'vuex'
 import http from "@/httpclient";
 

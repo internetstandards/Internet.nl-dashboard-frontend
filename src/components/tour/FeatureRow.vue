@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import DemoImage from "@/components/DemoImage";
+import DemoImage from "@/components/tour/DemoImage";
 export default {
 name: "FeatureRow",
   components: {DemoImage},

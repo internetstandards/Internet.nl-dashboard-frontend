@@ -29,7 +29,7 @@
 <script>
 export default {
   props: {
-    type: {type: String, requred: true}
+    type: {type: String, required: true}
   }
 }
 </script>

@@ -19,7 +19,7 @@
       </template>
       <template v-else>
         <content-block>
-          <report_header :show_application_links="false" :reports="reports"></report_header>
+          <report-header :show_application_links="false" :reports="reports" />
         </content-block>
 
         <ReportCharts :show_timeline="false" :reports="reports"/>
@@ -40,7 +40,7 @@ import ReportPasswords from './ReportPasswords'
 import ReportTable from './ReportTable'
 import report_mixin from './report_mixin'
 import report_mixin_2 from './report_mixin_2'
-import report_header from './report_header'
+import ReportHeader from './ReportHeader'
 
 
 export default {
@@ -48,7 +48,7 @@ export default {
     ReportCharts,
     ReportTable,
     ReportPasswords,
-    report_header,
+    ReportHeader,
   },
   mixins: [report_mixin, report_mixin_2],
   name: 'report',

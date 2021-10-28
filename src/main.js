@@ -10,12 +10,12 @@ import VueI18n from 'vue-i18n'
 import vSelect from 'vue-select'
 import autorefresh from './components/autorefresh'
 import loading from './components/loading'
-import server_response from './components/server-response'
+import server_response from './components/ServerResponse'
 
-import ContentBlock from './components/content_block'
+import ContentBlock from './components/ContentBlock'
 
 import Probe from './components/probe'
-import collapse_panel from './components/collapse_panel'
+import CollapsePanel from './components/CollapsePanel'
 import App from './App'
 import router from './router';
 import './assets/css/styles.scss';
@@ -60,7 +60,7 @@ Vue.component('content-block', ContentBlock);
 Vue.component('autorefresh', autorefresh)
 Vue.component('loading', loading)
 Vue.component('server-response', server_response)
-Vue.component('collapse-panel', collapse_panel)
+Vue.component('collapse-panel', CollapsePanel)
 Vue.component('probe', Probe)
 
 Vue.config.productionTip = false

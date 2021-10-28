@@ -47,7 +47,7 @@ img.scaled {
 </template>
 
 <script>
-import FeatureRow from "@/components/FeatureRow";
+import FeatureRow from "@/components/tour/FeatureRow";
 
 export default {
   components: {FeatureRow},

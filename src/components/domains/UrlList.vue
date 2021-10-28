@@ -7,63 +7,67 @@ h2 {
 </style>
 
 <template>
-  <content-block :id="list.id" v-if="!is_deleted">
-        <span>
+  <content-block v-if="!is_deleted" :id="list.id">
+      <span>
             <a :name="list.id"></a>
             <h2>
 
-                <button v-if="!is_opened" @click="open_list()" aria-expanded="false">
-                    <span role="img" v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')">⚠️</span>
-                    <span role="img" :aria-label="$t('icon.list_closed')">📘</span> {{ list.name }} <scan-type-icon
+                <button v-if="!is_opened" aria-expanded="false" @click="open_list()">
+                    <span v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')" role="img">⚠️</span>
+                    <span :aria-label="$t('icon.list_closed')" role="img">📘</span> <probe
+                    v-if="list.enable_scans && !list.scan_now_available" class="mr-2"/>{{ list.name }} <scan-type-icon
                     :type="list.scan_type"/>
+
                 </button>
 
-                <button v-if="is_opened" @click="close_list()" aria-expanded="true">
-                    <span role="img" v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')">⚠️</span>
-                    <span role="img" :aria-label="$t('icon.list_opened')">📖</span> {{ list.name }} <scan-type-icon
+                <button v-if="is_opened" aria-expanded="true" @click="close_list()">
+                    <span v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')" role="img">⚠️</span>
+                    <span :aria-label="$t('icon.list_opened')" role="img">📖</span> <probe
+                    v-if="list.enable_scans && !list.scan_now_available" class="mr-2"/>
+                  {{ list.name }} <scan-type-icon
                     :type="list.scan_type"/>
+
                 </button>
 
-                <probe v-if="list.enable_scans && !list.scan_now_available" class="m-2 pb-1"/>
             </h2>
 
             <div v-if="is_opened" class="float-right">
                 <button @click="visible.configure = true">
-                    <span role="img" :aria-label="$t('icon.settings')">📝</span> {{ $t("button.configure") }}
+                    <span :aria-label="$t('icon.settings')" role="img">📝</span> {{ $t("button.configure") }}
                 </button> &nbsp;
 
                 <button @click="visible.add_domains = true">
-                    <span role="img" :aria-label="$t('icon.bulk_add_new')">🌐</span> {{ $t("button.add_domains") }}
+                    <span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
                 </button> &nbsp;
                 <template v-if="urls.length">
                     <template v-if="list.enable_scans">
                         <button v-if="list.scan_now_available" @click="visible.scan = true">
-                            <span role="img" :aria-label="$t('icon.scan')">🔬</span> {{ $t("button.scan_now") }}
+                            <span :aria-label="$t('icon.scan')" role="img">🔬</span> {{ $t("button.scan_now") }}
                         </button> &nbsp;
-                        <button v-if="!list.scan_now_available" disabled="disabled"
-                                :title='$t("button.scan_now_scanning")'>
+                        <button v-if="!list.scan_now_available" :title='$t("button.scan_now_scanning")'
+                                disabled="disabled">
                             <probe/> {{ $t("button.scan_now_scanning") }}
                         </button>
                     </template>
-                    <button v-else disabled="disabled" :title='$t("button.scanning_disabled")'>
-                        <span role="img" :aria-label="$t('icon.scan')">🔬</span> {{ $t("button.scanning_disabled") }}
+                    <button v-else :title='$t("button.scanning_disabled")' disabled="disabled">
+                        <span :aria-label="$t('icon.scan')" role="img">🔬</span> {{ $t("button.scanning_disabled") }}
                     </button> &nbsp;
                 </template>
-                <button @click="visible.delete = true" class="border-danger">🗑️ {{ $t("button.delete") }}</button>
+                <button class="border-danger" @click="visible.delete = true">🗑️ {{ $t("button.delete") }}</button>
             </div>
         </span>
 
 
     <div v-if="is_opened">
       <br>
-      <SubdomainDiscovery  v-if="urls.length" :list_id="list.id" class="float-right" @finished="get_urls"/>
+      <SubdomainDiscovery v-if="urls.length" :list_id="list.id" class="float-right" @finished="get_urls"/>
       <About :list="list" :urls="urls"></About>
 
       <br>
 
       <template v-if="list.list_warnings.indexOf('WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED') > -1">
         <div class="server-response-error">
-          <span role="img" :aria-label="$t('icon.list_warning')">⚠️</span>{{
+          <span :aria-label="$t('icon.list_warning')" role="img">⚠️</span>{{
             $t("warnings.domains_exceed_maximum", [maximum_domains])
           }}
         </div>
@@ -71,25 +75,25 @@ h2 {
 
 
       <div v-if="!urls.length">
-        <button @click="visible.add_domains = true" class="border-success">🌐 {{ $t("button.add_domains") }}</button>
+        <button class="border-success" @click="visible.add_domains = true">🌐 {{ $t("button.add_domains") }}</button>
       </div>
 
       <template v-if="urls.length">
-        <DomainTable :urls="urls" :loading="loading" :urllist="list" @update="get_urls()" />
-        <p><small><i v-html="$t('domains.intro')" ></i></small></p>
+        <DomainTable :loading="loading" :urllist="list" :urls="urls" @update="get_urls()"/>
+        <p><small><i v-html="$t('domains.intro')"></i></small></p>
       </template>
 
       <loading :loading="loading"></loading>
 
-      <button v-if="urls.length" @click="view_csv = !view_csv" value="load">
+      <button v-if="urls.length" value="load" @click="view_csv = !view_csv">
         📋 {{ $t("button.view_csv") }}
       </button>
       <br>
       <b-form-textarea
+          v-if="view_csv"
           id="textarea"
           v-model="csv_value"
           class="border-secondary border-left border-right p-2 mt-2"
-          v-if="view_csv"
           plaintext
       ></b-form-textarea>
     </div>
@@ -101,12 +105,13 @@ h2 {
     <Scan :list="list" :show="visible.scan" :visible="visible.scan" @cancel="visible.scan = false"
           @started="visible.scan = false"></Scan>
     <AddDomains :list="list" :show="visible.add_domains" :visible="visible.add_domains"
-                @cancel="visible.add_domains = false" @added="get_urls()"></AddDomains>
+                @added="get_urls()" @cancel="visible.add_domains = false"></AddDomains>
 
     <!-- This is already auto-refreshed by a watch, but we keep this as a backup solution for edge cases like
      the monitor page not loading or the used did not open the monitor page. -->
-    <autorefresh :visible="false" :callback="get_scan_status_of_list" :refresh_per_seconds="600"
-                 v-if="$store.state.user.is_authenticated"></autorefresh>
+    <autorefresh v-if="$store.state.user.is_authenticated" :callback="get_scan_status_of_list"
+                 :refresh_per_seconds="600"
+                 :visible="false"></autorefresh>
   </content-block>
 </template>
 
@@ -216,7 +221,7 @@ export default {
         this.open_list();
       }
     }
-    if (this.start_opened){
+    if (this.start_opened) {
       this.is_opened = true;
     }
   },

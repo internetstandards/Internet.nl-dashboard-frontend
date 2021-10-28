@@ -3,14 +3,14 @@
   <div><h3>{{ $t("test_title") }}</h3>
     <ul>
       <li><span class="faq-test category_passed"><span
-          class="visuallyhidden">{{ $t("results.passed") }}</span>{{ $t("test_good") }}</span></li>
+          class="sr-only">{{ $t("results.passed") }}</span>{{ $t("test_good") }}</span></li>
       <li><span class="faq-test category_failed">
-                        <span class="visuallyhidden">{{ $t("results.failed") }}</span>{{ $t("test_bad") }}</span>
+                        <span class="sr-only">{{ $t("results.failed") }}</span>{{ $t("test_bad") }}</span>
       </li>
-      <li><span class="faq-test category_warning"><span class="visuallyhidden">{{
+      <li><span class="faq-test category_warning"><span class="sr-only">{{
           $t("results.warning")
         }}</span>{{ $t("test_warning") }}</span></li>
-      <li><span class="faq-test category_error"><span class="visuallyhidden">{{
+      <li><span class="faq-test category_error"><span class="sr-only">{{
           $t("results.category_error_in_test")
         }}</span>{{ $t("icon_legend.category_error_in_test") }}</span></li>
     </ul>
@@ -18,21 +18,21 @@
     <ul>
       <li>
         <span class="faq-subtest passed">
-          <span class="visuallyhidden">{{ $t("results.passed") }}</span>
+          <span class="sr-only">{{ $t("results.passed") }}</span>
           {{ $t("subtest_good") }}</span></li>
-      <li><span class="faq-subtest failed"><span class="visuallyhidden">{{
-          $t("results.failed")
-        }}</span>{{ $t("subtest_bad") }}</span></li>
-      <li><span class="faq-subtest warning"><span class="visuallyhidden">{{
+      <li><span class="faq-subtest failed"><span class="sr-only">{{ $t("results.failed") }}</span>{{
+          $t("subtest_bad")
+        }}</span></li>
+      <li><span class="faq-subtest warning"><span class="sr-only">{{
           $t("results.warning")
         }}</span>{{ $t("subtest_warning") }}</span></li>
-      <li><span class="faq-subtest info"><span class="visuallyhidden">{{
+      <li><span class="faq-subtest info"><span class="sr-only">{{
           $t("results.info")
         }}</span>{{ $t("subtest_info") }}</span></li>
-      <li><span class="faq-test not_tested"><span class="visuallyhidden">{{
+      <li><span class="faq-test not_tested"><span class="sr-only">{{
           $t("results.not_tested")
         }}</span>{{ $t("icon_legend.subtest_not_tested") }}</span></li>
-      <li><span class="faq-test error_in_test"><span class="visuallyhidden">{{
+      <li><span class="faq-test error_in_test"><span class="sr-only">{{
           $t("results.error_in_test")
         }}</span>{{ $t("icon_legend.subtest_error_in_test") }}</span></li>
     </ul>
@@ -41,7 +41,7 @@
 
 <script>
 
-import field_translations from './../field_translations'
+import field_translations from '../FieldTranslations'
 
 export default {
   i18n: {

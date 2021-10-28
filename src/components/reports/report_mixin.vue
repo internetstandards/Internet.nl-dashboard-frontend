@@ -5,7 +5,7 @@
 // Done: store filter options for reports (as generic or per report? or as a re-applicable set?) Per user account.
 // Done: how to add a item for legacy views?
 // Done: how to translate graphs?
-import field_translations from './../field_translations'
+import field_translations from '../FieldTranslations'
 import http from "@/httpclient"
 
 export default {

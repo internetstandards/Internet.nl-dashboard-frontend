@@ -25,7 +25,7 @@
 <script>
 import CumulativePercentageBarChart from './../charts/render-cumulative-percentage-bar-chart'
 import PercentageBarChart from './../charts/render-percentage-bar-chart'
-import ChartCollapsePanel from './../chart_collapse_panel'
+import ChartCollapsePanel from '@/components/charts/ChartCollapsePanel'
 import report_mixin from "@/components/reports/report_mixin";
 import VisibleFields from "@/components/reports/VisibleFields";
 

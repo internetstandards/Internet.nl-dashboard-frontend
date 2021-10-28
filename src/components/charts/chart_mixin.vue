@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
 import {debounce} from "debounce";
-import field_translations from "@/components/field_translations";
+import field_translations from "@/components/FieldTranslations";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import {

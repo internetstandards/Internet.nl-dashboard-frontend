@@ -130,13 +130,13 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
         What we would like is that when rerendering, the state (data) would also transfer to the correct component
         https://michaelnthiessen.com/force-re-render/
         -->
-        <managed_url_list
+        <url-list
             :initial_list="list"
             :start_opened="list.start_opened ? true : false"
             :maximum_domains="maximum_domains_per_list"
             :key="list.id"
             v-on:removelist="removelist"
-            v-for="list in lists"></managed_url_list>
+            v-for="list in lists" />
 
         <content-block v-if="!lists.length" class="no-content">
             {{ $t("inital_list.start") }} <br>
@@ -152,13 +152,13 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 </template>
 
 <script>
-import managed_url_list from './managed-url-list.vue'
+import UrlList from './UrlList.vue'
 import sharedMessages from './../translations/dashboard.js'
 import http from "@/httpclient";
 
 export default {
     components: {
-        managed_url_list
+        UrlList
     },
     i18n: {
         sharedMessages: sharedMessages,

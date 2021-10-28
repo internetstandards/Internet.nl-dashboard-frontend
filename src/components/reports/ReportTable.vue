@@ -395,11 +395,11 @@ div.rotate > span {
     <applied-tags/>
     <p v-if="load_comparison_with_current">{{ $t("report.intro") }}</p>
 
-    <Differences_to_current_list :report_id="reports[0].id" v-if="load_comparison_with_current"></Differences_to_current_list>
+    <differences-to-current-list :report_id="reports[0].id" v-if="load_comparison_with_current" />
 
     <collapse-panel :title='$t("icon_legend.title")' class="do-not-print">
       <div slot="content">
-        <Report_table_legend></Report_table_legend>
+        <report-table-legend />
       </div>
     </collapse-panel>
 
@@ -560,15 +560,15 @@ div.rotate > span {
 
 <script>
 
-import field_translations from './../field_translations'
+import field_translations from '../FieldTranslations'
 import report_mixin from "@/components/reports/report_mixin";
 
-import Report_table_legend from "@/components/reports/report_table_legend";
-import Differences_to_current_list from "@/components/reports/differences_to_current_list";
+import ReportTableLegend from "@/components/reports/ReportTableLegend";
+import DifferencesToCurrentList from "@/components/reports/DifferencesToCurrentList";
 import AppliedTags from "@/components/reports/AppliedTags";
 
 export default {
-  components: {AppliedTags, Differences_to_current_list, Report_table_legend},
+  components: {AppliedTags, DifferencesToCurrentList, ReportTableLegend},
   mixins: [report_mixin],
 
   i18n: {

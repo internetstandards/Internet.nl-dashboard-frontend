@@ -14,7 +14,7 @@ import Usage from './components/admin/usage'
 import Account from './components/account/Account'
 import Demo from './components/tour/Demo'
 import Unsubscribe from './components/mail/Unsubscribe'
-import Home from './components/Home'
+import Home from './components/home/Home'
 
 import Beta from './components/beta'
 
