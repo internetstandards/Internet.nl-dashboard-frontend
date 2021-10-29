@@ -4,9 +4,10 @@
     <h2>
         📊 <span v-if="show_application_links">#{{ reports[0].id }} - </span>{{ reports[0].urllist_name }}
     </h2>
-    <donut class="mr-2 d-inline-block float-left" style="width:100px" :data="{'score': reports[0].average_internet_nl_score, 'rest': 100-reports[0].average_internet_nl_score}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='100' :elements="['donut']" />
+    <applied-tags/>
+    <donut class="mr-2 d-inline-block float-left col-2" :data="{'score': reports[0].average_internet_nl_score, 'rest': 100-reports[0].average_internet_nl_score}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='100' :elements="['donut']" />
     <span>{{ $t("type_of_scan_performed") }}:
-      <Scan_type_icon :type="reports[0].report_type" />
+      <scan-type-icon :type="reports[0].report_type" />
 
       {{ reports[0].report_type }}<br>
       {{ $t("number_of_domains") }}: {{reports[0].total_urls }}<br>
@@ -19,7 +20,7 @@
     </span><br>
 
     <template v-if="reports.length > 1">
-      <div v-for="report in reports" style="padding-left: 10px" :key="report.id">
+      <div v-for="report in reports"  class="pl-1" :key="report.id">
         <!-- Skip the first report -->
         <template v-if="report.id !== reports[0].id">
           <h3>{{ $t("compared_to") }}: <span v-if="show_application_links">#{{ report.id }} - </span>{{ report.urllist_name }}</h3>
@@ -36,17 +37,18 @@
     </template>
 
     <template v-if="reports.length > 2">
-      <p style="padding-top: 1em;">⚠️ {{ $t("only_graphs") }}</p>
+      <p class="pt-2">⚠️ {{ $t("only_graphs") }}</p>
     </template>
 
   </div>
 </template>
 <script>
 
-import Scan_type_icon from "@/components/scan_type_icon";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 import Donut from "@/components/charts/donut";
+import AppliedTags from "@/components/reports/AppliedTags";
 export default {
-  components: {Donut, Scan_type_icon},
+  components: {AppliedTags, Donut, ScanTypeIcon},
   props: {
     reports: {type: Array, required: true},
       show_application_links: {type: Boolean, default: true, required:false}

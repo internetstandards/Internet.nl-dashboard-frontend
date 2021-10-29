@@ -2,10 +2,10 @@
 <template>
   <div id="report-template">
     <content-block class="do-not-print">
-      <h1>{{ $t("title") }}</h1>
+      <h1><b-icon icon="file-bar-graph" /> {{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
 
-      <report_selection @tags_applied="apply_tags"></report_selection>
+      <report-selection @tags_applied="apply_tags" />
 
     </content-block>
 
@@ -14,18 +14,18 @@
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
       <template v-if="!tags_applied">
-        <report_download :report="report" v-for="report in reports" :key="`d${report.id}`"></report_download>
+        <report-download :report="report" v-for="report in reports" :key="`d${report.id}`"></report-download>
         <sharing-configuration :report="report" v-for="report in reports" :key="`s${report.id}`"></sharing-configuration>
       </template>
 
       <content-block>
-        <report_header :reports="reports"></report_header>
+        <report-header :reports="reports" />
       </content-block>
 
       <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
 
       <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
-      <content-block v-if="reports.length < 3" style="page-break-before: always;">
+      <content-block v-if="reports.length < 3" class="start-on-new-page">
         <ReportTable :reports="reports" :load_comparison_with_current="!tags_applied"/>
       </content-block>
 
@@ -39,20 +39,20 @@ import ReportCharts from './ReportCharts'
 import ReportTable from './ReportTable'
 import report_mixin from './report_mixin'
 import report_mixin_2 from './report_mixin_2'
-import report_header from './report_header'
-import report_download from './report_download'
-import report_selection from "@/components/reports/report_selection";
+import ReportHeader from './ReportHeader'
+import ReportDownload from './ReportDownload'
+import ReportSelection from "@/components/reports/ReportSelection";
 import {mapState} from 'vuex'
 import SharingConfiguration from './SharingConfiguration'
 
 export default {
   components: {
 
-    report_selection,
+    ReportSelection,
     ReportCharts,
     ReportTable,
-    report_header,
-    report_download,
+    ReportHeader,
+    ReportDownload,
     SharingConfiguration
   },
   mixins: [report_mixin, report_mixin_2],

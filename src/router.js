@@ -14,11 +14,13 @@ import Usage from './components/admin/usage'
 import Account from './components/account/Account'
 import Demo from './components/tour/Demo'
 import Unsubscribe from './components/mail/Unsubscribe'
+import Home from './components/home/Home'
 
 import Beta from './components/beta'
 
 const routes = [
     // todo: Make page title translations...
+    {path: '/home', component: Home, name: "home", meta: {title: 'Internet.nl Dashboard / Home'}, alias: '/', },
     {path: '/login', component: Login, name: "login", meta: {title: 'Internet.nl Dashboard / Login'}},
     {
         path: '/domains/list/:list',
@@ -31,7 +33,6 @@ const routes = [
         component: DomainListManager,
         name: 'domains',
         meta: {title: 'Internet.nl Dashboard / Domains'},
-        alias: '/'
     },
     {
         path: '/domains/upload', component: SpreadsheetUpload,
@@ -67,6 +68,7 @@ const routes = [
     {path: '/unsubscribe', component: Unsubscribe, meta: {title: 'Internet.nl Dashboard / Unsubscribe'}},
     {path: '/profile', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
     {path: '/account', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
+    {path: '/account/:active_tab', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
     {path: '/usage', component: Usage, meta: {title: 'Internet.nl Dashboard / Usage'}},
     {path: '/beta', component: Beta, meta: {title: 'Internet.nl Dashboard / Beta'}},
 ];

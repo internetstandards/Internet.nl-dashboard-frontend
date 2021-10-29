@@ -15,6 +15,7 @@
             <b-form-select id="scan_type" v-model="list.scan_type">
                 <b-form-select-option value="web">{{ $t("urllist.scan_type_web") }}</b-form-select-option>
                 <b-form-select-option value="mail">{{ $t("urllist.scan_type_mail") }}</b-form-select-option>
+                <b-form-select-option value="all">{{ $t("urllist.scan_type_all") }}</b-form-select-option>
             </b-form-select>
             <br><br>
 
@@ -85,6 +86,7 @@ export default {
                 this.response = server_response.data;
                 if (server_response.data.success) {
                     this.old_list_settings = this.copy_json_value(server_response.data.data);
+                    this.list.scheduled_next_scan = server_response.data.data.scheduled_next_scan;
                     this.$emit("done")
                 }
             });

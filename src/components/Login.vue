@@ -50,7 +50,7 @@ import {mapState} from 'vuex'
 import http from "@/httpclient";
 
 export default {
-  data: function () {
+  data() {
     return {
       loading: false,
       username: "",

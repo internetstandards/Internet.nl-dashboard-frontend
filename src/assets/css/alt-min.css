@@ -13,23 +13,23 @@
 @media (max-width: 499px) {
     #site-title a {
         height: 33px;
-        background: url("/static_frontend/logo_en.png");
-        background: url("/static_frontend/logo_en.svg")
+        background: url("/static_frontend/images/vendor/internet_nl/logo_en.png");
+        background: url("/static_frontend/images/vendor/internet_nl/logo_en.svg")
     }
 }
 
 @media (min-width: 500px) and (max-width: 739px) {
     #site-title a {
-        background: url("/static_frontend/logo-tablet_en.png");
-        background: url("/static_frontend/logo-tablet_en.svg")
+        background: url("/static_frontend/images/vendor/internet_nl/logo-tablet_en.png");
+        background: url("/static_frontend/images/vendor/internet_nl/logo-tablet_en.svg")
     }
 }
 
 @media (min-width: 740px) {
     #site-title a {
         height: 25px;
-        background: url("/static_frontend/logo_en.png");
-        background: url("/static_frontend/logo_en.svg")
+        background: url("/static_frontend/images/vendor/internet_nl/logo_en.png");
+        background: url("/static_frontend/images/vendor/internet_nl/logo_en.svg")
     }
 }
 
@@ -42,8 +42,8 @@
     font-size: 1em;
     display: block;
     text-indent: 999em;
-    background: white url("/static_frontend/icon-menu.png") center center no-repeat;
-    background-image: url("/static_frontend/icon-menu.svg"), none;
+    background: white url("/static_frontend/images/vendor/internet_nl/icon-menu.png") center center no-repeat;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-menu.svg"), none;
     background-repeat: no-repeat;
     background-size: contain
 }
@@ -59,62 +59,62 @@
 }
 
 #testresults-overview .permalink {
-    background-image: url("/static_frontend/icon-permalink.png");
-    background-image: url("/static_frontend/icon-permalink.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-permalink.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-permalink.svg"), none
 }
 
 #testresults-overview .reruntest {
-    background-image: url("/static_frontend/icon-reruntest.png");
-    background-image: url("/static_frontend/icon-reruntest.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-reruntest.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-reruntest.svg"), none
 }
 
 #testresults-overview .icon-testinfo {
-    background-image: url("/static_frontend/icon-testinfo.png");
-    background-image: url("/static_frontend/icon-testinfo.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-testinfo.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-testinfo.svg"), none
 }
 
 .testresult {
     padding-left: 2.25em;
-    background: #fff url("/static_frontend/icon-testresult-default.png") 0.6em 0.6em no-repeat;
-    background-image: url("/static_frontend/icon-testresult-default.svg"), none;
+    background: #fff url("/static_frontend/images/vendor/internet_nl/icon-testresult-default.png") 0.6em 0.6em no-repeat;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-testresult-default.svg"), none;
     background-size: 1.125em 1.125em
 }
 
 .faq-subtest {
     padding-left: 1.5em;
-    background: #fff url("/static_frontend/icon-testresult-default.png") no-repeat;
-    background-image: url("/static_frontend/icon-testresult-default.svg"), none;
+    background: #fff url("/static_frontend/images/vendor/internet_nl/icon-testresult-default.png") no-repeat;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-testresult-default.svg"), none;
     background-size: 1.125em 1.125em
 }
 
 .testresult.passed, .faq-subtest.passed {
-    background-image: url("/static_frontend/icon-check.png");
-    background-image: url("/static_frontend/icon-check.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-check.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-check.svg"), none
 }
 
 .testresult.failed, .faq-subtest.failed {
-    background-image: url("/static_frontend/icon-error.png");
-    background-image: url("/static_frontend/icon-error.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-error.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-error.svg"), none
 }
 
 .testresult.warning, .faq-subtest.warning {
-    background-image: url("/static_frontend/icon-warning.png");
-    background-image: url("/static_frontend/icon-warning.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-warning.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-warning.svg"), none
 }
 
 .testresult.info, .faq-subtest.info {
-    background-image: url("/static_frontend/icon-info.png");
-    background-image: url("/static_frontend/icon-info.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg"), none
 }
 
 .testresult.good-not-tested, .faq-subtest.good-not-tested {
-    background-image: url("/static_frontend/icon-not-tested-question-mark.png");
-    background-image: url("/static_frontend/icon-not-tested-question-mark.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-question-mark.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-question-mark.svg"), none
 }
 
 .testresult.not-tested, .faq-subtest.not-tested {
-    background-image: url("/static_frontend/icon-not-tested.png");
-    background-image: url("/static_frontend/icon-not-tested.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested.svg"), none
 }
 
 .testresult.not-tested h3 a {
@@ -122,7 +122,7 @@
 }
 
 .meter {
-    background: white url("/static_frontend/progress-meter2x.png") bottom center no-repeat;
+    background: white url("/static_frontend/images/vendor/internet_nl/progress-meter2x.png") bottom center no-repeat;
     background-size: 100% 80px;
     background-position: center center;
     background-origin: border-box
@@ -136,28 +136,28 @@
 }
 
 .testresults h2.error, .faq-test.error, #testresults-overview ul li.error {
-    background-image: url("/static_frontend/probe-error.png");
-    background-image: url("/static_frontend/probe-error.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/probe-error.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/probe-error.svg"), none
 }
 
 .testresults h2.warning, .faq-test.warning, .test-header .test-title h2.warning, #testresults-overview ul li.warning {
-    background-image: url("/static_frontend/icon-circle-warning.png");
-    background-image: url("/static_frontend/icon-circle-warning.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-warning.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-warning.svg"), none
 }
 
 .testresults h2.failed, .faq-test.failed, .test-header .test-title h2.failed, #testresults-overview ul li.failed {
-    background-image: url("/static_frontend/icon-circle-error.png");
-    background-image: url("/static_frontend/icon-circle-error.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-error.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-error.svg"), none
 }
 
 .testresults h2.info, .faq-test.info, .test-header .test-title h2.info, #testresults-overview ul li.info {
-    background-image: url("/static_frontend/icon-info.png");
-    background-image: url("/static_frontend/icon-info.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg"), none
 }
 
 .testresults h2.passed, .faq-test.passed, .test-header .test-title h2.passed, #testresults-overview ul li.passed {
-    background-image: url("/static_frontend/icon-circle-check.png");
-    background-image: url("/static_frontend/icon-circle-check.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.svg"), none
 }
 
 .perfectscore {
@@ -166,8 +166,8 @@
     padding: 1em 1em 1em 6.45em;
     margin: 1em 0;
     min-height: 6.45em;
-    background-image: url("/static_frontend/badge-simple-flat.png");
-    background-image: url("/static_frontend/badge-simple-flat.svg"), none;
+    background-image: url("/static_frontend/images/vendor/internet_nl/badge-simple-flat.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/badge-simple-flat.svg"), none;
     background-repeat: no-repeat;
     background-position: .5em 1em
 }
@@ -184,8 +184,8 @@
     transition: all 200ms ease 0s;
     width: 1em;
     height: 1em;
-    background: url("/static_frontend/icon-arrow-down.png") center right no-repeat;
-    background-image: url("/static_frontend/icon-arrow-down.svg"), none;
+    background: url("/static_frontend/images/vendor/internet_nl/icon-arrow-down.png") center right no-repeat;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-arrow-down.svg"), none;
     background-size: contain
 }
 
@@ -210,24 +210,24 @@
 }
 
 .connectiontest h1, .block .connectiontest h2, .block.connectiontest h2 {
-    background-image: url("/static_frontend/icon-connectiontest.png");
-    background-image: url("/static_frontend/icon-connectiontest.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-connectiontest.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-connectiontest.svg"), none
 }
 
 .emailtest h1, .block .emailtest h2, .block.emailtest h2 {
-    background-image: url("/static_frontend/icon-emailtest.png");
-    background-image: url("/static_frontend/icon-emailtest.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-emailtest.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-emailtest.svg"), none
 }
 
 .websitetest h1, .block .websitetest h2, .block.websitetest h2 {
-    background-image: url("/static_frontend/icon-website-test.png");
-    background-image: url("/static_frontend/icon-website-test.svg"), none
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-website-test.png");
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-website-test.svg"), none
 }
 
 .error .message {
     padding-left: 2em;
-    background: url("/static_frontend/icon-warning.png") center right no-repeat;
-    background-image: url("/static_frontend/icon-warning.svg"), none;
+    background: url("/static_frontend/images/vendor/internet_nl/icon-warning.png") center right no-repeat;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-warning.svg"), none;
     background-position: left top;
     background-repeat: no-repeat;
     background-size: 20px 20px
@@ -235,6 +235,6 @@
 
 .news li a {
     padding-right: 1.5em;
-    background: url("/static_frontend/icon-arrow-right.png") center right no-repeat;
-    background-image: url("/static_frontend/icon-arrow-right.svg"), none
+    background: url("/static_frontend/images/vendor/internet_nl/icon-arrow-right.png") center right no-repeat;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-arrow-right.svg"), none
 }

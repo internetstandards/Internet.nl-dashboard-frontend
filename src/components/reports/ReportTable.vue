@@ -349,49 +349,85 @@ div.rotate > span {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.svg") !important
 }
 
+.logo_image {
+  height: 16px;
+  width: 16px;
+  background: url("/static_frontend/images/vendor/internet_nl/favicon.png");
+  display: inline-block;
+  background-size: cover;
+}
+
+.header_top_category {
+  border: 0; float: left; width: 100px; height: 180px;
+}
+
+.header_sub_category {
+  border: 0; float: left; width: 56px; height: 180px;
+}
+
+.close_to_top {
+  margin-top: -3px;
+}
+
+.px-100 {
+  width: 100px; min-width: 100px;
+}
+
+.px-78 {
+  width: 78px; min-width: 78px;
+}
+
+.px-225 {
+  width: 225px; min-width: 225px;
+}
+
+.px-56 {
+  width: 56px; min-width: 56px;
+}
+
 </style>
 
 <template>
   <div>
     <h2>{{ $t("report.title") }}</h2>
     <a class="anchor" name="report"></a>
+
+    <applied-tags/>
     <p v-if="load_comparison_with_current">{{ $t("report.intro") }}</p>
 
-    <Differences_to_current_list :report_id="reports[0].id" v-if="load_comparison_with_current"></Differences_to_current_list>
+    <differences-to-current-list :report_id="reports[0].id" v-if="load_comparison_with_current" />
 
     <collapse-panel :title='$t("icon_legend.title")' class="do-not-print">
       <div slot="content">
-        <Report_table_legend></Report_table_legend>
+        <report-table-legend />
       </div>
     </collapse-panel>
 
-    <div class="sticky-table-container" style="position: relative; page-break-before: always;">
+    <div class="sticky-table-container start-on-new-page position-relative">
       <div id="horrible-chrome-td-sticky-white-background-fix"></div>
       <table class="table table-striped">
         <thead class="sticky_labels">
 
         <tr class="sticky_labels">
-          <th style="width: 78px; min-width: 78px; border: 0; background-color: white;"
-              class="sticky-header">
+          <th class="sticky-header bg-white col-1">
             <div class="rotate">
               <span @click="sortBy('score')" class="arrow"
                     :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></span>
               <span @click="sortBy('score')">{{ $t("score") }}</span>
             </div>
           </th>
-          <th style="width: 225px; min-width: 225px; border: 0; background-color: white;"
-              class="sticky-header">
+          <th class="sticky-header bg-white">
             <div class="rotate">
               <div @click="sortBy('url')" class="arrow"
                    :class="sortOrders['url'] === -1 ? 'dsc' : (sortOrders['url'] === 1 ? 'asc' : 'unknown')"></div>
-              <div @click="sortBy('url')" style="display: inline-block;">{{ $t("domain") }}</div>
+              <div @click="sortBy('url')" class="d-inline-block">{{ $t("domain") }}</div>
             </div>
           </th>
 
-          <th colspan="200" class="sticky-header" style="background-color: white;">
+          <th colspan="200" class="sticky-header bg-white">
             <template v-if="['web', 'mail'].includes(selected_category)">
 
-              <div style="border: 0; float: left; width: 100px"
+              <div class="header_top_category"
                    v-for="category in relevant_categories_based_on_settings" :key="category">
                 <div class="rotate">
                   <span @click="sortBy(category)" class="arrow"
@@ -403,14 +439,14 @@ div.rotate > span {
             </template>
             <template v-else>
 
-              <div style="border: 0; float: left; width: 56px"
+              <div class="header_sub_category"
                    v-for="category in relevant_categories_based_on_settings" :key="category">
-                <div class="rotate" style="white-space: nowrap;">
+                <div class="rotate nowrap">
                   <div @click="sortBy(category)" class="arrow"
                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></div>
-                  <div @click="sortBy(category)" style="display: inline-block;">
+                  <div @click="sortBy(category)" class="d-inline-block">
                     {{ $t("" + category) }}
-                    <div style="font-size: 0.7em; color: gray; margin-top: -3px; padding-left: 13px;"
+                    <div class="small text-secondary pl-3 close_to_top"
                         v-html="category_from_field_name(category)"></div>
                   </div>
                 </div>
@@ -430,14 +466,14 @@ div.rotate > span {
           <tr class="summaryrow">
             <td colspan="2" class="sticky_search">
               <label class="visuallyhidden" for="url_filter">{{ $t('report.url_filter') }}</label>
-              <input type="text" v-model="url_filter" id="url_filter"
-                     :placeholder="$t('report.url_filter')">
+              <b-input type="text" v-model="url_filter" id="url_filter"
+                       :placeholder="$t('report.url_filter')"></b-input>
               <p class="visuallyhidden">{{ $t('report.zoom.explanation') }}</p>
             </td>
             <template v-if="['web', 'mail'].includes(selected_category)">
-              <td style="width: 100px; min-width: 100px;"
+              <td
                   v-for="category_name in relevant_categories_based_on_settings"
-                  class="sticky_search" :key="category_name">
+                  class="sticky_search px-100" :key="category_name">
                 <button @click="select_category(category_name)">
                   {{ $t("report.zoom.buttons.zoom") }}
                   <span class="visuallyhidden">{{
@@ -445,12 +481,12 @@ div.rotate > span {
                     }}</span>
                 </button>
               </td>
-              <td class="sticky_search" style="width: 100%"></td>
+              <td class="sticky_search w-100"></td>
             </template>
             <template v-else>
               <td :colspan="relevant_categories_based_on_settings.length + 1"
-                  style="text-align: center" class="sticky_search">
-                <button style='width: 100%'
+                  class="sticky_search text-center">
+                <button class="w-100"
                         @click="select_category(report_category)">
                   <span role="img" :aria-label="$t('icons.remove_filter')">❌</span>
                   {{ $t("report.zoom.buttons.remove_zoom") }}
@@ -465,7 +501,7 @@ div.rotate > span {
 
         <tr v-if="filtered_urls.length < 1">
           <td :colspan="relevant_categories_based_on_settings.length + 2"
-              style="text-align: center;">😱 {{ $t("report.empty_report") }}
+              class="text-center">😱 {{ $t("report.empty_report") }}
           </td>
         </tr>
 
@@ -482,7 +518,7 @@ div.rotate > span {
               </td>
             </template>
             <template v-else>
-              <td style="width: 78px; min-width: 78px;">
+              <td class="px-78">
                 <a class='direct_link_to_report'
                    :href='url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_url'
                    target="_blank"
@@ -492,22 +528,22 @@ div.rotate > span {
                   <span class="visuallyhidden"> {{ $t('report.link_to_report', {'url': url}) }}</span>
                 </a>
               </td>
-              <td style="width: 225px; min-width: 225px;">{{ url.url }}</td>
+              <td class="px-225">{{ url.url }}</td>
               <template v-if="['web', 'mail'].includes(selected_category)">
-                <td class="testresultcell" style="width: 100px"
+                <td class="testresultcell px-100"
                     v-for="category_name in relevant_categories_based_on_settings"
                     :key="category_name"
-                    v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type[category_name] && url.endpoints[0].ratings_by_type[category_name]['last_scan'] ? `${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}` : ``"
+                    v-b-tooltip.hover :title="make_tooltip(url, category_name)"
                   >
                   <div v-html="category_value_with_comparison(category_name, url)"></div>
                 </td>
               </template>
               <template v-else>
-                <td class="testresultcell" style="width: 56px"
+                <td class="testresultcell px-56"
                     v-for="category_name in relevant_categories_based_on_settings"
-                    :key="category_name" v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type[category_name]['last_scan'] ? `${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}` : ``">
+                    :key="category_name" v-b-tooltip.hover :title="make_tooltip(url, category_name)">
                   <div v-html="detail_value_with_comparison(category_name, url)"></div>
-                  <span v-if="url.endpoints[0].ratings_by_type[category_name]['last_scan']">since: {{humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}}</span>
+
                 </td>
               </template>
               <td>
@@ -524,14 +560,15 @@ div.rotate > span {
 
 <script>
 
-import field_translations from './../field_translations'
+import field_translations from '../FieldTranslations'
 import report_mixin from "@/components/reports/report_mixin";
 
-import Report_table_legend from "@/components/reports/report_table_legend";
-import Differences_to_current_list from "@/components/reports/differences_to_current_list";
+import ReportTableLegend from "@/components/reports/ReportTableLegend";
+import DifferencesToCurrentList from "@/components/reports/DifferencesToCurrentList";
+import AppliedTags from "@/components/reports/AppliedTags";
 
 export default {
-  components: {Differences_to_current_list, Report_table_legend},
+  components: {AppliedTags, DifferencesToCurrentList, ReportTableLegend},
   mixins: [report_mixin],
 
   i18n: {
@@ -560,13 +597,13 @@ export default {
         'internet_nl_web_dnssec': [],
         'internet_nl_web_tls': [],
         'internet_nl_web_appsecpriv': [],
-        'web_legacy': [],
+        'internet_nl_web_legacy_category': [],
         'mail': [],
         'internet_nl_mail_dashboard_ipv6': [],
         'internet_nl_mail_dashboard_dnssec': [],
         'internet_nl_mail_dashboard_auth': [],
         'internet_nl_mail_dashboard_tls': [],
-        'mail_legacy': [],
+        'internet_nl_mail_legacy_category': [],
       },
 
       // simple sorting a la bootstrapvue.
@@ -609,7 +646,15 @@ export default {
     }
   },
   methods: {
-
+    make_tooltip(url, category_name) {
+      if (!url.endpoints[0])
+        return ''
+      if (!url.endpoints[0].ratings_by_type[category_name])
+        return ''
+      if (!url.endpoints[0].ratings_by_type[category_name]['last_scan'])
+        return ''
+          return`${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${this.humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}`
+    },
     select_category: function (category_name) {
       if (Object.keys(this.categories).includes(category_name))
         this.selected_category = category_name;
@@ -775,7 +820,7 @@ export default {
 
     score_comparison: function (url) {
       if (this.reports.length < 2) {
-        return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score}%</span>`
+        return `<span><div class="logo_image"></div> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score}%</span>`
       } else {
 
         if (url === undefined ||
@@ -784,14 +829,14 @@ export default {
             this.reports[1].calculation.urls_by_url[url.url] === undefined ||
             this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined ||
             this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score === undefined) {
-          return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score}%</span>`
+          return `<span><div class="logo_image"></div> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score}%</span>`
         }
 
         let current_score = url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
         let other_score = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
         // console.log(`current score: ${current_score} other score: ${other_score}`)
         if (current_score === undefined || other_score === undefined)
-          return `<span><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}%</span>`
+          return `<span><div class="logo_image"></div> ${current_score}%</span>`
 
         let comparison = ""
         if (current_score > other_score) {
@@ -800,7 +845,7 @@ export default {
         if (current_score < other_score) {
           comparison = "<img src='/static_frontend/images/report_comparison_regressed.png'>"
         }
-        return `<span style="white-space: nowrap "><img src="/static_frontend/images/vendor/internet_nl/favicon.png" style="height: 16px;"> ${current_score}% ${comparison}</span>`
+        return `<span class="nowrap"><div class="logo_image"></div> ${current_score}% ${comparison}</span>`
       }
     },
 

@@ -4,6 +4,37 @@ This CSS file has some fixes for standard components. These create their own HTM
 This is a quick workaround to make sure the components look better. The next step might be templating.
 */
 
+.start-on-new-page {
+    page-break-before: always;
+}
+
+.not-on-new-page {
+    page-break-before: avoid;
+}
+
+button {
+    margin: 0 auto .5em;
+    background: #fff;
+    border: solid .3em #ffab4c;
+    font-family: 'robotobold', arial, sans-serif;
+    font-weight: bold;
+    font-size: 100%;
+    border-radius: 18px !important;
+    padding: .2em .5em
+}
+
+button:hover, .block button:focus, .block button:active {
+    background: #ffab4c
+}
+
+button:hover {
+    cursor: pointer
+}
+
+button:focus {
+    outline: none
+}
+
 
 small {
     font-size: 0.8em;

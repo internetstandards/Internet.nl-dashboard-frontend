@@ -5,7 +5,7 @@
 // Done: store filter options for reports (as generic or per report? or as a re-applicable set?) Per user account.
 // Done: how to add a item for legacy views?
 // Done: how to translate graphs?
-import field_translations from './../field_translations'
+import field_translations from '../FieldTranslations'
 import http from "@/httpclient"
 
 export default {
@@ -29,13 +29,13 @@ export default {
       const default_metric_visibility = {
         // contains all fields in the application and some default values
         web: {visible: true, show_dynamic_average: true},
-        web_legacy: {visible: false, show_dynamic_average: true},
+        internet_nl_web_legacy_category: {visible: false, show_dynamic_average: true},
+        internet_nl_mail_legacy_category: {visible: false, show_dynamic_average: true},
         internet_nl_web_tls: {visible: true, show_dynamic_average: true},
         internet_nl_web_dnssec: {visible: true, show_dynamic_average: true},
         internet_nl_web_ipv6: {visible: true, show_dynamic_average: true},
         internet_nl_web_appsecpriv: {visible: true, show_dynamic_average: true},
         mail: {visible: true, show_dynamic_average: true},
-        mail_legacy: {visible: false, show_dynamic_average: true},
         internet_nl_mail_dashboard_tls: {visible: true, show_dynamic_average: true},
         internet_nl_mail_dashboard_auth: {visible: true, show_dynamic_average: true},
         internet_nl_mail_dashboard_dnssec: {visible: true, show_dynamic_average: true},
@@ -151,7 +151,6 @@ export default {
         internet_nl_mail_starttls_tls_keyexchangehash: {visible: false},
         internet_nl_mail_starttls_tls_0rtt: {visible: false},
         internet_nl_web_legacy_tls_1_3: {visible: false},
-        internet_nl_mail_legacy_mail_non_sending_domain: {visible: false},
         internet_nl_mail_legacy_mail_sending_domain: {visible: false},
         internet_nl_mail_legacy_mail_server_testable: {visible: false},
         internet_nl_mail_legacy_mail_server_reachable: {visible: false},
@@ -441,10 +440,10 @@ export default {
             },
             {
               name: 'forum_standardisation',
-              label: this.$i18n.t('web_legacy'),
-              key: 'web_legacy',
+              label: this.$i18n.t('internet_nl_web_legacy_category'),
+              key: 'internet_nl_web_legacy_category',
               fields: [
-                {name: 'web_legacy'},
+                {name: 'internet_nl_web_legacy_category'},
               ],
 
 
@@ -667,11 +666,11 @@ export default {
             },
             {
               name: 'forum_standardisation',
-              label: this.$i18n.t('mail_legacy'),
-              key: 'mail_legacy',
+              label: this.$i18n.t('internet_nl_mail_legacy_category'),
+              key: 'internet_nl_mail_legacy_category',
               fields: [
                 {
-                  name: 'mail_legacy',
+                  name: 'internet_nl_mail_legacy_category',
                 },
               ],
 
@@ -756,10 +755,6 @@ export default {
                     {
                       name: 'internet_nl_mail_legacy_mail_server_testable',
                       explanation: 'fields.forum_standardistation.internet_nl_mail_legacy_mail_server_testable_explanation'
-                    },
-                    {
-                      name: 'internet_nl_mail_legacy_mail_non_sending_domain',
-                      explanation: 'fields.forum_standardistation.internet_nl_mail_legacy_mail_non_sending_domain_explanation'
                     },
                     {
                       name: 'internet_nl_mail_legacy_mail_sending_domain',

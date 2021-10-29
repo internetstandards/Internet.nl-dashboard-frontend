@@ -6,7 +6,7 @@ span {
   color: #00000088;
   margin: 0.1em;
   border-radius: 21px;
-  font-family: arial;
+  font-family: arial, sans-serif;
   min-width: 38px;
   display: inline-block;
   padding-left: 0.7em;

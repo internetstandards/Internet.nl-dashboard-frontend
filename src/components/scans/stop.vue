@@ -7,7 +7,7 @@
 
             <server-response :response="response"></server-response>
 
-            <div class="wrapper" style="width: 100%">
+            <div class="wrapper w-100">
             <span><probe /></span> &nbsp;
                 <b>{{ scan.type }} {{ $t("id") }}{{ scan.id }}</b><br>
                 <br>
@@ -35,7 +35,7 @@
         <div slot="modal-footer">
             <button class="altbutton" @click="stop()">{{ $t("cancel.cancel") }}</button>
             &nbsp;
-            <button class="modal-default-button defaultbutton" @click="confirm_stop_scan()">{{
+            <button class="modal-default-button defaultbutton border-danger" @click="confirm_stop_scan()">{{
                     $t("cancel.ok")
                 }}
             </button>

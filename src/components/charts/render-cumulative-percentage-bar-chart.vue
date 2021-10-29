@@ -90,7 +90,7 @@ export default {
                 if ((labels.length > 1 && this.show_average) || this.only_show_dynamic_average) {
                     // Remove the extra fields, they are never in the first graph. Extra fields categories are enabled
                     // automatically if one of the field is selected. And are disabled when none of the fields is selected.
-                    if (["mail_legacy", "web_legacy"].includes(this.axis[this.axis.length - 1])) {
+                    if (["internet_nl_mail_legacy_category", "internet_nl_web_legacy_category"].includes(this.axis[this.axis.length - 1])) {
                         chartdata.push(Math.round((average / (this.axis.length - 1)) * 100) / 100);
                     } else {
                         chartdata.push(Math.round((average / this.axis.length) * 100) / 100);

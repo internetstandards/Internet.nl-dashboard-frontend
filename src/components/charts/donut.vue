@@ -79,7 +79,7 @@ h3 {
 <script>
 import donutChart from './../charts/donutChart'
 // import DownloadData from './../charts/DownloadData'
-import field_translations from './../field_translations'
+import field_translations from '../FieldTranslations'
 
 export default {
   i18n: {

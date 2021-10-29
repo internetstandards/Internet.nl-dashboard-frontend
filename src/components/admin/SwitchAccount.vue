@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <content-block>
-        <h1>{{ $t("title") }}</h1>
+        <h1><b-icon icon="person-bounding-box" /> {{ $t("title") }}</h1>
         <p> {{ $t('intro') }}</p>
         <p><b>{{ $t('reload_page_warning') }}</b></p>
 

@@ -10,7 +10,7 @@
 
 <template>
     <b-modal :visible="visible" @hidden="stop()" header-bg-variant="info"
-             header-text-variant="light" no-fade scrollable>
+             header-text-variant="light" no-fade scrollable size="xl">
         <h3 slot="modal-title">🌐 {{ $t("title") }}</h3>
         <div slot="default">
 

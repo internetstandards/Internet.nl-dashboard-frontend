@@ -1,9 +1,15 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
+<style scoped>
+.fixed_height {
+  height: 500px;
+  min-height: 500px;
+}
+</style>
 <template>
   <collapse-panel :title='title' :custom_title_class="`level_${level}`">
     <div slot="content">
-      <div style="overflow: auto; width: 100%; height: 500px; position: relative;">
-        <div class="chart-container" style="position: relative; height: 500px; min-height: 500px; width: 100%;">
+      <div class="w-100 overflow-auto position-relative fixed_height">
+        <div class="chart-container w-100 position-relative fixed_height">
           <slot name="chart_content">
             Default Content
           </slot>

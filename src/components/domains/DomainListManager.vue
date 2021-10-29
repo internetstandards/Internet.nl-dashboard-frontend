@@ -33,7 +33,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 <template>
     <div>
         <content-block>
-            <h1>{{ $t("title") }}</h1>
+            <h1><b-icon icon="card-list" /> {{ $t("title") }}</h1>
             <p>{{ $t("intro") }}</p>
             <p>
                 <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
@@ -74,6 +74,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                     <b-form-select id="scan_type" v-model="add_new_new_list.scan_type">
                         <b-form-select-option value="web">{{ $t("urllist.scan_type_web") }}</b-form-select-option>
                         <b-form-select-option value="mail">{{ $t("urllist.scan_type_mail") }}</b-form-select-option>
+                        <b-form-select-option value="all">{{ $t("urllist.scan_type_all") }}</b-form-select-option>
                     </b-form-select>
                     <br><br>
 
@@ -129,16 +130,17 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
         What we would like is that when rerendering, the state (data) would also transfer to the correct component
         https://michaelnthiessen.com/force-re-render/
         -->
-        <managed_url_list
+        <url-list
             :initial_list="list"
+            :start_opened="list.start_opened ? true : false"
             :maximum_domains="maximum_domains_per_list"
-            v-bind:key="list.id"
+            :key="list.id"
             v-on:removelist="removelist"
-            v-for="list in lists"></managed_url_list>
+            v-for="list in lists" />
 
         <content-block v-if="!lists.length" class="no-content">
             {{ $t("inital_list.start") }} <br>
-            <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
+            <button class="border-success" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
             <br>
             <br>
             <p>
@@ -150,13 +152,13 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 </template>
 
 <script>
-import managed_url_list from './managed-url-list.vue'
+import UrlList from './UrlList.vue'
 import sharedMessages from './../translations/dashboard.js'
 import http from "@/httpclient";
 
 export default {
     components: {
-        managed_url_list
+        UrlList
     },
     i18n: {
         sharedMessages: sharedMessages,
@@ -221,6 +223,7 @@ export default {
                     // not truely reactive. You could then only add to the bottom of the list. Otherwise the last
                     // item of the lists was cloned.
                     // Doing it properly retains reactivity such as unshifting and reversing the list.
+                    this.add_new_server_response.data.start_opened = true;
                     this.lists.unshift(this.add_new_server_response.data);
                     this.$bvModal.hide('show_add_new')
                 }
@@ -257,7 +260,7 @@ export default {
     "en": {
         "title": "Domains",
         "intro": "Manage lists with domains",
-        "bulk_upload_link": "Upload spreadsheets with data.",
+        "bulk_upload_link": "Upload spreadsheet with domains",
         "warning_found_in_list": "One or more lists contain issues, this will prevent scans from running.",
         "icons": {
             "list_closed": "List closed",

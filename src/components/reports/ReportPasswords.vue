@@ -1,10 +1,10 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <content-block class="do-not-print" v-if="reports !== undefined" style="background-color: #fff7f7 !important;">
+  <content-block class="do-not-print" v-if="reports !== undefined">
     <h2>⚠️ {{ $t('Authentication required') }}</h2>
     <p>{{ $t('Some reports require authentication') }}</p>
 
-      <b-row v-for="report in reports" :key="report.id" class="p-4" style="border-top: 1px solid silver;">
+      <b-row v-for="report in reports" :key="report.id" class="p-4 border-top border-secondary">
         <b-col>{{ $t('code') }}: 📊 {{report.public_report_code}}<br>
           {{ $t('name') }}: 📘 {{report.urllist_name}}<br>
           {{ $t('created_on') }}: {{report.at_when.human_date()}}
@@ -35,7 +35,7 @@
       </b-row>
 
     <!-- onclick emit retry. -->
-    <b-row class="pt-4 pl-3 pb-2" style="border-top: 1px solid silver;">
+    <b-row class="pt-4 pl-3 pb-2 border-top border-secondary">
       <button type="submit" @click="$emit('retry')">{{ $t('Retry with above settings') }}</button>
     </b-row>
 

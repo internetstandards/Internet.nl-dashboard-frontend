@@ -45,6 +45,7 @@ export default {
   props: {
     urllist_ids: {type: Array, required: true},
     highlight_report_ids: {type: Array, required: false},
+    report_type: {type: String, required: false, default: "web"},
   },
 
   data() {
@@ -73,7 +74,7 @@ export default {
 
   methods: {
     get_timeline() {
-      http.get(`/data/report/urllist_timeline_graph/${this.urllist_ids}/`).then(data => {
+      http.get(`/data/report/urllist_timeline_graph/${this.urllist_ids}/${this.report_type}/`).then(data => {
         this.timeline_data = data.data;
       });
     },

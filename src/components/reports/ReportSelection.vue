@@ -35,6 +35,10 @@
   background-color: #5897FB !important;
 }
 
+.w-87 {
+  width: 87%
+}
+
 </style>
 <template>
   <div aria-live="polite">
@@ -45,24 +49,20 @@
         :options="filtered_recent_reports"
         label="label"
         :spinner="loading"
-        style="width: calc(100% - 106px);"
+        class="w-87"
         :multiple="true"
         :selectable="() => selected_reports.length < 6"
     >
       <slot name="no-options">{{ $t('no_options') }}</slot>
       <template v-slot:option="option">
-        <div style="display:block;" class="rowline">
-          <div style="width: 4em; display:inline-block;">{{ option.id }}</div>
-          <div v-if="option.type === 'web'" style="width: 4em; display:inline-block;">
-            <img src="/static_frontend/images/vendor/internet_nl/icon-website-test.svg"
-                 style="height: 16px;"> {{ option.type }}
+        <div class="rowline d-block">
+          <div class="d-inline-block col-1">{{ option.id }}</div>
+          <div class="d-inline-block col-2" >
+            <scan-type-icon :type="option.type"/>
+            {{ option.type }}
           </div>
-          <div v-else style="width: 4em; display:inline-block;">
-            <img src="/static_frontend/images/vendor/internet_nl/icon-emailtest.svg"
-                 style="height: 16px;"> {{ option.type }}
-          </div>
-          <div style="display:inline-block;">{{ option.list_name }}</div>
-          <div style="display:inline-block; float: right;">{{ humanize_date(option.at_when) }}
+          <div class="d-inline-block">{{ option.list_name }}</div>
+          <div class="d-inline-block float-right">{{ humanize_date(option.at_when) }}
             ({{ humanize_relative_date(option.at_when) }})
           </div>
         </div>
@@ -79,16 +79,16 @@
 
     <!-- The dropdown with recent reports is updated automatically when scans finish. But if that page
      had never loaded, this is a fallback that still tries to get the recent report every ten minutes. -->
-    <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600"
-                 v-if="$store.state.user.is_authenticated"></autorefresh>
+    <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600"></autorefresh>
   </div>
 </template>
 <script>
 import http from "@/httpclient";
 import ReportTagFilter from "@/components/reports/ReportTagFilter";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 
 export default {
-  components: {ReportTagFilter},
+  components: {ScanTypeIcon, ReportTagFilter},
   /**
    * Manipulates the following globals:
    * - Current report type, a string in one of the following: ["web", "mail"]
@@ -119,6 +119,7 @@ export default {
 
   mounted() {
     this.get_recent_reports();
+    this.match_with_environment(this.$router.history.current);
   },
 
   methods: {
@@ -129,7 +130,6 @@ export default {
         let data = response.data;
         data.forEach(o => {o.label = `#${o.id} - ${o.list_name} - type: ${o.type} - from: ${o.at_when.human_date()}`});
         this.available_recent_reports = this.filtered_recent_reports = data;
-        this.match_with_environment(this.$router.history.current);
         this.loading = false;
       });
     },
@@ -159,6 +159,9 @@ export default {
     },
 
     selected_reports(dropdown_items, old_value) {
+      console.log("Selected reports changed...")
+      console.log(dropdown_items)
+      console.log(old_value)
 
       // don't reload the page uselessly
       if (dropdown_items === old_value)
@@ -169,6 +172,12 @@ export default {
         this.filtered_recent_reports = this.available_recent_reports;
         return;
       }
+
+      // prevent useless reloading
+      // if (old_value !== undefined) {
+      //   if (dropdown_items[0].id === old_value[0].id)
+      //     return;
+      // }
 
       // All reports in the list have to match the type of the first selected item, otherwise they cannot be compared
       this.filtered_recent_reports = this.available_recent_reports.filter(item => item.type === dropdown_items[0].type);

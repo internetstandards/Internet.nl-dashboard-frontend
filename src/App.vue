@@ -15,7 +15,7 @@
 
     <main id="content" tabindex="-1">
       <div class="wrap mt-3">
-        <div style="width: 100%;">
+        <div class="w-100">
           <keep-alive>
             <router-view></router-view>
           </keep-alive>
@@ -42,7 +42,7 @@
 
 <script>
 import Headroom from "headroom.js";
-import SiteMenu from './components/site-menu.vue'
+import SiteMenu from './components/SiteMenu'
 import {mapState} from 'vuex'
 import http from "@/httpclient";
 

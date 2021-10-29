@@ -2,28 +2,28 @@
 <template>
   <div>
     <content-block>
-      <h1>{{ $t("title") }}</h1>
+      <h1><b-icon icon="person-circle" /> {{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
         <!-- use lazy so that the visiblemetrics is updated when that's visited, instead of manually reloading. -->
       <b-tabs content-class="mt-3" lazy>
-        <b-tab active>
+        <b-tab :active="active === 'notifications' || active === '' || active === undefined">
           <span slot="title">📨 {{$t('notifications')}}</span>
           <notification-settings></notification-settings>
         </b-tab>
 
-        <b-tab>
+        <b-tab :active="active === 'authentication'">
           <span slot="title">📱 {{$t('authentication_options') }}</span>
           <p>{{ $t("authentication_options_secondfactor") }}</p>
           <a :href="`${$baseUrl}/account/two_factor/`" target="_blank">{{ $t("two_factor_options") }}</a>
         </b-tab>
 
-        <b-tab>
-          <span slot="title"> <scan_type_icon type="web"></scan_type_icon> {{$t('visible_metrics_web')}}</span>
+        <b-tab :active="active === 'web_metrics'">
+          <span slot="title"> <scan-type-icon type="web"></scan-type-icon> {{$t('visible_metrics_web')}}</span>
           <VisibleMetrics report_type="web" :key="'a'"/>
         </b-tab>
 
-        <b-tab>
-          <span slot="title"> <scan_type_icon type="mail"></scan_type_icon> {{$t('visible_metrics_mail')}}</span>
+        <b-tab :active="active === 'mail_metrics'">
+          <span slot="title"> <scan-type-icon type="mail"></scan-type-icon> {{$t('visible_metrics_mail')}}</span>
           <VisibleMetrics report_type="mail" :key="'b'"/>
         </b-tab>
 
@@ -35,12 +35,17 @@
 <script>
 import NotificationSettings from "./NotificationSettings"
 import VisibleMetrics from './VisibleMetrics'
-import scan_type_icon from "@/components/scan_type_icon";
+import ScanTypeIcon from "@/components/ScanTypeIcon";
 
 export default {
-  components: {scan_type_icon, NotificationSettings, VisibleMetrics},
+  components: {ScanTypeIcon, NotificationSettings, VisibleMetrics},
 
   name: 'account',
+  computed: {
+    active() {
+      return this.$route.params.active_tab
+    }
+  }
 }
 </script>
 <i18n>

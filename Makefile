@@ -22,6 +22,9 @@ run: vue-cli ## only run the gui
 	# the extra -- is because of hell and fail. https://github.com/vuejs/vue-cli/issues/1528
 	npm run serve -- --mode development
 
+run-csp: vue-cli
+	npm run serve -- --mode production
+
 build-gui-staging: vue-cli
 	npm run build -- --mode staging
 
