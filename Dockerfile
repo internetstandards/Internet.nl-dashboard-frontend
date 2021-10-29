@@ -1,5 +1,6 @@
 # Build container to serve static content
 FROM node AS build
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
 RUN mkdir /src
 WORKDIR /src
