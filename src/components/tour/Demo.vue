@@ -54,7 +54,8 @@ export default {
   data() {
     return {
       features: ['manage_domains', 'import_domains', 'scan', 'focus_on_metrics', 'report_table', 'report_bar_chart',
-      'report_timeline', 'export_spreadsheet', 'report_sharing', 'account_notifications', 'account_two_fa']
+      'report_timeline', 'export_spreadsheet', 'report_sharing', 'account_notifications']
+      // account_two_fa
     }
   }
 }
@@ -63,7 +64,7 @@ export default {
 {
   "en": {
     "title": "Internet.nl dashboard features",
-    "introduction": "The internet.nl allows bulk scans and reporting up to thousands of domains. Scan for IPv6, TLS, DMARC, SPF, DANE, DKIM, DNSSEC, HTTP Headers and more. Below is an overview of features included in the dashboard:",
+    "introduction": "The dashboard allows bulk scans and reporting up to thousands of domains. Scan for IPv6, TLS, DMARC, SPF, DANE, DKIM, DNSSEC, HTTP Headers and more. Below is an overview of features included in the dashboard:",
     "contact_information": "To use the dashboard on internet.nl, contact: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
     "manage_domains": {
       "title": "Bulk domain scans for web and mail",
@@ -119,13 +120,67 @@ export default {
       "title": "Two factor authentication",
       "introduction": "Set up two factor authentication for your account using One Time Passwords.",
       "caption": "A QR code used to setup two factor authentication."
-    },
-    "contact": {
-      "title": "Contact for access"
     }
   },
   "nl": {
-    "title": "Internet.nl dashboard rondleiding"
+    "title": "Internet.nl dashboard rondleiding",
+    "introduction": "Het dashboard maakt het mogelijk duizenden internet.nl scans tegelijk uit te voeren. Meet de actuele adoptie van IPv6, TLS, DMARC, SPF, DANE, DKIM, DNSSEC, HTTP Headers en meer. Deze pagina geeft een overzicht weer van verschillende handige eigenschappen van het dashboard:",
+    "contact_information": "Om gebruik te maken van het dashboard is een account nodig. Vraag deze aan via: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
+    "manage_domains": {
+      "title": "Bulk domein-scans voor web en mail",
+      "introduction": "<p>Domeinen worden beheerd middels lijsten. Alle domeinen in de lijst kunnen worden gescand op web, mail of beide.</p><p>Door gebruik te maken van labels kan het eindresultaat gefilterd worden. Deze deelresultaten kunnen weer als nieuwe rapporten worden opgeslagen en gedeeld.</p><p>Een lijst met domeinen kan periodiek worden gescand.</p>",
+      "caption": "Een lijst met domeinen, voorzien van labels. De lijst is te bedienen met meerdere knoppen zoals: instellingen, domeinen toevoegen, direct scannen, verwijderen en automatisch toevoegen van 'www' subdomeinen."
+    },
+    "import_domains": {
+      "title": "Domeinen importeren",
+      "introduction": "Importeer domeinen als kommagescheiden tekst of met een spreadsheet. Er is ondersteuning voor zowel Excel als Open Office.",
+      "caption": "In een spreadsheet staat het domein en in welke lijst(en) deze moet komen."
+    },
+    "scan": {
+      "title": "Scan monitor",
+      "introduction": "Er kunnen meerdere scans tegelijk worden uitgevoerd. De monitor toont de voortgang van alle scans.",
+      "caption": "Een afgeronde en lopende scan."
+    },
+    "focus_on_metrics": {
+      "title": "Focus op meetwaarden",
+      "introduction": "Bekijk alleen de meetwaarden waarop de organisatie zich nu wel richten. Bijvoorbeeld DNSSEC of IPv6.",
+      "caption": "Schakel alle afzonderlijke IPv6 meetwaarden in of uit, per stuk of tegelijk."
+    },
+    "report_timeline": {
+      "title": "Volg de voortgang",
+      "introduction": "Bij iedere scan op dezelfde lijst wordt de gemiddelde score toegevoegd aan de tijdlijn.",
+      "caption": "De eerste meetwaarde begint in het midden, en is nu 52%."
+    },
+    "report_bar_chart": {
+      "title": "Staafgrafieken",
+      "introduction": "Voor iedere groep meetwaarden is er een grafiek beschikbaar. Het is zelfs mogelijk meerdere rapporten tegelijk te openen en met elkaar te vergelijken.",
+      "caption": "De grafiek voor alle TLS categorien wordt getoond, waaruit blijkt dat TLS in 84% van de gevallen wordt toegepast."
+    },
+    "report_table": {
+      "title": "Meetwaardentabel",
+      "introduction": "Alle meetwaarden zijn zichtbaar in een tabel. De tabel is opgesplitst in diverse categoriën. Het is ook mogelijk de meetwaarden te vergelijken met een ander rapport, om alle afzonderlijke verbeteringen te zien.",
+      "caption": "Per regel in de tabel wordt het domein, de gemiddelde internet.nl score en natuurlijk een afbeelding (en tekst) met de uitslag."
+    },
+    "export_spreadsheet": {
+      "title": "Exporteer naar spreadsheet",
+      "introduction": "Een rapport kan worden geëxporteerd naar Excel, Libre Office en kommagescheiden tekst. De Excel spreadsheet bevat ook extra berekeningen per kolom.",
+      "caption": "Het spreadsheet kan ook worden geopend in andere programma's, zoals in Numbers in deze afbeelding. Hierop is net als op de tabel te zien welk domein, de score, een link naar de internet.nl site met alle metingen en de uitslag per meting"
+    },
+    "report_sharing": {
+      "title": "Rapporten delen",
+      "introduction": "<p>Rapporten kunnen online worden gedeeld, met of zonder wachtwoord. Iedereen met de link, en eventueel het wachtwoord, kan zien wat de meetwaarden zijn.</p>",
+      "caption": "Een gedeeld rapport ziet er hetzelfde uit als een rapport van iemand die is ingelogd."
+    },
+    "account_notifications": {
+      "title": "E-mail updates",
+      "introduction": "Wanneer een scan is afgrond kan een e-mail worden verzonden. Hierin staat een opsomming van de resultaten. Bij een tweede scan staat er ook een vergelijking met de vorige scan.",
+      "caption": "Een overzicht van account-instellingen, met daarin de mogelijkheid om notificaties in te stellen."
+    },
+    "account_two_fa": {
+      "title": "Two factor authentication",
+      "introduction": "Set up two factor authentication for your account using One Time Passwords.",
+      "caption": "A QR code used to setup two factor authentication."
+    }
   }
 }
 
