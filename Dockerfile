@@ -1,5 +1,7 @@
 # Build container to serve static content
 FROM node AS build
+
+# https://github.com/webpack/webpack/issues/14532
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
 RUN mkdir /src

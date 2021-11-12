@@ -20,6 +20,7 @@
             <router-view></router-view>
           </keep-alive>
         </div>
+        <GithubMessage />
       </div>
     </main>
 
@@ -45,6 +46,7 @@ import Headroom from "headroom.js";
 import SiteMenu from './components/SiteMenu'
 import {mapState} from 'vuex'
 import http from "@/httpclient";
+import GithubMessage from "@/components/GithubMessage";
 
 export default {
   i18n: {
@@ -81,6 +83,7 @@ export default {
     },
   },
   components: {
+    GithubMessage,
     SiteMenu
   },
   computed: mapState(['user']),
