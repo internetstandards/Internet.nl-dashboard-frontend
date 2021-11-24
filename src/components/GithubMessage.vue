@@ -19,10 +19,10 @@ name: "GithubMessage"
 <i18n>
 {
   "en": {
-    "or": "of",
+    "or": "or",
     "intro": "Is something not working right? Raise an issue via ",
     "mail": "E-Mail",
-    "view issues": "Bekijk openstaande meldingen"
+    "view issues": "View open issues"
   },
   "nl": {
     "or": "of",
