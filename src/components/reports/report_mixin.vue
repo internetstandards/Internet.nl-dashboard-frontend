@@ -158,6 +158,20 @@ export default {
         internet_nl_mail_legacy_tls_1_3: {visible: false},
         internet_nl_mail_legacy_category_ipv6: {visible: false},
         internet_nl_web_legacy_category_ipv6: {visible: false},
+
+        internet_nl_web_rpki: {visible: false},
+        internet_nl_web_appsecpriv_securitytxt: {visible: false},
+        internet_nl_mail_rpki: {visible: false},
+        internet_nl_web_rpki_exists: {visible: false},
+        internet_nl_web_rpki_valid: {visible: false},
+        internet_nl_web_ns_rpki_exists: {visible: false},
+        internet_nl_web_ns_rpki_valid: {visible: false},
+        internet_nl_mail_rpki_exists: {visible: false},
+        internet_nl_mail_rpki_valid: {visible: false},
+        internet_nl_mail_ns_rpki_exists: {visible: false},
+        internet_nl_mail_ns_rpki_valid: {visible: false},
+        internet_nl_mail_mx_ns_rpki_exists: {visible: false},
+        internet_nl_mail_mx_ns_rpki_valid: {visible: false},
       };
 
       http.get(`/data/account/report_settings/get/`).then(settings => {
@@ -261,6 +275,20 @@ export default {
           "internet_nl_web_appsecpriv_referrer_policy",
           "internet_nl_web_appsecpriv_x_content_type_options",
           "internet_nl_web_appsecpriv_x_frame_options",
+          "internet_nl_web_rpki",
+          "internet_nl_web_appsecpriv_securitytxt",
+          "internet_nl_mail_rpki",
+          "internet_nl_web_rpki_exists",
+          "internet_nl_web_rpki_valid",
+          "internet_nl_web_ns_rpki_exists",
+          "internet_nl_web_ns_rpki_valid",
+          "internet_nl_mail_rpki_exists",
+          "internet_nl_mail_rpki_valid",
+          "internet_nl_mail_ns_rpki_exists",
+          "internet_nl_mail_ns_rpki_valid",
+          "internet_nl_mail_mx_ns_rpki_exists",
+          "internet_nl_mail_mx_ns_rpki_valid",
+
         ].includes(field_name)) {
           issue_filters[field_name] = {
             visible: true,
@@ -421,7 +449,6 @@ export default {
                 {name: 'internet_nl_web_appsecpriv'},
               ],
 
-
               categories: [
                 {
                   name: 'HTTP security headers',
@@ -434,9 +461,49 @@ export default {
                     {name: 'internet_nl_web_appsecpriv_referrer_policy'},
                   ],
 
+                },
+                {
+                  name: 'Other options',
+                  key: 'category_web_security_options_other',
+                  label: this.$i18n.t('category_web_security_options_other'),
+                  fields: [
+                    {name: 'internet_nl_web_appsecpriv_securitytxt'},
+                  ],
+
                 }
               ]
 
+            },
+            {
+              name: 'rpki',
+              label: this.$i18n.t('internet_nl_web_rpki'),
+              key: 'internet_nl_web_rpki',
+              fields: [
+                {name: 'internet_nl_web_rpki'},
+              ],
+
+              categories: [
+                {
+                  name: 'Name Server',
+                  key: 'category_web_rpki_name_server',
+                  label: this.$i18n.t('category_web_rpki_name_server'),
+                  fields: [
+                    {name: 'internet_nl_web_rpki_exists'},
+                    {name: 'internet_nl_web_rpki_valid'},
+                  ],
+
+                },
+                {
+                  name: 'Web Server',
+                  key: 'category_web_rpki_web_server',
+                  label: this.$i18n.t('category_web_rpki_web_server'),
+                  fields: [
+                    {name: 'internet_nl_web_ns_rpki_exists'},
+                    {name: 'internet_nl_web_ns_rpki_valid'},
+                  ],
+
+                }
+              ]
             },
             {
               name: 'forum_standardisation',
@@ -662,6 +729,47 @@ export default {
 
 
                 },
+              ]
+            },
+            {
+              name: 'rpki',
+              label: this.$i18n.t('internet_nl_mail_rpki'),
+              key: 'internet_nl_mail_rpki',
+              fields: [
+                {name: 'internet_nl_mail_rpki'},
+              ],
+
+              categories: [
+                {
+                  name: 'Name Server Domain',
+                  key: 'category_mail_rpki_name_server',
+                  label: this.$i18n.t('category_mail_rpki_name_server'),
+                  fields: [
+                    {name: 'internet_nl_mail_rpki_exists'},
+                    {name: 'internet_nl_mail_rpki_valid'},
+                  ],
+
+                },
+                {
+                  name: 'Name Server Mail Server(s)',
+                  key: 'category_mail_rpki_name_mail_server',
+                  label: this.$i18n.t('category_mail_rpki_name_mail_server'),
+                  fields: [
+                    {name: 'internet_nl_mail_ns_rpki_exists'},
+                    {name: 'internet_nl_mail_ns_rpki_valid'},
+                  ],
+
+                },
+                {
+                  name: 'Mail Server(s)',
+                  key: 'category_mail_rpki_mail_server',
+                  label: this.$i18n.t('category_mail_rpki_mail_server'),
+                  fields: [
+                    {name: 'internet_nl_mail_mx_ns_rpki_exists'},
+                    {name: 'internet_nl_mail_mx_ns_rpki_valid'},
+                  ],
+
+                }
               ]
             },
             {

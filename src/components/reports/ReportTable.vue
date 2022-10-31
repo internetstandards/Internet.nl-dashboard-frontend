@@ -597,12 +597,14 @@ export default {
         'internet_nl_web_dnssec': [],
         'internet_nl_web_tls': [],
         'internet_nl_web_appsecpriv': [],
+        'internet_nl_web_rpki': [],
         'internet_nl_web_legacy_category': [],
         'mail': [],
         'internet_nl_mail_dashboard_ipv6': [],
         'internet_nl_mail_dashboard_dnssec': [],
         'internet_nl_mail_dashboard_auth': [],
         'internet_nl_mail_dashboard_tls': [],
+        'internet_nl_mail_rpki': [],
         'internet_nl_mail_legacy_category': [],
       },
 
@@ -976,7 +978,7 @@ export default {
           });
         }
       });
-      // console.log("Preferred fields: " + preferred_fields)
+      // console.log("Preferred fields:         " + preferred_fields)
       let visible_preferred_fields = preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
       // console.log("Visible preferred fields: " + visible_preferred_fields)
       return visible_preferred_fields

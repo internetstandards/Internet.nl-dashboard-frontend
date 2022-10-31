@@ -7,7 +7,7 @@
 
         <div v-for="scan_form in scan_methods" :key="scan_form.name">
             <b-card no-body>
-                <b-tabs pills card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
+                <b-tabs pills vertical card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
                     <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label"
                            class="p-3">
                         <section class="test-header">
@@ -164,7 +164,7 @@ export default {
                 }
             }
 
-            // console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
+            console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
             this.issue_filters[category_name.key].visible = should_be_visible;
         },
         all_subcategory_fields_from_category(category_name) {
@@ -201,6 +201,7 @@ export default {
                     {key: 'internet_nl_web_dnssec'},
                     {key: 'internet_nl_web_tls'},
                     {key: 'internet_nl_web_appsecpriv'},
+                    {key: 'internet_nl_web_rpki'},
                     {key: 'internet_nl_web_legacy_category'},
                 ]
             } else {
@@ -209,6 +210,7 @@ export default {
                     {key: 'internet_nl_mail_dashboard_dnssec'},
                     {key: 'internet_nl_mail_dashboard_auth'},
                     {key: 'internet_nl_mail_dashboard_tls'},
+                    {key: 'internet_nl_mail_rpki'},
                     {key: 'internet_nl_mail_legacy_category'}
                 ];
             }
