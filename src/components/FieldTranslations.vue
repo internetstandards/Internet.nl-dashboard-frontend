@@ -4,11 +4,14 @@ const internet_nl_field_mapping = {
   internet_nl_web_tls: 'test_sitetls',
   internet_nl_web_dnssec: 'test_sitednssec',
   internet_nl_web_ipv6: 'test_siteipv6',
+  internet_nl_web_rpki: 'test_siterpki',
 
   internet_nl_mail_dashboard_tls: 'test_mailtls',
   internet_nl_mail_dashboard_auth: 'test_mailauth',
   internet_nl_mail_dashboard_dnssec: 'test_maildnssec',
   internet_nl_mail_dashboard_ipv6: 'test_mailipv6',
+  internet_nl_mail_dashboard_web_rpki: 'test_mailrpki',
+  internet_nl_mail_dashboard_rpki: 'test_mailrpki',
 
   internet_nl_web_appsecpriv: 'test_siteappsecpriv',
   internet_nl_web_appsecpriv_csp: 'detail_web_appsecpriv_http_csp',
@@ -78,6 +81,20 @@ const internet_nl_field_mapping = {
   internet_nl_mail_starttls_tls_keyexchangehash: 'detail_mail_tls_kex_hash_func',
   internet_nl_mail_starttls_tls_0rtt: 'detail_mail_tls_zero_rtt',
 
+  // rpki + security.txt
+  internet_nl_web_rpki_exists: 'detail_web_rpki_exists',
+  internet_nl_web_rpki_valid: 'detail_web_rpki_valid',
+  internet_nl_web_ns_rpki_exists: 'detail_web_mail_rpki_ns_exists',
+  internet_nl_web_ns_rpki_valid: 'detail_web_mail_rpki_ns_valid',
+  internet_nl_mail_rpki_exists: 'detail_mail_rpki_exists',
+  internet_nl_mail_rpki_valid: 'detail_mail_rpki_valid',
+  internet_nl_mail_ns_rpki_exists: 'detail_web_mail_rpki_ns_valid',
+  internet_nl_mail_ns_rpki_valid: 'detail_web_mail_rpki_ns_valid',
+  internet_nl_mail_mx_ns_rpki_exists: 'detail_mail_rpki_mx_ns_exists',
+  internet_nl_mail_mx_ns_rpki_valid: 'detail_mail_rpki_mx_ns_valid',
+  internet_nl_web_appsecpriv_securitytxt: 'detail_web_appsecpriv_http_securitytxt',
+
+
   // categories and such
   web: 'base_test_website',
   category_web_ipv6_name_server: 'results_domain_mail_ipv6_name_servers',
@@ -99,6 +116,15 @@ const internet_nl_field_mapping = {
   category_mail_starttls_tls: 'results_mail_tls_starttls',
   category_mail_starttls_certificate: 'results_domain_mail_tls_certificate',
   category_mail_starttls_dane: 'results_domain_mail_tls_dane',
+  category_web_security_options_other: 'results_domain_appsecpriv_other_options',
+  category_web_rpki_name_server: 'results_domain_mail_rpki_name_servers',
+  category_web_rpki_web_server: 'results_domain_rpki_web_server',
+
+  category_mail_rpki_name_server: 'results_domain_mail_rpki_name_servers',
+  category_mail_rpki_name_mail_server: 'results_mail_rpki_mx_name_servers',
+  category_mail_rpki_mail_server: 'results_mail_rpki_mail_servers',
+
+
 };
 
 const additional_mapping = {
