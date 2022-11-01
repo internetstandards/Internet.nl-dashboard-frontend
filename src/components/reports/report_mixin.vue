@@ -161,7 +161,7 @@ export default {
 
         internet_nl_web_rpki: {visible: false},
         internet_nl_web_appsecpriv_securitytxt: {visible: false},
-        internet_nl_mail_rpki: {visible: false},
+        internet_nl_mail_dashboard_rpki: {visible: false},
         internet_nl_web_rpki_exists: {visible: false},
         internet_nl_web_rpki_valid: {visible: false},
         internet_nl_web_ns_rpki_exists: {visible: false},
@@ -277,7 +277,7 @@ export default {
           "internet_nl_web_appsecpriv_x_frame_options",
           "internet_nl_web_rpki",
           "internet_nl_web_appsecpriv_securitytxt",
-          "internet_nl_mail_rpki",
+          "internet_nl_mail_dashboard_rpki",
           "internet_nl_web_rpki_exists",
           "internet_nl_web_rpki_valid",
           "internet_nl_web_ns_rpki_exists",
@@ -733,10 +733,10 @@ export default {
             },
             {
               name: 'rpki',
-              label: this.$i18n.t('internet_nl_mail_rpki'),
-              key: 'internet_nl_mail_rpki',
+              label: this.$i18n.t('internet_nl_mail_dashboard_rpki'),
+              key: 'internet_nl_mail_dashboard_rpki',
               fields: [
-                {name: 'internet_nl_mail_rpki'},
+                {name: 'internet_nl_mail_dashboard_rpki'},
               ],
 
               categories: [

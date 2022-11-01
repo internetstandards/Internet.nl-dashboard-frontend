@@ -210,7 +210,7 @@ export default {
                     {key: 'internet_nl_mail_dashboard_dnssec'},
                     {key: 'internet_nl_mail_dashboard_auth'},
                     {key: 'internet_nl_mail_dashboard_tls'},
-                    {key: 'internet_nl_mail_rpki'},
+                    {key: 'internet_nl_mail_dashboard_rpki'},
                     {key: 'internet_nl_mail_legacy_category'}
                 ];
             }

@@ -11,7 +11,7 @@ const internet_nl_field_mapping = {
   internet_nl_mail_dashboard_dnssec: 'test_maildnssec',
   internet_nl_mail_dashboard_ipv6: 'test_mailipv6',
   internet_nl_mail_dashboard_web_rpki: 'test_mailrpki',
-  internet_nl_mail_rpki: 'test_mailrpki',
+  internet_nl_mail_dashboard_rpki: 'test_mailrpki',
 
   internet_nl_web_appsecpriv: 'test_siteappsecpriv',
   internet_nl_web_appsecpriv_csp: 'detail_web_appsecpriv_http_csp',

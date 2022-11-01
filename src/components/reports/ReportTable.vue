@@ -604,7 +604,7 @@ export default {
         'internet_nl_mail_dashboard_dnssec': [],
         'internet_nl_mail_dashboard_auth': [],
         'internet_nl_mail_dashboard_tls': [],
-        'internet_nl_mail_rpki': [],
+        'internet_nl_mail_dashboard_rpki': [],
         'internet_nl_mail_legacy_category': [],
       },
 
