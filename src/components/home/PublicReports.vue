@@ -3,7 +3,7 @@
 
 </style>
 <template>
-  <div>
+  <div v-if="reports.length > 0">
  <h3>{{$t('Recently published reports')}}</h3>
   <p>{{$t('introduction')}}</p>
 

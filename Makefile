@@ -42,7 +42,7 @@ push_image:
 	docker push ${docker_image_name}
 
 image:
-	docker build -t ${docker_image_name} .
+	docker buildx build --platform linux/amd64 --tag ${docker_image_name} .
 
 
 promote_staging_to_live:
