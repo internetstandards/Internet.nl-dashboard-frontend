@@ -41,7 +41,7 @@ pull_image:
 push_image:
 	docker push ${docker_image_name}
 
-image:
+image build_image:
 	docker buildx build --platform linux/amd64 --tag ${docker_image_name} .
 
 
