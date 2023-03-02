@@ -36,9 +36,7 @@ h2 {
                     <span :aria-label="$t('icon.settings')" role="img">📝</span> {{ $t("button.configure") }}
                 </button> &nbsp;
 
-                <button @click="visible.add_domains = true">
-                    <span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
-                </button> &nbsp;
+
                 <template v-if="urls.length">
                     <template v-if="list.enable_scans">
                         <button v-if="list.scan_now_available" @click="visible.scan = true">
@@ -53,7 +51,8 @@ h2 {
                         <span :aria-label="$t('icon.scan')" role="img">🔬</span> {{ $t("button.scanning_disabled") }}
                     </button> &nbsp;
                 </template>
-                <button class="border-danger" @click="visible.delete = true">🗑️ {{ $t("button.delete") }}</button>
+
+              <button class="border-danger" @click="visible.delete = true">🗑️ {{ $t("button.delete") }}</button>
             </div>
         </span>
 
@@ -73,10 +72,19 @@ h2 {
         </div>
       </template>
 
-
       <div v-if="!urls.length">
         <button class="border-success" @click="visible.add_domains = true">🌐 {{ $t("button.add_domains") }}</button>
       </div>
+
+      <div style="float: right" class="mb-2">
+        <button @click="visible.add_domains = true">
+          <span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
+        </button> &nbsp;
+        <button @click="download_list">⬇️ {{ $t("button.download") }}</button> &nbsp;
+        <button @click="visible.upload = true">⬆️ {{ $t("button.upload") }}</button> &nbsp;
+      </div>
+
+
 
       <template v-if="urls.length">
         <DomainTable :loading="loading" :urllist="list" :urls="urls" @update="get_urls()"/>
@@ -85,21 +93,12 @@ h2 {
 
       <loading :loading="loading"></loading>
 
-      <button v-if="urls.length" value="load" @click="view_csv = !view_csv">
-        📋 {{ $t("button.view_csv") }}
-      </button>
-      <br>
-      <b-form-textarea
-          v-if="view_csv"
-          id="textarea"
-          v-model="csv_value"
-          class="border-secondary border-left border-right p-2 mt-2"
-          plaintext
-      ></b-form-textarea>
     </div>
 
     <Configure :list="list" :show="visible.configure" :visible="visible.configure" @cancel="visible.configure = false"
                @done="visible.configure = false"></Configure>
+    <Upload :list="list" :show="visible.upload" :visible="visible.upload" @cancel="visible.upload = false"
+               @done="visible.upload = false"></Upload>
     <Delete :list="list" :show="visible.delete" :visible="visible.delete" @cancel="visible.delete = false"
             @removelist="is_deleted = true; visible.delete = false"></Delete>
     <Scan :list="list" :show="visible.scan" :visible="visible.scan" @cancel="visible.scan = false"
@@ -122,6 +121,7 @@ import Delete from './list/delete'
 import Scan from './list/scan'
 import AddDomains from './list/add domains'
 import Configure from './list/configure'
+import Upload from './list/upload'
 import About from './list/about-this-list'
 import http from "@/httpclient";
 import ScanTypeIcon from "@/components/ScanTypeIcon";
@@ -138,6 +138,7 @@ export default {
     AddDomains,
     Configure,
     About,
+    Upload
   },
   i18n: {
     sharedMessages: sharedMessages,
@@ -155,13 +156,12 @@ export default {
       // after update.
       list: this.initial_list,
 
-      view_csv: false,
-
       visible: {
         configure: false,
         delete: false,
         scan: false,
-        add_domains: false
+        add_domains: false,
+        upload: false,
       },
     }
   },
@@ -264,15 +264,31 @@ export default {
         }
       }
     },
+
+    download_list(){
+      let data = {
+        'list-id': this.list.id,
+        'file-type': 'xlsx'
+      }
+
+      http.post(`/data/urllist/download/`, data, {responseType: 'blob'}).then(response => {
+        // create file link in browser's memory
+        const href = URL.createObjectURL(response.data);
+
+        // create "a" HTML element with href to file & click
+        const link = document.createElement('a');
+        link.href = href;
+        link.setAttribute('download', `internet nl dashboard domain list ${this.list.name}.xlsx`); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+
+        // clean up "a" element & remove ObjectURL
+        document.body.removeChild(link);
+        URL.revokeObjectURL(href);
+      });
+    }
   },
   computed: {
-    csv_value: function () {
-      let urls = [];
-      this.urls.forEach(function (item) {
-        urls.push(item.url);
-      });
-      return urls.join(', ');
-    },
     list_contains_warnings: function () {
       // As long as we don't have the urls loaded, the warnings as they are stand.
       // see update list warnings...
@@ -319,8 +335,9 @@ export default {
       "scan_now_scanning": "Scanning",
       "scan_now_scanning_title": "The scan now option is available only once a day, when no scan is running.",
       "delete": "Delete",
-      "view_csv": "View as .CSV file",
-      "scanning_disabled": "Scanning disabled"
+      "scanning_disabled": "Scanning disabled",
+      "upload": "Upload",
+      "download": "Download"
     },
     "domains": {
       "header": "Domains",
@@ -347,8 +364,9 @@ export default {
       "scan_now_scanning": "Aan het scannen",
       "scan_now_scanning_title": "Nu scannen is alleen beschikbaar als er geen scan draait, en kan maximaal 1x per dag worden aangeroepen.",
       "delete": "Verwijder",
-      "view_csv": "Bekijk CSV bestand",
-      "scanning_disabled": "Scans uitgeschakeld"
+      "scanning_disabled": "Scans uitgeschakeld",
+      "upload": "Upload",
+      "download": "Download"
     },
     "domains": {
       "header": "Domeinen",
