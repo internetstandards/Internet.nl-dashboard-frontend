@@ -12,8 +12,10 @@
 
           <input
             type="file"
-            id="domain_list"
-            name="domain_list"
+            ref="file"
+            id="file"
+            v-on:change="handleFileUpload()"
+            name="file"
             accept="text/csv, application/vnd.oasis.opendocument.spreadsheet, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
           >
 
@@ -21,7 +23,7 @@
         <div slot="modal-footer">
             <button class='altbutton' @click="cancel()">{{ $t("cancel") }}</button>
             &nbsp;
-            <button class="modal-default-button defaultbutton border-danger" @click="update_list_settings()">
+            <button class="modal-default-button defaultbutton border-danger" @click="upload()">
                 {{ $t("ok") }}
             </button>
         </div>
@@ -47,7 +49,7 @@ export default {
     },
     data: function () {
         return {
-            old_list_settings: {},
+            file: '',
             response: {}
         }
     },
@@ -55,11 +57,23 @@ export default {
         cancel: function () {
             this.$emit('cancel')
         },
-        update_list_settings: function () {
-            http.post('/data/urllist/upload/', this.list).then(server_response => {
+        handleFileUpload() {
+          this.file = this.$refs.file.files[0];
+          console.log('>>>> 1st element in files array >>>> ', this.file);
+        },
+        upload: function () {
+
+            let formData = new FormData();
+            formData.append('file', this.file);
+
+            http.post(`/data/urllist/upload/${this.list.id}/`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }},
+            ).then(server_response => {
                 this.response = server_response.data;
                 if (server_response.data.success) {
-                    this.$emit("done")
+                  this.$emit("done")
                 }
             });
         },

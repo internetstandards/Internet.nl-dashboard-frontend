@@ -73,15 +73,16 @@ h2 {
       </template>
 
       <div v-if="!urls.length">
-        <button class="border-success" @click="visible.add_domains = true">🌐 {{ $t("button.add_domains") }}</button>
+        <button class="border-success" @click="visible.add_domains = true">🌐 {{ $t("button.add_domains") }}</button> &nbsp;
+        <button class="border-success" @click="visible.upload = true">⬆️ {{ $t("button.upload") }}</button> &nbsp;
       </div>
 
-      <div style="float: right" class="mb-2">
+      <div style="float: right" class="mb-2" v-if="urls.length">
         <button @click="visible.add_domains = true">
           <span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
         </button> &nbsp;
-        <button @click="download_list">⬇️ {{ $t("button.download") }}</button> &nbsp;
         <button @click="visible.upload = true">⬆️ {{ $t("button.upload") }}</button> &nbsp;
+        <button @click="download_list">⬇️ {{ $t("button.download") }}</button> &nbsp;
       </div>
 
 
@@ -98,7 +99,7 @@ h2 {
     <Configure :list="list" :show="visible.configure" :visible="visible.configure" @cancel="visible.configure = false"
                @done="visible.configure = false"></Configure>
     <Upload :list="list" :show="visible.upload" :visible="visible.upload" @cancel="visible.upload = false"
-               @done="visible.upload = false"></Upload>
+               @done="visible.upload = false; get_urls();"></Upload>
     <Delete :list="list" :show="visible.delete" :visible="visible.delete" @cancel="visible.delete = false"
             @removelist="is_deleted = true; visible.delete = false"></Delete>
     <Scan :list="list" :show="visible.scan" :visible="visible.scan" @cancel="visible.scan = false"
@@ -336,8 +337,8 @@ export default {
       "scan_now_scanning_title": "The scan now option is available only once a day, when no scan is running.",
       "delete": "Delete",
       "scanning_disabled": "Scanning disabled",
-      "upload": "Upload",
-      "download": "Download"
+      "upload": "Upload domains",
+      "download": "Download domains"
     },
     "domains": {
       "header": "Domains",
@@ -365,8 +366,8 @@ export default {
       "scan_now_scanning_title": "Nu scannen is alleen beschikbaar als er geen scan draait, en kan maximaal 1x per dag worden aangeroepen.",
       "delete": "Verwijder",
       "scanning_disabled": "Scans uitgeschakeld",
-      "upload": "Upload",
-      "download": "Download"
+      "upload": "Domeinen uploaden",
+      "download": "Domeinen downloaden"
     },
     "domains": {
       "header": "Domeinen",
