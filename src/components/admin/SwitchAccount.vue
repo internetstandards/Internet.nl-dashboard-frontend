@@ -49,9 +49,9 @@
                      :busy="loading"
                      :filter-included-fields="filterOn"
                      :sort-by.sync="sortBy"
-                     :current-page="currentPage"
                      :sort-desc.sync="sortDesc"
                      sort-icon-left
+                     :current-page="currentPage"
                      :per-page="perPage"
                      :filter="filter"
                      @row-selected="onRowSelected"

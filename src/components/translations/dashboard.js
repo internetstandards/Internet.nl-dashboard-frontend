@@ -12,6 +12,10 @@ export default {
             scan_type_mail: 'E-Mail / Mail server and domain',
             scan_type_all: 'Both Website and E-mail (results in two reports)',
             field_label_automated_scan_frequency: 'Repeat scan periodically',
+            enable_report_sharing_page: 'List all public reports on a single page',
+            automatically_share_new_reports: 'Automatically share new reports publicly',
+            default_public_share_code_for_new_reports: 'Default share code for new reports',
+            empty_is_no_share_code: 'leave empty for no share code',
             automated_scan_frequency: {
                 disabled: 'Do not repeat periodically',
                 every_half_year: 'Repeat at the start of every half year',
@@ -20,6 +24,12 @@ export default {
                 twice_per_month: 'Repeat twice per month (1st and 15th of the month)',
             },
         },
+
+        "disabled": "disabled",
+        "every half year": "every half year",
+        "at the start of every quarter": "at the start of every quarter",
+        "every 1st day of the month": "every first day of the month",
+        "twice per month": "every two weeks, from the first day of the month"
 
     },
     nl: {
@@ -34,6 +44,10 @@ export default {
             scan_type_mail: 'E-Mail, mailserver en domein',
             scan_type_all: 'Zowel Website als E-Mail (in afzonderlijke rapporten)',
             field_label_automated_scan_frequency: 'Scan automatisch herhalen',
+            enable_report_sharing_page: 'Toon alle publieke rapporten op een overzichtspagina',
+            automatically_share_new_reports: 'Publiceer nieuwe rapporten automatisch',
+            default_public_share_code_for_new_reports: 'Standaard deelcode voor nieuwe rapporten',
+            empty_is_no_share_code: 'laat leeg voor geen deelcode',
             automated_scan_frequency: {
                 disabled: 'Niet automatisch herhalen',
                 every_half_year: 'Herhaal aan het begin van elk half jaar',
@@ -42,6 +56,12 @@ export default {
                 twice_per_month: 'Herhaal om de twee weken (1e en 15e van de maand)',
             },
         },
+
+        "disabled": "uitgeschakeld",
+        "every half year": "ieder half jaar",
+        "at the start of every quarter": "aan het begin van ieder kwartaal",
+        "every 1st day of the month": "elke eerste dag van de maand",
+        "twice per month": "om de twee weken, vanaf de 1e van de maand"
 
     },
 };

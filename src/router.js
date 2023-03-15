@@ -15,6 +15,7 @@ import Account from './components/account/Account'
 import Demo from './components/tour/Demo'
 import Unsubscribe from './components/mail/Unsubscribe'
 import Home from './components/home/Home'
+import PublicReportsPerAccount from './components/home/PublicReportsPerAccount'
 
 import Beta from './components/beta'
 
@@ -60,6 +61,10 @@ const routes = [
 
     {path: '/shared/report/:report', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'shared_report'},
     {path: '/shared/report/:report/:compare_with', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'compared_shared_report'},
+
+    {path: '/published/:account/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report'},
+    {path: '/published/:account/:list_id/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_and_list'},
+    {path: '/published/:account/:list_id/latest/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list'},
 
     {path: '/switch-account', component: SwitchAccount, meta: {title: 'Internet.nl Dashboard / Switch Account'}},
     {path: '/add-user', component: InstantAddAccount, meta: {title: 'Internet.nl Dashboard / Add User'}},
