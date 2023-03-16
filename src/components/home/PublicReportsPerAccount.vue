@@ -5,7 +5,7 @@
 <template>
   <div v-if="reportsets.length > 0">
     <content-block>
-      <h3>{{ $t('Recently published reports') }}</h3>
+      <h1>{{ $t('Recently published reports') }}</h1>
     </content-block>
     <div v-for="reportset in reportsets" :key="reportset.list.id">
       <content-block v-if="reportset.reports.length">
@@ -15,8 +15,16 @@
 
           <key-value-badge :k="$t('scan_type')" :v="$t(reportset.list.scan_type)" />
         </p>
-        <button class="mb-2 darklink">
-          <router-link :to="`published/1/${reportset.list.id}/`">{{ $t('View latest report') }}</router-link>
+        <template v-if="reportset.list.scan_type === 'all'">
+          <button class="mb-2 mr-2 darklink">
+            <router-link :to="`/latest/${reportset.list.id}/mail/`">{{ $t('View latest mail report') }}</router-link>
+          </button>
+          <button class="mb-2 darklink">
+            <router-link :to="`/latest/${reportset.list.id}/web/`">{{ $t('View latest web report') }}</router-link>
+          </button>
+        </template>
+        <button class="mb-2 darklink" v-if="reportset.list.scan_type === 'web' || reportset.list.scan_type === 'mail'">
+          <router-link :to="`/latest/${reportset.list.id}/`">{{ $t('View latest report') }}</router-link>
         </button>
         <PublicReportsTable :reports="reportset.reports"/>
       </content-block>
@@ -76,7 +84,9 @@ export default {
     "Published": "Publication date",
     "View": "View",
     "Contains": "Contains",
-    "View latest report": "Direct link to newest report",
+    "View latest report": "Newest report",
+    "View latest mail report": "Newest mail report",
+    "View latest web report": "Newest web report",
     "scan_frequency": "Next update",
     "scan_type": "Measured",
     "all": "Mail & Web"
@@ -90,7 +100,9 @@ export default {
     "Published": "Gepubliceerd op",
     "View": "Bekijken",
     "Contains": "Bevat",
-    "View latest report": "Direct naar het nieuwste rapport",
+    "View latest report": "Nieuwste rapport",
+    "View latest mail report": "Nieuwste mail rapport",
+    "View latest web report": "Nieuwste web rapport",
     "scan_frequency": "Volgende update",
     "scan_type": "Gemeten",
     "all": "Mail & Web"

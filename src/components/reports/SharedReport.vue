@@ -1,15 +1,21 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div id="report-template">
-    <content-block v-if="reports.length === 0 && reports_to_load === 0">
-      <b-alert variant="danger" show>Could not find shared report. It may have been deleted or the report code or share code might have changed. You can try again with another share code.</b-alert>
-    </content-block>
 
     <content-block class="do-not-print">
-      <h1>{{ $t("title") }}</h1>
-      <p>{{ $t("intro") }}</p>
+        <h1>{{ $t("title") }}</h1>
+        <p>{{ $t("intro") }}</p>
+    </content-block>
 
-      <loading :loading="reports_to_load > 0"></loading>
+    <content-block v-if="reports_to_load > 0">
+        <loading :loading="reports_to_load > 0"></loading>
+    </content-block>
+
+    <content-block v-if="reports.length === 0 && reports_to_load === 0">
+      <h2>{{$t('not_found.title')}}</h2>
+      <b-alert variant="danger" show >
+        {{$t('not_found.content')}}
+      </b-alert>
     </content-block>
 
     <div v-if="reports.length > 0 && reports_to_load === 0">
@@ -19,7 +25,7 @@
       </template>
       <template v-else>
         <content-block>
-          <report-header :show_application_links="false" :reports="reports" />
+          <report-header :show_application_links="false" :reports="reports"/>
         </content-block>
 
         <ReportCharts :show_timeline="false" :reports="reports"/>
@@ -51,23 +57,19 @@ export default {
     ReportHeader,
   },
   mixins: [report_mixin, report_mixin_2],
-  name: 'report',
-  data() {
-    return {
-      // list of report ids that should be shown as a report
-      requested_report_ids: [],
-    }
+  name: 'SharedReport',
+
+  props: {
+    // list of report ids that should be shown as a report
+    requested_report_ids: {type: Array, required: true},
   },
 
   mounted() {
     this.load_visible_metrics();
-    let router_params = this.$router.history.current.params;
-    // the route to this component can determine what is shown
-    this.requested_report_ids = [router_params.report, router_params.compare_with].filter(Boolean);
   },
 
   methods: {
-    retry(){
+    retry() {
       this.load_shared_reports_by_ids(this.requested_report_ids);
     }
   },
@@ -79,8 +81,8 @@ export default {
   },
 
   computed: {
-    reports_require_authentication(){
-      for (let i =0; i<this.reports.length; i++){
+    reports_require_authentication() {
+      for (let i = 0; i < this.reports.length; i++) {
         if (this.reports[i].authentication_required === true)
           return true
       }
@@ -94,11 +96,19 @@ export default {
 {
   "en": {
     "title": "Shared Report",
-    "intro": " "
+    "intro": " ",
+    "not_found": {
+      "title": "Report could not be found",
+      "content": "Could not find this public report. It may have been revoked, deleted or the share code has changed. Please check your input and try again."
+    }
   },
   "nl": {
     "title": "Gedeeld Rapport",
-    "intro": " "
+    "intro": " ",
+    "not_found": {
+      "title": "Rapport is niet gevonden",
+      "content": "Het opgevraagde rapport kon niet worden gevonden. Het kan zijn dat deze niet meer publiek is omdat deze is verwijderd of niet meer publiek staat. Controleer je invoer en probeer opnieuw."
+    }
   }
 }
 </i18n>

@@ -51,7 +51,7 @@ export default {
         http.post(`${link}${report_ids[i]}/`, post_data).then(response => {
           // The report might be empty, because the wrong code has been sent:
 
-          if (response.data !== undefined) {
+          if (response.data !== undefined && response.data !== "") {
 
               // only add comparison data to the second report, because we want to quickly access urls of that one.
               if (i > 0)
