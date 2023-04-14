@@ -211,6 +211,7 @@ li a {
           </template>
           <template v-if="!is_authenticated">
             <b-nav-item to="/tour" accesskey="t" exact exact-active-class="active"><b-icon icon="info-circle" /> {{ $t("tour") }}</b-nav-item>
+            <b-nav-item to="/signup" accesskey="t" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
             <b-nav-item to="/login" accesskey="l" exact exact-active-class="active"><b-icon icon="box-arrow-in-right" /> {{ $t("log_in") }}</b-nav-item>
           </template>
         </b-navbar-nav>
@@ -315,6 +316,7 @@ export default {
     "switch_user": "Switch user",
     "add_user": "Add user",
     "usage_overview": "Usage overview",
+    "request_access": "Request access",
     "logged_out_successfully": "You have logged out successfully"
   },
   "nl": {
@@ -338,6 +340,7 @@ export default {
     "switch_user": "Wissel gebruiker",
     "add_user": "Gebruiker toevoegen",
     "usage_overview": "Gebruiksoverzicht",
+    "request_access": "Toegang aanvragen",
     "logged_out_successfully": "Je bent uitgelogd"
   }
 }

@@ -17,6 +17,7 @@ import Demo from './components/tour/Demo'
 import Unsubscribe from './components/mail/Unsubscribe'
 import Home from './components/home/Home'
 import PublicReportsPerAccount from './components/home/PublicReportsPerAccount'
+import SignupPage from './components/signup/SignupPage'
 
 import Beta from './components/beta'
 
@@ -79,6 +80,8 @@ const routes = [
     {path: '/account/:active_tab', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
     {path: '/usage', component: Usage, meta: {title: 'Internet.nl Dashboard / Usage'}},
     {path: '/beta', component: Beta, meta: {title: 'Internet.nl Dashboard / Beta'}},
+
+    {path: '/signup', component: SignupPage, meta: {title: 'Internet.nl Dashboard / Signup'}, 'name': 'signup'},
 ];
 
 const router = new VueRouter({
