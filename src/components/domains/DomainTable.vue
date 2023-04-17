@@ -324,6 +324,11 @@ export default {
       if (new_value)
         this.selected_tag = new_value.toLowerCase()
     },
+    urls(old_value, new_value) {
+      if (old_value === new_value || !new_value)
+        return
+      this.visibleRows = new_value.length;
+    },
     selected(new_value) {
       console.log(`${new_value.length} / ${ this.visibleRows}`)
       if (new_value.length === this.visibleRows){

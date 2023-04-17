@@ -34,8 +34,15 @@
                         {{ $t("next_scheduled_scan") }}: {{ humanize_date(list.scheduled_next_scan) }} <br>
                     </span>
                 </span>
-                <span v-if="!list.enable_scans"> {{ $t("scanning_disabled") }} </span>
+                <span v-if="!list.enable_scans"> {{ $t("scanning_disabled") }} </span><br>
             </template>
+
+            <DashboardIcon icon="share" :scale="0.5" class="mr-1"/>
+            <span v-if="!list.automatically_share_new_reports">{{$t('Not automatically shared')}}</span>
+            <span v-if="list.automatically_share_new_reports">{{$t('Automatically shared')}} <span v-if="list.default_public_share_code_for_new_reports">{{$t('with share code')}}</span></span>
+             <a v-if="list.enable_report_sharing_page" :href="`/#/published/${$store.state.user.account_id}/`" target="_blank"> {{$t('Listed on sharing page')}}</a>
+          <br>
+
             <span v-if="list.last_report_id">
                 <router-link :to="{ name: 'numbered_report', params: { report: list.last_report_id }}">
                     <span role="img" :aria-label="$t('report')">📊</span>
@@ -79,11 +86,10 @@ export default {
         "next_scheduled_scan": "Next scheduled scan",
         "scanning_disabled": "Scanning of this list is disabled.",
         "latest_report": "Latest report",
-        "disabled": "disabled",
-        "every half year": "every half year",
-        "at the start of every quarter": "at the start of every quarter",
-        "every 1st day of the month": "every first day of the month",
-        "twice per month": "every two weeks, from the first day of the month"
+        "Automatically shared": "Automatically shared",
+        "Not automatically shared": "Not automatically shared",
+        "Listed on sharing page": "on sharing page",
+        "with share code": "with share code"
     },
     "nl": {
         "report": "rapport",
@@ -97,12 +103,11 @@ export default {
         "scan_frequency": "Scan frequentie",
         "next_scheduled_scan": "Volgende ingeplande scan",
         "scanning_disabled": "Scannen van deze lijst is uitgeschakeld.",
-        "latest_report": "Meest actuele rapportage",
-        "disabled": "uitgeschakeld",
-        "every half year": "ieder half jaar",
-        "at the start of every quarter": "aan het begin van ieder kwartaal",
-        "every 1st day of the month": "elke eerste dag van de maand",
-        "twice per month": "om de twee weken, vanaf de 1e van de maand"
+        "latest_report": "Actueelste rapportage",
+        "Automatically shared": "Automatisch gedeeld",
+        "Not automatically shared": "Niet automatisch gedeeld",
+        "Listed on sharing page": "op openbare pagina",
+        "with share code": "met deelcode"
     }
 }
 </i18n>

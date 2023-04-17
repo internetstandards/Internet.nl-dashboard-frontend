@@ -7,48 +7,23 @@
  <h3>{{$t('Recently published reports')}}</h3>
   <p>{{$t('introduction')}}</p>
 
-  <b-table :items="reports" :fields="fields" striped hover :busy="loading">
-    <template #cell(at_when)="data">
-       {{ humanize_date(data.value)}},<br>{{humanize_relative_date(data.value) }}
-    </template>
 
-    <template #cell(average_internet_nl_score)="data">
-       <donut class="float-left w-50" :data="{'score': data.value, 'rest': 100-data.value}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='50' :elements="['donut']" />
-      <span class="float-left mt-2 text-info">{{data.value}}%</span>
-    </template>
+    <PublicReportsTable :reports="reports" />
 
-    <template #cell(urllist__name)="data">
-       <scan-type-icon :type="data.item.report_type" /> {{data.value}} ({{data.item.report_type}})<br />
-        {{$t('Contains')}} {{data.item.total_urls}} {{$t('domains')}}
-    </template>
-
-    <template #cell(open)="data">
-      <a :href="`#/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow">{{$t('View report')}} <b-icon icon="box-arrow-in-up-right"></b-icon></a>
-    </template>
-
-
-  </b-table>
     </div>
 </template>
 
 <script>
 
 import http from "@/httpclient";
-import Donut from "@/components/charts/donut";
-import ScanTypeIcon from "@/components/ScanTypeIcon";
+import PublicReportsTable from "@/components/home/PublicReportsTable";
 
 export default {
-  components: {ScanTypeIcon, Donut},
+  components: {PublicReportsTable},
   data() {
     return {
       reports: Array,
       loading: false,
-      fields: [
-        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'), tdClass: 'col-2'},
-        {key: "urllist__name", sortable: true, label: this.$t('Name'), tdClass: 'col-4'},
-        {key: "at_when", sortable: true, label: this.$t('Published'), tdClass: 'col-4'},
-        {key: "open", sortable: false, label: this.$t('View'), tdClass: 'col-4'},
-      ]
     }
   },
 

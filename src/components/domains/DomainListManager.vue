@@ -98,7 +98,25 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                         <b-form-select-option value="twice per month">
                             {{ $t("urllist.automated_scan_frequency.twice_per_month") }}
                         </b-form-select-option>
-                    </b-form-select>
+                    </b-form-select><br><br>
+
+                    <b-form-checkbox id="automatically_share_new_reports" v-model="add_new_new_list.automatically_share_new_reports">
+                      {{ $t("urllist.automatically_share_new_reports") }}
+                    </b-form-checkbox>
+                    <br>
+
+                    <label for="default_public_share_code_for_new_reports">{{
+                        $t("urllist.default_public_share_code_for_new_reports")
+                      }}:</label><br>
+                    <b-form-input id="default_public_share_code_for_new_reports" type="text" maxlength="120"
+                                  :placeholder="$t('urllist.empty_is_no_share_code')"
+                                  v-model="add_new_new_list.default_public_share_code_for_new_reports"></b-form-input>
+                    <br>
+
+                    <b-form-checkbox id="enable_report_sharing_page" v-model="add_new_new_list.enable_report_sharing_page">
+                      {{ $t("urllist.enable_report_sharing_page") }}.
+                      <a :href="`/#/published/${$store.state.user.account_id}/`" target="_blank">Bekijk de overzichtspagina.</a>
+                    </b-form-checkbox>
 
                 </div>
                 <div slot="modal-footer">
@@ -140,7 +158,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 
         <content-block v-if="!lists.length" class="no-content">
             {{ $t("inital_list.start") }} <br>
-            <button class="border-success" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
+            <button class="border-success m-4" size="" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
             <br>
             <br>
             <p>
@@ -205,7 +223,7 @@ export default {
             // Fixes #105: we don't need an explicit enable scans checkmark.
             this.add_new_new_list = {
                 'id': -1, 'name': '', 'enable_scans': true, 'scan_type': 'web',
-                'automated_scan_frequency': 'disabled', 'scheduled_next_scan': '1'
+                'automated_scan_frequency': 'disabled', 'scheduled_next_scan': '1', automatically_share_new_reports: false, default_public_share_code_for_new_reports: '',  enable_report_sharing_page: false
             };
             this.add_new_server_response = {};
         },

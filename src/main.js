@@ -33,6 +33,7 @@ import {
     AlertPlugin,
     ImagePlugin,
     FormCheckboxPlugin,
+    FormRadioPlugin,
     PaginationPlugin,
     FormSelectPlugin,
     FormTextareaPlugin,
@@ -44,6 +45,7 @@ import {
     InputGroupPlugin,
     NavbarPlugin,
     NavPlugin, BadgePlugin, FormTimepickerPlugin, FormDatepickerPlugin, ButtonGroupPlugin, TooltipPlugin,
+    FormPlugin
 
 } from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
@@ -52,7 +54,9 @@ import VueMatomo from 'vue-matomo'
 
 const plugins = [PortalVue, VueI18n, VueRouter, InputGroupPlugin, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, ButtonPlugin, FormGroupPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
 FormCheckboxPlugin, FormSelectPlugin, PaginationPlugin, AlertPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, NavbarPlugin, NavPlugin,
-ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons, BadgePlugin, FormTimepickerPlugin, FormDatepickerPlugin, ButtonGroupPlugin, TooltipPlugin]
+ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons, BadgePlugin, FormTimepickerPlugin, FormDatepickerPlugin, ButtonGroupPlugin, TooltipPlugin,
+FormPlugin, FormRadioPlugin
+]
 plugins.forEach(plugin => Vue.use(plugin))
 
 Vue.component('v-select', vSelect);
@@ -268,7 +272,7 @@ Vue.mixin(
 
 
 function is_public_page(page_name){
-    return !!['login', 'demo', 'tour', 'shared_report', 'compared_shared_report', 'home'].includes(page_name);
+    return !!['login', 'demo', 'tour', 'shared_report', 'compared_shared_report', 'home', 'signup'].includes(page_name);
 }
 
 

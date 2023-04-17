@@ -6,7 +6,8 @@ import DomainListManager from './components/domains/DomainListManager'
 import SpreadsheetUpload from './components/domains/SpreadsheetUpload'
 import ScanMonitor from './components/scans/ScanMonitor'
 import Report from './components/reports/Report'
-import SharedReport from './components/reports/SharedReport'
+import SharedReportViaNumbersInUrl from './components/reports/SharedReportViaNumbersInUrl'
+import SharedReportLatest from './components/reports/SharedReportLatest'
 
 import SwitchAccount from './components/admin/SwitchAccount'
 import InstantAddAccount from './components/admin/InstantAddAccount'
@@ -15,6 +16,8 @@ import Account from './components/account/Account'
 import Demo from './components/tour/Demo'
 import Unsubscribe from './components/mail/Unsubscribe'
 import Home from './components/home/Home'
+import PublicReportsPerAccount from './components/home/PublicReportsPerAccount'
+import SignupPage from './components/signup/SignupPage'
 
 import Beta from './components/beta'
 
@@ -58,8 +61,14 @@ const routes = [
     },
     {path: '/report', component: Report, meta: {title: 'Internet.nl Dashboard / Reports'}},
 
-    {path: '/shared/report/:report', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'shared_report'},
-    {path: '/shared/report/:report/:compare_with', component: SharedReport, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'compared_shared_report'},
+    {path: '/shared/report/:report', component: SharedReportViaNumbersInUrl, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'shared_report'},
+    {path: '/shared/report/:report/:compare_with', component: SharedReportViaNumbersInUrl, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'compared_shared_report'},
+
+    {path: '/published/:account/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report'},
+    {path: '/published/:account/:list_id/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_and_list'},
+    {path: '/latest/:list_id/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list'},
+    {path: '/latest/:list_id/web/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list'},
+    {path: '/latest/:list_id/mail/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list'},
 
     {path: '/switch-account', component: SwitchAccount, meta: {title: 'Internet.nl Dashboard / Switch Account'}},
     {path: '/add-user', component: InstantAddAccount, meta: {title: 'Internet.nl Dashboard / Add User'}},
@@ -71,6 +80,8 @@ const routes = [
     {path: '/account/:active_tab', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
     {path: '/usage', component: Usage, meta: {title: 'Internet.nl Dashboard / Usage'}},
     {path: '/beta', component: Beta, meta: {title: 'Internet.nl Dashboard / Beta'}},
+
+    {path: '/signup', component: SignupPage, meta: {title: 'Internet.nl Dashboard / Signup'}, 'name': 'signup'},
 ];
 
 const router = new VueRouter({
