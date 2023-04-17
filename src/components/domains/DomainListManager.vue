@@ -158,7 +158,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 
         <content-block v-if="!lists.length" class="no-content">
             {{ $t("inital_list.start") }} <br>
-            <button class="border-success" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
+            <button class="border-success m-4" size="" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
             <br>
             <br>
             <p>

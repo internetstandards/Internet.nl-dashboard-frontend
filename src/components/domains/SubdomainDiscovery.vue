@@ -119,21 +119,21 @@ export default {
 {
   "en": {
     "Scanning done, click to reload domain list": "Scanning done, click to reload domain list",
-    "Find 'www.' subdomains": "Add 'www.' subdomains",
+    "Find 'www.' subdomains": "Add subsubdomains",
     ", last scan finished ": ", last index finished ",
-    "... finding 'www.' subdomains ": "... finding 'www.' subdomains ",
+    "... finding 'www.' subdomains ": "... finding subdomains ",
     "requested": "requested",
-    "scanning": "scanning",
+    "scanning": "gathering",
     "finished": "finished",
     "error": "error"
   },
   "nl": {
     "Scanning done, click to reload domain list": "Klaar met zoeken, klik om de domeinlijst te herladen",
-    "Find 'www.' subdomains": "Voeg 'www.' domeinen toe",
+    "Find 'www.' subdomains": "Voeg subdomeinen toe",
     ", last scan finished ":  ", laatste keer was ",
-    "... finding 'www.' subdomains ": "... zoekt 'www.' subdomeinen ",
+    "... finding 'www.' subdomains ": "... zoekt subdomeinen ",
     "requested": "aangevraagd",
-    "scanning": "scannen",
+    "scanning": "verzamelen",
     "finished": "afgerond",
     "error": "fout"
   }

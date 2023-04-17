@@ -22,14 +22,14 @@ export default {
 {
   "en": {
     "title": "Add 'www' subdomains",
-    "message": "Find 'www' subdomains for all domains in the current list. The domains will be tested if they resolve for mail, web or both depending on the list setting. Every valid subdomain will be added to the list. For large lists this can take a while.",
-    "ok": "Find domains",
+    "message": "Find subdomains for all domains in the current list. The subdomains will be tested if they resolve for mail, web or both depending on the list setting. Every valid subdomain will be added to the list. For large lists this can take a while and have lost of results.",
+    "ok": "Find subdomains",
     "cancel": "Back to the list"
   },
   "nl": {
     "title": "Zoek 'www' subdomeinen",
-    "message": "Voeg automatisch 'www' subdomeinen toe voor alle hoofddomeinen in de huidige lijst. Ieder www-subdomein wordt getest voor mail, web of beide afhankelijk van de instellingen van de lijst. Wanneer een www domein is gevonden wordt deze toegevoegd. Deze actie kan even duren voor grote lijsten.",
-    "ok": "Zoek domeinen",
+    "message": "Voeg automatisch subdomeinen toe voor alle hoofddomeinen in de huidige lijst. Ieder subdomein wordt getest voor mail, web of beide afhankelijk van de instellingen van de lijst. Wanneer een geldig en bereikbaar subdomein is gevonden wordt deze toegevoegd. Deze actie kan even duren voor grote lijsten en kan erg veel subdomeinen opleveren.",
+    "ok": "Zoek subdomeinen",
     "cancel": "Back to the list"
   }
 }
