@@ -32,10 +32,6 @@ h2 {
             </h2>
 
             <div v-if="is_opened" class="float-right">
-                <button @click="visible.configure = true">
-                    <span :aria-label="$t('icon.settings')" role="img">📝</span> {{ $t("button.configure") }}
-                </button> &nbsp;
-
 
                 <template v-if="urls.length">
                     <template v-if="list.enable_scans">
@@ -51,6 +47,10 @@ h2 {
                         <span :aria-label="$t('icon.scan')" role="img">🔬</span> {{ $t("button.scanning_disabled") }}
                     </button> &nbsp;
                 </template>
+
+                <button @click="visible.configure = true">
+                    <span :aria-label="$t('icon.settings')" role="img">📝</span> {{ $t("button.configure") }}
+                </button> &nbsp;
 
               <button class="border-danger" @click="visible.delete = true">🗑️ {{ $t("button.delete") }}</button>
             </div>
