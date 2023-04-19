@@ -39,8 +39,20 @@
 
             <DashboardIcon icon="share" :scale="0.5" class="mr-1"/>
             <span v-if="!list.automatically_share_new_reports">{{$t('Not automatically shared')}}</span>
-            <span v-if="list.automatically_share_new_reports">{{$t('Automatically shared')}} <span v-if="list.default_public_share_code_for_new_reports">{{$t('with share code')}}</span></span>
-             <a v-if="list.enable_report_sharing_page" :href="`/#/published/${$store.state.user.account_id}/`" target="_blank"> {{$t('Listed on sharing page')}}</a>
+            <span v-if="list.automatically_share_new_reports">{{$t('Automatically shared')}}
+
+              <template v-if="list.scan_type === 'all'">
+                  <router-link :to="`/latest/${list.id}/mail/`">({{ $t('mail') }})</router-link>
+                  <router-link :to="`/latest/${list.id}/web/`">({{ $t('web') }})</router-link>
+              </template>
+              <span class="mb-2 darklink" v-if="list.scan_type === 'web' || list.scan_type === 'mail'">
+                <router-link :to="`/latest/${list.id}/`">{{ $t('on this page') }}</router-link>
+              </span>
+
+
+              <span v-if="list.default_public_share_code_for_new_reports">{{$t('with share code')}}</span>
+            </span>
+             <a v-if="list.enable_report_sharing_page && list.automatically_share_new_reports" :href="`/#/published/${$store.state.user.account_id}/`" target="_blank"> {{$t('Listed on sharing page')}}</a>
           <br>
 
             <span v-if="list.last_report_id">
@@ -74,40 +86,42 @@ export default {
 <i18n>
 {
     "en": {
-        "report": "report",
-        "header": "About this list",
-        "number_of_domains": "Number of domains",
-        "last_scan_started": "Last scan started at",
-        "still_running": "still running",
-        "finished": "finished",
-        "not_scanned_before": "Not scanned before",
-        "type_of_scan_performed": "Type of scan performed",
-        "scan_frequency": "Scan frequency",
-        "next_scheduled_scan": "Next scheduled scan",
-        "scanning_disabled": "Scanning of this list is disabled.",
-        "latest_report": "Latest report",
-        "Automatically shared": "Automatically shared",
-        "Not automatically shared": "Not automatically shared",
-        "Listed on sharing page": "on sharing page",
-        "with share code": "with share code"
+      "report": "report",
+      "header": "About this list",
+      "number_of_domains": "Number of domains",
+      "last_scan_started": "Last scan started at",
+      "still_running": "still running",
+      "finished": "finished",
+      "not_scanned_before": "Not scanned before",
+      "type_of_scan_performed": "Type of scan performed",
+      "scan_frequency": "Scan frequency",
+      "next_scheduled_scan": "Next scheduled scan",
+      "scanning_disabled": "Scanning of this list is disabled.",
+      "latest_report": "Latest report",
+      "Automatically shared": "Automatically shared",
+      "Not automatically shared": "Not automatically shared",
+      "Listed on sharing page": ", also on sharing page",
+      "with share code": "with share code",
+      "on this page": "on this page"
     },
     "nl": {
-        "report": "rapport",
-        "header": "Over deze lijst",
-        "number_of_domains": "Aantal domeinen",
-        "last_scan_started": "Laatste scan gestart op",
-        "still_running": "loopt nog",
-        "finished": "afgerond",
-        "not_scanned_before": "Niet eerder gescand",
-        "type_of_scan_performed": "Soort scan",
-        "scan_frequency": "Scan frequentie",
-        "next_scheduled_scan": "Volgende ingeplande scan",
-        "scanning_disabled": "Scannen van deze lijst is uitgeschakeld.",
-        "latest_report": "Actueelste rapportage",
-        "Automatically shared": "Automatisch gedeeld",
-        "Not automatically shared": "Niet automatisch gedeeld",
-        "Listed on sharing page": "op openbare pagina",
-        "with share code": "met deelcode"
+      "report": "rapport",
+      "header": "Over deze lijst",
+      "number_of_domains": "Aantal domeinen",
+      "last_scan_started": "Laatste scan gestart op",
+      "still_running": "loopt nog",
+      "finished": "afgerond",
+      "not_scanned_before": "Niet eerder gescand",
+      "type_of_scan_performed": "Soort scan",
+      "scan_frequency": "Scan frequentie",
+      "next_scheduled_scan": "Volgende ingeplande scan",
+      "scanning_disabled": "Scannen van deze lijst is uitgeschakeld.",
+      "latest_report": "Actueelste rapportage",
+      "Automatically shared": "Automatisch gedeeld",
+      "Not automatically shared": "Niet automatisch gedeeld",
+      "Listed on sharing page": "en ook op deze openbare pagina",
+      "with share code": "met deelcode",
+      "on this page": "op deze pagina"
     }
 }
 </i18n>

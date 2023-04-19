@@ -16,6 +16,8 @@ export default {
             automatically_share_new_reports: 'Automatically share new reports publicly',
             default_public_share_code_for_new_reports: 'Default share code for new reports',
             empty_is_no_share_code: 'leave empty for no share code',
+            generate_code: "generate",
+            to_overview_page: "Open the overview page.",
             automated_scan_frequency: {
                 disabled: 'Do not repeat periodically',
                 every_half_year: 'Repeat at the start of every half year',
@@ -48,6 +50,8 @@ export default {
             automatically_share_new_reports: 'Publiceer nieuwe rapporten automatisch',
             default_public_share_code_for_new_reports: 'Standaard deelcode voor nieuwe rapporten',
             empty_is_no_share_code: 'laat leeg voor geen deelcode',
+            generate_code: "genereer",
+            to_overview_page: "Bekijk de overzichtspagina.",
             automated_scan_frequency: {
                 disabled: 'Niet automatisch herhalen',
                 every_half_year: 'Herhaal aan het begin van elk half jaar',

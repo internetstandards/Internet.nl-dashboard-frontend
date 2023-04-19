@@ -108,14 +108,22 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                     <label for="default_public_share_code_for_new_reports">{{
                         $t("urllist.default_public_share_code_for_new_reports")
                       }}:</label><br>
-                    <b-form-input id="default_public_share_code_for_new_reports" type="text" maxlength="120"
-                                  :placeholder="$t('urllist.empty_is_no_share_code')"
-                                  v-model="add_new_new_list.default_public_share_code_for_new_reports"></b-form-input>
+                      <b-input-group class="mt-3">
+                        <b-form-input id="default_public_share_code_for_new_reports" type="text" maxlength="120"
+                                      :placeholder="$t('urllist.empty_is_no_share_code')"
+                                      v-model="add_new_new_list.default_public_share_code_for_new_reports">
+
+                        </b-form-input>
+                        <b-input-group-append>
+                          <!-- better would be to btoa(String.fromCharCode.apply(null,self.crypto.getRandomValues(new Uint8Array(15)))).replaceAll('+','-').replaceAll('/','_') -->
+                          <b-button variant="outline-success" @click="add_new_new_list.default_public_share_code_for_new_reports = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);;">{{ $t('urllist.generate_code') }}</b-button>
+                        </b-input-group-append>
+                      </b-input-group>
                     <br>
 
                     <b-form-checkbox id="enable_report_sharing_page" v-model="add_new_new_list.enable_report_sharing_page">
                       {{ $t("urllist.enable_report_sharing_page") }}.
-                      <a :href="`/#/published/${$store.state.user.account_id}/`" target="_blank">Bekijk de overzichtspagina.</a>
+                      <a :href="`/#/published/${$store.state.user.account_id}/`" target="_blank">{{$t('urllist.to_overview_page')}}</a>
                     </b-form-checkbox>
 
                 </div>
