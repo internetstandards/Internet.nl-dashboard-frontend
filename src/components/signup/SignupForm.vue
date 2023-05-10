@@ -5,10 +5,11 @@
     <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
 
 
-    <b-form @submit="onSubmit">
+    <b-form @submit="onSubmit" v-if="!loading && !submitted_succesfully">
 
       <div class="mb-2" style="font-weight: bold">{{ $t('access_to')}}:</div>
 
+      <!--
       <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
         <b-form-checkbox-group
           v-model="form.access"
@@ -20,7 +21,7 @@
           <b-form-checkbox value="dashboard">{{$t('dashboard_access')}}</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-
+      -->
 
       <b-form-group
         id="input-group-name"
@@ -93,7 +94,8 @@
         >
           <b-form-radio value="government">{{$t('nature_government')}}</b-form-radio>
           <b-form-radio value="non-profit">{{$t('nature_non_profit')}}</b-form-radio>
-          <b-form-radio value="for-profit">{{$t('nature_for_profit')}}</b-form-radio>
+          <b-form-radio value="dutch-cloud-community">{{$t('nature_dutch_cloud_community')}} (<a href="https://dutchcloudcommunity.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
+          <b-form-radio value="vereniging-van-registrars">{{$t('nature_registrar_community')}} (<a href="https://www.verenigingvanregistrars.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
         </b-form-radio-group>
       </b-form-group>
 
@@ -172,7 +174,7 @@
           <b-form-checkbox value="accepted" :state="form.terms_of_use !== ['accepted']">{{$t("terms_of_use_accept")}}</b-form-checkbox>
         </b-form-checkbox-group>
         <b-form-invalid-feedback id="checkboxes-terms-of-use">
-          Enter at least 3 letters
+          &nbsp;
         </b-form-invalid-feedback>
       </b-form-group>
       <b-button type="submit" variant="info"><b>{{ $t('submit') }}</b></b-button>
@@ -191,7 +193,7 @@ export default {
     return {
       server_response: {},
       loading: false,
-      submitted: false,
+      submitted_succesfully: false,
       form: {
         access: ['api', 'dashboard'],
         name: "",
@@ -223,9 +225,15 @@ export default {
         'form_data': this.form
       }).then(data => {
         if (data.data) {
-          this.loading = false;
-          this.submitted = true;
           this.server_response = data.data;
+
+
+          // you have to re-init the app to resubmit.
+          if (data.data.success) {
+            this.submitted_succesfully = true;
+          }
+
+          this.loading = false;
         }
       });
     },
@@ -255,6 +263,8 @@ export default {
     "nature_government": "Government",
     "nature_non_profit": "Non profit",
     "nature_for_profit": "For profit",
+    "nature_dutch_cloud_community": "member of Dutch Cloud Community",
+    "nature_registrar_community": "member of Vereniging van Registrars",
     "chamber_of_commerce_number": "Chamber of commerce number",
     "chamber_of_commerce_number_placeholder": "",
     "reason_for_application": "Reason for applying",
@@ -291,6 +301,8 @@ export default {
     "nature_government": "Overheid",
     "nature_non_profit": "Non profit",
     "nature_for_profit": "For profit",
+    "nature_dutch_cloud_community": "Lid van Dutch Cloud Community",
+    "nature_registrar_community": "Lid van Vereniging van Registrars",
     "chamber_of_commerce_number": "Kamer van koophandel nummer",
     "chamber_of_commerce_number_placeholder": "",
     "reason_for_application": "Reden om toegang aan te vragen",
