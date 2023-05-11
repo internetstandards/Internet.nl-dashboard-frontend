@@ -204,6 +204,11 @@ Vue.mixin(
                     return ""
                 return format(parseISO(date), 'PPPP', {locale: this.dateLocales[this.locale]});
             },
+            humanize_date_unix_timestamp: function (date) {
+                if ([undefined, null, "", 0].includes(date))
+                    return ""
+                return format(new Date(date * 1000), 'PPPP', {locale: this.dateLocales[this.locale]});
+            },
             humanize_date_date_only: function (date) {
                 if ([undefined, null, "", 0].includes(date))
                     return ""
