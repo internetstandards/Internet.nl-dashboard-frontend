@@ -518,32 +518,48 @@ div.rotate > span {
               </td>
             </template>
             <template v-else>
-              <td class="px-78">
+              <!-- v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type.internet_nl_score.since ? `since ${humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type.internet_nl_score.since)}` : ``" -->
+              <td class="px-78" style="white-space: nowrap">
                 <a class='direct_link_to_report'
                    :href='url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_url'
                    target="_blank"
-                  v-b-tooltip.hover :title="url.endpoints[0].ratings_by_type.internet_nl_score.last_scan ? `since ${humanize_date(url.endpoints[0].ratings_by_type.internet_nl_score.last_scan)}` : ``"
                 >
-                  <div v-html="score_comparison(url)"></div>
+                  <span>
+                    <div class="logo_image"></div> {{score(url)}}%
+                    <img :src='`/static_frontend/images/report_comparison_${score_comparison(url)}.png`'
+                         v-if="score_comparison(url)" />
+                  </span>
                   <span class="visuallyhidden"> {{ $t('report.link_to_report', {'url': url}) }}</span>
                 </a>
               </td>
               <td class="px-225">{{ url.url }}</td>
               <template v-if="['web', 'mail'].includes(selected_category)">
+                <!-- do this only onhover, not prepared: v-b-tooltip.hover :title="make_tooltip(url, category_name)" -->
                 <td class="testresultcell px-100"
                     v-for="category_name in relevant_categories_based_on_settings"
                     :key="category_name"
-                    v-b-tooltip.hover :title="make_tooltip(url, category_name)"
                   >
-                  <div v-html="category_value_with_comparison(category_name, url)"></div>
+                  <span :class="category_verdict_to_simple_value(category_name, url) + ' ' + (category_comparison(category_name, url) ? `compared_with_next_report_${category_comparison(category_name, url)}` : '')">
+                    <template v-if="category_comparison(category_name, url)">
+                      {{$t("report.results.comparison." + category_comparison(category_name, url))}}
+                    </template>
+                    {{category_verdict_to_simple_value(category_name, url)}}
+                  </span>
+
                 </td>
               </template>
               <template v-else>
+                <!-- v-b-tooltip.hover :title="make_tooltip(url, category_name)" -->
                 <td class="testresultcell px-56"
                     v-for="category_name in relevant_categories_based_on_settings"
-                    :key="category_name" v-b-tooltip.hover :title="make_tooltip(url, category_name)">
-                  <div v-html="detail_value_with_comparison(category_name, url)"></div>
+                    :key="category_name">
 
+                  <span :class="detail_value_simple_value(category_name, url) + ' ' + detail_comparison(category_name, url)">
+                    {{detail_value_simple_value(category_name, url)}}
+                    <template v-if="detail_comparison(category_name, url)">
+                      {{$t("report.results.comparison." + detail_comparison(category_name, url))}}
+                    </template>
+                  </span>
                 </td>
               </template>
               <td>
@@ -646,16 +662,40 @@ export default {
     if (this.reports[0] !== undefined) {
       this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
     }
+    // this.test_explode_report_size()
   },
   methods: {
+    test_explode_report_size(){
+      // testing method that creates a very, very large report to see how this renders.
+      // a report of 5000 urls should not be any issue at all...
+      let backup = this.original_urls;
+      let ridulously_large_report = [];
+
+      // for testing purposes, increase the report to a 1000 records, to see
+      // how it renders
+      let verdicts = ['passed', 'failed']
+      for (let i = 0; i < 5000; i++) {
+        // randomize scores and values, so you can see that comparisons work
+        let record = JSON.parse(JSON.stringify(backup[0]))
+
+        record.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score = Math.floor(Math.random() * 100);
+        record.endpoints[0].ratings_by_type.internet_nl_web_tls.test_result = verdicts[Math.floor(Math.random()*verdicts.length)];
+        record.endpoints[0].ratings_by_type.internet_nl_web_dnssec_exist.test_result = verdicts[Math.floor(Math.random()*verdicts.length)];
+
+        ridulously_large_report.push(record);
+      }
+
+      this.original_urls = ridulously_large_report;
+      this.filtered_urls = ridulously_large_report;
+    },
     make_tooltip(url, category_name) {
       if (!url.endpoints[0])
         return ''
       if (!url.endpoints[0].ratings_by_type[category_name])
         return ''
-      if (!url.endpoints[0].ratings_by_type[category_name]['last_scan'])
+      if (!url.endpoints[0].ratings_by_type[category_name]['since'])
         return ''
-          return`${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${this.humanize_date(url.endpoints[0].ratings_by_type[category_name]['last_scan'])}`
+          return`${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
     },
     select_category: function (category_name) {
       if (Object.keys(this.categories).includes(category_name))
@@ -763,7 +803,12 @@ export default {
       this.filtered_urls = this.order_urls(this.filtered_urls);
     },
 
-    category_verdict_to_simple_value: function (verdict, category_name) {
+    category_verdict_to_simple_value: function (category_name, url) {
+      let verdict = url.endpoints[0].ratings_by_type[category_name];
+      return this._category_verdict_to_simple_value(verdict, category_name)
+    },
+
+    _category_verdict_to_simple_value: function (verdict, category_name) {
       if (verdict === undefined)
         return "unknown";
 
@@ -782,47 +827,42 @@ export default {
         }
         return "failed"
       }
-
     },
 
-    category_value_with_comparison: function (category_name, url) {
-
-      let verdicts = url.endpoints[0].ratings_by_type[category_name];
-      let simple_value = this.category_verdict_to_simple_value(verdicts, category_name);
+    category_comparison: function (category_name, url) {
+      let simple_value = this.category_verdict_to_simple_value(category_name, url);
 
       if (this.reports.length < 2 || this.reports[1].calculation.urls_by_url[url.url] === undefined)
-        return `<span class="category_${simple_value}">${simple_value}</span>`;
+        return "";
 
       // in case there is no endpoint (exceptional case)
       if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined)
-        return `<span class="category_${simple_value}">${simple_value}</span>`;
+        return "";
 
       let other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
-      let other_simple_value = this.category_verdict_to_simple_value(other_verdicts, category_name);
-
-      // console.log(`current score: ${simple_value} other score: ${other_simple_value}`)
+      let other_simple_value = this._category_verdict_to_simple_value(other_verdicts, category_name);
 
       let progression = {'passed': 4, 'warning': 3, 'info': 2, 'failed': 1};
-      let comparison_verdict = "";
 
       if (simple_value === other_simple_value || simple_value === "unknown" || other_simple_value === "unknown")
-        comparison_verdict = "neutral";
-      else {
-        if (progression[simple_value] > progression[other_simple_value]) {
-          comparison_verdict = "improved";
-        } else {
-          comparison_verdict = "regressed";
-        }
-      }
+        return "neutral";
 
-      let comparison_text = this.$i18n.t("report.results.comparison." + comparison_verdict);
+      if (progression[simple_value] > progression[other_simple_value])
+        return "improved";
 
-      return `<span class="category_${simple_value} compared_with_next_report_${comparison_verdict}">${comparison_text} ${simple_value}</span>`
+      if (progression[simple_value] < progression[other_simple_value])
+        return "regressed";
+
+      return "neutral";
+    },
+
+    score(url) {
+      return url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
     },
 
     score_comparison: function (url) {
       if (this.reports.length < 2) {
-        return `<span><div class="logo_image"></div> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score}%</span>`
+        return "";
       } else {
 
         if (url === undefined ||
@@ -831,67 +871,69 @@ export default {
             this.reports[1].calculation.urls_by_url[url.url] === undefined ||
             this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined ||
             this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score === undefined) {
-          return `<span><div class="logo_image"></div> ${url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score}%</span>`
+          return "";
         }
 
         let current_score = url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
         let other_score = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
         // console.log(`current score: ${current_score} other score: ${other_score}`)
         if (current_score === undefined || other_score === undefined)
-          return `<span><div class="logo_image"></div> ${current_score}%</span>`
+          return "";
 
-        let comparison = ""
         if (current_score > other_score) {
-          comparison = "<img src='/static_frontend/images/report_comparison_improved.png'>"
+          return "improved"
         }
         if (current_score < other_score) {
-          comparison = "<img src='/static_frontend/images/report_comparison_regressed.png'>"
+          return "regressed"
         }
-        return `<span class="nowrap"><div class="logo_image"></div> ${current_score}% ${comparison}</span>`
+        return ""
       }
     },
 
-    detail_value_with_comparison: function (category_name, url) {
+    detail_value_simple_value(category_name, url) {
+      let verdicts = url.endpoints[0].ratings_by_type[category_name];
+
+      if (verdicts === undefined) {
+        return "unknown";
+      }
+      // API V2.0:
+      if (verdicts.test_result !== undefined)
+        return verdicts.test_result;  // error, not_testable, failed, warning, info, passed
+
+      // API V1.0
+      return verdicts.simple_verdict;
+    },
+
+    detail_value_simple_progression(category_name, url) {
+      let verdicts = url.endpoints[0].ratings_by_type[category_name];
+      return verdicts ? verdicts.simple_progression : "unknown";
+    },
+
+    detail_comparison: function (category_name, url) {
       /**
        * This function is called numerous times. It has been optimzed in the following ways:
        * - Translations have been removed, saving 1 second for (500 * 16) = 8000 metrics.
        * - values are precalculated: simple_value, simple_progression, score etc...
        * */
-
-      let verdicts = url.endpoints[0].ratings_by_type[category_name];
-      let simple_value = "";
-      let simple_progression = "";
-
-      // Adding the verdict to the report would speed things up...
-      if (verdicts === undefined) {
-        simple_value = "unknown";
-        simple_progression = "unknown";
-      } else {
-        if (verdicts.test_result !== undefined)
-            // API V2.0:
-          simple_value = verdicts.test_result;  // error, not_testable, failed, warning, info, passed
-        else
-            // API V1.0
-          simple_value = verdicts.simple_verdict;
-        simple_progression = verdicts.simple_progression;
-      }
       /* disabling translations saves a second on 500 urls and the TLS page. Therefore no translations are applied */
 
       // If we're not in comparison mode, just return the value.
       // a template string litteral is slower than just an ordinary string that will be parsen by the browser...
       // https://jsperf.com/es6-string-literals-vs-string-concatenation
       if (this.reports.length < 2)
-        return "<span class='" + simple_value + "'>" + simple_value + "</span>";
+        return ""
 
       // if we _are_ comparing, but the comparison is empty because there is nothing to compare to:
       // This is done separately to prevent another call to something undefined
       if (this.reports[1].calculation.urls_by_url[url.url] === undefined)
-        return `<span class="${simple_value}">${simple_value}</span>`;
+        return ""
 
       // in case there is no endpoint (exceptional case)
       if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined)
-        return `<span class="${simple_value}">${simple_value}</span>`;
+        return ""
 
+      let simple_value = this.detail_value_simple_value(category_name, url);
+      let simple_progression = this.detail_value_simple_progression(category_name, url);
       /*
       * This compares if the new value is progressive, neutral or regressive.
       * All to/from not_testable and not_applicable is neutral.
@@ -918,26 +960,21 @@ export default {
         other_simple_progression = other_verdicts.simple_progression;
       }
 
-      let comparison_verdict = "";
 
       // all to and from not_tested or not_applicable is neutral, also going to the same state is neutral
       if (simple_value === other_simple_value)
-        comparison_verdict = "neutral";
+        return "neutral";
 
       const neutral_values = ["unknown", "not_applicable", "not_testable", 'no_mx', 'untestable', 'unreachable', 'error_in_test', 'error', 'not_tested'];
 
       if (neutral_values.includes(simple_value) || neutral_values.includes(other_simple_value))
-        comparison_verdict = "neutral";
+        return "neutral";
 
-      if (comparison_verdict === "") {
-        if (simple_progression > other_simple_progression)
-          comparison_verdict = "improved";
-        else
-          comparison_verdict = "regressed";
-      }
 
-      let comparison_text = this.$i18n.t("report.results.comparison." + comparison_verdict);
-      return `<span class="${simple_value} compared_with_next_report_${comparison_verdict}">${comparison_text} ${simple_value}</span>`
+      if (simple_progression > other_simple_progression)
+        return "improved";
+      else
+        return "regressed";
     },
 
     category_from_field_name: function (field_name) {

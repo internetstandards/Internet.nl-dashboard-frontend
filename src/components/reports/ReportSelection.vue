@@ -159,9 +159,9 @@ export default {
     },
 
     selected_reports(dropdown_items, old_value) {
-      console.log("Selected reports changed...")
-      console.log(dropdown_items)
-      console.log(old_value)
+      // console.log("Selected reports changed...")
+      // console.log(dropdown_items)
+      // console.log(old_value)
 
       // don't reload the page uselessly
       if (dropdown_items === old_value)

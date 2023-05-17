@@ -164,7 +164,7 @@ export default {
                 }
             }
 
-            console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
+            // console.log(` ${category_name.key} should be visible: ${should_be_visible}`)
             this.issue_filters[category_name.key].visible = should_be_visible;
         },
         all_subcategory_fields_from_category(category_name) {
