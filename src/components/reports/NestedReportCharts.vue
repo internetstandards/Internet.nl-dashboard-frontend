@@ -28,9 +28,10 @@ import PercentageBarChart from './../charts/render-percentage-bar-chart'
 import ChartCollapsePanel from '@/components/charts/ChartCollapsePanel'
 import report_mixin from "@/components/reports/report_mixin";
 import VisibleFields from "@/components/reports/VisibleFields";
+import CollapsePanel from '@/components/CollapsePanel'
 
 export default {
-  mixins: [report_mixin, VisibleFields],
+  mixins: [report_mixin, VisibleFields, CollapsePanel],
 
   name: "NestedReportCharts.vue",
   components: {

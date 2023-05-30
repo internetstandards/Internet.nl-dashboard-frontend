@@ -112,8 +112,12 @@
 </template>
 <script>
 import http from "@/httpclient";
+import CollapsePanel from '@/components/CollapsePanel'
+
 
 export default {
+  components: {CollapsePanel},
+
   props: {
     report: {type: Object, required: true}
   },

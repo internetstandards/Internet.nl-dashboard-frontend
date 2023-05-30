@@ -582,9 +582,10 @@ import report_mixin from "@/components/reports/report_mixin";
 import ReportTableLegend from "@/components/reports/ReportTableLegend";
 import DifferencesToCurrentList from "@/components/reports/DifferencesToCurrentList";
 import AppliedTags from "@/components/reports/AppliedTags";
+import CollapsePanel from '@/components/CollapsePanel'
 
 export default {
-  components: {AppliedTags, DifferencesToCurrentList, ReportTableLegend},
+  components: {AppliedTags, DifferencesToCurrentList, ReportTableLegend, CollapsePanel},
   mixins: [report_mixin],
 
   i18n: {

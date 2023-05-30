@@ -7,15 +7,15 @@ import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 import VueRouter from 'vue-router'
 import VueI18n from 'vue-i18n'
-import loading from './components/loading'
-import server_response from './components/ServerResponse'
 
-import ContentBlock from './components/ContentBlock'
+import loading from '@/components/loading'
+import server_response from '@/components/ServerResponse'
+import ContentBlock from '@/components/ContentBlock'
 
-import CollapsePanel from '@/components/CollapsePanel'
 import App from '@/App'
-import router from './router';
-import './assets/css/styles.scss';
+import router from '@/router';
+import '@/assets/css/styles.scss';
+
 import PortalVue from 'portal-vue'
 import {
     LayoutPlugin,
@@ -64,7 +64,6 @@ plugins.forEach(plugin => Vue.use(plugin))
 Vue.component('content-block', ContentBlock);
 Vue.component('loading', loading)
 Vue.component('server-response', server_response)
-Vue.component('collapse-panel', CollapsePanel)
 
 Vue.config.productionTip = false
 
