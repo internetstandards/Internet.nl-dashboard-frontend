@@ -163,10 +163,11 @@ import Tag from "@/components/domains/domain/tag";
 import EditDomain from "@/components/domains/domain/editDomain";
 import http from "@/httpclient";
 import FormatScanEligibility from "@/components/domains/FormatScanEligibility";
+import vSelect from 'vue-select';
 
 export default {
   name: "DomainTable",
-  components: {FormatScanEligibility, EditDomain, Tag},
+  components: {FormatScanEligibility, EditDomain, Tag, vSelect},
   props: {
     urls: {
       type: Array, required: true,

@@ -23,10 +23,11 @@
 <script>
 import http from "@/httpclient";
 import SubdomainDiscoveryModal from "@/components/domains/SubdomainDiscoveryModal";
+import Probe from '@/components/probe'
 
 export default {
   name: "SubdomainDiscovery",
-  components: {SubdomainDiscoveryModal},
+  components: {SubdomainDiscoveryModal, Probe},
   props: {
     list_id: {type: Number}
   },

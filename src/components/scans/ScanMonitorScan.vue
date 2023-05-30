@@ -142,11 +142,12 @@ ol {
 
 import StopScan from './stop'
 import ScanTypeIcon from "@/components/ScanTypeIcon";
+import Probe from '@/components/probe'
 
 export default {
     components: {
       ScanTypeIcon,
-        StopScan
+        StopScan, Probe
     },
     name: 'scan_monitor',
 

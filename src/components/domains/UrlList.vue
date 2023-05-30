@@ -128,6 +128,8 @@ import http from "@/httpclient";
 import ScanTypeIcon from "@/components/ScanTypeIcon";
 import DomainTable from "@/components/domains/DomainTable";
 import SubdomainDiscovery from "@/components/domains/SubdomainDiscovery";
+import autorefresh from '@/components/autorefresh'
+import Probe from '@/components/probe'
 
 export default {
   components: {
@@ -139,7 +141,9 @@ export default {
     AddDomains,
     Configure,
     About,
-    Upload
+    Upload,
+    autorefresh,
+    Probe
   },
   i18n: {
     sharedMessages: sharedMessages,

@@ -59,9 +59,13 @@
 
 <script>
 import http from "@/httpclient";
+import Probe from '@/components/probe'
 
 export default {
     name: "AddDomains",
+    components: {
+        Probe
+    },
     props: {
         list: {
             type: Object,
