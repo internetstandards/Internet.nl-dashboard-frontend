@@ -1,25 +1,23 @@
 // SPDX-License-Identifier: Apache-2.0
 import VueRouter from "vue-router";
 
-import Login from './components/Login'
-import DomainListManager from './components/domains/DomainListManager'
-import SpreadsheetUpload from './components/domains/SpreadsheetUpload'
-import ScanMonitor from './components/scans/ScanMonitor'
-import Report from './components/reports/Report'
-import SharedReportViaNumbersInUrl from './components/reports/SharedReportViaNumbersInUrl'
-import SharedReportLatest from './components/reports/SharedReportLatest'
-
-import SwitchAccount from './components/admin/SwitchAccount'
-import InstantAddAccount from './components/admin/InstantAddAccount'
-import Usage from './components/admin/usage'
-import Account from './components/account/Account'
-import Demo from './components/tour/Demo'
-import Unsubscribe from './components/mail/Unsubscribe'
-import Home from './components/home/Home'
-import PublicReportsPerAccount from './components/home/PublicReportsPerAccount'
-import SignupPage from './components/signup/SignupPage'
-
-import Beta from './components/beta'
+const Login = () => import(/* webpackChunkName: "login" */ './components/Login')
+const DomainListManager = () => import('./components/domains/DomainListManager');
+const SpreadsheetUpload = () => import('./components/domains/SpreadsheetUpload');
+const ScanMonitor = () => import('./components/scans/ScanMonitor');
+const Report = () => import('./components/reports/Report');
+const SharedReportViaNumbersInUrl = () => import('./components/reports/SharedReportViaNumbersInUrl');
+const SharedReportLatest = () => import('./components/reports/SharedReportLatest');
+const SwitchAccount = () => import('./components/admin/SwitchAccount');
+const InstantAddAccount = () => import('./components/admin/InstantAddAccount');
+const Usage = () => import('./components/admin/usage');
+const Account = () => import('./components/account/Account');
+const Demo = () => import('./components/tour/Demo');
+const Unsubscribe = () => import('./components/mail/Unsubscribe');
+const Home = () => import('./components/home/Home');
+const PublicReportsPerAccount = () => import('./components/home/PublicReportsPerAccount');
+const SignupPage = () => import('./components/signup/SignupPage');
+const Beta = () => import('./components/beta');
 
 const routes = [
     // todo: Make page title translations...
