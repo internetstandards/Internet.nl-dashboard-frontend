@@ -79,16 +79,18 @@
 
     <!-- The dropdown with recent reports is updated automatically when scans finish. But if that page
      had never loaded, this is a fallback that still tries to get the recent report every ten minutes. -->
-    <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600"></autorefresh>
+    <autorefresh :visible="false" :callback="get_recent_reports" :refresh_per_seconds="600" />
   </div>
 </template>
 <script>
 import http from "@/httpclient";
 import ReportTagFilter from "@/components/reports/ReportTagFilter";
 import ScanTypeIcon from "@/components/ScanTypeIcon";
+import vSelect from 'vue-select';
+import autorefresh from '@/components/autorefresh'
 
 export default {
-  components: {ScanTypeIcon, ReportTagFilter},
+  components: {ScanTypeIcon, ReportTagFilter, vSelect, autorefresh},
   /**
    * Manipulates the following globals:
    * - Current report type, a string in one of the following: ["web", "mail"]
@@ -161,7 +163,7 @@ export default {
     selected_reports(dropdown_items, old_value) {
       // console.log("Selected reports changed...")
       // console.log(dropdown_items)
-      // console.log(old_value)
+      // console.log(old_value)<b-dia
 
       // don't reload the page uselessly
       if (dropdown_items === old_value)

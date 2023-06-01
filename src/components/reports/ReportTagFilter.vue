@@ -93,10 +93,11 @@
 import http from "@/httpclient";
 import Tag from "@/components/domains/domain/tag";
 import {mapState} from 'vuex'
+import vSelect from 'vue-select';
 
 export default {
   name: "ReportTagFilter",
-  components: {Tag},
+  components: {Tag, vSelect},
   mounted() {
     this.load();
     // empty list of selected tags on reloads etc to make the UI more intuitive:

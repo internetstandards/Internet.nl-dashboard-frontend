@@ -20,7 +20,13 @@
 </template>
 
 <script>
+
+import CollapsePanel from '@/components/CollapsePanel'
+
 export default {
+  components: {
+    CollapsePanel
+  },
   name: "chart_collapse_panel",
   props: {
     title: {

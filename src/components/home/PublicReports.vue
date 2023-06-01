@@ -22,7 +22,7 @@ export default {
   components: {PublicReportsTable},
   data() {
     return {
-      reports: Array,
+      reports: [],
       loading: false,
     }
   },

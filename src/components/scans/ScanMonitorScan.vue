@@ -142,11 +142,13 @@ ol {
 
 import StopScan from './stop'
 import ScanTypeIcon from "@/components/ScanTypeIcon";
+import Probe from '@/components/probe'
+import CollapsePanel from '@/components/CollapsePanel'
 
 export default {
     components: {
       ScanTypeIcon,
-        StopScan
+        StopScan, Probe, CollapsePanel
     },
     name: 'scan_monitor',
 

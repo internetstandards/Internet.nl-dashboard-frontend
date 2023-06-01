@@ -6,7 +6,7 @@
     <content-block>
       <h1><b-icon icon="search" /> {{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
-      <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60" v-if="$store.state.user.is_authenticated"></autorefresh>
+      <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60" v-if="$store.state.user.is_authenticated" />
     </content-block>
 
     <b-row class="p-1 pl-2 pr-2" cols="1" cols-sm="1" cols-lg="3">
@@ -28,10 +28,12 @@
 
 import ScanMonitorScan from './ScanMonitorScan'
 import http from "@/httpclient";
+import autorefresh from '@/components/autorefresh'
 
 export default {
   components: {
-    ScanMonitorScan
+    ScanMonitorScan,
+    autorefresh
   },
   name: 'scan_monitor',
 
