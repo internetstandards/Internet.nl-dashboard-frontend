@@ -11,6 +11,7 @@
     "rebuild": "npm run clean && npm install && npm run build"
   },
   "dependencies": {
+    "@ungap/structured-clone": "github:ungap/structured-clone",
     "@vue/composition-api": "^1.0.5",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
@@ -31,6 +32,7 @@
     "vue-matomo": "^4.1.0",
     "vue-router": "^3.4.8",
     "vue-select": "^3.10.8",
+    "vue-virtual-scroll-list": "^2.3.5",
     "vue2-dropzone": "^3.6.0",
     "vuex": "^3.5.1",
     "vuex-persistedstate": "^4.0.0-beta.1"

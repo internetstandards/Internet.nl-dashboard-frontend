@@ -26,7 +26,28 @@
 
       <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
       <content-block v-if="reports.length < 3" class="start-on-new-page">
-        <ReportTable :reports="reports" :load_comparison_with_current="!tags_applied"/>
+        <b-tabs>
+          <b-tab title="Origineel">
+            <ReportTable :reports="reports" :load_comparison_with_current="!tags_applied"/>
+          </b-tab>
+          <b-tab title="BootstrapVue" lazy>
+            <p>Een tabeloverzicht met standaard componenten. Werkt redelijk vlot tot 10.000 domeinen, zitten er nu 5000 in.
+               Eerste laadtijd is het maken van deze 5000 records.
+            Printen, sorteren, zoeken, documentatie en toegankelijkheid zitten er standaard in. Let op de sticky headers
+              bij het scrollen, vooral goed zichtbaar bij HTTPS metingen. In deze demo zitten 5000 records en het
+              eet best wat memory.
+            </p>
+            <ReportTableBv :reports="reports" :load_comparison_with_current="!tags_applied" />
+          </b-tab>
+          <b-tab title="Virtual List" lazy>
+            <p>Het origineel maar dan als virtual list.
+              Bevat ook 5000 items. Eerste laadtijd is het maken van deze 5000 records. Bij https metingen is het lastig om de kolommen gelijk te laten lopen met de inhoud van de tabel.
+              Het moet uitgezocht worden hoe het scrollen van de tabel ook de headers mee laat scrollen. Sticky headers aan de linkerkant
+              is nog niet gelukt. Zoeken en sorteren werken vlot. Printen van de huidige set werkt niet voldoende nog.
+            </p>
+            <ReportTableVirtualList :reports="reports" :load_comparison_with_current="!tags_applied" />
+          </b-tab>
+        </b-tabs>
       </content-block>
 
     </div>
@@ -35,25 +56,28 @@
 </template>
 
 <script>
-import ReportCharts from './ReportCharts'
-import ReportTable from './ReportTable'
-import report_mixin from './report_mixin'
-import report_mixin_2 from './report_mixin_2'
-import ReportHeader from './ReportHeader'
-import ReportDownload from './ReportDownload'
+import ReportCharts from '@/components/reports/ReportCharts'
+import ReportTable from '@/components/reports/ReportTable'
+import ReportTableBv from '@/components/reports/ReportTableBv'
+import ReportTableVirtualList from '@/components/reports/ReportTableVirtualList'
+import report_mixin from '@/components/reports/report_mixin'
+import report_mixin_2 from '@/components/reports/report_mixin_2'
+import ReportHeader from '@/components/reports/ReportHeader'
+import ReportDownload from '@/components/reports/ReportDownload'
 import ReportSelection from "@/components/reports/ReportSelection";
 import {mapState} from 'vuex'
-import SharingConfiguration from './SharingConfiguration'
+import SharingConfiguration from '@/components/reports/SharingConfiguration'
 
 export default {
   components: {
-
+    ReportTableBv,
     ReportSelection,
     ReportCharts,
     ReportTable,
     ReportHeader,
     ReportDownload,
-    SharingConfiguration
+    SharingConfiguration,
+    ReportTableVirtualList
   },
   mixins: [report_mixin, report_mixin_2],
   name: 'report',
