@@ -2,10 +2,13 @@
 <template>
   <div id="report-template">
     <content-block class="do-not-print">
-      <h1><b-icon icon="file-bar-graph" /> {{ $t("title") }}</h1>
+      <h1>
+        <b-icon icon="file-bar-graph"/>
+        {{ $t("title") }}
+      </h1>
       <p>{{ $t("intro") }}</p>
 
-      <report-selection @tags_applied="apply_tags" />
+      <report-selection @tags_applied="apply_tags"/>
 
     </content-block>
 
@@ -15,40 +18,56 @@
 
       <template v-if="!tags_applied">
         <report-download :report="report" v-for="report in reports" :key="`d${report.id}`"></report-download>
-        <sharing-configuration :report="report" v-for="report in reports" :key="`s${report.id}`"></sharing-configuration>
+        <sharing-configuration :report="report" v-for="report in reports"
+                               :key="`s${report.id}`"></sharing-configuration>
       </template>
 
       <content-block>
-        <report-header :reports="reports" />
+        <report-header :reports="reports"/>
       </content-block>
 
-      <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
+      <b-tabs>
 
-      <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
-      <content-block v-if="reports.length < 3" class="start-on-new-page">
-        <b-tabs>
-          <b-tab title="Origineel">
-            <ReportTable :reports="reports" :load_comparison_with_current="!tags_applied"/>
-          </b-tab>
-          <b-tab title="BootstrapVue" lazy>
-            <p>Een tabeloverzicht met standaard componenten. Werkt redelijk vlot tot 10.000 domeinen, zitten er nu 5000 in.
-               Eerste laadtijd is het maken van deze 5000 records.
-            Printen, sorteren, zoeken, documentatie en toegankelijkheid zitten er standaard in. Let op de sticky headers
-              bij het scrollen, vooral goed zichtbaar bij HTTPS metingen. In deze demo zitten 5000 records en het
-              eet best wat memory.
-            </p>
-            <ReportTableBv :reports="reports" :load_comparison_with_current="!tags_applied" />
-          </b-tab>
-          <b-tab title="Virtual List" lazy>
-            <p>Het origineel maar dan als virtual list.
-              Bevat ook 5000 items. Eerste laadtijd is het maken van deze 5000 records. Bij https metingen is het lastig om de kolommen gelijk te laten lopen met de inhoud van de tabel.
-              Het moet uitgezocht worden hoe het scrollen van de tabel ook de headers mee laat scrollen. Sticky headers aan de linkerkant
-              is nog niet gelukt. Zoeken en sorteren werken vlot. Printen van de huidige set werkt niet voldoende nog.
-            </p>
-            <ReportTableVirtualList :reports="reports" :load_comparison_with_current="!tags_applied" />
-          </b-tab>
-        </b-tabs>
-      </content-block>
+        <b-tab title="Tabel meetresultaten" lazy>
+
+
+          <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
+          <content-block v-if="reports.length < 3" class="start-on-new-page">
+            <ReportTableVirtualList :reports="reports" :load_comparison_with_current="!tags_applied"/>
+
+            <!--
+             <b-tabs>
+               <b-tab title="Origineel">
+                 <ReportTable :reports="reports" :load_comparison_with_current="!tags_applied"/>
+               </b-tab>
+               <b-tab title="BootstrapVue" lazy>
+                 <p>Een tabeloverzicht met standaard componenten. Werkt redelijk vlot tot 10.000 domeinen, zitten er nu 5000 in.
+                    Eerste laadtijd is het maken van deze 5000 records.
+                 Printen, sorteren, zoeken, documentatie en toegankelijkheid zitten er standaard in. Let op de sticky headers
+                   bij het scrollen, vooral goed zichtbaar bij HTTPS metingen. In deze demo zitten 5000 records en het
+                   eet best wat memory.
+                 </p>
+                 <ReportTableBv :reports="reports" :load_comparison_with_current="!tags_applied" />
+               </b-tab>
+               <b-tab title="Virtual List" lazy>
+                 <p>Het origineel maar dan als virtual list.
+                   Bevat ook 5000 items. Eerste laadtijd is het maken van deze 5000 records. Bij https metingen is het lastig om de kolommen gelijk te laten lopen met de inhoud van de tabel.
+                   Het moet uitgezocht worden hoe het scrollen van de tabel ook de headers mee laat scrollen. Sticky headers aan de linkerkant
+                   is nog niet gelukt. Zoeken en sorteren werken vlot. Printen van de huidige set werkt niet voldoende nog.
+                 </p>
+
+               </b-tab>
+             </b-tabs>-->
+          </content-block>
+        </b-tab>
+
+
+        <b-tab title="Grafieken" lazy>
+          <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
+        </b-tab>
+
+
+      </b-tabs>
 
     </div>
 
@@ -57,8 +76,7 @@
 
 <script>
 import ReportCharts from '@/components/reports/ReportCharts'
-import ReportTable from '@/components/reports/ReportTable'
-import ReportTableBv from '@/components/reports/ReportTableBv'
+
 import ReportTableVirtualList from '@/components/reports/ReportTableVirtualList'
 import report_mixin from '@/components/reports/report_mixin'
 import report_mixin_2 from '@/components/reports/report_mixin_2'
@@ -70,10 +88,9 @@ import SharingConfiguration from '@/components/reports/SharingConfiguration'
 
 export default {
   components: {
-    ReportTableBv,
     ReportSelection,
     ReportCharts,
-    ReportTable,
+
     ReportHeader,
     ReportDownload,
     SharingConfiguration,
@@ -97,17 +114,21 @@ export default {
     //this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
   },
   methods: {
-      apply_tags() {
-        this.tags_applied = this.tags.length > 0;
-        this.load_reports_by_ids(this.report_ids, {tags: this.tags, custom_date: this.ad_hoc_report_custom_date, custom_time: this.ad_hoc_report_custom_time});
-      }
+    apply_tags() {
+      this.tags_applied = this.tags.length > 0;
+      this.load_reports_by_ids(this.report_ids, {
+        tags: this.tags,
+        custom_date: this.ad_hoc_report_custom_date,
+        custom_time: this.ad_hoc_report_custom_time
+      });
+    }
   },
 
   watch: {
 
     // Report selection control can select a number of reports
     report_ids(report_ids) {
-        this.requested_report_ids = report_ids;
+      this.requested_report_ids = report_ids;
     },
 
     requested_report_ids(report_ids) {

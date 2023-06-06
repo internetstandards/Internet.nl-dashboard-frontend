@@ -48,16 +48,23 @@ export default {
         let post_data = {...{share_code: stored_share_code ? stored_share_code : ""}, ...data}
 
         // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
+        console.log(`Getting report id: ${report_ids[i]}`)
         http.post(`${link}${report_ids[i]}/`, post_data).then(response => {
           // The report might be empty, because the wrong code has been sent:
 
           if (response.data !== undefined && response.data !== "") {
+            console.log(`Retrieved report data: ${report_ids[i]}`)
 
               // only add comparison data to the second report, because we want to quickly access urls of that one.
               if (i > 0)
                   this.add_comparison_urls_to_report(response.data)
 
+            // using set is extremely slow, so instead of doing this, directly set the data and force an  update,
+            // this saves 4 seconds when loading a report.
             this.$set(this.reports, i, response.data);
+            // this.reports[i] = response.data;
+            // this.$forceUpdate();
+            console.log(`Set report data: ${report_ids[i]}`)
           }
           this.reports_to_load--;
         });

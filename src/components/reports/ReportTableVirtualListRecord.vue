@@ -4,7 +4,7 @@
       <td>
         -
       </td>
-      <td>{{ source.url }}</td>
+      <td><div style="width: 200px; overflow-x: scroll">{{ source.url }}</div></td>
       <td colspan="200">
         <small>{{ $t('report.not_eligeble_for_scanning') }}</small>
       </td>
@@ -15,6 +15,7 @@
         <a class='direct_link_to_report'
            :href='source.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_url'
            target="_blank"
+           v-b-tooltip.hover :title="source.endpoints[0].ratings_by_type.internet_nl_score.since ? `since ${humanize_date_unix_timestamp(source.endpoints[0].ratings_by_type.internet_nl_score.since)}` : ``"
         >
           <span>
             <div class="logo_image"></div> {{score(source)}}%
@@ -24,12 +25,13 @@
           <span class="visuallyhidden"> {{ $t('report.link_to_report', {'url': source}) }}</span>
         </a>
       </td>
-      <td class="px-225 b-table-sticky-column" style="position: sticky">{{ source.url }}</td>
+      <td class="px-225 b-table-sticky-column" style="position: sticky"><div style="width: 200px; overflow-x: scroll">{{ source.url }}</div></td>
       <template v-if="['web', 'mail'].includes(selected_category)">
         <!-- do this only onhover, not prepared: v-b-tooltip.hover :title="make_tooltip(source, category_name)" -->
         <td class="testresultcell px-100"
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
+            v-b-tooltip.hover :title="make_tooltip(source, category_name)"
           >
           <span :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
             <template v-if="category_comparison(category_name, source)">
@@ -44,7 +46,9 @@
         <!-- v-b-tooltip.hover :title="make_tooltip(source, category_name)" -->
         <td class="testresultcell px-56"
             v-for="category_name in relevant_categories_based_on_settings"
-            :key="category_name">
+            :key="category_name"
+            v-b-tooltip.hover :title="make_tooltip(source, category_name)"
+        >
 
           <span :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
             {{detail_value_simple_value(category_name, source)}}
@@ -262,6 +266,16 @@ export default {
         return "regressed";
     },
 
+    make_tooltip(url, category_name) {
+      if (!url.endpoints[0])
+        return ''
+      if (!url.endpoints[0].ratings_by_type[category_name])
+        return ''
+      if (!url.endpoints[0].ratings_by_type[category_name]['since'])
+        return ''
+      return `${this.$t(category_name)}: ${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
+    },
+
 
 
   },
@@ -308,6 +322,14 @@ export default {
 </script>
 
 <style scoped>
+
+.logo_image {
+  height: 16px;
+  width: 16px;
+  background: url("/static_frontend/images/vendor/internet_nl/favicon.png");
+  display: inline-block;
+  background-size: cover;
+}
 
 .stripe {
   background-color: rgba(0, 0, 0, .05);

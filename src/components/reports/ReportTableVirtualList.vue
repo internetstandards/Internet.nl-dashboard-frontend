@@ -36,9 +36,7 @@
 /* Use fixed headers, and search. If you scroll down the headers stay visible. Looks good, even better than aggrid.
 Note that chrome has issues making thead and tr sticky. Therefore it is applied to td and th (because...). */
 #report-template .sticky-table-container {
-  max-height: 80vh;
-  overflow-x: scroll;
-  overflow-y: scroll;
+
 }
 
 /* Make the header stay up with a white background. */
@@ -300,65 +298,6 @@ div.rotate > span {
   display: block;
 }
 
-.faq-subtest {
-  padding-left: 1.5em;
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-testresult-default.svg");
-  background-size: 1.125em 1.125em
-}
-
-.testresult.passed, .faq-subtest.passed {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-check.svg") !important
-}
-
-.testresult.failed, .faq-subtest.failed {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-error.svg") !important
-}
-
-.testresult.warning, .faq-subtest.warning {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-warning.svg") !important
-}
-
-.testresult.info, .faq-subtest.info {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg") !important
-}
-
-.testresult.good-not-tested, .faq-subtest.good-not-tested {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-question-mark.svg") !important
-}
-
-.testresult.not-tested, .faq-subtest.not-tested {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested.svg") !important
-}
-
-
-.testresults h2.error, .faq-test.error, #testresults-overview ul li.error {
-  background-image: url("/static_frontend/images/vendor/internet_nl/probe-error.svg") !important
-}
-
-.testresults h2.warning, .faq-test.warning, .test-header .test-title h2.warning, #testresults-overview ul li.warning {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-warning.svg") !important
-}
-
-.testresults h2.failed, .faq-test.failed, .test-header .test-title h2.failed, #testresults-overview ul li.failed {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-error.svg") !important
-}
-
-.testresults h2.info, .faq-test.info, .test-header .test-title h2.info, #testresults-overview ul li.info {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg") !important
-}
-
-.testresults h2.passed, .faq-test.passed, .test-header .test-title h2.passed, #testresults-overview ul li.passed {
-  background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.svg") !important
-}
-
-.logo_image {
-  height: 16px;
-  width: 16px;
-  background: url("/static_frontend/images/vendor/internet_nl/favicon.png");
-  display: inline-block;
-  background-size: cover;
-}
-
 .header_top_category {
   border: 0; float: left; width: 100px; height: 180px;
 }
@@ -387,6 +326,10 @@ div.rotate > span {
   width: 56px; min-width: 56px;
 }
 
+.vl-wrap {
+  margin-top: 300px;
+}
+
 </style>
 
 <template>
@@ -405,9 +348,30 @@ div.rotate > span {
       </div>
     </collapse-panel>
 
-    <div class="sticky-table-container start-on-new-page position-relative">
-      <div id="horrible-chrome-td-sticky-white-background-fix"></div>
-      <table class="table table-striped">
+    <div class="start-on-new-page position-relative">
+      <div id=""></div>
+
+
+        <div v-if="filtered_urls.length > 0" class="virtualList">
+          <virtual-list style="height: 70vh; overflow-y: auto; width: 100%"
+            :data-key="'url'"
+            :data-sources="filtered_urls"
+            :data-component="itemComponent"
+            :keeps="50"
+            wrap-class="vl-wrap"
+            header-class="vl-head"
+            footer-class="vl-foot"
+            item-class="vl-item"
+
+            :extra-props="{
+              reports: this.reports,
+              selected_category: this.selected_category,
+            }"
+          >
+            <div slot="header">
+
+
+              <table class="table table-striped" style="position: absolute">
         <thead class="sticky_labels">
 
         <tr class="sticky_labels">
@@ -501,7 +465,6 @@ div.rotate > span {
 
           </tr>
         </template>
-
         <tr v-if="filtered_urls.length < 1">
           <td :colspan="relevant_categories_based_on_settings.length + 2"
               class="text-center">😱 {{ $t("report.empty_report") }}
@@ -510,16 +473,8 @@ div.rotate > span {
         </tbody>
         </table>
 
-        <div v-if="filtered_urls.length > 0" class="virtualList">
-          <virtual-list style="height: 70vh; overflow-y: auto; width: 100%"
-            :data-key="'url'"
-            :data-sources="filtered_urls"
-            :data-component="itemComponent"
-            :extra-props="{
-              reports: this.reports,
-              selected_category: this.selected_category,
-            }"
-          />
+            </div>
+          </virtual-list>
         </div>
 
     </div>
@@ -619,7 +574,7 @@ export default {
     if (this.reports[0] !== undefined) {
       this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
     }
-    this.test_explode_report_size()
+    // this.test_explode_report_size()
   },
   methods: {
     test_explode_report_size() {
