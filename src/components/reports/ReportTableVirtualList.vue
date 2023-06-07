@@ -390,7 +390,7 @@ div.rotate > span {
             </div>
           </th>
 
-          <th colspan="200" class="sticky-header bg-white">
+          <th colspan="200" class="sticky-header bg-white" :style="`min-width: ${relevant_categories_based_on_settings.length *58}px`">
             <template v-if="['web', 'mail'].includes(selected_category)">
 
               <div class="header_top_category"
@@ -773,7 +773,7 @@ export default {
       "title": "Metrics table",
       "intro": "This table shows detailed results per category. It is possible to compare this report to a second report. In that case, progress indicators are added to the first report where applicable. The domains of the second report are only compared, not displayed.",
       "url_filter": "Filter on domain...",
-      "not_eligeble_for_scanning": "Domain did not match scanning criteria at the time the scan was initiated. The scanning criteria are an SOA DNS record (not NXERROR) for mail and an A or AAAA DNS record for web. This domain is ignored in all statistics.",
+
       "zoom": {
         "buttons": {
           "zoom": "details",
@@ -783,25 +783,9 @@ export default {
         "zoomed_in_on": "Details from",
         "explanation": "Using the details buttons, it is possible to see the individual metrics for each category."
       },
-      "link_to_report": "View score and report from %{url} on internet.nl.",
-      "empty_report": "It looks like this report is empty... did you filter too much?",
-      "results": {
-        "not_applicable": "Not applicable",
-        "not_testable": "Not testable",
-        "error_in_test": "Test error",
-        "category_error_in_test": "Test error",
-        "not_tested": "Not tested",
-        "failed": "Failed",
-        "warning": "Warning",
-        "info": "Info",
-        "passed": "Passed",
-        "unknown": "Unknown",
-        "comparison": {
-          "neutral": "-",
-          "improved": "Improved compared to the second report selected.",
-          "regressed": "Regressed compared to the second report selected."
-        }
-      }
+
+      "empty_report": "It looks like this report is empty... did you filter too much?"
+
     },
     "icons": {
       "remove_filter": "Remove filter"
@@ -820,7 +804,7 @@ export default {
     "report": {
       "title": "Meetwaardentabel",
       "intro": "Deze tabel toont de details van het rapport. Het is mogelijk dit rapport te vergelijken met een vorig of ander rapport. Wanneer deze vergelijking wordt gemaakt, wordt bij de gegevens van het eerste rapport voortgangsindicatoren geplaats waar relevant. De domeinen van het tweede rapport worden alleen vergeleken, niet getoond.",
-      "not_eligeble_for_scanning": "Dit domein voldeed niet aan de scan-criteria op het moment van scannen. Deze criteria zijn een SOA DNS record (geen NXERROR) voor mail en een A of AAAA DNS record voor web. Dit domein komt niet terug in de statistieken.",
+
       "url_filter": "Filter op domein...",
       "zoom": {
         "buttons": {
@@ -831,25 +815,10 @@ export default {
         "zoomed_in_on": "Details van ",
         "explanation": "Met de detail buttons is het mogelijk om details van ieder categorie naar voren te halen."
       },
-      "link_to_report": "Bekijk de score en rapportage van %{url} op internet.nl.",
-      "empty_report": "Geen meetgegevens gevonden, wordt er misschien teveel gefilterd?",
-      "results": {
-        "not_applicable": "Niet van toepassing",
-        "not_testable": "Niet testbaar",
-        "error_in_test": "Testfout",
-        "category_error_in_test": "Testfout",
-        "not_tested": "Niet getest",
-        "failed": "Niet goed",
-        "warning": "Waarschuwing",
-        "info": "Info",
-        "passed": "Goed",
-        "unknown": "Onbekend",
-        "comparison": {
-          "neutral": "-",
-          "improved": "Verbeterd vergeleken met het 2e geselecteerde rapport.",
-          "regressed": "Verslechterd vergeleken met het 2e geselecteerde rapport."
-        }
-      }
+
+      "empty_report": "Geen meetgegevens gevonden, wordt er misschien teveel gefilterd?"
+
+
     },
     "icons": {
       "remove_filter": "Wis filter"

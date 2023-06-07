@@ -6,7 +6,7 @@
       </td>
       <td><div style="width: 200px; overflow-x: scroll">{{ source.url }}</div></td>
       <td colspan="200">
-        <small>{{ $t('report.not_eligeble_for_scanning') }}</small>
+        <small>{{ $t('not_eligeble_for_scanning') }}</small>
       </td>
     </template>
     <template v-else>
@@ -22,10 +22,10 @@
             <img :src='`/static_frontend/images/report_comparison_${score_comparison(source)}.png`'
                  v-if="score_comparison(source)" />
           </span>
-          <span class="visuallyhidden"> {{ $t('report.link_to_report', {'url': source}) }}</span>
+          <span class="visuallyhidden"> {{ $t('link_to_report', {'url': source}) }}</span>
         </a>
       </td>
-      <td class="px-225 b-table-sticky-column" style="position: sticky"><div style="width: 200px; overflow-x: scroll">{{ source.url }}</div></td>
+      <td class="px-225"><div style="width: 200px; overflow-x: scroll">{{ source.url }}</div></td>
       <template v-if="['web', 'mail'].includes(selected_category)">
         <!-- do this only onhover, not prepared: v-b-tooltip.hover :title="make_tooltip(source, category_name)" -->
         <td class="testresultcell px-100"
@@ -35,7 +35,7 @@
           >
           <span :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
             <template v-if="category_comparison(category_name, source)">
-              {{$t("report.results.comparison." + category_comparison(category_name, source))}}
+              {{$t("results.comparison." + category_comparison(category_name, source))}}
             </template>
             {{category_verdict_to_simple_value(category_name, source)}}
           </span>
@@ -53,7 +53,7 @@
           <span :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
             {{detail_value_simple_value(category_name, source)}}
             <template v-if="detail_comparison(category_name, source)">
-              {{$t("report.results.comparison." + detail_comparison(category_name, source))}}
+              {{$t("results.comparison." + detail_comparison(category_name, source))}}
             </template>
           </span>
         </td>
@@ -273,7 +273,7 @@ export default {
         return ''
       if (!url.endpoints[0].ratings_by_type[category_name]['since'])
         return ''
-      return `${this.$t(category_name)}: ${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
+      return `${this.$t(category_name)}: ${this.$t('results.' + url.endpoints[0].ratings_by_type[category_name]['test_result'])}, since: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
     },
 
 
@@ -320,6 +320,54 @@ export default {
   }
 }
 </script>
+<i18n>
+{
+  "en": {
+    "link_to_report": "View score and report from %{url} on internet.nl.",
+    "not_eligeble_for_scanning": "Domain did not match scanning criteria at the time the scan was initiated. The scanning criteria are an SOA DNS record (not NXERROR) for mail and an A or AAAA DNS record for web. This domain is ignored in all statistics.",
+    "results": {
+      "not_applicable": "Not applicable",
+      "not_testable": "Not testable",
+      "error_in_test": "Test error",
+      "error": "Test error",
+      "category_error_in_test": "Test error",
+      "not_tested": "Not tested",
+      "failed": "Failed",
+      "warning": "Warning",
+      "info": "Info",
+      "passed": "Passed",
+      "unknown": "Unknown",
+      "comparison": {
+        "neutral": "-",
+        "improved": "Improved compared to the second report selected.",
+        "regressed": "Regressed compared to the second report selected."
+      }
+    }
+  },
+  "nl": {
+    "link_to_report": "Bekijk de score en rapportage van %{url} op internet.nl.",
+    "not_eligeble_for_scanning": "Dit domein voldeed niet aan de scan-criteria op het moment van scannen. Deze criteria zijn een SOA DNS record (geen NXERROR) voor mail en een A of AAAA DNS record voor web. Dit domein komt niet terug in de statistieken.",
+    "results": {
+      "not_applicable": "Niet van toepassing",
+      "not_testable": "Niet testbaar",
+      "error_in_test": "Testfout",
+      "error": "Testfout",
+      "category_error_in_test": "Testfout",
+      "not_tested": "Niet getest",
+      "failed": "Niet goed",
+      "warning": "Waarschuwing",
+      "info": "Info",
+      "passed": "Goed",
+      "unknown": "Onbekend",
+      "comparison": {
+        "neutral": "-",
+        "improved": "Verbeterd vergeleken met het 2e geselecteerde rapport.",
+        "regressed": "Verslechterd vergeleken met het 2e geselecteerde rapport."
+      }
+    }
+  }
+}
+</i18n>
 
 <style scoped>
 
