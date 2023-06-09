@@ -22,7 +22,9 @@
       </template>
 
       <template #cell(endpoints[0].ratings_by_type.internet_nl_score)="data">
+        <template v-if=" data.item.endpoints[0]">
         <div class="logo" /> {{ data.item.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score }}%
+          </template>
       </template>
 
       <template #cell(url)="data">
@@ -116,6 +118,9 @@ export default {
   methods:{
 
     category_verdict_to_simple_value: function (category_name, url) {
+      if (!url.endpoints[0]){
+        return 'unknown';
+      }
       let verdict = url.endpoints[0].ratings_by_type[category_name];
       return this._category_verdict_to_simple_value(verdict, category_name)
     },

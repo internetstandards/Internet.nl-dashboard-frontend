@@ -40,7 +40,11 @@
     <div id="my-spreadsheet-upload-template">
         <content-block>
             <p>&nbsp;
-                <router-link tag="button" to="/domains">📚 {{ $t("back_to_domains") }}</router-link>
+                <router-link to="/domains" custom v-slot="{ navigate }">
+                  <button @click="navigate" @keypress.enter="navigate" >
+                    📚 {{ $t("back_to_domains") }}
+                  </button>
+                </router-link>
             </p>
             <h1>{{ $t("upload.bulk_data_uploader.title") }}</h1>
             <p>{{ $t("upload.bulk_data_uploader.introduction") }}</p>

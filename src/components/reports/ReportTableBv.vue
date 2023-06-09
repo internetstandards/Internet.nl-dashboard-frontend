@@ -299,7 +299,7 @@ export default {
     if (this.reports[0] !== undefined) {
       this.original_urls = this.reports[0].calculation.urls;
     }
-    this.test_explode_report_size()
+    // this.test_explode_report_size()
   },
   methods: {
     createFields(category_name) {

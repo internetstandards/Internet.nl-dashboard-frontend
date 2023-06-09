@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <p>
+  <p v-if="differences.number_of_urls_in_urllist">
     <template v-if="differences.both_are_equal">
       {{ $t("equal") }}
       {{ $t("both_list_contain_n_urls", [differences.number_of_urls_in_urllist]) }}
@@ -24,6 +24,9 @@
         {{ differences.in_urllist_but_not_in_report }}.
       </template>
     </template>
+  </p>
+  <p v-else>
+    {{$t("retrieving_differences")}}
   </p>
 </template>
 
@@ -76,7 +79,8 @@ export default {
     "both_list_contain_n_urls": "Both the report and the associated list of domains contain {0} domains.",
     "report_contains_n_urllist_contains_n": "This report contains {0} domains, while the associated list contains {1}.",
     "in_report_but_not_in_urllist": "Domains in this report, but not in the list",
-    "in_urllist_but_not_in_report": "Domains not in this report"
+    "in_urllist_but_not_in_report": "Domains not in this report",
+    "retrieving_differences": "Retrieving differences compared to current list."
   },
   "nl": {
     "equal": "Domeinen in dit rapport zijn gelijk aan de domeinen in de bijbehorende lijst.",
@@ -84,7 +88,8 @@ export default {
     "both_list_contain_n_urls": "Zowel de rapportage als de bijbehorende lijst bevatten {0} domeinen.",
     "report_contains_n_urllist_contains_n": "Deze rapportage bevat {0} domeinen terwijl de bijbehorende lijst {1} domeinen bevat.",
     "in_report_but_not_in_urllist": "Domeinen in het rapport, maar niet in de bijbehorende lijst",
-    "in_urllist_but_not_in_report": "Domeinen niet in het rapport"
+    "in_urllist_but_not_in_report": "Domeinen niet in het rapport",
+    "retrieving_differences": "Lijst met verschillen aan het ophalen t.o.v. de huidige lijst."
   }
 }
 </i18n>
