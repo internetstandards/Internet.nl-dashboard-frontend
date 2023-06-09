@@ -276,14 +276,9 @@ export default {
 
       let evidence = url.endpoints[0].ratings_by_type[category_name]['evidence']
       let displayed_evidence = ''
-      console.log(`evidence: ${evidence}`)
-      console.log(evidence.charAt(0))
       if (evidence.charAt(0) === '{' && evidence !== '{}') {
-        console.log("Parsing evidence")
         displayed_evidence = JSON.stringify(JSON.parse(evidence), null, 2);
       }
-
-      console.log(`displayed evidence: ${displayed_evidence}`)
 
       let data = `${this.$t(category_name)}:
           ${this.$t('results.' + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
