@@ -31,7 +31,7 @@
         <td class="testresultcell px-100"
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
-            v-b-tooltip.hover :title="make_tooltip(source, category_name)"
+            v-b-tooltip.hover="{ customClass: 'my-tooltip-class', html: true }" :title="make_tooltip(source, category_name)"
           >
           <span :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
             <template v-if="category_comparison(category_name, source)">
@@ -47,7 +47,7 @@
         <td class="testresultcell px-56"
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
-            v-b-tooltip.hover :title="make_tooltip(source, category_name)"
+            v-b-tooltip.hover="{ customClass: 'my-tooltip-class', html: true }" :title="make_tooltip(source, category_name)"
         >
 
           <span :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
@@ -273,7 +273,26 @@ export default {
         return ''
       if (!url.endpoints[0].ratings_by_type[category_name]['since'])
         return ''
-      return `${this.$t(category_name)}: ${this.$t('results.' + url.endpoints[0].ratings_by_type[category_name]['test_result'])}, since: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
+
+      let evidence = url.endpoints[0].ratings_by_type[category_name]['evidence']
+      let displayed_evidence = ''
+      console.log(`evidence: ${evidence}`)
+      console.log(evidence.charAt(0))
+      if (evidence.charAt(0) === '{' && evidence !== '{}') {
+        console.log("Parsing evidence")
+        displayed_evidence = JSON.stringify(JSON.parse(evidence), null, 2);
+      }
+
+      console.log(`displayed evidence: ${displayed_evidence}`)
+
+      let data = `${this.$t(category_name)}:
+          ${this.$t('results.' + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
+          ${this.$t('since')}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
+
+      if (displayed_evidence) {
+        data += `<br>${this.$t('evidence')}:<br> <pre>${displayed_evidence}</pre>`
+      }
+      return data;
     },
 
 
@@ -325,6 +344,8 @@ export default {
   "en": {
     "link_to_report": "View score and report from %{url} on internet.nl.",
     "not_eligeble_for_scanning": "Domain did not match scanning criteria at the time the scan was initiated. The scanning criteria are an SOA DNS record (not NXERROR) for mail and an A or AAAA DNS record for web. This domain is ignored in all statistics.",
+    "since": "Since",
+    "evidence": "Measurement",
     "results": {
       "not_applicable": "Not applicable",
       "not_testable": "Not testable",
@@ -347,6 +368,8 @@ export default {
   "nl": {
     "link_to_report": "Bekijk de score en rapportage van %{url} op internet.nl.",
     "not_eligeble_for_scanning": "Dit domein voldeed niet aan de scan-criteria op het moment van scannen. Deze criteria zijn een SOA DNS record (geen NXERROR) voor mail en een A of AAAA DNS record voor web. Dit domein komt niet terug in de statistieken.",
+    "since": "Sinds",
+    "evidence": "Meetgegevens",
     "results": {
       "not_applicable": "Niet van toepassing",
       "not_testable": "Niet testbaar",
@@ -370,6 +393,15 @@ export default {
 </i18n>
 
 <style scoped>
+.my-tooltip-class::v-deep .tooltip-inner {
+  min-width: 400px !important;
+  width: 400px !important;
+  text-align: left;
+}
+
+.my-tooltip-class::v-deep .tooltip-inner pre {
+  color: var(--light);
+}
 
 .logo_image {
   height: 16px;

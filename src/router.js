@@ -65,8 +65,8 @@ const routes = [
     {path: '/published/:account/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report'},
     {path: '/published/:account/:list_id/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_and_list'},
     {path: '/latest/:list_id/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list'},
-    {path: '/latest/:list_id/web/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list'},
-    {path: '/latest/:list_id/mail/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list'},
+    {path: '/latest/:list_id/web/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list_web'},
+    {path: '/latest/:list_id/mail/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list_mail'},
 
     {path: '/switch-account', component: SwitchAccount, meta: {title: 'Internet.nl Dashboard / Switch Account'}},
     {path: '/add-user', component: InstantAddAccount, meta: {title: 'Internet.nl Dashboard / Add User'}},

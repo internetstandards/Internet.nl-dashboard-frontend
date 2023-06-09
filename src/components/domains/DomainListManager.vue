@@ -38,7 +38,11 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
             <p>
                 <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
                 &nbsp;
-                <router-link tag="button" to="/domains/upload">📓 {{ $t("bulk_upload_link") }}</router-link>
+                <router-link to="/domains/upload" custom v-slot="{ navigate }">
+                  <button  @click="navigate" @keypress.enter="navigate">
+                  📓 {{ $t("bulk_upload_link") }}
+                  </button>
+                </router-link>
             </p>
 
             <collapse-panel :title='$t("icon_legend.title")'>
