@@ -280,7 +280,8 @@ export default {
         displayed_evidence = JSON.stringify(JSON.parse(evidence), null, 2);
       }
 
-      let data = `${this.$t(category_name)}:
+      let data = `${url.url}<br>
+          ${this.$t(category_name)}:
           ${this.$t('results.' + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
           ${this.$t('since')}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
 
