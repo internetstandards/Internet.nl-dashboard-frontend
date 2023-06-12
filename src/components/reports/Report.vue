@@ -65,6 +65,9 @@
         <b-tab title="Grafieken" lazy>
           <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
         </b-tab>
+        <b-tab title="Veranderingen" lazy>
+          <ReportImprovementAndRegressions :report_id="reports[0].id"/>
+        </b-tab>
 
 
       </b-tabs>
@@ -85,9 +88,11 @@ import ReportDownload from '@/components/reports/ReportDownload'
 import ReportSelection from "@/components/reports/ReportSelection";
 import {mapState} from 'vuex'
 import SharingConfiguration from '@/components/reports/SharingConfiguration'
+import ReportImprovementAndRegressions from "@/components/reports/ReportImprovementAndRegressions";
 
 export default {
   components: {
+    ReportImprovementAndRegressions,
     ReportSelection,
     ReportCharts,
 
