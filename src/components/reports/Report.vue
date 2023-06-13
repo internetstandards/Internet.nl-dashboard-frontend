@@ -26,9 +26,9 @@
         <report-header :reports="reports"/>
       </content-block>
 
-      <b-tabs>
+      <b-tabs variant="info" nav-class="">
 
-        <b-tab title="Tabel meetresultaten" lazy>
+        <b-tab  :title="$t('tab_metrics')" lazy>
 
 
           <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
@@ -62,10 +62,10 @@
         </b-tab>
 
 
-        <b-tab title="Grafieken" lazy>
+        <b-tab :title="$t('tab_graphs')" lazy>
           <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
         </b-tab>
-        <b-tab title="Veranderingen" lazy>
+        <b-tab :title="$t('tab_changes')" lazy>
           <ReportImprovementAndRegressions :report_id="reports[0].id"/>
         </b-tab>
 
@@ -114,9 +114,9 @@ export default {
   mounted() {
     this.load_visible_metrics();
     // only do this when there is no report selection component, otherwise let that component handle it...
-    //let router_params = this.$router.history.current.params;
+    let router_params = this.$router.history.current.params;
     // the route to this component can determine what is shown
-    //this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
+    this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
   },
   methods: {
     apply_tags() {
@@ -156,12 +156,18 @@ export default {
   "en": {
     "settings": "Select visible metrics",
     "title": "Reports",
-    "intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown."
+    "intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",
+    "tab_metrics": "Metrics table",
+    "tab_graphs": "Graphs",
+    "tab_changes": "Changes"
   },
   "nl": {
     "settings": "Selecteer zichtbare meetwaarden",
     "title": "Rapporten",
-    "intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar."
+    "intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar.",
+    "tab_metrics": "Meetwaardentabel",
+    "tab_graphs": "Grafieken",
+    "tab_changes": "Veranderingen"
   }
 }
 </i18n>

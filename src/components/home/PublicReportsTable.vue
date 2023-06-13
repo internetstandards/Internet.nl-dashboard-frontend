@@ -24,7 +24,7 @@
       <a :href="`#/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow" style="white-space: nowrap;">
         <span class="text-info">
           <donut class="float-left w-50" :data="{'score': data.value, 'rest': 100-data.value}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='50' :elements="['donut']" />
-          {{data.value}}%</span>
+          99.99%</span>
       </a>
     </template>
 
@@ -68,11 +68,11 @@ export default {
       sortDesc: true,
 
       currentPage: 0,
-      perPage: 6,
+      perPage: 24,
 
 
       fields: [
-        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'), tdClass: 'col-2'},
+        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'), tdClass: 'col-3'},
         {key: "urllist__name", sortable: false, label: this.$t('Name'), tdClass: 'col-6'},
         {key: "at_when", sortable: true, label: this.$t('Published'), tdClass: 'col-3'},
       ]

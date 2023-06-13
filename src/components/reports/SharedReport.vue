@@ -32,7 +32,7 @@
 
         <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
         <content-block v-if="reports.length < 3" class="start-on-new-page">
-          <ReportTable :load_comparison_with_current="false" :reports="reports"/>
+          <ReportTableVirtualList :reports="reports" :load_comparison_with_current="false"/>
         </content-block>
       </template>
     </div>
@@ -43,16 +43,16 @@
 <script>
 import ReportCharts from './ReportCharts'
 import ReportPasswords from './ReportPasswords'
-import ReportTable from './ReportTable'
 import report_mixin from './report_mixin'
 import report_mixin_2 from './report_mixin_2'
 import ReportHeader from './ReportHeader'
+import ReportTableVirtualList from "@/components/reports/ReportTableVirtualList";
 
 
 export default {
   components: {
+    ReportTableVirtualList,
     ReportCharts,
-    ReportTable,
     ReportPasswords,
     ReportHeader,
   },
