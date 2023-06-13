@@ -43,7 +43,6 @@
 <script>
 import ReportCharts from './ReportCharts'
 import ReportPasswords from './ReportPasswords'
-import ReportTable from './ReportTable'
 import report_mixin from './report_mixin'
 import report_mixin_2 from './report_mixin_2'
 import ReportHeader from './ReportHeader'
@@ -54,7 +53,6 @@ export default {
   components: {
     ReportTableVirtualList,
     ReportCharts,
-    ReportTable,
     ReportPasswords,
     ReportHeader,
   },
