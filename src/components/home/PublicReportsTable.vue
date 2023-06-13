@@ -24,7 +24,7 @@
       <a :href="`#/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow" style="white-space: nowrap;">
         <span class="text-info">
           <donut class="float-left w-50" :data="{'score': data.value, 'rest': 100-data.value}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='50' :elements="['donut']" />
-          99.99%</span>
+          {{data.value}}%</span>
       </a>
     </template>
 
