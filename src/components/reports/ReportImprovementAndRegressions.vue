@@ -1,6 +1,6 @@
 <template>
   <content-block>
-  <h2>{{$t('changes')}}</h2>
+  <h2>{{$t('title')}}</h2>
   <div v-if="!comparison.previous_report_available">
     <loading :loading="loading"/>
     {{$t('no_changes')}}
