@@ -77,6 +77,17 @@ h3 {
 </template>
 
 <script>
+import {
+  Chart,
+  DoughnutController,
+  ArcElement,
+  Tooltip,
+} from 'chart.js';
+
+Chart.register(DoughnutController, ArcElement,  Tooltip);
+
+
+
 import donutChart from './../charts/donutChart'
 // import DownloadData from './../charts/DownloadData'
 import field_translations from '../FieldTranslations'
