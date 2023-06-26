@@ -37,8 +37,8 @@
 Note that chrome has issues making thead and tr sticky. Therefore it is applied to td and th (because...). */
 #report-template .sticky-table-container {
   max-height: 80vh;
-  overflow-x: scroll;
-  overflow-y: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 /* Make the header stay up with a white background. */
