@@ -120,7 +120,7 @@ export default {
 {
   "en": {
     "Scanning done, click to reload domain list": "Scanning done, click to reload domain list",
-    "Find 'www.' subdomains": "Add subsubdomains",
+    "Find 'www.' subdomains": "Add www. subsubdomains",
     ", last scan finished ": ", last index finished ",
     "... finding 'www.' subdomains ": "... finding subdomains ",
     "requested": "requested",
@@ -130,7 +130,7 @@ export default {
   },
   "nl": {
     "Scanning done, click to reload domain list": "Klaar met zoeken, klik om de domeinlijst te herladen",
-    "Find 'www.' subdomains": "Voeg subdomeinen toe",
+    "Find 'www.' subdomains": "Voeg www. subdomeinen toe",
     ", last scan finished ":  ", laatste keer was ",
     "... finding 'www.' subdomains ": "... zoekt subdomeinen ",
     "requested": "aangevraagd",
