@@ -23,7 +23,7 @@
     <template #cell(average_internet_nl_score)="data">
       <a :href="`#/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow" style="white-space: nowrap;">
         <span class="text-info">
-          <donut class="float-left w-50" :data="{'score': data.value, 'rest': 100-data.value}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='50' :elements="['donut']" />
+          <donut class="float-left w-50" :data="{'score': data.value, 'rest': 100-data.value}" :show_number_in_center="false" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='200' :elements="['donut']" />
           {{data.value}}%</span>
       </a>
     </template>
