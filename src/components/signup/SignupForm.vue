@@ -96,6 +96,8 @@
           <b-form-radio value="non-profit">{{$t('nature_non_profit')}}</b-form-radio>
           <b-form-radio value="dutch-cloud-community">{{$t('nature_dutch_cloud_community')}} (<a href="https://dutchcloudcommunity.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
           <b-form-radio value="vereniging-van-registrars">{{$t('nature_registrar_community')}} (<a href="https://www.verenigingvanregistrars.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
+          <b-form-radio value="vital_infrastructure">{{$t('nature_vital_infrastructure')}}</b-form-radio>
+          <b-form-radio value="other">{{$t('nature_other')}}</b-form-radio>
         </b-form-radio-group>
       </b-form-group>
 
@@ -265,6 +267,8 @@ export default {
     "nature_for_profit": "For profit",
     "nature_dutch_cloud_community": "member of Dutch Cloud Community",
     "nature_registrar_community": "member of Vereniging van Registrars",
+    "nature_vital_infrastructure": "Vital infrastructure",
+    "nature_other": "Other",
     "chamber_of_commerce_number": "Chamber of commerce number",
     "chamber_of_commerce_number_placeholder": "",
     "reason_for_application": "Reason for applying",
@@ -303,6 +307,8 @@ export default {
     "nature_for_profit": "For profit",
     "nature_dutch_cloud_community": "Lid van Dutch Cloud Community",
     "nature_registrar_community": "Lid van Vereniging van Registrars",
+    "nature_vital_infrastructure": "Vitale infrastructuur",
+    "nature_other": "Overig",
     "chamber_of_commerce_number": "Kamer van koophandel nummer",
     "chamber_of_commerce_number_placeholder": "",
     "reason_for_application": "Reden om toegang aan te vragen",
