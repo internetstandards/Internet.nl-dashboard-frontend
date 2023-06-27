@@ -27,10 +27,10 @@
   font-size: 2em;
 }
 .nice-label-3 {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 .nice-label-4 {
-  font-size: 4em;
+  font-size: 2em;
 }
 
 .pct_ok {
@@ -65,7 +65,7 @@
 <template>
   <div class="relative">
     <DoughnutChart :chartData="testData" :height="height" :options="options"></DoughnutChart>
-    <div class="absolute-center text-center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{round_one_decimal(donut_data[axis[0]])}}%</span></div>
+    <div class="absolute-center text-center" v-if="show_number_in_center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{round_one_decimal(donut_data[axis[0]])}}%</span></div>
   </div>
 </template>
 
@@ -85,6 +85,7 @@ export default defineComponent({
     height: {type: Number, required: false, default: 300},
     datalabels: {type: Boolean, required: false, default: true},
     tooltip: {type: Boolean, required: false, default: true},
+    show_number_in_center: {type: Boolean, required: false, default: true},
     axis: {
       type: Array, required: false, default: () => {
         return ['pct_ok', 'pct_high', 'pct_medium', 'pct_low']

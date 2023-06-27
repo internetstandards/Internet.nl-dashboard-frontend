@@ -9,7 +9,7 @@
         <b-col
             v-for="item in visible_fields_from_scan_form(scan_methods[report.report_type === 'mail' ? 1 : 0])"
             :key="item">
-          <donut :height='200'
+          <donut :height='400'
                  :tooltip="false"
                  :data="report['calculation']['statistics_per_issue_type'][item]"
                  :elements="['donut', 'subtitle']"

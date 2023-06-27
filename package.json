@@ -14,8 +14,7 @@
     "@ungap/structured-clone": "github:ungap/structured-clone",
     "@vue/composition-api": "^1.0.5",
     "axios": "^0.21.1",
-    "bootstrap": "^4.5.3",
-    "bootstrap-vue": "^2.18.1",
+    "bootstrap-vue": "^2.23.1",
     "chart.js": "^3.5.0",
     "chartjs-adapter-date-fns": "^2.0.0",
     "chartjs-plugin-datalabels": "^2.0.0",
@@ -25,7 +24,6 @@
     "headroom.js": "^0.12.0",
     "matomo-tracker": "^2.2.4",
     "portal-vue": "^2.1.7",
-    "vue": "^2.6.12",
     "vue-chart-3": "^0.5.7",
     "vue-cool-lightbox": "^2.7.4",
     "vue-i18n": "^8.22.1",
@@ -47,7 +45,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "2.6.14"
   },
   "eslintConfig": {
     "root": true,

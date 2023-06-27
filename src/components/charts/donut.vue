@@ -41,6 +41,7 @@ h3 {
           :datalabels="datalabels"
           :tooltip="tooltip"
           :height="height"
+          :show_number_in_center="show_number_in_center"
           @graph-data-updated="graph_data_to_table"
       >
       </donutChart>
@@ -55,6 +56,7 @@ h3 {
               :datalabels="datalabels"
               :tooltip="tooltip"
               :height="height"
+              :show_number_in_center="show_number_in_center"
               @graph-data-updated="graph_data_to_table"
           >
           </donutChart>
@@ -105,6 +107,7 @@ export default {
     datalabels: {type: Boolean, required: false, default: true},
     tooltip: {type: Boolean, required: false, default: true},
     height: {type: Number, required: false, default: 300},
+    show_number_in_center: {type: Boolean, required: false, default: true},
     elements: {
       type: Array, required: false, default: () => {
         return ['donut', 'table', 'title']
