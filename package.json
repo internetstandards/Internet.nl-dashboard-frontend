@@ -24,7 +24,7 @@
     "headroom.js": "^0.12.0",
     "matomo-tracker": "^2.2.4",
     "portal-vue": "^2.1.7",
-    "vue-chart-3": "^0.5.7",
+    "vue-chart-3": "^3.1.8",
     "vue-cool-lightbox": "^2.7.4",
     "vue-i18n": "^8.22.1",
     "vue-matomo": "^4.1.0",
