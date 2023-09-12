@@ -44,3 +44,9 @@ make push_image
 ## Step 2: on the server run the update
 /usr/local/bin/dashboard-frontend-update
 
+
+# issues:
+
+## ERR_OSSL_EVP_UNSUPPORTED
+`export NODE_OPTIONS=--openssl-legacy-provider`
+https://stackoverflow.com/questions/69394632/webpack-build-failing-with-err-ossl-evp-unsupported

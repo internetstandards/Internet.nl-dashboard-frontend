@@ -167,7 +167,7 @@ export default {
       });
     },
     remove_share_code() {
-      this.public_share_code = "";
+      this.report.public_share_code = "";
       return this.update_share_code();
     },
     update_report_code() {
