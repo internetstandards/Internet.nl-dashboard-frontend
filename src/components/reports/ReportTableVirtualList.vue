@@ -352,7 +352,7 @@ div.rotate > span {
       <div id=""></div>
 
 
-        <div v-if="filtered_urls.length > 0" class="virtualList">
+        <div class="virtualList">
           <virtual-list style="height: 70vh; overflow-y: auto; width: 100%"
             :data-key="'url'"
             :data-sources="filtered_urls"
