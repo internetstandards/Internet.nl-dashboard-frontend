@@ -274,7 +274,12 @@ export default {
       if (!url.endpoints[0].ratings_by_type[category_name]['since'])
         return ''
 
-      let evidence = url.endpoints[0].ratings_by_type[category_name]['evidence']
+      // evidence is in new reports since sept 2023.
+      let evidence = ''
+      if ('key' in url.endpoints[0].ratings_by_type[category_name]) {
+         evidence = url.endpoints[0].ratings_by_type[category_name]['evidence']
+      }
+
       let displayed_evidence = ''
       if (evidence.charAt(0) === '{' && evidence !== '{}') {
         displayed_evidence = JSON.stringify(JSON.parse(evidence), null, 2);
