@@ -10,6 +10,14 @@
 
     <content-block>
       <h1>{{ $t("title") }}</h1>
+      <p>{{ $t("new_login_info") }}</p>
+      <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
+    </content-block>
+
+    <!-- https://github.com/internetstandards/Internet.nl-dashboard/issues/352 This page is a fallback for people
+    that have the login page bookmarked. They are still pointed to the right place to log in. -->
+    <content-block v-if="false">
+      <h1>{{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
       <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
 
@@ -114,7 +122,8 @@ export default {
     "logged_in": "You have successfully logged in.",
     "logged_out": "You have successfully logged out.",
     "secondfactor_message": "If second factor authentication is enabled, use this alternate login link",
-    "second_factor_login_required": "Second factor authentication is enabled for this user, please use the alternative login form linked on this page."
+    "second_factor_login_required": "Second factor authentication is enabled for this user, please use the alternative login form linked on this page.",
+    "new_login_info": "Please use the following link to log into the dashboard:"
   },
   "nl": {
     "title": "Inloggen",
@@ -129,7 +138,8 @@ export default {
     "logged_in": "Succesvol ingelogd.",
     "logged_out": "Succesvol uitgelogd.",
     "secondfactor_message": "Als tweetrapsverificatie is ingeschakeld, gebruik dan de alternatieve inlogpagina op de volgende link",
-    "second_factor_login_required": "Tweetrapsverificatie is ingeschakeld, gebruik de alternatieve inlogpagina die op deze pagina staat aangegeven."
+    "second_factor_login_required": "Tweetrapsverificatie is ingeschakeld, gebruik de alternatieve inlogpagina die op deze pagina staat aangegeven.",
+    "new_login_info": "Gebruik de volgende pagina om in te loggen op het dashboard:"
   }
 }
 

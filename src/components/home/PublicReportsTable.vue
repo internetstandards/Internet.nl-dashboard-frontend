@@ -72,9 +72,11 @@ export default {
 
 
       fields: [
-        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'), tdClass: 'col-3'},
-        {key: "urllist__name", sortable: false, label: this.$t('Name'), tdClass: 'col-6'},
-        {key: "at_when", sortable: true, label: this.$t('Published'), tdClass: 'col-3'},
+        // tdClass: 'col-3', makes all cells 100% width which does not work in safari, therefore tdStyle is used as
+        // a workaround
+        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'),  tdStyle: "width: 25%"},
+        {key: "urllist__name", sortable: false, label: this.$t('Name'),  tdStyle: "width: 50%"},
+        {key: "at_when", sortable: true, label: this.$t('Published'), tdStyle: "width: 25%"},
       ]
     }
   },

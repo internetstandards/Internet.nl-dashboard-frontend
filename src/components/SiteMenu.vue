@@ -212,7 +212,7 @@ li a {
           <template v-if="!is_authenticated">
             <b-nav-item to="/tour" accesskey="t" exact exact-active-class="active"><b-icon icon="info-circle" /> {{ $t("tour") }}</b-nav-item>
             <b-nav-item to="/signup" accesskey="t" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
-            <b-nav-item to="/login" accesskey="l" exact exact-active-class="active"><b-icon icon="box-arrow-in-right" /> {{ $t("log_in") }}</b-nav-item>
+            <b-nav-item :href="$baseUrl + '/account/login/'" accesskey="l" exact exact-active-class="active"><b-icon icon="box-arrow-in-right" /> {{ $t("log_in") }}</b-nav-item>
           </template>
         </b-navbar-nav>
         </td></tr></table>
