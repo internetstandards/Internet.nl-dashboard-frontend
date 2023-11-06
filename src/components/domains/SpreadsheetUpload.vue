@@ -76,17 +76,6 @@
                         <a href="/static_frontend/sample_spreadsheets/microsoft_office_spreadsheet_with_example_data.xlsx">Example.xlsx</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        {{ $t("upload.comma_separated") }}
-                    </td>
-                    <td>
-                        <a href="/static_frontend/sample_spreadsheets/text_spreadsheet_empty.csv">Empty.csv</a>
-                    </td>
-                    <td>
-                        <a href="/static_frontend/sample_spreadsheets/text_spreadsheet_with_example_data.csv">Example.csv</a>
-                    </td>
-                </tr>
             </table>
         </content-block>
         <content-block>
