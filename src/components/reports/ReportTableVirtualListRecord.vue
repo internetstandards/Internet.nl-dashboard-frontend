@@ -22,7 +22,7 @@
             <img :src='`/static_frontend/images/report_comparison_${score_comparison(source)}.png`'
                  v-if="score_comparison(source)" />
           </span>
-          <span class="visuallyhidden"> {{ $t('link_to_report', {'url': source}) }}</span>
+          <span class="visuallyhidden"> {{ $t('link_to_report', {'url': source.url}) }}</span>
         </a>
       </td>
       <td class="px-225"><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
