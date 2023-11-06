@@ -4,7 +4,7 @@
       <td>
         -
       </td>
-      <td><div style="width: 200px; overflow-x: scroll">{{ source.url }}</div></td>
+      <td><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
       <td colspan="200">
         <small>{{ $t('not_eligeble_for_scanning') }}</small>
       </td>
@@ -25,7 +25,7 @@
           <span class="visuallyhidden"> {{ $t('link_to_report', {'url': source}) }}</span>
         </a>
       </td>
-      <td class="px-225"><div style="width: 200px; overflow-x: scroll">{{ source.url }}</div></td>
+      <td class="px-225"><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
       <template v-if="['web', 'mail'].includes(selected_category)">
         <!-- do this only onhover, not prepared: v-b-tooltip.hover :title="make_tooltip(source, category_name)" -->
         <td class="testresultcell px-100"
