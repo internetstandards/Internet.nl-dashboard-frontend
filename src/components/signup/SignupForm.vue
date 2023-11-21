@@ -85,7 +85,7 @@
       </b-form-group>
 
       <div class="mb-2" style="font-weight: bold">{{ $t('nature_of_organization')}}:</div>
-      <b-form-group id="input-group-nature-of-organization" v-slot="{ ariaDescribedby }">
+      <b-form-group id="input-group-nature-of-organization" v-slot="{ ariaDescribedby }" :legend="$t('nature_of_organization')">
         <b-form-radio-group
           v-model="form.nature_of_organization"
           :label="$t('nature_of_organization')"

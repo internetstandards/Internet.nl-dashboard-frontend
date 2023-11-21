@@ -64,7 +64,15 @@
 </style>
 <template>
   <div class="relative">
-    <DoughnutChart :chartData="testData" :height="height" :options="options"></DoughnutChart>
+    <DoughnutChart aria-hidden="true"
+        :chartData="testData" :height="height" :options="options"
+        :aria-label="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
+        :aria-text="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
+        :aria-description="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
+        :aria-value="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
+        :alt="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
+        :title="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
+    ></DoughnutChart>
     <div class="absolute-center text-center" v-if="show_number_in_center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{round_one_decimal(donut_data[axis[0]])}}%</span></div>
   </div>
 </template>
@@ -145,7 +153,8 @@ export default defineComponent({
     })
 
     const options = computed(() => ({
-
+      // there are no interactions on a donut, so remove the links / animation as it confuses screen readers
+      events: null,
       plugins: {
 
         datalabels: {

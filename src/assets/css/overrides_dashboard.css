@@ -146,3 +146,18 @@ label {
 button:focus  {
     text-decoration: underline;
 }
+
+/* Accessibility improvements */
+.nav-link, .alert-light {
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+#content a {
+    color: #037584;
+}
+
+.skiplink a {
+    color: black !important;
+    font-weight: bold;
+    background-color: white !important;
+}

@@ -4,13 +4,12 @@
 </style>
 <template>
   <div v-if="reports.length > 0">
- <h3>{{$t('Recently published reports')}}</h3>
-  <p>{{$t('introduction')}}</p>
-
-
-    <PublicReportsTable :reports="reports" />
-
-    </div>
+    <content-block>
+      <h3>{{ $t('Recently published reports') }}</h3>
+      <p>{{ $t('introduction') }}</p>
+      <PublicReportsTable :reports="reports"/>
+    </content-block>
+  </div>
 </template>
 
 <script>

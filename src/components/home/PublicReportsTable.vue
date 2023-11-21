@@ -21,11 +21,12 @@
     </template>
 
     <template #cell(average_internet_nl_score)="data">
-      <a :href="`#/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow" style="white-space: nowrap;">
-        <span class="text-info">
+
+        <div class="text-dark">
           <donut class="float-left w-50" :data="{'score': data.value, 'rest': 100-data.value}" :show_number_in_center="false" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='200' :elements="['donut']" />
-          {{data.value}}%</span>
-      </a>
+          <span>{{data.value}}%</span>
+        </div>
+
     </template>
 
     <template #cell(urllist__name)="data">
@@ -42,7 +43,7 @@
     </div>
 </template>
 <style scoped>
-.text-info {
+.text-dark {
   font-size: 2em;
 
 }
@@ -74,8 +75,8 @@ export default {
       fields: [
         // tdClass: 'col-3', makes all cells 100% width which does not work in safari, therefore tdStyle is used as
         // a workaround
-        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'),  tdStyle: "width: 25%"},
-        {key: "urllist__name", sortable: false, label: this.$t('Name'),  tdStyle: "width: 50%"},
+        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'),  tdStyle: "width: 25%;"},
+        {key: "urllist__name", sortable: true, label: this.$t('Name'),  tdStyle: "width: 50%"},
         {key: "at_when", sortable: true, label: this.$t('Published'), tdStyle: "width: 25%"},
       ]
     }

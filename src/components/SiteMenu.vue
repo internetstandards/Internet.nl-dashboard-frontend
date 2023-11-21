@@ -141,7 +141,7 @@ li a {
 
 </style>
 <template>
-  <b-navbar toggleable="md">
+  <b-navbar toggleable="md" id="sitenav">
     <b-container class="max_container_width">
       <b-navbar-brand to="domains">
         <p id="site-title"><a><span class="hidden">{{ $t('sitetitle') }}</span></a></p>

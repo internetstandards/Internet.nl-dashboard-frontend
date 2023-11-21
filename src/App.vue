@@ -35,6 +35,12 @@
           <li><a class="footlink" href="https://www.internet.nl/copyright/">{{ $t('base.copyright') }}</a></li>
           <li class="follow-us"><a class="footlink twitterfollow"
                                    href="https://twitter.com/internet_nl">{{ $t('base.followtwitter') }}</a></li>
+          <li class="follow-us"><a class="footlink linkedinfollow"
+                                   href="https://twitter.com/internet_nl">{{ $t('base.followlinkedin') }}</a></li>
+          <li class="follow-us"><a class="footlink mastodonfollow"
+                                   href="https://twitter.com/internet_nl">{{ $t('base.followmastodon') }}</a></li>
+
+
         </ul>
       </div>
     </footer>
@@ -96,14 +102,26 @@ export default {
   background-size: 1.25em 1.25em !important;
   padding-left: 2em !important;
 }
+.linkedinfollow {
+  background: transparent url("/static_frontend/images/vendor/internet_nl/icon-twitterfollow.png") no-repeat 5px center !important;
+  background-size: 1.25em 1.25em !important;
+  padding-left: 2em !important;
+}
+.mastodonfollow {
+  background: transparent url("/static_frontend/images/vendor/internet_nl/icon-mastodonfollow-small.png") no-repeat 5px center !important;
+  background-size: 1.25em 1.25em !important;
+  padding-left: 2em !important;
+}
 </style>
 <i18n>
 {
   "en": {
     "base": {
       "copyright": "Copyright",
-      "disclosure": "Responsible disclosure",
-      "followtwitter": "Follow us on Twitter",
+      "disclosure": "Report vulnerability",
+      "followlinkedin": "LinkedIn",
+      "followmastodon": "Mastodon",
+      "followtwitter": "X",
       "info": "Internet.nl is an initiative of the Internet community and the Dutch government.",
       "privacy": "Privacy statement"
     },
@@ -115,9 +133,11 @@ export default {
   },
   "nl": {
     "base": {
-      "copyright": "Copyright",
-      "disclosure": "Responsible disclosure",
-      "followtwitter": "Volg ons op Twitter",
+      "copyright": "Auteursrecht",
+      "disclosure": "Kwetsbaarheid melden",
+      "followlinkedin": "LinkedIn",
+      "followmastodon": "Mastodon",
+      "followtwitter": "X",
       "info": "Internet.nl is een initiatief van de internetgemeenschap en de Nederlandse overheid.",
       "privacy": "Privacyverklaring"
     },

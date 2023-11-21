@@ -1,21 +1,21 @@
 <template>
   <b-row>
     <b-col class="w-100 text-center">
-      <dashboard-icon icon="card-list" :stackscale="6" class="mb-2"/>
+      <dashboard-icon icon="card-list" :stackscale="6" class="mb-2" :aria-label="$t('icon-list')"/>
       <h2>{{ $t('domains') }}</h2>
       <p>{{ $t('domains_text_1') }}</p>
       <p>{{ $t('domains_text_2') }}</p>
 
     </b-col>
     <b-col class="w-100 text-center">
-      <dashboard-icon icon="search" :stackscale="6" class="mb-2"/>
+      <dashboard-icon icon="search" :stackscale="6" class="mb-2" :aria-label="$t('icon-search')"/>
       <br>
       <h2>{{ $t('scan') }}</h2>
       <p>{{ $t('scan_text_1') }}</p>
       <p>{{ $t('scan_text_2') }}</p>
     </b-col>
     <b-col class="w-100 text-center">
-      <dashboard-icon icon="file-bar-graph" :stackscale="6" class="mb-2"/>
+      <dashboard-icon icon="file-bar-graph" :stackscale="6" class="mb-2" :aria-label="$t('icon-bar-chart')"/>
       <br>
       <h2>{{ $t('report') }}</h2>
       <p>{{ $t('report_text_1') }}</p>
@@ -42,7 +42,10 @@ export default {
     "scan_text_2": "Receive mails with reports when scans are finished.",
     "report": "Report",
     "report_text_1": "Browse extensive reports with graphs and metrics per category.",
-    "report_text_2": "Publish a report online or via a spreadsheet."
+    "report_text_2": "Publish a report online or via a spreadsheet.",
+    "icon-list": "Icon depicting a bulleted list",
+    "icon-search": "Magnifying glass icon",
+    "icon-bar-chart": "Bar chart icon"
   },
   "nl": {
     "domains": "Beheer domeinen",
@@ -53,7 +56,10 @@ export default {
     "scan_text_2": "Ontvang een mail wanneer het rapport klaar staat, met rapportage.",
     "report": "Rapporteer",
     "report_text_1": "Bekijk een uitgebreide rapportage met grafieken en gegevens per categorie.",
-    "report_text_2": "Publiceer het rapport online of via een spreadsheet."
+    "report_text_2": "Publiceer het rapport online of via een spreadsheet.",
+    "icon-list": "Icoon met ongenummerde lijst",
+    "icon-search": "Vergrootglas",
+    "icon-bar-chart": "Staafdiagram"
   }
 }
 </i18n>
