@@ -76,7 +76,7 @@
     font-size: 80%;
 }
 
-.language-switch-list li a:hover, header .language-switch-list li a:active, header .language-switch-list li a:focus {
+.language-switch-list li a, .language-switch-list li a:hover, header .language-switch-list li a:active, header .language-switch-list li a:focus {
     text-decoration: underline
 }
 
@@ -211,13 +211,11 @@ li a {
           </template>
           <template v-if="!is_authenticated">
             <b-nav-item to="/tour" accesskey="t" exact exact-active-class="active"><b-icon icon="info-circle" /> {{ $t("tour") }}</b-nav-item>
-            <b-nav-item to="/signup" accesskey="t" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
+            <b-nav-item to="/signup" accesskey="u" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
             <b-nav-item :href="$baseUrl + '/account/login/'" accesskey="l" exact exact-active-class="active"><b-icon icon="box-arrow-in-right" /> {{ $t("log_in") }}</b-nav-item>
           </template>
         </b-navbar-nav>
         </td></tr></table>
-
-
 
       </b-collapse>
     </b-container>

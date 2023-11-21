@@ -461,7 +461,7 @@ aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, asid
     background-image: url("/static/icon-arrow-right-white.svg"), none
 }
 
-.read-more a:hover, .read-more a:focus, .read-more a:active {
+.read-more a, .read-more a:hover, .read-more a:focus, .read-more a:active {
     text-decoration: underline
 }
 
@@ -850,7 +850,7 @@ footer ul li a {
     text-decoration: none
 }
 
-footer ul li a:hover, footer ul li a:active, footer ul li a:focus {
+footer ul li a, footer ul li a:hover, footer ul li a:active, footer ul li a:focus {
     text-decoration: underline
 }
 

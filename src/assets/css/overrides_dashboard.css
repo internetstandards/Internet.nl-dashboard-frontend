@@ -143,7 +143,7 @@ label {
     outline: none
 }
 
-button:focus  {
+button  {
     text-decoration: underline;
 }
 
@@ -160,4 +160,8 @@ button:focus  {
     color: black !important;
     font-weight: bold;
     background-color: white !important;
+}
+
+a {
+    text-decoration: underline !important;
 }

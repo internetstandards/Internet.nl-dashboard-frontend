@@ -17,7 +17,7 @@
   font-weight: normal;
 }
 
-.panel-title:hover, button:focus {
+.panel-title, button {
   text-decoration: underline;
 }
 
