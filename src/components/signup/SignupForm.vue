@@ -168,7 +168,7 @@
           v-model="form.terms_of_use"
 
           :state="form.terms_of_use.includes('accepted')"
-          id="checkboxes-terms-of-use"
+
           :aria-describedby="ariaDescribedby"
         >
 

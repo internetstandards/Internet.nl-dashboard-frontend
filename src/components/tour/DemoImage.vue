@@ -5,7 +5,7 @@
         :index="index"
         @close="index = null">
     </CoolLightBox>
-    <a @click="index = 0" href="#" :aria-label="caption">
+    <a @click="index = 0" href="#">
       <figure>
         <b-img-lazy fluid rounded blank-color="#777"
                     :src="`/static_frontend/images/demo/${filename}.png`" :alt="caption"></b-img-lazy>
