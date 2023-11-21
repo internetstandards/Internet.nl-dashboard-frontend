@@ -349,7 +349,7 @@ div.rotate > span {
     </collapse-panel>
 
     <div class="start-on-new-page position-relative">
-      <div id=""></div>
+      <div id="report-table"></div>
 
 
         <div class="virtualList">
@@ -371,22 +371,22 @@ div.rotate > span {
             <div slot="header">
 
 
-              <table class="table table-striped" style="position: absolute">
+        <table class="table table-striped" style="position: absolute">
         <thead class="sticky_labels">
 
         <tr class="sticky_labels">
           <th class="sticky-header bg-white col-1" style="width: 100px; min-width: 100px;">
             <div class="rotate">
-              <span @click="sortBy('score')" class="arrow"
-                    :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></span>
-              <span @click="sortBy('score')">{{ $t("score") }}</span>
+              <a class="arrow"
+                    :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></a>
+              <a @click="sortBy('score')" href="javascript:;">{{ $t("score") }}</a>
             </div>
           </th>
           <th class="sticky-header bg-white" style="width: 200px; min-width: 200px;">
             <div class="rotate">
-              <div @click="sortBy('url')" class="arrow"
-                   :class="sortOrders['url'] === -1 ? 'dsc' : (sortOrders['url'] === 1 ? 'asc' : 'unknown')"></div>
-              <div @click="sortBy('url')" class="d-inline-block">{{ $t("domain") }}</div>
+              <a class="arrow"
+                   :class="sortOrders['url'] === -1 ? 'dsc' : (sortOrders['url'] === 1 ? 'asc' : 'unknown')"></a>
+              <a @click="sortBy('url')" class="d-inline-block" href="javascript:;">{{ $t("domain") }}</a>
             </div>
           </th>
 
@@ -396,9 +396,9 @@ div.rotate > span {
               <div class="header_top_category"
                    v-for="category in relevant_categories_based_on_settings" :key="category">
                 <div class="rotate">
-                  <span @click="sortBy(category)" class="arrow"
-                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></span>
-                  <span @click="sortBy(category)">{{ $t("" + category) }}</span>
+                  <a class="arrow"
+                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></a>
+                  <a @click="sortBy(category)" href="javascript:;">{{ $t("" + category) }}</a>
                 </div>
               </div>
 
@@ -408,13 +408,13 @@ div.rotate > span {
               <div class="header_sub_category"
                    v-for="category in relevant_categories_based_on_settings" :key="category">
                 <div class="rotate nowrap">
-                  <div @click="sortBy(category)" class="arrow"
-                       :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></div>
-                  <div @click="sortBy(category)" class="d-inline-block">
+                  <a class="arrow"
+                       :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></a>
+                  <a @click="sortBy(category)" class="d-inline-block" href="javascript:;">
                     {{ $t("" + category) }}
-                    <div class="small text-secondary pl-3 close_to_top"
+                    <div class="small text-secondary pl-3 close_to_top" href="#"
                         v-html="category_from_field_name(category)"></div>
-                  </div>
+                  </a>
                 </div>
               </div>
 

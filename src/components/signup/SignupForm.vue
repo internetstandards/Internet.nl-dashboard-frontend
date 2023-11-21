@@ -85,12 +85,12 @@
       </b-form-group>
 
       <div class="mb-2" style="font-weight: bold">{{ $t('nature_of_organization')}}:</div>
-      <b-form-group id="input-group-nature-of-organization" v-slot="{ ariaDescribedby }" :legend="$t('nature_of_organization')">
+      <b-form-group id="input-group-nature-of-organization" v-slot="{ ariaDescribedby }" :label="$t('nature_of_organization')">
         <b-form-radio-group
           v-model="form.nature_of_organization"
-          :label="$t('nature_of_organization')"
           id="radios-nature-of-organization"
           :aria-describedby="ariaDescribedby"
+          plain stacked
         >
           <b-form-radio value="government">{{$t('nature_government')}}</b-form-radio>
           <b-form-radio value="non-profit">{{$t('nature_non_profit')}}</b-form-radio>
@@ -163,10 +163,10 @@
       </b-form-group>
 
 
-      <b-form-group id="input-group-terms-of-use" v-slot="{ ariaDescribedby }">
+      <b-form-group id="input-group-terms-of-use" v-slot="{ ariaDescribedby }" :label="$t('terms_of_use')">
         <b-form-checkbox-group
           v-model="form.terms_of_use"
-          :label="$t('terms_of_use')"
+
           :state="form.terms_of_use.includes('accepted')"
           id="checkboxes-terms-of-use"
           :aria-describedby="ariaDescribedby"
@@ -179,7 +179,7 @@
           &nbsp;
         </b-form-invalid-feedback>
       </b-form-group>
-      <b-button type="submit" variant="info"><b>{{ $t('submit') }}</b></b-button>
+      <button type="submit" variant="info"><b>{{ $t('submit') }}</b></button>
     </b-form>
 
   </div>

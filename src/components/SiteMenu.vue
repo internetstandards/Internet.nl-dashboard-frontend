@@ -150,7 +150,7 @@ li a {
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
+      <b-collapse id="nav-collapse" is-nav >
 
         <!-- sorry for the table here, after hours of fiddling with css to get two ul's below each other i'm done and
          just use the worst option that works. -->

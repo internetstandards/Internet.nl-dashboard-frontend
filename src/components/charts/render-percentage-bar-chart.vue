@@ -12,6 +12,10 @@ import chart_mixin from './chart_mixin.vue'
 export default {
   mixins: [chart_mixin],
 
+  props: {
+    chartName: {type: String, required: false, default: ''},
+  },
+
   methods: {
     renderData: function () {
       this.configure_barchart();
@@ -81,11 +85,15 @@ export default {
             borderWidth: 0,
             lineTension: 0,
             hidden: shown_value === "pct_high",
-            label: `#${this.chart_data[i].id}: ${this.$i18n.t(shown_value)}`,
+            label: this.chart_data.length > 1 ? `#${this.chart_data[i].id}: ${this.$i18n.t(shown_value)}` : `${this.$i18n.t(shown_value)}`,
             // ${this.chart_data[i].calculation.name} ${moment(this.chart_data[i].at_when).format('LL')} n=${this.chart_data[i].total_urls}
           });
         });
       }
+      if (this.$store.state.rendered_chart_to_table === undefined) {
+        this.$store.state.rendered_chart_to_table = {}
+      }
+      this.$store.state.rendered_chart_to_table[this.chartName] = this.chart.data;
       this.chart.update();
     },
     renderTitle: function () {

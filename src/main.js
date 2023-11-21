@@ -117,6 +117,11 @@ const store = new Vuex.Store({
 
         // what tags are used to filter reports
         tags: [],
+
+        // tables for reports, rendered by chartjs, and then shown as table, not really nice but fastest to get this
+        rendered_chart_to_table: {
+            'overall': {}
+        }
     },
 
     mutations: {

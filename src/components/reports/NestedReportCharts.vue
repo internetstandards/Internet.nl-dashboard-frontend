@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
 .fixed_ratio {
-  height:500px; min-width: 950px;
+  min-width: 950px;
 }
 </style>
 <template>
@@ -9,13 +9,68 @@
     <template v-for="chart in charts_to_render">
       <div v-if="chart.level === 1" :key="chart.axis.join('.')">
         <div class="chart-container w-100 position-relative fixed_ratio">
-          <component :is="my_component" :chart_data="reports" :show_average="chart.average" :axis="chart.axis"/>
+          <!-- Do not show canvas chart element in accessibility, use the table below -->
+          <component :is="my_component" :chart_data="reports" :show_average="chart.average" :axis="chart.axis"
+                     chart-name="overall" aria-hidden="true"/>
+          <b-table-simple striped hover small responsive v-if="$store.state.rendered_chart_to_table['overall'] !== undefined">
+            <b-thead>
+              <b-tr>
+                <b-th>{{ $t('category') }}</b-th>
+                <b-th v-for="xAxis in $store.state.rendered_chart_to_table['overall']['datasets']" :key="xAxis.label">
+                  {{ $t(xAxis.label) }}
+                </b-th>
+              </b-tr>
+            </b-thead>
+            <b-tbody>
+
+              <b-tr v-for="(yAxis, yIndex) in $store.state.rendered_chart_to_table['overall']['labels']"
+                    :key="yAxis[0]">
+                <b-td style="width: 20%">
+                  {{ $t(yAxis[0]) }}
+                </b-td>
+                <b-td v-for="(value, index) in $store.state.rendered_chart_to_table['overall']['datasets']"
+                      :key="`${yIndex}${index}`">
+                  {{ value["data"][yIndex] }}%
+                </b-td>
+              </b-tr>
+            </b-tbody>
+          </b-table-simple>
+
         </div>
       </div>
       <div v-else class="not-on-new-page" :key="chart.axis.join('.')">
         <chart-collapse-panel :title="chart.label" :level="chart.level">
-          <component :is="my_component" slot="chart_content" :chart_data="reports" :show_average="chart.average"
-                                :only_show_dynamic_average="chart.only_average" :axis="chart.axis"/>
+          <!-- Do not show canvas chart element in accessibility, use the table below -->
+          <div slot="chart_content">
+          <component :is="my_component"  :chart_data="reports" :show_average="chart.average"
+                     :only_show_dynamic_average="chart.only_average" :axis="chart.axis" :chart-name="chart.label"
+                     aria-hidden="true"/>
+          <b-table-simple striped hover small responsive v-if="$store.state.rendered_chart_to_table[chart.label] !== undefined">
+            <b-thead>
+              <b-tr>
+                <b-th></b-th>
+                <b-th v-for="xAxis in $store.state.rendered_chart_to_table[chart.label]['datasets']" :key="xAxis.label">
+                  {{ $t(xAxis.label) }}
+                </b-th>
+              </b-tr>
+            </b-thead>
+            <b-tbody>
+
+              <b-tr v-for="(yAxis, yIndex) in $store.state.rendered_chart_to_table[chart.label]['labels']"
+                    :key="yAxis[0]">
+                <b-td style="width: 20%">
+                  {{ $t(yAxis[0]) }}
+                </b-td>
+                <b-td v-for="(value, index) in $store.state.rendered_chart_to_table[chart.label]['datasets']"
+                      :key="`${yIndex}${index}`">
+                  {{ value["data"][yIndex] }}%
+                </b-td>
+              </b-tr>
+            </b-tbody>
+          </b-table-simple>
+
+          </div>
+
         </chart-collapse-panel>
       </div>
     </template>
@@ -110,3 +165,15 @@ export default {
   }
 }
 </script>
+<i18n>
+{
+  "en": {
+    "category": "Category",
+    "A": "Average"
+  },
+  "nl": {
+    "category": "Categorie",
+    "G": "Gemiddelde"
+  }
+}
+</i18n>

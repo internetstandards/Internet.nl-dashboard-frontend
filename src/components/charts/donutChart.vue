@@ -49,8 +49,13 @@
   color: #08236B;
 }
 
-.internetnlscore, .score{
+.internetnlscore {
   color: #05BFD6;
+}
+
+.score{
+  color: black;
+  font-weight: bold;
 }
 
 .internetnlscore_rest, .rest{
