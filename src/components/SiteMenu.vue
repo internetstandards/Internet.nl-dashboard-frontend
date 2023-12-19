@@ -296,7 +296,7 @@ export default {
   "en": {
     "en": "English",
     "nl": "Nederlands",
-    "sitedescription": "Test for modern Internet Standards like IPv6, DNSSEC, HTTPS, DMARC, STARTTLS and DANE.",
+    "sitedescription": "Test for modern Internet Standards IPv6, DNSSEC, HTTPS, HSTS, DMARC, DKIM, SPF, STARTTLS, DANE, RPKI and security.txt",
     "sitetitle": "Internet.nl",
     "account": "Account",
     "admin": "Admin",
@@ -320,7 +320,7 @@ export default {
   "nl": {
     "en": "English",
     "nl": "Nederlands",
-    "sitedescription": "Test voor moderne Internetstandaarden zoals IPv6, DNSSEC, HTTPS, DMARC, STARTTLS en DANE.",
+    "sitedescription": "Test voor moderne Internetstandaarden IPv6, DNSSEC, HTTPS, HSTS, DMARC, DKIM, SPF, STARTTLS, DANE, RPKI en security.txt.",
     "sitetitle": "Internet.nl",
     "account": "Profiel",
     "admin": "Beheer",
