@@ -38,5 +38,7 @@ export default {
 </script>
 
 <style scoped>
-
+figcaption {
+  color: black;
+}
 </style>
