@@ -18,7 +18,7 @@
 }
 
 .panel-title, button {
-  text-decoration: underline;
+  text-decoration: underline dotted;
 }
 
 button {

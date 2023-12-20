@@ -77,7 +77,7 @@
 }
 
 .language-switch-list li a, .language-switch-list li a:hover, header .language-switch-list li a:active, header .language-switch-list li a:focus {
-    text-decoration: underline
+    text-decoration: underline dotted
 }
 
 .navbar-collapse{
@@ -138,6 +138,11 @@ li a {
 .max_container_width {
   max-width: 1064px;
 }
+
+.nav-link, .dropdown-toggle {
+  font-weight: 500 !important;
+}
+
 
 </style>
 <template>

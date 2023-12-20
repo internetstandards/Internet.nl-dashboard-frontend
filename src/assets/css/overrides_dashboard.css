@@ -144,7 +144,7 @@ label {
 }
 
 button  {
-    text-decoration: underline;
+    text-decoration: underline dotted;
 }
 
 /* Accessibility improvements */
@@ -163,5 +163,5 @@ button  {
 }
 
 a {
-    text-decoration: underline !important;
+    text-decoration: underline dotted !important;
 }
