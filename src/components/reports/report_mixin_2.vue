@@ -8,6 +8,7 @@ export default {
     return {
       // Complete reports with all data and metadata to make a nice representation.
       reports: [],
+      first_report: {},
 
       // number of reports that still need to be retrieved. If this is 0 all reports are in. Up to 6 reports
       // can be loaded and compared with graphs in a somewhat meaningful way.
@@ -16,18 +17,18 @@ export default {
   },
 
   methods: {
-    load_reports_by_ids(report_ids, data){
+    load_reports_by_ids(report_ids, data) {
       let link = '/data/report/get/'
-      if (Object.keys(data).length > 0){
+      if (Object.keys(data).length > 0) {
         link = '/data/report/ad_hoc/'
       }
       this.load_reports_by_ids_at(link, report_ids, data)
     },
-    load_shared_reports_by_ids(report_ids){
-        this.load_reports_by_ids_at('/data/report/shared/', report_ids)
+    load_shared_reports_by_ids(report_ids) {
+      this.load_reports_by_ids_at('/data/report/shared/', report_ids)
     },
 
-      // this.reports.forEach((report) => this.add_comparison_urls_to_report(report))
+    // this.reports.forEach((report) => this.add_comparison_urls_to_report(report))
     add_comparison_urls_to_report(report) {
       console.log("adding comparison urls")
       // The comparison report require direct data access to urls to be able to compare
@@ -39,9 +40,9 @@ export default {
       // return report;
     },
 
-    load_reports_by_ids_at(link, report_ids, data){
+    load_reports_by_ids_at(link, report_ids, data) {
       this.reports_to_load = report_ids.length;
-      this.reports = [];
+      let reports = [];
 
       for (let i = 0; i < this.reports_to_load; i++) {
         let stored_share_code = this.$store.state.public_share_codes[report_ids[i]];
@@ -55,18 +56,24 @@ export default {
           if (response.data !== undefined && response.data !== "") {
             console.log(`Retrieved report data: ${report_ids[i]}`)
 
-              // only add comparison data to the second report, because we want to quickly access urls of that one.
-              if (i > 0)
-                  this.add_comparison_urls_to_report(response.data)
+            // only add comparison data to the second report, because we want to quickly access urls of that one.
+            if (i > 0)
+              this.add_comparison_urls_to_report(response.data)
 
             // using set is extremely slow, so instead of doing this, directly set the data and force an  update,
             // this saves 4 seconds when loading a report.
-            this.$set(this.reports, i, response.data);
-            // this.reports[i] = response.data;
-            // this.$forceUpdate();
+            // this.$set(this.reports, i, Object.freeze(response.data));
+            //this.first_report = readonly(response.data)
+
+            reports[i] = response.data;
+            // this.$forceUpdate()
             console.log(`Set report data: ${report_ids[i]}`)
           }
           this.reports_to_load--;
+
+          if (this.reports_to_load === 0 && reports.length > 0) {
+            this.reports = Object.freeze(reports);
+          }
         });
       }
     }
@@ -75,7 +82,12 @@ export default {
   watch: {
     reports_to_load(reports_to_load) {
       // Loading is done, refresh the UI.
-      if (reports_to_load === 0) this.$nextTick(() => {this.$forceUpdate();});
+      if (reports_to_load === 0) {
+
+        this.$nextTick(() => {
+          this.$forceUpdate();
+        });
+      }
     }
   }
 

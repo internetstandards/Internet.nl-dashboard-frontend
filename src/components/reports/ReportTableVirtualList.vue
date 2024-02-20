@@ -554,12 +554,12 @@ export default {
   watch: {
     reports: function () {
       if (this.reports[0] !== undefined) {
-        this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
+        this.original_urls = Object.freeze(this.reports[0].calculation.urls.sort(this.alphabet_sorting));
       }
     },
     original_urls: function (new_value) {
       console.log('Setting original urls')
-      this.filtered_urls = new_value;
+      this.filtered_urls = Object.freeze(new_value);
       // Apply existing sorting
       this.filter_urls();
     },
@@ -572,7 +572,7 @@ export default {
     this.select_category();
 
     if (this.reports[0] !== undefined) {
-      this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
+      this.original_urls = Object.freeze(this.reports[0].calculation.urls.sort(this.alphabet_sorting));
     }
     // this.test_explode_report_size()
   },
@@ -620,18 +620,18 @@ export default {
       // in case of filter reset, or initializiation of this value.
       if (keyword === "" || keyword === undefined) {
         // console.log("Removing filter");
-        this.filtered_urls = this.order_urls(this.original_urls)
+        this.filtered_urls = Object.freeze(this.order_urls(this.original_urls))
         return
       }
 
       let urls = [];
       // keep the search order, use a correctly ordered set of original urls:
-      let tmp_urls = this.order_urls(this.original_urls);
+      let tmp_urls = Object.freeze(this.order_urls(this.original_urls));
       tmp_urls.forEach(function (value) {
         if (value.url.includes(keyword))
           urls.push(value)
       });
-      this.filtered_urls = this.order_urls(urls);
+      this.filtered_urls = Object.freeze(this.order_urls(urls));
     },
     order_urls: function (data) {
       // todo: add sorting icons :)
