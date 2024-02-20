@@ -6,7 +6,7 @@
 <script>
 
 
-import {computed, defineComponent, ref} from '@vue/composition-api';
+import {computed, defineComponent, ref} from 'vue';
 import {LineChart} from 'vue-chart-3';
 import 'chartjs-adapter-date-fns';
 import {nl} from 'date-fns/locale';

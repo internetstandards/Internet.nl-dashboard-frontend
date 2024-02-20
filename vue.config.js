@@ -16,12 +16,16 @@ module.exports = {
     //     headers: {"Content-Security-Policy": "default-src 'self'; connect-src http://localhost:8000 https://matomo.internet.nl; script-src 'self' https://matomo.internet.nl; img-src 'self' data: https://matomo.internet.nl;"}
     // },
     chainWebpack: config => {
+        config.resolve.alias.set('vue', '@vue/compat')
+        config.resolve.alias.set('vue$', '@vue/compat')
+
         config.module
             .rule("i18n")
             .resourceQuery(/blockType=i18n/)
             .type('javascript/auto')
             .use("i18n")
-            .loader("@kazupon/vue-i18n-loader")
+            .loader('@intlify/vue-i18n-loader')
+            .options({strictMessage: false, warnHtmlInMessage: "off", warnHtmlMessage: "off", globalInjection: true, legacy: false,})
             .end();
         config
             .plugin('html')
@@ -29,12 +33,13 @@ module.exports = {
                 args[0].title = "Internet.nl Dashboard - Bulk test for modern Internet Standards like IPv6, DNSSEC, HTTPS, DMARC, STARTTLS and DANE.";
                 return args;
             })
-        config.resolve.alias.set(
-            'vue$',
-            // If using the runtime only build
-            path.resolve(__dirname, 'node_modules/vue/dist/vue.runtime.esm.js')
-            // Or if using full build of Vue (runtime + compiler)
-            // path.resolve(__dirname, 'node_modules/vue/dist/vue.esm.js')
-        )
+        // todo: fix alias
+        // config.resolve.alias.set(
+        //     'vue$',
+        //     // If using the runtime only build
+        //     path.resolve(__dirname, 'node_modules/vue/dist/vue.runtime.esm.js')
+        //     // Or if using full build of Vue (runtime + compiler)
+        //     // path.resolve(__dirname, 'node_modules/vue/dist/vue.esm.js')
+        // )
     }
 }

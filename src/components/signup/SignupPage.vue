@@ -52,7 +52,7 @@ export default {
     "procedure_title": "Procedure for issuing login details",
     "procedure_description": "After formal approval of your request by our Steering Committee, your username and instructions for using the Batch testing HTTP API and/or API Dashboard are send to the specified e-mail address. The corresponding password will be send to the specified mobile phone number. See our <a href=\"https://internet.nl/privacy/\">privacy statement</a> on what data internet.nl processes and stores.",
     "support_title": "Support",
-    "support_description": "For questions regarding (the use of) the Batch testing HTTP API and the API Dashboard, an e-mail can be send to <a href=\"mailto:question@internet.nl\">question@internet.nl</a>",
+    "support_description": "For questions regarding (the use of) the Batch testing HTTP API and the API Dashboard, an e-mail can be send to <a href=\"mailto:question{'@'}internet.nl\">question{'@'}internet.nl</a>",
     "application.form_title": "Application form"
   },
   "nl": {
@@ -69,7 +69,7 @@ export default {
     "procedure_title": "Procedure voor het uitgeven van inloggegevens",
     "procedure_description": "Na formele goedkeuring door de stuurgroep worden je gebruikersnaam en gebruiksinstructies verstuurd naar het opgegeven e-mail adres. Het wachtwoord wordt verstuurd naar het opgegeven mobiele nummer. Bekijk ons <a href=\"https://internet.nl/privacy/\">privacy statement</a> om te lezen hoe we omgaan met deze gegevens.",
     "support_title": "Ondersteuning",
-    "support_description": "Voor vragen over (het gebruik van) de API of hte dashboard, stuur een e-mail naar <a href=\"mailto:vraag@internet.nl\">vraag@internet.nl</a>",
+    "support_description": "Voor vragen over (het gebruik van) de API of hte dashboard, stuur een e-mail naar <a href=\"mailto:vraag{'@'}internet.nl\">vraag{'@'}internet.nl</a>",
     "application.form_title": "Aanvraagformulier"
   }
 }

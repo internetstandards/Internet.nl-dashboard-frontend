@@ -2,21 +2,22 @@
 // Note that there is a little hate going on with multiple vue instances.
 // See here: https://github.com/LinusBorg/portal-vue/issues/201#issuecomment-484452281
 // This explains why there are some extra definitions in the bundler thingies.
-import Vue from 'vue'
+import Vue, { createApp } from '@vue/compat';
+
+import VueI18n from 'vue-i18n'
+
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
-import VueRouter from 'vue-router'
-import VueI18n from 'vue-i18n'
+// import VueRouter from 'vue-router'
 
 import loading from '@/components/loading'
 import server_response from '@/components/ServerResponse'
 import ContentBlock from '@/components/ContentBlock'
 
-import App from '@/App'
-import router from '@/router';
+// import router from '@/router';
 import '@/assets/css/styles.scss';
 
-import PortalVue from 'portal-vue'
+
 import {
     LayoutPlugin,
     ModalPlugin,
@@ -48,13 +49,13 @@ import {
     ButtonGroupPlugin,
     TooltipPlugin,
     FormPlugin
-
 } from 'bootstrap-vue'
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl} from 'date-fns/locale'
 import VueMatomo from 'vue-matomo'
 
-const plugins = [PortalVue, VueI18n, VueRouter, InputGroupPlugin, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, ButtonPlugin, FormGroupPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
+// VueRouter
+const plugins = [VueI18n, InputGroupPlugin, Vuex, LayoutPlugin, ModalPlugin, CardPlugin, ButtonPlugin, FormGroupPlugin, TablePlugin, TabsPlugin, FormInputPlugin, CollapsePlugin,
 FormCheckboxPlugin, FormSelectPlugin, PaginationPlugin, AlertPlugin, FormTextareaPlugin, SpinnerPlugin, ProgressPlugin, NavbarPlugin, NavPlugin,
 ImagePlugin, BVModalPlugin, BVToastPlugin, BootstrapVueIcons, BadgePlugin, FormTimepickerPlugin, FormDatepickerPlugin, ButtonGroupPlugin, TooltipPlugin,
 FormPlugin, FormRadioPlugin
@@ -69,21 +70,6 @@ Vue.config.productionTip = false
 
 Vue.prototype.$baseUrl = process.env.VUE_APP_DJANGO_PATH;
 
-const i18n = new VueI18n({
-    locale: 'en',
-    fallbackLocale: 'en',
-    silentFallbackWarn: true,
-    // it's requformatDistanceired this is called messages.
-    messages: {
-        en: {
-            "title_domains": "Internet.nl Dashboard / Domains",
-        },
-        nl: {
-            "title_domains": "Internet.nl Dashboard / Domeinen",
-        }
-    },
-    sharedMessages: {}
-});
 
 const store = new Vuex.Store({
     state: {
@@ -161,6 +147,28 @@ const store = new Vuex.Store({
 
 
 
+const i18n = new VueI18n({
+    warnHtmlInMessage: "off",
+    globalInjection: true,
+    legacy: false,
+    warnHtmlMessage: false,
+    locale: 'en',
+    fallbackLocale: 'en',
+    silentFallbackWarn: true,
+    // it's requformatDistanceired this is called messages.
+    messages: {
+        en: {
+            "title_domains": "Internet.nl Dashboard / Domains",
+        },
+        nl: {
+            "title_domains": "Internet.nl Dashboard / Domeinen",
+        }
+    },
+    sharedMessages: {}
+});
+
+
+
 // Todo: use more prototypes, as that seems to be easier to work with than calling "this". I don't know if it's faster
 //   as now all strings have these methods but are rarely used...
 const dateLocales = {nl: nl, en: enGB}
@@ -179,7 +187,7 @@ Vue.mixin(
         },
         methods: {
             copy_json_value: function (obj) {
-                // does not copy methods.
+                // does not copy methods. This is also fixed by the structured-clone dependency?
                 return JSON.parse(JSON.stringify(obj));
             },
             isEmptyObject: function (my_object) {
@@ -284,24 +292,24 @@ Vue.mixin(
 );
 
 
-function is_public_page(page_name){
-    return !!['login', 'login2', 'demo', 'tour', 'shared_report', 'compared_shared_report', 'home', 'signup',
-    'published_report', 'published_report_and_list', 'published_report_latest_in_list',
-    'published_report_latest_in_list_web', 'published_report_latest_in_list_mail'].includes(page_name);
-}
+// function is_public_page(page_name){
+//     return !!['login', 'login2', 'demo', 'tour', 'shared_report', 'compared_shared_report', 'home', 'signup',
+//     'published_report', 'published_report_and_list', 'published_report_latest_in_list',
+//     'published_report_latest_in_list_web', 'published_report_latest_in_list_mail'].includes(page_name);
+// }
 
 
 // https://www.digitalocean.com/community/tutorials/vuejs-vue-router-modify-head
-router.beforeEach((to, from, next) => {
-    const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
-    if (nearestWithTitle) {
-        document.title = nearestWithTitle.meta.title;
-    }
-
-    // https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards
-    if (!is_public_page(to.name) && !store.state.user.is_authenticated) next({name: 'login'})
-    else next()
-});
+// router.beforeEach((to, from, next) => {
+//     const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+//     if (nearestWithTitle) {
+//         document.title = nearestWithTitle.meta.title;
+//     }
+//
+//     // https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards
+//     if (!is_public_page(to.name) && !store.state.user.is_authenticated) next({name: 'login'})
+//     else next()
+// });
 
 Vue.use(VueMatomo, {
   // Configure your matomo server and site by providing
@@ -321,7 +329,7 @@ Vue.use(VueMatomo, {
   // trackerScriptUrl: 'https://example.com/whatever/script/path/you/have',
 
   // Enables automatically registering pageviews on the router
-  router: router,
+  // router: router,
 
   // Enables link tracking on regular links. Note that this won't
   // work for routing links (ie. internal Vue router links)
@@ -395,10 +403,17 @@ Vue.use(VueMatomo, {
   trackSiteSearch: false
 });
 
-new Vue({
-    i18n,
-    router,
-    store,
-    render: h => h(App),
-}).$mount('#app')
+// use(router) does not work yet...
+import App from '@/App'
+const app = createApp(App);
+// app.use(router)
+app.use(i18n).use(store).mount('#app')
 
+
+
+// new Vue({
+//     i18n,
+//     router,
+//     store,
+//     render: h => h(App),
+// }).$mount('#app')

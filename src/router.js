@@ -82,16 +82,19 @@ const routes = [
     {path: '/signup', component: SignupPage, meta: {title: 'Internet.nl Dashboard / Signup'}, 'name': 'signup'},
 ];
 
+// const routes = [];
+
 const router = new VueRouter({
+    // history: createWebHashHistory(),
     routes, // short for `routes: routes`
-    props: true,
-    // https://reactgo.com/scroll-to-anchor-tags-vue-router/
-    // does not work, as nested anchors is not a thing (and not reliable). So do this in component.
-    scrollBehavior: function (to) {
-        if (to.hash) {
-            return {selector: to.hash}
-        }
-    },
+    // props: true,
+    // // https://reactgo.com/scroll-to-anchor-tags-vue-router/
+    // // does not work, as nested anchors is not a thing (and not reliable). So do this in component.
+    // scrollBehavior: function (to) {
+    //     if (to.hash) {
+    //         return {selector: to.hash}
+    //     }
+    // },
 });
 
 export default router

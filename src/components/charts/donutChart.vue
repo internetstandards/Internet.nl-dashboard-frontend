@@ -85,7 +85,7 @@
 <script>
 
 
-import {computed, defineComponent, ref} from '@vue/composition-api';
+import {computed, defineComponent, ref} from 'vue';
 import {DoughnutChart} from 'vue-chart-3';
 import 'chartjs-adapter-date-fns';
 

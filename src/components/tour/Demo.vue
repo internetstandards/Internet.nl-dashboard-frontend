@@ -65,7 +65,7 @@ export default {
   "en": {
     "title": "Internet.nl dashboard features",
     "introduction": "The dashboard allows bulk scans and reporting up to thousands of domains. Scan for IPv6, TLS, DMARC, SPF, DANE, DKIM, DNSSEC, HTTP Headers and more. Below is an overview of features included in the dashboard:",
-    "contact_information": "To use the dashboard on internet.nl, contact: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
+    "contact_information": "To use the dashboard on internet.nl, contact: <a href='mailto:vraag{'@'}internet.nl?subject=dashboard%20access%20request'>vraag{'@'}internet.nl</a>",
     "manage_domains": {
       "title": "Bulk domain scans for web and mail",
       "introduction": "<p>Many domains can be stored in lists. These lists are configured to perform either the web or mail scan.</p><p>Using tags it's possible to filter the resulting report, and create new reports based on these filters.</p>",
@@ -125,7 +125,7 @@ export default {
   "nl": {
     "title": "Internet.nl dashboard rondleiding",
     "introduction": "Het dashboard maakt het mogelijk duizenden internet.nl scans tegelijk uit te voeren. Meet de actuele adoptie van IPv6, TLS, DMARC, SPF, DANE, DKIM, DNSSEC, HTTP Headers en meer. Deze pagina geeft een overzicht weer van verschillende handige eigenschappen van het dashboard:",
-    "contact_information": "Om gebruik te maken van het dashboard is een account nodig. Vraag deze aan via: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
+    "contact_information": "Om gebruik te maken van het dashboard is een account nodig. Vraag deze aan via: <a href='mailto:vraag{'@'}internet.nl?subject=dashboard%20access%20request'>vraag{'@'}internet.nl</a>",
     "manage_domains": {
       "title": "Bulk domein-scans voor web en mail",
       "introduction": "<p>Domeinen worden beheerd middels lijsten. Alle domeinen in de lijst kunnen worden gescand op web, mail of beide.</p><p>Door gebruik te maken van labels kan het eindresultaat gefilterd worden. Deze deelresultaten kunnen weer als nieuwe rapporten worden opgeslagen en gedeeld.</p><p>Een lijst met domeinen kan periodiek worden gescand.</p>",

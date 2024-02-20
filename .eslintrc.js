@@ -11,7 +11,8 @@ module.exports = {
   rules: {
     /* The console can be purposefully used as part of the point and click adventure style of this site. */
     'no-console': process.env.NODE_ENV === 'production' ? 'off' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
   },
   parserOptions: {
     parser: 'babel-eslint'
