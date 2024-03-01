@@ -68,7 +68,7 @@ export default {
       sortBy: 'at_when',
       sortDesc: true,
 
-      currentPage: 0,
+      currentPage: 1,
       perPage: 24,
 
 
