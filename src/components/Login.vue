@@ -16,7 +16,7 @@
 
     <!-- https://github.com/internetstandards/Internet.nl-dashboard/issues/352 This page is a fallback for people
     that have the login page bookmarked. They are still pointed to the right place to log in. -->
-    <content-block v-if="false">
+    <content-block v-if="true">
       <h1>{{ $t("title") }}</h1>
       <p>{{ $t("intro") }}</p>
       <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
