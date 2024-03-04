@@ -17,7 +17,13 @@
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
       <template v-if="!tags_applied">
-        <report-download :report="report" v-for="report in shallow_reports" :key="`d${report.id}`"></report-download>
+          <content-block class="do-not-print">
+          <b-container>
+            <report-download :report="report" v-for="report in shallow_reports" :key="`d${report.id}`" class="mb-2"></report-download>
+            <small>{{$t('patience')}}</small>
+            </b-container>
+            </content-block>
+
         <!-- create a shallow report that can be mutated and does not contain the full data, which saves a lot of memory. -->
         <sharing-configuration
             :report="report" v-for="report in shallow_reports"
@@ -161,7 +167,8 @@ export default {
     "intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",
     "tab_metrics": "Metrics table",
     "tab_graphs": "Graphs",
-    "tab_changes": "Changes"
+    "tab_changes": "Changes",
+    "patience": "Reports with over 1000 domains may take a minute before downloading starts, please be patient."
   },
   "nl": {
     "settings": "Selecteer zichtbare meetwaarden",
@@ -169,7 +176,8 @@ export default {
     "intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar.",
     "tab_metrics": "Meetwaardentabel",
     "tab_graphs": "Grafieken",
-    "tab_changes": "Veranderingen"
+    "tab_changes": "Veranderingen",
+    "patience": "Het kan even duren voordat een download begint van een rapport met meer dan 1000 domeinen. Neem hiervoor even de tijd."
   }
 }
 </i18n>

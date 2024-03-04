@@ -1,7 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <content-block class="do-not-print">
-    <b-container>
+
     <b-row>
       <b-col cols="3">
         ⬇️ {{$t("title", [report.id, report.urllist_name])}}
@@ -16,8 +15,7 @@
        <b-icon icon="file-text"/> <a :href="make_downloadlink(report.id, 'csv')">{{ $t("csv") }}</a>
       </b-col>
     </b-row>
-    </b-container>
-  </content-block>
+
 </template>
 <script>
 export default {
