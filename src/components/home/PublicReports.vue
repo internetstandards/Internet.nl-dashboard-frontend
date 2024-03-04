@@ -5,7 +5,7 @@
 <template>
   <div v-if="reports.length > 0">
     <content-block>
-      <h3>{{ $t('Recently published reports') }}</h3>
+      <h3>{{ $t('Public reports') }}</h3>
       <p>{{ $t('introduction') }}</p>
       <PublicReportsTable :reports="reports"/>
     </content-block>
@@ -48,7 +48,7 @@ export default {
   "en": {
     "domains": "domains",
     "View report": "View report",
-    "Recently published reports": "Recently published reports",
+    "Public reports": "Public reports created by dashboard staff",
     "introduction": "These reports are created, curated and shared by the internet.nl staff",
     "Score": "Internet.nl score",
     "Name": "Report",
@@ -59,7 +59,7 @@ export default {
   "nl": {
     "domains": "domeinen",
     "View report": "Bekijk rapport",
-    "Recently published reports": "Recent gepubliceerde rapporten",
+    "Public reports": "Openbare rapporten samengesteld door dashboard beheerders",
     "introduction": "Deze rapporten worden gemaakt, samengesteld en gedeeld door internet.nl",
     "Score": "Internet.nl score",
     "Name": "Rapport",
