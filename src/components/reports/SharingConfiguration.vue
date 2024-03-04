@@ -15,9 +15,12 @@
                     class="mb-0"
                 >
                   <b-input-group>
+
+                    <!-- $baseUrl is not set in production and that is fine since the app runs on root.
+                    Yet, the link needs to be complete, otherwise it's hard to use it when sharing.-->
                     <b-form-input
                         id="share-code"
-                        :value="`${$baseUrl}/#/shared/report/${report['public_report_code']}`"
+                        :value="`https://${window.location.host}/#/shared/report/${report['public_report_code']}`"
                         maxlength="64"
                         :description="report['public_share_code'] ? 'bla' : 'bla'"
                         :disabled="true"
