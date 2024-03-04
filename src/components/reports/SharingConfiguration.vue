@@ -139,7 +139,7 @@ export default {
       this.loading = true;
       http.post('/data/report/share/share/', {
         'report_id': this.report.id,
-        'public_share_code': this.public_share_code
+        'public_share_code': this.report.public_share_code
       }).then(data => {
         this.response = data.data;
         this.report.is_publicly_shared = data.data.data.is_publicly_shared;
