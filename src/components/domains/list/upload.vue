@@ -5,7 +5,7 @@
         <h3 slot="modal-title">📝 {{ $t("title") }}</h3>
         <div slot="default">
 
-            <server-response :response="response"></server-response>
+            <server-response :response="response" :message="$t(response.message)"></server-response>
 
           <b-alert variant="danger" show>{{$t('warning')}}</b-alert>
 
@@ -89,13 +89,15 @@ export default {
     "title": "Upload domains (overwrite)",
     "cancel": "Cancel",
     "ok": "Overwrite domains",
-    "warning": "Warning: Uploading a spreadsheet of domains will overwrite all domains in this list. This cannot be undone. Make you have downloaded a copy of this list in advance. A copy can be made with the 'Download domains' button on the domain list."
+    "warning": "Warning: Uploading a spreadsheet of domains will overwrite all domains in this list. This cannot be undone. Make you have downloaded a copy of this list in advance. A copy can be made with the 'Download domains' button on the domain list.",
+    "too_many_domains": "The amount of domains in this list exceeds the total amount of domains allowed in a list."
   },
   "nl": {
     "title": "Domeinen uploaden (overschrijven)",
     "cancel": "Annuleer",
     "ok": "Overschrijf domeinen",
-    "warning": "Let op: het uploaden van domeinen vervangt alle domeinen in deze lijst. Dit kan niet ongedaan worden gemaakt. Zorg dus dat je een backup heb gedownload van deze lijst. Een kopie is te maken met de 'Domeinen downloaden' knop bij de domeinenlijst."
+    "warning": "Let op: het uploaden van domeinen vervangt alle domeinen in deze lijst. Dit kan niet ongedaan worden gemaakt. Zorg dus dat je een backup heb gedownload van deze lijst. Een kopie is te maken met de 'Domeinen downloaden' knop bij de domeinenlijst.",
+    "too_many_domains": "Het aantal domeinen is deze lijst is groter dan is toegestaan."
   }
 }
 </i18n>

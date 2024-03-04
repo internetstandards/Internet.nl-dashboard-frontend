@@ -125,7 +125,8 @@ export default {
         "loading": "Domains are being processed",
         "add_domains_valid_urls_added": "New domains have processed, see the status report for details.",
         "add_domains_list_does_not_exist": "This list does not exist.",
-        "undefined": "undefined"
+        "undefined": "undefined",
+        "too_many_domains": "The amount of domains in this list exceeds the total amount of domains allowed in a list."
     },
     "nl": {
         "title": "Domeinen toevoegen",
@@ -143,7 +144,8 @@ export default {
         "loading": "Domeinen worden verwerkt",
         "add_domains_valid_urls_added": "Nieuwe domeinen zijn verwerkt, zie het statusoverzicht voor details.",
         "add_domains_list_does_not_exist": "Deze lijst bestaat niet.",
-        "undefined": "undefined"
+        "undefined": "undefined",
+      "too_many_domains": "Het aantal domeinen is deze lijst is groter dan is toegestaan."
     }
 }
 </i18n>
