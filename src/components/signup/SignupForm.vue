@@ -85,7 +85,7 @@
       </b-form-group>
 
       <div class="mb-2" style="font-weight: bold">{{ $t('nature_of_organization')}}:</div>
-      <b-form-group id="input-group-nature-of-organization" v-slot="{ ariaDescribedby }" :label="$t('nature_of_organization')">
+      <b-form-group id="input-group-nature-of-organization" v-slot="{ ariaDescribedby }" >
         <b-form-radio-group
           v-model="form.nature_of_organization"
           id="radios-nature-of-organization"
@@ -100,6 +100,14 @@
           <b-form-radio value="other">{{$t('nature_other')}}</b-form-radio>
         </b-form-radio-group>
       </b-form-group>
+
+      <b-alert v-if="form.nature_of_organization === 'vital_infrastructure'" variant="warning" show>
+        {{$t('please_explain_vital_infrastructure')}}
+      </b-alert>
+
+      <b-alert v-if="form.nature_of_organization === 'other'" variant="danger" show>
+        {{$t('other_type_not_possible')}}
+      </b-alert>
 
       <b-form-group
         id="input-group-coc-number"
@@ -179,7 +187,7 @@
           &nbsp;
         </b-form-invalid-feedback>
       </b-form-group>
-      <button type="submit" variant="info"><b>{{ $t('submit') }}</b></button>
+      <button type="submit" variant="info" :disabled="!submit_possible"><b>{{ $t('submit') }}</b></button>
     </b-form>
 
   </div>
@@ -210,6 +218,14 @@ export default {
         captcha: ""
       },
       correct_captcha_answers: ["42"],
+    }
+  },
+  computed: {
+    submit_possible( ){
+      if (this.form.nature_of_organization === 'other') {
+        return false
+      }
+      return true
     }
   },
 
@@ -284,7 +300,9 @@ export default {
 
     "incorrect_captcha": "Question to prevent automated signups not correctly answered",
     "incomplete_form_submitted": "Form was not filled out completely, please fill out all fields",
-    "access_requested": "Your request has been received and will be reviewed in the coming weeks. You will receive an e-mail with further instructions in the coming weeks."
+    "access_requested": "Your request has been received and will be reviewed in the coming weeks. You will receive an e-mail with further instructions in the coming weeks.",
+    "other_type_not_possible": "The dashboard is not meant for other types of organizations. Your request will not be accepted.",
+    "please_explain_vital_infrastructure": "Please add some information about your vital infrastructure organization in the reason for applying."
 
 
   },
@@ -324,7 +342,9 @@ export default {
 
     "incorrect_captcha": "Antwoord op de controlevraag om geautomatiseerde inschrijvingen tegen te gaan is niet juist beantwoord. Beantwoord de vraag en probeer opnieuw.",
     "incomplete_form_submitted": "Het formulier is niet volledig ingevoerd, vul de ontbrekende velden in en probeer opnieuw.",
-    "access_requested": "De aanvraag is ontvangen en word in de komende weken behandeld. Wij sturen in de komende weken een e-mail met een reactie."
+    "access_requested": "De aanvraag is ontvangen en word in de komende weken behandeld. Wij sturen in de komende weken een e-mail met een reactie.",
+    "other_type_not_possible": "Het dashboard is niet bedoeld voor andere typen organisaties. De aanvraag zal worden afgewezen.",
+    "please_explain_vital_infrastructure": "Graag een motivatie en informatie over uw vitale infrastructurele organisatie toevoegen in het veld 'Reden om toegang aan te vragen'."
   }
 }
 </i18n>
