@@ -7,8 +7,7 @@
 
             <server-response :response="response"></server-response>
 
-          <p><i>Let op: het uploaden van domeinen vervangt alle domeinen in deze lijst. Dit kan niet ongedaan
-          worden gemaakt. Zorg dus dat je een backup heb gedownload van deze lijst.</i></p>
+          <b-alert variant="danger" show>{{$t('warning')}}</b-alert>
 
           <input
             type="file"
@@ -86,15 +85,17 @@ export default {
 
 <i18n>
 {
-    "en": {
-        "title": "Upload domains (overwrite)",
-        "cancel": "Cancel",
-        "ok": "Overwrite domains"
-    },
-    "nl": {
-        "title": "Domeinen uploaden (overschrijven)",
-        "cancel": "Annuleer",
-        "ok": "Overschrijf domeinen"
-    }
+  "en": {
+    "title": "Upload domains (overwrite)",
+    "cancel": "Cancel",
+    "ok": "Overwrite domains",
+    "warning": "Warning: Uploading a spreadsheet of domains will overwrite all domains in this list. This cannot be undone. Make you have downloaded a copy of this list in advance. A copy can be made with the 'Download domains' button on the domain list."
+  },
+  "nl": {
+    "title": "Domeinen uploaden (overschrijven)",
+    "cancel": "Annuleer",
+    "ok": "Overschrijf domeinen",
+    "warning": "Let op: het uploaden van domeinen vervangt alle domeinen in deze lijst. Dit kan niet ongedaan worden gemaakt. Zorg dus dat je een backup heb gedownload van deze lijst. Een kopie is te maken met de 'Domeinen downloaden' knop bij de domeinenlijst."
+  }
 }
 </i18n>
