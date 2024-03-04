@@ -17,13 +17,15 @@
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
       <template v-if="!tags_applied">
-        <report-download :report="report" v-for="report in reports" :key="`d${report.id}`"></report-download>
-        <sharing-configuration :report="report" v-for="report in reports"
-                               :key="`s${report.id}`"></sharing-configuration>
+        <report-download :report="report" v-for="report in shallow_reports" :key="`d${report.id}`"></report-download>
+        <!-- create a shallow report that can be mutated and does not contain the full data, which saves a lot of memory. -->
+        <sharing-configuration
+            :report="report" v-for="report in shallow_reports"
+            :key="`shared_report_${report.id}`"></sharing-configuration>
       </template>
 
       <content-block>
-        <report-header :reports="reports"/>
+        <report-header :reports="shallow_reports"/>
       </content-block>
 
       <b-tabs variant="info" nav-class="">

@@ -1,6 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
 import http from "@/httpclient"
+// import structuredClone from '@ungap/structured-clone';
 
 export default {
 
@@ -8,7 +9,11 @@ export default {
     return {
       // Complete reports with all data and metadata to make a nice representation.
       reports: [],
-      first_report: {},
+
+      // shallow reports contains administrative data only, not the gigantic actual dataset. This can be used to
+      // easily display things such as the download, sharing options and headers. This saves a ton of memory on the
+      // client.
+      shallow_reports: [],
 
       // number of reports that still need to be retrieved. If this is 0 all reports are in. Up to 6 reports
       // can be loaded and compared with graphs in a somewhat meaningful way.
@@ -43,6 +48,7 @@ export default {
     load_reports_by_ids_at(link, report_ids, data) {
       this.reports_to_load = report_ids.length;
       let reports = [];
+      let shallow_reports = [];
 
       for (let i = 0; i < this.reports_to_load; i++) {
         let stored_share_code = this.$store.state.public_share_codes[report_ids[i]];
@@ -60,12 +66,13 @@ export default {
             if (i > 0)
               this.add_comparison_urls_to_report(response.data)
 
-            // using set is extremely slow, so instead of doing this, directly set the data and force an  update,
-            // this saves 4 seconds when loading a report.
-            // this.$set(this.reports, i, Object.freeze(response.data));
-            //this.first_report = readonly(response.data)
-
             reports[i] = response.data;
+            // use destructuring to avoid copying a large object to memory and then ditching the large value
+            // this is much faster and not as memory intensive.
+            // shallow_reports[i] = structuredClone(response.data);
+            // shallow_reports[i]['calculation'] = [];
+            shallow_reports[i] = this._objectWithoutProperties(response.data, ['calculation']);
+
             // this.$forceUpdate()
             console.log(`Set report data: ${report_ids[i]}`)
           }
@@ -73,9 +80,21 @@ export default {
 
           if (this.reports_to_load === 0 && reports.length > 0) {
             this.reports = Object.freeze(reports);
+            // these can be changed by the user
+            this.shallow_reports = shallow_reports;
           }
         });
       }
+    },
+    // https://stackoverflow.com/questions/34698905/how-can-i-clone-a-javascript-object-except-for-one-key
+    _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
     }
   },
 
