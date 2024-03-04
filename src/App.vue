@@ -34,11 +34,11 @@
           <li><a class="footlink" href="https://www.internet.nl/privacy/">{{ $t('base.privacy') }}</a></li>
           <li><a class="footlink" href="https://www.internet.nl/copyright/">{{ $t('base.copyright') }}</a></li>
           <li class="follow-us"><a class="footlink twitterfollow"
-                                   href="https://twitter.com/internet_nl">{{ $t('base.followtwitter') }}</a></li>
+                                   href="https://x.com/internet_nl">{{ $t('base.followtwitter') }}</a></li>
           <li class="follow-us"><a class="footlink linkedinfollow"
-                                   href="https://twitter.com/internet_nl">{{ $t('base.followlinkedin') }}</a></li>
+                                   href="https://www.linkedin.com/company/internet-nl/">{{ $t('base.followlinkedin') }}</a></li>
           <li class="follow-us"><a class="footlink mastodonfollow"
-                                   href="https://twitter.com/internet_nl">{{ $t('base.followmastodon') }}</a></li>
+                                   href="https://mastodon.nl/@internet_nl">{{ $t('base.followmastodon') }}</a></li>
 
 
         </ul>
@@ -111,6 +111,10 @@ export default {
   background: transparent url("/static_frontend/images/vendor/internet_nl/icon-mastodonfollow-small.png") no-repeat 5px center !important;
   background-size: 1.25em 1.25em !important;
   padding-left: 2em !important;
+}
+
+.footlink:hover, .footlink:visited, .footlink:active {
+  color:white;
 }
 </style>
 <i18n>
