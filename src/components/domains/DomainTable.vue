@@ -70,9 +70,10 @@
 
             <div class="float-left w-75" v-if="selected.length > 0">
               <b-input-group>
-                <v-select :options="tags" v-model="selected_tag" class="w-75" taggable :placeholder="$t('select label')">
+                <v-select :options="tags" :inputId='"tagselect"' @search:blur="searched_with_no_result" v-model="selected_tag" class="w-75" taggable :placeholder="$t('select label')">
                   <template v-slot:option="option">
-                    <tag :value="option.label"/>
+                    <!-- Allow clicking on the tag to select it... -->
+                    <tag :value="option.label" style="pointer-events: none; "/>
                   </template>
                 </v-select>
                 <b-input-group-append>
@@ -81,7 +82,6 @@
                 </b-input-group-append>
               </b-input-group>
             </div>
-
 
             <b-button class="float-right normalbutton" variant="info" @click="$emit('update')">🔁<span class="sr-only">{{ $t('update domain list') }}</span></b-button>
             <button class="border-danger float-right mr-2" @click="remove_urls" v-if="selected.length > 0">🗑️</button>
@@ -230,6 +230,9 @@ export default {
     }
   },
   methods: {
+    searched_with_no_result(){
+      this.last_searched = document.getElementById('tagselect').value;
+    },
     nextpage() {
       this.allSelected = false;
     },
@@ -248,8 +251,6 @@ export default {
       this.$refs.selectableTable.clearSelected()
     },
     toggleSelected() {
-      console.log(`allSelectedIndeterminate: ${this.allSelectedIndeterminate}`)
-      console.log(`allSelected: ${this.allSelected}`)
 
       // indeterminate state can reset all selected.
       if (this.allSelectedIndeterminate === true) {
@@ -279,7 +280,14 @@ export default {
       return false
     },
     add_tags() {
-      // todo: push changes to server
+      // support the scenario from issue #344
+      if (this.last_searched)
+          this.selected_tag = this.last_searched.toLowerCase()
+
+      // don't try to add empy tags...
+      if (!this.selected_tag)
+        return
+
       this.selected.forEach((item) => {
         if (!item.tags.includes(this.selected_tag)) {
           item.tags.push(this.selected_tag)
@@ -288,7 +296,10 @@ export default {
       http.post('/data/urllist/tag/add/', {'urllist_id': this.urllist.id, 'url_ids': this.selected.map(item => item.id), 'tag': this.selected_tag});
     },
     remove_tags() {
-      // todo: push changes to server
+      // support the scenario from issue #344
+      if (this.last_searched)
+          this.selected_tag = this.last_searched.toLowerCase()
+
       let ids = []
       this.selected.forEach((item) => {
         const index = item.tags.indexOf(this.selected_tag);
@@ -330,7 +341,9 @@ export default {
         return
       this.visibleRows = new_value.length;
     },
-    selected(new_value) {
+    selected(old_value, new_value) {
+      console.log(old_value)
+      console.log(new_value)
       console.log(`${new_value.length} / ${ this.visibleRows}`)
       if (new_value.length === this.visibleRows){
         this.allSelectedIndeterminate = false
@@ -343,10 +356,7 @@ export default {
         this.allSelected = false
         return
       }
-
-      console.log("all the things")
       this.allSelectedIndeterminate = true
-
     }
 
   }
