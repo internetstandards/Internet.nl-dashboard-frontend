@@ -45,14 +45,14 @@ export default {
   "en": {
     "title": "Welcome to the internet.nl Dashboard",
     "introduction": "Bulk scan modern internet standards on thousands of domains in one go, including reports.",
-    "request_access": "Request access by sending an e-mail to: ",
+    "request_access": "Request access by visiting the 'Request access' link at the top of this page, or by sending an e-mail to: ",
     "learn": "Learn what the dashboard can do for you, here...",
     "log_in": "Log in"
   },
   "nl": {
     "title": "Welkom op het internet.nl Dashboard",
     "introduction": "Meet duizenden domeinen tegelijk op moderne internetstandaarden, inclusief rapportage.",
-    "request_access": "Vraag toegang aan door een mail te sturen naar: ",
+    "request_access": "Vraag toegang aan door 'Toegang aanvragen' te bezoeken bovenaan deze pagina, of door een mail te sturen naar: ",
     "learn": "Bekijk hier wat het dashboard mogelijk maakt",
     "log_in": "Inloggen"
   }

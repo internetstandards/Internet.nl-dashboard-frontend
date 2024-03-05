@@ -85,7 +85,11 @@
       </b-form-group>
 
       <div class="mb-2" style="font-weight: bold">{{ $t('nature_of_organization')}}:</div>
-      <b-form-group id="input-group-nature-of-organization" v-slot="{ ariaDescribedby }" >
+      <b-form-group id="input-group-nature-of-organization" >
+        <template #description>
+          <span v-html="$t('nature_of_organization_description')" />
+        </template>
+
         <b-form-radio-group
           v-model="form.nature_of_organization"
           id="radios-nature-of-organization"
@@ -97,16 +101,13 @@
           <b-form-radio value="dutch-cloud-community">{{$t('nature_dutch_cloud_community')}} (<a href="https://dutchcloudcommunity.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
           <b-form-radio value="vereniging-van-registrars">{{$t('nature_registrar_community')}} (<a href="https://www.verenigingvanregistrars.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
           <b-form-radio value="vital_infrastructure">{{$t('nature_vital_infrastructure')}}</b-form-radio>
-          <b-form-radio value="other">{{$t('nature_other')}}</b-form-radio>
+          <b-form-radio value="hoster_in_hall_of_fame">{{$t('nature_hoster_in_hall_of_fame')}}</b-form-radio>
+          <!-- <b-form-radio value="other">{{$t('nature_other')}}</b-form-radio> -->
         </b-form-radio-group>
       </b-form-group>
 
       <b-alert v-if="form.nature_of_organization === 'vital_infrastructure'" variant="warning" show>
         {{$t('please_explain_vital_infrastructure')}}
-      </b-alert>
-
-      <b-alert v-if="form.nature_of_organization === 'other'" variant="danger" show>
-        {{$t('other_type_not_possible')}}
       </b-alert>
 
       <b-form-group
@@ -174,12 +175,9 @@
       <b-form-group id="input-group-terms-of-use" v-slot="{ ariaDescribedby }" :label="$t('terms_of_use')">
         <b-form-checkbox-group
           v-model="form.terms_of_use"
-
           :state="form.terms_of_use.includes('accepted')"
-
           :aria-describedby="ariaDescribedby"
         >
-
           <span v-html="$t('terms_of_use_description')" /><br />
           <b-form-checkbox value="accepted" :state="form.terms_of_use !== ['accepted']">{{$t("terms_of_use_accept")}}</b-form-checkbox>
         </b-form-checkbox-group>
@@ -222,9 +220,7 @@ export default {
   },
   computed: {
     submit_possible( ){
-      if (this.form.nature_of_organization === 'other') {
-        return false
-      }
+      // possible logic here...
       return true
     }
   },
@@ -281,9 +277,10 @@ export default {
     "nature_government": "Government",
     "nature_non_profit": "Non profit",
     "nature_for_profit": "For profit",
+    "nature_hoster_in_hall_of_fame": "Hoster in the Hall of Fame for Hosters",
     "nature_dutch_cloud_community": "member of Dutch Cloud Community",
     "nature_registrar_community": "member of Vereniging van Registrars",
-    "nature_vital_infrastructure": "Vital infrastructure",
+    "nature_vital_infrastructure": "Category A vital infrastructure (NIS2)",
     "nature_other": "Other",
     "chamber_of_commerce_number": "Chamber of commerce number",
     "chamber_of_commerce_number_placeholder": "",
@@ -302,9 +299,8 @@ export default {
     "incomplete_form_submitted": "Form was not filled out completely, please fill out all fields",
     "access_requested": "Your request has been received and will be reviewed in the coming weeks. You will receive an e-mail with further instructions in the coming weeks.",
     "other_type_not_possible": "The dashboard is not meant for other types of organizations. Your request will not be accepted.",
-    "please_explain_vital_infrastructure": "Please add some information about your vital infrastructure organization in the reason for applying."
-
-
+    "please_explain_vital_infrastructure": "Please add some information about your vital infrastructure organization in the reason for applying.",
+    "nature_of_organization_description": "The API and Dashboard are only available for organizations that meet <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">specific requirements</a>."
   },
   "nl": {
     "access_to": "Ik wil graag toegang tot",
@@ -323,9 +319,10 @@ export default {
     "nature_government": "Overheid",
     "nature_non_profit": "Non profit",
     "nature_for_profit": "For profit",
+    "nature_hoster_in_hall_of_fame": "Hoster in de Hall of Fame van Hosters",
     "nature_dutch_cloud_community": "Lid van Dutch Cloud Community",
     "nature_registrar_community": "Lid van Vereniging van Registrars",
-    "nature_vital_infrastructure": "Vitale infrastructuur",
+    "nature_vital_infrastructure": "Categorie A vitale infrastructuur (NIS2)",
     "nature_other": "Overig",
     "chamber_of_commerce_number": "Kamer van koophandel nummer",
     "chamber_of_commerce_number_placeholder": "",
@@ -344,7 +341,8 @@ export default {
     "incomplete_form_submitted": "Het formulier is niet volledig ingevoerd, vul de ontbrekende velden in en probeer opnieuw.",
     "access_requested": "De aanvraag is ontvangen en word in de komende weken behandeld. Wij sturen in de komende weken een e-mail met een reactie.",
     "other_type_not_possible": "Het dashboard is niet bedoeld voor andere typen organisaties. De aanvraag zal worden afgewezen.",
-    "please_explain_vital_infrastructure": "Graag een motivatie en informatie over uw vitale infrastructurele organisatie toevoegen in het veld 'Reden om toegang aan te vragen'."
+    "please_explain_vital_infrastructure": "Graag een motivatie en informatie over uw vitale infrastructurele organisatie toevoegen in het veld 'Reden om toegang aan te vragen'.",
+    "nature_of_organization_description": "De API en het dashboard zijn alleen beschikbaar voor organisaties die voldoen aan <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">deze specifieke voorwaarden</a>."
   }
 }
 </i18n>
