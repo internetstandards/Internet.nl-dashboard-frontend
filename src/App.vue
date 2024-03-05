@@ -98,12 +98,12 @@ export default {
 
 <style>
 .twitterfollow {
-  background: transparent url("/static_frontend/images/vendor/internet_nl/icon-twitterfollow.svg") no-repeat 5px center !important;
+  background: transparent url("/static_frontend/images/vendor/internet_nl/icon-xfollow.svg") no-repeat 5px center !important;
   background-size: 1.25em 1.25em !important;
   padding-left: 2em !important;
 }
 .linkedinfollow {
-  background: transparent url("/static_frontend/images/vendor/internet_nl/icon-twitterfollow.png") no-repeat 5px center !important;
+  background: transparent url("/static_frontend/images/vendor/internet_nl/icon-linkedinfollow.png") no-repeat 5px center !important;
   background-size: 1.25em 1.25em !important;
   padding-left: 2em !important;
 }
