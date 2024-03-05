@@ -35,9 +35,9 @@
             />
           </span>
 
-          <p>{{ $t("authentication_options_secondfactor") }}</p>
-          <ul>
-            <li><a :href="`${$baseUrl}/accounts/password/change/`" target="_blank">🔑 {{ $t("change_password") }}</a>
+          <ul class="ml-0">
+            <li class="mb-2">
+              <a :href="`${$baseUrl}/accounts/password/change/`" target="_blank">🔑 {{ $t("change_password") }}</a>
             </li>
             <li><a :href="`${$baseUrl}/account/two_factor/`" target="_blank">📱 {{ $t("two_factor_options") }}</a></li>
           </ul>
