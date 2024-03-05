@@ -7,7 +7,7 @@
 
         <div v-for="scan_form in scan_methods" :key="scan_form.name">
             <b-card no-body>
-                <b-tabs pills vertical card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0">
+                <b-tabs pills vertical card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0" id="visible_metrics_tabs">
                     <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label"
                            class="p-3">
                         <section class="test-header">
@@ -247,6 +247,11 @@ export default {
     text-align: right;
     padding-top: 5px;
     padding-bottom: 10px;
+}
+
+#visible_metrics_tabs .nav-item .active{
+  color: white !important;
+
 }
 </style>
 <i18n>
