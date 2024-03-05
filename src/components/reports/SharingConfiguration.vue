@@ -15,9 +15,12 @@
                     class="mb-0"
                 >
                   <b-input-group>
+
+                    <!-- $baseUrl is not set in production and that is fine since the app runs on root.
+                    Yet, the link needs to be complete, otherwise it's hard to use it when sharing.-->
                     <b-form-input
                         id="share-code"
-                        :value="`${$baseUrl}/#/shared/report/${report['public_report_code']}`"
+                        :value="`https://${window.location.host}/#/shared/report/${report['public_report_code']}`"
                         maxlength="64"
                         :description="report['public_share_code'] ? 'bla' : 'bla'"
                         :disabled="true"
@@ -139,7 +142,7 @@ export default {
       this.loading = true;
       http.post('/data/report/share/share/', {
         'report_id': this.report.id,
-        'public_share_code': this.public_share_code
+        'public_share_code': this.report.public_share_code
       }).then(data => {
         this.response = data.data;
         this.report.is_publicly_shared = data.data.data.is_publicly_shared;

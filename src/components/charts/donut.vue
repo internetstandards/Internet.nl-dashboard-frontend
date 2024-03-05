@@ -170,13 +170,17 @@ export default {
     "measurement": "Rating",
     "value": "Percentage",
     "graph": "Chart",
-    "table": "Table"
+    "table": "Table",
+    "score": "score",
+    "rest": "rest"
   },
   "nl": {
     "measurement": "Waardering",
     "value": "Percentage",
     "graph": "Grafiek",
-    "table": "Tabel"
+    "table": "Tabel",
+    "score": "score",
+    "rest": "rest"
   }
 }
 </i18n>

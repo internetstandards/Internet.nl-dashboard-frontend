@@ -20,7 +20,8 @@ vue-cli: | $(vue-cli)
 
 run: vue-cli ## only run the gui
 	# the extra -- is because of hell and fail. https://github.com/vuejs/vue-cli/issues/1528
-	npm run serve -- --mode development
+	# Because of a legacy stuff this flag needs to be set. This is also set in the deployed environment
+	NODE_OPTIONS=--openssl-legacy-provider npm run serve -- --mode development
 
 run-csp: vue-cli
 	npm run serve -- --mode production

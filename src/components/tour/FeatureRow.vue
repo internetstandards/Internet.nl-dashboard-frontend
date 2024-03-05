@@ -4,7 +4,7 @@
         <demo-image :filename="`${feature}`" :caption=" translation.t(`${feature}.caption`)"  />
       </b-col>
       <b-col>
-        <h3>{{ translation.t(`${feature}.title`) }}</h3>
+        <h2>{{ translation.t(`${feature}.title`) }}</h2>
         <div v-html="translation.t(`${feature}.introduction`)"></div>
       </b-col>
     </b-row>
@@ -23,5 +23,7 @@ name: "FeatureRow",
 </script>
 
 <style scoped>
-
+h2 {
+ font-size: 1.5em;
+}
 </style>

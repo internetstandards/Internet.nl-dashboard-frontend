@@ -12,6 +12,11 @@ import chart_mixin from './chart_mixin.vue'
 
 export default {
     mixins: [chart_mixin],
+
+    props: {
+      chartName: {type: String, required: false, default: ''},
+    },
+
     methods: {
         renderData: function () {
             this.configure_barchart();
@@ -112,7 +117,7 @@ export default {
                 });
 
             });
-
+            this.$store.state.rendered_chart_to_table[this.chartName] = this.chart.data;
             this.chart.update();
         },
         renderTitle: function () {

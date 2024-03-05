@@ -18,15 +18,14 @@ h2 {
       <short-feature-overview />
 
       <div class="mt-4">
-        <b-button to="tour" variant="info"><b-icon icon="book"/> {{$t('learn')}}</b-button>
-        <b-button to="login" variant="success" class="ml-2" v-if="!user.is_authenticated" ><b-icon icon="box-arrow-in-right" /> {{$t('log_in')}}</b-button>
+        <button @click="$router.push({name: 'tour'})" variant="info"><b-icon icon="book"/> {{$t('learn')}}</button>
+        <a :href="$baseUrl + '/account/login/'"><button variant="success" class="ml-2" v-if="!user.is_authenticated" ><b-icon icon="box-arrow-in-right" /> {{$t('log_in')}}</button></a>
         <p class="mb-2 mt-2">{{$t('request_access')}}<a href="mailto:vraag@internet.nl">vraag@internet.nl</a>.</p>
       </div>
     </content-block>
 
-    <content-block>
-      <public-reports></public-reports>
-    </content-block>
+
+    <public-reports></public-reports>
 
   </div>
 </template>

@@ -26,7 +26,7 @@ module.exports = {
         config
             .plugin('html')
             .tap(args => {
-                args[0].title = "Internet.nl Dashboard";
+                args[0].title = "Internet.nl Dashboard - Bulk test for modern Internet Standards like IPv6, DNSSEC, HTTPS, DMARC, STARTTLS and DANE.";
                 return args;
             })
         config.resolve.alias.set(

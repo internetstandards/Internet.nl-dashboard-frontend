@@ -76,8 +76,8 @@
     font-size: 80%;
 }
 
-.language-switch-list li a:hover, header .language-switch-list li a:active, header .language-switch-list li a:focus {
-    text-decoration: underline
+.language-switch-list li a, .language-switch-list li a:hover, header .language-switch-list li a:active, header .language-switch-list li a:focus {
+    text-decoration: underline dotted
 }
 
 .navbar-collapse{
@@ -139,9 +139,14 @@ li a {
   max-width: 1064px;
 }
 
+.nav-link, .dropdown-toggle {
+  font-weight: 500 !important;
+}
+
+
 </style>
 <template>
-  <b-navbar toggleable="md">
+  <b-navbar toggleable="md" id="sitenav">
     <b-container class="max_container_width">
       <b-navbar-brand to="domains">
         <p id="site-title"><a><span class="hidden">{{ $t('sitetitle') }}</span></a></p>
@@ -150,7 +155,7 @@ li a {
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
+      <b-collapse id="nav-collapse" is-nav >
 
         <!-- sorry for the table here, after hours of fiddling with css to get two ul's below each other i'm done and
          just use the worst option that works. -->
@@ -211,13 +216,11 @@ li a {
           </template>
           <template v-if="!is_authenticated">
             <b-nav-item to="/tour" accesskey="t" exact exact-active-class="active"><b-icon icon="info-circle" /> {{ $t("tour") }}</b-nav-item>
-            <b-nav-item to="/signup" accesskey="t" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
+            <b-nav-item to="/signup" accesskey="u" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
             <b-nav-item :href="$baseUrl + '/account/login/'" accesskey="l" exact exact-active-class="active"><b-icon icon="box-arrow-in-right" /> {{ $t("log_in") }}</b-nav-item>
           </template>
         </b-navbar-nav>
         </td></tr></table>
-
-
 
       </b-collapse>
     </b-container>
@@ -298,7 +301,7 @@ export default {
   "en": {
     "en": "English",
     "nl": "Nederlands",
-    "sitedescription": "Test for modern Internet Standards like IPv6, DNSSEC, HTTPS, DMARC, STARTTLS and DANE.",
+    "sitedescription": "Test for modern Internet Standards IPv6, DNSSEC, HTTPS, HSTS, DMARC, DKIM, SPF, STARTTLS, DANE, RPKI and security.txt",
     "sitetitle": "Internet.nl",
     "account": "Account",
     "admin": "Admin",
@@ -322,7 +325,7 @@ export default {
   "nl": {
     "en": "English",
     "nl": "Nederlands",
-    "sitedescription": "Test voor moderne Internetstandaarden zoals IPv6, DNSSEC, HTTPS, DMARC, STARTTLS en DANE.",
+    "sitedescription": "Test voor moderne Internetstandaarden IPv6, DNSSEC, HTTPS, HSTS, DMARC, DKIM, SPF, STARTTLS, DANE, RPKI en security.txt.",
     "sitetitle": "Internet.nl",
     "account": "Profiel",
     "admin": "Beheer",

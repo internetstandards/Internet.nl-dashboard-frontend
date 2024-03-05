@@ -65,6 +65,9 @@ Vue.component('content-block', ContentBlock);
 Vue.component('loading', loading)
 Vue.component('server-response', server_response)
 
+// https://stackoverflow.com/questions/54166847/how-to-access-the-window-object-in-vue-js
+Vue.prototype.window = window;
+
 Vue.config.productionTip = false
 
 Vue.prototype.$baseUrl = process.env.VUE_APP_DJANGO_PATH;
@@ -117,6 +120,11 @@ const store = new Vuex.Store({
 
         // what tags are used to filter reports
         tags: [],
+
+        // tables for reports, rendered by chartjs, and then shown as table, not really nice but fastest to get this
+        rendered_chart_to_table: {
+            'overall': {}
+        }
     },
 
     mutations: {

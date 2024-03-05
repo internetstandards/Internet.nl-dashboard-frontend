@@ -349,15 +349,15 @@ div.rotate > span {
     </collapse-panel>
 
     <div class="start-on-new-page position-relative">
-      <div id=""></div>
+      <div id="report-table"></div>
 
 
         <div class="virtualList">
-          <virtual-list style="height: 70vh; overflow-y: auto; width: 100%"
+          <virtual-list style="height: 125vh; overflow-y: auto; width: 100%"
             :data-key="'url'"
             :data-sources="filtered_urls"
             :data-component="itemComponent"
-            :keeps="50"
+            :keeps="75"
             wrap-class="vl-wrap"
             header-class="vl-head"
             footer-class="vl-foot"
@@ -371,22 +371,22 @@ div.rotate > span {
             <div slot="header">
 
 
-              <table class="table table-striped" style="position: absolute">
+        <table class="table table-striped" style="position: absolute;">
         <thead class="sticky_labels">
 
         <tr class="sticky_labels">
           <th class="sticky-header bg-white col-1" style="width: 100px; min-width: 100px;">
             <div class="rotate">
-              <span @click="sortBy('score')" class="arrow"
-                    :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></span>
-              <span @click="sortBy('score')">{{ $t("score") }}</span>
+              <a class="arrow"
+                    :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></a>
+              <a @click="sortBy('score')" href="javascript:;">{{ $t("score") }}</a>
             </div>
           </th>
           <th class="sticky-header bg-white" style="width: 200px; min-width: 200px;">
             <div class="rotate">
-              <div @click="sortBy('url')" class="arrow"
-                   :class="sortOrders['url'] === -1 ? 'dsc' : (sortOrders['url'] === 1 ? 'asc' : 'unknown')"></div>
-              <div @click="sortBy('url')" class="d-inline-block">{{ $t("domain") }}</div>
+              <a class="arrow"
+                   :class="sortOrders['url'] === -1 ? 'dsc' : (sortOrders['url'] === 1 ? 'asc' : 'unknown')"></a>
+              <a @click="sortBy('url')" class="d-inline-block" href="javascript:;">{{ $t("domain") }}</a>
             </div>
           </th>
 
@@ -396,9 +396,10 @@ div.rotate > span {
               <div class="header_top_category"
                    v-for="category in relevant_categories_based_on_settings" :key="category">
                 <div class="rotate">
-                  <span @click="sortBy(category)" class="arrow"
-                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></span>
-                  <span @click="sortBy(category)">{{ $t("" + category) }}</span>
+                  <a class="arrow"
+                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></a>
+                  <!-- A very hacky solution to make the text shorter and keep the value of the category description. This should be a category description in the future just like the rest. -->
+                  <a style="text-decoration: none !important;" @click="sortBy(category)" href="javascript:;" v-html='$t("" + category).replace("(", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(")'></a>
                 </div>
               </div>
 
@@ -408,13 +409,13 @@ div.rotate > span {
               <div class="header_sub_category"
                    v-for="category in relevant_categories_based_on_settings" :key="category">
                 <div class="rotate nowrap">
-                  <div @click="sortBy(category)" class="arrow"
-                       :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></div>
-                  <div @click="sortBy(category)" class="d-inline-block">
+                  <a class="arrow"
+                       :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></a>
+                  <a @click="sortBy(category)" class="d-inline-block" href="javascript:;">
                     {{ $t("" + category) }}
-                    <div class="small text-secondary pl-3 close_to_top"
+                    <div class="small text-secondary pl-3 close_to_top" href="#"
                         v-html="category_from_field_name(category)"></div>
-                  </div>
+                  </a>
                 </div>
               </div>
 
@@ -455,7 +456,7 @@ div.rotate > span {
                   class="sticky_search text-center">
                 <button class="w-100"
                         @click="select_category(report_category)">
-                  <span role="img" :aria-label="$t('icons.remove_filter')">❌</span>
+                  <span role="img" :aria-label="$t('icons.remove_filter')">↩️</span>
                   {{ $t("report.zoom.buttons.remove_zoom") }}
                 </button>
                 <br>
@@ -554,12 +555,12 @@ export default {
   watch: {
     reports: function () {
       if (this.reports[0] !== undefined) {
-        this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
+        this.original_urls = Object.freeze(this.reports[0].calculation.urls.sort(this.alphabet_sorting));
       }
     },
     original_urls: function (new_value) {
       console.log('Setting original urls')
-      this.filtered_urls = new_value;
+      this.filtered_urls = Object.freeze(new_value);
       // Apply existing sorting
       this.filter_urls();
     },
@@ -572,7 +573,7 @@ export default {
     this.select_category();
 
     if (this.reports[0] !== undefined) {
-      this.original_urls = this.reports[0].calculation.urls.sort(this.alphabet_sorting);
+      this.original_urls = Object.freeze(this.reports[0].calculation.urls.sort(this.alphabet_sorting));
     }
     // this.test_explode_report_size()
   },
@@ -620,18 +621,18 @@ export default {
       // in case of filter reset, or initializiation of this value.
       if (keyword === "" || keyword === undefined) {
         // console.log("Removing filter");
-        this.filtered_urls = this.order_urls(this.original_urls)
+        this.filtered_urls = Object.freeze(this.order_urls(this.original_urls))
         return
       }
 
       let urls = [];
       // keep the search order, use a correctly ordered set of original urls:
-      let tmp_urls = this.order_urls(this.original_urls);
+      let tmp_urls = Object.freeze(this.order_urls(this.original_urls));
       tmp_urls.forEach(function (value) {
         if (value.url.includes(keyword))
           urls.push(value)
       });
-      this.filtered_urls = this.order_urls(urls);
+      this.filtered_urls = Object.freeze(this.order_urls(urls));
     },
     order_urls: function (data) {
       // todo: add sorting icons :)

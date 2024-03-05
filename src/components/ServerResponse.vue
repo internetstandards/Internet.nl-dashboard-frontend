@@ -10,15 +10,15 @@ p {
 </style>
 <template>
     <div>
-        <b-alert v-model="show" variant="danger" v-if="response.error" dismissible fade>
+        <b-alert :show="show || force_show" variant="danger" v-if="response.error" dismissible fade>
             <h2>❌ {{ $t('error') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
-            <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }} ({{ time_ago }}).</small></span>
+          <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago">  ({{ time_ago }})</span>.</small></span>
         </b-alert>
-        <b-alert v-model="show" variant="success" v-if="response.success" dismissible fade>
+        <b-alert :show="show || force_show" variant="success" v-if="response.success" dismissible fade>
             <h2>✅ {{ $t('success') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
@@ -82,6 +82,10 @@ export default {
         message: {
             type: String,
             default: ""
+        },
+        force_show:{
+            type:Boolean,
+            default: false
         }
     }
 }

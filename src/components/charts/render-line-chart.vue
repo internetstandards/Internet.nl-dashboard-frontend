@@ -110,7 +110,9 @@ export default defineComponent({
       plugins: {
         datalabels: {
           color: '#262626',
-          display: true,
+          // setting this to true will look very ugly on the long run. See
+          // https://github.com/internetstandards/Internet.nl-dashboard/issues/471
+          display: 'auto',
           clamp: true, // always shows the number, also when the number 100%
           anchor: 'end', // show the number at the top of the bar.
           align: 'end', // shows the value outside of the bar,

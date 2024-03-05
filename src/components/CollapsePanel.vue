@@ -17,8 +17,8 @@
   font-weight: normal;
 }
 
-.panel-title:hover, button:focus {
-  text-decoration: underline;
+.panel-title, button {
+  text-decoration: underline dotted;
 }
 
 button {

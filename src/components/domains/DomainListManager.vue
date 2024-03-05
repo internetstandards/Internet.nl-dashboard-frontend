@@ -263,9 +263,10 @@ export default {
     },
     watch: {
         uploads_performed: function (new_value, old_value) {
+          console.log('uploads_performed', new_value, old_value);
             // only if the amount increases with 1, refresh the uploads. Otherwise existing uploads are loaded.
-            // Uploads go one by one.
-            if (old_value + 1 === new_value) {
+            // Uploads go one by one. No, today they go per 2 records. A 'pending' and a 'done' record.
+            if (new_value > old_value &&  old_value > 0) {
                 this.get_lists()
             }
         }

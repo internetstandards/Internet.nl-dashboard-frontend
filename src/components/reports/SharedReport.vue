@@ -21,11 +21,11 @@
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
       <template v-if="reports_require_authentication">
-        <ReportPasswords :reports="reports" @retry="retry"></ReportPasswords>
+        <ReportPasswords :reports="shallow_reports" @retry="retry"></ReportPasswords>
       </template>
       <template v-else>
         <content-block>
-          <report-header :show_application_links="false" :reports="reports"/>
+          <report-header :show_application_links="false" :reports="shallow_reports"/>
         </content-block>
 
         <ReportCharts :show_timeline="false" :reports="reports"/>
