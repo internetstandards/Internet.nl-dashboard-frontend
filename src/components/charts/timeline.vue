@@ -9,7 +9,10 @@
         <time-line-chart
             :timeline_data="timeline_data"
             :highlight_report_ids="highlight_report_ids"
-            :i18n="$i18n"
+            :title="$t('title')"
+            :x_axis_label="$t('x_axis_label')"
+            :y_axis_label="$t('y_axis_label')"
+            :accessibility_text="$t('accessibility_text')"
             @graph-data-updated="graph_data_to_table"
             :axis="['average_internet_nl_score']">
         </time-line-chart>
@@ -55,10 +58,10 @@ export default {
       data_from_graph: [],
 
       table_fields: [
-        {key: 'series', label: this.$i18n.t("series"), sortable: true},
-        {key: 'date', label: this.$i18n.t("x_axis_label"), sortable: true},
-        {key: 'value', label: this.$i18n.t("y_axis_label"), sortable: true},
-        {key: 'report', label: this.$i18n.t("report"), sortable: true},
+        {key: 'series', label: this.$t("series"), sortable: true},
+        {key: 'date', label: this.$t("x_axis_label"), sortable: true},
+        {key: 'value', label: this.$t("y_axis_label"), sortable: true},
+        {key: 'report', label: this.$t("report"), sortable: true},
       ]
     }
   },
@@ -111,7 +114,8 @@ export default {
     "series": "Series",
     "report": "Report",
     "graph": "Graph",
-    "table": "Table"
+    "table": "Table",
+    "accessibility_text": "A table with the content of this graph is shown below."
   },
   "nl": {
     "title": "Adoptie van standaarden over tijd.",
@@ -122,7 +126,8 @@ export default {
     "series": "Reeks",
     "report": "Rapport",
     "graph": "Grafiek",
-    "table": "Tabel"
+    "table": "Tabel",
+    "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
   }
 }
 </i18n>

@@ -555,7 +555,8 @@ export default {
   watch: {
     reports: function () {
       if (this.reports[0] !== undefined) {
-        this.original_urls = Object.freeze(this.reports[0].calculation.urls.sort(this.alphabet_sorting));
+        //.sort(this.alphabet_sorting)
+        this.original_urls = Object.freeze(this.reports[0].calculation.urls);
       }
     },
     original_urls: function (new_value) {
@@ -573,7 +574,8 @@ export default {
     this.select_category();
 
     if (this.reports[0] !== undefined) {
-      this.original_urls = Object.freeze(this.reports[0].calculation.urls.sort(this.alphabet_sorting));
+      // you can't sort frozen lists ofc. .sort(this.alphabet_sorting). Is this sorting relevant at all?
+      this.original_urls = Object.freeze(this.reports[0].calculation.urls);
     }
     // this.test_explode_report_size()
   },
