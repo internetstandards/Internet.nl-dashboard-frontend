@@ -7,7 +7,7 @@
 <template>
   <div>
     <template v-for="chart in charts_to_render">
-      <div v-if="chart.level === 1" :key="chart.axis.join('.')">
+      <div v-if="chart.level === 1" :key="chart.axis.join('.') + 'a'">
         <div class="chart-container w-100 position-relative fixed_ratio">
           <!-- Do not show canvas chart element in accessibility, use the table below -->
           <component :is="my_component" :chart_data="reports" :show_average="chart.average" :axis="chart.axis"
@@ -16,7 +16,7 @@
             <b-thead>
               <b-tr>
                 <b-th>{{ $t('category') }}</b-th>
-                <b-th v-for="xAxis in $store.state.rendered_chart_to_table['overall']['datasets']" :key="xAxis.label">
+                <b-th v-for="xAxis in $store.state.rendered_chart_to_table['overall']['datasets']" :key="xAxis.label + 'f'">
                   {{ $t(xAxis.label) }}
                 </b-th>
               </b-tr>
@@ -24,12 +24,12 @@
             <b-tbody>
 
               <b-tr v-for="(yAxis, yIndex) in $store.state.rendered_chart_to_table['overall']['labels']"
-                    :key="yAxis[0]">
+                    :key="yAxis[0] + 'g'">
                 <b-td style="width: 20%">
                   {{ $t(yAxis[0]) }}
                 </b-td>
                 <b-td v-for="(value, index) in $store.state.rendered_chart_to_table['overall']['datasets']"
-                      :key="`${yIndex}${index}`">
+                      :key="`${yIndex}${index}h`">
                   {{ value["data"][yIndex] }}%
                 </b-td>
               </b-tr>
@@ -38,7 +38,7 @@
 
         </div>
       </div>
-      <div v-else class="not-on-new-page" :key="chart.axis.join('.')">
+      <div v-else class="not-on-new-page" :key="chart.axis.join('.') + 'b'">
         <chart-collapse-panel :title="chart.label" :level="chart.level">
           <!-- Do not show canvas chart element in accessibility, use the table below -->
           <div slot="chart_content">
@@ -49,20 +49,20 @@
             <b-thead>
               <b-tr>
                 <b-th></b-th>
-                <b-th v-for="xAxis in $store.state.rendered_chart_to_table[chart.label]['datasets']" :key="xAxis.label">
+                <b-th v-for="xAxis in $store.state.rendered_chart_to_table[chart.label]['datasets']" :key="xAxis.label + 'c'">
                   {{ $t(xAxis.label) }}
                 </b-th>
               </b-tr>
             </b-thead>
             <b-tbody>
-
+              <!-- There is a slight challenge making unique keys for ths row. Some axis might be the same per category or so. Fix this with a random number -->
               <b-tr v-for="(yAxis, yIndex) in $store.state.rendered_chart_to_table[chart.label]['labels']"
-                    :key="yAxis[0]">
+                    :key="yAxis[0] + Math.floor(Math.random() * 100000000)">
                 <b-td style="width: 20%">
                   {{ $t(yAxis[0]) }}
                 </b-td>
                 <b-td v-for="(value, index) in $store.state.rendered_chart_to_table[chart.label]['datasets']"
-                      :key="`${yIndex}${index}`">
+                      :key="`${yIndex}${index}e`">
                   {{ value["data"][yIndex] }}%
                 </b-td>
               </b-tr>
