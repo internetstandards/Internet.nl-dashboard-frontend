@@ -353,11 +353,11 @@ div.rotate > span {
 
 
         <div class="virtualList">
-          <virtual-list style="height: 70vh; overflow-y: auto; width: 100%"
+          <virtual-list style="height: 125vh; overflow-y: auto; width: 100%"
             :data-key="'url'"
             :data-sources="filtered_urls"
             :data-component="itemComponent"
-            :keeps="50"
+            :keeps="75"
             wrap-class="vl-wrap"
             header-class="vl-head"
             footer-class="vl-foot"
@@ -371,7 +371,7 @@ div.rotate > span {
             <div slot="header">
 
 
-        <table class="table table-striped" style="position: absolute">
+        <table class="table table-striped" style="position: absolute;">
         <thead class="sticky_labels">
 
         <tr class="sticky_labels">
@@ -398,7 +398,8 @@ div.rotate > span {
                 <div class="rotate">
                   <a class="arrow"
                         :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></a>
-                  <a @click="sortBy(category)" href="javascript:;">{{ $t("" + category) }}</a>
+                  <!-- A very hacky solution to make the text shorter and keep the value of the category description. This should be a category description in the future just like the rest. -->
+                  <a style="text-decoration: none !important;" @click="sortBy(category)" href="javascript:;" v-html='$t("" + category).replace("(", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(")'></a>
                 </div>
               </div>
 
@@ -455,7 +456,7 @@ div.rotate > span {
                   class="sticky_search text-center">
                 <button class="w-100"
                         @click="select_category(report_category)">
-                  <span role="img" :aria-label="$t('icons.remove_filter')">❌</span>
+                  <span role="img" :aria-label="$t('icons.remove_filter')">↩️</span>
                   {{ $t("report.zoom.buttons.remove_zoom") }}
                 </button>
                 <br>

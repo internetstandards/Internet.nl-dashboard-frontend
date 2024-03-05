@@ -40,7 +40,7 @@
 
 
           <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
-          <content-block v-if="reports.length < 3" class="start-on-new-page">
+          <content-block v-if="reports.length < 3" class="start-on-new-page ultra-wide">
             <ReportTableVirtualList :reports="reports" :load_comparison_with_current="!tags_applied"/>
 
             <!--
