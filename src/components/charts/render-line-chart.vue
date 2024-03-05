@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <LineChart :chartData="testData" :height="300" :options="options"><p>{{ $t("accessibility_text") }}</p></LineChart>
+  <LineChart :chartData="testData" :height="300" :options="options"><p>{{ accessibility_text }}</p></LineChart>
 </template>
 
 <script>
@@ -17,7 +17,10 @@ export default defineComponent({
   props: {
     timeline_data: {type: Array, required: true},
     highlight_report_ids: {type: Array, required: false},
-    i18n:  {type: Object, required: false},
+    title: {type: String, required: false, default: ""},
+    x_axis_label: {type: String, required: false, default: ""},
+    y_axis_label: {type: String, required: false, default: ""},
+    accessibility_text: {type: String, required: false, default: ""},
   },
 
   setup(props, {emit}) {
@@ -145,7 +148,7 @@ export default defineComponent({
         },
         title: {
           display: true,
-          text: props.i18n.t('title')
+          text: props.title
         },
       },
       responsive: true,
@@ -167,7 +170,7 @@ export default defineComponent({
           },
           title: {
             display: true,
-            text: props.i18n.t('x_axis_label'),
+            text: props.x_axis_label,
           }
         },
         y: {
@@ -183,7 +186,7 @@ export default defineComponent({
           },
           title: {
             display: true,
-            text: props.i18n.t('y_axis_label'),
+            text: props.y_axis_label,
           },
         }
       }
