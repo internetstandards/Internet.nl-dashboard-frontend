@@ -153,7 +153,8 @@ export default {
       dropzoneOptions: {
         url: `${this.$baseUrl}/data/upload-spreadsheet/`,
         thumbnailWidth: 150,
-        maxFilesize: 1,
+        // in megabytes, 25 k domains is 1.2 megabyte so it is barred from uploading on the client side
+        maxFilesize: 2,
 
         // no need for CSRF token here anymore...
         withCredentials: true,
