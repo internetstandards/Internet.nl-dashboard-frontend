@@ -93,7 +93,6 @@
         <b-form-radio-group
           v-model="form.nature_of_organization"
           id="radios-nature-of-organization"
-          :aria-describedby="ariaDescribedby"
           plain stacked
         >
           <b-form-radio value="government">{{$t('nature_government')}}</b-form-radio>
@@ -171,12 +170,10 @@
         ></b-form-input>
       </b-form-group>
 
-
-      <b-form-group id="input-group-terms-of-use" v-slot="{ ariaDescribedby }" :label="$t('terms_of_use')">
+      <b-form-group id="input-group-terms-of-use"  :label="$t('terms_of_use')" label-for="checkboxes-terms-of-use">
         <b-form-checkbox-group
           v-model="form.terms_of_use"
           :state="form.terms_of_use.includes('accepted')"
-          :aria-describedby="ariaDescribedby"
         >
           <span v-html="$t('terms_of_use_description')" /><br />
           <b-form-checkbox value="accepted" :state="form.terms_of_use !== ['accepted']">{{$t("terms_of_use_accept")}}</b-form-checkbox>
@@ -291,7 +288,7 @@ export default {
     "captcha_title": "To prevent automated signups: what is the answer to 23 * 2 - 4?",
     "captcha_description": "Please answer the above question",
     "terms_of_use": "Terms of use",
-    "terms_of_use_description": "By submitting this application form the applicant declares that they will honor the terms of use which are published <a href='https://github.com/internetstandards/Internet.nl-API-docs/blob/main/terms-of-use.md' target='_blank' rel='_nofollow'>here</a>.",
+    "terms_of_use_description": "The applicant declares that they <a href='https://github.com/internetstandards/Internet.nl-API-docs/blob/main/terms-of-use.md' target='_blank' rel='_nofollow'>will honor the terms of use which are published here</a>.",
     "terms_of_use_accept": "I will honor the terms of use",
     "submit": "Send in application",
 
@@ -342,7 +339,7 @@ export default {
     "access_requested": "De aanvraag is ontvangen en word in de komende weken behandeld. Wij sturen in de komende weken een e-mail met een reactie.",
     "other_type_not_possible": "Het dashboard is niet bedoeld voor andere typen organisaties. De aanvraag zal worden afgewezen.",
     "please_explain_vital_infrastructure": "Graag een motivatie en informatie over uw vitale infrastructurele organisatie toevoegen in het veld 'Reden om toegang aan te vragen'.",
-    "nature_of_organization_description": "De API en het dashboard zijn alleen beschikbaar voor organisaties die voldoen aan <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">deze specifieke voorwaarden</a>."
+    "nature_of_organization_description": "De aanvrager gaat akkoord met <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">deze voorwaarden voor gebruik en zal zich daaraan houden</a>."
   }
 }
 </i18n>
