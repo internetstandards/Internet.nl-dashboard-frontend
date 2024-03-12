@@ -49,7 +49,7 @@
           $t("urllist.default_public_share_code_for_new_reports")
         }}:</label><br>
       <b-input-group class="mt-3">
-        <b-form-input id="default_public_share_code_for_new_reports" type="text" maxlength="120"
+        <b-form-input id="default_public_share_code_for_new_reports" type="text" maxlength="64"
                       :placeholder="$t('urllist.empty_is_no_share_code')"
                       v-model="list.default_public_share_code_for_new_reports">
 
