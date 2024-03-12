@@ -108,8 +108,7 @@
     <content-block>
       <h3>{{ $t("upload.recent_uploads.title") }}</h3>
       <p>{{ $t("upload.recent_uploads.intro") }}</p>
-      <autorefresh :visible="true" :callback="get_recent_uploads" :refresh_per_seconds="60" v-if="$store.state.user.is_authenticated" />
-      <loading :loading="loading"/>
+      <autorefresh :visible="true" :callback="get_recent_uploads" :refresh_per_seconds="3" v-if="$store.state.user.is_authenticated" />
       <table v-if="upload_history">
         <thead>
         <tr>
@@ -219,14 +218,10 @@ export default {
     },
 
     get_recent_uploads: function () {
-      this.loading = true;
       http.get(`/data/upload-history/`).then(data => {
-        this.upload_history = data.data;
+        // don't create a very long list because updates can flash
+        this.upload_history = data.data.splice(0, 20);
         this.$store.commit("set_uploads_performed", data.data.length);
-
-        // give some interaction to the user, otherwise the response will be so fast that it might look
-        // like the update did not happen.
-        this.loading = false;
       });
     },
   }
