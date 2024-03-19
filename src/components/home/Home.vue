@@ -19,8 +19,9 @@ h2 {
 
       <div class="mt-4">
         <button @click="$router.push({name: 'tour'})" variant="info"><b-icon icon="book"/> {{$t('learn')}}</button>
-        <a :href="$baseUrl + '/account/login/'"><button variant="success" class="ml-2" v-if="!user.is_authenticated" ><b-icon icon="box-arrow-in-right" /> {{$t('log_in')}}</button></a>
-        <p class="mb-2 mt-2">{{$t('request_access')}}<a href="mailto:vraag@internet.nl">vraag@internet.nl</a>.</p>
+        <a :href="$baseUrl + '/account/login/'"><button variant="success" class="ml-2" v-if="!user.is_authenticated" ><b-icon icon="box-arrow-in-right" /> {{$t('log_in')}}</button></a><br>
+        <br>
+        <router-link to="signup" class="mb-2 mt-2">{{$t('request_access')}}</router-link>
       </div>
     </content-block>
 
@@ -45,14 +46,14 @@ export default {
   "en": {
     "title": "Welcome to the internet.nl Dashboard",
     "introduction": "Bulk scan modern internet standards on thousands of domains in one go, including reports.",
-    "request_access": "Request access by visiting the 'Request access' link at the top of this page, or by sending an e-mail to: ",
+    "request_access": "To request access to the dashboard, please visit this page.",
     "learn": "Learn what the dashboard can do for you, here...",
     "log_in": "Log in"
   },
   "nl": {
     "title": "Welkom op het internet.nl Dashboard",
     "introduction": "Meet duizenden domeinen tegelijk op moderne internetstandaarden, inclusief rapportage.",
-    "request_access": "Vraag toegang aan door 'Toegang aanvragen' te bezoeken bovenaan deze pagina, of door een mail te sturen naar: ",
+    "request_access": "Toegang nodig tot het dashboard? Bezoek deze pagina.",
     "learn": "Bekijk hier wat het dashboard mogelijk maakt",
     "log_in": "Inloggen"
   }
