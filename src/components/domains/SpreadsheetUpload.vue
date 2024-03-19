@@ -257,7 +257,7 @@ export default {
       },
       "recent_uploads": {
         "title": "Recent uploads",
-        "intro": "This list shows your recent uploads. The status messages give an impression of what has been created or added. If something went wrong, the status contains hints on what to do next. if your upload was not successful",
+        "intro": "This list shows your recent uploads. The status messages give an impression of what has been created or added. If something went wrong, the status contains hints on what to do next.",
         "date": "Date",
         "filename": "Filename",
         "filesize": "Size",
