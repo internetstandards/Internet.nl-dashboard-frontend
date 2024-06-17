@@ -37,6 +37,7 @@ const routes = [
     },
     {
         path: '/domains/upload', component: SpreadsheetUpload,
+        name: "spreadsheet-upload",
         props: {
             max_lists: 200,
             max_urls: 5000,
