@@ -108,28 +108,33 @@
     <content-block>
       <h3>{{ $t("upload.recent_uploads.title") }}</h3>
       <p>{{ $t("upload.recent_uploads.intro") }}</p>
-      <autorefresh :visible="true" :callback="get_recent_uploads" :refresh_per_seconds="3" v-if="$store.state.user.is_authenticated" />
-      <table v-if="upload_history">
+
+      <b-table-simple hover striped responsive small v-if="upload_history">
         <thead>
         <tr>
           <th>{{ $t("upload.recent_uploads.date") }}</th>
           <th>{{ $t("upload.recent_uploads.filename") }}</th>
-          <th>{{ $t("upload.recent_uploads.filesize") }}</th>
           <th>{{ $t("upload.recent_uploads.status") }}</th>
+          <th>{{ $t("upload.recent_uploads.progress") }}</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="(upload, index) in upload_history" :key="index">
-          <td width="15%"><span :title="upload.upload_date">{{ humanize_date(upload.upload_date) }}</span>
-          </td>
-          <td width="20%">{{ upload.original_filename }}</td>
-          <td width="8%"><span :title="upload.filesize + ' bytes'">{{
+          <td width="22%"><span :title="upload.upload_date">{{ humanize_date(upload.upload_date) }}</span></td>
+
+          <td width="22%">
+            {{ upload.original_filename }}
+            <b-badge :title="upload.filesize + ' bytes'">{{
               humanize_filesize(upload.filesize)
-            }}</span></td>
+            }}</b-badge></td>
           <td>{{ upload.message }}</td>
+          <td width="15%"><b-progress class="mt-2" :max="100"><b-progress-bar variant="success" :show-progress="false" :value="upload.percentage" /></b-progress></td>
         </tr>
         </tbody>
-      </table>
+      </b-table-simple>
+
+      <autorefresh :visible="true" :callback="get_recent_uploads" :refresh_per_seconds="30" v-if="$store.state.user.is_authenticated" />
+
       <span v-if="!upload_history.length">{{ $t("upload.recent_uploads.no_uploads") }}</span>
     </content-block>
   </div>
@@ -220,7 +225,7 @@ export default {
     get_recent_uploads: function () {
       http.get(`/data/upload-history/`).then(data => {
         // don't create a very long list because updates can flash
-        this.upload_history = data.data.splice(0, 20);
+        this.upload_history = data.data.splice(0, 10);
         this.$store.commit("set_uploads_performed", data.data.length);
       });
     },
@@ -256,13 +261,14 @@ export default {
         "fallback_select_a_file": "Select a file to upload:"
       },
       "recent_uploads": {
-        "title": "Recent uploads",
-        "intro": "This list shows your recent uploads. The status messages give an impression of what has been created or added. If something went wrong, the status contains hints on what to do next.",
-        "date": "Date",
-        "filename": "Filename",
+        "title": "Upload status",
+        "intro": "This list shows your recent uploads and is automatically updated. The status messages give an impression of what has been created or added. If something went wrong, the status contains hints on what to do next.",
+        "date": "When",
+        "filename": "Upload",
         "filesize": "Size",
         "status": "Status",
-        "no_uploads": "No files uploaded."
+        "no_uploads": "No files uploaded.",
+        "progress": "Progress"
       }
     }
   },
@@ -293,13 +299,14 @@ export default {
         "fallback_select_a_file": "Selecteer een bestand om te uploaden:"
       },
       "recent_uploads": {
-        "title": "Recent geupload",
-        "intro": "Deze lijst geeft de meest recente uploads weer. De status berichten geven aan wat er is toegevoegd. Mocht er iets verkeerd zijn gegaan bij het uploaden, dan is hier advies te vinden over wat te verbeteren.",
-        "date": "Datum",
-        "filename": "Bestand",
+        "title": "Upload status",
+        "intro": "Deze lijst geeft de meest recente uploads weer en wordt automatisch bijgewerkt. De status berichten geven aan wat er is toegevoegd. Mocht er iets verkeerd zijn gegaan bij het uploaden, dan is hier advies te vinden over wat te verbeteren.",
+        "date": "Wanneer",
+        "filename": "Upload",
         "filesize": "Grootte",
         "status": "Status (in het Engels)",
-        "no_uploads": "Nog geen bestanden geüpload."
+        "no_uploads": "Nog geen bestanden geüpload.",
+        "progress": "Voortgang"
       }
     }
   }
