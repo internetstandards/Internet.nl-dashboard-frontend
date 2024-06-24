@@ -157,6 +157,9 @@ const store = new Vuex.Store({
         config: {
             show: {
                 signup_form: true,
+            },
+            app: {
+                layout: "internet_nl"
             }
         }
     },

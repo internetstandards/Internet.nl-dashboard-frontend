@@ -125,10 +125,10 @@ export default {
             "finished": "finished",
             "skipped sending mail: no mail server configured": "skipped sending mail: no mail server configured",
             "skipped sending mail: no e-mail addresses associated with account": "skipped sending mail: no e-mail addresses associated with account",
-            "network_error": "network problem detected, contact internet.nl",
-            "configuration_error": "configuration error detected, contact internet.nl",
+            "network_error": "network problem detected, contact the dashboard administrator",
+            "configuration_error": "configuration error detected, contact the dashboard administrator",
             "timeout": "operation timed out, will retry",
-            "error": "An unknown error occurred, contact internet.nl",
+            "error": "An unknown error occurred, contact the dashboard administrators",
             "cancelled": "Scan was cancelled"
         }
     },
@@ -170,10 +170,10 @@ export default {
             "finished": "klaar",
             "skipped sending mail: no mail server configured": "sturen van mail overgeslagen: geen mailserver ingesteld",
             "skipped sending mail: no e-mail addresses associated with account": "sturen van mail overgeslagen: geen mail adres bekend",
-            "network_error": "netwerkproblemen ontdekt, neem contact op met internet.nl",
-            "configuration_error": "configuratie onjuist ingesteld, neem contact op met internet.nl",
+            "network_error": "netwerkproblemen ontdekt, neem contact op met de dashboard beheerders",
+            "configuration_error": "configuratie onjuist ingesteld, neem contact op met de dashboard beheerders",
             "timeout": "wachttijd vertreken, probeert opnieuw",
-            "error": "Onbekende fout opgetreden, neem contact op met internet.nl",
+            "error": "Onbekende fout opgetreden, neem contact op met de dashboard beheerders",
             "cancelled": "Scan was gestopt"
         }
     }

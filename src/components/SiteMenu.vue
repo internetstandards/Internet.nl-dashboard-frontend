@@ -149,8 +149,10 @@ li a {
   <b-navbar toggleable="md" id="sitenav">
     <b-container class="max_container_width">
       <b-navbar-brand to="domains">
-        <p id="site-title"><a><span class="hidden">{{ $t('sitetitle') }}</span></a></p>
-        <p id="site-description"><span class="hidden">{{ $t('sitedescription') }}</span></p>
+        <template v-if="$store.state.config.app.layout === 'internet_nl'">
+          <p id="site-title"><a><span class="hidden">{{ $t('sitetitle') }}</span></a></p>
+          <p id="site-description"><span class="hidden">{{ $t('sitedescription') }}</span></p>
+        </template>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
