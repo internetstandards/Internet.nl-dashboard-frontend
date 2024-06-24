@@ -1010,7 +1010,7 @@ footer ul li:last-child {
 
     .home .block.news, .home {
         position: relative;
-        padding-bottom: 32px
+        /* padding-bottom: 32px */
     }
 
     .home .block.news .read-more, .home .read-more {
