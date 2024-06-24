@@ -65,6 +65,35 @@ Vue.component('content-block', ContentBlock);
 Vue.component('loading', loading)
 Vue.component('server-response', server_response)
 
+// start load config
+// this should be done as early as possible, so the delay on the user experience is minimal. This might be pre-rendered
+// yet that calls for a lot of trickery and expensive components
+import http from './httpclient';
+let data_url = '/data/config/';
+let timeout = 10*1000;
+http.get(data_url, {timeout}).then(data => {
+  if (!(data && data.data && Object.keys(data.data).length != 0)){
+    throw new Error("Config is empty!");
+  }
+
+  // store config
+  store.commit('set_config', data.data)
+}).catch((error) => {
+  console.error(`Could not retrieve config. Using default minimal config. Error: ${error}`)
+  // show error page when loading failed, promping user to reload and give email address to report issues
+  Vue.prototype.$loadError = true;
+}).finally( () => {
+
+    new Vue({
+        i18n,
+        router,
+        store,
+        render: h => h(App),
+    }).$mount('#app')
+
+})
+// end load config
+
 // https://stackoverflow.com/questions/54166847/how-to-access-the-window-object-in-vue-js
 Vue.prototype.window = window;
 
@@ -124,6 +153,11 @@ const store = new Vuex.Store({
         // tables for reports, rendered by chartjs, and then shown as table, not really nice but fastest to get this
         rendered_chart_to_table: {
             'overall': {}
+        },
+        config: {
+            show: {
+                signup_form: true,
+            }
         }
     },
 
@@ -140,6 +174,9 @@ const store = new Vuex.Store({
         },
         set_user(state, value) {
             state.user = value;
+        },
+        set_config(state, value) {
+            state.config = value;
         },
         set_visible_metrics(state, value) {
             state.visible_metrics = value;
@@ -158,7 +195,13 @@ const store = new Vuex.Store({
         }
     },
 
-    plugins: [createPersistedState()],
+    plugins: [createPersistedState(
+        {
+            // 'uploads_performed','scan_monitor_data', 'user',
+            //  'visible_metrics','report_ids', 'tags', 'ad_hoc_report_custom_date', 'ad_hoc_report_custom_time'
+            paths: [ 'locale', ]
+        }
+    )],
 });
 
 
@@ -397,11 +440,4 @@ Vue.use(VueMatomo, {
   // }
   trackSiteSearch: false
 });
-
-new Vue({
-    i18n,
-    router,
-    store,
-    render: h => h(App),
-}).$mount('#app')
 
