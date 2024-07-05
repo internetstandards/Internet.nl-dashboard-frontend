@@ -26,7 +26,7 @@
 
     <footer id="footer" v-if="$store.state.config.app.layout === 'internet_nl'">
       <template>
-      <img id="flag" src="static/images/vendor/internet_nl/clear.gif" alt="">
+      <img id="flag" src="static_frontend/images/vendor/internet_nl/clear.gif" alt="">
       <div class="wrap">
         {{ $t('base.info') }}
         <hr>
