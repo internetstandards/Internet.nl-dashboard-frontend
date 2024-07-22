@@ -39,6 +39,7 @@ pull_image:
 	# optimize build by caching previously build image
 	-docker pull ${docker_image_name}
 
+# do not build and push on arm due to incompatible architectures
 push_image:
 	docker push ${docker_image_name}
 
