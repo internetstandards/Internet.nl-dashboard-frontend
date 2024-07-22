@@ -75,6 +75,7 @@ h2 {
       <div v-if="!urls.length">
         <button class="border-success" @click="visible.add_domains = true">🌐 {{ $t("button.add_domains") }}</button> &nbsp;
         <button class="border-success" @click="visible.upload = true">⬆️ {{ $t("button.upload") }}</button> &nbsp;
+        <!-- <button class="border-success" @click="get_urls()">⬆️ {{ $t("button.reload") }}</button> -->
       </div>
 
       <div style="float: right" class="mb-2" v-if="urls.length">
@@ -342,7 +343,8 @@ export default {
       "delete": "Delete",
       "scanning_disabled": "Scanning disabled",
       "upload": "Upload domains",
-      "download": "Download domains"
+      "download": "Download domains",
+      "reload": "Reload domains"
     },
     "domains": {
       "header": "Domains",
@@ -371,7 +373,8 @@ export default {
       "delete": "Verwijder",
       "scanning_disabled": "Scans uitgeschakeld",
       "upload": "Domeinen uploaden",
-      "download": "Domeinen downloaden"
+      "download": "Domeinen downloaden",
+      "reload": "Domeinen ophalen"
     },
     "domains": {
       "header": "Domeinen",
