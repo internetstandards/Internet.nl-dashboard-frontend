@@ -101,6 +101,7 @@
           <b-form-radio value="vereniging-van-registrars">{{$t('nature_registrar_community')}} (<a href="https://www.verenigingvanregistrars.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
           <b-form-radio value="vital_infrastructure">{{$t('nature_vital_infrastructure')}}</b-form-radio>
           <b-form-radio value="hoster_in_hall_of_fame">{{$t('nature_hoster_in_hall_of_fame')}}</b-form-radio>
+          <b-form-radio value="for_profit_selling_to_nonprofit_or_critical">{{$t('nature_for_profit_selling_to_nonprofit_or_critical')}}</b-form-radio>
           <!-- <b-form-radio value="other">{{$t('nature_other')}}</b-form-radio> -->
         </b-form-radio-group>
       </b-form-group>
@@ -275,6 +276,7 @@ export default {
     "nature_non_profit": "Non profit",
     "nature_for_profit": "For profit",
     "nature_hoster_in_hall_of_fame": "Hoster in the Hall of Fame for Hosters",
+    "nature_for_profit_selling_to_nonprofit_or_critical": "For-profit organizations that offer services to (a substantial amount of) non-profit organizations or to organizations in sectors of high criticality",
     "nature_dutch_cloud_community": "member of Dutch Cloud Community",
     "nature_registrar_community": "member of Vereniging van Registrars",
     "nature_vital_infrastructure": "Category A vital infrastructure (NIS2)",
@@ -317,6 +319,7 @@ export default {
     "nature_non_profit": "Non profit",
     "nature_for_profit": "For profit",
     "nature_hoster_in_hall_of_fame": "Hoster in de Hall of Fame van Hosters",
+    "nature_for_profit_selling_to_nonprofit_or_critical": "Commerciële dienstverleners die leveren aan een (substantiële hoeveelheid) non-profit organisaties of organisaties in kritieke sectoren",
     "nature_dutch_cloud_community": "Lid van Dutch Cloud Community",
     "nature_registrar_community": "Lid van Vereniging van Registrars",
     "nature_vital_infrastructure": "Categorie A vitale infrastructuur (NIS2)",
