@@ -26,6 +26,7 @@
     </div>
 </template>
 <script>
+// todo: fade in / only show after 0.2 seconds or so, to prevent flickering
 export default {
     props: {
         loading: {

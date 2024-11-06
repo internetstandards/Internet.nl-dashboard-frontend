@@ -83,6 +83,7 @@ h2 {
           <span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
         </button> &nbsp;
         <button @click="visible.upload = true">⬆️ {{ $t("button.upload") }}</button> &nbsp;
+        <button @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled">⬆️ {{ $t("button.discover_subdomains") }}</button> &nbsp;
         <button @click="download_list">⬇️ {{ $t("button.download") }}</button> &nbsp;
       </div>
 
@@ -99,6 +100,8 @@ h2 {
 
     <Configure :list="list" :show="visible.configure" :visible="visible.configure" @cancel="visible.configure = false"
                @done="visible.configure = false"></Configure>
+    <DiscoverSubdomains :list="list" :show="visible.discover_subdomains" :visible="visible.discover_subdomains" @cancel="visible.discover_subdomains = false"
+               @done="visible.discover_subdomains = false"></DiscoverSubdomains>
     <Upload :list="list" :show="visible.upload" :visible="visible.upload" @cancel="visible.upload = false"
                @done="visible.upload = false; get_urls();"></Upload>
     <Delete :list="list" :show="visible.delete" :visible="visible.delete" @cancel="visible.delete = false"
@@ -131,9 +134,11 @@ import DomainTable from "@/components/domains/DomainTable";
 import SubdomainDiscovery from "@/components/domains/SubdomainDiscovery";
 import autorefresh from '@/components/autorefresh'
 import Probe from '@/components/probe'
+import DiscoverSubdomains from "@/components/domains/list/discover-subdomains";
 
 export default {
   components: {
+    DiscoverSubdomains,
     SubdomainDiscovery,
     DomainTable,
     ScanTypeIcon,
@@ -168,6 +173,7 @@ export default {
         scan: false,
         add_domains: false,
         upload: false,
+        discover_subdomains: false,
       },
     }
   },
