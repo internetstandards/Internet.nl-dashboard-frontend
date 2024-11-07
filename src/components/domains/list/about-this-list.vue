@@ -6,10 +6,10 @@
           <DashboardIcon icon="hourglass-split" />
 
             <span v-if="list.last_scan">
-                {{ $t("last_scan_started") }}: {{ humanize_date(list.last_scan) }}, {{ list.last_scan_state }}.
+                {{ $t("last_scan_started") }}: {{ humanize_date(list.last_scan) }}, {{ list.last_scan_state }}
             </span>
             <span v-if="!list.last_scan">
-                {{ $t("last_scan_started") }}: {{ $t("not_scanned_before") }}.
+                {{ $t("last_scan_started") }}: {{ $t("not_scanned_before") }}
             </span>
             <br>
             <template class="scan-configuration">
@@ -34,10 +34,10 @@
                         {{ $t("next_scheduled_scan") }}: {{ humanize_date(list.scheduled_next_scan) }} <br>
                     </span>
                 </span>
-                <span v-if="!list.enable_scans"> {{ $t("scanning_disabled") }} </span><br>
+                <span v-if="!list.enable_scans"> {{ $t("scanning_disabled") }} </span>
             </template>
 
-            <DashboardIcon icon="share" :scale="0.5" class="mr-1"/>
+            <DashboardIcon icon="share" :scale="0.5" class="mr-1"/>{{$t('sharing')}}:
             <span v-if="!list.automatically_share_new_reports">{{$t('Not automatically shared')}}</span>
             <span v-if="list.automatically_share_new_reports">{{$t('Automatically shared')}}
 
@@ -89,15 +89,16 @@ export default {
       "report": "report",
       "header": "About this list",
       "number_of_domains": "Number of domains",
-      "last_scan_started": "Last scan started at",
+      "last_scan_started": "Last scan",
       "still_running": "still running",
       "finished": "finished",
       "not_scanned_before": "Not scanned before",
-      "type_of_scan_performed": "Type of scan performed",
+      "type_of_scan_performed": "Type of scan",
       "scan_frequency": "Scan frequency",
       "next_scheduled_scan": "Next scheduled scan",
       "scanning_disabled": "Scanning of this list is disabled.",
       "latest_report": "Latest report",
+      "sharing": "Sharing",
       "Automatically shared": "Automatically shared",
       "Not automatically shared": "Not automatically shared",
       "Listed on sharing page": ", also on sharing page",
@@ -108,7 +109,7 @@ export default {
       "report": "rapport",
       "header": "Over deze lijst",
       "number_of_domains": "Aantal domeinen",
-      "last_scan_started": "Laatste scan gestart op",
+      "last_scan_started": "Laatste scan",
       "still_running": "loopt nog",
       "finished": "afgerond",
       "not_scanned_before": "Niet eerder gescand",
@@ -117,6 +118,7 @@ export default {
       "next_scheduled_scan": "Volgende ingeplande scan",
       "scanning_disabled": "Scannen van deze lijst is uitgeschakeld.",
       "latest_report": "Actueelste rapportage",
+      "sharing": "Delen",
       "Automatically shared": "Automatisch gedeeld",
       "Not automatically shared": "Niet automatisch gedeeld",
       "Listed on sharing page": "en ook op deze openbare pagina",

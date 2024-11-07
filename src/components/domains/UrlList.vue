@@ -59,7 +59,6 @@ h2 {
 
     <div v-if="is_opened">
       <br>
-      <SubdomainDiscovery v-if="urls.length" :list_id="list.id" class="float-right" @finished="get_urls"/>
       <About :list="list" :urls="urls"></About>
 
       <br>
@@ -82,8 +81,8 @@ h2 {
         <button @click="visible.add_domains = true">
           <span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
         </button> &nbsp;
+        <button @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled">🌪️️ {{ $t("button.discover_subdomains") }}</button> &nbsp;
         <button @click="visible.upload = true">⬆️ {{ $t("button.upload") }}</button> &nbsp;
-        <button @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled">⬆️ {{ $t("button.discover_subdomains") }}</button> &nbsp;
         <button @click="download_list">⬇️ {{ $t("button.download") }}</button> &nbsp;
       </div>
 
@@ -131,7 +130,7 @@ import About from './list/about-this-list'
 import http from "@/httpclient";
 import ScanTypeIcon from "@/components/ScanTypeIcon";
 import DomainTable from "@/components/domains/DomainTable";
-import SubdomainDiscovery from "@/components/domains/SubdomainDiscovery";
+
 import autorefresh from '@/components/autorefresh'
 import Probe from '@/components/probe'
 import DiscoverSubdomains from "@/components/domains/list/discover-subdomains";
@@ -139,7 +138,7 @@ import DiscoverSubdomains from "@/components/domains/list/discover-subdomains";
 export default {
   components: {
     DiscoverSubdomains,
-    SubdomainDiscovery,
+
     DomainTable,
     ScanTypeIcon,
     Delete,
@@ -350,7 +349,8 @@ export default {
       "scanning_disabled": "Scanning disabled",
       "upload": "Upload domains",
       "download": "Download domains",
-      "reload": "Reload domains"
+      "reload": "Reload domains",
+      "discover_subdomains": "Discover subdomains"
     },
     "domains": {
       "header": "Domains",
@@ -380,7 +380,8 @@ export default {
       "scanning_disabled": "Scans uitgeschakeld",
       "upload": "Domeinen uploaden",
       "download": "Domeinen downloaden",
-      "reload": "Domeinen ophalen"
+      "reload": "Domeinen ophalen",
+      "discover_subdomains": "Subdomeinen ontdekken"
     },
     "domains": {
       "header": "Domeinen",

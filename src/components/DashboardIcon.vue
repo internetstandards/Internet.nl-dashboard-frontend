@@ -11,7 +11,7 @@ name: "DashboardIcon",
   props: {
     icon: {type: String, required: true},
     scale: {type: Number, required: false, default: 0.7},
-    stackscale: {type: Number, required: false, default: 1.3},
+    stackscale: {type: Number, required: false, default: 1.7},
     ariaLabel: {type: String, required: false, default: ""}
   }
 }
