@@ -61,6 +61,9 @@
 
     </div>
     <div slot="modal-footer">
+      <button class="modal-default-button altbutton" @click="cancel()">
+        {{ $t("cancel") }}
+      </button> &nbsp;
       <button class="modal-default-button defaultbutton" @click="close()">
         {{ $t("ok") }}
       </button>
@@ -106,6 +109,10 @@ export default {
   methods: {
     close() {
       this.$emit("done");
+      this.reset()
+    },
+    cancel() {
+      this.$emit('cancel');
       this.reset()
     },
     reset() {
@@ -213,7 +220,7 @@ export default {
     "search": "Search"
   },
   "nl": {
-    "title": "Subdomeinen Ontdekken",
+    "title": "Subdomeinen Zoeker",
     "cancel": "Annuleer",
     "ok": "Klaar",
     "find_subdomains_header": "Voeg subdomeinen toe aan {0}",

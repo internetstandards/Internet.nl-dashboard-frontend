@@ -57,6 +57,11 @@ export default {
     },
     watch: {
         response: function () {
+
+          // don't toast when there is nothing to say
+          if (Object.keys(this.response).length === 0)
+            return;
+
             // a new response, means this should be visible again:
             this.show = true;
 
