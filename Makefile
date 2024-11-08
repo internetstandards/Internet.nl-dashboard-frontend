@@ -39,8 +39,7 @@ pull_image:
 	# optimize build by caching previously build image
 	-docker pull ${docker_image_name}
 
-# protip: don't push from a non-x86 machine, as you'll get an exec format error for the container.
-# let the ci environment build and push the image
+# do not build and push on arm due to incompatible architectures
 push_image:
 	docker push ${docker_image_name}
 
