@@ -21,7 +21,7 @@
         <div class="loading">
             <b-spinner variant="info" label="Spinning" class="fixed-spinner"></b-spinner>
             &nbsp;
-            <span>{{ $t("loading") }}</span>
+            <span>{{ $t("app.loading.loading") }}</span>
         </div>
     </div>
 </template>
@@ -36,13 +36,3 @@ export default {
     },
 }
 </script>
-<i18n>
-{
-    "en": {
-        "loading": "Loading..."
-    },
-    "nl": {
-        "loading": "Laden..."
-    }
-}
-</i18n>

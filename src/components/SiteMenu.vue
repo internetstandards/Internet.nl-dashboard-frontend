@@ -150,8 +150,8 @@ li a {
     <b-container class="max_container_width">
       <b-navbar-brand to="domains">
         <template v-if="$store.state.config.app.layout === 'internet_nl'">
-          <p id="site-title"><a><span class="hidden">{{ $t('sitetitle') }}</span></a></p>
-          <p id="site-description"><span class="hidden">{{ $t('sitedescription') }}</span></p>
+          <p id="site-title"><a><span class="hidden">{{ $t('app.menu.sitetitle') }}</span></a></p>
+          <p id="site-description"><span class="hidden">{{ $t('app.menu.sitedescription') }}</span></p>
         </template>
       </b-navbar-brand>
 
@@ -166,7 +166,7 @@ li a {
           <b-nav-item v-if="is_superuser">{{ account_name }}</b-nav-item>
           <b-nav-item v-for="(lang_code, index) in supported_languages" :key="index" :disabled="lang_code === locale" @click="set_locale(lang_code)">
             <b-icon icon="check" v-if="lang_code === locale"></b-icon>
-            {{ $t(lang_code) }}
+            {{ $t('app.menu.' + lang_code) }}
           </b-nav-item>
         </b-navbar-nav>
 
@@ -175,7 +175,7 @@ li a {
         <b-navbar-nav class="float-right">
 
           <b-nav-item to="/home" accesskey="h" exact exact-active-class="active"><b-icon icon="house" /> {{
-                $t("home")
+                $t("app.menu.home")
               }}
           </b-nav-item>
 
@@ -184,42 +184,42 @@ li a {
 
            <b-nav-item-dropdown exact exact-active-class="active">
             <template #text>
-              <b-icon icon="person-badge-fill" />  {{ $t("admin") }}
+              <b-icon icon="person-badge-fill" />  {{ $t("app.menu.admin") }}
             </template>
-            <b-dropdown-item to="/switch-account"><b-icon icon="person-bounding-box" /> {{$t("switch_user") }}</b-dropdown-item>
-            <b-dropdown-item to="/add-user" ><b-icon icon="person-plus" /> {{$t("add_user") }}</b-dropdown-item>
-            <b-dropdown-item to="/usage" ><b-icon icon="graph-up" /> {{$t("usage_overview") }}</b-dropdown-item>
+            <b-dropdown-item to="/switch-account"><b-icon icon="person-bounding-box" /> {{$t("app.menu.switch_user") }}</b-dropdown-item>
+            <b-dropdown-item to="/add-user" ><b-icon icon="person-plus" /> {{$t("app.menu.add_user") }}</b-dropdown-item>
+            <b-dropdown-item to="/usage" ><b-icon icon="graph-up" /> {{$t("app.menu.usage_overview") }}</b-dropdown-item>
           </b-nav-item-dropdown>
             </template>
 
             <b-nav-item to="/domains" accesskey="d" exact exact-active-class="active"><b-icon icon="card-list" /> {{
-                $t("domains")
+                $t("app.menu.domains")
               }}
             </b-nav-item>
-            <b-nav-item to="/scans" accesskey="s" exact exact-active-class="active"><b-icon icon="search" /> {{ $t("scans") }}</b-nav-item>
+            <b-nav-item to="/scans" accesskey="s" exact exact-active-class="active"><b-icon icon="search" /> {{ $t("app.menu.scans") }}</b-nav-item>
             <b-nav-item to="/report" accesskey="r" exact exact-active-class="active"><b-icon icon="file-bar-graph" /> {{
-                $t("reports")
+                $t("app.menu.reports")
               }}
             </b-nav-item>
             <b-nav-item-dropdown exact exact-active-class="active">
             <template #text>
-              <b-icon icon="person-circle" />  {{ $t("account") }}
+              <b-icon icon="person-circle" />  {{ $t("app.menu.account") }}
             </template>
-            <b-dropdown-item to="/account/notifications" accesskey="a">📨 {{$t("notifications") }}</b-dropdown-item>
-            <b-dropdown-item to="/account/authentication" >📱 {{$t("authentication") }}</b-dropdown-item>
-            <b-dropdown-item to="/account/web_metrics" ><scan-type-icon type="web" /> {{$t("web_metrics") }}</b-dropdown-item>
-            <b-dropdown-item to="/account/mail_metrics"><scan-type-icon type="mail" /> {{$t("mail_metrics") }}</b-dropdown-item>
+            <b-dropdown-item to="/account/notifications" accesskey="a">📨 {{$t("app.menu.notifications") }}</b-dropdown-item>
+            <b-dropdown-item to="/account/authentication" >📱 {{$t("app.menu.authentication") }}</b-dropdown-item>
+            <b-dropdown-item to="/account/web_metrics" ><scan-type-icon type="web" /> {{$t("app.menu.web_metrics") }}</b-dropdown-item>
+            <b-dropdown-item to="/account/mail_metrics"><scan-type-icon type="mail" /> {{$t("app.menu.mail_metrics") }}</b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item @click="logout" accesskey="l" ><b-icon icon="box-arrow-right" /> {{
-                $t("log_off")
+                $t("app.menu.log_off")
               }}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           </template>
           <template v-if="!is_authenticated">
-            <b-nav-item to="/tour" accesskey="t" exact exact-active-class="active"><b-icon icon="info-circle" /> {{ $t("tour") }}</b-nav-item>
-            <b-nav-item v-if="$store.state.config.show.signup_form" to="/signup" accesskey="u" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
-            <b-nav-item :href="$baseUrl + '/account/login/'" accesskey="l" exact exact-active-class="active"><b-icon icon="box-arrow-in-right" /> {{ $t("log_in") }}</b-nav-item>
+            <b-nav-item to="/tour" accesskey="t" exact exact-active-class="active"><b-icon icon="info-circle" /> {{ $t("app.menu.tour") }}</b-nav-item>
+            <b-nav-item v-if="$store.state.config.show.signup_form" to="/signup" accesskey="u" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("app.menu.request_access") }}</b-nav-item>
+            <b-nav-item :href="$baseUrl + '/account/login/'" accesskey="l" exact exact-active-class="active"><b-icon icon="box-arrow-in-right" /> {{ $t("app.menu.log_in") }}</b-nav-item>
           </template>
         </b-navbar-nav>
         </td></tr></table>
@@ -298,55 +298,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "en": "English",
-    "nl": "Nederlands",
-    "sitedescription": "Test for modern Internet Standards IPv6, DNSSEC, HTTPS, HSTS, DMARC, DKIM, SPF, STARTTLS, DANE, RPKI and security.txt",
-    "sitetitle": "Internet.nl",
-    "account": "Account",
-    "admin": "Admin",
-    "domains": "Domains",
-    "log_in": "Log in",
-    "log_off": "Log off",
-    "reports": "Reports",
-    "tour": "Tour",
-    "scans": "Scans",
-    "home": "Home",
-    "notifications": "Notifications",
-    "authentication": "Authentication",
-    "web_metrics": "Web metrics",
-    "mail_metrics": "Mail metrics",
-    "switch_user": "Switch user",
-    "add_user": "Add user",
-    "usage_overview": "Usage overview",
-    "request_access": "Request access",
-    "logged_out_successfully": "You have logged out successfully"
-  },
-  "nl": {
-    "en": "English",
-    "nl": "Nederlands",
-    "sitedescription": "Test voor moderne Internetstandaarden IPv6, DNSSEC, HTTPS, HSTS, DMARC, DKIM, SPF, STARTTLS, DANE, RPKI en security.txt.",
-    "sitetitle": "Internet.nl",
-    "account": "Profiel",
-    "admin": "Beheer",
-    "domains": "Domeinen",
-    "log_in": "Inloggen",
-    "log_off": "Uitloggen",
-    "reports": "Rapporten",
-    "tour": "Rondleiding",
-    "scans": "Scans",
-    "home": "Begin",
-    "notifications": "Notificaties",
-    "authentication": "Authenticatie",
-    "web_metrics": "Web meetwaarden",
-    "mail_metrics": "Mail meetwaarden",
-    "switch_user": "Wissel gebruiker",
-    "add_user": "Gebruiker toevoegen",
-    "usage_overview": "Gebruiksoverzicht",
-    "request_access": "Toegang aanvragen",
-    "logged_out_successfully": "Je bent uitgelogd"
-  }
-}
-</i18n>

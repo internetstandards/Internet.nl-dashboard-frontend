@@ -9,43 +9,43 @@
   <div class="account">
 
     <content-block>
-      <h1>{{ $t("title") }}</h1>
-      <p>{{ $t("new_login_info") }}</p>
+      <h1>{{ $t("app.login.title") }}</h1>
+      <p>{{ $t("app.login.new_login_info") }}</p>
       <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
     </content-block>
 
     <!-- https://github.com/internetstandards/Internet.nl-dashboard/issues/352 This page is a fallback for people
     that have the login page bookmarked. They are still pointed to the right place to log in. -->
     <content-block v-if="false">
-      <h1>{{ $t("title") }}</h1>
-      <p>{{ $t("intro") }}</p>
-      <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
+      <h1>{{ $t("app.login.title") }}</h1>
+      <p>{{ $t("app.login.intro") }}</p>
+      <server-response :response="server_response" :message="$t('app.login.' + server_response.message)"></server-response>
 
       <div v-if="!user.is_authenticated">
         <p>
-          {{ $t('not_logged_in') }}<br>
+          {{ $t('app.login.not_logged_in') }}<br>
           <span class="subtext">
-            {{ $t('secondfactor_message') }}: <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
+            {{ $t('app.login.secondfactor_message') }}: <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
           </span>
         </p>
 
         <form v-on:submit.prevent="login">
-          <label class='username' for="username">{{ $t("username") }}</label>
+          <label class='username' for="username">{{ $t("app.login.username") }}</label>
           <b-form-input id="username" type="text" maxlength="120" v-model="username"
-                        :placeholder="$t('username')"></b-form-input>
+                        :placeholder="$t('app.login.username')"></b-form-input>
           <br>
 
-          <label class='password' for="password">{{ $t("password") }}</label>
+          <label class='password' for="password">{{ $t("app.login.password") }}</label>
           <b-form-input id="password" type="password" maxlength="120" v-model="password"
-                        :placeholder="$t('password')"></b-form-input>
+                        :placeholder="$t('app.login.password')"></b-form-input>
 
           <br>
-          <button id="login" type="submit">{{ $t("login") }}</button>
+          <button id="login" type="submit">{{ $t("app.login.login") }}</button>
         </form>
 
       </div>
       <div v-else>
-        {{ $t('logged_in') }}
+        {{ $t('app.login.logged_in') }}
       </div>
     </content-block>
 
@@ -107,40 +107,3 @@ export default {
   computed: mapState(['user']),
 }
 </script>
-<i18n>
-{
-  "en": {
-    "title": "Login",
-    "intro": "Log into the dashboard.",
-    "username": "Username",
-    "password": "Password",
-    "login": "Log in",
-    "not_logged_in": "You are currently not logged in. Enter your credentials to log into the dashboard.",
-    "no_credentials_supplied": "Enter a username and password to log in.",
-    "invalid_credentials": "Username or password not correct.",
-    "user_not_active": "User is not active.",
-    "logged_in": "You have successfully logged in.",
-    "logged_out": "You have successfully logged out.",
-    "secondfactor_message": "If second factor authentication is enabled, use this alternate login link",
-    "second_factor_login_required": "Second factor authentication is enabled for this user, please use the alternative login form linked on this page.",
-    "new_login_info": "Please use the following link to log into the dashboard:"
-  },
-  "nl": {
-    "title": "Inloggen",
-    "intro": "Log in op het dashboard.",
-    "username": "gebruikersnaam",
-    "password": "wachtwoord",
-    "login": "Inloggen",
-    "not_logged_in": "Je bent niet ingelogd. Voer je gebruikersnaam en wachtwoord in om in te loggen op het dashboard.",
-    "no_credentials_supplied": "Voer een gebruikersnaam en wachtwoord in.",
-    "invalid_credentials": "Gebruikersnaam of wachtwoord niet correct.",
-    "user_not_active": "Gebruiker is niet actief.",
-    "logged_in": "Succesvol ingelogd.",
-    "logged_out": "Succesvol uitgelogd.",
-    "secondfactor_message": "Als tweetrapsverificatie is ingeschakeld, gebruik dan de alternatieve inlogpagina op de volgende link",
-    "second_factor_login_required": "Tweetrapsverificatie is ingeschakeld, gebruik de alternatieve inlogpagina die op deze pagina staat aangegeven.",
-    "new_login_info": "Gebruik de volgende pagina om in te loggen op het dashboard:"
-  }
-}
-
-</i18n>

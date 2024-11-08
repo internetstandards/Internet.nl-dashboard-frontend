@@ -16,7 +16,3 @@ name: "DashboardIcon",
   }
 }
 </script>
-
-<style scoped>
-
-</style>

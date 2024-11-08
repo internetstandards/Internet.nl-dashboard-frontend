@@ -4,8 +4,8 @@
 <template>
   <div>
     <content-block>
-      <h1><b-icon icon="search" /> {{ $t("title") }}</h1>
-      <p>{{ $t("intro") }}</p>
+      <h1><b-icon icon="search" /> {{ $t("scanmonitor.page.title") }}</h1>
+      <p>{{ $t("scanmonitor.page.intro") }}</p>
       <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60" v-if="$store.state.user.is_authenticated" />
     </content-block>
 
@@ -18,7 +18,7 @@
     </b-row>
 
 
-    <content-block v-if="!scans.length">{{ $t("no_scans") }}</content-block>
+    <content-block v-if="!scans.length">{{ $t("scanmonitor.page.no_scans") }}</content-block>
 
   </div>
 </template>
@@ -58,17 +58,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "title": "Scan monitor",
-    "intro": "All scans that have happened for this account are displayed here. It gives an insight into how recent the most current information is. It can also help you with comparisons to select the ideal scan.",
-    "no_scans": "No scans have been performed yet."
-  },
-  "nl": {
-    "title": "Scan monitor",
-    "intro": "Alle scans die zijn uitgevoerd voor dit account staan hier. Het geeft een overzicht in hoe recent de data is. Het geeft ook inzicht in of de meest recente scan al is afgerond.",
-    "no_scans": "Nog geen scans uitgevoerd."
-  }
-}
-</i18n>

@@ -73,14 +73,10 @@
 </template>
 
 <script>
-import sharedMessages from "@/components/translations/dashboard";
 import http from "@/httpclient";
 
 export default {
   name: "discover-subdomains",
-  i18n: {
-    sharedMessages: sharedMessages,
-  },
   props: {
     list: {
       type: Object,

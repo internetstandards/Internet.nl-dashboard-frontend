@@ -183,16 +183,12 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 
 <script>
 import UrlList from './UrlList.vue'
-import sharedMessages from './../translations/dashboard.js'
 import http from "@/httpclient";
 import CollapsePanel from '@/components/CollapsePanel'
 
 export default {
     components: {
         UrlList, CollapsePanel
-    },
-    i18n: {
-        sharedMessages: sharedMessages,
     },
     data: function () {
         return {
