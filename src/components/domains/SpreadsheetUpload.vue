@@ -244,7 +244,7 @@ export default {
     "upload": {
       "bulk_data_uploader": {
         "title": "Domain Spreadsheet Uploader",
-        "introduction": "It's possible to upload large amounts of internet addresses and lists using spreadsheets. To do so, please expand on the example spreadsheets listed below. This shows how the data has to be structured. Examples with and without data are provided as Open Document Spreadsheet, Microsoft Office Excel and Comma Separated."
+        "introduction": "It's possible to upload large amounts of internet addresses and lists using spreadsheets. To do so, please expand on the example spreadsheets listed below. This shows how the data has to be structured. Examples with and without data are provided as Open Document Spreadsheet, Microsoft Office Excel and Comma Separated. Below are some example files that specify the exact format."
       },
       "empty_file": "Empty file",
       "file_with_example_data": "File with example data",
@@ -282,7 +282,7 @@ export default {
     "upload": {
       "bulk_data_uploader": {
         "title": "Spreadsheet Domeinen Uploader",
-        "introduction": "Hiermee is het mogelijk om grote hoeveelheden internet adressen en lijsten toe te voegen. Dit gebeurd met spreadsheets. Begin met het downloaden van de voorbeelden hieronder, deze geven aan wat het juiste formaat is. De voorbeeldbestanden zijn te downloaden in het Open Document formaat, Microsoft Office formaat en Kommagescheiden."
+        "introduction": "Hiermee is het mogelijk om grote hoeveelheden internet adressen en lijsten toe te voegen. Dit gebeurd met spreadsheets. Begin met het downloaden van de voorbeelden hieronder, deze geven aan wat het juiste formaat is. De voorbeeldbestanden zijn te downloaden in het Open Document formaat, Microsoft Office formaat en Kommagescheiden. Hieronder staan een aantal voorbeeldbestanden waarin het exacte juiste formaat wordt aangegeven."
       },
       "empty_file": "Leeg bestand",
       "file_with_example_data": "Bestand met voorbeelddata",

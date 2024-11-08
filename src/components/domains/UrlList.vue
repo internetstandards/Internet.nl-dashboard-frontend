@@ -52,6 +52,8 @@ h2 {
                     <span :aria-label="$t('icon.settings')" role="img">📝</span> {{ $t("button.configure") }}
                 </button> &nbsp;
 
+              <button @click="download_list" v-if="urls.length">⬇️ {{ $t("button.download") }}</button> &nbsp;
+
               <button class="border-danger" @click="visible.delete = true">🗑️ {{ $t("button.delete") }}</button>
             </div>
         </span>
@@ -59,7 +61,6 @@ h2 {
 
     <div v-if="is_opened">
       <br>
-      <SubdomainDiscovery v-if="urls.length" :list_id="list.id" class="float-right" @finished="get_urls"/>
       <About :list="list" :urls="urls"></About>
 
       <br>
@@ -72,19 +73,22 @@ h2 {
         </div>
       </template>
 
-      <div v-if="!urls.length">
-        <button class="border-success" @click="visible.add_domains = true">🌐 {{ $t("button.add_domains") }}</button> &nbsp;
-        <button class="border-success" @click="visible.upload = true">⬆️ {{ $t("button.upload") }}</button> &nbsp;
+      <div  style="width: 100%; text-align: right" class="mb-2" v-if="!urls.length">
+        Add domains using:
+        <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}</b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("button.discover_subdomains") }}</b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("button.upload") }}</b-button> &nbsp;
+        <!-- <button class="border-success" @click="get_urls()">⬆️ {{ $t("button.reload") }}</button> -->
       </div>
 
-      <div style="float: right" class="mb-2" v-if="urls.length">
-        <button @click="visible.add_domains = true">
-          <span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
-        </button> &nbsp;
-        <button @click="visible.upload = true">⬆️ {{ $t("button.upload") }}</button> &nbsp;
-        <button @click="download_list">⬇️ {{ $t("button.download") }}</button> &nbsp;
+      <div style="width: 100%; text-align: right" class="mb-2" v-if="urls.length">
+        Add domains using:
+        <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
+        </b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("button.discover_subdomains") }}</b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("button.upload") }}</b-button> &nbsp;
+        <SubdomainDiscovery v-if="urls.length" :list_id="list.id" @finished="get_urls"/>
       </div>
-
 
 
       <template v-if="urls.length">
@@ -98,6 +102,8 @@ h2 {
 
     <Configure :list="list" :show="visible.configure" :visible="visible.configure" @cancel="visible.configure = false"
                @done="visible.configure = false"></Configure>
+    <DiscoverSubdomains :list="list" :show="visible.discover_subdomains" :visible="visible.discover_subdomains" @cancel="visible.discover_subdomains = false"
+               @done="visible.discover_subdomains = false; get_urls();"></DiscoverSubdomains>
     <Upload :list="list" :show="visible.upload" :visible="visible.upload" @cancel="visible.upload = false"
                @done="visible.upload = false; get_urls();"></Upload>
     <Delete :list="list" :show="visible.delete" :visible="visible.delete" @cancel="visible.delete = false"
@@ -127,13 +133,17 @@ import About from './list/about-this-list'
 import http from "@/httpclient";
 import ScanTypeIcon from "@/components/ScanTypeIcon";
 import DomainTable from "@/components/domains/DomainTable";
-import SubdomainDiscovery from "@/components/domains/SubdomainDiscovery";
+
 import autorefresh from '@/components/autorefresh'
 import Probe from '@/components/probe'
+import DiscoverSubdomains from "@/components/domains/list/discover-subdomains";
+import SubdomainDiscovery from "@/components/domains/SubdomainDiscovery";
 
 export default {
   components: {
     SubdomainDiscovery,
+    DiscoverSubdomains,
+
     DomainTable,
     ScanTypeIcon,
     Delete,
@@ -167,6 +177,7 @@ export default {
         scan: false,
         add_domains: false,
         upload: false,
+        discover_subdomains: false,
       },
     }
   },
@@ -335,14 +346,16 @@ export default {
     },
     "button": {
       "configure": "Configure",
-      "add_domains": "Add domains",
+      "add_domains": "Free text",
       "scan_now": "Scan now",
       "scan_now_scanning": "Scanning",
       "scan_now_scanning_title": "The scan now option is available only once a day, when no scan is running.",
       "delete": "Delete",
       "scanning_disabled": "Scanning disabled",
-      "upload": "Upload domains",
-      "download": "Download domains"
+      "upload": "Spreadsheet",
+      "download": "Download",
+      "reload": "Reload domains",
+      "discover_subdomains": "Subdomain discovery"
     },
     "domains": {
       "header": "Domains",
@@ -364,14 +377,16 @@ export default {
     },
     "button": {
       "configure": "Instellingen",
-      "add_domains": "Domeinen toevoegen",
+      "add_domains": "Vrije tekst",
       "scan_now": "Nu scannen",
       "scan_now_scanning": "Aan het scannen",
       "scan_now_scanning_title": "Nu scannen is alleen beschikbaar als er geen scan draait, en kan maximaal 1x per dag worden aangeroepen.",
       "delete": "Verwijder",
       "scanning_disabled": "Scans uitgeschakeld",
-      "upload": "Domeinen uploaden",
-      "download": "Domeinen downloaden"
+      "upload": "Spreadsheet",
+      "download": "Downloaden",
+      "reload": "Domeinen ophalen",
+      "discover_subdomains": "Subdomeinen zoeker"
     },
     "domains": {
       "header": "Domeinen",

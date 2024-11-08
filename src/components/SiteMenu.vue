@@ -149,8 +149,10 @@ li a {
   <b-navbar toggleable="md" id="sitenav">
     <b-container class="max_container_width">
       <b-navbar-brand to="domains">
-        <p id="site-title"><a><span class="hidden">{{ $t('sitetitle') }}</span></a></p>
-        <p id="site-description"><span class="hidden">{{ $t('sitedescription') }}</span></p>
+        <template v-if="$store.state.config.app.layout === 'internet_nl'">
+          <p id="site-title"><a><span class="hidden">{{ $t('sitetitle') }}</span></a></p>
+          <p id="site-description"><span class="hidden">{{ $t('sitedescription') }}</span></p>
+        </template>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -216,7 +218,7 @@ li a {
           </template>
           <template v-if="!is_authenticated">
             <b-nav-item to="/tour" accesskey="t" exact exact-active-class="active"><b-icon icon="info-circle" /> {{ $t("tour") }}</b-nav-item>
-            <b-nav-item to="/signup" accesskey="u" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
+            <b-nav-item v-if="$store.state.config.show.signup_form" to="/signup" accesskey="u" exact exact-active-class="active"><b-icon icon="person-check" /> {{ $t("request_access") }}</b-nav-item>
             <b-nav-item :href="$baseUrl + '/account/login/'" accesskey="l" exact exact-active-class="active"><b-icon icon="box-arrow-in-right" /> {{ $t("log_in") }}</b-nav-item>
           </template>
         </b-navbar-nav>

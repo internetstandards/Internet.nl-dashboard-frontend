@@ -1,23 +1,23 @@
 <template>
-  <div>
+  <span>
     <template
         v-if="['not_scanned_at_all'].includes(state_message) || ['finished', 'error', 'cancelled'].includes(state)">
 
-      <b-button size="sm" v-if="success_while_visible" @click="reload_and_reset" variant="success" :disabled="loading">
+      <b-button style="font-weight: bold" size="sm" v-if="success_while_visible" @click="reload_and_reset" variant="success" :disabled="loading">
         {{ $t('Scanning done, click to reload domain list') }}
       </b-button>
 
-      <b-button size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" variant="info" :disabled="loading">{{ $t("Find 'www.' subdomains") }}<span
-          v-if="state_changed_on">{{ $t(', last scan finished ') }}{{ humanize_relative_date(state_changed_on) }}</span></b-button>
+      <b-button style="font-weight: bold" size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" :disabled="loading">{{ $t("Find 'www.' subdomains") }}<span
+          v-if="state_changed_on">{{ $t(', last scan finished ') }}</span></b-button>
     </template>
     <template v-else>
-      <b-button size="sm"  @click="status" :disabled="loading">
+      <b-button style="font-weight: bold" size="sm"  @click="status" :disabled="loading">
         <probe/>
-        {{ $t("... finding 'www.' subdomains ") }}({{ $t(state) }}, {{ humanize_relative_date(state_changed_on) }})
+        {{ $t("... finding 'www.' subdomains ") }}
       </b-button>
     </template>
      <subdomain-discovery-modal :id="`subdomain_discovery_modal_${list_id}`" @ok="request" />
-  </div>
+  </span>
 </template>
 
 <script>
@@ -120,20 +120,20 @@ export default {
 {
   "en": {
     "Scanning done, click to reload domain list": "Scanning done, click to reload domain list",
-    "Find 'www.' subdomains": "Add www. subsubdomains",
+    "Find 'www.' subdomains": "www. discovery",
     ", last scan finished ": ", last index finished ",
-    "... finding 'www.' subdomains ": "... finding subdomains ",
-    "requested": "requested",
+    "... finding 'www.' subdomains ": "finding www. ",
+    "requested": "since",
     "scanning": "gathering",
     "finished": "finished",
     "error": "error"
   },
   "nl": {
     "Scanning done, click to reload domain list": "Klaar met zoeken, klik om de domeinlijst te herladen",
-    "Find 'www.' subdomains": "Voeg www. subdomeinen toe",
+    "Find 'www.' subdomains": "www. zoeker",
     ", last scan finished ":  ", laatste keer was ",
-    "... finding 'www.' subdomains ": "... zoekt subdomeinen ",
-    "requested": "aangevraagd",
+    "... finding 'www.' subdomains ": "zoekt www. ",
+    "requested": "vanaf",
     "scanning": "verzamelen",
     "finished": "afgerond",
     "error": "fout"
