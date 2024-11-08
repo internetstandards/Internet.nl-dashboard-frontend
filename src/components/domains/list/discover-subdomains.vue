@@ -1,21 +1,22 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <b-modal :visible="visible" @hidden="close()" header-bg-variant="info" header-text-variant="light" no-fade
-           scrollable size="xl">
+           scrollable size="lg">
     <h3 slot="modal-title">📝 {{ $t("title") }}</h3>
-    <div slot="default">
+    <div slot="default" style="min-height: 50vh;">
 
       <label for="domain_name">{{ $t("find_subdomains_header", [list.name]) }}:</label><br>
 
       <b-input-group class="mb-2">
 
 
-      <b-form-input id="domain_name" type="text" maxlength="120" v-model="input_domain" debounce="400"></b-form-input>
+      <b-form-input id="domain_name" type="text" maxlength="120" v-model="input_domain" debounce="400" :placeholder="$t('enter_domain_name')"></b-form-input>
 
       <b-input-group-append>
         <b-button class="lastbutton" role="link" @click="find_suggestions()" style="min-width: 120px">🔎 {{ $t("search") }} <b-spinner variant="info" label="Spinning" small v-if="loading_suggestions"/></b-button>
       </b-input-group-append>
     </b-input-group>
+      <p class="mb-2">{{$t('will_be_added_to', [list.name])}}</p>
 
       <server-response :response="response" v-if="response" :message="$t('' + response.message)"/>
 
@@ -206,7 +207,8 @@ export default {
     "title": "Discover Subdomains",
     "cancel": "Cancel",
     "ok": "Done",
-    "find_subdomains_header": "Add subdomains to {0}",
+    "find_subdomains_header": "Enter a domain name to find subdomains",
+    "will_be_added_to": "selected subdomains will be added to the list named {0}.",
     "added_n_to_list": "{0} domains added to this list. Take care: if the new domains are not shown in the list right away, wait a short while and reload the list.",
     "removed_n_duplicates": "{0} duplicates removed from the input.",
     "ignored_n": "{0} domains are already in this list.",
@@ -217,13 +219,15 @@ export default {
     "clear_selection": "Clear selection",
     "dive_into_archive": "search for older subdomains, up to {0} days ago.",
     "add_subdomains_button": "Add {0} selected subdomains",
-    "search": "Search"
+    "search": "Search",
+    "enter_domain_name": "Enter a domain name, such as internet.nl to find subdomains..."
   },
   "nl": {
     "title": "Subdomeinen Zoeker",
     "cancel": "Annuleer",
     "ok": "Klaar",
-    "find_subdomains_header": "Voeg subdomeinen toe aan {0}",
+    "find_subdomains_header": "Voer een domeinnaam in om subdomeinen te vinden",
+    "will_be_added_to": "geselecteerde subdomeinen worden toegevoegd aan de lijst genaamd {0}.",
     "added_n_to_list": "{0} domeinen zijn aan de lijst toegevoegd. Let op: als de nieuwe domeinen niet direct in de lijst staan, wacht dan even en herlaad de lijst.",
     "removed_n_duplicates": "{0} dubbel ingevoerde domeinen zijn overgeslagen.",
     "ignored_n": "{0} domeinen zitten al in de lijst.",
@@ -234,7 +238,8 @@ export default {
     "clear_selection": "Selectie Wissen",
     "dive_into_archive": "zoek naar oudere subdomeinen, tot {0} dagen terug.",
     "add_subdomains_button": "Voeg {0} geselecteerde subdomeinen toe",
-    "search": "Zoek"
+    "search": "Zoek",
+    "enter_domain_name": "Voor een domeinnaam in zoals internet.nl om subdomeinen te vinden..."
   }
 }
 </i18n>

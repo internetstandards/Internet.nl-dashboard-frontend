@@ -3,7 +3,7 @@
   <b-modal size="lg" :visible="visible" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade
            scrollable>
     <h3 slot="modal-title">📝 {{ $t("title") }}</h3>
-    <div slot="default">
+    <div slot="default" style="min-height: 50vh;">
 
       <server-response :response="response" :message="$t(response.message)"></server-response>
 

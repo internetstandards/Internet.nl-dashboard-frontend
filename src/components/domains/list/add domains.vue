@@ -16,9 +16,9 @@
 
 <template>
   <b-modal :visible="visible" @hidden="stop()" header-bg-variant="info"
-           header-text-variant="light" no-fade scrollable size="xl">
+           header-text-variant="light" no-fade scrollable size="lg">
     <h3 slot="modal-title">🌐 {{ $t("title") }}</h3>
-    <div slot="default">
+    <div slot="default" style="min-height: 50vh;">
 
       <server-response :response="response" v-if="response" :message="$t('' + response.message)"/>
 
