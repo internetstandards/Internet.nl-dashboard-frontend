@@ -38,14 +38,10 @@
 </template>
 
 <script>
-import sharedMessages from './../../translations/dashboard.js'
 import http from "@/httpclient";
 
 export default {
     name: "delete-list",
-    i18n: {
-        sharedMessages: sharedMessages,
-    },
     props: {
         list: {
             type: Object,

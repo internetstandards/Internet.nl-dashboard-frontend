@@ -1,0 +1,1629 @@
+{
+	"account": {
+		"notifications": {
+			"authentication_options": "",
+			"authentication_options_secondfactor": "",
+			"check_false": "",
+			"check_true": "",
+			"en": "",
+			"first_name": "",
+			"last_name": "",
+			"mail_preferred_language": "",
+			"mail_preferred_mail_address": "",
+			"mail_send_mail_after_scan_finished": "",
+			"nl": "",
+			"notification_settings": "",
+			"personalia": "",
+			"reset": "",
+			"save": "",
+			"save_user_settings_error_could_not_retrieve_user": "",
+			"save_user_settings_error_form_incorrect_mail_address": "",
+			"save_user_settings_error_form_unsupported_language": "",
+			"save_user_settings_error_incomplete_data": "",
+			"save_user_settings_success": "",
+			"two_factor_options": ""
+		},
+		"page": {
+			"authentication_options": "",
+			"authentication_options_secondfactor": "",
+			"change_password": "",
+			"intro": "",
+			"notifications": "",
+			"password_change_success": "",
+			"title": "",
+			"two_factor_options": "",
+			"visible_metrics_mail": "",
+			"visible_metrics_web": ""
+		},
+		"visible-metrics": {
+			"buttons": {
+				"reset": "",
+				"reset_label": "",
+				"save": "",
+				"save_label": ""
+			},
+			"check": "",
+			"intro": "",
+			"main_category": "",
+			"only_show_dynamic_average": "",
+			"settings": {
+				"restored_from_database": "",
+				"updated": ""
+			},
+			"show_category": "",
+			"show_dynamic_average": "",
+			"title": "",
+			"uncheck": ""
+		}
+	},
+	"admin": {
+		"instant_add_account": {
+			"intro": "",
+			"password": "",
+			"save": "",
+			"title": "",
+			"username": ""
+		},
+		"switch_account": {
+			"intro": "",
+			"reload_list": "",
+			"reload_page_warning": "",
+			"select": "",
+			"switched_account": "",
+			"title": ""
+		},
+		"usage": {
+			"annotation_metrics": "",
+			"annotations": "",
+			"intro": "",
+			"title": ""
+		}
+	},
+	"app": {
+		"autorefresh": {
+			"refresh_happening_in": "",
+			"refresh_now": "",
+			"units": ""
+		},
+		"footer": {
+			"copyright": "",
+			"disclosure": "",
+			"followlinkedin": "",
+			"followmastodon": "",
+			"followtwitter": "",
+			"info": "",
+			"privacy": ""
+		},
+		"frequency": {
+			"at the start of every quarter": "",
+			"disabled": "",
+			"every 1st day of the month": "",
+			"every half year": "",
+			"twice per month": ""
+		},
+		"github": {
+			"intro": "",
+			"mail": "",
+			"or": "",
+			"view issues": ""
+		},
+		"loading": {
+			"loading": ""
+		},
+		"login": {
+			"intro": "",
+			"invalid_credentials": "",
+			"logged_in": "",
+			"logged_out": "",
+			"login": "",
+			"new_login_info": "",
+			"no_credentials_supplied": "",
+			"not_logged_in": "",
+			"password": "",
+			"second_factor_login_required": "",
+			"secondfactor_message": "",
+			"title": "",
+			"user_not_active": "",
+			"username": ""
+		},
+		"menu": {
+			"account": "",
+			"add_user": "",
+			"admin": "",
+			"authentication": "",
+			"domains": "",
+			"en": "",
+			"home": "",
+			"log_in": "",
+			"log_off": "",
+			"logged_out_successfully": "",
+			"mail_metrics": "",
+			"nl": "",
+			"notifications": "",
+			"reports": "",
+			"request_access": "",
+			"scans": "",
+			"sitedescription": "",
+			"sitetitle": "",
+			"switch_user": "",
+			"tour": "",
+			"usage_overview": "",
+			"web_metrics": ""
+		},
+		"server-response": {
+			"at": "",
+			"error": "",
+			"success": ""
+		},
+		"skiplink": {
+			"gotocontents": "",
+			"gotofooter": "",
+			"gotomainmenu": ""
+		}
+	},
+	"charts": {
+		"components/charts/donut.vue": {
+			"graph": "",
+			"measurement": "",
+			"rest": "",
+			"score": "",
+			"table": "",
+			"value": ""
+		},
+		"components/charts/render-cumulative-percentage-bar-chart.vue": {
+			"accessibility_text": "",
+			"average": "",
+			"title": "",
+			"yAxis_label": ""
+		},
+		"components/charts/render-percentage-bar-chart.vue": {
+			"accessibility_text": "",
+			"average": "",
+			"title_multiple": "",
+			"title_single": "",
+			"yAxis_label": ""
+		},
+		"components/charts/timeline.vue": {
+			"accessibility_text": "",
+			"average_internet_nl_score": "",
+			"graph": "",
+			"intro": "",
+			"report": "",
+			"series": "",
+			"table": "",
+			"title": "",
+			"x_axis_label": "",
+			"y_axis_label": ""
+		}
+	},
+	"domains": {
+		"components/domains/domain/edit.vue": {
+			"button_labels": {
+				"cancel": "",
+				"remove": "",
+				"save": ""
+			},
+			"cancel_editing_url": "",
+			"delete_edited_url": "",
+			"eligeble_mail": "",
+			"save_edited_url": "",
+			"start_editing_url": ""
+		},
+		"components/domains/domain/editDomain.vue": {
+			"button_labels": {
+				"cancel": "",
+				"remove": "",
+				"save": ""
+			},
+			"cancel_editing_url": "",
+			"delete_edited_url": "",
+			"eligeble_mail": "",
+			"eligeble_web": "",
+			"not_eligeble_mail": "",
+			"not_eligeble_web": "",
+			"save_edited_url": "",
+			"start_editing_url": "",
+			"unknown_eligeble_mail": "",
+			"unknown_eligeble_web": ""
+		},
+		"components/domains/DomainListManager.vue": {
+			"bulk_upload_link": "",
+			"icon_legend": {
+				"can_connect": "",
+				"cannot_connect": "",
+				"intro": "",
+				"title": "",
+				"unknown_connectivity": ""
+			},
+			"icons": {
+				"can_connect": "",
+				"cannot_connect": "",
+				"list_closed": "",
+				"list_opened": "",
+				"list_warning": "",
+				"scan": "",
+				"settings": "",
+				"unknown_connectivity": ""
+			},
+			"inital_list": {
+				"alternative_start": "",
+				"start": ""
+			},
+			"intro": "",
+			"new_list": {
+				"add_new_list": "",
+				"button_close_label": "",
+				"button_create_list_label": ""
+			},
+			"title": "",
+			"warning_found_in_list": ""
+		},
+		"components/domains/DomainTable.vue": {
+			"Clear": "",
+			"Domain": "",
+			"filtered pagination": "",
+			"No filtered results": "",
+			"Not selected": "",
+			"pagination": "",
+			"select label": "",
+			"Selected": "",
+			"Table empty": "",
+			"tags": "",
+			"type to filter": "",
+			"update domain list": ""
+		},
+		"components/domains/FormatScanEligibility.vue": {
+			"eligeble_mail": "",
+			"eligeble_web": "",
+			"not_eligeble_mail": "",
+			"not_eligeble_web": "",
+			"unknown_eligeble_mail": "",
+			"unknown_eligeble_web": ""
+		},
+		"components/domains/list/about-this-list.vue": {
+			"Automatically shared": "",
+			"finished": "",
+			"header": "",
+			"last_scan_started": "",
+			"latest_report": "",
+			"Listed on sharing page": "",
+			"next_scheduled_scan": "",
+			"Not automatically shared": "",
+			"not_scanned_before": "",
+			"number_of_domains": "",
+			"on this page": "",
+			"report": "",
+			"scan_frequency": "",
+			"scanning_disabled": "",
+			"sharing": "",
+			"still_running": "",
+			"type_of_scan_performed": "",
+			"with share code": ""
+		},
+		"components/domains/list/add domains.vue": {
+			"a_lot_of_new_domains_message": "",
+			"add_domains_list_does_not_exist": "",
+			"add_domains_valid_urls_added": "",
+			"added_n_to_list": "",
+			"cancel": "",
+			"domains_label": "",
+			"go_to_spreadsheet_upload": "",
+			"ignored_n": "",
+			"loading": "",
+			"message": "",
+			"nothing_added": "",
+			"ok": "",
+			"removed_n_duplicates": "",
+			"status": "",
+			"title": "",
+			"too_many_domains": "",
+			"too_many_new_domains_message": "",
+			"undefined": "",
+			"warning": "",
+			"warning_message": ""
+		},
+		"components/domains/list/configure.vue": {
+			"cancel": "",
+			"ok": "",
+			"title": ""
+		},
+		"components/domains/list/delete.vue": {
+			"delete_form": {
+				"cancel": "",
+				"message": "",
+				"ok": "",
+				"title": ""
+			}
+		},
+		"components/domains/list/discover-subdomains.vue": {
+			"add_domains_valid_urls_added": "",
+			"add_subdomains_button": "",
+			"added_n_to_list": "",
+			"cancel": "",
+			"clear_selection": "",
+			"dive_into_archive": "",
+			"domains_found": "",
+			"enter_domain_name": "",
+			"find_subdomains_header": "",
+			"ignored_n": "",
+			"ok": "",
+			"removed_n_duplicates": "",
+			"search": "",
+			"select_all": "",
+			"status_report": "",
+			"title": "",
+			"will_be_added_to": ""
+		},
+		"components/domains/list/scan.vue": {
+			"cancel": "",
+			"message": "",
+			"notices": "",
+			"ok": "",
+			"starting": "",
+			"title": ""
+		},
+		"components/domains/list/upload.vue": {
+			"cancel": "",
+			"empty_file": "",
+			"file_with_example_data": "",
+			"introduction": "",
+			"microsoft_office_excel": "",
+			"ok": "",
+			"open_document_spreadsheet": "",
+			"title": "",
+			"too_many_domains": "",
+			"warning": ""
+		},
+		"components/domains/SpreadsheetUpload.vue": {
+			"back_to_domains": "",
+			"dropzone": {
+				"subtitle": "",
+				"title": ""
+			},
+			"reload": "",
+			"upload": {
+				"bulk_data_uploader": {
+					"introduction": "",
+					"title": ""
+				},
+				"comma_separated": "",
+				"drag_and_drop_uploader": {
+					"details_after_upload": "",
+					"fallback_select_a_file": "",
+					"first_instruction": "",
+					"nomouse": "",
+					"process": "",
+					"title": "",
+					"warnings": ""
+				},
+				"empty_file": "",
+				"file_with_example_data": "",
+				"microsoft_office_excel": "",
+				"open_document_spreadsheet": "",
+				"recent_uploads": {
+					"date": "",
+					"filename": "",
+					"filesize": "",
+					"intro": "",
+					"no_uploads": "",
+					"progress": "",
+					"status": "",
+					"title": ""
+				}
+			}
+		},
+		"components/domains/SubdomainDiscovery.vue": {
+			", last scan finished ": "",
+			"... finding 'www.' subdomains ": "",
+			"error": "",
+			"Find 'www.' subdomains": "",
+			"finished": "",
+			"requested": "",
+			"scanning": "",
+			"Scanning done, click to reload domain list": ""
+		},
+		"components/domains/SubdomainDiscoveryModal.vue": {
+			"cancel": "",
+			"message": "",
+			"ok": "",
+			"title": ""
+		},
+		"components/domains/UrlList.vue": {
+			"button": {
+				"add_domains": "",
+				"configure": "",
+				"delete": "",
+				"discover_subdomains": "",
+				"download": "",
+				"reload": "",
+				"scan_now": "",
+				"scan_now_scanning": "",
+				"scan_now_scanning_title": "",
+				"scanning_disabled": "",
+				"upload": ""
+			},
+			"domains": {
+				"header": "",
+				"intro": ""
+			},
+			"icon": {
+				"bulk_add_new": "",
+				"list_closed": "",
+				"list_opened": "",
+				"remove_filter": "",
+				"report": "",
+				"scan": "",
+				"settings": ""
+			},
+			"warnings": {
+				"domains_exceed_maximum": ""
+			}
+		}
+	},
+	"home": {
+		"components/home/Home.vue": {
+			"introduction": "",
+			"learn": "",
+			"log_in": "",
+			"request_access": "",
+			"title": ""
+		},
+		"components/home/ShortFeatureOverview.vue": {
+			"domains": "",
+			"domains_text_1": "",
+			"domains_text_2": "",
+			"icon-bar-chart": "",
+			"icon-list": "",
+			"icon-search": "",
+			"report": "",
+			"report_text_1": "",
+			"report_text_2": "",
+			"scan": "",
+			"scan_text_1": "",
+			"scan_text_2": ""
+		}
+	},
+	"mail": {
+		"components/mail/Unsubscribe.vue": {
+			"error": "",
+			"intro": "",
+			"label_feed": "",
+			"label_unsubscribe_code": "",
+			"perform_unsubscribe": "",
+			"success": "",
+			"title": ""
+		}
+	},
+	"metric": {
+		"internet_nl_mail_auth_dkim_exist": {
+			"explanation": "E-Mails können eine digitale Signatur des Absenders enthalten, die vom Postdienstleister überprüft werden kann. Fehlt die Signatur oder ist sie falsch, kann dies als Versuch gewertet werden, eine gefälschte E-Mail zu versenden. Wenn jemand eine gefälschte E-Mail verschickt, kann der Postdienst eine Benachrichtigung an den wirklichen Besitzer der E-Mail-Adresse senden, da dieser möglicherweise etwas dagegen unternehmen möchte.",
+			"extended-explanation": "Wir prüfen, ob Ihre Domäne DKIM-Einträge unterstützt. Ein empfangender Mailserver kann den öffentlichen Schlüssel in Ihrem DKIM-Eintrag verwenden, um die Signatur in einer E-Mail mit einem Benutzer aus Ihrer Domäne als Absender zu validieren und ihre Authentizität zu bestimmen.</p><ul><li>Derzeit sind wir nicht in der Lage, den öffentlichen Schlüssel in Ihrem DKIM-Eintrag abzufragen und auszuwerten, da wir dazu den DKIM-Selektor benötigen (der in den von Ihnen gesendeten E-Mails enthalten sein sollte).</li><li>Um diesen Test zu bestehen, erwarten wir von Ihrem Nameserver die Antwort <code>NOERROR</code> auf unsere Anfrage nach<code>_domainkey.example.nl</code>. Wenn <code>_domainkey.example.nl</code> ein \"leeres Nicht-Terminal\" ist, antworten einige Nameserver, die nicht mit dem StandardRFC 2308 konform sind, fälschlicherweise mit <code>NXDOMAIN</code> anstelle von <code>NOERROR</code>. Dies macht es uns unmöglich, die Unterstützung für DKIM-Einträge zu erkennen.</li><li>Bei diesem Test gehen wir von einer \"strikten Ausrichtung\" aus, die mit DMARC konform ist. Die angegebene Domäne gilt als Absenderdomäne in der Mailkörperdomäne (<code>From:</code>) und diese muss mit der DKIM-Domäne (<code>d=</code>) und der SPF-Domäne (Absender des Briefumschlags, d.h. der Rückweg, der in <code>MAIL FROM</code>auftaucht) identisch sein.</li></ul><p>Für eine \"gute Praxis bei Domänen ohne Mail\" siehe die <a href=\"#control-panel-9\">Erläuterung des Untertests \"DMARC-Richtlinie\"</a>.",
+			"rating": {
+				"bad": "DKIM fehlt. Dies bedeutet, dass die E-Mail keine digitale Signatur enthält, so dass der Absender nicht überprüft werden kann.",
+				"good": "DKIM verfügbar. Dies bedeutet, dass die E-Mail eine digitale Signatur enthält, die zur Überprüfung des Absenders verwendet werden kann.",
+				"no_email": "Ihre Domain unterstützt <em>nicht</em> DKIM-Einträge. Da Ihre DMARC- und SPF-Einträge jedoch darauf hindeuten, dass keine E-Mails von Ihrer Domain gesendet werden, ist DKIM nicht erforderlich und dieser Untertest wird übersprungen."
+			},
+			"technology": "DomainKeys Identified Mail (DKIM)",
+			"title": "Die gesendete E-Mail enthält ein Signet der sendenden Organisation"
+		},
+		"internet_nl_mail_auth_dmarc_exist": {
+			"explanation": "Gefälschte E-Mails werden häufig zur unaufgeforderten Bewerbung von Produkten (Spam) oder zur Täuschung (Scam) verwendet. Angreifer wollen natürlich den guten Ruf von Unternehmen nutzen, um sich als legitim auszugeben. Die Unternehmen, die sich als solche ausgeben, wollen dies natürlich nicht. Um dem Missbrauch ihres Namens vorzubeugen, können sie eine automatisierte Hotline einrichten, die Informationen über gefälschte E-Mails entgegennimmt: Mails mit fehlender Signatur oder von einer falschen Adresse. Ein Unternehmen kann diese Informationen nutzen, um z. B. Absender gefälschter E-Mails weltweit zu blockieren.",
+			"extended-explanation": "Wir prüfen, ob DMARC für Ihre Domäne verfügbar ist. Ein empfangender Mailserver kann Ihre DMARC-Richtlinie verwenden, um zu beurteilen, wie eine Mail mit Ihrem Domain-Absender zu behandeln ist, die nicht mit DKIM und SPF authentifiziert werden konnte, und er kann Ihre Mailadresse aus dem DMARC-Eintrag verwenden, um Ihnen Rückmeldungen über die Authentifizierung zu geben. Hinweis: DMARC erfordert, dass die SPF-Domäne (Absender des Umschlags, d.h. der Rückweg, der in <code>MAIL FROM</code>auftaucht) und die DKIM-Domäne (<code>d=</code>) mit der Domäne des Mailkörpers (<code>From:</code>) übereinstimmen.",
+			"rating": {
+				"bad": "DMARC fehlt. Dies bedeutet, dass es keine Möglichkeit gibt, die Organisation über gefälschte E-Mails zu informieren.",
+				"good": "DMARC verfügbar. Dies bedeutet, dass den Empfängern von E-Mails eine automatische Hotline zur Verfügung steht, um zu überprüfen, ob die Herkunft und/oder die Signatur des Absenders korrekt sind. Jede gefälschte E-Mail kann automatisch an diese Hotline gemeldet werden."
+			},
+			"technology": "Bereichsbezogene Nachrichtenauthentifizierung, Berichterstattung und Konformität (DMARC)",
+			"title": "Die Organisation hat eine automatische Hotline für gefälschte E-Mails eingerichtet."
+		},
+		"internet_nl_mail_auth_dmarc_policy": {
+			"extended-explanation": "<p>Wir prüfen, ob die Syntax Ihres DMARC-Eintrags korrekt ist und ob er eine ausreichend strenge Richtlinie enthält (<code>p=quarantine</code> oder <code>p=reject</code>), um den Missbrauch Ihrer Domain durch Phisher und Spammer zu verhindern. Auch ohne eine strenge Richtlinie kann DMARC nützlich sein, um durch DMARC-Berichte mehr Einblick in legitime und illegale ausgehende Postflüsse zu erhalten. Um jedoch wirksam gegen den Missbrauch Ihrer Domain vorzugehen, ist eine liberale Richtlinie (<code>p=none</code>) nicht ausreichend.</p><p>Wir prüfen auch, ob die Mailadressen unter <code>rua=</code> und <code>ruf=</code> gültig sind. Falls sie eine externe Mailadresse enthalten, prüfen wir, ob die externe Domäne zum Empfang von DMARC-Berichten berechtigt ist. Stellen Sie sicher, dass der DMARC-Autorisierungseintrag auf der externen Domain mindestens <code>\"v=DMARC1;\"</code>.</p><p>Der Test erlaubt die Verwendung des experimentellen <code>np</code> Tags (RFC 9091).</p><p><em>Gute Praxis für Domains ohne Mail</em>:</p><ul><li>Nicht-Senden: Verwenden Sie die strengste DMARC-Richtlinie (<code>p=reject</code>) und SPF-Richtlinie (<code>-all</code>) für Ihre Domain, die Sie nicht zum Versenden von Mails verwenden, um Missbrauch (\"spoofing\") zu verhindern. Beachten Sie, dass DKIM in diesem Fall nicht notwendig ist.</li><li>Nicht-Empfang: Weitere Informationen zu \"Null MX\" und \"No MX\" finden Sie in den <a href=\"#control-panel-13\">Erläuterungen zum Untertest \"STARTTLS verfügbar\"</a>. </li></ul><p>Nachfolgend finden Sie zwei grundlegende Beispiel-DNS-Konfigurationen für Domänennamen, die nicht zum Senden und Empfangen von E-Mails verwendet werden. </p><p><em>A. Einzelne Domain ohne A- oder AAAA-Eintrag</em></p><pre><code>beispiel.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all\"_dmarc.example.nl. TXT \"v=DMARC1; p=reject;\"</code></pre><p>&nbsp;</p><p><em>B. Einzelne No-Mail-Domain mit A- oder AAAA-Eintrag</em></p><pre><code>beispiel.nl. AAAA 2a00:d78:0:712:94:198:159:35example.nl. A 94.198.159.35example.nl. MX 0 .example.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all \"www.example.nl. CNAME example.nl_dmarc.example.nl. TXT \"v=DMARC1; p=ablehnen;\"</code></pre>",
+			"rating": {
+				"bad": "Ihre DMARC-Richtlinie ist <em>nicht</em> syntaktisch korrekt.",
+				"external": "Die Domain der externen Mailadresse, die <code>rua=</code> und/oder <code>ruf=</code> folgt, hat <em>keinen</em> (gültigen) Berechtigungseintrag für den Empfang von DMARC-Berichten für die getestete Domain.",
+				"good": "Ihre DMARC-Richtlinie ist ausreichend streng.",
+				"policy": "Ihre DMARC-Richtlinie ist <em>nicht</em> streng genug."
+			},
+			"technology": "Bereichsbezogene Nachrichtenauthentifizierung, Berichterstattung und Konformität (DMARC)",
+			"title": "DMARC-Richtlinie"
+		},
+		"internet_nl_mail_auth_spf_exist": {
+			"explanation": "E-Mails sollten nur von einer bekannten Postadresse gesendet werden: einer bekannten Domäne. Wenn jemand versucht, E-Mails in fremdem Namen zu versenden und den Absender zu fälschen, sorgt diese Einstellung dafür, dass die gefälschten E-Mails vom Postdienst zurückgewiesen werden. Außerdem kann der Besitzer der echten Postadresse eine Benachrichtigung erhalten, dass jemand eine gefälschte E-Mail versendet.",
+			"extended-explanation": "Wir prüfen, ob Ihre Domain einen SPF-Eintrag hat. Ein empfangender Mailserver kann die IP-Adressen in Ihrem SPF-Eintrag verwenden, um den sendenden Mailserver einer empfangenen E-Mail mit Ihrer Domain als Absender zu authentifizieren. Die zugehörige Richtlinie kann verwendet werden, um geeignete Maßnahmen zu ergreifen, wenn die Authentifizierung fehlschlägt. Mehr als ein SPF-Eintrag in derselben Domäne ist nicht zulässig und führt zu einem Fehlschlag des Tests.</p><p>Für eine \"gute Praxis bei Domänen ohne Mail\" siehe die <a href=\"#control-panel-9\">Erklärung des Untertests \"DMARC-Richtlinie\"</a>.",
+			"rating": {
+				"bad": "SPF fehlt. Dies bedeutet, dass es keine Möglichkeit gibt, die Absenderadresse dieser E-Mail zu überprüfen. E-Mails von dieser Adresse können leicht gefälscht werden.",
+				"good": "SPF verfügbar. Dies bedeutet, dass die Absenderadresse einer E-Mail von einem Empfänger überprüft werden kann."
+			},
+			"technology": "Rahmenwerk für Absenderrichtlinien (SPF)",
+			"title": "E-Mail wird von einer bekannten Postadresse gesendet"
+		},
+		"internet_nl_mail_auth_spf_policy": {
+			"extended-explanation": "Wir prüfen, ob die Syntax Ihres SPF-Eintrags korrekt ist und ob er eine ausreichend strenge Richtlinie enthält, d. h. <code>~all</code> (softfail) oder <code>-all</code> (fail), um Missbrauch durch Phisher und Spammer zu verhindern. Um wirksam gegen den Missbrauch Ihrer Domäne vorzugehen, ist eine liberale Politik, d. h. <code>+alle</code> (bestanden) oder <code>?alle</code> (neutral) ist nicht ausreichend. Wenn <code>all</code> fehlt und ein <code>redirect</code> Modifikator in Ihrem SPF-Eintrag nicht vorhanden ist, ist der Standard <code>?all</code>. </p><p>Wir folgen auch <code>include</code> und <code>redirect</code> für gültige SPF-Einträge. Außerdem überprüfen wir, ob Ihr SPF-Eintrag die zulässige Anzahl von 10 DNS-Lookups nicht überschreitet und damit unwirksam ist. Jeder der folgenden SPF-Begriffe zählt als ein DNS-Lookup: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> und <code>exist</code>. Während die SPF-Terme <code>all</code>, <code>ip4</code>, <code>ip6</code> und <code>exp</code> nicht als DNS-Lookups gelten.</p><p>Wenn die Domäne <code>include</code> oder <code>redirect</code> aus Makros besteht, folgen wir ihnen nicht, da wir nicht über die notwendigen Informationen aus einer tatsächlichen Mail- oder Mailserververbindung verfügen, um diese Makros zu erweitern. Dies bedeutet, dass wir das Ergebnis von Makros nicht bewerten. Außerdem zählen wir nicht die durch Makros verursachten DNS-Lookups, um festzustellen, ob die zulässige Anzahl von DNS-Lookups überschritten wurde.</p><p>Für sendende Domänen wird mit <code>~all</code> (softfail) anstelle von <code>-all</code> (fail) ist in der Regel vorzuziehen. Denn wenn die SPF-Authentifizierung mit einem SPF-Fail fehlschlägt, kann ein empfangender Mailserver die Verbindung bereits blockieren, ohne die DKIM-Signatur und die DMARC-Richtlinie zu bewerten. Dies kann zu fälschlicherweise blockierten Mails führen (z. B. wenn Mails vom empfangenden Mailserver automatisch an einen anderen empfangenden Mailserver weitergeleitet werden). Beachten Sie, dass ein ausgelöster SPF-Softfail immer noch sicherstellt, dass eine strenge DMARC-Richtlinie Ihre Domain schützt, wenn die DKIM-Authentifizierung ebenfalls fehlschlägt.</p><p>Für No-Mail-Domains siehe die gute Praxis auf <a href=\"#control-panel-9\">Erklärung der \"DMARC-Richtlinie\" Untertest</a>.",
+			"rating": {
+				"all": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug.",
+				"bad": "Ihre SPF-Richtlinie ist <em>nicht</em> syntaktisch korrekt.",
+				"good": "Ihre SPF-Richtlinie ist ausreichend streng.",
+				"include": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug. Der \"include\"-Mechanismus in Ihrem SPF-Eintrag weist auf eine unzureichend strenge SPF-Richtlinie oder einen nicht existierenden SPF-Eintrag hin.",
+				"max_lookups": "Ihre SPF-Richtlinie ist <em>nicht</em> effektiv, da sie mehr als die erlaubten 10 DNS-Lookups erfordert. Jeder der folgenden SPF-Begriffe zählt als ein DNS-Lookup: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> und <code>exist</code>. Die SPF-Terme <code>all</code>, <code>ip4</code>, <code>ip6</code> und <code>exp</code> zählen nicht als DNS-Lookups.",
+				"redirect": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug. Der Modifikator \"redirect\" in Ihrem SPF-Eintrag deutet auf eine unzureichend strenge SPF-Richtlinie oder einen nicht existierenden SPF-Eintrag hin."
+			},
+			"technology": "Rahmenwerk für Absenderrichtlinien (SPF)",
+			"title": "SPF-Politik"
+		},
+		"internet_nl_mail_dnssec_mailto_exist": {
+			"extended-explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, DNSSEC-signiert ist. Mit einer DNSSEC-Signatur können Absender, die Domänensignaturen validieren, die Authentizität der DNS-Antwort überprüfen, die Ihre Mailserver-Domänen (MX) enthält. Dies verhindert, dass ein Angreifer die DNS-Antwort manipuliert, um an Sie gesendete Mails an die Mailserver-Domäne des Angreifers umzuleiten.</p><p>Wenn eine Domain auf eine andere Domain über <code>umgeleitet wird CNAME</code>umleitet, wird auch geprüft, ob die CNAME-Domäne signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Hinweis: Die Gültigkeit der Signatur ist nicht Teil dieses Subtests, sondern Teil des nächsten Subtests.",
+			"rating": {
+				"bad": "Ihre E-Mail-Adressdomäne ist unsicher, weil sie <em>nicht</em> DNSSEC signiert ist.",
+				"good": "Ihre E-Mail-Adressdomäne ist DNSSEC-signiert.",
+				"resolver_error": "Leider ist ein Fehler im Resolver von Internet.nl aufgetreten. Bitte <a href=\"/about/\">kontaktieren Sie</a> uns.",
+				"servfail": "Die Nameserver Ihrer E-Mail-Adressdomäne sind <em>defekt</em>. Sie haben einen Fehler (<code>SERVFAIL</code>) auf unsere Abfragen nach einer DNSSEC-Signatur zurückgegeben. Bitte wenden Sie sich an Ihren Nameserver-Betreiber (oft Ihr Hosting-Provider und/oder Registrar), um dies bald zu beheben."
+			},
+			"title": "Existenz von DNSSEC"
+		},
+		"internet_nl_mail_dnssec_mailto_valid": {
+			"extended-explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, mit einer gültigen Signatur versehen ist, die sie \"sicher\" macht.</p><p>Wenn ein Domainname auf einen anderen signierten Domainnamen über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die Signatur des CNAME-Domänennamens gültig ist (was mit dem DNSSEC-Standard konform ist). Wenn die Signatur des CNAME-Domänennamens nicht gültig ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass nur der Nameserver getestet wird, der zuerst antwortet. Wenn Nameserver eines Domänennamens inkonsistente Konfigurationen haben, kann dies zu unterschiedlichen Testergebnissen führen. In diesem Fall kann das Ergebnis dieses Untertests zum Beispiel einmal \"sicher\" und das nächste Mal \"falsch\" lauten.",
+			"rating": {
+				"bad": "Ihre E-Mail-Adressdomäne ist \"gefälscht\", weil die DNSSEC-Signatur <em>nicht</em> gültig ist. Entweder hat jemand die Antwort Ihres Nameservers manipuliert, oder Ihre Domain hat einen <em>schwerwiegenden DNSSEC-Konfigurationsfehler</em>. Im letzteren Fall ist Ihre Domäne für jeden Benutzer, der DNSSEC-Signaturen validiert, unerreichbar. Wenden Sie sich so schnell wie möglich an Ihren Nameserver-Betreiber (oft Ihr Registrar oder Hosting-Provider).",
+				"good": "Ihre E-Mail-Adressdomäne ist sicher, da ihre DNSSEC-Signatur gültig ist.",
+				"unsupported_ds_algo": "Die Domain Ihrer E-Mail-Adresse ist mit einem Algorithmus signiert, den unser Validierungsresolver derzeit nicht unterstützt. Daher sind wir nicht in der Lage, die Gültigkeit der DNSSEC-Signatur zu überprüfen."
+			},
+			"title": "DNSSEC-Gültigkeit"
+		},
+		"internet_nl_mail_dnssec_mx_exist": {
+			"extended-explanation": "Wir prüfen, ob die Domänen Ihrer Mailserver (MX), genauer gesagt deren SOA-Einträge, DNSSEC-signiert sind. Mit einer DNSSEC-Signatur können Absender, die Domänensignaturen validieren, die Authentizität der DNS-Antwort mit den IP-Adressen und DANE-Einträgen Ihrer Mailserver überprüfen. Dies verhindert, dass ein Angreifer die DNS-Antwort manipuliert, um an Sie gesendete Mails an eine vom Angreifer kontrollierte IP-Adresse umzuleiten oder die gesicherte Mailserververbindung abzuhören.</p><p>Wenn eine Domain auf eine andere Domain über <code>CNAME</code>umleitet, wird auch geprüft, ob die CNAME-Domäne signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass der E-Mail-Test nicht auf A/AAAA-Einträge für Mailserver zurückgreift, wenn kein MX-Eintrag vorhanden ist.</p><p>Die Gültigkeit der Signatur ist nicht Teil dieses Untertests, sondern Teil des nächsten Untertests.",
+			"rating": {
+				"bad": "Mindestens eine Ihrer Mailserver-Domänen ist unsicher, weil sie <em>nicht</em> DNSSEC signiert ist.",
+				"good": "Alle Domänen Ihres Mailservers sind DNSSEC-signiert.",
+				"invalid_null_mx": "Ihre Domäne weist einen \"Null MX\"-Eintrag auf, der angibt, dass sie keine E-Mails annimmt. Aber entweder hat Ihre Domäne keine A/AAAA-Einträge, so dass der \"Null MX\"-Eintrag unnötig ist. Oder auf Ihrer Domäne ist ein empfangender Mailserver durch einen anderen MX-Eintrag festgelegt, wodurch der \"Null MX\"-Eintrag in Konflikt gerät.",
+				"no_mailservers": "Auf Ihrer Domäne, die keine A/AAAA-Einträge hat, sind keine empfangenden Mailserver (MX) eingerichtet. Dies ist in Ordnung, wenn Sie keine E-Mails empfangen möchten.",
+				"no_null_mx": "Auf Ihrer Domain mit A/AAAA-Einträgen sind keine empfangenden Mailserver (MX) eingerichtet. Wir empfehlen Ihnen, ausdrücklich anzugeben, dass Ihre Domain keine E-Mails akzeptiert, indem Sie einen \"Null MX\"-Eintrag konfigurieren. Verwenden Sie keinen \"Null MX\"-Eintrag und richten Sie einen MX ein, wenn Sie E-Mails von diesem Domänennamen aus versenden möchten, da Empfangsserver E-Mails mit einer ungültigen Absenderadresse möglicherweise zurückweisen.",
+				"null_mx": "Ihr Domänenname, der A/AAAA-Einträge hat, zeigt mit einem \"Null MX\"-Eintrag deutlich an, dass er keine E-Mails akzeptiert. Das ist in Ordnung, wenn Sie keine E-Mails empfangen möchten. Verwenden Sie keinen \"Null MX\"-Eintrag und richten Sie einen MX ein, wenn Sie von diesem Domänennamen aus E-Mails versenden möchten, da Empfangsserver E-Mails mit einer ungültigen Absenderadresse zurückweisen können.",
+				"null_mx_with_other_mx": "Ihre Domäne gibt einen \"Null MX\"-Eintrag an, der angibt, dass sie keine E-Mails akzeptiert. Auf Ihrer Domain ist jedoch ein empfangender Mailserver durch einen anderen MX-Eintrag festgelegt, wodurch der \"Null MX\"-Eintrag in Konflikt gerät.",
+				"null_mx_without_a_aaaa": "Ihre Domäne gibt einen \"Null MX\"-Eintrag an, der besagt, dass sie keine E-Mails akzeptiert. Ihre Domäne verfügt jedoch nicht über A/AAAA-Einträge, so dass der \"Null MX\"-Eintrag nicht erforderlich ist.",
+				"resolver_error": "",
+				"servfail": "Die Nameserver von mindestens einer Ihrer Mailserver-Domänen sind <em>defekt</em>. Sie haben auf unsere Abfragen nach einer DNSSEC-Signatur einen Fehler (<code>SERVFAIL</code>) zurückgegeben. Bitte wenden Sie sich an Ihren Nameserver-Betreiber (oft Ihr Mail-Provider), um dies bald zu beheben."
+			},
+			"title": ""
+		},
+		"internet_nl_mail_dnssec_mx_valid": {
+			"extended-explanation": "Wir prüfen, ob die Domänen Ihrer empfangenden Mailserver (MX), genauer gesagt deren SOA-Einträge, mit einer gültigen Signatur versehen sind, die sie \"sicher\" macht.</p><p>Wenn ein Domainname auf einen anderen signierten Domainnamen über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die Signatur des CNAME-Domänennamens gültig ist (was dem DNSSEC-Standard entspricht). Wenn die Signatur des CNAME-Domänennamens nicht gültig ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass nur der Nameserver getestet wird, der zuerst antwortet. Wenn Nameserver eines Domänennamens inkonsistente Konfigurationen haben, kann dies zu unterschiedlichen Testergebnissen führen. In diesem Fall kann das Ergebnis dieses Untertests zum Beispiel einmal \"sicher\" und das nächste Mal \"falsch\" lauten.",
+			"rating": {
+				"bad": "Mindestens eine Ihrer signierten Mailserver-Domänen ist \"gefälscht\", da ihre DNSSEC-Signatur nicht gültig ist. Entweder hat jemand die Antworten seiner Nameserver manipuliert, oder Ihre Mailserver-Domäne weist gravierende DNSSEC-Konfigurationsfehler auf. In letzterem Fall ist Ihr Postempfangsserver für jeden sendenden Postserver, der DNSSEC-Signaturen validiert, unerreichbar. Wenden Sie sich so bald wie möglich an den Betreiber des Nameservers (häufig Ihr Mail-Provider).",
+				"good": "Alle Ihre signierten Mailserver-Domänen sind sicher, da ihre DNSSEC-Signaturen gültig sind.",
+				"unsupported_ds_algo": "Mindestens eine Ihrer Mailserver-Domänen ist mit einem Algorithmus signiert, den unser validierender Resolver derzeit nicht unterstützt. Daher sind wir nicht in der Lage, die Gültigkeit der DNSSEC-Signatur zu überprüfen."
+			},
+			"title": "DNSSEC-Gültigkeit"
+		},
+		"internet_nl_mail_ipv6_mx_address": {
+			"explanation": "Wir prüfen, ob für jeden empfangenden Mailserver (MX) mindestens ein AAAA-Eintrag mit IPv6-Adresse vorhanden ist. Falls kein Mailserver definiert ist, geben wir eine Meldung aus und führen andere Untertests des Mailtests aus, die noch relevant sind.</p><p>'IPv4-mapped IPv6-Adressen' (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, beginnend mit ::ffff:) werden in diesem Subtest nicht bestehen, da sie keine IPv6-Konnektivität bieten.</p><p>Beachten Sie, dass der E-Mail-Test nicht auf A/AAAA-Einträge für Mailserver zurückgreift, wenn kein MX-Eintrag vorhanden ist.",
+			"rating": {
+				"bad": "Mindestens ein Postempfangsserver in Ihrer Domäne hat <em>nicht</em> eine IPv6-Adresse.",
+				"good": "Alle empfangenden Mailserver in Ihrer Domäne haben eine IPv6-Adresse.",
+				"invalid_null_mx": "",
+				"no_null_mx": "",
+				"null_mx": "",
+				"null_mx_with_other_mx": "",
+				"null_mx_without_a_aaaa": "",
+				"other": ""
+			},
+			"title": "IPv6-Adressen für den/die Mailserver"
+		},
+		"internet_nl_mail_ipv6_mx_reach": {
+			"explanation": "Wir prüfen, ob wir eine Verbindung zu Ihren Mailservern (MX) über IPv6 auf Port 25 herstellen können. Wir testen alle IPv6-Adressen, die wir von den Nameservern Ihrer Mailserver-Domäne(n) erhalten. Wenn nicht alle IPv6-Adressen erreichbar sind, wird eine Teilnote vergeben. Wenn eine IPv6-Adresse (syntaktisch) ungültig ist, betrachten wir sie als unerreichbar.",
+			"rating": {
+				"bad": "Mindestens einer Ihrer empfangenden Mailserver mit einer IPv6-Adresse ist <em>nicht</em> über IPv6 erreichbar.",
+				"good": "Alle Ihre empfangenden Mailserver mit einer IPv6-Adresse sind über IPv6 erreichbar."
+			},
+			"title": "IPv6-Erreichbarkeit des/der Mailserver(s)"
+		},
+		"internet_nl_mail_ipv6_ns_address": {
+			"explanation": "Wir prüfen, ob Ihr Domain-Name mindestens zwei Name-Server mit einer IPv6-Adresse hat. </p><p>Dies steht im Einklang mit den <a href=\"https://www.sidn.nl/downloads/KwpW_ORWRWetYuoBp5GeYA/7e91faddb53ad85b8c6a2fce15d764cb/Technical_requirements_for_the_registration_and_use_of_nl_domain_names.pdf\">\"Technischen Anforderungen für die Registrierung und Nutzung von .nl-Domainnamen\"</a> d.d. 13. November 2017 von SIDN (.nl TLD Registry), die verlangen, dass jede .nl-Domain mindestens zwei Nameserver hat.</p><p>'IPv4-mapped IPv6-Adressen' (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, beginnend mit ::ffff:) fallen bei diesem Test durch, da sie <em>nicht</em> IPv6-Konnektivität bieten.",
+			"rating": {
+				"bad": "Keiner der Nameserver Ihrer Domäne hat eine IPv6-Adresse.",
+				"good": "Zwei oder mehr Nameserver Ihrer Domäne haben eine IPv6-Adresse.",
+				"other": "Nur ein Nameserver Ihrer Domäne hat eine IPv6-Adresse."
+			},
+			"title": "IPv6-Adressen für Namenserver"
+		},
+		"internet_nl_mail_ipv6_ns_reach": {
+			"explanation": "Wir prüfen, ob alle Nameserver, die einen AAAA-Eintrag mit IPv6-Adresse haben, über IPv6 erreichbar sind.",
+			"rating": {
+				"bad": "<em>Nicht</em> alle Nameserver, die eine IPv6-Adresse haben, sind über IPv6 erreichbar.",
+				"good": "Alle Nameserver, die eine IPv6-Adresse haben, sind über IPv6 erreichbar."
+			},
+			"title": "IPv6-Erreichbarkeit von Namensservern"
+		},
+		"internet_nl_mail_rpki_exists": {
+			"explanation": "Das Internet besteht aus allen möglichen kleineren Netzen. Diese Netze können ad-hoc geschaffen werden, was bedeutet, dass jemand Böses dies tun könnte. Um zu verhindern, dass böswillige Akteure Teile des Internets übernehmen, wird ein Netz des Vertrauens und der Zertifizierung geschaffen. Dabei handelt es sich um ein bürokratisches Netz mit Organisationen, die von vertrauenswürdigen Parteien akkreditiert werden.",
+			"extended-explanation": "Wir prüfen, ob eine RPKI Route Origin Authorization (ROA) für alle IP-Adressen Ihres/r Mailservers (MX) veröffentlicht wurde.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen Ihres Servers senden sollen.</p><p>Eine Routenankündigung kann jedoch gefälscht werden. Tatsächlich kann ein anderer Netzbetreiber den IP-Adressblock Ihrer IP-Adresse mit seinem Netz verbinden und so möglicherweise Internetverkehr empfangen, der eigentlich für Ihren Netzbetreiber bestimmt ist. Die Ursache kann versehentlich oder böswillig sein. In jedem Fall kann dies dazu führen, dass Ihr Server unerreichbar wird oder dass der Internetverkehr zu Ihrem Server abgefangen wird.</p><p>Die Resource Public Key Infrastructure (RPKI) verbessert den Schutz davor erheblich. Mit RPKI kann der rechtmäßige Inhaber eines Blocks von IP-Adressen eine digital signierte Erklärung mit Routenberechtigung (Route Origin Authorisation; kurz ROA) veröffentlichen. Ein anderer Netzbetreiber, der Internetverkehr an eine bestimmte IP-Adresse senden möchte, kann die entsprechende Erklärung verwenden, um <code>Ungültige</code> Routen. Auf diese Weise verhindert der Netzbetreiber, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze geschickt wird.</p><p><em>Anforderungsstufe: Empfohlen</em>",
+			"rating": {
+				"bad": "Für mindestens eine der IP-Adressen des/der empfangenden Mailserver(s) <em>ist keine</em> RPKI Route Origin Authorisation (ROA) veröffentlicht.",
+				"good": "Für alle IP-Adressen des/der empfangenden Mailserver(s) wird eine RPKI Route Origin Authorisation (ROA) veröffentlicht.",
+				"no_addresses": "Ihre Domäne enthält <em>keine</em> empfangenden Mailserver. Daher konnte dieser Subtest nicht durchgeführt werden."
+			},
+			"technology": "Ressource Public Key Infrastructure (RPKI) / Ressourcenzertifizierung",
+			"title": "Vertrauen in die Netzwerkroute zum E-Mail-Server"
+		},
+		"internet_nl_mail_starttls_cert_chain": {
+			"explanation": "Wir prüfen, ob wir eine gültige Vertrauenskette für Ihre Mailserver-Zertifikate erstellen können. </p><p>Für eine gültige Vertrauenskette muss Ihr Zertifikat von einer <a href=\"https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/\">öffentlich vertrauenswürdigen Zertifizierungsstelle veröffentlicht werden</a>veröffentlicht werden, und Ihr empfangender Mailserver muss alle erforderlichen Zwischenzertifikate vorlegen. </p><p>Versendende Mailserver ignorieren in der Regel, ob ein Mailserver-Zertifikat von einer öffentlich vertrauenswürdigen Zertifizierungsstelle ausgestellt wurde. Ohne DNSSEC ist die Suche nach der Domäne des Mailservers anfällig für Manipulationen. Daher kann ein von einer öffentlich vertrauenswürdigen Zertifizierungsstelle ausgestelltes Zertifikat keinen Authentizitätswert hinzufügen. Nicht wenige empfangende Mailserver verwenden daher selbstsignierte Zertifikate, die oft von einer internen (privaten) Zertifizierungsstelle ausgestellt werden. Für die Authentizität sollte ein Mailserver DNSSEC und DANE verwenden.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-4 (in Englisch).</p><p><em>Anforderungsstufe: Fakultativ</em>",
+			"rating": {
+				"bad": "Die Vertrauenskette von mindestens einem Ihrer Mailserver-Zertifikate ist <em>nicht</em> vollständig und/oder <em>nicht</em> von einer vertrauenswürdigen Stammzertifizierungsstelle signiert.",
+				"good": "Die Vertrauenskette aller Zertifikate Ihres Mailservers ist vollständig und von einer vertrauenswürdigen Stammzertifizierungsstelle signiert."
+			},
+			"title": "Vertrauenskette des Zertifikats"
+		},
+		"internet_nl_mail_starttls_cert_domain": {
+			"explanation": "Wir prüfen, ob der Domänenname jedes Ihrer empfangenden Mailserver (MX) mit dem Domänennamen auf den vorgelegten Zertifikaten übereinstimmt. </p><p>Versendende Mailserver ignorieren normalerweise die Domäne im Zertifikat. Ohne DNSSEC ist die Suche nach der Domäne des Mailservers anfällig für Manipulationen. Der Abgleich der Domäne auf dem Zertifikat mit der Domäne des Mailservers bringt also keinen zusätzlichen Authentizitätswert. Nicht wenige empfangende Mailserver verwenden daher selbstsignierte Zertifikate, die oft von einer internen (privaten) Zertifizierungsstelle ausgestellt werden. </p><p>Für die Authentizität sollte ein Mailserver DNSSEC und DANE verwenden. Ein Zertifikat mit einer Domäne, die mit der Domäne des Mailservers übereinstimmt, ist nur erforderlich, wenn DANE \"trust anchor assertion\" (DANE-TA, 2) verwendet wird.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-1 (in Englisch).</p><p><em>Anforderungsstufe: Optional / Erforderlich (nur wenn DANE-TA verwendet wird)</em>",
+			"rating": {
+				"bad": "Der Domänenname von mindestens einem Ihrer Mailserver stimmt <em>nicht mit dem Domänennamen auf dem Mailserver-Zertifikat überein</em> .",
+				"good": "Die Domänennamen aller Ihrer Mailserver stimmen mit den Domänennamen auf Ihren Mailserver-Zertifikaten überein."
+			},
+			"title": "Domänenname auf dem Zertifikat"
+		},
+		"internet_nl_mail_starttls_cert_pubkey": {
+			"explanation": "<p>Wir prüfen, ob die digitale Signatur (ECDSA oder RSA) jedes Ihrer Mailserver-Zertifikate sichere Parameter verwendet. </p><p>Bei der Überprüfung von Zertifikaten werden digitale Signaturen verwendet. Um die Authentizität einer Verbindung zu gewährleisten, muss ein vertrauenswürdiger Algorithmus zur Zertifikatsüberprüfung verwendet werden. Das Zertifikat gibt den Algorithmus für digitale Signaturen an, der von seinem Besitzer während des Schlüsselaustauschs verwendet wird. Es ist möglich, mehrere Zertifikate zu konfigurieren, um mehr als einen Algorithmus zu unterstützen.</p><p>Die Sicherheit von ECDSA-Signaturen hängt von der gewählten Kurve ab. Die Sicherheit von RSA für Verschlüsselung und digitale Signaturen ist an die Schlüssellänge des öffentlichen Schlüssels gebunden. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitlinie B5-1 und Tabelle 9 für ECDSA und Leitlinie B3-3 und Tabelle 8 für RSA (in Englisch).</p><hr /><p><strong>Elliptische Kurven für ECDSA</strong></p><ul><li>Gut: <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>, und <code>x25519</code></li><li>Auslaufen: <code>secp224r1</code></li><li>Unzureichend: Andere Kurven</li></ul><p><strong>Länge der RSA-Schlüssel</strong></p><ul><li>gut: Mindestens 3072 Bit</li><li>Ausreichend: 2048 - 3071 bit</li><li>Ungenügend: Weniger als 2048 bit</li></ul>",
+			"rating": {
+				"bad": "Die digitale Signatur von mindestens einem Ihrer Mailserver-Zertifikate verwendet <em>unzureichend</em> sichere Parameter.",
+				"good": "Die digitalen Signaturen aller Zertifikate Ihres Mailservers verwenden sichere Parameter.",
+				"phase_out": "Die digitale Signatur mindestens eines Ihrer Mailserver-Zertifikate verwendet Parameter, die den Status <em>phase out</em> haben, weil sie als anfällig gelten und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
+			},
+			"title": "Öffentlicher Schlüssel des Zertifikats"
+		},
+		"internet_nl_mail_starttls_cert_sig": {
+			"explanation": "<p>Wir prüfen, ob der signierte Fingerabdruck jedes Ihrer Mailserver-Zertifikate mit einem sicheren Hash-Algorithmus erstellt wurde. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-2 und Tabelle 3 (in Englisch).</p><hr /><p><strong>Hash-Funktionen für die Zertifikatsüberprüfung</strong></p><ul><li>gut: SHA-512, SHA-384, SHA-256</li><li>Unzureichend: SHA-1, MD5</li></ul>",
+			"rating": {
+				"bad": "Mindestens eines Ihrer Mailserver-Zertifikate ist mit einem Hash-Algorithmus signiert, der <em>unzureichend</em> sicher ist.",
+				"good": "Alle Ihre Mailserver-Zertifikate werden mit einem sicheren Hash-Algorithmus signiert."
+			},
+			"title": "Unterschrift des Zertifikats"
+		},
+		"internet_nl_mail_starttls_dane_exist": {
+			"explanation": "Wir prüfen, ob die Nameserver jedes Ihrer empfangenden Mailserver (MX) einen TLSA-Eintrag für DANE bereitstellen. </p><p>Da DNSSEC eine Voraussetzung für DANE ist, schlägt dieser Test fehl, wenn DNSSEC auf der/den Mailserver-Domäne(n) nicht vorhanden ist. </p><p>Beachten Sie, dass der Test TLSA-Records der Typen PKIX-TA(0) oder PKIX-EE(1) ignoriert, da diese nicht für empfangende Mailserver verwendet werden sollten.</p><p>Darüber hinaus führt der Test zu einem \"Fail\", wenn es keinen DNSSEC-Nachweis für \"Denial of Existence\" für TLSA-Records gibt. Wenn ein signierter TLSA-Eintrag existiert, aber gleichzeitig eine unsichere <code>NXDOMAIN</code> für dieselbe Domäne (aufgrund einer fehlerhaften Signierersoftware), wird der Test ebenfalls fehlschlagen. Die beiden letztgenannten Fehlerszenarien können dazu führen, dass an Sie adressierte E-Mails von DANE-validierenden E-Mail-Absendern nicht zugestellt werden.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Anhang A, unter 'Certificate pinning and DANE' (in Englisch).",
+			"rating": {
+				"bad": "Mindestens eine Ihrer Mailserver-Domänen bietet <em>nicht</em> einen TLSA-Eintrag für DANE.",
+				"bogus": "Mindestens eine Ihrer Mailserver-Domänen liefert <em>nicht</em> den DNSSEC-Nachweis, dass keine DANE TLSA-Einträge existieren. Dies kann dazu führen, dass an Sie gerichtete E-Mails von DANE-validierenden Absendern nicht zugestellt werden können. Sie sollten Ihren Nameserver-Betreiber bitten, dieses Problem zu beheben.",
+				"good": "Alle Ihre Mailserver-Domänen bieten einen TLSA-Eintrag für DANE."
+			},
+			"title": "DANE Existenz"
+		},
+		"internet_nl_mail_starttls_dane_rollover": {
+			"explanation": "Wir prüfen, ob es ein aktives Schema mit mindestens zwei DANE TLSA-Einträgen gibt, um Zertifikats-Rollover auf Ihren empfangenden Mailservern (MX) zuverlässig zu handhaben.</p><p>Ein solches Schema wird sich als nützlich erweisen, wenn Ihre Mailserver-Zertifikate aktualisiert werden müssen. Es kann verhindern, dass DANE während des Übergangszeitraums ungültig werden, was die Zustellbarkeit von E-Mails in Ihrer Domäne gefährden könnte. Ein Rollover-Schema kann, muss aber nicht ständig \"aktiv\" sein.</p><p>Wir empfehlen Ihnen, eines der beiden folgenden Schemata mit doppelten DANE TLSA-Einträgen anzuwenden:</p><ol><li>Aktuell + Weiter (\"3 1 1\" + \"3 1 1\"): Veröffentlichen Sie zwei \"DANE-EE(3) SPKI(1) SHA2-256(1)\" Einträge, einen für das aktuelle und einen für das nächste TLS-Zertifikat Ihres Mailservers. </li><li>Aktuelle + Issuer CA (\"3 1 1\" + \"2 1 1\"): Veröffentlichen Sie einen \"DANE-EE(3) SPKI(1) SHA2-256(1)\"-Eintrag für das aktuelle TLS-Zertifikat Ihres Mailservers und außerdem einen \"DANE-TA(2) SPKI(1) SHA2-256(1)\"-Eintrag für das aktuelle Stamm- oder Zwischenzertifikat der (nicht unbedingt öffentlichen) Zertifizierungsstelle. </li></ol><p>Der Test akzeptiert auch andere Kombinationen von DANE TLSA-Datensätzen, z. B. \"3 x x\"  + \"3 x x\" oder \"3 x x\" + \"2 x x\". Andere als die oben genannten Typen sind jedoch im Allgemeinen fehleranfälliger und weniger interoperabel. </p><p><em>Anforderungsstufe: Fakultativ</em>",
+			"rating": {
+				"bad": "Mindestens eine Ihrer Mailserver-Domänen verfügt <em>nicht</em> über ein aktives DANE-Schema für ein zuverlässiges Rollover von Zertifikatsschlüsseln.",
+				"good": "Alle Ihre Mailserver-Domänen verfügen über ein aktives DANE-Schema für ein zuverlässiges Rollover der Zertifikatsschlüssel."
+			},
+			"title": "DANE-Rollover-Regelung"
+		},
+		"internet_nl_mail_starttls_dane_valid": {
+			"explanation": "Wir prüfen, ob die DANE-Fingerprints, die von Ihren Mailserver-Domänen vorgelegt werden, für Ihre Mailserver-Zertifikate gültig sind. </p><p>DANE ermöglicht es Ihnen, Informationen über Ihre Mailserver-Zertifikate in einem speziellen DNS-Eintrag, dem sogenannten TLSA-Eintrag, zu veröffentlichen. Versendende Mailserver können die Authentizität Ihrer Zertifikate nicht nur über die Zertifizierungsstelle, sondern auch über die TLSA-Einträge überprüfen. Ein sendender Mailserver kann den TLSA-Eintrag auch als Signal verwenden, nur über STARTTLS (und nicht unverschlüsselt) zu verbinden. Wenn der DANE-Fingerabdruck eines empfangenden Mailservers vom sendenden Mailserver überprüft wird, kann ein aktiver Angreifer, der in der Lage ist, den Mailverkehr zu manipulieren, die STARTTLS-Verschlüsselung nicht aushebeln.",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver hat <em>keine</em> gültigen DANE-Fingerprints. Entweder hat jemand die Antwort Ihres Mailservers manipuliert, oder Ihr Mailserver hat einen schweren DANE-Konfigurationsfehler. Im letzteren Fall ist Ihre Domäne für jeden sendenden Mailserver, der DANE-Fingerprints prüft, unerreichbar. Sie sollten sich so schnell wie möglich an Ihren Mail-Provider wenden.",
+				"good": "Jeder Ihrer Mailserver verfügt über mindestens einen gültigen DANE-Fingerabdruck. Dadurch können sendende Mailserver, die die DANE-Verifizierung unterstützen, eine authentifizierte, verschlüsselte Transportverbindung mit Ihren empfangenden Mailservern aufbauen."
+			},
+			"title": "DANE Gültigkeit"
+		},
+		"internet_nl_mail_starttls_tls_0rtt": {
+			"explanation": "<p>Wir prüfen, ob Ihre Mailserver (MX) Zero Round Trip Time Resumption (0-RTT) unterstützen.</p><p>0-RTT ist eine Option in TLS 1.3, die Anwendungsdaten während der ersten Handshake-Nachricht transportiert. 0-RTT bietet keinen Schutz gegen Replay-Angriffe auf der TLS-Schicht und sollte daher deaktiviert werden. Obwohl das Risiko dadurch gemindert werden kann, dass 0-RTT für nicht-idempotente Anfragen nicht zugelassen wird, ist eine solche Konfiguration oft nicht trivial, von der Anwendungslogik abhängig und daher fehleranfällig.</p><p>Wenn Ihre Mailserver TLS 1.3 nicht unterstützen, ist der Test nicht anwendbar. Bei Mailservern, die TLS 1.3 unterstützen, wird der Befehl STARTTLS ausgegeben und eine TLS-Sitzung eingeleitet. Es wird geprüft, wie viele<a href=\"https://www.openssl.org/docs/manmaster/man3/SSL_get_max_early_data.html\">frühe Daten</a>der Mailserver unterstützt <a href=\"https://www.rfc-editor.org/rfc/rfc8446#section-4.2.10\">und wie viele</a> . Ist der Wert größer als Null, wird eine zweite Verbindung aufgebaut, die die TLS-Sitzungsdetails der ersten Verbindung wieder aufnimmt, aber denEHLO-Befehl <em>vor</em> dem TLS-Handshake, aber <em>nach</em> dem STARTTLS-Befehl sendet (d. h. es sind keine Roundtrips (0-RTT) erforderlich, bevor die Anwendungsdaten an den Server übermittelt werden).Wenn der TLS-Handshake abgeschlossen ist und der Mail-Server antwortet, wird davon ausgegangen, dass der Mail-Server 0-RTT unterstützt.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B9-1 und Tabelle 14 (in Englisch).</p><hr /><p><strong>0-RTT</strong></p><ul><li>Gut: Aus (oder N/A vor TLS 1.3)</li><li>Unzureichend: Ein</li></ul>",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver unterstützt 0-RTT, was <em>nicht</em> sicher ist.",
+				"good": "Keiner Ihrer Mailserver unterstützt 0-RTT.",
+				"na": "Dieser Untertest ist nicht anwendbar, da Ihre Mailserver TLS 1.3 nicht unterstützen."
+			},
+			"title": "0-RTT"
+		},
+		"internet_nl_mail_starttls_tls_available": {
+			"explanation": "Wenn jemand eine E-Mail an diese Adresse sendet, sollte sie verschlüsselt werden, damit Zwischenpersonen nicht lesen oder verändern können, was gesendet wird. Die Technologie dieser Verschlüsselung heißt STARTTLS und funktioniert in etwa so wie die Verschlüsselung von Websites.",
+			"extended-explanation": "Wir prüfen, ob Ihre empfangenden Mailserver (MX) STARTTLS unterstützen. Wenn ja, prüfen wir in den Untertests dieser Testkategorie auch, ob STARTTLS ausreichend sicher konfiguriert ist. </p><p>Aus Leistungsgründen werden maximal zehn Mailserver entweder über IPv6 oder IPv4 auf STARTTLS und DANE getestet.</p><p>Beachten Sie, dass der E-Mail-Test nicht auf A/AAAA-Einträge für Mailserver zurückgreift, wenn kein MX-Eintrag vorhanden ist.</p><p><em>Nicht-Empfangsdomäne</em>:</p><ol><li>Null MX: Falls Sie auf Ihrer Domain, die A/AAAA-Einträge hat, keine Mails empfangen wollen, empfehlen wir Ihnen, \"Null MX\" zu verwenden (<a href=\"https://www.rfc-editor.org/rfc/rfc7505\">RFC 7505</a>). Beachten Sie, dass ein \"Null MX-Eintrag\" nicht mit einem normalen MX-Eintrag kombiniert werden sollte, der auf einen Mail-Host verweist.</li><li><p>Kein MX: Falls Ihre Domäne keine A/AAAA-Einträge hat und Sie keine Mails auf ihr empfangen möchten, empfehlen wir Ihnen, überhaupt keinen MX-Eintrag zu konfigurieren (d.h. auch <em>keinen \"Null MX\"-Eintrag</em> ).</p></li><li><p>Wenn wir einen der beiden oben genannten Fälle feststellen, sind die Untertests in der Kategorie STARTTLS und DANE nicht anwendbar. Dies gilt auch für die mailserverspezifischen Untertests in den Kategorien für IPv6 und DNSSEC. Andere Untertests des E-Mail-Tests (z. B. für DMARC) sind weiterhin anwendbar. </p></li><li>Beachten Sie, dass ein \"Null MX\"-Eintrag oder ein fehlender MX-Eintrag sich auch auf den Versand von E-Mails auswirken kann, da empfangende Server E-Mails mit einer ungültigen Absenderadresse zurückweisen können.</li></ol><p>Für eine \"gute Praxis bei Domänen ohne Mail\" siehe die <a href=\"#control-panel-9\">Erklärung des Untertests \"DMARC-Richtlinie\"</a>.",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver bietet <em>nicht</em> STARTTLS an.",
+				"failed": "Verschlüsselung fehlt. Dies bedeutet, dass E-Mails, die an diesen Server gesendet werden, von Zwischenhändlern gelesen oder verändert werden können.",
+				"good": "Alle Ihre Mailserver bieten STARTTLS an.",
+				"invalid_null_mx": "",
+				"no_null_mx": "",
+				"null_mx": "",
+				"null_mx_with_other_mx": "",
+				"null_mx_without_a_aaaa": "",
+				"other": "Mindestens einer Ihrer Mailserver ist unerreichbar.",
+				"other_2": "",
+				"passed": "Verschlüsselung verfügbar. Dies bedeutet, dass E-Mails sicher an diese Adresse gesendet werden können."
+			},
+			"technology": "Opportunistisches TLS / STARTTLS",
+			"title": "Anwendung der Verschlüsselung von empfangenen E-Mails"
+		},
+		"internet_nl_mail_starttls_tls_cipherorder": {
+			"explanation": "Wir prüfen, ob Ihre empfangenden Mailserver (MX) ihre eigene Chiffrierpräferenz (\"I\") durchsetzen und Chiffrierungen gemäß der vorgeschriebenen Reihenfolge (\"II\") anbieten. </p><p>Wenn Ihre Mailserver nur \"gute\" Chiffren unterstützen, ist dieser Test nicht anwendbar, da die Reihenfolge keinen wesentlichen Sicherheitsvorteil bietet. </p><p>I. <em>Server erzwungene Chiffrierpräferenz</em>: Die empfangenden Mailserver setzen ihre eigene Chiffrierpräferenz durch, während sie mit den sendenden Mailservern verhandeln, und akzeptieren keine Präferenz der sendenden Mailserver;</p><p>II. <em>Vorgeschriebene Reihenfolge</em>: Die Chiffren werden von den empfangenden Mailservern in Übereinstimmung mit der vorgeschriebenen Reihenfolge angeboten, wobei \"gute\" Chiffren gegenüber \"ausreichenden\" gegenüber \"auslaufenden\" Chiffren bevorzugt werden.</p><p>In der obigen Tabelle mit technischen Details <strong>sind nur die zuerst gefundenen Algorithmen aus der vorgeschriebenen Reihenfolge</strong> aufgeführt.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT-Sicherheitsrichtlinien für Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitfaden B2-5.",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver erzwingt <em>nicht</em> seine eigene Chiffrierpräferenz ('I').",
+				"good": "Alle Ihre Mailserver setzen ihre eigene Verschlüsselungspräferenz durch (\"I\") und bieten Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge an (\"II\").",
+				"na": "Dieser Untertest ist nicht anwendbar, da Ihr Mailserver nur \"gute\" Verschlüsselungen unterstützt.",
+				"seclevel_bad": "Mindestens einer Ihrer Mailserver bevorzugt <em>nicht</em> \"Gut\" gegenüber \"Ausreichend\" gegenüber \"Auslauf\"-Chiffren (\"II\").",
+				"warning": "VERALTETER TEXT; URTEIL NICHT VERWENDET</p><p>Mindestens einer Ihrer Mailserver bietet <em>keine</em> Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge innerhalb einer bestimmten Sicherheitsstufe ('II-B') an."
+			},
+			"title": "Chiffrierauftrag"
+		},
+		"internet_nl_mail_starttls_tls_ciphers": {
+			"explanation": "<p>Wir prüfen, ob Ihre empfangenden Mailserver (MX) nur sichere, d. h. \"gute\" und/oder \"ausreichende\" Verschlüsselungen unterstützen (auch bekannt als Algorithmusauswahl).</p><p>Um zu verhindern, dass wir an die Ratenbeschränkungen der empfangenden Mailserver stoßen, enthält das Prüfergebnis nur die <strong>zuerst gefundenen betroffenen Algorithmusauswahlen</strong>.</p><p>Eine Algorithmusauswahl besteht aus Chiffren für vier kryptografische Funktionen: 1) Schlüsselaustausch, 2) Zertifikatsüberprüfung, 3) Massenverschlüsselung und 4) Hashing. Ein Webserver kann mehr als eine Algorithmusauswahl unterstützen.</p><ul><li>Seit TLS 1.3 umfasst der Begriff \"Cipher Suite\" nur noch die für die Massenverschlüsselung und das Hashing verwendeten Chiffren. Bei Verwendung von TLS 1.3 sind die Chiffren für den Schlüsselaustausch und die Zertifikatsüberprüfung verhandelbar und nicht Teil der Benennung der Cipher Suite. Da dies den Begriff \"Cipher Suite\" mehrdeutig macht, verwendet die NCSC-NL den Begriff \"Algorithmusauswahl\", um alle vier Cipher-Funktionen zu umfassen.</li><li>Das NCSC-NL verwendet die <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4\">IANA-Namenskonvention</a> für Algorithmusauswahlen. Internet.nl verwendet die <a href=\"https://www.openssl.org/docs/manmaster/man1/openssl-ciphers.html#CIPHER-SUITE-NAMES\">OpenSSL-Benennungskonvention</a>. Seit TLS 1.3 folgt OpenSSL der IANA-Benennungskonvention. Eine Übersetzung zwischen beiden kann in der OpenSSL-Dokumentation gefunden werden.</li><li>Beachten Sie, dass Chiffren, die PSK oder SRP für den Schlüsselaustausch verwenden (die nicht hinreichend sicher sind), in diesem Test aufgrund einer Einschränkung in Bezug auf unsere Testmethode nicht erkannt werden. </li></ul><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitfaden B2-1 bis B2-4 und Tabelle 2, 4, 6 und 7 (in Englisch).</p><hr /><p>Nachfolgend finden Sie die Auswahl von \"guten\", \"ausreichenden\" und \"auslaufenden\" Algorithmen in der von der NCSC-NL vorgeschriebenen Reihenfolge, basierend auf Anhang C der \"IT-Sicherheitsrichtlinien für Transport Layer Security (TLS)\". Hinter jeder Algorithmus-Auswahl steht die minimale TLS-Version (z.B. [1.2]), die diese Algorithmus-Auswahl unterstützt und die mindestens 'Phase out' ist.</p><p>Gut:</p><ul><li><code>ECDHE-ECDSA-AES256-GCM-SHA384</code> (<code>TLS_AES_256_GCM_SHA384</code> in 1.3) [1.2]</li><li><code>ECDHE-ECDSA-CHACHA20-POLY1305</code> (<code>TLS_CHACHA20_POLY1305_SHA256</code> in 1.3) [1.2]</li><li><code>ECDHE-ECDSA-AES128-GCM-SHA256</code> (<code>TLS_AES_128_GCM_SHA256</code> in 1.3) [1.2]</li><li><code>ECDHE-RSA-AES256-GCM-SHA384</code> (<code>TLS_AES_256_GCM_SHA384</code> in 1.3) [1.2]</li><li><code>ECDHE-RSA-CHACHA20-POLY1305</code> (<code>TLS_CHACHA20_POLY1305_SHA256</code> in 1.3) [1.2]</li><li><code>ECDHE-RSA-AES128-GCM-SHA256</code> (<code>TLS_AES_128_GCM_SHA256</code> in 1.3) [1.2]</li></ul><p>Ausreichend:</p><ul><li><code>ECDHE-ECDSA-AES256-SHA384</code> [1.2]</li><li><code>ECDHE-ECDSA-AES256-SHA</code> [1.0]</li><li><code>ECDHE-ECDSA-AES128-SHA256</code> [1.2]</li><li><code>ECDHE-ECDSA-AES128-SHA</code> [1.0]</li><li><code>ECDHE-RSA-AES256-SHA384</code> [1.2]</li><li><code>ECDHE-RSA-AES256-SHA</code> [1.0]</li><li><code>ECDHE-RSA-AES128-SHA256</code> [1.2]</li><li><code>ECDHE-RSA-AES128-SHA</code> [1.0]</li><li><code>DHE-RSA-AES256-GCM-SHA384</code> [1.2]</li><li><code>DHE-RSA-CHACHA20-POLY1305</code> [1.2]</li><li><code>DHE-RSA-AES128-GCM-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES256-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES256-SHA</code> [1.0]</li><li><code>DHE-RSA-AES128-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES128-SHA</code> [1.0]</li></ul><p>Auslaufen:</p><ul><li><code>ECDHE-ECDSA-DES-CBC3-SHA</code> [1.0]</li><li><code>ECDHE-RSA-DES-CBC3-SHA</code> [1.0]</li><li><code>DHE-RSA-DES-CBC3-SHA</code> [1.0]</li><li><code>AES256-GCM-SHA384</code> [1.2]</li><li><code>AES128-GCM-SHA256</code> [1.2]</li><li><code>AES256-SHA256</code> [1.2]</li><li><code>AES256-SHA</code> [1.0]</li><li><code>AES128-SHA256</code> [1.2]</li><li><code>AES128-SHA</code> [1.0]</li><li><code>DES-CBC3-SHA</code> [1.0]</li></ul>",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver unterstützt eine oder mehrere <em>unzureichend</em> sichere Verschlüsselungen.",
+				"good": "Alle Ihre Mailserver unterstützen nur sichere Verschlüsselungen.",
+				"phase_out": "Mindestens einer Ihrer Mailserver unterstützt eine oder mehrere Chiffren, die den Status <em>phase out</em> haben, weil sie als anfällig gelten und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
+			},
+			"title": "Chiffren (Auswahl der Algorithmen)"
+		},
+		"internet_nl_mail_starttls_tls_clientreneg": {
+			"explanation": "<p>Wir prüfen, ob ein sendender Mailserver eine Neuverhandlung mit Ihren empfangenden Mailservern (MX) einleiten kann. </p><p>Es ist in der Regel nicht notwendig, sendenden Mail-Servern zu erlauben, eine Neuverhandlung zu initiieren und öffnet einen empfangenden Mail-Server für DoS-Angriffe innerhalb einer TLS-Verbindung. Ein Angreifer kann ähnliche DoS-Angriffe ohne client-initiierte Neuverhandlung durchführen, indem er viele parallele TLS-Verbindungen öffnet, aber diese sind leichter zu erkennen und mit Hilfe von Standardabwehrmaßnahmen abzuwehren. Beachten Sie, dass die vom Kunden initiierte Neuverhandlung die Verfügbarkeit und nicht die Vertraulichkeit beeinträchtigt. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B8-1 und Tabelle 13 (in Englisch).</p><p><em>Anforderungsstufe: Fakultativ</em></p><hr /><p><strong>Vom Kunden initiierte Neuaushandlung</strong></p><ul><li>Gut: Aus (oder N/A für TLS 1.3)</li><li>Ausreichend: Ein</li></ul>",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver lässt eine vom Kunden initiierte Neuverhandlung zu, was sich negativ auf die Verfügbarkeit Ihres Mailservers auswirken könnte.",
+				"good": "Alle Ihre Mailserver erlauben keine vom Kunden initiierte Neuaushandlung."
+			},
+			"title": "Neuverhandlung auf Veranlassung des Kunden"
+		},
+		"internet_nl_mail_starttls_tls_compress": {
+			"explanation": "<p>Wir prüfen, ob Ihre empfangenden Mailserver (MX) TLS-Kompression unterstützen. </p><p>Die Verwendung von Komprimierung kann einem Angreifer Informationen über die geheimen Teile der verschlüsselten Kommunikation liefern. Ein Angreifer, der Teile der gesendeten Daten ermitteln oder kontrollieren kann, kann die ursprünglichen Daten rekonstruieren, indem er eine große Anzahl von Anfragen durchführt. Die TLS-Kompression wird so selten verwendet, dass ihre Deaktivierung im Allgemeinen kein Problem darstellt. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B7-1 und Tabelle 11 (in Englisch).</p><hr /><p><strong>Komprimierungsoption</strong></p><ul><li>Gut: Keine Komprimierung</li><li>Ausreichend: Komprimierung auf Anwendungsebene</li><li>Unzureichend: TLS-Komprimierung</li></ul>",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver unterstützt TLS-Kompression, die <em>nicht</em> sicher ist.",
+				"good": "Nicht alle Ihre Mailserver unterstützen die TLS-Komprimierung."
+			},
+			"title": "TLS-Komprimierung"
+		},
+		"internet_nl_mail_starttls_tls_keyexchange": {
+			"explanation": "Wir prüfen, ob die öffentlichen Parameter, die beim Diffie-Hellman-Schlüsselaustausch von Ihren empfangenden Mailservern (MX) verwendet werden, sicher sind.</p><p><strong>ECDHE</strong>: Die Sicherheit des ephemeren Diffie-Hellman-Schlüsselaustauschs mit elliptischer Kurve (ECDHE) hängt von der verwendeten elliptischen Kurve ab. Wir prüfen, ob die Bit-Länge der verwendeten elliptischen Kurven mindestens 224 Bit beträgt. Zurzeit sind wir nicht in der Lage, den Namen der elliptischen Kurve zu überprüfen.</p><p><strong>DHE</strong>: Die Sicherheit des Diffie-Hellman Ephemeral (DHE)-Schlüsselaustauschs hängt von der Länge des öffentlichen und des geheimen Schlüssels ab, die innerhalb der gewählten endlichen Feldgruppe verwendet werden. Wir testen, ob Ihr öffentliches DHE-Schlüsselmaterial eine der vordefinierten endlichen Feldgruppen verwendet, die in <a href=\"https://www.rfc-editor.org/rfc/rfc7919\">RFC 7919</a>AUFGEFÜHRT SIND. Selbst erzeugte Gruppen sind 'Unzureichend'.</p><p>Die größeren Schlüsselgrößen, die für die Verwendung von DHE erforderlich sind, sind mit Leistungseinbußen verbunden. Prüfen Sie sorgfältig und verwenden Sie ECDHE anstelle von DHE, wenn Sie können.</p><p><strong>RSA als Alternative</strong>: Neben ECDHE und DHE kann auch RSA für den Schlüsselaustausch verwendet werden. Es besteht jedoch die Gefahr, dass es nicht mehr ausreichend sicher ist (derzeitiger Status \"phase out\"). Die öffentlichen RSA-Parameter werden im Untertest \"Öffentlicher Schlüssel des Zertifikats\" geprüft. Beachten Sie, dass RSA als \"gut\" für die Zertifikatsüberprüfung angesehen wird.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B5-1 und Tabelle 9 für ECDHE, und Richtlinie B6-1 und Tabelle 10 für DHE (in Englisch).</p><hr /><p><strong>Elliptische Kurve für ECDHE</strong></p><ul><li>Gut: <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>, und <code>x25519</code></li><li>Auslaufen: <code>secp224r1</code></li><li>Unzureichend: Andere Kurven</li></ul><p><strong>Endliche Feldgruppe für DHE</strong></p><ul><li><p>Ausreichend:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem\">ffdhe4096</a> (RFC 7919)<br /> sha256 Prüfsumme: <code>64852d6890ff9e62eecd1ee89c72af9af244dfef5b853bcedea3dfd7aade22b3</code></li><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe3072.pem\">ffdhe3072</a> (RFC 7919)<br /> sha256 checksum: <code>c410cc9c4fd85d2c109f7ebe5930ca5304a52927c0ebcb1a11c5cf6b2386bbab</code>  </li><li>Beachten Sie, dass wir auch auf ffdhe8192 und ffdhe6144 testen. Ihr begrenzter Gewinn an Sicherheit wiegt den Leistungsverlust jedoch kaum auf.</li></ul></li><li><p>Auslaufen:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe2048.pem\">ffdhe2048</a> (RFC 7919)<br /> sha256 Prüfsumme: <code>9ba6429597aeed2d8617a7705b56e96d044f64b07971659382e426675105654b</code></li></ul></li><li><p>Unzureichend: Andere Gruppen</p></li></ul><hr /><p>Anmerkung: Die oben genannten Namen basieren auf den <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml\">IANA-Namenskonventionen</a>. Manchmal werden alternative Namen verwendet, um auf dieselben Kurven zu verweisen, wie <code>prime256v1</code> (ANSI) und <code>NIST P-256</code> für <code>secp256r1</code>.",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver unterstützt <em>unzureichend</em> sichere Parameter für den Diffie-Hellman-Schlüsselaustausch.",
+				"good": "Alle Ihre Mailserver unterstützen sichere Parameter für den Diffie-Hellman-Schlüsselaustausch.",
+				"na": "Dieser Untertest ist nicht anwendbar, da Ihre Mailserver den Diffie-Hellman-Schlüsselaustausch nicht unterstützen. Beachten Sie, dass RSA eine Alternative für den Schlüsselaustausch ist, aber den Status <em>phase out</em> hat.",
+				"phase_out": "Mindestens einer Ihrer Mailserver unterstützt Parameter für den Diffie-Hellman-Schlüsselaustausch, die den Status <em>phase out</em> haben, weil sie bekanntermaßen anfällig sind und Gefahr laufen, <em>unzureichend</em> sicher zu werden."
+			},
+			"title": "Wichtige Austauschparameter"
+		},
+		"internet_nl_mail_starttls_tls_keyexchangehash": {
+			"explanation": "<p>Wir prüfen, ob Ihre empfangenden Mailserver (MX) sichere Hash-Funktionen zur Erstellung der digitalen Signatur beim Schlüsselaustausch unterstützen.</p><p>Ein empfangender Mailserver verwendet während des Schlüsselaustauschs eine digitale Signatur, um den Besitz des geheimen Schlüssels, der dem Zertifikat entspricht, nachzuweisen. Der Mailserver erstellt diese digitale Signatur, indem er die Ausgabe einer Hash-Funktion signiert. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Tabelle 5.</p><p><em>Anforderungsstufe: Empfohlen</em></p><hr /><p><strong>SHA2-Unterstützung für Signaturen</strong></p><ul><li>Gut: Ja (SHA-256, SHA-384 oder SHA-512 unterstützt)</li><li>Auslaufend: Nein (SHA-256, SHA-384 oder SHA-512 <em>werden nicht</em> unterstützt)</li></ul>",
+			"rating": {
+				"good": "Alle Ihre Mailserver unterstützen sichere Hash-Funktionen für den Schlüsselaustausch.",
+				"other": "Wir waren nicht in der Lage, die von mindestens einem Ihrer Mailserver verwendete Hash-Funktion zu ermitteln. Dies könnte daran liegen, dass die verwendete Chiffrierkombination keine Signatur für die Zertifikatsüberprüfung hat (z. B. verwendet sie RSA-Schlüsselaustausch oder ist anonym, d. h. <code>anon</code>).",
+				"phase_out": "Mindestens einer Ihrer Mailserver unterstützt <em>keine</em> sichere Hashfunktion für den Schlüsselaustausch. Sie sollten <em>diese Einstellung bewusst</em> auslaufen lassen, da die Gefahr besteht, dass sie in Zukunft <em>nicht mehr ausreichend</em> sicher ist."
+			},
+			"title": "Hash-Funktion für den Schlüsselaustausch"
+		},
+		"internet_nl_mail_starttls_tls_secreneg": {
+			"explanation": "<p>Wir prüfen, ob Ihre Mailserver (MX) eine sichere Neuaushandlung unterstützen. </p><p>Ältere Versionen von TLS (vor TLS 1.3) erlauben es, einen neuen Handshake zu erzwingen. Dieses so genannte Renegotiation war in seinem ursprünglichen Design unsicher. Der Standard wurde überarbeitet und ein sicherer Mechanismus für die Neuaushandlung wurde hinzugefügt. Die alte Version wird seitdem als unsichere Neuaushandlung bezeichnet und sollte deaktiviert werden.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B8-1 und Tabelle 12 (in Englisch).</p><hr /><p><strong>Unsichere Neuaushandlung</strong></p><ul><li>Gut: Aus (oder N/A für TLS 1.3)</li><li>Unzureichend: Ein</li></ul>",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver unterstützt eine unsichere Neuaushandlung, die offensichtlich <em>nicht</em> sicher ist.",
+				"good": "Alle Ihre Mailserver unterstützen eine sichere Neuaushandlung."
+			},
+			"title": "Sichere Neuverhandlung"
+		},
+		"internet_nl_mail_starttls_tls_version": {
+			"explanation": "<p>Wir prüfen, ob Ihre Mailserver (MX) nur sichere TLS-Versionen unterstützen. </p><p>Ein Mailserver kann mehr als eine TLS-Version unterstützen. </p><p>Beachten Sie, dass einige Mailserver nur ältere TLS-Versionen unterstützen. Wenn sowohl der sendende als auch der empfangende Mailserver nicht dieselbe TLS-Version unterstützen, greifen sie normalerweise auf den unverschlüsselten Mailtransport zurück. Aus diesem Grund kann es ratsam sein, TLS-Versionen mit Auslaufstatus noch eine Weile zu unterstützen. Treffen Sie auf der Grundlage von Protokolldaten eine fundierte Entscheidung darüber, wann diese \"auslaufenden\" TLS-Versionen abgeschaltet werden sollen.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B1-1 und Tabelle 1 (in Englisch).</p><hr /><p><strong>Version</strong></p><ul><li>gut: TLS 1.3 </li><li>Ausreichend: TLS 1.2</li><li>Auslaufend: TLS 1.1 und 1.0</li><li>Unzureichend: SSL 3.0, 2.0 und 1.0</li></ul>",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver unterstützt eine oder mehrere <em>unzureichend</em> sichere TLS-Versionen.",
+				"good": "Alle Ihre Mailserver unterstützen nur sichere TLS-Versionen.",
+				"phase_out": ""
+			},
+			"title": "TLS-Version"
+		},
+		"internet_nl_mail_tls": {
+			"explanation": "Damit wird geprüft, ob es möglich ist, E-Mails über eine verschlüsselte Verbindung an diese Adresse zu senden. Die Verschlüsselung muss den NCSC-Richtlinien entsprechen und DANE verwenden.",
+			"extended-explanation": "' Pech gehabt! Versendende Mailserver, die sicheren E-Mail-Transport (<a href=\"/faqs/starttls/\">STARTTLS und DANE</a>) unterstützen, können <em>keine</em> oder eine <em>unzureichend</em> sichere Verbindung mit Ihrem(n) empfangenden Mailserver(n) herstellen. Passive und/oder aktive Angreifer sind daher in der Lage, E-Mails auf dem Weg zu Ihnen zu lesen. Sie sollten Ihren Mail-Provider bitten, STARTTLS und DANE zu aktivieren und sicher zu konfigurieren.',",
+			"rating": {
+				"failed": "",
+				"passed": "",
+				"unreachable": "Der Server ist nicht erreichbar. Der Test konnte nicht durchgeführt werden."
+			},
+			"technology": "",
+			"title": "Sichere E-Mail-Übertragungen gemäß NCSC-NL-Richtlinien + DANE"
+		},
+		"internet_nl_web_appsecpriv_csp": {
+			"explanation": "",
+			"rating": {
+				"bad": "Ihr Webserver bietet <em>keine</em> Content-Security-Policy (CSP) an oder bietet CSP mit bestimmten <em>unsicheren</em> Einstellungen an.",
+				"good": "Ihr Webserver bietet Content-Security-Policy (CSP) und verwendet bestimmte unsichere CSP-Einstellungen nicht."
+			},
+			"title": "Content-Security-Policy"
+		},
+		"internet_nl_web_appsecpriv_referrer_policy": {
+			"explanation": "Wir prüfen, ob Ihr Webserver einen HTTP-Header für <code>Referrer-Policy</code> mit einem ausreichend sicheren und datenschutzfreundlichen Policy-Wert bereitstellt. Mit dieser Richtlinie teilt Ihr Webserver den Browsern mit, ob, was und wann Referrer-Daten an die Website gesendet werden sollen, zu der der Nutzer von Ihrer Website aus navigiert. Diese Referrer-Daten werden in der <code>Referer</code> -Header vom Browser an die Website gesendet, zu der der Nutzer navigiert. Diese Navigation muss nicht unbedingt domänenübergreifend sein.</p><p>Die Daten in der <code>Referer</code> -Header werden normalerweise für Analysen und Protokollierung verwendet. Es können jedoch Datenschutz- und Sicherheitsrisiken bestehen. Die Daten könnten z. B. für die Benutzerverfolgung verwendet werden, und die Daten könnten an Dritte gelangen, die die Verbindung abhören. Der HTTP-Header für <code>Referrer-Policy</code> ermöglicht es Ihnen, diese Risiken zu mindern, indem Sie das Senden von Referrer-Daten kontrollieren und sogar minimieren.</p><p>Wir empfehlen Ihnen, unter Berücksichtigung der Datenschutz- und Sicherheitsrisiken eine informierte Entscheidung über die Verwendung einer der beiden folgenden Richtlinien zu treffen.</p><p><strong>1. Gut</strong> </p><ul><li><code>kein Verweiser</code></li><li><code>same-origin</code></li></ul><p>Mit diesen Richtlinienwerten werden keine sensiblen Referrer-Daten an Dritte gesendet.</p><p><strong>2. Warnung</strong> </p><ul><li><code>strict-origin</code></li><li><code>strict-origin-when-cross-origin</code> (Standardwert des Browsers; siehe auch unter zusätzlicher Anmerkung 2)</li></ul><p>Mit diesen Richtlinienwerten werden grundlegende Referrer-Daten, die sensibel sein können, nur über sichere Verbindungen (HTTPS) an Dritte gesendet. Daher sollten diese Werte nur verwendet werden, wenn dies notwendig und gesetzlich zulässig ist.</p><p><strong>3. Schlecht</strong></p><ul><li><code>no-referrer-when-downgrade</code></li><li><code>origin-when-cross-origin</code></li><li><code>Ursprung</code></li><li><code>unsafe-url</code></li></ul><p>Mit diesen Richtlinienwerten werden beliebige oder grundlegende Referrer-Daten, die sensibel sein können, an Dritte gesendet, möglicherweise über unsichere Verbindungen (HTTP). Daher dürfen diese Werte nicht verwendet werden.</p><p><strong>Zusätzliche Hinweise:</strong></p><ol><li>Um das Durchsickern sensibler Daten über URLs zu verhindern, stellen Sie bitte sicher, dass die URLs Ihrer Website keine persönlichen oder anderweitig sensiblen Daten (wie persönliche Namen oder Passwörter) enthalten.</li><li><code>strict-origin-when-cross-origin</code> ist der Standardrichtlinienwert, wenn keine <code>Referrer-Policy</code> veröffentlicht wird, wie im aktuellen \"Editor's Draft\" der <code>Referrer-Policy</code> vorgeschrieben ist, und dieser Standard wird von allen aktuellen großen Browsern verwendet. Beachten Sie, dass einige Benutzer möglicherweise noch einen anderen Standardwert in ihrem Browser konfiguriert haben.</li><li>Verwenden Sie die HTTP <code>Referrer-Policy</code> Header als Mechanismus zur Bereitstellung Ihrer Referrer-Policy. Wir empfehlen <em>nicht</em> die Verwendung des HTML <code>&lt;meta&gt;</code> Element oder das HTML <code>referrerpolicy</code> Inhaltsattribut zu verwenden, um Ihre Referrer-Policy zu veröffentlichen, insbesondere weil die Abschnitte, die diese Methoden im Standard beschreiben, als \"nicht normativ\" gekennzeichnet sind. Daher prüfen wir nicht, ob eine Referrer-Policy über die beiden letztgenannten Methoden angeboten wird.</li><li>Beachten Sie, dass ein Webserver mehrere <code>Referrer-Policy</code> Header senden kann, und ein <code>Referrer-Policy</code> Header kann mehrere Werte enthalten. Unbekannte Werte werden vom Browser ignoriert und nur der letzte bekannte Wert wird verwendet. Dies ermöglicht die Verwendung künftiger standardisierter Policy-Werte, die noch nicht von allen Browsern unterstützt werden. Derzeit unterstützen jedoch alle aktuellen großen Browser die oben genannten Richtlinienwerte unter \"Gut\" und \"Warnung\". </li></ol><p><em>Anforderungsstufe: Empfohlen</em>",
+			"rating": {
+				"bad": "Ihr Webserver bietet eine Referrer-Policy mit einem Policy-Wert, der <em>nicht</em> ausreichend sicher und datenschutzfreundlich ist.",
+				"good": "Ihr Webserver bietet eine Referrer-Policy mit einem Policy-Wert, der ausreichend sicher und datenschutzfreundlich ist.",
+				"recommendations": ""
+			},
+			"title": "Referrer-Richtlinie"
+		},
+		"internet_nl_web_appsecpriv_x_content_type_options": {
+			"explanation": "Wir prüfen, ob Ihr Webserver einen HTTP-Header für <code>X-Content-Type-Options</code>bereitstellt. Mit diesem HTTP-Header teilen Sie den Webbrowsern mit, dass sie kein \"MIME-Type-Sniffing\" betreiben und sich immer an den <code>Content-Type</code> wie von Ihrem Webserver deklariert. Der einzig gültige Wert für diesen HTTP-Header ist <code>nosniff</code>. Wenn er aktiviert ist, blockiert ein Browser Anfragen für <code>style</code> und <code>script</code> , wenn sie nicht über einen entsprechenden <code>Content-Type</code> (d.h. <code>text/css</code> oder ein 'JavaScript MIME type' wie <code>application/javascript</code>).</p><p>MIME type sniffing' ist eine Technik, bei der der Browser den Inhalt einer Datei scannt, um das Format einer Datei unabhängig vom deklarierten <code>Content-Type</code> durch den Webserver. Diese Technik ist anfällig für den sogenannten \"MIME-Verwechslungsangriff\", bei dem der Angreifer den Inhalt einer Datei so manipuliert, dass er vom Browser als ein anderer <code>Inhalts-Typ</code>, wie eine ausführbare Datei, behandelt wird.</p><p><em>Anforderungsstufe: Empfohlen</em> ",
+			"rating": {
+				"bad": "Ihr Webserver bietet <em>nicht</em> X-Content-Type-Options.",
+				"good": "Ihr Webserver bietet X-Content-Type-Options."
+			},
+			"title": ""
+		},
+		"internet_nl_web_appsecpriv_x_frame_options": {
+			"explanation": "Wir prüfen, ob Ihr Webserver einen HTTP-Header für <code>X-Frame-Options</code> bereitstellt, der eine ausreichend sichere Richtlinie enthält. Mit diesem HTTP-Header teilen Sie Webbrowsern mit, ob Sie das Framing Ihrer Website zulassen wollen oder nicht. Die Verhinderung von Framing schützt die Besucher vor Angriffen wie Clickjacking. Wir betrachten die folgenden Werte als ausreichend sicher: </p><ul><li><code>DENY</code> (Framing nicht erlaubt); oder</li><li><code>GLEICHEHERKUNFT</code> (nur Framing durch Ihre eigene Website erlaubt).</li></ul><p>Obwohl der Wert <code>ALLOW-FROM</code> (nur bestimmten Websites das Framing Ihrer Website erlauben) Teil der <code>X-Frame-Options</code> Spezifikation (<a href=\"https://www.rfc-editor.org/rfc/rfc7034\">RFC 7034</a>) ist, wird er <em>von den meisten modernen Webbrowsern nicht</em> unterstützt. Daher betrachten wir <em>diesen Wert nicht</em> als ausreichend sicher.</p><p>Beachten Sie, dass <code>Content-Security-Policy</code> (<a href=\"#control-panel-29\">CSP</a>) einen ähnlichen Schutz durch <code>frame-ancestors</code> und darüber hinaus viel mehr für Besucher mit modernen Webbrowsern bietet. Allerdings <code>X-Frame-Options</code> könnten Besucher älterer Webbrowser, die CSP nicht unterstützen, dennoch schützen. Außerdem <code>X-Frame-Options</code> einen wertvollen Schutz für alle Besucher bieten, wenn CSP nicht (richtig) für die betreffende Website konfiguriert ist.</p><p>Siehe auch <a href=\"https://www.ncsc.nl/documenten/publicaties/2019/mei/01/ict-beveiligingsrichtlijnen-voor-webapplicaties\">'Web application guidelines from NCSC-NL'</a>, Leitfaden U/PW.03 (auf Niederländisch).</p><p><em>Anforderungsniveau: Optional</em> ",
+			"rating": {
+				"bad": "Ihr Webserver bietet <em>nicht</em> sicher konfigurierte X-Frame-Options.",
+				"good": "Ihr Webserver bietet sicher konfigurierte X-Frame-Options."
+			},
+			"title": ""
+		},
+		"internet_nl_web_appsecpriv_x_xss_protection": {
+			"explanation": "VERALTETER TEXT; TEST NICHT VERWENDET</p><p>Wir prüfen, ob Ihr Webserver einen HTTP-Header für <code>X-XSS-Protection</code> zur Verfügung stellt, der einen ausreichend sicheren Wert hat (d.h. <code>1</code> oder <code>1; mode=block</code>). Dieser HTTP-Header kann verwendet werden, um den Schutzfilter von Browsern gegen reflektierende Cross-Site-Scripting-Angriffe (XSS) zu aktivieren. Gültige Werte für den <code>X-XSS-Protection</code> Header sind:</p><ul><li><code>0</code> schaltet den XSS-Filter aus. Dieser Wert sollte NICHT verwendet werden.</li><li><code>1</code> aktiviert den XSS-Filter. Wenn ein Cross-Site-Scripting-Angriff erkannt wird, bereinigt der Browser das Skript und entfernt die unsicheren Teile. Dieser Wert ist normalerweise der Standardwert in Browsern, wenn eine Website keinen <code>X-XSS-Protection</code> Header anbietet.</li><li><code>1; mode=block</code> aktiviert den XSS-Filter. Wenn ein Cross-Site-Scripting-Angriff erkannt wird, blockiert der Browser die Antwort und verhindert das Rendern der Seite. Dies ist der empfohlene Wert.</li></ul><p><code>Content-Security-Policy</code> (CSP) bietet einen ähnlichen Schutz und vieles mehr für Besucher mit modernen Webbrowsern. Allerdings <code>X-XSS-Protection</code> könnte Besucher älterer Webbrowser, die CSP nicht unterstützen, dennoch schützen. Außerdem <code>X-XSS-Protection</code> einen wertvollen Schutz für alle Besucher bieten, wenn CSP nicht (richtig) für die betreffende Website konfiguriert ist.</p><p><em>Anforderungsniveau: Empfohlen</em>",
+			"rating": {
+				"bad": "VERALTETER TEXT; TEST NICHT VERWENDET</p><p>Ihr Webserver bietet <em>keine sicher konfigurierte X-XSS-Protection an</em> .",
+				"good": "VERALTETER TEXT; TEST NICHT VERWENDET</p><p>Ihr Webserver bietet eine sicher konfigurierte X-XSS-Protection."
+			},
+			"title": "VERALTETER TEXT; TEST NICHT VERWENDET</p><p>X-XSS-Schutz"
+		},
+		"internet_nl_web_dnssec_exist": {
+			"explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, DNSSEC-signiert ist.</p><p>Wenn eine Domain auf eine andere Domain über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die CNAME-Domain signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Hinweis: Die Gültigkeit der Signatur ist nicht Teil dieses Subtests, sondern Teil des nächsten Subtests.",
+			"rating": {
+				"bad": "Ihre Domain ist unsicher, weil sie <em>nicht</em> DNSSEC signiert ist.",
+				"good": "Ihre Domäne ist DNSSEC-signiert.",
+				"resolver_error": "",
+				"servfail": "Die Nameserver Ihrer Domäne sind <em>defekt</em>. Sie haben einen Fehler (<code>SERVFAIL</code>) auf unsere Abfragen nach einer DNSSEC-Signatur zurückgegeben. Bitte wenden Sie sich an Ihren Nameserver-Betreiber (oft Ihr Hosting-Provider und/oder Registrar), um dies bald zu beheben."
+			},
+			"title": ""
+		},
+		"internet_nl_web_dnssec_valid": {
+			"explanation": "",
+			"rating": {
+				"bad": "Ihre Domain ist \"gefälscht\", weil die DNSSEC-Signatur <em>nicht</em> gültig ist. Entweder hat jemand die Antwort Ihres Nameservers manipuliert, oder Ihre Domain hat einen <em>schwerwiegenden DNSSEC-Konfigurationsfehler</em>. Im letzteren Fall ist Ihre Domäne für jeden Benutzer, der DNSSEC-Signaturen validiert, unerreichbar. Wenden Sie sich so schnell wie möglich an Ihren Nameserver-Betreiber (oft Ihr Registrar oder Hosting-Provider).",
+				"good": "Ihre Domäne ist sicher, da ihre DNSSEC-Signatur gültig ist.",
+				"unsupported_ds_algo": "Ihre Domain ist mit einem Algorithmus signiert, den unser Validierungsresolver derzeit nicht unterstützt. Daher sind wir nicht in der Lage, die Gültigkeit der DNSSEC-Signatur zu prüfen."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_cert_chain": {
+			"explanation": "Wir prüfen, ob wir eine gültige Vertrauenskette für Ihr Website-Zertifikat erstellen können. </p><p>Für eine gültige Vertrauenskette muss Ihr Zertifikat von einer <a href=\"https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/\">öffentlich vertrauenswürdigen Zertifizierungsstelle veröffentlicht werden</a>veröffentlicht werden, und Ihr Webserver muss alle erforderlichen Zwischenzertifikate vorlegen. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT-Sicherheitsrichtlinien für Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-4 (in Englisch).",
+			"rating": {
+				"bad": "Die Vertrauenskette Ihres Website-Zertifikats ist <em>nicht</em> vollständig und/oder <em>nicht</em> von einer vertrauenswürdigen Stammzertifizierungsstelle signiert.",
+				"good": "Die Vertrauenskette Ihres Website-Zertifikats ist vollständig und von einer vertrauenswürdigen Stammzertifizierungsstelle unterzeichnet."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_cert_domain": {
+			"explanation": "Wir prüfen, ob der Domainname Ihrer Website mit dem Domainnamen auf dem Zertifikat übereinstimmt. </p><p>Es kann sinnvoll sein, mehr als eine Domain (z. B. die Domain mit und ohne www) als Subject Alternative Name auf dem Zertifikat anzugeben.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-1 (in Englisch).",
+			"rating": {
+				"bad": "Der Domainname Ihrer Website stimmt <em>nicht</em> mit dem Domainnamen auf Ihrem Website-Zertifikat überein.",
+				"good": "Der Domänenname Ihrer Website stimmt mit dem Domänennamen auf Ihrem Website-Zertifikat überein."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_cert_pubkey": {
+			"explanation": "<p>Wir prüfen, ob die digitale Signatur (ECDSA oder RSA) Ihres Website-Zertifikats sichere Parameter verwendet. </p><p>Die Überprüfung von Zertifikaten erfolgt mit Hilfe digitaler Signaturen. Um die Authentizität einer Verbindung zu gewährleisten, muss ein vertrauenswürdiger Algorithmus zur Zertifikatsüberprüfung verwendet werden. Das Zertifikat gibt den Algorithmus für digitale Signaturen an, der von seinem Besitzer während des Schlüsselaustauschs verwendet wird. Es ist möglich, mehrere Zertifikate zu konfigurieren, um mehr als einen Algorithmus zu unterstützen.</p><p>Die Sicherheit von ECDSA-Signaturen hängt von der gewählten Kurve ab. Die Sicherheit von RSA für Verschlüsselung und digitale Signaturen ist an die Schlüssellänge des öffentlichen Schlüssels gebunden. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitlinie B5-1 und Tabelle 9 für ECDSA und Leitlinie B3-3 und Tabelle 8 für RSA (in Englisch).</p><hr /><p><strong>Elliptische Kurven für ECDSA</strong></p><ul><li>Gut: <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>, und <code>x25519</code></li><li>Auslaufen: <code>secp224r1</code></li><li>Unzureichend: Andere Kurven</li></ul><p><strong>Länge der RSA-Schlüssel</strong></p><ul><li>gut: Mindestens 3072 Bit</li><li>Ausreichend: 2048 - 3071 bit</li><li>Ungenügend: Weniger als 2048 bit</li></ul>",
+			"rating": {
+				"bad": "Die digitale Signatur Ihres Website-Zertifikats verwendet <em>unzureichend</em> sichere Parameter.",
+				"good": "Die digitale Signatur Ihres Website-Zertifikats verwendet sichere Parameter.",
+				"phase_out": "Die digitale Signatur Ihres Website-Zertifikats verwendet Parameter, die einen <em>Auslaufstatus</em> haben, weil sie als anfällig gelten und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_cert_sig": {
+			"explanation": "<p>Wir prüfen, ob der signierte Fingerabdruck des Website-Zertifikats mit einem sicheren Hashing-Algorithmus erstellt wurde. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-2 und Tabelle 3 (in Englisch).</p><hr /><p><strong>Hash-Funktionen für die Zertifikatsüberprüfung</strong></p><ul><li>gut: SHA-512, SHA-384, SHA-256</li><li>Unzureichend: SHA-1, MD5</li></ul>",
+			"rating": {
+				"bad": "Ihr Website-Zertifikat ist mit einem Hash-Algorithmus signiert, der <em>unzureichend</em> sicher ist.",
+				"good": "Das Zertifikat Ihrer Website wird mit einem sicheren Hash-Algorithmus signiert."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_dane_exist": {
+			"explanation": "Wir prüfen, ob die Nameserver Ihrer Website-Domain einen korrekt signierten TLSA-Eintrag für DANE enthalten. </p><p>Da DNSSEC eine Voraussetzung für DANE ist, schlägt dieser Test fehl, wenn DNSSEC auf der Website-Domain fehlt oder wenn es DNSSEC-Probleme im Zusammenhang mit DANE gibt (z. B. kein Nachweis von 'Denial of Existence').</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Anhang A, unter 'Certificate pinning and DANE' (in Englisch).</p><p><em>Anforderungsstufe: Optional</em>",
+			"rating": {
+				"bad": "Ihre Website-Domain enthält <em>keinen</em> TLSA-Eintrag für DANE.",
+				"bogus": "Ihre Website-Domain liefert <em>nicht</em> den DNSSEC-Beweis, dass keine DANE TLSA-Einträge existieren. Sie sollten Ihren Nameserver-Betreiber bitten, dieses Problem zu beheben.",
+				"good": "Ihre Website-Domäne enthält einen TLSA-Eintrag für DANE."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_dane_valid": {
+			"explanation": "Wir prüfen, ob der von Ihrer Domain vorgelegte DANE-Fingerabdruck für Ihr Webzertifikat gültig ist. </p><p>DANE ermöglicht es Ihnen, Informationen über Ihr Website-Zertifikat in einem speziellen DNS-Eintrag, dem sogenannten TLSA-Eintrag, zu veröffentlichen. Clients, wie z. B. Webbrowser, können die Authentizität Ihres Zertifikats nicht nur über die Zertifizierungsstelle, sondern auch über den TLSA-Eintrag überprüfen. Ein Client kann den TLSA-Eintrag auch als Signal verwenden, nur HTTPS (und nicht HTTP) zu verwenden. DNSSEC ist eine Vorbedingung für DANE. Leider unterstützen noch nicht viele Webbrowser die DANE-Validierung.</p><p><em>Anforderungsniveau: Empfohlen (nur wenn Subtest für 'DANE Existenz' bestanden ist)</em>",
+			"rating": {
+				"bad": "Der DANE-Fingerabdruck auf Ihrer Domain ist <em>nicht</em> gültig für Ihr Webzertifikat. Entweder hat jemand die Antwort Ihres Nameservers manipuliert, oder Ihre Domain hat einen schwerwiegenden DANE-Konfigurationsfehler. Im letzteren Fall ist Ihre Website für alle Benutzer, die DANE-Fingerabdrücke überprüfen, nicht erreichbar. Wenden Sie sich so schnell wie möglich an Ihren Nameserver-Betreiber und/oder Ihren Hosting-Provider.",
+				"good": "Der DANE-Fingerabdruck auf Ihrer Domain ist für Ihr Webzertifikat gültig."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_http_available": {
+			"explanation": "Wir prüfen, ob Ihre Website über HTTPS erreichbar ist. </p><p>Wenn ja, prüfen wir in den folgenden Untertests auch, ob HTTPS ausreichend sicher konfiguriert ist, gemäß den <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL.</p><p>HTTPS garantiert die Vertraulichkeit und Integrität der ausgetauschten Informationen. Da es von der Situation abhängt, wie (datenschutz-)sensibel und wertvoll Informationen sind, ist eine sichere HTTPS-Konfiguration für jede Website wichtig. Selbst triviale, öffentlich zugängliche Informationen können für einen Nutzer äußerst sensibel und wertvoll sein. Hinweis: Aus Leistungsgründen laufen die Tests im HTTPS-Testabschnitt nur für die erste verfügbare IPv6- und IPv4-Adresse.",
+			"rating": {
+				"bad": "Ihre Website bietet <em>nicht</em> HTTPS an.",
+				"good": "Ihre Website bietet HTTPS.",
+				"other": "Ihr Webserver ist unerreichbar."
+			},
+			"title": "HTTPS verfügbar"
+		},
+		"internet_nl_web_https_http_compress": {
+			"explanation": "<p>Wir testen, ob Ihr Webserver HTTP-Kompression unterstützt. </p><p>HTTP-Kompression macht die sichere Verbindung mit Ihrem Webserver anfällig für den BREACH-Angriff. Die HTTP-Komprimierung wird jedoch häufig verwendet, um die verfügbare Bandbreite effizienter zu nutzen. Bedenken Sie die mit der HTTP-Komprimierung verbundenen Kompromisse. Wenn Sie sich für die HTTP-Komprimierung entscheiden, prüfen Sie, ob es möglich ist, damit zusammenhängende Angriffe auf der Anwendungsebene zu entschärfen. Ein Beispiel für eine solche Maßnahme ist die Begrenzung des Ausmaßes, in dem ein Angreifer die Antwort eines Servers beeinflussen kann. </p><p>Dieser Untertest prüft, ob der Webserver auf der Ebene des Stammverzeichnisses die HTTP-Kompression unterstützt. Er prüft jedoch keine zusätzlichen Website-Quellen wie Bilder und Skripte. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitfaden B7-1 und Tabelle 11.</p><p><em>Anforderungsstufe: Optional</em></p><hr /><p><strong>Komprimierungsoption</strong></p><ul><li>Gut: Keine Komprimierung</li><li>Ausreichend: Kompression auf Anwendungsebene (in diesem Fall HTTP-Kompression)</li><li>Unzureichend: TLS-Komprimierung</li></ul>",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt die HTTP-Komprimierung, die ein Sicherheitsrisiko darstellen könnte.",
+				"good": "Ihr Webserver unterstützt keine HTTP-Komprimierung."
+			},
+			"title": "HTTP-Komprimierung"
+		},
+		"internet_nl_web_https_http_hsts": {
+			"explanation": "Wir prüfen, ob Ihr Webserver HSTS unterstützt. </p><p>Browser merken sich HSTS pro (Sub-)Domain. Wenn ein HSTS-Header nicht zu jeder (Sub-)Domain (in einer Weiterleitungskette) hinzugefügt wird, sind die Benutzer möglicherweise anfällig für MITM-Angriffe. Daher wird beim ersten Kontakt, d. h. vor jeder Weiterleitung, auf HSTS geprüft.</p><p>HSTS zwingt einen Webbrowser dazu, sich direkt über HTTPS zu verbinden, wenn er Ihre Website erneut besucht. Dies hilft, Man-in-the-Middle-Angriffe zu verhindern. Wir betrachten eine HSTS-Cache-Gültigkeitsdauer von <em>mindestens</em> 1 Jahr (<code>max-age=31536000</code>) als ausreichend sicher an. Ein langer Zeitraum ist vorteilhaft, weil er auch seltene Besucher schützt. Wenn Sie jedoch die Unterstützung von HTTPS einstellen wollen (was im Allgemeinen eine schlechte Idee ist), müssen Sie länger warten, bis die Gültigkeit der HSTS-Richtlinie in allen Browsern, die Ihre Website besucht haben, abgelaufen ist. </p><p>Der Test prüft <strong>nicht</strong> , ob <code>Preload</code> verwendet wird und ob die Domain in der <a href=\"https://hstspreload.org/\">HSTS-Preload-Liste</a>enthalten ist.</p><hr /><p><strong>Bereitstellungsempfehlung</strong></p><p>HSTS setzt voraus, dass Ihre Website vollständig über HTTPS funktioniert. Dazu gehört auch ein gültiges Zertifikat von einer öffentlich vertrauenswürdigen Zertifizierungsstelle. Wenn Ihre Website also HTTPS nicht ordnungsgemäß unterstützt, wird sie <em>von Browsern, die Ihre Website zuvor kontaktiert haben, nicht erreichbar sein</em> . Eine Änderung der HSTS-Richtlinie zur Umkehrung der Auswirkungen hat für diese Browser keine unmittelbare Wirkung, da sie Ihre vorherige HSTS-Richtlinie zwischengespeichert haben. </p><p>Wir raten Ihnen daher, die folgenden Implementierungsschritte zu befolgen:</p><ol><li>Stellen Sie sicher, dass die Website auf Ihrer Domain jetzt und in Zukunft vollständig über HTTPS funktioniert (z. B. durch ein solides Verfahren für den Zertifikatswechsel);</li><li><p>Erhöhen Sie die Gültigkeitsdauer des HSTS-Caches in den unten aufgeführten Schritten. Prüfen Sie während jeder Stufe sorgfältig auf Erreichbarkeitsprobleme und fehlerhafte Seiten. Beheben Sie etwaige Probleme und warten Sie dann die gesamte maximale Gültigkeitsdauer der Stufe ab, bevor Sie zur nächsten Stufe übergehen. </p></li><li><p>Beginne mit 5 Minuten (<code>max-age=300</code>);</p></li><li>Erhöhen Sie es auf 1 Woche (<code>max-age=604800</code>);</li><li>Erhöhen Sie auf 1 Monat (<code>max-age=2592000</code>);</li><li><p>Erhöhen Sie auf 1 Jahr (<code>max-age=31536000</code>) oder mehr.</p></li><li><p>Wiederholen Sie Schritt 1 und 2 für jede einzelne Subdomain, die Sie mit HSTS sichern möchten. Verwenden Sie <code>includeSubDomains</code> nur, wenn Sie ganz sicher sind, dass <strong>alle</strong> (verschachtelten) Subdomains Ihrer Domain HTTPS jetzt und in Zukunft ordnungsgemäß unterstützen.</p></li><li>Verwenden Sie <code>Preload</code> <strong>nur</strong> wenn Sie sehr sicher sind, dass Ihre Domain in die <a href=\"https://hstspreload.org/\">HSTS-Preload-Liste</a>aufgenommen werden soll. HSTS-Preload ist vor allem für hochsensible Websites interessant. Administratoren, die HSTS-Preloading für eine bestimmte Domain aktivieren wollen, sollten dies mit äußerster Vorsicht tun. Es kann die Erreichbarkeit der Domain und aller Subdomains beeinträchtigen und lässt sich nicht ohne weiteres rückgängig machen.</li></ol><hr /><p>Siehe <a href=\"https://www.ncsc.nl/documenten/publicaties/2019/mei/01/ict-beveiligingsrichtlijnen-voor-webapplicaties\">'Richtlinien für Webanwendungen, ausführliche Fassung'</a> von NCSC-NL, Richtlinie U/WA.05 (auf Niederländisch).",
+			"rating": {
+				"bad": "Ihr Webserver bietet <em>keine</em> HSTS-Richtlinie an.",
+				"good": "Ihr Webserver bietet eine HSTS-Richtlinie an.",
+				"other": "Ihr Webserver bietet eine HSTS-Richtlinie mit einer Cache-Gültigkeitsdauer (<code>max-age</code>), die <em>nicht</em> ausreichend lang ist (d. h. weniger als 1 Jahr)."
+			},
+			"title": "HSTS"
+		},
+		"internet_nl_web_https_http_redirect": {
+			"explanation": "Wir prüfen, ob Ihr Webserver Besucher automatisch von HTTP zu HTTPS auf derselben Domain umleitet (durch einen 3xx-Umleitungsstatuscode wie 301 und 302), oder ob er nur HTTPS und nicht HTTP unterstützt. </p><p>Im Falle einer Weiterleitung sollte eine Domäne zuerst sich selbst aktualisieren, indem sie auf ihre HTTPS-Version umleitet, bevor sie auf eine andere Domäne umleiten kann. Dadurch wird auch sichergestellt, dass die HSTS-Richtlinie vom Webbrowser akzeptiert wird. Beispiele für die korrekte Umleitungsreihenfolge:</p><ul><li><code>http://example.nl</code> ⇒ <code>https://example.nl</code> ⇒ <code>https://www.example.nl</code></li><li><code>http://www.example.nl</code> ⇒ <code>https://www.example.nl</code></li></ul><p>Beachten Sie, dass dieser Untertest nur prüft, ob die angegebene Domäne korrekt von HTTP auf HTTPS umgeleitet wird. Eine eventuelle weitere Umleitung zu einer anderen Domäne (einschließlich einer Subdomäne der getesteten Domäne) wird nicht getestet. Sie könnten einen separaten Test starten, um eine solche Domain zu testen, auf die umgeleitet wird.</p><p>Siehe <a href=\"https://www.ncsc.nl/documenten/publicaties/2019/mei/01/ict-beveiligingsrichtlijnen-voor-webapplicaties\">'Richtlinien für Webanwendungen, ausführliche Version'</a> von NCSC-NL, Richtlinie U/WA.05 (auf Niederländisch).",
+			"rating": {
+				"bad": "",
+				"good": "Ihr Webserver leitet die Besucher automatisch von HTTP zu HTTPS auf derselben Domäne um.",
+				"no_https": "Dieser Test konnte nicht durchgeführt werden, weil Ihr Webserver entweder kein HTTPS oder HTTPS mit einer sehr veralteten, unsicheren TLS-Konfiguration anbietet.",
+				"other": "Ihr Webserver bietet nur Unterstützung für HTTPS und nicht für HTTP."
+			},
+			"title": "HTTPS-Umleitung"
+		},
+		"internet_nl_web_https_tls_0rtt": {
+			"explanation": "",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt 0-RTT, was <em>nicht</em> sicher ist.",
+				"good": "Ihr Webserver unterstützt 0-RTT nicht.",
+				"na": "Dieser Untertest ist nicht anwendbar, da Ihr Webserver TLS 1.3 nicht unterstützt."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_tls_cipherorder": {
+			"explanation": "Wir prüfen, ob Ihr Webserver seine eigene Verschlüsselungspräferenz ('I') durchsetzt und Verschlüsselungen in der vorgeschriebenen Reihenfolge ('II') anbietet. </p><p>Wenn Ihr Webserver nur \"gute\" Chiffren unterstützt, ist dieser Untertest nicht anwendbar, da die Reihenfolge keinen wesentlichen Sicherheitsvorteil bietet. </p><p>I. <em>Server-erzwungene Chiffrierpräferenz</em>: Der Webserver erzwingt seine eigene Chiffrierpräferenz, während er mit einem Webbrowser verhandelt, und akzeptiert keine Präferenz des Webbrowsers;</p><p>II. <em>Vorgeschriebene Reihenfolge</em>: Die Chiffren werden vom Webserver gemäß der vorgeschriebenen Reihenfolge angeboten, wobei \"Gute\" gegenüber \"Ausreichende\" gegenüber \"Auslaufende\" Chiffren bevorzugt werden.</p><p>In der obigen Tabelle mit technischen Details <strong>sind nur die zuerst gefundenen Algorithmen aus der vorgeschriebenen Reihenfolge</strong> aufgeführt.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT-Sicherheitsrichtlinien für Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitfaden B2-5.",
+			"rating": {
+				"bad": "Ihr Webserver erzwingt <em>nicht</em> seine eigene Verschlüsselungspräferenz ('I').",
+				"good": "Ihr Webserver setzt seine eigene Verschlüsselungspräferenz durch (\"I\") und bietet Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge an (\"II\").",
+				"na": "Dieser Untertest ist nicht anwendbar, da Ihr Webserver nur \"gute\" Chiffren unterstützt.",
+				"seclevel_bad": "Ihr Webserver bevorzugt <em>nicht</em> \"Gut\" gegenüber \"Ausreichend\" gegenüber \"Auslauf\"-Chiffren (\"II\").",
+				"warning": "VERALTETER TEXT; URTEIL NICHT VERWENDET</p><p>Ihr Webserver bietet <em>keine</em> Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge innerhalb einer bestimmten Sicherheitsstufe ('II-B') an."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_tls_ciphers": {
+			"explanation": "<p>Wir prüfen, ob Ihr Webserver nur sichere, d. h. \"gute\" und/oder \"ausreichende\" Verschlüsselungen unterstützt (auch bekannt als Algorithmusauswahl).</p><p>Eine Algorithmusauswahl besteht aus Chiffren für vier kryptografische Funktionen: 1) Schlüsselaustausch, 2) Zertifikatsüberprüfung, 3) Massenverschlüsselung und 4) Hashing. Ein Webserver kann mehr als eine Algorithmusauswahl unterstützen. </p><ul><li>Seit TLS 1.3 umfasst der Begriff \"Cipher Suite\" nur noch die für die Massenverschlüsselung und das Hashing verwendeten Chiffren. Bei Verwendung von TLS 1.3 sind die Chiffren für den Schlüsselaustausch und die Zertifikatsüberprüfung verhandelbar und nicht Teil der Benennung der Cipher Suite. Da dies den Begriff \"Cipher Suite\" mehrdeutig macht, verwendet die NCSC-NL den Begriff \"Algorithmusauswahl\", um alle vier Cipher-Funktionen zu umfassen. </li><li>Das NCSC-NL verwendet die <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4\">IANA-Namenskonvention</a> für Algorithmusauswahlen. Internet.nl verwendet die <a href=\"https://www.openssl.org/docs/manmaster/man1/openssl-ciphers.html#CIPHER-SUITE-NAMES\">OpenSSL-Benennungskonvention</a>. Seit TLS 1.3 folgt OpenSSL der IANA-Benennungskonvention. Eine Übersetzung zwischen beiden kann in der OpenSSL-Dokumentation gefunden werden. </li><li>Beachten Sie, dass Chiffren, die PSK oder SRP für den Schlüsselaustausch verwenden (die nicht hinreichend sicher sind), in diesem Test aufgrund einer Einschränkung in Bezug auf unsere Testmethode nicht erkannt werden. </li></ul><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitfaden B2-1 bis B2-4 und Tabelle 2, 4, 6 und 7 (in Englisch).</p><hr /><p>Nachfolgend finden Sie die Auswahl von \"guten\", \"ausreichenden\" und \"auslaufenden\" Algorithmen in der vom NCSC-NL vorgeschriebenen Reihenfolge, basierend auf Anhang C der \"IT-Sicherheitsrichtlinien für Transport Layer Security (TLS)\". Hinter jeder Algorithmus-Auswahl steht die minimale TLS-Version (z.B. [1.2]), die diese Algorithmus-Auswahl unterstützt und die mindestens 'Phase out' ist.</p><p>Gut:</p><ul><li><code>ECDHE-ECDSA-AES256-GCM-SHA384</code> (<code>TLS_AES_256_GCM_SHA384</code> in 1.3) [1.2]</li><li><code>ECDHE-ECDSA-CHACHA20-POLY1305</code> (<code>TLS_CHACHA20_POLY1305_SHA256</code> in 1.3) [1.2]</li><li><code>ECDHE-ECDSA-AES128-GCM-SHA256</code> (<code>TLS_AES_128_GCM_SHA256</code> in 1.3) [1.2]</li><li><code>ECDHE-RSA-AES256-GCM-SHA384</code> (<code>TLS_AES_256_GCM_SHA384</code> in 1.3) [1.2]</li><li><code>ECDHE-RSA-CHACHA20-POLY1305</code> (<code>TLS_CHACHA20_POLY1305_SHA256</code> in 1.3) [1.2]</li><li><code>ECDHE-RSA-AES128-GCM-SHA256</code> (<code>TLS_AES_128_GCM_SHA256</code> in 1.3) [1.2]</li></ul><p>Ausreichend:</p><ul><li><code>ECDHE-ECDSA-AES256-SHA384</code> [1.2]</li><li><code>ECDHE-ECDSA-AES256-SHA</code> [1.0]</li><li><code>ECDHE-ECDSA-AES128-SHA256</code> [1.2]</li><li><code>ECDHE-ECDSA-AES128-SHA</code> [1.0]</li><li><code>ECDHE-RSA-AES256-SHA384</code> [1.2]</li><li><code>ECDHE-RSA-AES256-SHA</code> [1.0]</li><li><code>ECDHE-RSA-AES128-SHA256</code> [1.2]</li><li><code>ECDHE-RSA-AES128-SHA</code> [1.0]</li><li><code>DHE-RSA-AES256-GCM-SHA384</code> [1.2]</li><li><code>DHE-RSA-CHACHA20-POLY1305</code> [1.2]</li><li><code>DHE-RSA-AES128-GCM-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES256-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES256-SHA</code> [1.0]</li><li><code>DHE-RSA-AES128-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES128-SHA</code> [1.0]</li></ul><p>Auslaufen:</p><ul><li><code>ECDHE-ECDSA-DES-CBC3-SHA</code> [1.0]</li><li><code>ECDHE-RSA-DES-CBC3-SHA</code> [1.0]</li><li><code>DHE-RSA-DES-CBC3-SHA</code> [1.0]</li><li><code>AES256-GCM-SHA384</code> [1.2]</li><li><code>AES128-GCM-SHA256</code> [1.2]</li><li><code>AES256-SHA256</code> [1.2]</li><li><code>AES256-SHA</code>  [1.0]</li><li><code>AES128-SHA256</code> [1.2]</li><li><code>AES128-SHA</code> [1.0]</li><li><code>DES-CBC3-SHA</code> [1.0]</li></ul>",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt eine oder mehrere <em>unzureichend</em> sichere Verschlüsselungen.",
+				"good": "Ihr Webserver unterstützt nur sichere Chiffren.",
+				"phase_out": "Ihr Webserver unterstützt eine oder mehrere Chiffren, die den Status <em>phase out</em> haben, weil sie als anfällig gelten und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_tls_clientreneg": {
+			"explanation": "<p>Wir prüfen, ob ein Client (in der Regel ein Webbrowser) eine Neuverhandlung mit Ihrem Webserver einleiten kann. </p><p>Es ist in der Regel nicht notwendig, Clients die Neuverhandlung zu gestatten, da sie einen Webserver für DoS-Angriffe innerhalb einer TLS-Verbindung öffnen. Ein Angreifer kann ähnliche DoS-Angriffe ohne eine vom Client initiierte Neuaushandlung durchführen, indem er viele parallele TLS-Verbindungen öffnet, aber diese sind leichter zu erkennen und mit Hilfe von Standardabwehrmaßnahmen abzuwehren. Beachten Sie, dass die vom Kunden initiierte Neuverhandlung die Verfügbarkeit und nicht die Vertraulichkeit beeinträchtigt. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B8-1 und Tabelle 13 (in Englisch).</p><p><em>Anforderungsstufe: Fakultativ</em></p><hr /><p><strong>Vom Kunden initiierte Neuaushandlung</strong></p><ul><li>Gut: Aus (oder N/A für TLS 1.3)</li><li>Ausreichend: Ein</li></ul>",
+			"rating": {
+				"bad": "Ihr Webserver erlaubt eine vom Kunden veranlasste Neuverhandlung, die sich negativ auf die Verfügbarkeit Ihrer Website auswirken kann.",
+				"good": "Ihr Webserver lässt keine vom Client initiierte Neuverhandlung zu."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_tls_compress": {
+			"explanation": "<p>Wir prüfen, ob Ihr Webserver TLS-Kompression unterstützt. </p><p>Die Verwendung von Komprimierung kann einem Angreifer Informationen über die geheimen Teile der verschlüsselten Kommunikation liefern. Ein Angreifer, der Teile der gesendeten Daten ermitteln oder kontrollieren kann, kann die ursprünglichen Daten rekonstruieren, indem er eine große Anzahl von Anfragen durchführt. Die TLS-Kompression wird so selten verwendet, dass ihre Deaktivierung im Allgemeinen kein Problem darstellt. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B7-1 und Tabelle 11 (in Englisch).</p><hr /><p><strong>Komprimierungsoption</strong></p><ul><li>Gut: Keine Komprimierung</li><li>Ausreichend: Kompression auf Anwendungsebene (in diesem Fall HTTP-Kompression)</li><li>Unzureichend: TLS-Komprimierung</li></ul>",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt TLS-Kompression, die <em>nicht</em> sicher ist.",
+				"good": "Ihr Webserver unterstützt keine TLS-Komprimierung."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_tls_keyexchange": {
+			"explanation": "Wir prüfen, ob die öffentlichen Parameter, die Ihr Webserver beim Diffie-Hellman-Schlüsselaustausch verwendet, sicher sind.</p><p><strong>ECDHE</strong>: Die Sicherheit des ephemeren Diffie-Hellman-Schlüsselaustauschs mit elliptischer Kurve (ECDHE) hängt von der verwendeten elliptischen Kurve ab. Wir prüfen, ob die Bit-Länge der verwendeten elliptischen Kurven mindestens 224 Bit beträgt. Zurzeit sind wir nicht in der Lage, den Namen der elliptischen Kurve zu überprüfen.</p><p><strong>DHE</strong>: Die Sicherheit des Diffie-Hellman Ephemeral (DHE)-Schlüsselaustauschs hängt von der Länge des öffentlichen und des geheimen Schlüssels ab, die innerhalb der gewählten endlichen Feldgruppe verwendet werden. Wir testen, ob Ihr öffentliches DHE-Schlüsselmaterial eine der vordefinierten endlichen Feldgruppen verwendet, die in <a href=\"https://www.rfc-editor.org/rfc/rfc7919\">RFC 7919</a>AUFGEFÜHRT SIND. Selbst erzeugte Gruppen sind 'Unzureichend'. </p><p>Die größeren Schlüsselgrößen, die für die Verwendung von DHE erforderlich sind, sind mit Leistungseinbußen verbunden. Prüfen Sie sorgfältig und verwenden Sie ECDHE anstelle von DHE, wenn Sie können.</p><p><strong>RSA als Alternative</strong>: Neben ECDHE und DHE kann auch RSA für den Schlüsselaustausch verwendet werden. Es besteht jedoch die Gefahr, dass es nicht mehr ausreichend sicher ist (derzeitiger Status \"phase out\"). Die öffentlichen RSA-Parameter werden im Untertest \"Öffentlicher Schlüssel des Zertifikats\" geprüft. Beachten Sie, dass RSA als \"gut\" für die Zertifikatsüberprüfung angesehen wird.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B5-1 und Tabelle 9 für ECDHE, und Richtlinie B6-1 und Tabelle 10 für DHE (in Englisch).</p><hr /><p><strong>Elliptische Kurve für ECDHE</strong></p><ul><li>Gut: <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>, und <code>x25519</code></li><li>Auslaufen: <code>secp224r1</code></li><li>Unzureichend: Andere Kurven</li></ul><p><strong>Endliche Feldgruppe für DHE</strong></p><ul><li><p>Ausreichend:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem\">ffdhe4096</a> (RFC 7919)<br /> sha256 Prüfsumme: <code>64852d6890ff9e62eecd1ee89c72af9af244dfef5b853bcedea3dfd7aade22b3</code></li><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe3072.pem\">ffdhe3072</a> (RFC 7919)<br /> sha256 checksum: <code>c410cc9c4fd85d2c109f7ebe5930ca5304a52927c0ebcb1a11c5cf6b2386bbab</code>  </li><li>Beachten Sie, dass wir auch auf ffdhe8192 und ffdhe6144 testen. Ihr begrenzter Gewinn an Sicherheit wiegt den Leistungsverlust jedoch kaum auf.</li></ul></li><li><p>Auslaufen:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe2048.pem\">ffdhe2048</a> (RFC 7919)<br /> sha256 Prüfsumme: <code>9ba6429597aeed2d8617a7705b56e96d044f64b07971659382e426675105654b</code></li></ul></li><li><p>Unzureichend: Andere Gruppen</p></li></ul><hr /><p>Anmerkung: Die oben genannten Namen basieren auf den <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml\">IANA-Namenskonventionen</a>. Manchmal werden alternative Namen verwendet, um auf dieselben Kurven zu verweisen, wie <code>prime256v1</code> (ANSI) und <code>NIST P-256</code> für <code>secp256r1</code>.",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt <em>unzureichend</em> sichere Parameter für den Diffie-Hellman-Schlüsselaustausch.",
+				"good": "Ihr Webserver unterstützt sichere Parameter für den Diffie-Hellman-Schlüsselaustausch.",
+				"na": "Dieser Untertest ist nicht anwendbar, da Ihr Webserver <em>den Diffie-Hellman-Schlüsselaustausch nicht</em> unterstützt. Beachten Sie, dass RSA eine Alternative für den Schlüsselaustausch ist, aber den <em>phase out</em> Status hat.",
+				"phase_out": "Ihr Webserver unterstützt Parameter für den Diffie-Hellman-Schlüsselaustausch, die den Status <em>phase out</em> haben, weil sie bekanntermaßen anfällig sind und Gefahr laufen, <em>unzureichend</em> sicher zu werden."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_tls_keyexchangehash": {
+			"explanation": "<p>Wir prüfen, ob Ihr Webserver sichere Hash-Funktionen zur Erstellung der digitalen Signatur beim Schlüsselaustausch unterstützt.</p><p>Der Webserver verwendet während des Schlüsselaustauschs eine digitale Signatur, um den Besitz des geheimen Schlüssels, der dem Zertifikat entspricht, nachzuweisen. Der Webserver erstellt diese digitale Signatur, indem er die Ausgabe einer Hash-Funktion signiert. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Tabelle 5.</p><p><em>Anforderungsstufe: Empfohlen</em></p><hr /><p><strong>SHA2-Unterstützung für Signaturen</strong></p><ul><li>Gut: Ja (SHA-256, SHA-384 oder SHA-512 unterstützt)</li><li>Auslaufen: Nein (SHA-256, SHA-384 oder SHA-512 <em>werden nicht</em> unterstützt)</li></ul>",
+			"rating": {
+				"good": "Ihr Webserver unterstützt eine sichere Hash-Funktion für den Schlüsselaustausch.",
+				"other": "Wir waren nicht in der Lage, die von Ihrem Webserver verwendete Hash-Funktion zu ermitteln. Dies könnte daran liegen, dass die verwendete Chiffrierkombination keine Signatur für die Zertifikatsüberprüfung hat (z. B. verwendet sie RSA-Schlüsselaustausch oder ist anonym, d. h. <code>anon</code>).",
+				"phase_out": "Ihr Webserver unterstützt <em>keine</em> sichere Hash-Funktion für den Schlüsselaustausch. Sie sollten <em>diese Einstellung bewusst</em> auslaufen lassen, da die Gefahr besteht, dass sie in Zukunft <em>nicht mehr ausreichend</em> sicher ist."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_tls_ocsp": {
+			"explanation": "<p>Wir prüfen, ob Ihr Webserver die <a href=\"https://www.rfc-editor.org/rfc/rfc6961\">TLS-Zertifikatsstatuserweiterung</a> , auch bekannt als OCSP-Stapling. </p><p>Der Webbrowser kann die Gültigkeit des vom Webserver vorgelegten Zertifikats überprüfen, indem er die Zertifizierungsstelle über das OCSP-Protokoll kontaktiert. OCSP liefert einer Zertifizierungsstelle Informationen über Browser, die mit dem Webserver kommunizieren: Dies kann ein Datenschutzrisiko darstellen. Ein Webserver kann auch selbst OCSP-Antworten an Webbrowser durch OCSP-Stapling übermitteln. Dies löst das Datenschutzrisiko, erfordert keine Konnektivität zwischen Webbrowser und Zertifizierungsstelle und ist schneller. </p><p>Bei der Verbindung zu Ihrem Webserver verwenden wir die TLS-Zertifikatsstatuserweiterung, um die Aufnahme von OCSP-Daten in die Serverantwort anzufordern. Wenn Ihr Webserver OCSP-Daten in die Antwort aufnimmt, überprüfen wir, ob die OCSP-Daten gültig sind, d. h. von einer bekannten Zertifizierungsstelle korrekt signiert wurden. Hinweis: Wir verwenden die OCSP-Daten nicht, um die Gültigkeit des Zertifikats zu bewerten.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Tabelle 15 (in Englisch).</p><p><em>Anforderungsstufe: Optional</em></p><hr /><p><strong>OCSP-Heftung</strong></p><ul><li>gut: Ein</li><li>Ausreichend: Aus</li></ul>",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt OCSP Stapling, aber die Daten in der Antwort sind <em>nicht</em> gültig.",
+				"good": "Ihr Webserver unterstützt OCSP Stapling und die Daten in der Antwort sind gültig.",
+				"ok": "Ihr Webserver unterstützt <em>nicht</em> OCSP Stapling."
+			},
+			"title": "OCSP-Heftung"
+		},
+		"internet_nl_web_https_tls_secreneg": {
+			"explanation": "<p>Wir prüfen, ob Ihr Webserver die sichere Neuaushandlung unterstützt. </p><p>Ältere Versionen von TLS (vor TLS 1.3) erlauben es, einen neuen Handshake zu erzwingen. Diese so genannte Neuaushandlung war in ihrer ursprünglichen Form unsicher. Der Standard wurde überarbeitet und ein sicherer Mechanismus für die Neuverhandlung wurde hinzugefügt. Die alte Version wird seitdem als unsichere Neuaushandlung bezeichnet und sollte deaktiviert werden.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B8-1 und Tabelle 12 (in Englisch).</p><hr /><p><strong>Unsichere Neuaushandlung</strong></p><ul><li>Gut: Aus (oder N/A für TLS 1.3)</li><li>Unzureichend: Ein</li></ul>",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt eine unsichere Neuaushandlung, die offensichtlich <em>nicht</em> sicher ist.",
+				"good": "Ihr Webserver unterstützt eine sichere Neuaushandlung."
+			},
+			"title": ""
+		},
+		"internet_nl_web_https_tls_version": {
+			"explanation": "<p>Wir prüfen, ob Ihr Webserver nur sichere TLS-Versionen unterstützt. </p><p>Ein Webserver kann mehr als eine TLS-Version unterstützen. </p><p>Beachten Sie, dass die Browserhersteller angekündigt haben, dass sie TLS 1.1 und 1.0 nicht mehr unterstützen werden. Dies wird dazu führen, dass Websites, die TLS 1.2 und/oder 1.3 nicht unterstützen, nicht mehr erreichbar sind.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B1-1 und Tabelle 1 (in Englisch).</p><hr /><p><strong>Version</strong></p><ul><li>gut: TLS 1.3</li><li>Ausreichend: TLS 1.2</li><li>Auslaufend: TLS 1.1 und 1.0</li><li>Unzureichend: SSL 3.0, 2.0 und 1.0</li></ul>",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt <em>unzureichend</em> sichere TLS-Versionen.",
+				"good": "Ihr Webserver unterstützt nur sichere TLS-Versionen.",
+				"phase_out": "Ihr Webserver unterstützt TLS-Versionen, die <em>absichtlich eingestellt werden sollten</em> , weil sie bekanntermaßen anfällig sind und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
+			},
+			"title": ""
+		},
+		"internet_nl_web_ipv6_ns_address": {
+			"explanation": "",
+			"rating": {
+				"bad": "",
+				"good": "",
+				"other": ""
+			},
+			"title": ""
+		},
+		"internet_nl_web_ipv6_ns_reach": {
+			"explanation": "",
+			"rating": {
+				"bad": "",
+				"good": ""
+			},
+			"title": ""
+		},
+		"internet_nl_web_ipv6_ws_address": {
+			"explanation": "We check if there is at least one AAAA record with IPv6 address for your web server.</p><p>'IPv4-mapped IPv6 addresses' (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, beginning with ::ffff:) will fail in this subtest, as they do <em>not</em> provide IPv6 connectivity.",
+			"rating": {
+				"bad": "<em>Keiner</em> Ihrer Webserver hat eine IPv6-Adresse.",
+				"good": "Mindestens einer Ihrer Webserver hat eine IPv6-Adresse."
+			},
+			"title": "IPv6-Adressen für Webserver"
+		},
+		"internet_nl_web_ipv6_ws_reach": {
+			"explanation": "Wir prüfen, ob wir über IPv6 auf allen verfügbaren Ports (80 und/oder 443) eine Verbindung zu Ihrem(n) Webserver(n) herstellen können. Wir testen alle IPv6-Adressen, die wir von Ihren Namensservern erhalten. Wenn nicht alle IPv6-Adressen erreichbar sind, wird eine Teilnote vergeben. Wenn eine IPv6-Adresse (syntaktisch) ungültig ist, betrachten wir sie als unerreichbar.",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Webserver mit einer IPv6-Adresse ist <em>nicht</em> über IPv6 erreichbar.",
+				"good": "Alle Ihre Webserver mit einer IPv6-Adresse sind über IPv6 erreichbar."
+			},
+			"title": "IPv6-Erreichbarkeit des Webservers"
+		},
+		"internet_nl_web_ipv6_ws_similar": {
+			"explanation": "Wir vergleichen die Antwort und den Inhalt, die von Ihrem Webserver über IPv6 empfangen werden, mit denen, die über IPv4 empfangen werden. </p><p>Wir prüfen:</p><ol><li>ob HTTP (Port 80) und/oder HTTPS (Port 443) über IPv4 auch über IPv6 verfügbar sind;</li><li>ob HTTP-Header (z. B. ein Redirect-Header) über IPv4 auch über IPv6 empfangen werden;</li><li>wenn der HTML-Inhalt über IPv4 auch über IPv6 empfangen wird. Nach dem Entfernen eventueller Nonces wird ein Vergleich der empfangenen Inhalte durchgeführt. Der Unterschied zwischen den Inhalten darf nicht größer als 10% sein, um diesen Subtest zu bestehen. Der Schwellenwert stellt sicher, dass kleine Unterschiede (z.B. durch wechselnde Anzeigen) nicht dazu führen, dass auch dieser Subtest nicht bestanden wird. Ein beobachteter Unterschied kann beabsichtigt oder auf einen Messfehler zurückzuführen sein. Daher wird in diesem Fall eine Warnung ausgegeben, die nicht in die Bewertung einfließt. </li></ol><p>Falls es mehrere IPv6- und IPv4-Adressen gibt, wird eine IPv6- und eine IPv4-Adresse für den Subtest ausgewählt. Wenn nur eine IPv6-Adresse und keine IPv4-Adresse vorhanden ist, ist der Subtest nicht anwendbar, da kein Vergleich durchgeführt werden kann.",
+			"rating": {
+				"bad": "Verfügbare Ports oder angebotene Header Ihrer Website über IPv4 sind <em>nicht</em> die gleichen über IPv6.",
+				"good": "Ihre Website auf IPv6 scheint die gleiche zu sein wie die auf IPv4.",
+				"notice": "Der HTML-Inhalt Ihrer Website über IPv4 ist <em>nicht</em> derselbe über IPv6.",
+				"notice_status_code": "Ihre Website auf IPv6 scheint die gleiche zu sein wie Ihre Website auf IPv4, aber der HTTP-Antwortcode liegt im Bereich 4xx oder 5xx. Dies kann auf ein Konfigurationsproblem hindeuten."
+			},
+			"title": "Dieselbe Website für IPv6 und IPv4"
+		},
+		"internet_nl_web_rpki_exists": {
+			"explanation": "Das Internet besteht aus allen möglichen kleineren Netzen. Diese Netze können ad-hoc geschaffen werden, was bedeutet, dass jemand Böses dies tun könnte. Um zu verhindern, dass böswillige Akteure Teile des Internets übernehmen, wird ein Netz des Vertrauens und der Zertifizierung geschaffen. Dabei handelt es sich um ein bürokratisches Netz mit Organisationen, die von vertrauenswürdigen Parteien akkreditiert werden.",
+			"extended-explanation": "Wir prüfen, ob eine RPKI Route Origin Authorization (ROA) für alle IP-Adressen Ihres Webservers veröffentlicht wurde.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internet-Verkehr annimmt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen Ihres Servers senden sollen.</p><p>Eine Routenankündigung kann jedoch gefälscht werden. Tatsächlich kann ein anderer Netzbetreiber den IP-Adressblock Ihrer IP-Adresse mit seinem Netz verbinden und so möglicherweise Internetverkehr empfangen, der eigentlich für Ihren Netzbetreiber bestimmt ist. Die Ursache kann versehentlich oder böswillig sein. In jedem Fall kann dies dazu führen, dass Ihr Server unerreichbar wird oder dass der Internetverkehr zu Ihrem Server abgefangen wird.</p><p>Die Resource Public Key Infrastructure (RPKI) verbessert den Schutz davor erheblich. Mit RPKI kann der rechtmäßige Inhaber eines Blocks von IP-Adressen eine digital signierte Erklärung mit Routenberechtigung (Route Origin Authorisation; kurz ROA) veröffentlichen. Ein anderer Netzbetreiber, der Internetverkehr an eine bestimmte IP-Adresse senden möchte, kann die entsprechende Erklärung verwenden, um <code>Ungültige</code> Routen. Auf diese Weise verhindert der Netzbetreiber, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze geschickt wird.</p><p><em>Anforderungsstufe: Empfohlen</em>",
+			"rating": {
+				"bad": "Für mindestens eine der IP-Adressen Ihres Webservers <em>ist keine</em> RPKI Route Origin Authorisation (ROA) veröffentlicht.",
+				"good": "Für alle IP-Adressen Ihres Webservers wird eine RPKI Route Origin Authorisation (ROA) veröffentlicht.",
+				"no_addresses": "Ihre Domain enthält <em>keine</em> Webserver-IP-Adressen. Daher konnte dieser Untertest nicht durchgeführt werden."
+			},
+			"technology": "Ressource Public Key Infrastructure (RPKI) / Ressourcenzertifizierung",
+			"title": "Vertrauen in die Netzverbindung zur Website"
+		},
+		"internet_nl_web_tls": {
+			"explanation": "Prüfen Sie, ob diese Verbindung alle Anforderungen der NCSC-NL TLS-Spezifikation erfüllt. Diese Spezifikation wird alle paar Jahre aktualisiert. Das Testergebnis basiert auf einem Dutzend individueller Metriken wie der Stärke der Sicherheit und der Sicherheitseinstellungen.",
+			"extended-explanation": "",
+			"rating": {
+				"failed": "Pech gehabt! Die Verbindung mit Ihrer Website ist <em>nicht</em> oder <em>unzureichend</em>gesichert (<a href=\"/faqs/https/\">HTTPS</a>). Daher sind die Informationen, die zwischen Ihrer Website und ihren Besuchern übertragen werden, <em>nicht</em> ausreichend gegen Abhören und Manipulationen geschützt. Sie sollten Ihren Hosting-Anbieter bitten, HTTPS zu aktivieren und sicher zu konfigurieren.",
+				"passed": "Gut gemacht! Die Verbindung mit Ihrer Website ist ausreichend gesichert (<a href=\"/faqs/https/\">HTTPS</a>). Daher sind die Informationen, die zwischen Ihrer Website und ihren Besuchern übertragen werden, gegen Abhören und Manipulationen geschützt.",
+				"unreachable": "Der Server ist nicht erreichbar. Der Test konnte nicht durchgeführt werden."
+			},
+			"technology": "Transport Layer Security (TLS)",
+			"title": "Sichere Verbindung gemäß NCSC-NL-Anforderungen (HTTPS)"
+		}
+	},
+	"public_reports": {
+		"components/home/PublicReports.vue": {
+			"Contains": "",
+			"domains": "",
+			"introduction": "",
+			"Name": "",
+			"Public reports": "",
+			"Published": "",
+			"Score": "",
+			"View": "",
+			"View report": ""
+		},
+		"components/home/PublicReportsPerAccount.vue": {
+			"all": "",
+			"Contains": "",
+			"domains": "",
+			"Name": "",
+			"Published": "",
+			"Recently published reports": "",
+			"scan_frequency": "",
+			"scan_type": "",
+			"Score": "",
+			"View": "",
+			"View latest mail report": "",
+			"View latest report": "",
+			"View latest web report": "",
+			"View report": ""
+		},
+		"components/home/PublicReportsTable.vue": {
+			"Contains": "",
+			"domains": "",
+			"introduction": "",
+			"Name": "",
+			"Published": "",
+			"Recently published reports": "",
+			"Score": "",
+			"View": "",
+			"View report": ""
+		}
+	},
+	"report": {
+		"components/reports/AppliedTags.vue": {
+			"info": ""
+		},
+		"components/reports/DifferencesToCurrentList.vue": {
+			"both_list_contain_n_urls": "",
+			"equal": "",
+			"in_report_but_not_in_urllist": "",
+			"in_urllist_but_not_in_report": "",
+			"not_equal": "",
+			"report_contains_n_urllist_contains_n": "",
+			"retrieving_differences": ""
+		},
+		"components/reports/NestedReportCharts.vue": {
+			"A": "",
+			"category": "",
+			"G": ""
+		},
+		"components/reports/Report.vue": {
+			"intro": "",
+			"patience": "",
+			"settings": "",
+			"tab_changes": "",
+			"tab_graphs": "",
+			"tab_metrics": "",
+			"title": ""
+		},
+		"components/reports/ReportCharts.vue": {
+			"adoption_bar_chart": {
+				"intro": "",
+				"title": ""
+			},
+			"adoption_circle_chart": {
+				"title": ""
+			},
+			"cumulative_adoption_bar_chart": {
+				"intro": "",
+				"title": ""
+			},
+			"how_charts_work": ""
+		},
+		"components/reports/ReportDownload.vue": {
+			"csv": "",
+			"intro": "",
+			"ods": "",
+			"title": "",
+			"xlsx": ""
+		},
+		"components/reports/ReportHeader.vue": {
+			"compared_to": "",
+			"data_from": "",
+			"number_of_domains": "",
+			"only_graphs": "",
+			"type_of_scan_performed": ""
+		},
+		"components/reports/ReportImprovementAndRegressions.vue": {
+			"days_ago": "",
+			"domains_exclusive_current": "",
+			"domains_exclusive_other": "",
+			"domains_with_improvements": "",
+			"domains_with_regressions": "",
+			"improvement": "",
+			"metrics": "",
+			"neutral": "",
+			"no_changes": "",
+			"regression": "",
+			"score_from": "",
+			"score_to": "",
+			"title": "",
+			"url": ""
+		},
+		"components/reports/ReportImprovementAndRegressionsTable.vue": {
+			"improvement": "",
+			"metrics": "",
+			"regression": "",
+			"score_from": "",
+			"score_to": "",
+			"url": ""
+		},
+		"components/reports/ReportPasswords.vue": {
+			"Authentication required": "",
+			"code": "",
+			"created_on": "",
+			"name": "",
+			"No password needed": "",
+			"Retry with above settings": "",
+			"Some reports require authentication": "",
+			"Stored password is valid": "",
+			"supply_password": ""
+		},
+		"components/reports/ReportSelection.vue": {
+			"no_options": "",
+			"reload_list": "",
+			"select_report": ""
+		},
+		"components/reports/ReportTableLegend.vue": {
+			"icon_legend": {
+				"category_error_in_test": "",
+				"subtest_error_in_test": "",
+				"subtest_not_applicable": "",
+				"subtest_not_tested": "",
+				"title": ""
+			},
+			"results": {
+				"category_error_in_test": "",
+				"comparison": {
+					"improved": "",
+					"neutral": "",
+					"regressed": ""
+				},
+				"error_in_test": "",
+				"failed": "",
+				"info": "",
+				"not_applicable": "",
+				"not_testable": "",
+				"not_tested": "",
+				"passed": "",
+				"unknown": "",
+				"warning": ""
+			}
+		},
+		"components/reports/ReportTableVirtualList.vue": {
+			"domain": "",
+			"icon_legend": {
+				"category_error_in_test": "",
+				"subtest_error_in_test": "",
+				"subtest_not_applicable": "",
+				"subtest_not_tested": "",
+				"title": ""
+			},
+			"icons": {
+				"remove_filter": ""
+			},
+			"report": {
+				"empty_report": "",
+				"intro": "",
+				"title": "",
+				"url_filter": "",
+				"zoom": {
+					"buttons": {
+						"remove_zoom": "",
+						"zoom": "",
+						"zoom_in_on": ""
+					},
+					"explanation": "",
+					"zoomed_in_on": ""
+				}
+			},
+			"score": ""
+		},
+		"components/reports/ReportTableVirtualListRecord.vue": {
+			"evidence": "",
+			"link_to_report": "",
+			"not_eligeble_for_scanning": "",
+			"results": {
+				"category_error_in_test": "",
+				"comparison": {
+					"improved": "",
+					"neutral": "",
+					"regressed": ""
+				},
+				"error": "",
+				"error_in_test": "",
+				"failed": "",
+				"info": "",
+				"not_applicable": "",
+				"not_testable": "",
+				"not_tested": "",
+				"passed": "",
+				"unknown": "",
+				"warning": ""
+			},
+			"since": ""
+		},
+		"components/reports/ReportTagFilter.vue": {
+			"filter_by_tag": "",
+			"tag_explanation": ""
+		},
+		"components/reports/SharedReport.vue": {
+			"intro": "",
+			"not_found": {
+				"content": "",
+				"title": ""
+			},
+			"title": ""
+		},
+		"components/reports/SharingConfiguration.vue": {
+			"and_password": "",
+			"change_link": "",
+			"configure_password": "",
+			"intro": "",
+			"not_shared": "",
+			"open": "",
+			"password_description": "",
+			"remove_password": "",
+			"response_no_report_found": "",
+			"response_shared": "",
+			"response_unshared": "",
+			"response_updated_report_code": "",
+			"response_updated_share_code": "",
+			"set_password": "",
+			"share_to_anyone_with_url": "",
+			"shared": "",
+			"shared_at_url": "",
+			"stop_sharing": "",
+			"title": "",
+			"with_password": "",
+			"without_password": ""
+		}
+	},
+	"scanmonitor": {
+		"page": {
+			"intro": "",
+			"no_scans": "",
+			"title": ""
+		},
+		"scan": {
+			"cancel": {
+				"are_you_sure": "",
+				"cancel": "",
+				"list": "",
+				"ok": "",
+				"scan_id": ""
+			},
+			"cancelled_on": "",
+			"finished_on": "",
+			"id": "",
+			"last_check": "",
+			"list": "",
+			"live": "",
+			"message": "",
+			"open_in_api": "",
+			"open_list": "",
+			"open_report": "",
+			"processing_results": "",
+			"progress": {
+				"cancelled": "",
+				"configuration_error": "",
+				"created report": "",
+				"creating report": "",
+				"discovered endpoints": "",
+				"discovering endpoints": "",
+				"error": "",
+				"finished": "",
+				"imported scan results": "",
+				"importing scan results": "",
+				"network_error": "",
+				"processing scan results": "",
+				"registered": "",
+				"registered scan at internet": {
+					"nl": ""
+				},
+				"registering scan at internet": {
+					"nl": ""
+				},
+				"requested": "",
+				"retrieved scannable urls": "",
+				"retrieving scannable urls": "",
+				"running scan": "",
+				"scan results ready": "",
+				"scan results stored": "",
+				"sending mail": "",
+				"sent mail": "",
+				"skipped sending mail: no e-mail addresses associated with account": "",
+				"skipped sending mail: no mail server configured": "",
+				"storing scan results": "",
+				"timeout": ""
+			},
+			"progress_bar": "",
+			"report": "",
+			"report_is_being_generated": "",
+			"runtime": "",
+			"scan": "",
+			"scan history": "",
+			"scan_support_id": "",
+			"started_on": "",
+			"stop_scan": "",
+			"type": ""
+		},
+		"stop_form": {
+			"cancel": {
+				"are_you_sure": "",
+				"cancel": "",
+				"list": "",
+				"ok": "",
+				"scan_id": ""
+			},
+			"id": "",
+			"last_check": "",
+			"message": "",
+			"progress": {
+				"cancelled": "",
+				"configuration_error": "",
+				"created report": "",
+				"creating report": "",
+				"discovered endpoints": "",
+				"discovering endpoints": "",
+				"error": "",
+				"finished": "",
+				"imported scan results": "",
+				"importing scan results": "",
+				"network_error": "",
+				"registered": "",
+				"registered scan at internet": {
+					"nl": ""
+				},
+				"registering scan at internet": {
+					"nl": ""
+				},
+				"requested": "",
+				"retrieved scannable urls": "",
+				"retrieving scannable urls": "",
+				"running scan": "",
+				"scan results ready": "",
+				"sending mail": "",
+				"sent mail": "",
+				"skipped sending mail: no e-mail addresses associated with account": "",
+				"skipped sending mail: no mail server configured": "",
+				"storing scan results": "",
+				"timeout": ""
+			},
+			"runtime": "",
+			"started_on": ""
+		}
+	},
+	"signup": {
+		"form": {
+			"access_requested": "",
+			"access_to": "",
+			"api_access": "",
+			"captcha_description": "",
+			"captcha_title": "",
+			"chamber_of_commerce_number": "",
+			"chamber_of_commerce_number_placeholder": "",
+			"dashboard_access": "",
+			"email": "",
+			"email_placeholder": "",
+			"incomplete_form_submitted": "",
+			"incorrect_captcha": "",
+			"intended_usage_frequency": "",
+			"intended_usage_frequency_description": "",
+			"mobile_phone_number": "",
+			"mobile_phone_number_description": "",
+			"mobile_phone_number_placeholder": "",
+			"name": "",
+			"name_placeholder": "",
+			"nature_dutch_cloud_community": "",
+			"nature_for_profit": "",
+			"nature_government": "",
+			"nature_hoster_in_hall_of_fame": "",
+			"nature_non_profit": "",
+			"nature_of_organization": "",
+			"nature_of_organization_description": "",
+			"nature_other": "",
+			"nature_registrar_community": "",
+			"nature_vital_infrastructure": "",
+			"organization_name": "",
+			"organization_name_placeholder": "",
+			"other_type_not_possible": "",
+			"please_explain_vital_infrastructure": "",
+			"reason_for_application": "",
+			"reason_for_application_description": "",
+			"submit": "",
+			"terms_of_use": "",
+			"terms_of_use_accept": "",
+			"terms_of_use_description": ""
+		},
+		"page": {
+			"access_restrictions": "",
+			"api_description": "",
+			"api_link": "",
+			"api_title": "",
+			"application_description": "",
+			"application_form_title": "",
+			"application_title": "",
+			"dashboard_description": "",
+			"dashboard_link": "",
+			"dashboard_title": "",
+			"note": "",
+			"note_link": "",
+			"procedure_description": "",
+			"procedure_title": "",
+			"support_description": "",
+			"support_title": ""
+		}
+	},
+	"tour": {
+		"account_notifications": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"account_two_fa": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"contact_information": "",
+		"export_spreadsheet": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"focus_on_metrics": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"import_domains": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"introduction": "",
+		"manage_domains": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"report_bar_chart": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"report_sharing": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"report_table": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"report_timeline": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"scan": {
+			"caption": "",
+			"introduction": "",
+			"title": ""
+		},
+		"title": ""
+	},
+	"urllist": {
+		"automated_scan_frequency": {
+			"disabled": "",
+			"every_half_year": "",
+			"every_month": "",
+			"every_quarter": "",
+			"twice_per_month": ""
+		},
+		"automatically_share_new_reports": "",
+		"default_public_share_code_for_new_reports": "",
+		"empty_is_no_share_code": "",
+		"enable_report_sharing_page": "",
+		"enable_scans_disabled": "",
+		"enable_scans_enabled": "",
+		"field_label_automated_scan_frequency": "",
+		"field_label_enable_scans": "",
+		"field_label_id": "",
+		"field_label_name": "",
+		"field_label_scan_type": "",
+		"generate_code": "",
+		"scan_type_all": "",
+		"scan_type_mail": "",
+		"scan_type_web": "",
+		"to_overview_page": ""
+	}
+}

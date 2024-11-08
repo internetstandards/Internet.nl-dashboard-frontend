@@ -122,7 +122,6 @@ h2 {
 </template>
 
 <script>
-import sharedMessages from './../translations/dashboard.js'
 
 import Delete from './list/delete'
 import Scan from './list/scan'
@@ -154,9 +153,6 @@ export default {
     Upload,
     autorefresh,
     Probe
-  },
-  i18n: {
-    sharedMessages: sharedMessages,
   },
   data: function () {
     return {

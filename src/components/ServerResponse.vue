@@ -11,20 +11,20 @@ p {
 <template>
     <div>
         <b-alert :show="show || force_show" variant="danger" v-if="response.error" dismissible fade>
-            <h2>❌ {{ $t('error') }}</h2>
+            <h2>❌ {{ $t('app.server-response.error') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
-          <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago">  ({{ time_ago }})</span>.</small></span>
+          <span><small>{{ $t('app.server-response.at') }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago">  ({{ time_ago }})</span>.</small></span>
         </b-alert>
         <b-alert :show="show || force_show" variant="success" v-if="response.success" dismissible fade>
-            <h2>✅ {{ $t('success') }}</h2>
+            <h2>✅ {{ $t('app.server-response.success') }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
-            <span><small>{{ $t('at') }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago"> ({{ time_ago }})</span>.</small></span>
+            <span><small>{{ $t('app.server-response.at') }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago"> ({{ time_ago }})</span>.</small></span>
         </b-alert>
     </div>
 </template>
@@ -95,17 +95,3 @@ export default {
     }
 }
 </script>
-<i18n>
-{
-    "en": {
-        "error": "An error occurred",
-        "success": "Success!",
-        "at": "At"
-    },
-    "nl": {
-        "error": "Er is iets mis gegaan",
-        "success": "Gelukt!",
-        "at": "Op"
-    }
-}
-</i18n>

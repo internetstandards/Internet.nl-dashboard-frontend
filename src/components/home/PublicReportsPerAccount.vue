@@ -42,13 +42,9 @@
 import http from "@/httpclient";
 import PublicReportsTable from "@/components/home/PublicReportsTable";
 import KeyValueBadge from "@/components/KeyValueBadge";
-import sharedMessages from './../translations/dashboard.js'
 
 export default {
   components: {KeyValueBadge, PublicReportsTable},
-  i18n: {
-    sharedMessages: sharedMessages,
-  },
 
   data() {
     return {

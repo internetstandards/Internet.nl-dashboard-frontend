@@ -1,11 +1,11 @@
 <template>
     <b-row class="mb-4">
       <b-col cols="7">
-        <demo-image :filename="`${feature}`" :caption=" translation.t(`${feature}.caption`)"  />
+        <demo-image :filename="`${feature}`" :caption=" translation.t(`tour.${feature}.caption`)"  />
       </b-col>
       <b-col>
-        <h2>{{ translation.t(`${feature}.title`) }}</h2>
-        <div v-html="translation.t(`${feature}.introduction`)"></div>
+        <h2>{{ translation.t(`tour.${feature}.title`) }}</h2>
+        <div v-html="translation.t(`tour.${feature}.introduction`)"></div>
       </b-col>
     </b-row>
 </template>

@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <div>
-        <p>{{ $t("intro") }}</p>
+        <p>{{ $t("account.visible-metrics.intro") }}</p>
         <server-response :response="issue_filters_response"
                          :message="$t(issue_filters_response.message)"></server-response>
 
@@ -17,7 +17,7 @@
                                 <span v-for="field in category.fields" :key="field.id">
                   <b-form-checkbox v-model="issue_filters[field.name].show_dynamic_average"
                                    @change="visible_metrics_see_if_category_is_relevant(category)" switch>
-                      {{ $t("show_dynamic_average") }}
+                      {{ $t("account.visible-metrics.show_dynamic_average") }}
                   </b-form-checkbox>
                 </span>
 
@@ -25,9 +25,9 @@
                         </section>
                         <section class="testresults">
               <span class="select-deselect-category">
-                  <a @click="check_fields(all_field_names_from_categories(category))"> {{ $t("check") }} </a>
+                  <a @click="check_fields(all_field_names_from_categories(category))"> {{ $t("account.visible-metrics.check") }} </a>
                   /
-                  <a @click="uncheck_fields(all_field_names_from_categories(category))">{{ $t("uncheck") }} </a>
+                  <a @click="uncheck_fields(all_field_names_from_categories(category))">{{ $t("account.visible-metrics.uncheck") }} </a>
               </span>
 
                             <div v-for="subcategory in category.categories" :key="subcategory.name">
@@ -37,21 +37,21 @@
 
                                     <b-form-checkbox v-model="issue_filters[field.name].visible"
                                                      :id="field.name + '_visible'" switch>
-                                        {{ $t(field.name) }}
+                                        {{ $t('metric.' + field.name + ".title") }}
                                     </b-form-checkbox>
 
                                     <template v-if="field.explanation">
-                                        <p><i>{{ $t(field.name + "_explanation") }}</i></p>
+                                        <p><i>{{ $t('metric.' + field.name + ".explanation") }}</i></p>
                                     </template>
                                 </div>
                             </div>
                         </section>
                     </b-tab>
-                    <b-tab :title="$t('main_category')" class="p-3">
-                        <h4>{{ $t("main_category") }}</h4>
+                    <b-tab :title="$t('account.visible-metrics.main_category')" class="p-3">
+                        <h4>{{ $t("account.visible-metrics.main_category") }}</h4>
 
                         <b-form-checkbox v-model="issue_filters[scan_form.name].show_dynamic_average" switch>
-                            {{ $t("show_dynamic_average") }}
+                            {{ $t("account.visible-metrics.show_dynamic_average") }}
                         </b-form-checkbox>
                     </b-tab>
 
@@ -59,8 +59,8 @@
             </b-card>
         </div>
         <br>
-        <button @click="reset_issue_filters()">{{ $t("buttons.reset") }}</button> &nbsp;
-        <button @click="save_visible_metrics()">{{ $t("buttons.save") }}</button>
+        <button @click="reset_issue_filters()">{{ $t("account.visible-metrics.buttons.reset") }}</button> &nbsp;
+        <button @click="save_visible_metrics()">{{ $t("account.visible-metrics.buttons.save") }}</button>
         <br><br>
     </div>
 </template>
@@ -254,47 +254,3 @@ export default {
 
 }
 </style>
-<i18n>
-{
-    "en": {
-        "check": "Select all",
-        "uncheck": "Deselect all",
-        "title": "Select visible metrics",
-        "main_category": "Average adoption of standards",
-        "intro": "Focusing on specific metrics is possibly using this this selection tool. For example it's possible to only select HTTPS metrics or DNSSEC. Visible metrics are applied to all users of your organization.",
-        "buttons": {
-            "reset": "Reset",
-            "reset_label": "Resets all values to their original status.",
-            "save": "Save",
-            "save_label": "Save the changes made in this form."
-        },
-        "show_category": "Show this category",
-        "show_dynamic_average": "Show the average of selected fields",
-        "only_show_dynamic_average": "Only show dynamic average",
-        "settings": {
-            "restored_from_database": "Settings restored from database",
-            "updated": "Settings updated"
-        }
-    },
-    "nl": {
-        "check": "Selecteer alle",
-        "uncheck": "Deselecteer alle",
-        "title": "Selecteer zichtbare meetwaarden",
-        "main_category": "Adoptie van standaarden",
-        "intro": "Het richten op specifieke meetwaarden is mogelijk met onderstaande selectie-tool. Hiermee is het mogelijk om enkel HTTPS of DNSSEC informatie in de rapportages te zien. De zichtbare meetwaarden gelden voor alle gebruikers in je organisatie.",
-        "buttons": {
-            "reset": "Reset",
-            "reset_label": "Zet de originele waardes terug naar de waardes in de database",
-            "save": "Opslaan",
-            "save_label": "Sla de wijzigingen in de zichtbare meetwaarden op."
-        },
-        "show_category": "Toon deze categorie",
-        "show_dynamic_average": "Toon het gemiddelde van de geselecteerde velden",
-        "only_show_dynamic_average": "Toon alleen het dynamisch berekende gemiddelde",
-        "settings": {
-            "restored_from_database": "Zichtbare meetwaarden zijn teruggezet naar de waardes in de database",
-            "updated": "Zichtbare meetwaarden opgeslagen"
-        }
-    }
-}
-</i18n>
