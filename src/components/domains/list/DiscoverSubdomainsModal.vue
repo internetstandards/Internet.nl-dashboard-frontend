@@ -10,18 +10,18 @@
       <b-input-group class="mb-2">
 
 
-      <b-form-input id="domain_name" type="text" maxlength="120" v-model="input_domain" debounce="400" :placeholder="$t('enter_domain_name')"></b-form-input>
+      <b-form-input id="domain_name" type="text" maxlength="120" v-model="input_domain" debounce="400" :placeholder='$t("enter_domain_name")'></b-form-input>
 
       <b-input-group-append>
         <b-button class="lastbutton" role="link" @click="find_suggestions()" style="min-width: 120px">🔎 {{ $t("search") }} <b-spinner variant="info" label="Spinning" small v-if="loading_suggestions"/></b-button>
       </b-input-group-append>
     </b-input-group>
-      <p class="mb-2">{{$t('will_be_added_to', [list.name])}}</p>
+      <p class="mb-2">{{$t("will_be_added_to", [list.name])}}</p>
 
-      <server-response :response="response" v-if="response" :message="$t('' + response.message)"/>
+      <server-response :response="response" v-if="response" :message='$t("" + response.message)'/>
 
       <b-alert variant="info" show v-if="response.success === true" dismissible>
-        <h4>{{ $t('status_report') }}</h4>
+        <h4>{{ $t("status_report") }}</h4>
         <li v-if="response.data.duplicates_removed">
           {{ $t("removed_n_duplicates", [response.data.duplicates_removed]) }}
         </li>

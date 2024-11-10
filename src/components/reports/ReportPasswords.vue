@@ -1,18 +1,18 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <content-block class="do-not-print" v-if="reports !== undefined">
-    <h2>⚠️ {{ $t('Authentication required') }}</h2>
-    <p>{{ $t('Some reports require authentication') }}</p>
+    <h2>⚠️ {{ $t("Authentication required") }}</h2>
+    <p>{{ $t("Some reports require authentication") }}</p>
 
       <b-row v-for="report in reports" :key="report.id" class="p-4 border-top border-secondary">
-        <b-col>{{ $t('code') }}: 📊 {{report.public_report_code}}<br>
-          {{ $t('name') }}: 📘 {{report.urllist_name}}<br>
-          {{ $t('created_on') }}: {{report.at_when.human_date()}}
+        <b-col>{{ $t("code") }}: 📊 {{report.public_report_code}}<br>
+          {{ $t("name") }}: 📘 {{report.urllist_name}}<br>
+          {{ $t("created_on:") }}: {{report.at_when.human_date()}}
         </b-col>
         <b-col>
         <template v-if="report.authentication_required">
           <b-form-group
-              :label="`❌ ${$t('supply_password')}`"
+              :label='`❌ ${$t("supply_password")}`'
               label-for="share-code"
               class="mb-0"
           >
@@ -25,10 +25,10 @@
           </b-form-group>
         </template><template v-else>
           <template v-if="$store.state.public_share_codes[report.public_report_code]">
-            ✅ <i>{{ $t('Stored password is valid') }}</i>
+            ✅ <i>{{ $t("Stored password is valid") }}</i>
           </template>
           <template v-else>
-            ✅ <i>{{ $t('No password needed') }}</i>
+            ✅ <i>{{ $t("No password needed") }}</i>
           </template>
         </template>
         </b-col>
@@ -36,7 +36,7 @@
 
     <!-- onclick emit retry. -->
     <b-row class="pt-4 pl-3 pb-2 border-top border-secondary">
-      <button type="submit" @click="$emit('retry')">{{ $t('Retry with above settings') }}</button>
+      <button type="submit" @click="$emit('retry')">{{ $t("Retry with above settings") }}</button>
     </b-row>
 
   </content-block>

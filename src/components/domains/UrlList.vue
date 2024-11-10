@@ -11,50 +11,44 @@ h2 {
       <span>
             <a :name="list.id"></a>
             <h2>
-
                 <button v-if="!is_opened" aria-expanded="false" @click="open_list()">
-                    <span v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')" role="img">⚠️</span>
-                    <span :aria-label="$t('icon.list_closed')" role="img">📘</span> <probe
+                    <span v-if="list_contains_warnings" :aria-label='$t("domain.urllist.icon.list_warning")' role="img">⚠️</span>
+                    <span :aria-label='$t("domain.urllist.icon.list_closed")' role="img">📘</span> <probe
                     v-if="list.enable_scans && !list.scan_now_available" class="mr-2"/>{{ list.name }} <scan-type-icon
                     :type="list.scan_type"/>
-
                 </button>
-
                 <button v-if="is_opened" aria-expanded="true" @click="close_list()">
-                    <span v-if="list_contains_warnings" :aria-label="$t('icon.list_warning')" role="img">⚠️</span>
-                    <span :aria-label="$t('icon.list_opened')" role="img">📖</span> <probe
+                    <span v-if="list_contains_warnings" :aria-label='$t("domain.urllist.icon.list_warning")' role="img">⚠️</span>
+                    <span :aria-label='$t("domain.urllist.icon.list_opened")' role="img">📖</span> <probe
                     v-if="list.enable_scans && !list.scan_now_available" class="mr-2"/>
                   {{ list.name }} <scan-type-icon
                     :type="list.scan_type"/>
-
                 </button>
-
             </h2>
 
             <div v-if="is_opened" class="float-right">
-
                 <template v-if="urls.length">
                     <template v-if="list.enable_scans">
                         <button v-if="list.scan_now_available" @click="visible.scan = true">
-                            <span :aria-label="$t('icon.scan')" role="img">🔬</span> {{ $t("button.scan_now") }}
+                            <span :aria-label='$t("domain.urllist.icon.scan")' role="img">🔬</span> {{ $t("domain.urllist.button.scan_now") }}
                         </button> &nbsp;
-                        <button v-if="!list.scan_now_available" :title='$t("button.scan_now_scanning")'
+                        <button v-if="!list.scan_now_available" :title='$t("domain.urllist.button.scan_now_scanning")'
                                 disabled="disabled">
-                            <probe/> {{ $t("button.scan_now_scanning") }}
+                            <probe/> {{ $t("domain.urllist.button.scan_now_scanning") }}
                         </button>
                     </template>
-                    <button v-else :title='$t("button.scanning_disabled")' disabled="disabled">
-                        <span :aria-label="$t('icon.scan')" role="img">🔬</span> {{ $t("button.scanning_disabled") }}
+                    <button v-else :title='$t("domain.urllist.button.scanning_disabled")' disabled="disabled">
+                        <span :aria-label='$t("domain.urllist.icon.scan")' role="img">🔬</span> {{ $t("domain.urllist.button.scanning_disabled") }}
                     </button> &nbsp;
                 </template>
 
                 <button @click="visible.configure = true">
-                    <span :aria-label="$t('icon.settings')" role="img">📝</span> {{ $t("button.configure") }}
+                    <span :aria-label='$t("domain.urllist.icon.settings")' role="img">📝</span> {{ $t("domain.urllist.button.configure") }}
                 </button> &nbsp;
 
-              <button @click="download_list" v-if="urls.length">⬇️ {{ $t("button.download") }}</button> &nbsp;
+              <button @click="download_list" v-if="urls.length">⬇️ {{ $t("domain.urllist.button.download") }}</button> &nbsp;
 
-              <button class="border-danger" @click="visible.delete = true">🗑️ {{ $t("button.delete") }}</button>
+              <button class="border-danger" @click="visible.delete = true">🗑️ {{ $t("domain.urllist.button.delete") }}</button>
             </div>
         </span>
 
@@ -67,33 +61,33 @@ h2 {
 
       <template v-if="list.list_warnings.indexOf('WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED') > -1">
         <div class="server-response-error">
-          <span :aria-label="$t('icon.list_warning')" role="img">⚠️</span>{{
-            $t("warnings.domains_exceed_maximum", [maximum_domains])
+          <span :aria-label='$t("domain.urllist.icon.list_warning")' role="img">⚠️</span>{{
+            $t("domain.urllist.warnings.domains_exceed_maximum", [maximum_domains])
           }}
         </div>
       </template>
 
       <div  style="width: 100%; text-align: right" class="mb-2" v-if="!urls.length">
         Add domains using:
-        <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}</b-button> &nbsp;
-        <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("button.discover_subdomains") }}</b-button> &nbsp;
-        <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("button.upload") }}</b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}</b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button> &nbsp;
         <!-- <button class="border-success" @click="get_urls()">⬆️ {{ $t("button.reload") }}</button> -->
       </div>
 
       <div style="width: 100%; text-align: right" class="mb-2" v-if="urls.length">
         Add domains using:
-        <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label="$t('icon.bulk_add_new')" role="img">🌐</span> {{ $t("button.add_domains") }}
+        <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}
         </b-button> &nbsp;
-        <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("button.discover_subdomains") }}</b-button> &nbsp;
-        <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("button.upload") }}</b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;
+        <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button> &nbsp;
         <SubdomainDiscovery v-if="urls.length" :list_id="list.id" @finished="get_urls"/>
       </div>
 
 
       <template v-if="urls.length">
         <DomainTable :loading="loading" :urllist="list" :urls="urls" @update="get_urls()"/>
-        <p><small><i v-html="$t('domains.intro')"></i></small></p>
+        <p><small><i v-html='$t("domain.urllist.domains.intro")'></i></small></p>
       </template>
 
       <loading :loading="loading"></loading>
@@ -123,20 +117,20 @@ h2 {
 
 <script>
 
-import Delete from './list/delete'
-import Scan from './list/scan'
-import AddDomains from './list/add domains'
-import Configure from './list/configure'
-import Upload from './list/upload'
-import About from './list/about-this-list'
+import Delete from './list/DeleteListModal'
+import Scan from './list/ScanModal'
+import AddDomains from './list/AddDomainsModal'
+import Configure from './list/ConfigurationModal'
+import Upload from './list/UploadModal'
+import About from './list/AboutThisList'
 import http from "@/httpclient";
 import ScanTypeIcon from "@/components/ScanTypeIcon";
 import DomainTable from "@/components/domains/DomainTable";
 
 import autorefresh from '@/components/autorefresh'
 import Probe from '@/components/probe'
-import DiscoverSubdomains from "@/components/domains/list/discover-subdomains";
-import SubdomainDiscovery from "@/components/domains/SubdomainDiscovery";
+import DiscoverSubdomains from "@/components/domains/list/DiscoverSubdomainsModal";
+import SubdomainDiscovery from "@/components/domains/list/WwwDiscovery";
 
 export default {
   components: {
@@ -328,69 +322,3 @@ export default {
   },
 }
 </script>
-<i18n>
-{
-  "en": {
-    "icon": {
-      "list_closed": "List closed",
-      "list_opened": "List opened",
-      "settings": "settings",
-      "scan": "scan",
-      "bulk_add_new": "Add domains in bulk",
-      "remove_filter": "Show categories",
-      "report": "report"
-    },
-    "button": {
-      "configure": "Configure",
-      "add_domains": "Free text",
-      "scan_now": "Scan now",
-      "scan_now_scanning": "Scanning",
-      "scan_now_scanning_title": "The scan now option is available only once a day, when no scan is running.",
-      "delete": "Delete",
-      "scanning_disabled": "Scanning disabled",
-      "upload": "Spreadsheet",
-      "download": "Download",
-      "reload": "Reload domains",
-      "discover_subdomains": "Subdomain discovery"
-    },
-    "domains": {
-      "header": "Domains",
-      "intro": "These domains will be included in the scan. Eligibility for scanning is checked just before requesting the scan. The icons before each domain is based on archived information on the most recent reachability of services. This is checked and updated prior to every scan."
-    },
-    "warnings": {
-      "domains_exceed_maximum": "The amount of domains in this list exceeds the maximum of {0}. Scanning is paused."
-    }
-  },
-  "nl": {
-    "icon": {
-      "list_closed": "Lijst geopend",
-      "list_opened": "Lijst gesloten",
-      "settings": "Instellingen",
-      "scan": "scannen",
-      "bulk_add_new": "Voeg domeinen toe in bulk",
-      "remove_filter": "Bekijk categorien",
-      "report": "rapport"
-    },
-    "button": {
-      "configure": "Instellingen",
-      "add_domains": "Vrije tekst",
-      "scan_now": "Nu scannen",
-      "scan_now_scanning": "Aan het scannen",
-      "scan_now_scanning_title": "Nu scannen is alleen beschikbaar als er geen scan draait, en kan maximaal 1x per dag worden aangeroepen.",
-      "delete": "Verwijder",
-      "scanning_disabled": "Scans uitgeschakeld",
-      "upload": "Spreadsheet",
-      "download": "Downloaden",
-      "reload": "Domeinen ophalen",
-      "discover_subdomains": "Subdomeinen zoeker"
-    },
-    "domains": {
-      "header": "Domeinen",
-      "intro": "Deze domeinen worden meegenomen in een scan. De mogelijkheid om te scannen wordt voor aanvang van de scan bijgewerkt. De iconen geven een beeld van de bereikbaarheid van deze domeinen op basis van archiefinformatie. De bereikbaarheid wordt voor aanvang van iedere scan opnieuw gecontroleerd en bijgewerkt."
-    },
-    "warnings": {
-      "domains_exceed_maximum": "Het aantal domeinen in deze lijst is meer dan het maximum aantal van {0}. Scanning is gepauzeerd."
-    }
-  }
-}
-</i18n>

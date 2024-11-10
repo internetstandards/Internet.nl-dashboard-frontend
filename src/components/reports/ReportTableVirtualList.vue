@@ -432,10 +432,10 @@ div.rotate > span {
           <!-- Zoom buttons for accessibility -->
           <tr class="summaryrow">
             <td colspan="2" class="sticky_search">
-              <label class="visuallyhidden" for="url_filter">{{ $t('report.url_filter') }}</label>
+              <label class="visuallyhidden" for="url_filter">{{ $t("report.url_filter") }}</label>
               <b-input debounce="200" type="text" v-model="url_filter" id="url_filter"
-                       :placeholder="$t('report.url_filter')"></b-input>
-              <p class="visuallyhidden">{{ $t('report.zoom.explanation') }}</p>
+                       :placeholder='$t("report.url_filter")'></b-input>
+              <p class="visuallyhidden">{{ $t("report.zoom.explanation") }}</p>
             </td>
             <template v-if="['web', 'mail'].includes(selected_category)">
               <td
@@ -456,7 +456,7 @@ div.rotate > span {
                   class="sticky_search text-center">
                 <button class="w-100"
                         @click="select_category(report_category)">
-                  <span role="img" :aria-label="$t('icons.remove_filter')">↩️</span>
+                  <span role="img" :aria-label='$t("icons.remove_filter")'>↩️</span>
                   {{ $t("report.zoom.buttons.remove_zoom") }}
                 </button>
                 <br>

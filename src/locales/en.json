@@ -161,8 +161,14 @@
 			"gotomainmenu": "Skip to main menu"
 		}
 	},
-	"charts": {
-		"components/charts/donut.vue": {
+	"chart": {
+		"cumulative-percentage-bar-chart": {
+			"accessibility_text": "A table with the content of this graph is shown below.",
+			"average": "Average",
+			"title": "Average adoption of standards over %{number_of_reports} reports.",
+			"yAxis_label": "Adoption"
+		},
+		"donut": {
 			"graph": "Chart",
 			"measurement": "Rating",
 			"rest": "rest",
@@ -170,20 +176,14 @@
 			"table": "Table",
 			"value": "Percentage"
 		},
-		"components/charts/render-cumulative-percentage-bar-chart.vue": {
-			"accessibility_text": "A table with the content of this graph is shown below.",
-			"average": "Average",
-			"title": "Average adoption of standards over %{number_of_reports} reports.",
-			"yAxis_label": "Adoption"
-		},
-		"components/charts/render-percentage-bar-chart.vue": {
+		"percentage-bar-chart": {
 			"accessibility_text": "A table with the content of this graph is shown below.",
 			"average": "Average",
 			"title_multiple": "Comparison of adoption of standards between %{number_of_reports} reports.",
 			"title_single": "Average adoption of standards, %{list_information}, %{number_of_domains} domains.",
 			"yAxis_label": "Adoption"
 		},
-		"components/charts/timeline.vue": {
+		"timeline": {
 			"accessibility_text": "A table with the content of this graph is shown below.",
 			"average_internet_nl_score": "Average internet.nl score",
 			"graph": "Graph",
@@ -196,8 +196,27 @@
 			"y_axis_label": "Average internet.nl score"
 		}
 	},
-	"domains": {
-		"components/domains/domain/edit.vue": {
+	"domain": {
+		"discover-subdomains": {
+			"add_domains_valid_urls_added": "New domains have processed, see the status report for details.",
+			"add_subdomains_button": "Add {0} selected subdomains",
+			"added_n_to_list": "{0} domains added to this list. Take care: if the new domains are not shown in the list right away, wait a short while and reload the list.",
+			"cancel": "Cancel",
+			"clear_selection": "Clear selection",
+			"dive_into_archive": "search for older subdomains, up to {0} days ago.",
+			"domains_found": "{0} subdomains found",
+			"enter_domain_name": "Enter a domain name, such as internet.nl to find subdomains...",
+			"find_subdomains_header": "Enter a domain name to find subdomains",
+			"ignored_n": "{0} domains are already in this list.",
+			"ok": "Done",
+			"removed_n_duplicates": "{0} duplicates removed from the input.",
+			"search": "Search",
+			"select_all": "Select all",
+			"status_report": "Status report",
+			"title": "Discover Subdomains",
+			"will_be_added_to": "selected subdomains will be added to the list named {0}."
+		},
+		"edit": {
 			"button_labels": {
 				"cancel": "Cancel",
 				"remove": "Remove",
@@ -209,7 +228,7 @@
 			"save_edited_url": "Save changes, the change will be applied to {0}.",
 			"start_editing_url": "Edit {0}."
 		},
-		"components/domains/domain/editDomain.vue": {
+		"edit-domain": {
 			"button_labels": {
 				"cancel": "Cancel",
 				"remove": "Remove",
@@ -226,7 +245,96 @@
 			"unknown_eligeble_mail": "Not yet known if {0} can be mail scanned.",
 			"unknown_eligeble_web": "Not yet known if {0} can be web scanned."
 		},
-		"components/domains/DomainListManager.vue": {
+		"list": {
+			"add-domains": {
+				"a_lot_of_new_domains_message": "Warning: we're recommending the spreadsheet upload for large amounts of domains. This shows the progress when adding domains and makes management of large amounts of domains easier.",
+				"add_domains_list_does_not_exist": "This list does not exist.",
+				"add_domains_valid_urls_added": "New domains have processed, see the status report for details.",
+				"added_n_to_list": "{0} domains added to this list. Take care: if the new domains are not shown in the list right away, wait a short while and reload the list.",
+				"cancel": "Close",
+				"domains_label": "Add domains in the text field below",
+				"go_to_spreadsheet_upload": "Click here to go to the spreadsheet uploader and tutorial.",
+				"ignored_n": "{0} domains are already in this list.",
+				"loading": "Domains are being processed",
+				"message": "Domains are separated by a comma, space or new line. These can be mixed. For example: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com, \nhttps://my.example.com:80/index.html",
+				"nothing_added": "nothing added yet.",
+				"ok": "Add the above domains to the list",
+				"removed_n_duplicates": "{0} duplicates removed from the input.",
+				"status": "Status",
+				"title": "Add domains",
+				"too_many_domains": "The amount of domains in this list exceeds the total amount of domains allowed in a list.",
+				"too_many_new_domains_message": "There are too many domains being added, please use a spreadsheet upload to continue.",
+				"undefined": "undefined",
+				"warning": "Warning!",
+				"warning_message": "Some domains where not added because they are in an incorrect format. The following domains where not added"
+			},
+			"configure": {
+				"cancel": "Cancel",
+				"ok": "Update",
+				"title": "Settings"
+			},
+			"delete": {
+				"cancel": "No, take me back",
+				"message": "Are you sure you want to delete this list? Deleting this list cannot be undone.",
+				"ok": "Yes, Delete",
+				"title": "Are you sure?"
+			},
+			"domain-table": {
+				"Clear": "Clear",
+				"Domain": "Domain",
+				"filtered pagination": "Page {0}/{1} of {2} filtered from {3} domains.",
+				"No filtered results": "The filter yielded no results. You can only search for complete tags.",
+				"Not selected": "Not selected",
+				"pagination": "Page {0}/{1} of {2} domains.",
+				"select label": "select label",
+				"Selected": "Selected",
+				"Table empty": "No domains in this list yet... added domains will be displayed here.",
+				"tags": "Labels",
+				"type to filter": "-- type to filter",
+				"update domain list": "update domain list"
+			},
+			"scan": {
+				"cancel": "Cancel",
+				"message": "Click 'Scan now' to start scanning.",
+				"notices": "The scan is visible at the scan monitor. You can cancel a scan at any time in the scan monitor.",
+				"ok": "Scan now",
+				"starting": "Starting...",
+				"title": "Confirm to scan"
+			},
+			"status": {
+				"Automatically shared": "Automatically shared",
+				"finished": "finished",
+				"header": "About this list",
+				"last_scan_started": "Last scan",
+				"latest_report": "Latest report",
+				"Listed on sharing page": ", also on sharing page",
+				"next_scheduled_scan": "Next scheduled scan",
+				"Not automatically shared": "Not automatically shared",
+				"not_scanned_before": "Not scanned before",
+				"number_of_domains": "Number of domains",
+				"on this page": "on this page",
+				"report": "report",
+				"scan_frequency": "Scan frequency",
+				"scanning_disabled": "Scanning of this list is disabled.",
+				"sharing": "Sharing",
+				"still_running": "still running",
+				"type_of_scan_performed": "Type of scan",
+				"with share code": "with share code"
+			},
+			"upload": {
+				"cancel": "Cancel",
+				"empty_file": "Empty file",
+				"file_with_example_data": "File with example data",
+				"introduction": "It's possible to upload large amounts of internet addresses and lists using spreadsheets. To do so, please expand on the example spreadsheets listed below. This shows how the data has to be structured. Examples with and without data are provided as Open Document Spreadsheet, Microsoft Office Excel and Comma Separated. Below are some example files that specify the exact format.",
+				"microsoft_office_excel": "Excel Spreadsheet (Microsoft Office)",
+				"ok": "Overwrite domains",
+				"open_document_spreadsheet": "Open Document Spreadsheet (Libre Office)",
+				"title": "Upload domains (overwrite)",
+				"too_many_domains": "The amount of domains in this list exceeds the total amount of domains allowed in a list.",
+				"warning": "Warning: Uploading a spreadsheet of domains will overwrite all domains in this list. This cannot be undone. Make you have downloaded a copy of this list in advance. A copy can be made with the 'Download domains' button on the domain list."
+			}
+		},
+		"list-manager": {
 			"bulk_upload_link": "Upload spreadsheet with domains",
 			"icon_legend": {
 				"can_connect": "Can connect to this service, will (probably) be scanned.",
@@ -258,21 +366,7 @@
 			"title": "Domains",
 			"warning_found_in_list": "One or more lists contain issues, this will prevent scans from running."
 		},
-		"components/domains/DomainTable.vue": {
-			"Clear": "Clear",
-			"Domain": "Domain",
-			"filtered pagination": "Page {0}/{1} of {2} filtered from {3} domains.",
-			"No filtered results": "The filter yielded no results. You can only search for complete tags.",
-			"Not selected": "Not selected",
-			"pagination": "Page {0}/{1} of {2} domains.",
-			"select label": "select label",
-			"Selected": "Selected",
-			"Table empty": "No domains in this list yet... added domains will be displayed here.",
-			"tags": "Labels",
-			"type to filter": "-- type to filter",
-			"update domain list": "update domain list"
-		},
-		"components/domains/FormatScanEligibility.vue": {
+		"scan-eligibility": {
 			"eligeble_mail": "{0} is eligible for e-mail scans",
 			"eligeble_web": "{0} is eligible for web scans",
 			"not_eligeble_mail": "{0} is not eligible for e-mail scans. Will be checked again when starting a scan.",
@@ -280,101 +374,7 @@
 			"unknown_eligeble_mail": "Not yet known if {0} can be mail scanned.",
 			"unknown_eligeble_web": "Not yet known if {0} can be web scanned."
 		},
-		"components/domains/list/about-this-list.vue": {
-			"Automatically shared": "Automatically shared",
-			"finished": "finished",
-			"header": "About this list",
-			"last_scan_started": "Last scan",
-			"latest_report": "Latest report",
-			"Listed on sharing page": ", also on sharing page",
-			"next_scheduled_scan": "Next scheduled scan",
-			"Not automatically shared": "Not automatically shared",
-			"not_scanned_before": "Not scanned before",
-			"number_of_domains": "Number of domains",
-			"on this page": "on this page",
-			"report": "report",
-			"scan_frequency": "Scan frequency",
-			"scanning_disabled": "Scanning of this list is disabled.",
-			"sharing": "Sharing",
-			"still_running": "still running",
-			"type_of_scan_performed": "Type of scan",
-			"with share code": "with share code"
-		},
-		"components/domains/list/add domains.vue": {
-			"a_lot_of_new_domains_message": "Warning: we're recommending the spreadsheet upload for large amounts of domains. This shows the progress when adding domains and makes management of large amounts of domains easier.",
-			"add_domains_list_does_not_exist": "This list does not exist.",
-			"add_domains_valid_urls_added": "New domains have processed, see the status report for details.",
-			"added_n_to_list": "{0} domains added to this list. Take care: if the new domains are not shown in the list right away, wait a short while and reload the list.",
-			"cancel": "Close",
-			"domains_label": "Add domains in the text field below",
-			"go_to_spreadsheet_upload": "Click here to go to the spreadsheet uploader and tutorial.",
-			"ignored_n": "{0} domains are already in this list.",
-			"loading": "Domains are being processed",
-			"message": "Domains are separated by a comma, space or new line. These can be mixed. For example: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com, \nhttps://my.example.com:80/index.html",
-			"nothing_added": "nothing added yet.",
-			"ok": "Add the above domains to the list",
-			"removed_n_duplicates": "{0} duplicates removed from the input.",
-			"status": "Status",
-			"title": "Add domains",
-			"too_many_domains": "The amount of domains in this list exceeds the total amount of domains allowed in a list.",
-			"too_many_new_domains_message": "There are too many domains being added, please use a spreadsheet upload to continue.",
-			"undefined": "undefined",
-			"warning": "Warning!",
-			"warning_message": "Some domains where not added because they are in an incorrect format. The following domains where not added"
-		},
-		"components/domains/list/configure.vue": {
-			"cancel": "Cancel",
-			"ok": "Update",
-			"title": "Settings"
-		},
-		"components/domains/list/delete.vue": {
-			"delete_form": {
-				"cancel": "No, take me back",
-				"message": "Are you sure you want to delete this list? Deleting this list cannot be undone.",
-				"ok": "Yes, Delete",
-				"title": "Are you sure?"
-			}
-		},
-		"components/domains/list/discover-subdomains.vue": {
-			"add_domains_valid_urls_added": "New domains have processed, see the status report for details.",
-			"add_subdomains_button": "Add {0} selected subdomains",
-			"added_n_to_list": "{0} domains added to this list. Take care: if the new domains are not shown in the list right away, wait a short while and reload the list.",
-			"cancel": "Cancel",
-			"clear_selection": "Clear selection",
-			"dive_into_archive": "search for older subdomains, up to {0} days ago.",
-			"domains_found": "{0} subdomains found",
-			"enter_domain_name": "Enter a domain name, such as internet.nl to find subdomains...",
-			"find_subdomains_header": "Enter a domain name to find subdomains",
-			"ignored_n": "{0} domains are already in this list.",
-			"ok": "Done",
-			"removed_n_duplicates": "{0} duplicates removed from the input.",
-			"search": "Search",
-			"select_all": "Select all",
-			"status_report": "Status report",
-			"title": "Discover Subdomains",
-			"will_be_added_to": "selected subdomains will be added to the list named {0}."
-		},
-		"components/domains/list/scan.vue": {
-			"cancel": "Cancel",
-			"message": "Click 'Scan now' to start scanning.",
-			"notices": "The scan is visible at the scan monitor. You can cancel a scan at any time in the scan monitor.",
-			"ok": "Scan now",
-			"starting": "Starting...",
-			"title": "Confirm to scan"
-		},
-		"components/domains/list/upload.vue": {
-			"cancel": "Cancel",
-			"empty_file": "Empty file",
-			"file_with_example_data": "File with example data",
-			"introduction": "It's possible to upload large amounts of internet addresses and lists using spreadsheets. To do so, please expand on the example spreadsheets listed below. This shows how the data has to be structured. Examples with and without data are provided as Open Document Spreadsheet, Microsoft Office Excel and Comma Separated. Below are some example files that specify the exact format.",
-			"microsoft_office_excel": "Excel Spreadsheet (Microsoft Office)",
-			"ok": "Overwrite domains",
-			"open_document_spreadsheet": "Open Document Spreadsheet (Libre Office)",
-			"title": "Upload domains (overwrite)",
-			"too_many_domains": "The amount of domains in this list exceeds the total amount of domains allowed in a list.",
-			"warning": "Warning: Uploading a spreadsheet of domains will overwrite all domains in this list. This cannot be undone. Make you have downloaded a copy of this list in advance. A copy can be made with the 'Download domains' button on the domain list."
-		},
-		"components/domains/SpreadsheetUpload.vue": {
+		"spreadsheet-upload": {
 			"back_to_domains": "Back to domains",
 			"dropzone": {
 				"subtitle": "...or click to select a file from your computer",
@@ -412,23 +412,7 @@
 				}
 			}
 		},
-		"components/domains/SubdomainDiscovery.vue": {
-			", last scan finished ": ", last index finished ",
-			"... finding 'www.' subdomains ": "finding www. ",
-			"error": "error",
-			"Find 'www.' subdomains": "www. discovery",
-			"finished": "finished",
-			"requested": "since",
-			"scanning": "gathering",
-			"Scanning done, click to reload domain list": "Scanning done, click to reload domain list"
-		},
-		"components/domains/SubdomainDiscoveryModal.vue": {
-			"cancel": "Back to the list",
-			"message": "Find subdomains for all domains in the current list. The subdomains will be tested if they resolve for mail, web or both depending on the list setting. Every valid subdomain will be added to the list. For large lists this can take a while and have lost of results.",
-			"ok": "Find www. subdomains",
-			"title": "Add 'www' subdomains"
-		},
-		"components/domains/UrlList.vue": {
+		"urllist": {
 			"button": {
 				"add_domains": "Free text",
 				"configure": "Configure",
@@ -458,17 +442,33 @@
 			"warnings": {
 				"domains_exceed_maximum": "The amount of domains in this list exceeds the maximum of {0}. Scanning is paused."
 			}
+		},
+		"www-discovery": {
+			"error": "error",
+			"find-www-subdomains": "www. discovery",
+			"finding-www-subdomains": "finding www. ",
+			"finished": "finished",
+			"last-scan-finished": ", last index finished ",
+			"requested": "since",
+			"scanning": "gathering",
+			"scanning-done-click-reload": "Scanning done, click to reload domain list"
+		},
+		"www-discovery-modal": {
+			"cancel": "Back to the list",
+			"message": "Find subdomains for all domains in the current list. The subdomains will be tested if they resolve for mail, web or both depending on the list setting. Every valid subdomain will be added to the list. For large lists this can take a while and have lost of results.",
+			"ok": "Find www. subdomains",
+			"title": "Add 'www' subdomains"
 		}
 	},
 	"home": {
-		"components/home/Home.vue": {
+		"page": {
 			"introduction": "Bulk scan modern internet standards on thousands of domains in one go, including reports.",
 			"learn": "Learn what the dashboard can do for you, here...",
 			"log_in": "Log in",
 			"request_access": "To request access to the dashboard, please visit this page.",
 			"title": "Welcome to the internet.nl Dashboard"
 		},
-		"components/home/ShortFeatureOverview.vue": {
+		"short-feature-overview": {
 			"domains": "Manage domains",
 			"domains_text_1": "Manage thousands of domains with labels.",
 			"domains_text_2": "Convenient importing with spreadsheet or comma separated.",
@@ -484,7 +484,7 @@
 		}
 	},
 	"mail": {
-		"components/mail/Unsubscribe.vue": {
+		"unsubscribe": {
 			"error": "An error occured during unsubscribing. Try again below using the code and feed in your email.",
 			"intro": "Using this form, you can unsubscribe from alerts. You can unsubscribe without being logged in. If you landed on this page from ",
 			"label_feed": "Feed",
@@ -495,6 +495,84 @@
 		}
 	},
 	"metric": {
+		"category_mail": {
+			"title": "E-Mail"
+		},
+		"category_mail_dashboard_auth_dkim": {
+			"title": "DKIM"
+		},
+		"category_mail_dashboard_auth_dmarc": {
+			"title": "DMARC"
+		},
+		"category_mail_dashboard_auth_spf": {
+			"title": "SPF"
+		},
+		"category_mail_dnssec_email_address_domain": {
+			"title": "Email address domain"
+		},
+		"category_mail_dnssec_mail_server_domain": {
+			"title": "Mail server domain(s)"
+		},
+		"category_mail_ipv6_mail_servers": {
+			"title": "Mail server(s)"
+		},
+		"category_mail_ipv6_name_servers": {
+			"title": "Name servers of domain"
+		},
+		"category_mail_rpki_mail_server": {
+			"title": "Mail server(s)"
+		},
+		"category_mail_rpki_name_mail_server": {
+			"title": "Name servers of mail server(s)"
+		},
+		"category_mail_rpki_name_server": {
+			"title": "Name servers of domain"
+		},
+		"category_mail_starttls_certificate": {
+			"title": "Certificate"
+		},
+		"category_mail_starttls_dane": {
+			"title": "DANE"
+		},
+		"category_mail_starttls_tls": {
+			"title": "TLS"
+		},
+		"category_web": {
+			"title": "Website"
+		},
+		"category_web_dnssec_dnssec": {
+			"title": "Signed domain name (DNSSEC)"
+		},
+		"category_web_ipv6_name_server": {
+			"title": "Name servers of domain"
+		},
+		"category_web_ipv6_web_server": {
+			"title": "Web server"
+		},
+		"category_web_rpki_name_server": {
+			"title": "Name servers of domain"
+		},
+		"category_web_rpki_web_server": {
+			"title": "Web server"
+		},
+		"category_web_security_options_appsecpriv": {
+			"title": "HTTP security headers"
+		},
+		"category_web_security_options_other": {
+			"title": "Other security options"
+		},
+		"category_web_tls_certificate": {
+			"title": "Certificate"
+		},
+		"category_web_tls_dane": {
+			"title": "DANE"
+		},
+		"category_web_tls_http": {
+			"title": "HTTP"
+		},
+		"category_web_tls_tls": {
+			"title": "TLS"
+		},
 		"internet_nl_mail_auth_dkim_exist": {
 			"explanation": "E-mail can contain a digital signature of the sender, this can by verified by the postal service. If the signature is missing or incorrect, it can be seen as an attempt of sending fake mail. When somebody does send a fake e-mail, the postal service can issue a notification to the real owner of the e-mail address as they might want to do something about this.",
 			"extended-explanation": "We check if your domain supports DKIM records. A receiving mail server canuse the public key in your DKIM record to validate the signature in an email with a user from your domain as sender and determine its authenticity.</p><ul><li>Currently we are not able to query and evaluate the public key in your DKIM record,because we would need the DKIM selector (that should be in the mails you send) to do so.</li><li>To pass this test we expect your name server to answer <code>NOERROR</code> to our query for<code>_domainkey.example.nl</code>. When <code>_domainkey.example.nl</code> is an 'empty non-terminal' some name servers that are not conformant with the standardRFC 2308 incorrectly answer <code>NXDOMAIN</code> instead of <code>NOERROR</code>. This makes itimpossible for us to detect support for DKIM records.</li><li>For this test we assume 'strict alignment' which is conformant with DMARC. The given domain is considered to be the sender domain in the mail body domain (<code>From:</code>) and this must be identical to the DKIM domain (<code>d=</code>) and the SPF domain (envelope sender, i.e. return-path that shows up in <code>MAIL FROM</code>).</li></ul><p>For a \"good practice on domains without mail\" see the <a href=\"#control-panel-9\">explanation of the \"DMARC policy\" subtest</a>.",
@@ -549,6 +627,24 @@
 			},
 			"technology": "Sender Policy Framework (SPF)",
 			"title": "SPF policy"
+		},
+		"internet_nl_mail_dashboard_auth": {
+			"title": "Authenticity marks against phishing (DMARC, DKIM and SPF)"
+		},
+		"internet_nl_mail_dashboard_dnssec": {
+			"title": "Signed domain names (DNSSEC)"
+		},
+		"internet_nl_mail_dashboard_ipv6": {
+			"title": "Modern address (IPv6)"
+		},
+		"internet_nl_mail_dashboard_rpki": {
+			"title": "Route authorisation (RPKI)"
+		},
+		"internet_nl_mail_dashboard_tls": {
+			"title": "Secure mail server connection (STARTTLS and DANE)"
+		},
+		"internet_nl_mail_dashboard_web_rpki": {
+			"title": "Route authorisation (RPKI)"
 		},
 		"internet_nl_mail_dnssec_mailto_exist": {
 			"extended-explanation": "We check if your domain, more specifically its SOA record, is DNSSEC signed. With a DNSSEC signature senders who validate domain signatures can verify the authenticity of the DNS reply that contains your mail server domains (MX). This prevents an attacker from manipulating the DNS answer in order to redirect mails sent to you to the attacker's mailserver domain.</p><p>If a domain redirects to another domain via <code>CNAME</code>, then we also check if the CNAME domain is signed (which is conformant with the DNSSEC standard). If the CNAME domain is not signed, the result of this subtest will be negative.</p><p>Note: the validity of the signature is not part of this subtest, but part of the next subtest.",
@@ -632,6 +728,77 @@
 				"good": "All name servers that have an IPv6 address are reachable over IPv6."
 			},
 			"title": "IPv6 reachability of name servers"
+		},
+		"internet_nl_mail_legacy_category": {
+			"title": "Extra Fields"
+		},
+		"internet_nl_mail_legacy_category_ipv6": {
+			"explanation": "Calculated by taken the category value for IPv6.",
+			"title": "IPv6 mail"
+		},
+		"internet_nl_mail_legacy_dane": {
+			"explanation": "Calculated by using the worst value from: mail_starttls_dane_exist, mail_starttls_dane_valid. Can be overwritten by mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "DANE"
+		},
+		"internet_nl_mail_legacy_dkim": {
+			"explanation": "Calculated by using the value from: mail_auth_dkim_exist if it passes. If that's not available, see if the domain sends e-mail. If it does not, it's not applicable. Otherwise this fails.",
+			"title": "DKIM"
+		},
+		"internet_nl_mail_legacy_dmarc": {
+			"explanation": "Calculated by using the value from: mail_auth_dkim_exist.",
+			"title": "DMARC"
+		},
+		"internet_nl_mail_legacy_dmarc_policy": {
+			"explanation": "Calculated by using the value from: mail_auth_dmarc_policy.",
+			"title": "DMARC policy"
+		},
+		"internet_nl_mail_legacy_dnssec_mx": {
+			"explanation": "Calculated by using the worst value from: mail_dnssec_mx_exist, mail_dnssec_mx_valid. Will be set to no_mx if there is no mx.",
+			"title": "DNSSEC MX"
+		},
+		"internet_nl_mail_legacy_domain_has_mx": {
+			"explanation": "Mail servers are configured for the domain.",
+			"title": "Mail server has MX record"
+		},
+		"internet_nl_mail_legacy_ipv6_mailserver": {
+			"explanation": "Calculated by using the worst value from: mail_ipv6_mx_address, mail_ipv6_mx_reach. Will be set to no_mx if there is no mx.",
+			"title": "IPv6 mailserver"
+		},
+		"internet_nl_mail_legacy_ipv6_nameserver": {
+			"explanation": "Calculated by using the worst value from: mail_ipv6_ns_address, mail_ipv6_ns_reach. Will be set to no_mx if there is no mx.",
+			"title": "IPv6 nameserver"
+		},
+		"internet_nl_mail_legacy_mail_sending_domain": {
+			"explanation": "Checks if the domain is configured for sending email. For this test this is translated as being the anything else than:    SPF record with v=spf1 -all, and\\n   DMARC record with v=DMARC1;p=reject;",
+			"title": "E-mail sending domain"
+		},
+		"internet_nl_mail_legacy_mail_server_reachable": {
+			"explanation": "Network connectivity was possible with at least one mail server.",
+			"title": "Mail server reachable"
+		},
+		"internet_nl_mail_legacy_mail_server_testable": {
+			"explanation": "All mail servers communicated back and results are complete.",
+			"title": "Mail server testable"
+		},
+		"internet_nl_mail_legacy_spf": {
+			"explanation": "Calculated by using the value from: mail_auth_spf_exist.",
+			"title": "SPF"
+		},
+		"internet_nl_mail_legacy_spf_policy": {
+			"explanation": "Calculated by using the value from: mail_auth_spf_policy.",
+			"title": "SPF policy"
+		},
+		"internet_nl_mail_legacy_start_tls": {
+			"explanation": "Calculated by using the value from: mail_starttls_tls_available. Can be overwritten by mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "STARTTLS"
+		},
+		"internet_nl_mail_legacy_start_tls_ncsc": {
+			"explanation": "Calculated by using the worst value from: mail_starttls_tls_available, mail_starttls_tls_keyexchange, mail_starttls_tls_compress, mail_starttls_tls_secreneg, mail_starttls_tls_ciphers, mail_starttls_tls_clientreneg,  mail_starttls_tls_version,  mail_starttls_tls_cipherorder, mail_starttls_tls_keyexchangehash, mail_starttls_tls_0rtt, mail_starttls_cert_sig, mail_starttls_cert_pubkey, mail_starttls_cert_chain,  mail_starttls_cert_domain. Can be overwritten by mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "STARTTLS NCSC"
+		},
+		"internet_nl_mail_legacy_tls_1_3": {
+			"explanation": "Derives TLS1.3 support through the 0-RTT test. Explicitly testing for TLS1.3 support is not part of the compliance tool. However, TLS1.3 support could be derived from the 0-RTT test as the function is only available starting from TLS1.3. As there is no explicit TLS1.3 connection during testing, the test assumes that the server chose TLS1.3 when given the opportunity to do so.",
+			"title": "TLS 1.3 Support"
 		},
 		"internet_nl_mail_rpki_exists": {
 			"explanation": "The internet consists of all kinds of smaller networks. These networks can be created ad-hoc, which means somebody malicious might do so. To prevent bad actors from taking over parts of the internet, a network of trust and certification is created. This is a bureaucratic network with organizations being accredited by trusted parties.",
@@ -854,6 +1021,9 @@
 			},
 			"title": "OUTDATED TEXT; TEST NOT USED</p><p>X-XSS-Protection"
 		},
+		"internet_nl_web_dnssec": {
+			"title": "Signed domain name (DNSSEC)"
+		},
 		"internet_nl_web_dnssec_exist": {
 			"explanation": "We check if your domain, more specifically its SOA record, is DNSSEC signed.</p><p>If a domain redirects to another domain via <code>CNAME</code>, then we also check if the CNAME domain is signed (which is conformant with the DNSSEC standard). If the CNAME domain is not signed, the result of this subtest will be negative.</p><p>Note: the validity of the signature is not part of this subtest, but part of the next subtest.",
 			"rating": {
@@ -1049,6 +1219,9 @@
 			},
 			"title": "TLS version"
 		},
+		"internet_nl_web_ipv6": {
+			"title": "Modern address (IPv6)"
+		},
 		"internet_nl_web_ipv6_ns_address": {
 			"explanation": "We check if your domain name has at least two name servers with an IPv6 address. </p><p>This is consistent with the <a href=\"https://www.sidn.nl/downloads/KwpW_ORWRWetYuoBp5GeYA/7e91faddb53ad85b8c6a2fce15d764cb/Technical_requirements_for_the_registration_and_use_of_nl_domain_names.pdf\">\"Technical requirements for the registration and use of .nl domain names\"</a> d.d. 13 November 2017 by SIDN (.nl TLD registry) that require each .nl domain to have at least two name servers.</p><p>'IPv4-mapped IPv6 addresses' (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, beginning with ::ffff:) will fail in this test, as they do <em>not</em> provide IPv6 connectivity.",
 			"rating": {
@@ -1091,6 +1264,52 @@
 				"notice_status_code": "Your website on IPv6 seems to be the same as your website on IPv4, but the HTTP response code is in the 4xx or 5xx range. This may indicate a configuration issue."
 			},
 			"title": "Same website on IPv6 and IPv4"
+		},
+		"internet_nl_web_legacy_category": {
+			"title": "Extra Fields"
+		},
+		"internet_nl_web_legacy_category_ipv6": {
+			"explanation": "Calculated by taken the category value for IPv6.",
+			"title": "IPv6 web"
+		},
+		"internet_nl_web_legacy_dane": {
+			"explanation": "Calculated by using the worst value from: web_https_dane_exist and web_https_dane_valid.",
+			"title": "DANE"
+		},
+		"internet_nl_web_legacy_dnssec": {
+			"explanation": "Calculated by using the worst value from: web_dnssec_exist and web_dnssec_valid.",
+			"title": "DNSSEC"
+		},
+		"internet_nl_web_legacy_hsts": {
+			"explanation": "Calculated by using the value from: web_https_http_hsts.",
+			"title": "HSTS"
+		},
+		"internet_nl_web_legacy_https_enforced": {
+			"explanation": "Calculated by using the value from: web_https_http_redirect.",
+			"title": "HTTPS redirect"
+		},
+		"internet_nl_web_legacy_ipv6_nameserver": {
+			"explanation": "Calculated by using the worst value from: web_ipv6_ns_address and web_ipv6_ns_reach.",
+			"title": "IPv6 nameserver"
+		},
+		"internet_nl_web_legacy_ipv6_webserver": {
+			"explanation": "Calculated by using the worst value from: web_ipv6_ws_address, web_ipv6_ws_reach and web_ipv6_ws_similar.",
+			"title": "IPv6 webserver"
+		},
+		"internet_nl_web_legacy_tls_1_3": {
+			"explanation": "Derives TLS1.3 support through the 0-RTT test. Explicitly testing for TLS1.3 support is not part of the compliance tool. However, TLS1.3 support could be derived from the 0-RTT test as the function is only available starting from TLS1.3. As there is no explicit TLS1.3 connection during testing, the test assumes that the server chose TLS1.3 when given the opportunity to do so.",
+			"title": "TLS 1.3 Support"
+		},
+		"internet_nl_web_legacy_tls_available": {
+			"explanation": "Calculated by using the value from: web_https_http_available.",
+			"title": "TLS"
+		},
+		"internet_nl_web_legacy_tls_ncsc_web": {
+			"explanation": "Calculated by using the worst value from: web_https_tls_keyexchange, web_https_tls_compress, web_https_tls_secreneg, web_https_tls_ciphers, web_https_tls_clientreneg, web_https_tls_version, web_https_tls_cipherorder, web_https_tls_0rtt, web_https_tls_ocsp, web_https_tls_keyexchangehash, web_https_cert_sig, web_https_cert_pubkey, web_https_cert_chain, web_https_cert_domain.",
+			"title": "TLS NCSC"
+		},
+		"internet_nl_web_rpki": {
+			"title": "Route authorisation (RPKI)"
 		},
 		"internet_nl_web_rpki_exists": {
 			"explanation": "The internet consists of all kinds of smaller networks. These networks can be created ad-hoc, which means somebody malicious might do so. To prevent bad actors from taking over parts of the internet, a network of trust and certification is created. This is a bureaucratic network with organizations being accredited by trusted parties.",
@@ -1539,6 +1758,19 @@
 			"procedure_title": "Procedure for issuing login details",
 			"support_description": "For questions regarding (the use of) the Batch testing HTTP API and the API Dashboard, an e-mail can be send to <a href=\"mailto:question@internet.nl\">question@internet.nl</a>",
 			"support_title": "Support"
+		}
+	},
+	"test": {
+		"result": {
+			"percentage": {
+				"error_in_test": "",
+				"high": "",
+				"low": "",
+				"medium": "",
+				"not_applicable": "",
+				"not_testable": "",
+				"ok": ""
+			}
 		}
 	},
 	"tour": {

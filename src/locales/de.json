@@ -161,8 +161,14 @@
 			"gotomainmenu": ""
 		}
 	},
-	"charts": {
-		"components/charts/donut.vue": {
+	"chart": {
+		"cumulative-percentage-bar-chart": {
+			"accessibility_text": "",
+			"average": "",
+			"title": "",
+			"yAxis_label": ""
+		},
+		"donut": {
 			"graph": "",
 			"measurement": "",
 			"rest": "",
@@ -170,20 +176,14 @@
 			"table": "",
 			"value": ""
 		},
-		"components/charts/render-cumulative-percentage-bar-chart.vue": {
-			"accessibility_text": "",
-			"average": "",
-			"title": "",
-			"yAxis_label": ""
-		},
-		"components/charts/render-percentage-bar-chart.vue": {
+		"percentage-bar-chart": {
 			"accessibility_text": "",
 			"average": "",
 			"title_multiple": "",
 			"title_single": "",
 			"yAxis_label": ""
 		},
-		"components/charts/timeline.vue": {
+		"timeline": {
 			"accessibility_text": "",
 			"average_internet_nl_score": "",
 			"graph": "",
@@ -196,8 +196,27 @@
 			"y_axis_label": ""
 		}
 	},
-	"domains": {
-		"components/domains/domain/edit.vue": {
+	"domain": {
+		"discover-subdomains": {
+			"add_domains_valid_urls_added": "",
+			"add_subdomains_button": "",
+			"added_n_to_list": "",
+			"cancel": "",
+			"clear_selection": "",
+			"dive_into_archive": "",
+			"domains_found": "",
+			"enter_domain_name": "",
+			"find_subdomains_header": "",
+			"ignored_n": "",
+			"ok": "",
+			"removed_n_duplicates": "",
+			"search": "",
+			"select_all": "",
+			"status_report": "",
+			"title": "",
+			"will_be_added_to": ""
+		},
+		"edit": {
 			"button_labels": {
 				"cancel": "",
 				"remove": "",
@@ -209,7 +228,7 @@
 			"save_edited_url": "",
 			"start_editing_url": ""
 		},
-		"components/domains/domain/editDomain.vue": {
+		"edit-domain": {
 			"button_labels": {
 				"cancel": "",
 				"remove": "",
@@ -226,7 +245,96 @@
 			"unknown_eligeble_mail": "",
 			"unknown_eligeble_web": ""
 		},
-		"components/domains/DomainListManager.vue": {
+		"list": {
+			"add-domains": {
+				"a_lot_of_new_domains_message": "",
+				"add_domains_list_does_not_exist": "",
+				"add_domains_valid_urls_added": "",
+				"added_n_to_list": "",
+				"cancel": "",
+				"domains_label": "",
+				"go_to_spreadsheet_upload": "",
+				"ignored_n": "",
+				"loading": "",
+				"message": "",
+				"nothing_added": "",
+				"ok": "",
+				"removed_n_duplicates": "",
+				"status": "",
+				"title": "",
+				"too_many_domains": "",
+				"too_many_new_domains_message": "",
+				"undefined": "",
+				"warning": "",
+				"warning_message": ""
+			},
+			"configure": {
+				"cancel": "",
+				"ok": "",
+				"title": ""
+			},
+			"delete": {
+				"cancel": "",
+				"message": "",
+				"ok": "",
+				"title": ""
+			},
+			"domain-table": {
+				"Clear": "",
+				"Domain": "",
+				"filtered pagination": "",
+				"No filtered results": "",
+				"Not selected": "",
+				"pagination": "",
+				"select label": "",
+				"Selected": "",
+				"Table empty": "",
+				"tags": "",
+				"type to filter": "",
+				"update domain list": ""
+			},
+			"scan": {
+				"cancel": "",
+				"message": "",
+				"notices": "",
+				"ok": "",
+				"starting": "",
+				"title": ""
+			},
+			"status": {
+				"Automatically shared": "",
+				"finished": "",
+				"header": "",
+				"last_scan_started": "",
+				"latest_report": "",
+				"Listed on sharing page": "",
+				"next_scheduled_scan": "",
+				"Not automatically shared": "",
+				"not_scanned_before": "",
+				"number_of_domains": "",
+				"on this page": "",
+				"report": "",
+				"scan_frequency": "",
+				"scanning_disabled": "",
+				"sharing": "",
+				"still_running": "",
+				"type_of_scan_performed": "",
+				"with share code": ""
+			},
+			"upload": {
+				"cancel": "",
+				"empty_file": "",
+				"file_with_example_data": "",
+				"introduction": "",
+				"microsoft_office_excel": "",
+				"ok": "",
+				"open_document_spreadsheet": "",
+				"title": "",
+				"too_many_domains": "",
+				"warning": ""
+			}
+		},
+		"list-manager": {
 			"bulk_upload_link": "",
 			"icon_legend": {
 				"can_connect": "",
@@ -258,21 +366,7 @@
 			"title": "",
 			"warning_found_in_list": ""
 		},
-		"components/domains/DomainTable.vue": {
-			"Clear": "",
-			"Domain": "",
-			"filtered pagination": "",
-			"No filtered results": "",
-			"Not selected": "",
-			"pagination": "",
-			"select label": "",
-			"Selected": "",
-			"Table empty": "",
-			"tags": "",
-			"type to filter": "",
-			"update domain list": ""
-		},
-		"components/domains/FormatScanEligibility.vue": {
+		"scan-eligibility": {
 			"eligeble_mail": "",
 			"eligeble_web": "",
 			"not_eligeble_mail": "",
@@ -280,101 +374,7 @@
 			"unknown_eligeble_mail": "",
 			"unknown_eligeble_web": ""
 		},
-		"components/domains/list/about-this-list.vue": {
-			"Automatically shared": "",
-			"finished": "",
-			"header": "",
-			"last_scan_started": "",
-			"latest_report": "",
-			"Listed on sharing page": "",
-			"next_scheduled_scan": "",
-			"Not automatically shared": "",
-			"not_scanned_before": "",
-			"number_of_domains": "",
-			"on this page": "",
-			"report": "",
-			"scan_frequency": "",
-			"scanning_disabled": "",
-			"sharing": "",
-			"still_running": "",
-			"type_of_scan_performed": "",
-			"with share code": ""
-		},
-		"components/domains/list/add domains.vue": {
-			"a_lot_of_new_domains_message": "",
-			"add_domains_list_does_not_exist": "",
-			"add_domains_valid_urls_added": "",
-			"added_n_to_list": "",
-			"cancel": "",
-			"domains_label": "",
-			"go_to_spreadsheet_upload": "",
-			"ignored_n": "",
-			"loading": "",
-			"message": "",
-			"nothing_added": "",
-			"ok": "",
-			"removed_n_duplicates": "",
-			"status": "",
-			"title": "",
-			"too_many_domains": "",
-			"too_many_new_domains_message": "",
-			"undefined": "",
-			"warning": "",
-			"warning_message": ""
-		},
-		"components/domains/list/configure.vue": {
-			"cancel": "",
-			"ok": "",
-			"title": ""
-		},
-		"components/domains/list/delete.vue": {
-			"delete_form": {
-				"cancel": "",
-				"message": "",
-				"ok": "",
-				"title": ""
-			}
-		},
-		"components/domains/list/discover-subdomains.vue": {
-			"add_domains_valid_urls_added": "",
-			"add_subdomains_button": "",
-			"added_n_to_list": "",
-			"cancel": "",
-			"clear_selection": "",
-			"dive_into_archive": "",
-			"domains_found": "",
-			"enter_domain_name": "",
-			"find_subdomains_header": "",
-			"ignored_n": "",
-			"ok": "",
-			"removed_n_duplicates": "",
-			"search": "",
-			"select_all": "",
-			"status_report": "",
-			"title": "",
-			"will_be_added_to": ""
-		},
-		"components/domains/list/scan.vue": {
-			"cancel": "",
-			"message": "",
-			"notices": "",
-			"ok": "",
-			"starting": "",
-			"title": ""
-		},
-		"components/domains/list/upload.vue": {
-			"cancel": "",
-			"empty_file": "",
-			"file_with_example_data": "",
-			"introduction": "",
-			"microsoft_office_excel": "",
-			"ok": "",
-			"open_document_spreadsheet": "",
-			"title": "",
-			"too_many_domains": "",
-			"warning": ""
-		},
-		"components/domains/SpreadsheetUpload.vue": {
+		"spreadsheet-upload": {
 			"back_to_domains": "",
 			"dropzone": {
 				"subtitle": "",
@@ -412,23 +412,7 @@
 				}
 			}
 		},
-		"components/domains/SubdomainDiscovery.vue": {
-			", last scan finished ": "",
-			"... finding 'www.' subdomains ": "",
-			"error": "",
-			"Find 'www.' subdomains": "",
-			"finished": "",
-			"requested": "",
-			"scanning": "",
-			"Scanning done, click to reload domain list": ""
-		},
-		"components/domains/SubdomainDiscoveryModal.vue": {
-			"cancel": "",
-			"message": "",
-			"ok": "",
-			"title": ""
-		},
-		"components/domains/UrlList.vue": {
+		"urllist": {
 			"button": {
 				"add_domains": "",
 				"configure": "",
@@ -458,17 +442,33 @@
 			"warnings": {
 				"domains_exceed_maximum": ""
 			}
+		},
+		"www-discovery": {
+			"error": "",
+			"find-www-subdomains": "",
+			"finding-www-subdomains": "",
+			"finished": "",
+			"last-scan-finished": "",
+			"requested": "",
+			"scanning": "",
+			"scanning-done-click-reload": ""
+		},
+		"www-discovery-modal": {
+			"cancel": "",
+			"message": "",
+			"ok": "",
+			"title": ""
 		}
 	},
 	"home": {
-		"components/home/Home.vue": {
+		"page": {
 			"introduction": "",
 			"learn": "",
 			"log_in": "",
 			"request_access": "",
 			"title": ""
 		},
-		"components/home/ShortFeatureOverview.vue": {
+		"short-feature-overview": {
 			"domains": "",
 			"domains_text_1": "",
 			"domains_text_2": "",
@@ -484,7 +484,7 @@
 		}
 	},
 	"mail": {
-		"components/mail/Unsubscribe.vue": {
+		"unsubscribe": {
 			"error": "",
 			"intro": "",
 			"label_feed": "",
@@ -495,6 +495,84 @@
 		}
 	},
 	"metric": {
+		"category_mail": {
+			"title": ""
+		},
+		"category_mail_dashboard_auth_dkim": {
+			"title": "DKIM"
+		},
+		"category_mail_dashboard_auth_dmarc": {
+			"title": "DMARC"
+		},
+		"category_mail_dashboard_auth_spf": {
+			"title": "SPF"
+		},
+		"category_mail_dnssec_email_address_domain": {
+			"title": ""
+		},
+		"category_mail_dnssec_mail_server_domain": {
+			"title": ""
+		},
+		"category_mail_ipv6_mail_servers": {
+			"title": ""
+		},
+		"category_mail_ipv6_name_servers": {
+			"title": ""
+		},
+		"category_mail_rpki_mail_server": {
+			"title": ""
+		},
+		"category_mail_rpki_name_mail_server": {
+			"title": ""
+		},
+		"category_mail_rpki_name_server": {
+			"title": ""
+		},
+		"category_mail_starttls_certificate": {
+			"title": ""
+		},
+		"category_mail_starttls_dane": {
+			"title": "DANE"
+		},
+		"category_mail_starttls_tls": {
+			"title": "TLS"
+		},
+		"category_web": {
+			"title": ""
+		},
+		"category_web_dnssec_dnssec": {
+			"title": ""
+		},
+		"category_web_ipv6_name_server": {
+			"title": ""
+		},
+		"category_web_ipv6_web_server": {
+			"title": ""
+		},
+		"category_web_rpki_name_server": {
+			"title": ""
+		},
+		"category_web_rpki_web_server": {
+			"title": ""
+		},
+		"category_web_security_options_appsecpriv": {
+			"title": ""
+		},
+		"category_web_security_options_other": {
+			"title": ""
+		},
+		"category_web_tls_certificate": {
+			"title": ""
+		},
+		"category_web_tls_dane": {
+			"title": "DANE"
+		},
+		"category_web_tls_http": {
+			"title": "HTTP"
+		},
+		"category_web_tls_tls": {
+			"title": "TLS"
+		},
 		"internet_nl_mail_auth_dkim_exist": {
 			"explanation": "E-Mails können eine digitale Signatur des Absenders enthalten, die vom Postdienstleister überprüft werden kann. Fehlt die Signatur oder ist sie falsch, kann dies als Versuch gewertet werden, eine gefälschte E-Mail zu versenden. Wenn jemand eine gefälschte E-Mail verschickt, kann der Postdienst eine Benachrichtigung an den wirklichen Besitzer der E-Mail-Adresse senden, da dieser möglicherweise etwas dagegen unternehmen möchte.",
 			"extended-explanation": "Wir prüfen, ob Ihre Domäne DKIM-Einträge unterstützt. Ein empfangender Mailserver kann den öffentlichen Schlüssel in Ihrem DKIM-Eintrag verwenden, um die Signatur in einer E-Mail mit einem Benutzer aus Ihrer Domäne als Absender zu validieren und ihre Authentizität zu bestimmen.</p><ul><li>Derzeit sind wir nicht in der Lage, den öffentlichen Schlüssel in Ihrem DKIM-Eintrag abzufragen und auszuwerten, da wir dazu den DKIM-Selektor benötigen (der in den von Ihnen gesendeten E-Mails enthalten sein sollte).</li><li>Um diesen Test zu bestehen, erwarten wir von Ihrem Nameserver die Antwort <code>NOERROR</code> auf unsere Anfrage nach<code>_domainkey.example.nl</code>. Wenn <code>_domainkey.example.nl</code> ein \"leeres Nicht-Terminal\" ist, antworten einige Nameserver, die nicht mit dem StandardRFC 2308 konform sind, fälschlicherweise mit <code>NXDOMAIN</code> anstelle von <code>NOERROR</code>. Dies macht es uns unmöglich, die Unterstützung für DKIM-Einträge zu erkennen.</li><li>Bei diesem Test gehen wir von einer \"strikten Ausrichtung\" aus, die mit DMARC konform ist. Die angegebene Domäne gilt als Absenderdomäne in der Mailkörperdomäne (<code>From:</code>) und diese muss mit der DKIM-Domäne (<code>d=</code>) und der SPF-Domäne (Absender des Briefumschlags, d.h. der Rückweg, der in <code>MAIL FROM</code>auftaucht) identisch sein.</li></ul><p>Für eine \"gute Praxis bei Domänen ohne Mail\" siehe die <a href=\"#control-panel-9\">Erläuterung des Untertests \"DMARC-Richtlinie\"</a>.",
@@ -549,6 +627,24 @@
 			},
 			"technology": "Rahmenwerk für Absenderrichtlinien (SPF)",
 			"title": "SPF-Politik"
+		},
+		"internet_nl_mail_dashboard_auth": {
+			"title": ""
+		},
+		"internet_nl_mail_dashboard_dnssec": {
+			"title": ""
+		},
+		"internet_nl_mail_dashboard_ipv6": {
+			"title": ""
+		},
+		"internet_nl_mail_dashboard_rpki": {
+			"title": ""
+		},
+		"internet_nl_mail_dashboard_tls": {
+			"title": ""
+		},
+		"internet_nl_mail_dashboard_web_rpki": {
+			"title": ""
 		},
 		"internet_nl_mail_dnssec_mailto_exist": {
 			"extended-explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, DNSSEC-signiert ist. Mit einer DNSSEC-Signatur können Absender, die Domänensignaturen validieren, die Authentizität der DNS-Antwort überprüfen, die Ihre Mailserver-Domänen (MX) enthält. Dies verhindert, dass ein Angreifer die DNS-Antwort manipuliert, um an Sie gesendete Mails an die Mailserver-Domäne des Angreifers umzuleiten.</p><p>Wenn eine Domain auf eine andere Domain über <code>umgeleitet wird CNAME</code>umleitet, wird auch geprüft, ob die CNAME-Domäne signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Hinweis: Die Gültigkeit der Signatur ist nicht Teil dieses Subtests, sondern Teil des nächsten Subtests.",
@@ -632,6 +728,77 @@
 				"good": "Alle Nameserver, die eine IPv6-Adresse haben, sind über IPv6 erreichbar."
 			},
 			"title": "IPv6-Erreichbarkeit von Namensservern"
+		},
+		"internet_nl_mail_legacy_category": {
+			"title": ""
+		},
+		"internet_nl_mail_legacy_category_ipv6": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_dane": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_dkim": {
+			"explanation": "",
+			"title": "DKIM"
+		},
+		"internet_nl_mail_legacy_dmarc": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_dmarc_policy": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_dnssec_mx": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_domain_has_mx": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_ipv6_mailserver": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_ipv6_nameserver": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_mail_sending_domain": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_mail_server_reachable": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_mail_server_testable": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_spf": {
+			"explanation": "",
+			"title": "SPF"
+		},
+		"internet_nl_mail_legacy_spf_policy": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_start_tls": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_start_tls_ncsc": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_tls_1_3": {
+			"explanation": "",
+			"title": ""
 		},
 		"internet_nl_mail_rpki_exists": {
 			"explanation": "Das Internet besteht aus allen möglichen kleineren Netzen. Diese Netze können ad-hoc geschaffen werden, was bedeutet, dass jemand Böses dies tun könnte. Um zu verhindern, dass böswillige Akteure Teile des Internets übernehmen, wird ein Netz des Vertrauens und der Zertifizierung geschaffen. Dabei handelt es sich um ein bürokratisches Netz mit Organisationen, die von vertrauenswürdigen Parteien akkreditiert werden.",
@@ -854,6 +1021,9 @@
 			},
 			"title": "VERALTETER TEXT; TEST NICHT VERWENDET</p><p>X-XSS-Schutz"
 		},
+		"internet_nl_web_dnssec": {
+			"title": ""
+		},
 		"internet_nl_web_dnssec_exist": {
 			"explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, DNSSEC-signiert ist.</p><p>Wenn eine Domain auf eine andere Domain über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die CNAME-Domain signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Hinweis: Die Gültigkeit der Signatur ist nicht Teil dieses Subtests, sondern Teil des nächsten Subtests.",
 			"rating": {
@@ -1049,6 +1219,9 @@
 			},
 			"title": ""
 		},
+		"internet_nl_web_ipv6": {
+			"title": ""
+		},
 		"internet_nl_web_ipv6_ns_address": {
 			"explanation": "",
 			"rating": {
@@ -1091,6 +1264,52 @@
 				"notice_status_code": "Ihre Website auf IPv6 scheint die gleiche zu sein wie Ihre Website auf IPv4, aber der HTTP-Antwortcode liegt im Bereich 4xx oder 5xx. Dies kann auf ein Konfigurationsproblem hindeuten."
 			},
 			"title": "Dieselbe Website für IPv6 und IPv4"
+		},
+		"internet_nl_web_legacy_category": {
+			"title": ""
+		},
+		"internet_nl_web_legacy_category_ipv6": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_legacy_dane": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_legacy_dnssec": {
+			"explanation": "",
+			"title": "DNSSEC"
+		},
+		"internet_nl_web_legacy_hsts": {
+			"explanation": "",
+			"title": "HSTS"
+		},
+		"internet_nl_web_legacy_https_enforced": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_legacy_ipv6_nameserver": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_legacy_ipv6_webserver": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_legacy_tls_1_3": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_legacy_tls_available": {
+			"explanation": "",
+			"title": "TLS"
+		},
+		"internet_nl_web_legacy_tls_ncsc_web": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_rpki": {
+			"title": ""
 		},
 		"internet_nl_web_rpki_exists": {
 			"explanation": "Das Internet besteht aus allen möglichen kleineren Netzen. Diese Netze können ad-hoc geschaffen werden, was bedeutet, dass jemand Böses dies tun könnte. Um zu verhindern, dass böswillige Akteure Teile des Internets übernehmen, wird ein Netz des Vertrauens und der Zertifizierung geschaffen. Dabei handelt es sich um ein bürokratisches Netz mit Organisationen, die von vertrauenswürdigen Parteien akkreditiert werden.",
@@ -1539,6 +1758,19 @@
 			"procedure_title": "",
 			"support_description": "",
 			"support_title": ""
+		}
+	},
+	"test": {
+		"result": {
+			"percentage": {
+				"error_in_test": "",
+				"high": "",
+				"low": "",
+				"medium": "",
+				"not_applicable": "",
+				"not_testable": "",
+				"ok": ""
+			}
 		}
 	},
 	"tour": {

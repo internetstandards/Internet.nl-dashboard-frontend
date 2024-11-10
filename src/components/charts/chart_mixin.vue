@@ -203,7 +203,8 @@ export default {
               },
               title: {
                 display: true,
-                labelString: this.$i18n.t('yAxis_label')
+                // todo: fix this label over multiple components, probably by using less abstraction...
+                labelString: this.$i18n.t("yAxis_label")
               },
             }
           },

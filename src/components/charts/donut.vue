@@ -48,7 +48,7 @@ h3 {
     </template>
     <template v-else>
       <b-tabs content-class="mt-3" pills end>
-        <b-tab :title="$t('graph')" active v-if="elements.includes('donut')">
+        <b-tab :title='$t("chart.donut.graph")' active v-if="elements.includes('donut')">
           <donutChart
               :donut_data="data"
               :i18n="$i18n"
@@ -62,14 +62,12 @@ h3 {
           </donutChart>
         </b-tab>
 
-        <b-tab :title="$t('table')" v-if="elements.includes('table')">
+        <b-tab :title='$t("chart.donut.table")' v-if="elements.includes('table')">
           <b-table striped hover small :items="data_from_graph" :fields="table_fields">
-            <!-- <template #table-caption>{{ $t(title) }}</template>-->
             <template #cell(value)="data">
               {{ data.value }}%
             </template>
           </b-table>
-          <!-- <download-data :data="data_from_graph" :fields="table_fields"></download-data> -->
         </b-tab>
 
       </b-tabs>
@@ -126,8 +124,8 @@ export default {
       data_from_graph: [],
 
       table_fields: [
-        {key: 'measurement', label: this.$i18n.t("measurement"), sortable: true},
-        {key: 'value', label: this.$i18n.t("value"), sortable: true},
+        {key: 'measurement', label: this.$i18n.t("chart.donut.measurement"), sortable: true},
+        {key: 'value', label: this.$i18n.t("chart.donut.value"), sortable: true},
       ]
     }
   },
@@ -153,7 +151,7 @@ export default {
         let i = 0;
         series.data.forEach((row) => {
           data.push({
-            'measurement': this.$i18n.t(this.axis[i]),
+            'measurement': this.$i18n.t("chart.donut." + this.axis[i]),
             'value': row
           })
           i++;
@@ -164,23 +162,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "measurement": "Rating",
-    "value": "Percentage",
-    "graph": "Chart",
-    "table": "Table",
-    "score": "score",
-    "rest": "rest"
-  },
-  "nl": {
-    "measurement": "Waardering",
-    "value": "Percentage",
-    "graph": "Grafiek",
-    "table": "Tabel",
-    "score": "score",
-    "rest": "rest"
-  }
-}
-</i18n>

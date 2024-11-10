@@ -33,39 +33,39 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 <template>
     <div>
         <content-block>
-            <h1><b-icon icon="card-list" /> {{ $t("title") }}</h1>
-            <p>{{ $t("intro") }}</p>
+            <h1><b-icon icon="card-list" /> {{ $t("domain.list-manager.title") }}</h1>
+            <p>{{ $t("domain.list-manager.intro") }}</p>
             <p>
-                <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
+                <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</button>
                 &nbsp;
                 <router-link to="/domains/upload" custom v-slot="{ navigate }">
                   <button  @click="navigate" @keypress.enter="navigate">
-                  📓 {{ $t("bulk_upload_link") }}
+                  📓 {{ $t("domain.list-manager.bulk_upload_link") }}
                   </button>
                 </router-link>
             </p>
 
-            <collapse-panel :title='$t("icon_legend.title")'>
+            <collapse-panel :title='$t("domain.list-manager.icon_legend.title")'>
                 <div slot="content">
-                    <p>{{ $t("icon_legend.intro") }}</p>
+                    <p>{{ $t("domain.list-manager.icon_legend.intro") }}</p>
                     <ul>
                         <li>
-                            <span role="img" :aria-label="$t('icons.can_connect')">🌍️</span>
-                            {{ $t("icon_legend.can_connect") }}
+                            <span role="img" :aria-label='$t("domain.list-manager.icons.can_connect")'>🌍️</span>
+                            {{ $t("domain.list-manager.icon_legend.can_connect") }}
                         </li>
                         <li>
-                            <span role="img" :aria-label="$t('icons.unknown_connectivity')">❓</span>
-                            {{ $t("icon_legend.unknown_connectivity") }}
+                            <span role="img" :aria-label='$t("domain.list-manager.icons.unknown_connectivity")'>❓</span>
+                            {{ $t("domain.list-manager.icon_legend.unknown_connectivity") }}
                         </li>
-                        <li><span role="img" :aria-label="$t('icons.cannot_connect')">🚫</span>
-                            {{ $t("icon_legend.cannot_connect") }}
+                        <li><span role="img" :aria-label='$t("domain.list-manager.icons.cannot_connect")'>🚫</span>
+                            {{ $t("domain.list-manager.icon_legend.cannot_connect") }}
                         </li>
                     </ul>
                 </div>
             </collapse-panel>
 
             <b-modal id="show_add_new" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
-                <h3 slot="modal-title">📚 {{ $t("new_list.add_new_list") }}</h3>
+                <h3 slot="modal-title">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</h3>
 
                 <div slot="default">
                     <server-response :response="add_new_server_response"></server-response>
@@ -114,29 +114,29 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                       }}:</label><br>
                       <b-input-group class="mt-3">
                         <b-form-input id="default_public_share_code_for_new_reports" type="text" maxlength="120"
-                                      :placeholder="$t('urllist.empty_is_no_share_code')"
+                                      :placeholder='$t("urllist.empty_is_no_share_code")'
                                       v-model="add_new_new_list.default_public_share_code_for_new_reports">
 
                         </b-form-input>
                         <b-input-group-append>
                           <!-- better would be to btoa(String.fromCharCode.apply(null,self.crypto.getRandomValues(new Uint8Array(15)))).replaceAll('+','-').replaceAll('/','_') -->
-                          <b-button variant="outline-success" @click="add_new_new_list.default_public_share_code_for_new_reports = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);;">{{ $t('urllist.generate_code') }}</b-button>
+                          <b-button variant="outline-success" @click="add_new_new_list.default_public_share_code_for_new_reports = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);;">{{ $t("urllist.generate_code") }}</b-button>
                         </b-input-group-append>
                       </b-input-group>
                     <br>
 
                     <b-form-checkbox id="enable_report_sharing_page" v-model="add_new_new_list.enable_report_sharing_page">
                       {{ $t("urllist.enable_report_sharing_page") }}.
-                      <a :href="`/#/published/${$store.state.user.account_id}/`" target="_blank">{{$t('urllist.to_overview_page')}}</a>
+                      <a :href="`/#/published/${$store.state.user.account_id}/`" target="_blank">{{$t("urllist.to_overview_page")}}</a>
                     </b-form-checkbox>
 
                 </div>
                 <div slot="modal-footer">
                     <button class='altbutton' @click="$bvModal.hide('show_add_new')">
-                        {{ $t("new_list.button_close_label") }}
+                        {{ $t("domain.list-manager.new_list.button_close_label") }}
                     </button> &nbsp;
                     <button class="defaultbutton modal-default-button" @click="create_list()">
-                        {{ $t("new_list.button_create_list_label") }}
+                        {{ $t("domain.list-manager.new_list.button_create_list_label") }}
                     </button>
                 </div>
             </b-modal>
@@ -147,7 +147,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 
         <content-block v-if="one_of_the_lists_contains_warnings" class="managed-url-list">
             <span class="list_warning">
-                <span role="img" :aria-label="$t('icons.list_warning')">⚠️</span> {{ $t("warning_found_in_list") }}
+                <span role="img" :aria-label='$t("domain.list-manager.icons.list_warning")'>⚠️</span> {{ $t("domain.list-manager.warning_found_in_list") }}
             </span>
         </content-block>
 
@@ -162,19 +162,19 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
         -->
         <url-list
             :initial_list="list"
-            :start_opened="list.start_opened ? true : false"
+            :start_opened="!!list.start_opened"
             :maximum_domains="maximum_domains_per_list"
             :key="list.id"
             v-on:removelist="removelist"
             v-for="list in lists" />
 
         <content-block v-if="!lists.length" class="no-content">
-            {{ $t("inital_list.start") }} <br>
-            <button class="border-success m-4" size="" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("new_list.add_new_list") }}</button>
+            {{ $t("domain.list-manager.inital_list.start") }} <br>
+            <button class="border-success m-4" size="" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</button>
             <br>
             <br>
             <p>
-                <router-link to="/domains/upload">{{ $t('inital_list.alternative_start') }}</router-link>
+                <router-link to="/domains/upload">{{ $t("domain.list-manager.inital_list.alternative_start") }}</router-link>
             </p>
         </content-block>
 
@@ -283,61 +283,3 @@ export default {
     }
 }
 </script>
-<i18n>
-{
-    "en": {
-        "title": "Domains",
-        "intro": "Manage lists with domains",
-        "bulk_upload_link": "Upload spreadsheet with domains",
-        "warning_found_in_list": "One or more lists contain issues, this will prevent scans from running.",
-        "icons": {
-            "list_closed": "List closed",
-            "list_opened": "List opened",
-            "settings": "settings",
-            "scan": "scan",
-            "can_connect": "Can connect icon",
-            "unknown_connectivity": "Unknown connectivity icon",
-            "cannot_connect": "Can not connect",
-            "list_warning": "Warning"
-        },
-        "icon_legend": {
-            "title": "Legend of used icons",
-            "intro": "The domains in the lists below will be included in each scan. Before a scan is performed, the eligibility of the service is checked. This check is always performed for the scan. To give an insight in how connected these services are, the last known state is presented as the first icon.",
-            "can_connect": "Can connect to this service, will (probably) be scanned.",
-            "unknown_connectivity": "Unknown if this service is available, will be scanned if available.",
-            "cannot_connect": "Service not available, will (probably) not be scanned."
-        },
-        "inital_list": {
-            "start": "Start creating a new list...",
-            "alternative_start": "or upload a spreadsheet with domains here..."
-        },
-        "new_list": {
-            "add_new_list": "Add new list",
-            "button_close_label": "Close",
-            "button_create_list_label": "Create List"
-        }
-    },
-    "nl": {
-        "title": "Domeinen",
-        "intro": "Beheer lijsten met domeinen",
-        "bulk_upload_link": "Spreadsheet met domeinen uploaden",
-        "warning_found_in_list": "Eén of meerdere lijsten bevatten waarschuwingen. Deze lijsten worden niet gescand.",
-        "icon_legend": {
-            "title": "Legenda van gebruikte pictogrammen",
-            "intro": "De domeinen in de lijsten hieronder worden gebruikt bij iedere scan. Voordat een scan is uitgevoerd wordt per domein gekeken of het domein aan de voorwaarden voldoet om gescand te worden. In de lijst hieronder wordt daarvan een beeld gegeven, echter kan dat beeld verouderd zijn: dit wordt ververst voor iedere scan.",
-            "can_connect": "Deze dienst is bereikbaar en wordt (waarschijnlijk) gescanned.",
-            "unknown_connectivity": "Niet bekend of deze dienst beschikbaar is, dit wordt later gecontroleerd.",
-            "cannot_connect": "Deze dienst is niet beschikbaar, en wordt (waarschijnlijk) niet gescand."
-        },
-        "inital_list": {
-            "start": "Maak een nieuwe lijst, voeg aan die lijst je domeinen toe...",
-            "alternative_start": "of upload hier een spreadsheet met domeinen..."
-        },
-        "new_list": {
-            "add_new_list": "Lijst toevoegen",
-            "button_close_label": "Sluiten",
-            "button_create_list_label": "Maak deze lijst"
-        }
-    }
-}
-</i18n>

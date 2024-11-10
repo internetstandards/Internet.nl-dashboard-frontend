@@ -2,10 +2,10 @@
   <b-table :items="items" :fields="fields" fixed responsive striped >
     <template #cell(url)="data">
       {{ data.item.url }}<br>
-      {{$t('score_from')}} <a :href="data.item.old.report" target="_blank">{{ data.item.old.score }}%</a> {{$t('score_to')}} <a
+      {{$t("score_from")}} <a :href="data.item.old.report" target="_blank">{{ data.item.old.score }}%</a> {{$t("score_to")}} <a
         :href="data.item.new.report" target="_blank">{{ data.item.new.score }}%</a><br>
 
-      {{$t('metrics')}}
+      {{$t("metrics")}}
       <img src="/static_frontend/images/report_comparison_improved.png"> {{ data.item.changes.improvement }} &nbsp;
       <img src="/static_frontend/images/report_comparison_regressed.png"> {{ data.item.changes.regression }} &nbsp;
       • {{ data.item.changes.neutral }}<br>

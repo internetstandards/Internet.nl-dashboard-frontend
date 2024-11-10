@@ -32,7 +32,7 @@
     <template #cell(urllist__name)="data">
       <a :href="`#/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow">
        <scan-type-icon :type="data.item.report_type" /> {{data.value}} ({{data.item.report_type}})<br />
-        {{$t('Contains')}} {{data.item.total_urls}} {{$t('domains')}} <b-icon icon="box-arrow-in-up-right"></b-icon>
+        {{$t("Contains")}} {{data.item.total_urls}} {{$t("domains")}} <b-icon icon="box-arrow-in-up-right"></b-icon>
       </a>
       <b-badge variant="danger" class="ml-2" v-if="data.has_public_share_code">
         <b-icon icon="lock"></b-icon> Requires password
@@ -75,9 +75,9 @@ export default {
       fields: [
         // tdClass: 'col-3', makes all cells 100% width which does not work in safari, therefore tdStyle is used as
         // a workaround
-        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'),  tdStyle: "width: 25%;"},
-        {key: "urllist__name", sortable: true, label: this.$t('Name'),  tdStyle: "width: 50%"},
-        {key: "at_when", sortable: true, label: this.$t('Published'), tdStyle: "width: 25%"},
+        {key: "average_internet_nl_score", sortable: true, label: this.$t("Score"),  tdStyle: "width: 25%;"},
+        {key: "urllist__name", sortable: true, label: this.$t("Name"),  tdStyle: "width: 50%"},
+        {key: "at_when", sortable: true, label: this.$t("Published"), tdStyle: "width: 25%"},
       ]
     }
   },

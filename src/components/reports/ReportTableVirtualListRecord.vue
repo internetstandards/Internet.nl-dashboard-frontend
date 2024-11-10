@@ -6,7 +6,7 @@
       </td>
       <td><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
       <td colspan="200">
-        <small>{{ $t('not_eligeble_for_scanning') }}</small>
+        <small>{{ $t("not_eligeble_for_scanning") }}</small>
       </td>
     </template>
     <template v-else>
@@ -22,7 +22,7 @@
             <img :src='`/static_frontend/images/report_comparison_${score_comparison(source)}.png`'
                  v-if="score_comparison(source)" />
           </span>
-          <span class="visuallyhidden"> {{ $t('link_to_report', {'url': source.url}) }}</span>
+          <span class="visuallyhidden"> {{ $t("link_to_report", {'url': source.url}) }}</span>
         </a>
       </td>
       <td class="px-225"><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
@@ -287,11 +287,11 @@ export default {
 
       let data = `${url.url}<br>
           ${this.$t(category_name)}:
-          ${this.$t('results.' + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
-          ${this.$t('since')}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
+          ${this.$t("results." + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
+          ${this.$t("since")}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
 
       if (displayed_evidence) {
-        data += `<br>${this.$t('evidence')}:<br> <pre>${displayed_evidence}</pre>`
+        data += `<br>${this.$t("evidence")}:<br> <pre>${displayed_evidence}</pre>`
       }
       return data;
     },

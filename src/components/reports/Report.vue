@@ -20,7 +20,7 @@
           <content-block class="do-not-print">
           <b-container>
             <report-download :report="report" v-for="report in shallow_reports" :key="`d${report.id}`" class="mb-2"></report-download>
-            <small>{{$t('patience')}}</small>
+            <small>{{$t("patience")}}</small>
             </b-container>
             </content-block>
 
@@ -36,7 +36,7 @@
 
       <b-tabs variant="info" nav-class="">
 
-        <b-tab  :title="$t('tab_metrics')" lazy>
+        <b-tab  :title='$t("tab_metrics")' lazy>
 
 
           <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
@@ -70,10 +70,10 @@
         </b-tab>
 
 
-        <b-tab :title="$t('tab_graphs')" lazy>
+        <b-tab :title='$t("tab_graphs")' lazy>
           <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
         </b-tab>
-        <b-tab :title="$t('tab_changes')" lazy>
+        <b-tab :title='$t("tab_changes")' lazy>
           <ReportImprovementAndRegressions :report_id="reports[0].id"/>
         </b-tab>
 

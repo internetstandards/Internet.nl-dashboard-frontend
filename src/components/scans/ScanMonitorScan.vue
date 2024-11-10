@@ -58,7 +58,7 @@ ol {
         <template v-if="progress_bar_data(scan.log[0]['state']).state === 'error'">
             <b-progress :value="100" variant="danger">
                 <b-progress-bar :value="100">
-                    <span>{{ $t('scanmonitor.scan.progress.' + scan.log[0]['state']) }}</span>
+                    <span>{{ $t("scanmonitor.scan.progress." + scan.log[0]['state']) }}</span>
                 </b-progress-bar>
             </b-progress>
         </template>
@@ -86,7 +86,7 @@ ol {
         <br>
         <template v-if="!['finished', 'cancelled'].includes(scan.state)">
             <b>{{ $t("scanmonitor.scan.message") }}</b>
-            <p>{{ $t('scanmonitor.scan.progress.' + scan.state) }}</p>
+            <p>{{ $t("scanmonitor.scan.progress." + scan.state) }}</p>
             <b>{{ $t("scanmonitor.scan.last_check") }}</b><br>
             <span :title="scan.last_check">{{
                     humanize_date(scan.last_check)
@@ -107,7 +107,7 @@ ol {
             <div slot="content">
                 <ol class="small" reversed>
                     <li v-for="log_item in scan.log" :key="log_item.id">
-                        {{ $t('scanmonitor.scan.progress.' + log_item.state) }},
+                        {{ $t("scanmonitor.scan.progress." + log_item.state) }},
                         {{ humanize_relative_date(log_item.at_when) }}
                     </li>
                 </ol>

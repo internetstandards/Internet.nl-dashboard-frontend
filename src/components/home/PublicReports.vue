@@ -5,8 +5,8 @@
 <template>
   <div v-if="reports.length > 0">
     <content-block>
-      <h3>{{ $t('Public reports') }}</h3>
-      <p>{{ $t('introduction') }}</p>
+      <h3>{{ $t("Public reports") }}</h3>
+      <p>{{ $t("introduction") }}</p>
       <PublicReportsTable :reports="reports"/>
     </content-block>
   </div>

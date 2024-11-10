@@ -2,7 +2,7 @@
 <template>
       <div>
         <loading :loading="loading"></loading>
-        <server-response :response="server_response" :message="$t('account.notifications.' + server_response.message)"></server-response>
+        <server-response :response="server_response" :message='$t("account.notifications." + server_response.message)'></server-response>
 
         <label class='ad_hoc_label' for="mail_send_mail_after_scan_finished">
           {{ $t("account.notifications.mail_send_mail_after_scan_finished") }}
@@ -13,7 +13,7 @@
             name="checkbox-1"
             :value="true"
             :unchecked-value="false"
-            switch>{{ $t(`check_${user.mail_send_mail_after_scan_finished}`) }}
+            switch>{{ $t("check_" + user.mail_send_mail_after_scan_finished) }}
         </b-form-checkbox>
         <br>
 
@@ -24,12 +24,12 @@
 
         <label class='ad_hoc_label' for="first_name">{{ $t("account.notifications.first_name") }}:</label>
         <b-form-input id="first_name" type="text" maxlength="120" v-model="user.first_name"
-                      :placeholder="$t('account.notifications.first_name')"></b-form-input>
+                      :placeholder='$t("account.notifications.first_name")'></b-form-input>
 
 
         <label class='ad_hoc_label' for="last_name">{{ $t("account.notifications.last_name") }}:</label>
         <b-form-input id="last_name" type="text" maxlength="120" v-model="user.last_name"
-                      :placeholder="$t('account.notifications.last_name')"></b-form-input>
+                      :placeholder='$t("account.notifications.last_name")'></b-form-input>
 
 
         <label class='ad_hoc_label' for="mail_preferred_language">{{ $t("account.notifications.mail_preferred_language") }}</label>

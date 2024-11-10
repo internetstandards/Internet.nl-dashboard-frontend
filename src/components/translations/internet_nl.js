@@ -643,7 +643,7 @@ export default {
             results_empty_argument_alt_text: 'Geen',
             results_explanation_label: 'Testuitleg:',
             results_further_testing_connection_label: 'Aanvullende verbindingstesten',
-            results_further_testing_mail_label: 'Aanvullende e-mailtesten',
+            results_further_testing_mail_label: 'Aanvulresults_mail_auth_dmarclende e-mailtesten',
             results_further_testing_web_label: 'Aanvullende websitetesten',
             results_mail_auth_dkim_label: 'DKIM',
             results_mail_auth_dmarc_label: 'DMARC',

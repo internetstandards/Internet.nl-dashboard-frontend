@@ -17,16 +17,16 @@
         <format-scan-eligibility :scan_type="list.scan_type" :url="url" />
         &nbsp;
         <button v-if="!is_edited" class="inline-edit"
-                :title="$t('start_editing_url', [edited_url_value])"
+                :title='$t("start_editing_url", [edited_url_value])'
                 @click="start_url_editing()" aria-expanded="false">
             🖊
-            <span class="visuallyhidden">{{ $t('start_editing_url', [edited_url_value]) }}</span>
+            <span class="visuallyhidden">{{ $t("start_editing_url", [edited_url_value]) }}</span>
         </button>
         <button v-if="is_edited" class="inline-edit"
-                :title="$t('cancel_editing_url', [edited_url_value])"
+                :title='$t("cancel_editing_url", [edited_url_value])'
                 @click="cancel_edit_url()" aria-expanded="true">
             🖊
-            <span class="visuallyhidden">{{ $t('cancel_editing_url', [edited_url_value]) }}</span>
+            <span class="visuallyhidden">{{ $t("cancel_editing_url", [edited_url_value]) }}</span>
         </button>
         &nbsp;
         <template v-if="displayed_url.subdomain">
@@ -44,17 +44,17 @@
 
         <span class="inline-edit" v-if="is_edited">
             <input autofocus :placeholder="edited_url_value" v-model="edited_url_value">&nbsp;
-            <button @click="save_edit_url()" :title="$t('save_edited_url', [edited_url_value])">
+            <button @click="save_edit_url()" :title='$t("save_edited_url", [edited_url_value])'>
                 {{ $t("button_labels.save") }}
-                <span class="visuallyhidden">{{ $t('save_edited_url', [edited_url_value]) }}</span>
+                <span class="visuallyhidden">{{ $t("save_edited_url", [edited_url_value]) }}</span>
             </button>&nbsp;
-            <button @click="cancel_edit_url()" :title="$t('cancel_editing_url', [edited_url_value])">
+            <button @click="cancel_edit_url()" :title='$t("cancel_editing_url", [edited_url_value])'>
                 {{ $t("button_labels.cancel") }}
-                <span class="visuallyhidden">{{ $t('cancel_editing_url', [edited_url_value]) }}</span>
+                <span class="visuallyhidden">{{ $t("cancel_editing_url", [edited_url_value]) }}</span>
             </button>&nbsp;
-            <button @click="remove_edit_url(list.id, url.id)" :title="$t('delete_edited_url', [edited_url_value])">
+            <button @click="remove_edit_url(list.id, url.id)" :title='$t("delete_edited_url", [edited_url_value])'>
                 {{ $t("button_labels.remove") }}
-                <span class="visuallyhidden">{{ $t('delete_edited_url', [edited_url_value]) }}</span>
+                <span class="visuallyhidden">{{ $t("delete_edited_url", [edited_url_value]) }}</span>
             </button>
         </span>
 

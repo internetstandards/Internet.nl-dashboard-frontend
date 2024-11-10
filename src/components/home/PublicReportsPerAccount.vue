@@ -5,26 +5,26 @@
 <template>
   <div v-if="reportsets.length > 0">
     <content-block>
-      <h1>{{ $t('Recently published reports') }}</h1>
+      <h1>{{ $t("Recently published reports") }}</h1>
     </content-block>
     <div v-for="reportset in reportsets" :key="reportset.list.id">
       <content-block v-if="reportset.reports.length">
         <h4>{{ reportset.list.name }}</h4>
         <p style="float: right">
-          <key-value-badge :k="$t('scan_frequency')" :v="$t(reportset.list.automated_scan_frequency)" v-if="reportset.list.automatically_share_new_reports" />
+          <key-value-badge :k='$t("scan_frequency")' :v="$t(reportset.list.automated_scan_frequency)" v-if="reportset.list.automatically_share_new_reports" />
 
-          <key-value-badge :k="$t('scan_type')" :v="$t(reportset.list.scan_type)" />
+          <key-value-badge :k='$t("scan_type")' :v="$t(reportset.list.scan_type)" />
         </p>
         <template v-if="reportset.list.scan_type === 'all'">
           <button class="mb-2 mr-2 darklink">
-            <router-link :to="`/latest/${reportset.list.id}/mail/`">{{ $t('View latest mail report') }}</router-link>
+            <router-link :to="`/latest/${reportset.list.id}/mail/`">{{ $t("View latest mail report") }}</router-link>
           </button>
           <button class="mb-2 darklink">
-            <router-link :to="`/latest/${reportset.list.id}/web/`">{{ $t('View latest web report') }}</router-link>
+            <router-link :to="`/latest/${reportset.list.id}/web/`">{{ $t("View latest web report") }}</router-link>
           </button>
         </template>
         <button class="mb-2 darklink" v-if="reportset.list.scan_type === 'web' || reportset.list.scan_type === 'mail'">
-          <router-link :to="`/latest/${reportset.list.id}/`">{{ $t('View latest report') }}</router-link>
+          <router-link :to="`/latest/${reportset.list.id}/`">{{ $t("View latest report") }}</router-link>
         </button>
         <PublicReportsTable :reports="reportset.reports"/>
       </content-block>

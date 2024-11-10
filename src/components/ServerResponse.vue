@@ -11,20 +11,20 @@ p {
 <template>
     <div>
         <b-alert :show="show || force_show" variant="danger" v-if="response.error" dismissible fade>
-            <h2>❌ {{ $t('app.server-response.error') }}</h2>
+            <h2>❌ {{ $t("app.server-response.error") }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
-          <span><small>{{ $t('app.server-response.at') }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago">  ({{ time_ago }})</span>.</small></span>
+          <span><small>{{ $t("app.server-response.at") }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago">  ({{ time_ago }})</span>.</small></span>
         </b-alert>
         <b-alert :show="show || force_show" variant="success" v-if="response.success" dismissible fade>
-            <h2>✅ {{ $t('app.server-response.success') }}</h2>
+            <h2>✅ {{ $t("app.server-response.success") }}</h2>
             <p role="alert">
                 <span v-if="!message">{{ response.message }}</span>
                 <span v-if="message">{{ message }}</span>
             </p>
-            <span><small>{{ $t('app.server-response.at') }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago"> ({{ time_ago }})</span>.</small></span>
+            <span><small>{{ $t("app.server-response.at") }} {{ humanize_date(response.timestamp) }}<span v-if="time_ago"> ({{ time_ago }})</span>.</small></span>
         </b-alert>
     </div>
 </template>
@@ -67,7 +67,7 @@ export default {
 
             // a new response is made. Let's add a toast message.
             this.$bvToast.toast(this.message ? this.message : this.response.message, {
-                title: this.response.error ? `❌ ${this.$i18n.t('error')}` : `✅ ${this.$i18n.t('success')}`,
+                title: this.response.error ? `❌ ${this.$i18n.t("error")}` : `✅ ${this.$i18n.t("success")}`,
                 autoHideDelay: 5000,
                 variant: this.response.error ? 'danger' : 'success',
                 solid: true,

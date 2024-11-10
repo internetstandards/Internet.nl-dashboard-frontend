@@ -14,14 +14,14 @@
 <template>
   <div v-if="available_tags.length > 0">
 
-    <small>{{ $t('tag_explanation' )}}</small>
+    <small>{{ $t("tag_explanation" )}}</small>
 
     <loading :loading="loading"/>
 
     <b-input-group class="mb-2">
 
       <v-select :options="available_tags" v-model="selected_tags" multiple taggable class="w-75"
-                :placeholder="$t('filter_by_tag')">
+                :placeholder='$t("filter_by_tag")'>
         <template v-slot:option="option">
           <tag :value="option.label"/>
         </template>

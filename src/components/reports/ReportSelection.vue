@@ -45,7 +45,7 @@
     <b-input-group>
     <v-select
         v-model="selected_reports"
-        :placeholder="$t('select_report')"
+        :placeholder='$t("select_report")'
         :options="filtered_recent_reports"
         label="label"
         :spinner="loading"
@@ -53,7 +53,7 @@
         :multiple="true"
         :selectable="() => selected_reports.length < 6"
     >
-      <slot name="no-options">{{ $t('no_options') }}</slot>
+      <slot name="no-options">{{ $t("no_options") }}</slot>
       <template v-slot:option="option">
         <div class="rowline d-block">
           <div class="d-inline-block col-1">{{ option.id }}</div>

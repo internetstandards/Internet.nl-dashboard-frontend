@@ -31,7 +31,7 @@ img.scaled {
         <b-icon icon="info-circle"/>
         {{ $t("tour.title") }}
       </h1>
-      <p v-html="$t('tour.introduction')"></p>
+      <p v-html='$t("tour.introduction")'></p>
       <p v-html='$t("tour.contact_information")'></p>
     </content-block>
 

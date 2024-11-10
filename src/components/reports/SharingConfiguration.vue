@@ -10,7 +10,7 @@
               <p>
 
                 <b-form-group
-                    :label="$t('shared_at_url')"
+                    :label='$t("shared_at_url")'
                     label-for="share-code"
                     class="mb-0"
                 >
@@ -29,7 +29,7 @@
                       <b-input-group-text>
                         <router-link :to="{ name: 'shared_report', params: { report: report['public_report_code']}}"
                                      target="_blank">
-                          {{ $t('open') }}
+                          {{ $t("open") }}
                         </router-link>
                       </b-input-group-text>
                     </template>
@@ -52,9 +52,9 @@
 
               <p>
                 <b-form-group
-                    :label="$t('configure_password')"
+                    :label='$t("configure_password")'
                     label-for="share-code"
-                    :description="$t('password_description')"
+                    :description='$t("password_description")'
                     class="mb-0"
                 >
                   <b-form-input
@@ -90,9 +90,9 @@
 
 
               <b-form-group
-                  :label="$t('configure_password')"
+                  :label='$t("configure_password")'
                   label-for="share-code"
-                  :description="$t('password_description')"
+                  :description='$t("password_description")'
                   class=""
               >
                 <b-form-input

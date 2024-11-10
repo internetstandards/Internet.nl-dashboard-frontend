@@ -3,11 +3,11 @@
     <div>
         <content-block>
 
-            <h1><b-icon icon="graph-up" /> {{ $t("title") }}</h1>
-            <p>{{ $t("intro") }}</p>
-            <p>{{ $t("annotations") }}:</p>
+            <h1><b-icon icon="graph-up" /> {{ $t("admin.usage.title") }}</h1>
+            <p>{{ $t("admin.usage.intro") }}</p>
+            <p>{{ $t("admin.usage.annotations") }}:</p>
             <ol>
-                <li>{{ $t('annotation_metrics') }}
+                <li>{{ $t("admin.usage.annotation_metrics") }}
                 </li>
             </ol>
             <loading :loading="loading"/>
@@ -103,19 +103,3 @@ export default {
     }
 }
 </script>
-<i18n>
-{
-    "en": {
-        "title": "Usage statistics",
-        "intro": "A quick insights in usage of the dashboard.",
-        "annotations": "Annotations",
-        "annotation_metrics": "Scan metrics and domains collected are deduplicated in the database: this means that a new list with the same urls will re-use data. The more domains in the system, the fewer new domains and scan metrics. For example: the domain 'internet.nl' is only once in the database, even if 100 people use it."
-    },
-    "nl": {
-        "title": "Gebruiksstatistieken",
-        "intro": "Snel inzicht in gebruik van het dashboard.",
-        "annotations": "Opmerkingen",
-        "annotation_metrics": "Scan cijfers en domeinen worden als uniek opgeslagen in de database. Dat betekent dat het aantal nieuwe domeinen en metingen minder snel toeneemt over tijd. Zo staat het domein 'internet.nl' maar 1x in de database, ookal wordt het door 100 gebruikers gemeten in een lijst."
-    }
-}
-</i18n>

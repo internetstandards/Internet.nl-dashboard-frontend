@@ -17,7 +17,7 @@
                 {{ humanize_duration(scan.runtime) }}<br>
                 <br>
                 <b>{{ $t("scanmonitor.stop_form.message") }}</b>
-                <p>{{ $t('scanmonitor.stop_form.progress.' + scan.state) }}</p>
+                <p>{{ $t("scanmonitor.stop_form.progress." + scan.state) }}</p>
                 <b>{{ $t("scanmonitor.stop_form.last_check") }}</b><br>
                 <span :title="scan.last_check">
                 {{ humanize_date(scan.last_check) }},<br>

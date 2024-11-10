@@ -19,25 +19,25 @@
     <content-block v-if="false">
       <h1>{{ $t("app.login.title") }}</h1>
       <p>{{ $t("app.login.intro") }}</p>
-      <server-response :response="server_response" :message="$t('app.login.' + server_response.message)"></server-response>
+      <server-response :response="server_response" :message='$t("app.login." + server_response.message)'></server-response>
 
       <div v-if="!user.is_authenticated">
         <p>
-          {{ $t('app.login.not_logged_in') }}<br>
+          {{ $t("app.login.not_logged_in") }}<br>
           <span class="subtext">
-            {{ $t('app.login.secondfactor_message') }}: <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
+            {{ $t("app.login.secondfactor_message") }}: <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
           </span>
         </p>
 
         <form v-on:submit.prevent="login">
           <label class='username' for="username">{{ $t("app.login.username") }}</label>
           <b-form-input id="username" type="text" maxlength="120" v-model="username"
-                        :placeholder="$t('app.login.username')"></b-form-input>
+                        :placeholder='$t("app.login.username")'></b-form-input>
           <br>
 
           <label class='password' for="password">{{ $t("app.login.password") }}</label>
           <b-form-input id="password" type="password" maxlength="120" v-model="password"
-                        :placeholder="$t('app.login.password')"></b-form-input>
+                        :placeholder='$t("app.login.password")'></b-form-input>
 
           <br>
           <button id="login" type="submit">{{ $t("app.login.login") }}</button>
@@ -45,7 +45,7 @@
 
       </div>
       <div v-else>
-        {{ $t('app.login.logged_in') }}
+        {{ $t("app.login.logged_in") }}
       </div>
     </content-block>
 

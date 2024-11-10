@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
-    <canvas ref="canvas" role="img" class="graph-image" :aria-label="title">
-      <p>{{ $t("accessibility_text") }}</p>
+    <canvas ref="canvas" role="img" class="graph-image" :aria-label='$t("chart.percentage-bar-chart.title")'>
+      <p>{{ $t("chart.percentage-bar-chart.accessibility_text") }}</p>
     </canvas>
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
           this.axis.forEach((ax) => {
             if (ax in data) {
               if (!this.only_show_dynamic_average) {
-                labels.push([this.$i18n.t(ax), this.field_name_to_category_names[ax] ? this.field_name_to_category_names[ax] : ""]);
+                labels.push([this.$i18n.t("chart.percentage-bar-chart." + ax), this.field_name_to_category_names[ax] ? this.field_name_to_category_names[ax] : ""]);
                 axis_names.push(ax);
                 chartdata.push(data[ax][shown_value]);
               }
@@ -71,7 +71,7 @@ export default {
             } else {
               chartdata.push(Math.round((average / this.axis.length) * 100) / 100);
             }
-            labels.push(this.$i18n.t('average'));
+            labels.push(this.$i18n.t("chart.percentage-bar-chart.average"));
             axis_names.push("Average");
           }
 
@@ -85,7 +85,7 @@ export default {
             borderWidth: 0,
             lineTension: 0,
             hidden: shown_value === "pct_high",
-            label: this.chart_data.length > 1 ? `#${this.chart_data[i].id}: ${this.$i18n.t(shown_value)}` : `${this.$i18n.t(shown_value)}`,
+            label: this.chart_data.length > 1 ? `#${this.chart_data[i].id}: ${this.$i18n.t("chart.percentage-bar-chart." + shown_value)}` : `${this.$i18n.t("chart.percentage-bar-chart." + shown_value)}`,
             // ${this.chart_data[i].calculation.name} ${moment(this.chart_data[i].at_when).format('LL')} n=${this.chart_data[i].total_urls}
           });
         });
@@ -110,21 +110,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "title_single": "Average adoption of standards, %{list_information}, %{number_of_domains} domains.",
-    "title_multiple": "Comparison of adoption of standards between %{number_of_reports} reports.",
-    "yAxis_label": "Adoption",
-    "average": "Average",
-    "accessibility_text": "A table with the content of this graph is shown below."
-  },
-  "nl": {
-    "title_single": "Adoptie van standaarden, %{list_information}, %{number_of_domains} domeinen.",
-    "title_multiple": "Vergelijking adoptie van standaarden tussen %{number_of_reports} rapporten.",
-    "yAxis_label": "Adoptiegraad",
-    "average": "Gemiddeld",
-    "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
-  }
-}
-</i18n>

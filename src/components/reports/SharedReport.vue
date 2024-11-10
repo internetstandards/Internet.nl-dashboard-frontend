@@ -12,9 +12,9 @@
     </content-block>
 
     <content-block v-if="reports.length === 0 && reports_to_load === 0">
-      <h2>{{$t('not_found.title')}}</h2>
+      <h2>{{$t("not_found.title")}}</h2>
       <b-alert variant="danger" show >
-        {{$t('not_found.content')}}
+        {{$t("not_found.content")}}
       </b-alert>
     </content-block>
 

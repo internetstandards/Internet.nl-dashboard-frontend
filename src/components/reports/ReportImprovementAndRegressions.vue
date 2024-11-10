@@ -1,29 +1,29 @@
 <template>
   <content-block>
-    <h2>{{ $t('title') }}</h2>
+    <h2>{{ $t("title") }}</h2>
     <div v-if="!comparison.previous_report_available">
       <loading :loading="loading"/>
-      {{ $t('no_changes') }}
+      {{ $t("no_changes") }}
     </div>
     <div v-else>
       <loading :loading="loading"/>
-      <p>{{ $t('days_ago', [comparison.days_between_current_and_previous_report]) }}</p>
+      <p>{{ $t("days_ago", [comparison.days_between_current_and_previous_report]) }}</p>
 
       <ul>
         <li><img src="/static_frontend/images/report_comparison_improved.png"> {{ comparison.improvement }}
-          {{ $t('improvement') }}
+          {{ $t("improvement") }}
         </li>
         <li><img src="/static_frontend/images/report_comparison_regressed.png"> {{ comparison.regression }}
-          {{ $t('regression') }}
+          {{ $t("regression") }}
         </li>
-        <li>• {{ comparison.neutral }} {{ $t('neutral') }}</li>
+        <li>• {{ comparison.neutral }} {{ $t("neutral") }}</li>
       </ul>
 
       <div v-if="comparison.domains_exclusive_in_current_report.length">
-        <b>{{ $t('domains_exclusive_current') }}</b>: {{ comparison.domains_exclusive_in_current_report.join(", ") }}
+        <b>{{ $t("domains_exclusive_current") }}</b>: {{ comparison.domains_exclusive_in_current_report.join(", ") }}
       </div>
       <div v-if="comparison.domains_exclusive_in_other_report.length">
-        <b>{{ $t('domain_exclusive_other') }}</b>: {{ comparison.domains_exclusive_in_other_report.join(", ") }}
+        <b>{{ $t("domain_exclusive_other") }}</b>: {{ comparison.domains_exclusive_in_other_report.join(", ") }}
       </div>
 
       <!-- <ReportImprovementAndRegressionsTable :items="sample_data" /> -->
@@ -32,20 +32,20 @@
         v-if="comparison.comparison_table_improvement.length > 0 || comparison.comparison_table_regression.length > 0">
         <b-tab title="Domeinen met verbeteringen" v-if="comparison.comparison_table_improvement.length > 0">
           <template #title>
-            <img src="/static_frontend/images/report_comparison_improved.png"> {{$t('domains_with_improvements')}}
+            <img src="/static_frontend/images/report_comparison_improved.png"> {{$t("domains_with_improvements")}}
           </template>
           <ReportImprovementAndRegressionsTable :items="comparison.comparison_table_improvement" />
         </b-tab>
         <b-tab title="Domeinen met verslechteringen" v-if="comparison.comparison_table_regression.length > 0">
           <template #title>
-            <img src="/static_frontend/images/report_comparison_regressed.png"> {{$t('domains_with_regressions')}}
+            <img src="/static_frontend/images/report_comparison_regressed.png"> {{$t("domains_with_regressions")}}
           </template>
           <ReportImprovementAndRegressionsTable :items="comparison.comparison_table_regression" />
         </b-tab>
         <!-- Some simple test data: -->
         <!-- <b-tab title="Domeinen met verslechteringen">
           <template #title>
-            <img src="/static_frontend/images/report_comparison_regressed.png"> {{$t('domains_with_regressions')}}
+            <img src="/static_frontend/images/report_comparison_regressed.png"> {{$t("domains_with_regressions")}}
           </template>
           <ReportImprovementAndRegressionsTable :items="sample_data" />
         </b-tab>-->

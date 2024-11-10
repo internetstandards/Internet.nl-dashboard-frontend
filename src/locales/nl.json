@@ -161,8 +161,14 @@
 			"gotomainmenu": "Skip naar menu"
 		}
 	},
-	"charts": {
-		"components/charts/donut.vue": {
+	"chart": {
+		"cumulative-percentage-bar-chart": {
+			"accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond.",
+			"average": "Gemiddeld",
+			"title": "Gemiddelde adoptie van standaarden van %{number_of_reports} rapporten.",
+			"yAxis_label": "Adoptiegraad"
+		},
+		"donut": {
 			"graph": "Grafiek",
 			"measurement": "Waardering",
 			"rest": "rest",
@@ -170,20 +176,14 @@
 			"table": "Tabel",
 			"value": "Percentage"
 		},
-		"components/charts/render-cumulative-percentage-bar-chart.vue": {
-			"accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond.",
-			"average": "Gemiddeld",
-			"title": "Gemiddelde adoptie van standaarden van %{number_of_reports} rapporten.",
-			"yAxis_label": "Adoptiegraad"
-		},
-		"components/charts/render-percentage-bar-chart.vue": {
+		"percentage-bar-chart": {
 			"accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond.",
 			"average": "Gemiddeld",
 			"title_multiple": "Vergelijking adoptie van standaarden tussen %{number_of_reports} rapporten.",
 			"title_single": "Adoptie van standaarden, %{list_information}, %{number_of_domains} domeinen.",
 			"yAxis_label": "Adoptiegraad"
 		},
-		"components/charts/timeline.vue": {
+		"timeline": {
 			"accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond.",
 			"average_internet_nl_score": "Gemiddelde internet.nl score",
 			"graph": "Grafiek",
@@ -196,8 +196,27 @@
 			"y_axis_label": "Gemiddelde internet.nl score"
 		}
 	},
-	"domains": {
-		"components/domains/domain/edit.vue": {
+	"domain": {
+		"discover-subdomains": {
+			"add_domains_valid_urls_added": "Nieuwe domeinen zijn verwerkt, zie het statusoverzicht voor details.",
+			"add_subdomains_button": "Voeg {0} geselecteerde subdomeinen toe",
+			"added_n_to_list": "{0} domeinen zijn aan de lijst toegevoegd. Let op: als de nieuwe domeinen niet direct in de lijst staan, wacht dan even en herlaad de lijst.",
+			"cancel": "Annuleer",
+			"clear_selection": "Selectie Wissen",
+			"dive_into_archive": "zoek naar oudere subdomeinen, tot {0} dagen terug.",
+			"domains_found": "{0} subdomeinen gevonden",
+			"enter_domain_name": "Voor een domeinnaam in zoals internet.nl om subdomeinen te vinden...",
+			"find_subdomains_header": "Voer een domeinnaam in om subdomeinen te vinden",
+			"ignored_n": "{0} domeinen zitten al in de lijst.",
+			"ok": "Klaar",
+			"removed_n_duplicates": "{0} dubbel ingevoerde domeinen zijn overgeslagen.",
+			"search": "Zoek",
+			"select_all": "Selecteer alles",
+			"status_report": "Statusoverzicht",
+			"title": "Subdomeinen Zoeker",
+			"will_be_added_to": "geselecteerde subdomeinen worden toegevoegd aan de lijst genaamd {0}."
+		},
+		"edit": {
 			"button_labels": {
 				"cancel": "Annuleren",
 				"remove": "Verwijderen",
@@ -209,7 +228,7 @@
 			"save_edited_url": "",
 			"start_editing_url": "Bewerk {0}."
 		},
-		"components/domains/domain/editDomain.vue": {
+		"edit-domain": {
 			"button_labels": {
 				"cancel": "Annuleren",
 				"remove": "Verwijderen",
@@ -226,7 +245,96 @@
 			"unknown_eligeble_mail": "Onbekend of E-mail scannen mogelijk is",
 			"unknown_eligeble_web": "Niet bekend of het mogelijk is een web scan uit te voeren"
 		},
-		"components/domains/DomainListManager.vue": {
+		"list": {
+			"add-domains": {
+				"a_lot_of_new_domains_message": "Let op: voor het toevoegen van veel domeinen raden we de spreadsheet uploader aan. Deze toont o.a. voortgang van toevoegen en maakt het beheren van domeinen makkelijker.",
+				"add_domains_list_does_not_exist": "Deze lijst bestaat niet.",
+				"add_domains_valid_urls_added": "Nieuwe domeinen zijn verwerkt, zie het statusoverzicht voor details.",
+				"added_n_to_list": "{0} domeinen zijn aan de lijst toegevoegd. Let op: als de nieuwe domeinen niet direct in de lijst staan, wacht dan even en herlaad de lijst.",
+				"cancel": "Sluiten",
+				"domains_label": "Voer nieuwe domeinen in",
+				"go_to_spreadsheet_upload": "Klik hier om naar de spreadsheet uploader en upload handleiding te gaan.",
+				"ignored_n": "{0} domeinen zitten al in de lijst.",
+				"loading": "Domeinen worden verwerkt",
+				"message": "Domeinen worden gescheiden door een komma, spatie, nieuwe regel. Deze mogen ook door elkaar worden gebruikt. Bijvoorbeeld: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com\nhttps://my.example.com:80/index.html",
+				"nothing_added": "nog niets toegevoegd.",
+				"ok": "Voeg bovenstaande domeinen toe aan de lijst",
+				"removed_n_duplicates": "{0} dubbel ingevoerde domeinen zijn overgeslagen.",
+				"status": "Status",
+				"title": "Domeinen toevoegen",
+				"too_many_domains": "Het aantal domeinen is deze lijst is groter dan is toegestaan.",
+				"too_many_new_domains_message": "Dit zijn teveel domeinen voor deze manier van toevoegen, gebruik de spreadsheet uploader.",
+				"undefined": "undefined",
+				"warning": "Waarschuwing!",
+				"warning_message": "Sommige domeinen zijn niet in een geldig formaat. Controleer de volgende domeinen en probeer het opnieuw:"
+			},
+			"configure": {
+				"cancel": "Annuleer",
+				"ok": "Opslaan",
+				"title": "Instellingen"
+			},
+			"delete": {
+				"cancel": "Nee, niet verwijderen",
+				"message": "Weet u zeker dat u deze lijst wil verwijderen? Dit kan niet ongedaan worden gemaakt.",
+				"ok": "Ja, verwijder",
+				"title": "Weet u het zeker?"
+			},
+			"domain-table": {
+				"Clear": "Wis",
+				"Domain": "Domein",
+				"filtered pagination": "Pagina {0}/{1} van {2} zoekresultaten uit {3} domeinen.",
+				"No filtered results": "De zoekopdracht had geen resultaat. Let op: tags moeten volledig worden ingevoerd.",
+				"Not selected": "Niet geselecteerd",
+				"pagination": "Pagina {0}/{1} van {2} domeinen.",
+				"select label": "selecteer label",
+				"Selected": "Geslecteerd",
+				"Table empty": "Geen domeinen in deze lijst, domeinen die worden toegevoegd verschijnen hier...",
+				"tags": "Labels",
+				"type to filter": "-- tik hier om te zoeken",
+				"update domain list": "domeinlijst bijwerken"
+			},
+			"scan": {
+				"cancel": "Annuleer",
+				"message": "Klik op 'nu scannen' om de scan te starten.",
+				"notices": "De scan is te volgen in de scan monitor. Daar is het ook mogelijk om de scan te stoppen.",
+				"ok": "Nu scannen",
+				"starting": "Opstarten...",
+				"title": "Nu scannen?"
+			},
+			"status": {
+				"Automatically shared": "Automatisch gedeeld",
+				"finished": "afgerond",
+				"header": "Over deze lijst",
+				"last_scan_started": "Laatste scan",
+				"latest_report": "Actueelste rapportage",
+				"Listed on sharing page": "en ook op deze openbare pagina",
+				"next_scheduled_scan": "Volgende ingeplande scan",
+				"Not automatically shared": "Niet automatisch gedeeld",
+				"not_scanned_before": "Niet eerder gescand",
+				"number_of_domains": "Aantal domeinen",
+				"on this page": "op deze pagina",
+				"report": "rapport",
+				"scan_frequency": "Scan frequentie",
+				"scanning_disabled": "Scannen van deze lijst is uitgeschakeld.",
+				"sharing": "Delen",
+				"still_running": "loopt nog",
+				"type_of_scan_performed": "Soort scan",
+				"with share code": "met deelcode"
+			},
+			"upload": {
+				"cancel": "Annuleer",
+				"empty_file": "Empty file",
+				"file_with_example_data": "File with example data",
+				"introduction": "Hiermee is het mogelijk om grote hoeveelheden internet adressen en lijsten toe te voegen. Dit gebeurd met spreadsheets. Begin met het downloaden van de voorbeelden hieronder, deze geven aan wat het juiste formaat is. De voorbeeldbestanden zijn te downloaden in het Open Document formaat, Microsoft Office formaat en Kommagescheiden. Hieronder staan een aantal voorbeeldbestanden waarin het exacte juiste formaat wordt aangegeven.",
+				"microsoft_office_excel": "Excel Spreadsheet (Microsoft Office)",
+				"ok": "Overschrijf domeinen",
+				"open_document_spreadsheet": "Open Document Spreadsheet (Libre Office)",
+				"title": "Domeinen uploaden (overschrijven)",
+				"too_many_domains": "Het aantal domeinen is deze lijst is groter dan is toegestaan.",
+				"warning": "Let op: het uploaden van domeinen vervangt alle domeinen in deze lijst. Dit kan niet ongedaan worden gemaakt. Zorg dus dat je een backup heb gedownload van deze lijst. Een kopie is te maken met de 'Domeinen downloaden' knop bij de domeinenlijst."
+			}
+		},
+		"list-manager": {
 			"bulk_upload_link": "Spreadsheet met domeinen uploaden",
 			"icon_legend": {
 				"can_connect": "Deze dienst is bereikbaar en wordt (waarschijnlijk) gescanned.",
@@ -258,21 +366,7 @@
 			"title": "Domeinen",
 			"warning_found_in_list": "Eén of meerdere lijsten bevatten waarschuwingen. Deze lijsten worden niet gescand."
 		},
-		"components/domains/DomainTable.vue": {
-			"Clear": "Wis",
-			"Domain": "Domein",
-			"filtered pagination": "Pagina {0}/{1} van {2} zoekresultaten uit {3} domeinen.",
-			"No filtered results": "De zoekopdracht had geen resultaat. Let op: tags moeten volledig worden ingevoerd.",
-			"Not selected": "Niet geselecteerd",
-			"pagination": "Pagina {0}/{1} van {2} domeinen.",
-			"select label": "selecteer label",
-			"Selected": "Geslecteerd",
-			"Table empty": "Geen domeinen in deze lijst, domeinen die worden toegevoegd verschijnen hier...",
-			"tags": "Labels",
-			"type to filter": "-- tik hier om te zoeken",
-			"update domain list": "domeinlijst bijwerken"
-		},
-		"components/domains/FormatScanEligibility.vue": {
+		"scan-eligibility": {
 			"eligeble_mail": "E-mail scannen is mogelijk",
 			"eligeble_web": "Web scan is mogelijk",
 			"not_eligeble_mail": "Kan geen E-mail scan uitvoeren (wordt opnieuw gecheckt bij het starten van de scan)",
@@ -280,101 +374,7 @@
 			"unknown_eligeble_mail": "Onbekend of E-mail scannen mogelijk is",
 			"unknown_eligeble_web": "Niet bekend of het mogelijk is een web scan uit te voeren"
 		},
-		"components/domains/list/about-this-list.vue": {
-			"Automatically shared": "Automatisch gedeeld",
-			"finished": "afgerond",
-			"header": "Over deze lijst",
-			"last_scan_started": "Laatste scan",
-			"latest_report": "Actueelste rapportage",
-			"Listed on sharing page": "en ook op deze openbare pagina",
-			"next_scheduled_scan": "Volgende ingeplande scan",
-			"Not automatically shared": "Niet automatisch gedeeld",
-			"not_scanned_before": "Niet eerder gescand",
-			"number_of_domains": "Aantal domeinen",
-			"on this page": "op deze pagina",
-			"report": "rapport",
-			"scan_frequency": "Scan frequentie",
-			"scanning_disabled": "Scannen van deze lijst is uitgeschakeld.",
-			"sharing": "Delen",
-			"still_running": "loopt nog",
-			"type_of_scan_performed": "Soort scan",
-			"with share code": "met deelcode"
-		},
-		"components/domains/list/add domains.vue": {
-			"a_lot_of_new_domains_message": "Let op: voor het toevoegen van veel domeinen raden we de spreadsheet uploader aan. Deze toont o.a. voortgang van toevoegen en maakt het beheren van domeinen makkelijker.",
-			"add_domains_list_does_not_exist": "Deze lijst bestaat niet.",
-			"add_domains_valid_urls_added": "Nieuwe domeinen zijn verwerkt, zie het statusoverzicht voor details.",
-			"added_n_to_list": "{0} domeinen zijn aan de lijst toegevoegd. Let op: als de nieuwe domeinen niet direct in de lijst staan, wacht dan even en herlaad de lijst.",
-			"cancel": "Sluiten",
-			"domains_label": "Voer nieuwe domeinen in",
-			"go_to_spreadsheet_upload": "Klik hier om naar de spreadsheet uploader en upload handleiding te gaan.",
-			"ignored_n": "{0} domeinen zitten al in de lijst.",
-			"loading": "Domeinen worden verwerkt",
-			"message": "Domeinen worden gescheiden door een komma, spatie, nieuwe regel. Deze mogen ook door elkaar worden gebruikt. Bijvoorbeeld: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com\nhttps://my.example.com:80/index.html",
-			"nothing_added": "nog niets toegevoegd.",
-			"ok": "Voeg bovenstaande domeinen toe aan de lijst",
-			"removed_n_duplicates": "{0} dubbel ingevoerde domeinen zijn overgeslagen.",
-			"status": "Status",
-			"title": "Domeinen toevoegen",
-			"too_many_domains": "Het aantal domeinen is deze lijst is groter dan is toegestaan.",
-			"too_many_new_domains_message": "Dit zijn teveel domeinen voor deze manier van toevoegen, gebruik de spreadsheet uploader.",
-			"undefined": "undefined",
-			"warning": "Waarschuwing!",
-			"warning_message": "Sommige domeinen zijn niet in een geldig formaat. Controleer de volgende domeinen en probeer het opnieuw:"
-		},
-		"components/domains/list/configure.vue": {
-			"cancel": "Annuleer",
-			"ok": "Opslaan",
-			"title": "Instellingen"
-		},
-		"components/domains/list/delete.vue": {
-			"delete_form": {
-				"cancel": "Nee, niet verwijderen",
-				"message": "Weet u zeker dat u deze lijst wil verwijderen? Dit kan niet ongedaan worden gemaakt.",
-				"ok": "Ja, verwijder",
-				"title": "Weet u het zeker?"
-			}
-		},
-		"components/domains/list/discover-subdomains.vue": {
-			"add_domains_valid_urls_added": "Nieuwe domeinen zijn verwerkt, zie het statusoverzicht voor details.",
-			"add_subdomains_button": "Voeg {0} geselecteerde subdomeinen toe",
-			"added_n_to_list": "{0} domeinen zijn aan de lijst toegevoegd. Let op: als de nieuwe domeinen niet direct in de lijst staan, wacht dan even en herlaad de lijst.",
-			"cancel": "Annuleer",
-			"clear_selection": "Selectie Wissen",
-			"dive_into_archive": "zoek naar oudere subdomeinen, tot {0} dagen terug.",
-			"domains_found": "{0} subdomeinen gevonden",
-			"enter_domain_name": "Voor een domeinnaam in zoals internet.nl om subdomeinen te vinden...",
-			"find_subdomains_header": "Voer een domeinnaam in om subdomeinen te vinden",
-			"ignored_n": "{0} domeinen zitten al in de lijst.",
-			"ok": "Klaar",
-			"removed_n_duplicates": "{0} dubbel ingevoerde domeinen zijn overgeslagen.",
-			"search": "Zoek",
-			"select_all": "Selecteer alles",
-			"status_report": "Statusoverzicht",
-			"title": "Subdomeinen Zoeker",
-			"will_be_added_to": "geselecteerde subdomeinen worden toegevoegd aan de lijst genaamd {0}."
-		},
-		"components/domains/list/scan.vue": {
-			"cancel": "Annuleer",
-			"message": "Klik op 'nu scannen' om de scan te starten.",
-			"notices": "De scan is te volgen in de scan monitor. Daar is het ook mogelijk om de scan te stoppen.",
-			"ok": "Nu scannen",
-			"starting": "Opstarten...",
-			"title": "Nu scannen?"
-		},
-		"components/domains/list/upload.vue": {
-			"cancel": "Annuleer",
-			"empty_file": "Empty file",
-			"file_with_example_data": "File with example data",
-			"introduction": "Hiermee is het mogelijk om grote hoeveelheden internet adressen en lijsten toe te voegen. Dit gebeurd met spreadsheets. Begin met het downloaden van de voorbeelden hieronder, deze geven aan wat het juiste formaat is. De voorbeeldbestanden zijn te downloaden in het Open Document formaat, Microsoft Office formaat en Kommagescheiden. Hieronder staan een aantal voorbeeldbestanden waarin het exacte juiste formaat wordt aangegeven.",
-			"microsoft_office_excel": "Excel Spreadsheet (Microsoft Office)",
-			"ok": "Overschrijf domeinen",
-			"open_document_spreadsheet": "Open Document Spreadsheet (Libre Office)",
-			"title": "Domeinen uploaden (overschrijven)",
-			"too_many_domains": "Het aantal domeinen is deze lijst is groter dan is toegestaan.",
-			"warning": "Let op: het uploaden van domeinen vervangt alle domeinen in deze lijst. Dit kan niet ongedaan worden gemaakt. Zorg dus dat je een backup heb gedownload van deze lijst. Een kopie is te maken met de 'Domeinen downloaden' knop bij de domeinenlijst."
-		},
-		"components/domains/SpreadsheetUpload.vue": {
+		"spreadsheet-upload": {
 			"back_to_domains": "Terug naar domeinen",
 			"dropzone": {
 				"subtitle": "...of klik hier om bestanden te selecteren",
@@ -412,23 +412,7 @@
 				}
 			}
 		},
-		"components/domains/SubdomainDiscovery.vue": {
-			", last scan finished ": ", laatste keer was ",
-			"... finding 'www.' subdomains ": "zoekt www. ",
-			"error": "fout",
-			"Find 'www.' subdomains": "www. zoeker",
-			"finished": "afgerond",
-			"requested": "vanaf",
-			"scanning": "verzamelen",
-			"Scanning done, click to reload domain list": "Klaar met zoeken, klik om de domeinlijst te herladen"
-		},
-		"components/domains/SubdomainDiscoveryModal.vue": {
-			"cancel": "Back to the list",
-			"message": "Voeg automatisch subdomeinen toe voor alle hoofddomeinen in de huidige lijst. Ieder subdomein wordt getest voor mail, web of beide afhankelijk van de instellingen van de lijst. Wanneer een geldig en bereikbaar subdomein is gevonden wordt deze toegevoegd. Deze actie kan even duren voor grote lijsten en kan erg veel subdomeinen opleveren.",
-			"ok": "Zoek www. subdomeinen",
-			"title": "Zoek 'www' subdomeinen"
-		},
-		"components/domains/UrlList.vue": {
+		"urllist": {
 			"button": {
 				"add_domains": "Vrije tekst",
 				"configure": "Instellingen",
@@ -458,17 +442,33 @@
 			"warnings": {
 				"domains_exceed_maximum": "Het aantal domeinen in deze lijst is meer dan het maximum aantal van {0}. Scanning is gepauzeerd."
 			}
+		},
+		"www-discovery": {
+			"error": "fout",
+			"find-www-subdomains": "www. zoeker",
+			"finding-www-subdomains": "zoekt www. ",
+			"finished": "afgerond",
+			"last-scan-finished": ", laatste keer was ",
+			"requested": "vanaf",
+			"scanning": "verzamelen",
+			"scanning-done-click-reload": "Klaar met zoeken, klik om de domeinlijst te herladen"
+		},
+		"www-discovery-modal": {
+			"cancel": "Back to the list",
+			"message": "Voeg automatisch subdomeinen toe voor alle hoofddomeinen in de huidige lijst. Ieder subdomein wordt getest voor mail, web of beide afhankelijk van de instellingen van de lijst. Wanneer een geldig en bereikbaar subdomein is gevonden wordt deze toegevoegd. Deze actie kan even duren voor grote lijsten en kan erg veel subdomeinen opleveren.",
+			"ok": "Zoek www. subdomeinen",
+			"title": "Zoek 'www' subdomeinen"
 		}
 	},
 	"home": {
-		"components/home/Home.vue": {
+		"page": {
 			"introduction": "Meet duizenden domeinen tegelijk op moderne internetstandaarden, inclusief rapportage.",
 			"learn": "Bekijk hier wat het dashboard mogelijk maakt",
 			"log_in": "Inloggen",
 			"request_access": "Toegang nodig tot het dashboard? Bezoek deze pagina.",
 			"title": "Welkom op het internet.nl Dashboard"
 		},
-		"components/home/ShortFeatureOverview.vue": {
+		"short-feature-overview": {
 			"domains": "Beheer domeinen",
 			"domains_text_1": "Beheer tot duizenden domeinen tegelijkertijd met labels.",
 			"domains_text_2": "Handig domeinen importeren met spreadsheet of kommagescheiden.",
@@ -484,7 +484,7 @@
 		}
 	},
 	"mail": {
-		"components/mail/Unsubscribe.vue": {
+		"unsubscribe": {
 			"error": "Er is een fout opgetreden bij het uitschrijven. Probeer het opnieuw met de code en feed uit de email.",
 			"intro": "Met onderstaand formulier is het mogelijk om uit te schrijven voor meldingen. Het is niet nodig om in te loggen om je af te melden.",
 			"label_feed": "Meldingen",
@@ -495,6 +495,84 @@
 		}
 	},
 	"metric": {
+		"category_mail": {
+			"title": "E-Mail"
+		},
+		"category_mail_dashboard_auth_dkim": {
+			"title": "DKIM"
+		},
+		"category_mail_dashboard_auth_dmarc": {
+			"title": "DMARC"
+		},
+		"category_mail_dashboard_auth_spf": {
+			"title": "SPF"
+		},
+		"category_mail_dnssec_email_address_domain": {
+			"title": "E-mailadresdomein"
+		},
+		"category_mail_dnssec_mail_server_domain": {
+			"title": "Mailserverdomein(en)"
+		},
+		"category_mail_ipv6_mail_servers": {
+			"title": "Mailserver(s)"
+		},
+		"category_mail_ipv6_name_servers": {
+			"title": "Nameservers van domein"
+		},
+		"category_mail_rpki_mail_server": {
+			"title": "Mailserver(s)"
+		},
+		"category_mail_rpki_name_mail_server": {
+			"title": "Nameservers van mailserver(s)"
+		},
+		"category_mail_rpki_name_server": {
+			"title": "Nameservers van domein"
+		},
+		"category_mail_starttls_certificate": {
+			"title": "Certificaat"
+		},
+		"category_mail_starttls_dane": {
+			"title": "DANE"
+		},
+		"category_mail_starttls_tls": {
+			"title": "TLS"
+		},
+		"category_web": {
+			"title": "Website"
+		},
+		"category_web_dnssec_dnssec": {
+			"title": "Ondertekende domeinnaam (DNSSEC)"
+		},
+		"category_web_ipv6_name_server": {
+			"title": "Nameservers van domein"
+		},
+		"category_web_ipv6_web_server": {
+			"title": "Webserver"
+		},
+		"category_web_rpki_name_server": {
+			"title": "Nameservers van domein"
+		},
+		"category_web_rpki_web_server": {
+			"title": "Webserver"
+		},
+		"category_web_security_options_appsecpriv": {
+			"title": "HTTP security headers"
+		},
+		"category_web_security_options_other": {
+			"title": "Andere beveiligingsopties"
+		},
+		"category_web_tls_certificate": {
+			"title": "Certificaat"
+		},
+		"category_web_tls_dane": {
+			"title": "DANE"
+		},
+		"category_web_tls_http": {
+			"title": "HTTP"
+		},
+		"category_web_tls_tls": {
+			"title": "TLS"
+		},
 		"internet_nl_mail_auth_dkim_exist": {
 			"explanation": "E-mail wordt verstuurd met een digitale handtekening van de afzender. Deze handtekening kan niet zomaar worden nagemaakt. Wanneer iemand dat toch probeert na te doen zal het postbedrijf de e-mail weigeren en de echte eigenaar waarschuwen over de namaak e-mail.",
 			"extended-explanation": "We testen of je domeinnaam DKIM ondersteunt. Een ontvangende mailserver kande publieke sleutel in je DKIM-record gebruiken om de handtekening in eene-mail met een gebruiker van jouw domein als afzender te controleren en deauthenticiteit van de e-mail te bepalen.</p><ul><li>Om te slagen voor deze test verwachten we dat je nameserver <code>NOERROR</code> antwoordt op onze  bevragingvoor <code>_domainkey.example.nl</code>. Als <code>_domainkey.example.nl</code> een 'empty non-terminal' is, dan zullen sommige nameservers die zich niet houden aan destandaard RFC 2308, foutief antwoorden met <code>NXDOMAIN</code> in plaats van<code>NOERROR</code>. Dit maakt het detecteren van het DKIM-record voor ons onmogelijk.</li><li>Op dit moment zijn we niet in staat om de publieke sleutel in je DKIM-record op te vragen en te beoordelen, omdat we daarvoor een e-mail van jouw domein zouden moeten ontvangen.</li><li>Bij deze test gaan we uit van 'strict alignment' hetgeen conform DMARC is. Het geteste domein wordt beschouwd als het verzenddomein in het mailbericht (<code>From:</code>) en moet gelijk zijn aan zowel het DKIM-domein (<code>d=</code>) als het SPF-domein (envelope sender, d.w.z. return-path dat terugkomt in <code>MAIL FROM</code>).</li></ul><p>Voor een \"good practice voor domeinnamen zonder mail\" zie de <a href=\"#control-panel-9\">uitleg van de \"DMARC-policy\" subtest</a>.",
@@ -549,6 +627,24 @@
 			},
 			"technology": "Sender Policy Framework (SPF)",
 			"title": "SPF policy"
+		},
+		"internet_nl_mail_dashboard_auth": {
+			"title": "Echtheidswaarmerken tegen phishing (DMARC, DKIM en SPF)"
+		},
+		"internet_nl_mail_dashboard_dnssec": {
+			"title": "Ondertekende domeinnamen (DNSSEC)"
+		},
+		"internet_nl_mail_dashboard_ipv6": {
+			"title": "Modern adres (IPv6)"
+		},
+		"internet_nl_mail_dashboard_rpki": {
+			"title": "Route-autorisatie (RPKI)"
+		},
+		"internet_nl_mail_dashboard_tls": {
+			"title": "Beveiligde mailserver-verbinding (STARTTLS en DANE)"
+		},
+		"internet_nl_mail_dashboard_web_rpki": {
+			"title": "Route-autorisatie (RPKI)"
 		},
 		"internet_nl_mail_dnssec_mailto_exist": {
 			"extended-explanation": "We testen of de domeinnaam in je e-mailadres, meer specifiek het SOA-record, ondertekend is met DNSSEC. De handtekening zorgt ervoor dat een verzender, die domeinhandtekeningen controleert, op een betrouwbare wijze jouw mailserverdomeinen (MX) kan opvragen. Dit voorkomt dat een aanvaller het antwoord manipuleert en aan jou gerichte mail omleidt naar een mailserverdomein dat onder controle is van de aanvaller.</p><p>Als een domein via <code>CNAME</code> doorverwijst naar een ander domein, dan checken we (conform de DNSSEC-standaard) ook of het CNAME-domein ondertekend is met DNSSEC. Als het CNAME-domein niet ondertekend is, dan zal deze subtest een negatief resultaat tonen.</p><p>Let op: de geldigheid van de ondertekening wordt niet getest in deze subtest maar wel in de volgende subtest.",
@@ -632,6 +728,77 @@
 				"good": "Alle nameservers die een IPv6-adres hebben zijn bereikbaar via IPv6."
 			},
 			"title": "IPv6-bereikbaarheid van nameservers"
+		},
+		"internet_nl_mail_legacy_category": {
+			"title": "Extra Velden"
+		},
+		"internet_nl_mail_legacy_category_ipv6": {
+			"explanation": "Calculated by taken the category value for IPv6.",
+			"title": "IPv6 mail"
+		},
+		"internet_nl_mail_legacy_dane": {
+			"explanation": "Berekend door de slechtste waarde van de volgende velden te gebruiken: mail_starttls_dane_exist, mail_starttls_dane_valid. Kan overschreven worden door de mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "DANE"
+		},
+		"internet_nl_mail_legacy_dkim": {
+			"explanation": "Berekend door de waarde het veld \"mail_auth_dkim_exist\" te gebruiken als deze passed is. Als dat niet zo is wordt er gekeken of het domein e-mail verstuurd, zo nee: dan is dit not_applicable. Zo wel dan faalt deze test.",
+			"title": "DKIM"
+		},
+		"internet_nl_mail_legacy_dmarc": {
+			"explanation": "Berekend door de waarde van het volgende veld te gebruiken: mail_auth_dkim_exist.",
+			"title": "DMARC"
+		},
+		"internet_nl_mail_legacy_dmarc_policy": {
+			"explanation": "Berekend door de waarde van het volgende veld te gebruiken: mail_auth_dmarc_policy.",
+			"title": "DMARC policy"
+		},
+		"internet_nl_mail_legacy_dnssec_mx": {
+			"explanation": "Berekend door de slechtste waarde van de volgende velden te gebruiken: mail_dnssec_mx_exist, mail_dnssec_mx_valid. Wordt op no_mx gezet als er geen mx is.",
+			"title": "DNSSEC MX"
+		},
+		"internet_nl_mail_legacy_domain_has_mx": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_ipv6_mailserver": {
+			"explanation": "Berekend door de slechtste waarde van de volgende velden te gebruiken: mail_ipv6_mx_address, mail_ipv6_mx_reach. Wordt op no_mx gezet als er geen mx is.",
+			"title": "IPv6 mailserver"
+		},
+		"internet_nl_mail_legacy_ipv6_nameserver": {
+			"explanation": "Berekend door de slechtste waarde van de volgende velden te gebruiken: mail_ipv6_ns_address, mail_ipv6_ns_reach. Wordt op no_mx gezet als er geen mx is.",
+			"title": "IPv6 nameserver"
+		},
+		"internet_nl_mail_legacy_mail_sending_domain": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_mail_server_reachable": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_mail_server_testable": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_legacy_spf": {
+			"explanation": "Berekend door de waarde van het volgende veld te gebruiken: mail_auth_spf_exist.",
+			"title": "SPF"
+		},
+		"internet_nl_mail_legacy_spf_policy": {
+			"explanation": "Berekend door de waarde van het volgende veld te gebruiken: mail_auth_spf_policy.",
+			"title": "SPF policy"
+		},
+		"internet_nl_mail_legacy_start_tls": {
+			"explanation": "Berekend door de waarde van het volgende veld te gebruiken: mail_starttls_tls_available. Kan overschreven worden door de mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "STARTTLS"
+		},
+		"internet_nl_mail_legacy_start_tls_ncsc": {
+			"explanation": "Wordt berekend door de slechtste waarde te gebruiken van de volgende velden: mail_starttls_tls_available, mail_starttls_tls_keyexchange, mail_starttls_tls_compress, mail_starttls_tls_secreneg, mail_starttls_tls_ciphers, mail_starttls_tls_clientreneg,  mail_starttls_tls_version, mail_starttls_tls_cipherorder, mail_starttls_tls_keyexchangehash, mail_starttls_tls_0rtt, mail_starttls_cert_sig, mail_starttls_cert_pubkey, mail_starttls_cert_chain,  mail_starttls_cert_domain. Kan overschreven worden door mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "STARTTLS NCSC"
+		},
+		"internet_nl_mail_legacy_tls_1_3": {
+			"explanation": "Derives TLS1.3 support through the 0-RTT test. Explicitly testing for TLS1.3 support is not part of the compliance tool. However, TLS1.3 support could be derived from the 0-RTT test as the function is only available starting from TLS1.3. As there is no explicit TLS1.3 connection during testing, the test assumes that the server chose TLS1.3 when given the opportunity to do so.",
+			"title": "TLS 1.3 Support"
 		},
 		"internet_nl_mail_rpki_exists": {
 			"explanation": "The internet consists of all kinds of smaller networks. These networks can be created ad-hoc, which means somebody malicious might do so. To prevent bad actors from taking over parts of the internet, a network of trust and certification is created. This is a bureaucratic network with organizations being accredited by trusted parties.",
@@ -854,6 +1021,9 @@
 			},
 			"title": "OUTDATED TEXT; TEST NOT USED</p><p>X-XSS-Protection"
 		},
+		"internet_nl_web_dnssec": {
+			"title": "Ondertekende domeinnaam (DNSSEC)"
+		},
 		"internet_nl_web_dnssec_exist": {
 			"explanation": "We testen of je domeinnaam, meer specifiek het SOA-record, ondertekend is met DNSSEC.</p><p>Als een domein via  <code>CNAME</code> doorverwijst naar een ander domein, dan checken we (conform de DNSSEC-standaard) ook of het CNAME-domein ondertekend is met DNSSEC. Als het CNAME-domein niet ondertekend is, dan zal deze subtest een negatief resultaat tonen.</p><p>Let op: de geldigheid van de ondertekening wordt niet getest in deze subtest maar wel in de volgende subtest.",
 			"rating": {
@@ -1049,6 +1219,9 @@
 			},
 			"title": "TLS-versie"
 		},
+		"internet_nl_web_ipv6": {
+			"title": "Modern adres (IPv6)"
+		},
 		"internet_nl_web_ipv6_ns_address": {
 			"explanation": "We testen of je domeinnaam tenminste twee nameservers met een IPv6-adres heeft. </p><p>Dit sluit aan bij de <a href=\"https://www.sidn.nl/downloads/7li2X9A-Q1-_qkgnZn1TAg/02066e69fc93d5b64b4aa16c469c38f6/Technische_eisen_voor_registratie_en_gebruik_van_nl_domeinamen.pdf\">\"Technische eisen voor registratie en gebruik van .nl-domeinnamen\"</a> d.d. 13 november 2017 van SIDN (beheerder van het .nl-domein) waarin staat dat iedere .nl-domeinnaam tenminste twee nameservers moeten hebben.</p><p>'IPv4-mapped IPv6 addresses' (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, beginnend met ::ffff:) zullen falen in deze test, aangezien zij <em>geen</em> IPv6-connectiviteit bieden.",
 			"rating": {
@@ -1091,6 +1264,52 @@
 				"notice_status_code": "Je website op IPv6 lijkt gelijk aan je website op IPv4, maar de HTTP response code is 4xx of 5xx. Dit kan wijzen op een configuratiefout."
 			},
 			"title": "Gelijke website op IPv6 en IPv4"
+		},
+		"internet_nl_web_legacy_category": {
+			"title": "Extra Velden"
+		},
+		"internet_nl_web_legacy_category_ipv6": {
+			"explanation": "",
+			"title": "IPv6 web"
+		},
+		"internet_nl_web_legacy_dane": {
+			"explanation": "",
+			"title": "DANE"
+		},
+		"internet_nl_web_legacy_dnssec": {
+			"explanation": "Berekend door de slechtste waarde van de volgende velden te gebruiken: web_dnssec_exist, web_dnssec_valid.",
+			"title": "DNSSEC"
+		},
+		"internet_nl_web_legacy_hsts": {
+			"explanation": "Berekend door de waarde van het volgende veld te gebruiken: web_https_http_hsts.",
+			"title": "HSTS"
+		},
+		"internet_nl_web_legacy_https_enforced": {
+			"explanation": "Berekend door de waarde van het volgende veld te gebruiken: web_https_http_redirect.",
+			"title": "HTTPS redirect"
+		},
+		"internet_nl_web_legacy_ipv6_nameserver": {
+			"explanation": "Berekend door de slechtste waarde van de volgende velden te gebruiken: web_ipv6_ws_address, web_ipv6_ws_reach en web_ipv6_ws_similar.",
+			"title": "IPv6 nameserver"
+		},
+		"internet_nl_web_legacy_ipv6_webserver": {
+			"explanation": "Berekend door de slechtste waarde van de volgende velden te gebruiken: web_https_dane_exist en web_https_dane_valid.",
+			"title": "IPv6 webserver"
+		},
+		"internet_nl_web_legacy_tls_1_3": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_legacy_tls_available": {
+			"explanation": "Berekend door de waarde van het volgende veld te gebruiken: web_https_http_available.",
+			"title": "TLS"
+		},
+		"internet_nl_web_legacy_tls_ncsc_web": {
+			"explanation": "Wordt berekend door de slechtste waarde te gebruiken van de volgende velden: web_https_tls_keyexchange, web_https_tls_compress, web_https_tls_secreneg, web_https_tls_ciphers, web_https_tls_clientreneg, web_https_tls_version, web_https_tls_cipherorder, web_https_tls_0rtt, web_https_tls_ocsp, web_https_tls_keyexchangehash, web_https_cert_sig, web_https_cert_pubkey, web_https_cert_chain, web_https_cert_domain.",
+			"title": "TLS NCSC"
+		},
+		"internet_nl_web_rpki": {
+			"title": "Route-autorisatie (RPKI)"
 		},
 		"internet_nl_web_rpki_exists": {
 			"explanation": "The internet consists of all kinds of smaller networks. These networks can be created ad-hoc, which means somebody malicious might do so. To prevent bad actors from taking over parts of the internet, a network of trust and certification is created. This is a bureaucratic network with organizations being accredited by trusted parties.",
@@ -1539,6 +1758,19 @@
 			"procedure_title": "Procedure voor het uitgeven van inloggegevens",
 			"support_description": "Voor vragen over (het gebruik van) de API of hte dashboard, stuur een e-mail naar <a href=\"mailto:vraag@internet.nl\">vraag@internet.nl</a>",
 			"support_title": "Ondersteuning"
+		}
+	},
+	"test": {
+		"result": {
+			"percentage": {
+				"error_in_test": "",
+				"high": "",
+				"low": "",
+				"medium": "",
+				"not_applicable": "",
+				"not_testable": "",
+				"ok": ""
+			}
 		}
 	},
 	"tour": {

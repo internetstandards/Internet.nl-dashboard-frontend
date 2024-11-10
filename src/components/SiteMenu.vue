@@ -150,8 +150,8 @@ li a {
     <b-container class="max_container_width">
       <b-navbar-brand to="domains">
         <template v-if="$store.state.config.app.layout === 'internet_nl'">
-          <p id="site-title"><a><span class="hidden">{{ $t('app.menu.sitetitle') }}</span></a></p>
-          <p id="site-description"><span class="hidden">{{ $t('app.menu.sitedescription') }}</span></p>
+          <p id="site-title"><a><span class="hidden">{{ $t("app.menu.sitetitle") }}</span></a></p>
+          <p id="site-description"><span class="hidden">{{ $t("app.menu.sitedescription") }}</span></p>
         </template>
       </b-navbar-brand>
 
@@ -166,7 +166,7 @@ li a {
           <b-nav-item v-if="is_superuser">{{ account_name }}</b-nav-item>
           <b-nav-item v-for="(lang_code, index) in supported_languages" :key="index" :disabled="lang_code === locale" @click="set_locale(lang_code)">
             <b-icon icon="check" v-if="lang_code === locale"></b-icon>
-            {{ $t('app.menu.' + lang_code) }}
+            {{ $t("app.menu." + lang_code) }}
           </b-nav-item>
         </b-navbar-nav>
 
@@ -283,8 +283,8 @@ export default {
         this.$store.commit("set_user", data.data);
         this.loading = false;
         if (!this.$store.state.user.is_authenticated) {
-          this.$bvToast.toast(this.$i18n.t('logged_out_successfully'), {
-            title: `✅ ${this.$i18n.t('logged_out_successfully')}`,
+          this.$bvToast.toast(this.$i18n.t("app.menu.logged_out_successfully"), {
+            title: `✅ ${this.$i18n.t("app.menu.logged_out_successfully")}`,
             autoHideDelay: 5000,
             variant: 'success',
             solid: true,
