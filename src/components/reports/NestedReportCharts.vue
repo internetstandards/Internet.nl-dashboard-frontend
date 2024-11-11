@@ -15,7 +15,7 @@
           <b-table-simple striped hover small responsive v-if="$store.state.rendered_chart_to_table['overall'] !== undefined">
             <b-thead>
               <b-tr>
-                <b-th>{{ $t("category") }}</b-th>
+                <b-th>{{ $t("report.nested-report.charts.category") }}</b-th>
                 <b-th v-for="xAxis in $store.state.rendered_chart_to_table['overall']['datasets']" :key="xAxis.label + 'f'">
                   {{ $t(xAxis.label) }}
                 </b-th>
@@ -165,15 +165,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "category": "Category",
-    "A": "Average"
-  },
-  "nl": {
-    "category": "Categorie",
-    "G": "Gemiddelde"
-  }
-}
-</i18n>

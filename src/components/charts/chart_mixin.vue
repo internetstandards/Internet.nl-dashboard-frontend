@@ -1,7 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
 import {debounce} from "debounce";
-import field_translations from "@/components/FieldTranslations";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import {
@@ -52,9 +51,6 @@ let tooltip_configuration = {
 }
 
 export default {
-  i18n: {
-    sharedMessages: field_translations,
-  },
   mixins: [report_mixin],
   props: {
     chart_data: {type: Array, required: true},

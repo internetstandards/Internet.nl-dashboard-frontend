@@ -2,43 +2,43 @@
 <template>
   <b-modal :visible="visible" @hidden="close()" header-bg-variant="info" header-text-variant="light" no-fade
            scrollable size="lg">
-    <h3 slot="modal-title">📝 {{ $t("title") }}</h3>
+    <h3 slot="modal-title">📝 {{ $t("domain.discover-subdomains.title") }}</h3>
     <div slot="default" style="min-height: 50vh;">
 
-      <label for="domain_name">{{ $t("find_subdomains_header", [list.name]) }}:</label><br>
+      <label for="domain_name">{{ $t("domain.discover-subdomains.find_subdomains_header", [list.name]) }}:</label><br>
 
       <b-input-group class="mb-2">
 
 
-      <b-form-input id="domain_name" type="text" maxlength="120" v-model="input_domain" debounce="400" :placeholder='$t("enter_domain_name")'></b-form-input>
+      <b-form-input id="domain_name" type="text" maxlength="120" v-model="input_domain" debounce="400" :placeholder='$t("domain.discover-subdomains.enter_domain_name")'></b-form-input>
 
       <b-input-group-append>
-        <b-button class="lastbutton" role="link" @click="find_suggestions()" style="min-width: 120px">🔎 {{ $t("search") }} <b-spinner variant="info" label="Spinning" small v-if="loading_suggestions"/></b-button>
+        <b-button class="lastbutton" role="link" @click="find_suggestions()" style="min-width: 120px">🔎 {{ $t("domain.discover-subdomains.search") }} <b-spinner variant="info" label="Spinning" small v-if="loading_suggestions"/></b-button>
       </b-input-group-append>
     </b-input-group>
-      <p class="mb-2">{{$t("will_be_added_to", [list.name])}}</p>
+      <p class="mb-2">{{$t("domain.discover-subdomains.will_be_added_to", [list.name])}}</p>
 
-      <server-response :response="response" v-if="response" :message='$t("" + response.message)'/>
+      <server-response :response="response" v-if="response" :message='$t("domain.discover-subdomains." + response.message)'/>
 
       <b-alert variant="info" show v-if="response.success === true" dismissible>
-        <h4>{{ $t("status_report") }}</h4>
+        <h4>{{ $t("domain.discover-subdomains.status_report") }}</h4>
         <li v-if="response.data.duplicates_removed">
-          {{ $t("removed_n_duplicates", [response.data.duplicates_removed]) }}
+          {{ $t("domain.discover-subdomains.removed_n_duplicates", [response.data.duplicates_removed]) }}
         </li>
-        <li v-if="response.data.already_in_list">{{ $t("ignored_n", [response.data.already_in_list]) }}</li>
-        <li>{{ $t("added_n_to_list", [response.data.added_to_list]) }}
+        <li v-if="response.data.already_in_list">{{ $t("domain.discover-subdomains.ignored_n", [response.data.already_in_list]) }}</li>
+        <li>{{ $t("domain.discover-subdomains.added_n_to_list", [response.data.added_to_list]) }}
         </li>
       </b-alert>
 
 
       <div v-if="suggestions.length > 0">
         <p>
-          {{ $t("domains_found", [suggestions.length]) }}, <a @click="dive_into_archive">{{$t("dive_into_archive", [period + this.extend_period])}}</a>
+          {{ $t("domain.discover-subdomains.domains_found", [suggestions.length]) }}, <a @click="dive_into_archive">{{$t("domain.discover-subdomains.dive_into_archive", [period + this.extend_period])}}</a>
         </p>
 
-      <b-button @click="add_suggestions">{{ $t("add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button><br><br>
+      <b-button @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button><br><br>
 
-      <b-button id="select_all" @click="toggle_all" v-model="select_all" size="sm">{{ $t("select_all") }}</b-button><b-button size="sm" @click="clear_selection" class="ml-4">{{ $t("clear_selection") }}</b-button>
+      <b-button id="select_all" @click="toggle_all" v-model="select_all" size="sm">{{ $t("domain.discover-subdomains.select_all") }}</b-button><b-button size="sm" @click="clear_selection" class="ml-4">{{ $t("domain.discover-subdomains.clear_selection") }}</b-button>
       <br><br>
 
       <p>
@@ -55,7 +55,7 @@
         </b-form-checkbox-group>
       </p>
 
-      <b-button @click="add_suggestions">{{ $t("add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button>
+      <b-button @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button>
 
       </div>
 
@@ -63,10 +63,10 @@
     </div>
     <div slot="modal-footer">
       <button class="modal-default-button altbutton" @click="cancel()">
-        {{ $t("cancel") }}
+        {{ $t("domain.discover-subdomains.cancel") }}
       </button> &nbsp;
       <button class="modal-default-button defaultbutton" @click="close()">
-        {{ $t("ok") }}
+        {{ $t("domain.discover-subdomains.ok") }}
       </button>
     </div>
   </b-modal>
@@ -196,46 +196,3 @@ export default {
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "title": "Discover Subdomains",
-    "cancel": "Cancel",
-    "ok": "Done",
-    "find_subdomains_header": "Enter a domain name to find subdomains",
-    "will_be_added_to": "selected subdomains will be added to the list named {0}.",
-    "added_n_to_list": "{0} domains added to this list. Take care: if the new domains are not shown in the list right away, wait a short while and reload the list.",
-    "removed_n_duplicates": "{0} duplicates removed from the input.",
-    "ignored_n": "{0} domains are already in this list.",
-    "add_domains_valid_urls_added": "New domains have processed, see the status report for details.",
-    "status_report": "Status report",
-    "domains_found": "{0} subdomains found",
-    "select_all": "Select all",
-    "clear_selection": "Clear selection",
-    "dive_into_archive": "search for older subdomains, up to {0} days ago.",
-    "add_subdomains_button": "Add {0} selected subdomains",
-    "search": "Search",
-    "enter_domain_name": "Enter a domain name, such as internet.nl to find subdomains..."
-  },
-  "nl": {
-    "title": "Subdomeinen Zoeker",
-    "cancel": "Annuleer",
-    "ok": "Klaar",
-    "find_subdomains_header": "Voer een domeinnaam in om subdomeinen te vinden",
-    "will_be_added_to": "geselecteerde subdomeinen worden toegevoegd aan de lijst genaamd {0}.",
-    "added_n_to_list": "{0} domeinen zijn aan de lijst toegevoegd. Let op: als de nieuwe domeinen niet direct in de lijst staan, wacht dan even en herlaad de lijst.",
-    "removed_n_duplicates": "{0} dubbel ingevoerde domeinen zijn overgeslagen.",
-    "ignored_n": "{0} domeinen zitten al in de lijst.",
-    "add_domains_valid_urls_added": "Nieuwe domeinen zijn verwerkt, zie het statusoverzicht voor details.",
-    "status_report": "Statusoverzicht",
-    "domains_found": "{0} subdomeinen gevonden",
-    "select_all": "Selecteer alles",
-    "clear_selection": "Selectie Wissen",
-    "dive_into_archive": "zoek naar oudere subdomeinen, tot {0} dagen terug.",
-    "add_subdomains_button": "Voeg {0} geselecteerde subdomeinen toe",
-    "search": "Zoek",
-    "enter_domain_name": "Voor een domeinnaam in zoals internet.nl om subdomeinen te vinden..."
-  }
-}
-</i18n>

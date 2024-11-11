@@ -71,16 +71,12 @@
 </template>
 
 <script>
-import field_translations from '../FieldTranslations'
 import {mapState} from 'vuex'
 import http from "@/httpclient";
 import report_mixin from "@/components/reports/report_mixin"
 
 export default {
   mixins: [report_mixin],
-  i18n: {
-    sharedMessages: field_translations,
-  },
   name: "VisibleMetrics",
   props: {
     report_type: {

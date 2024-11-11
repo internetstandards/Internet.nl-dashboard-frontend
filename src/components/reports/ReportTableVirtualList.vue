@@ -334,15 +334,15 @@ div.rotate > span {
 
 <template>
   <div>
-    <h2>{{ $t("report.title") }}</h2>
+    <h2>{{ $t("report.report-table-virtual-list.report.title") }}</h2>
     <a class="anchor" name="report"></a>
 
     <applied-tags/>
-    <p v-if="load_comparison_with_current">{{ $t("report.intro") }}</p>
+    <p v-if="load_comparison_with_current">{{ $t("report.report-table-virtual-list.report.intro") }}</p>
 
     <differences-to-current-list :report_id="reports[0].id" v-if="load_comparison_with_current" />
 
-    <collapse-panel :title='$t("icon_legend.title")' class="do-not-print">
+    <collapse-panel :title='$t("report.report-table-virtual-list.icon_legend.title")' class="do-not-print">
       <div slot="content">
         <report-table-legend />
       </div>
@@ -379,14 +379,14 @@ div.rotate > span {
             <div class="rotate">
               <a class="arrow"
                     :class="sortOrders['score'] === -1 ? 'dsc' : (sortOrders['score'] === 1 ? 'asc' : 'unknown')"></a>
-              <a @click="sortBy('score')" href="javascript:;">{{ $t("score") }}</a>
+              <a @click="sortBy('score')" href="javascript:;">{{ $t("report.report-table-virtual-list.score") }}</a>
             </div>
           </th>
           <th class="sticky-header bg-white" style="width: 200px; min-width: 200px;">
             <div class="rotate">
               <a class="arrow"
                    :class="sortOrders['url'] === -1 ? 'dsc' : (sortOrders['url'] === 1 ? 'asc' : 'unknown')"></a>
-              <a @click="sortBy('url')" class="d-inline-block" href="javascript:;">{{ $t("domain") }}</a>
+              <a @click="sortBy('url')" class="d-inline-block" href="javascript:;">{{ $t("report.report-table-virtual-list.domain") }}</a>
             </div>
           </th>
 
@@ -399,7 +399,7 @@ div.rotate > span {
                   <a class="arrow"
                         :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></a>
                   <!-- A very hacky solution to make the text shorter and keep the value of the category description. This should be a category description in the future just like the rest. -->
-                  <a style="text-decoration: none !important;" @click="sortBy(category)" href="javascript:;" v-html='$t("" + category).replace("(", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(")'></a>
+                  <a style="text-decoration: none !important;" @click="sortBy(category)" href="javascript:;" v-html='$t("metric." + category+".title").replace("(", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(")'></a>
                 </div>
               </div>
 
@@ -412,7 +412,7 @@ div.rotate > span {
                   <a class="arrow"
                        :class="sortOrders[category] === -1 ? 'dsc' : (sortOrders[category] === 1 ? 'asc' : 'unknown')"></a>
                   <a @click="sortBy(category)" class="d-inline-block" href="javascript:;">
-                    {{ $t("" + category) }}
+                    {{ $t("metric." + category + ".title") }}
                     <div class="small text-secondary pl-3 close_to_top" href="#"
                         v-html="category_from_field_name(category)"></div>
                   </a>
@@ -432,19 +432,19 @@ div.rotate > span {
           <!-- Zoom buttons for accessibility -->
           <tr class="summaryrow">
             <td colspan="2" class="sticky_search">
-              <label class="visuallyhidden" for="url_filter">{{ $t("report.url_filter") }}</label>
+              <label class="visuallyhidden" for="url_filter">{{ $t("report.report-table-virtual-list.report.url_filter") }}</label>
               <b-input debounce="200" type="text" v-model="url_filter" id="url_filter"
-                       :placeholder='$t("report.url_filter")'></b-input>
-              <p class="visuallyhidden">{{ $t("report.zoom.explanation") }}</p>
+                       :placeholder='$t("report.report-table-virtual-list.report.url_filter")'></b-input>
+              <p class="visuallyhidden">{{ $t("report.report-table-virtual-list.report.zoom.explanation") }}</p>
             </td>
             <template v-if="['web', 'mail'].includes(selected_category)">
               <td
                   v-for="category_name in relevant_categories_based_on_settings"
                   class="sticky_search px-100" :key="category_name">
                 <button @click="select_category(category_name)">
-                  {{ $t("report.zoom.buttons.zoom") }}
+                  {{ $t("report.report-table-virtual-list.report.zoom.buttons.zoom") }}
                   <span class="visuallyhidden">{{
-                      $t("report.zoom.buttons.zoom_in_on", [$t("" + category_name)])
+                      $t("report.report-table-virtual-list.report.zoom.buttons.zoom_in_on", [$t("metric." + category_name + ".title")])
                     }}</span>
                 </button>
                 <br>&nbsp;
@@ -456,11 +456,11 @@ div.rotate > span {
                   class="sticky_search text-center">
                 <button class="w-100"
                         @click="select_category(report_category)">
-                  <span role="img" :aria-label='$t("icons.remove_filter")'>↩️</span>
-                  {{ $t("report.zoom.buttons.remove_zoom") }}
+                  <span role="img" :aria-label='$t("report.report-table-virtual-list.icons.remove_filter")'>↩️</span>
+                  {{ $t("report.report-table-virtual-list.report.zoom.buttons.remove_zoom") }}
                 </button>
                 <br>
-                {{ $t("report.zoom.zoomed_in_on") }} {{ $t("" + selected_category) }}.
+                {{ $t("report.report-table-virtual-list.report.zoom.zoomed_in_on") }} {{ $t("metric." + selected_category + ".title") }}.
               </td>
             </template>
 
@@ -468,7 +468,7 @@ div.rotate > span {
         </template>
         <tr v-if="filtered_urls.length < 1">
           <td :colspan="relevant_categories_based_on_settings.length + 2"
-              class="text-center">😱 {{ $t("report.empty_report") }}
+              class="text-center">😱 {{ $t("report.report-table-virtual-list.report.empty_report") }}
           </td>
         </tr>
         </tbody>
@@ -483,8 +483,6 @@ div.rotate > span {
 </template>
 
 <script>
-
-import field_translations from '../FieldTranslations'
 import report_mixin from "@/components/reports/report_mixin";
 
 import ReportTableLegend from "@/components/reports/ReportTableLegend";
@@ -497,10 +495,6 @@ import ReportTableVirtualListRecord from "@/components/reports/ReportTableVirtua
 export default {
   components: {AppliedTags, DifferencesToCurrentList, ReportTableLegend, CollapsePanel, VirtualList},
   mixins: [report_mixin],
-
-  i18n: {
-    sharedMessages: field_translations,
-  },
   name: "ReportTableVirtualList",
   props: {
     reports: {
@@ -765,73 +759,3 @@ export default {
   }
 }
 </script>
-
-
-<i18n>
-{
-  "en": {
-    "score": "Score",
-    "domain": "Domain",
-    "report": {
-      "title": "Metrics table",
-      "intro": "This table shows detailed results per category. It is possible to compare this report to a second report. In that case, progress indicators are added to the first report where applicable. The domains of the second report are only compared, not displayed.",
-      "url_filter": "Filter on domain...",
-
-      "zoom": {
-        "buttons": {
-          "zoom": "details",
-          "remove_zoom": "Back to the category view",
-          "zoom_in_on": "View details of {0}"
-        },
-        "zoomed_in_on": "Details from",
-        "explanation": "Using the details buttons, it is possible to see the individual metrics for each category."
-      },
-
-      "empty_report": "It looks like this report is empty... did you filter too much?"
-
-    },
-    "icons": {
-      "remove_filter": "Remove filter"
-    },
-    "icon_legend": {
-      "title": "Legend of used icons",
-      "category_error_in_test": "Error occurred while testing ⇒ null score",
-      "subtest_not_applicable": "Not applicable ⇒ no score impact",
-      "subtest_not_tested": "Not tested ⇒ no score impact",
-      "subtest_error_in_test": "Error occurred while testing ⇒ null score"
-    }
-  },
-  "nl": {
-    "score": "Score",
-    "domain": "Domein",
-    "report": {
-      "title": "Meetwaardentabel",
-      "intro": "Deze tabel toont de details van het rapport. Het is mogelijk dit rapport te vergelijken met een vorig of ander rapport. Wanneer deze vergelijking wordt gemaakt, wordt bij de gegevens van het eerste rapport voortgangsindicatoren geplaats waar relevant. De domeinen van het tweede rapport worden alleen vergeleken, niet getoond.",
-
-      "url_filter": "Filter op domein...",
-      "zoom": {
-        "buttons": {
-          "zoom": "details",
-          "remove_zoom": "Terug naar hoofdniveau",
-          "zoom_in_on": "Bekijk de details van {0}"
-        },
-        "zoomed_in_on": "Details van ",
-        "explanation": "Met de detail buttons is het mogelijk om details van ieder categorie naar voren te halen."
-      },
-
-      "empty_report": "Geen meetgegevens gevonden, wordt er misschien teveel gefilterd?"
-
-
-    },
-    "icons": {
-      "remove_filter": "Wis filter"
-    },
-    "icon_legend": {
-      "title": "Legenda van gebruikte pictogrammen",
-      "category_error_in_test": "Fout in test ⇒ nulscore",
-      "subtest_not_tested": "Niet getest ⇒ geen score impact",
-      "subtest_error_in_test": "Fout in test ⇒ nulscore"
-    }
-  }
-}
-</i18n>

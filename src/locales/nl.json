@@ -150,6 +150,10 @@
 			"usage_overview": "Gebruiksoverzicht",
 			"web_metrics": "Web meetwaarden"
 		},
+		"scan-type": {
+			"mail": "Mail",
+			"web": "Web"
+		},
 		"server-response": {
 			"at": "Op",
 			"error": "Er is iets mis gegaan",
@@ -216,34 +220,10 @@
 			"title": "Subdomeinen Zoeker",
 			"will_be_added_to": "geselecteerde subdomeinen worden toegevoegd aan de lijst genaamd {0}."
 		},
-		"edit": {
-			"button_labels": {
-				"cancel": "Annuleren",
-				"remove": "Verwijderen",
-				"save": "Opslaan"
-			},
-			"cancel_editing_url": "",
-			"delete_edited_url": "",
-			"eligeble_mail": "E-mail scannen is mogelijk",
-			"save_edited_url": "",
-			"start_editing_url": "Bewerk {0}."
-		},
 		"edit-domain": {
-			"button_labels": {
-				"cancel": "Annuleren",
-				"remove": "Verwijderen",
-				"save": "Opslaan"
-			},
-			"cancel_editing_url": "",
-			"delete_edited_url": "",
-			"eligeble_mail": "E-mail scannen is mogelijk",
-			"eligeble_web": "Web scan is mogelijk",
-			"not_eligeble_mail": "Kan geen E-mail scan uitvoeren (wordt opnieuw gecheckt bij het starten van de scan)",
-			"not_eligeble_web": "Web scan kan niet worden uitgevoerd. Dit wordt opnieuw gecheckt bij het starten van de scan.",
-			"save_edited_url": "",
-			"start_editing_url": "Bewerk {0}.",
-			"unknown_eligeble_mail": "Onbekend of E-mail scannen mogelijk is",
-			"unknown_eligeble_web": "Niet bekend of het mogelijk is een web scan uit te voeren"
+			"cancel": "Annuleren",
+			"remove": "Verwijderen",
+			"save": "Opslaan"
 		},
 		"list": {
 			"add-domains": {
@@ -572,6 +552,11 @@
 		},
 		"category_web_tls_tls": {
 			"title": "TLS"
+		},
+		"internet_nl_legacy": {
+			"status_fields": {
+				"title": "Status Velden"
+			}
 		},
 		"internet_nl_mail_auth_dkim_exist": {
 			"explanation": "E-mail wordt verstuurd met een digitale handtekening van de afzender. Deze handtekening kan niet zomaar worden nagemaakt. Wanneer iemand dat toch probeert na te doen zal het postbedrijf de e-mail weigeren en de echte eigenaar waarschuwen over de namaak e-mail.",
@@ -1332,53 +1317,56 @@
 			},
 			"technology": "Beveiliging transportlaag (TLS)",
 			"title": "Veilige verbinding volgens NCSC-NL eisen (HTTPS)"
+		},
+		"legend": {
+			"subtest_bad": "Slecht: gezakt voor VEREISTE subtest ⇒ nulscore",
+			"subtest_good": "Goed: geslaagd voor VEREISTE, AANBEVOLEN of OPTIONELE subtest ⇒ eerste: volledige score / laatste twee: geen impact op score",
+			"subtest_info": "Ter informatie: gezakt voor tenminste één OPTIONELE subtest ⇒ volledige score voor testcategorie",
+			"subtest_title": "Iconen per subtest",
+			"subtest_warning": "Waarschuwing: gezakt voor AANBEVOLEN subtest ⇒ geen impact op score",
+			"test_bad": "Slecht: gezakt voor tenminste één VEREISTE subtest ⇒ geen volledige score voor testcategorie",
+			"test_good": "Goed: geslaagd voor alle subtesten ⇒ volledige score voor testcategorie ",
+			"test_info": "Ter informatie: gezakt voor tenminste één OPTIONELE subtest ⇒ volledige score voor testcategorie",
+			"test_title": "Iconen per testcategorie",
+			"test_warning": "Waarschuwing: gezakt voor tenminste één AANBEVOLEN subtest ⇒ volledige score voor testcategorie "
+		},
+		"rating": {
+			"pct_error_in_test": "testfout",
+			"pct_high": "gezakt",
+			"pct_low": "info",
+			"pct_medium": "waarschuwing",
+			"pct_not_applicable": "niet van toepassing",
+			"pct_not_testable": "niet testbaar",
+			"pct_ok": "geslaagd"
 		}
 	},
-	"public_reports": {
-		"components/home/PublicReports.vue": {
-			"Contains": "Bevat",
-			"domains": "domeinen",
+	"public-reports": {
+		"page": {
 			"introduction": "Deze rapporten worden gemaakt, samengesteld en gedeeld door het internet.nl dashboard team",
-			"Name": "Rapport",
-			"Public reports": "Openbare rapporten samengesteld door dashboard beheerders",
-			"Published": "Gepubliceerd op",
-			"Score": "Internet.nl score",
-			"View": "Bekijken",
-			"View report": "Bekijk rapport"
+			"Public reports": "Openbare rapporten samengesteld door dashboard beheerders"
 		},
-		"components/home/PublicReportsPerAccount.vue": {
+		"per-account": {
 			"all": "Mail & Web",
-			"Contains": "Bevat",
-			"domains": "domeinen",
-			"Name": "Rapport",
-			"Published": "Gepubliceerd op",
 			"Recently published reports": "Openbare rapporten",
 			"scan_frequency": "Volgende update",
 			"scan_type": "Gemeten",
-			"Score": "Internet.nl score",
-			"View": "Bekijken",
 			"View latest mail report": "Nieuwste mail rapport",
 			"View latest report": "Nieuwste rapport",
-			"View latest web report": "Nieuwste web rapport",
-			"View report": "Bekijk rapport"
+			"View latest web report": "Nieuwste web rapport"
 		},
-		"components/home/PublicReportsTable.vue": {
+		"table": {
 			"Contains": "Bevat",
 			"domains": "domeinen",
-			"introduction": "Deze rapporten worden gemaakt, samengesteld en gedeeld door het internet.nl dashboard team",
 			"Name": "Rapport",
 			"Published": "Gepubliceerd op",
-			"Recently published reports": "Recent gepubliceerde rapporten",
-			"Score": "Internet.nl score",
-			"View": "Bekijken",
-			"View report": "Bekijk rapport"
+			"Score": "Internet.nl score"
 		}
 	},
 	"report": {
-		"components/reports/AppliedTags.vue": {
+		"applied-tags": {
 			"info": "Toegepaste labels"
 		},
-		"components/reports/DifferencesToCurrentList.vue": {
+		"differences": {
 			"both_list_contain_n_urls": "Zowel de rapportage als de bijbehorende lijst bevatten {0} domeinen.",
 			"equal": "Domeinen in dit rapport zijn gelijk aan de domeinen in de bijbehorende lijst.",
 			"in_report_but_not_in_urllist": "Domeinen in het rapport, maar niet in de bijbehorende lijst",
@@ -1387,49 +1375,20 @@
 			"report_contains_n_urllist_contains_n": "Deze rapportage bevat {0} domeinen terwijl de bijbehorende lijst {1} domeinen bevat.",
 			"retrieving_differences": "Lijst met verschillen aan het ophalen t.o.v. de huidige lijst."
 		},
-		"components/reports/NestedReportCharts.vue": {
-			"A": "",
-			"category": "Categorie",
-			"G": "Gemiddelde"
-		},
-		"components/reports/Report.vue": {
-			"intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar.",
-			"patience": "Het kan even duren voordat een download begint van een rapport met meer dan 1000 domeinen. Neem hiervoor even de tijd.",
-			"settings": "Selecteer zichtbare meetwaarden",
-			"tab_changes": "Veranderingen",
-			"tab_graphs": "Grafieken",
-			"tab_metrics": "Meetwaardentabel",
-			"title": "Rapporten"
-		},
-		"components/reports/ReportCharts.vue": {
-			"adoption_bar_chart": {
-				"intro": "Deze grafiek toont het percentage adoptie per categorie en onderliggende metingen.",
-				"title": "Adoptie van standaarden per categorie"
-			},
-			"adoption_circle_chart": {
-				"title": "Adoptie van standaarden"
-			},
-			"cumulative_adoption_bar_chart": {
-				"intro": "In deze grafiek worden de geselecteerde rapporten bij elkaar opgeteld, en daar het gemiddelde van getoond.",
-				"title": "Adoptie van standaarden, rapporten opgeteld"
-			},
-			"how_charts_work": "Door te klikken op de leganda in deze grafieken, kunnen beoordelingen worden getoond en verborgen. De 'gezakt' categorie wordt standaard altijd verborgen."
-		},
-		"components/reports/ReportDownload.vue": {
+		"download": {
 			"csv": "Kommagescheiden (csv)",
-			"intro": "De data in dit rapport is beschikbaar in de volgende formaten:",
 			"ods": "Open Document (ods)",
 			"title": "Download #{0} als",
 			"xlsx": "Microsoft Excel (xlsx)"
 		},
-		"components/reports/ReportHeader.vue": {
+		"header": {
 			"compared_to": "Vergeleken met",
 			"data_from": "Rapportage van",
 			"number_of_domains": "Aantal domeinen",
 			"only_graphs": "Enkel de tijdlijn en grafieken worden getoond omdat er meer dan twee rapporten zijn geselecteerd.",
 			"type_of_scan_performed": "Soort rapport"
 		},
-		"components/reports/ReportImprovementAndRegressions.vue": {
+		"improvement-regressions": {
 			"days_ago": "",
 			"domains_exclusive_current": "",
 			"domains_exclusive_other": "",
@@ -1445,7 +1404,7 @@
 			"title": "Veranderingen",
 			"url": "Domein"
 		},
-		"components/reports/ReportImprovementAndRegressionsTable.vue": {
+		"improvement-regressions-table": {
 			"improvement": "Verbeteringen",
 			"metrics": "Metingen",
 			"regression": "Verslechteringen",
@@ -1453,23 +1412,7 @@
 			"score_to": "naar",
 			"url": "Domein"
 		},
-		"components/reports/ReportPasswords.vue": {
-			"Authentication required": "Wachtwoord vereist",
-			"code": "Rapport",
-			"created_on": "Gemaakt op",
-			"name": "Naam",
-			"No password needed": "Geen wachtwoord vereist",
-			"Retry with above settings": "Probeer met dit wachtwoord",
-			"Some reports require authentication": "Voor sommige rapporten is een wachtwoord vereist, vul het wachtwoord of 'deelcode' in voor die rapporten:",
-			"Stored password is valid": "Het opgeslagen wachtwoord is geldig",
-			"supply_password": "Voer een wachtwoord in voor dit rapport:"
-		},
-		"components/reports/ReportSelection.vue": {
-			"no_options": "Geen rapporten beschikbaar.",
-			"reload_list": "Bijwerken",
-			"select_report": "Selecteer rapport..."
-		},
-		"components/reports/ReportTableLegend.vue": {
+		"legend": {
 			"icon_legend": {
 				"category_error_in_test": "",
 				"subtest_error_in_test": "",
@@ -1495,7 +1438,49 @@
 				"warning": "Waarschuwing"
 			}
 		},
-		"components/reports/ReportTableVirtualList.vue": {
+		"nested-report-charts": {
+			"A": "",
+			"category": "Categorie",
+			"G": "Gemiddelde"
+		},
+		"page": {
+			"intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar.",
+			"patience": "Het kan even duren voordat een download begint van een rapport met meer dan 1000 domeinen. Neem hiervoor even de tijd.",
+			"tab_changes": "Veranderingen",
+			"tab_graphs": "Grafieken",
+			"tab_metrics": "Meetwaardentabel",
+			"title": "Rapporten"
+		},
+		"password-protection": {
+			"Authentication required": "Wachtwoord vereist",
+			"code": "Rapport",
+			"created_on": "Gemaakt op",
+			"name": "Naam",
+			"No password needed": "Geen wachtwoord vereist",
+			"Retry with above settings": "Probeer met dit wachtwoord",
+			"Some reports require authentication": "Voor sommige rapporten is een wachtwoord vereist, vul het wachtwoord of 'deelcode' in voor die rapporten:",
+			"Stored password is valid": "Het opgeslagen wachtwoord is geldig",
+			"supply_password": "Voer een wachtwoord in voor dit rapport:"
+		},
+		"report-charts": {
+			"adoption_bar_chart": {
+				"intro": "Deze grafiek toont het percentage adoptie per categorie en onderliggende metingen.",
+				"title": "Adoptie van standaarden per categorie"
+			},
+			"adoption_circle_chart": {
+				"title": "Adoptie van standaarden"
+			},
+			"cumulative_adoption_bar_chart": {
+				"intro": "In deze grafiek worden de geselecteerde rapporten bij elkaar opgeteld, en daar het gemiddelde van getoond.",
+				"title": "Adoptie van standaarden, rapporten opgeteld"
+			}
+		},
+		"report-selection": {
+			"no_options": "Geen rapporten beschikbaar.",
+			"reload_list": "Bijwerken",
+			"select_report": "Selecteer rapport..."
+		},
+		"report-table-virtual-list": {
 			"domain": "Domein",
 			"icon_legend": {
 				"category_error_in_test": "Fout in test ⇒ nulscore",
@@ -1524,7 +1509,45 @@
 			},
 			"score": "Score"
 		},
-		"components/reports/ReportTableVirtualListRecord.vue": {
+		"shared-report": {
+			"intro": "",
+			"not_found": {
+				"content": "Het opgevraagde rapport kon niet worden gevonden. Het kan zijn dat deze niet meer publiek is omdat deze is verwijderd of niet meer publiek staat. Controleer je invoer en probeer opnieuw.",
+				"title": "Rapport is niet gevonden"
+			},
+			"title": "Gedeeld Rapport"
+		},
+		"sharing_configuration": {
+			"and_password": " en het wachtwoord",
+			"change_link": "Nieuwe link",
+			"configure_password": "Wachtwoord instellen (optioneel)",
+			"intro": "Deelopties voor dit rapport:",
+			"not_shared": "Niet gedeeld",
+			"open": "open",
+			"password_description": "Wanneer ingesteld moet de bezoeker ook een wachtwoord ingeven.",
+			"remove_password": "Wachtwoord verwijderen",
+			"response_no_report_found": "Rapport kon niet worden gevonden.",
+			"response_shared": "Rapport is nu gedeeld",
+			"response_unshared": "Rapport wordt niet meer gedeeld",
+			"response_updated_report_code": "Rapport link aangepast",
+			"response_updated_share_code": "Wachtwoord aangepast",
+			"set_password": "Wachtwoord instellen",
+			"share_to_anyone_with_url": "Deel voor iedereen met de link ",
+			"shared": "Gedeeld",
+			"shared_at_url": "Rapport gedeeld op de volgende link",
+			"stop_sharing": "Stop delen",
+			"title": "{1} - Delen van rapport #{0} instellen",
+			"with_password": "met het wachtwoord ",
+			"without_password": "zonder wachtwoord."
+		},
+		"tag-filter": {
+			"apply": "Toepassen",
+			"filter_by_tag": "-- filter op label",
+			"reset": "Ongedaan maken",
+			"save-as-new-report": "Opslaan als nieuw rapport",
+			"tag_explanation": "Dit rapport ondersteund label, hierop kan worden gefilterd. Dit gebeurd direct op de database, daardoor kan het even duren voordat het filter is toegepast. Meerdere labels selecteren betekent dat deze per domein allemaal worden gebruikt."
+		},
+		"virtual-list-record": {
 			"evidence": "Meetgegevens",
 			"link_to_report": "Bekijk de score en rapportage van %{url} op internet.nl.",
 			"not_eligeble_for_scanning": "Dit domein voldeed niet aan de scan-criteria op het moment van scannen. Deze criteria zijn een SOA DNS record (geen NXERROR) voor mail en een A of AAAA DNS record voor web. Dit domein komt niet terug in de statistieken.",
@@ -1547,41 +1570,6 @@
 				"warning": "Waarschuwing"
 			},
 			"since": "Sinds"
-		},
-		"components/reports/ReportTagFilter.vue": {
-			"filter_by_tag": "-- filter op label",
-			"tag_explanation": "Dit rapport ondersteund label, hierop kan worden gefilterd. Dit gebeurd direct op de database, daardoor kan het even duren voordat het filter is toegepast. Meerdere labels selecteren betekent dat deze per domein allemaal worden gebruikt."
-		},
-		"components/reports/SharedReport.vue": {
-			"intro": "",
-			"not_found": {
-				"content": "Het opgevraagde rapport kon niet worden gevonden. Het kan zijn dat deze niet meer publiek is omdat deze is verwijderd of niet meer publiek staat. Controleer je invoer en probeer opnieuw.",
-				"title": "Rapport is niet gevonden"
-			},
-			"title": "Gedeeld Rapport"
-		},
-		"components/reports/SharingConfiguration.vue": {
-			"and_password": " en het wachtwoord",
-			"change_link": "Nieuwe link",
-			"configure_password": "Wachtwoord instellen (optioneel)",
-			"intro": "Deelopties voor dit rapport:",
-			"not_shared": "Niet gedeeld",
-			"open": "open",
-			"password_description": "Wanneer ingesteld moet de bezoeker ook een wachtwoord ingeven.",
-			"remove_password": "Wachtwoord verwijderen",
-			"response_no_report_found": "Rapport kon niet worden gevonden.",
-			"response_shared": "Rapport is nu gedeeld",
-			"response_unshared": "Rapport wordt niet meer gedeeld",
-			"response_updated_report_code": "Rapport link aangepast",
-			"response_updated_share_code": "Wachtwoord aangepast",
-			"set_password": "Wachtwoord instellen",
-			"share_to_anyone_with_url": "Deel voor iedereen met de link ",
-			"shared": "Gedeeld",
-			"shared_at_url": "Rapport gedeeld op de volgende link",
-			"stop_sharing": "Stop delen",
-			"title": "{1} - Delen van rapport #{0} instellen",
-			"with_password": "met het wachtwoord ",
-			"without_password": "zonder wachtwoord."
 		}
 	},
 	"scanmonitor": {
@@ -1758,19 +1746,6 @@
 			"procedure_title": "Procedure voor het uitgeven van inloggegevens",
 			"support_description": "Voor vragen over (het gebruik van) de API of hte dashboard, stuur een e-mail naar <a href=\"mailto:vraag@internet.nl\">vraag@internet.nl</a>",
 			"support_title": "Ondersteuning"
-		}
-	},
-	"test": {
-		"result": {
-			"percentage": {
-				"error_in_test": "",
-				"high": "",
-				"low": "",
-				"medium": "",
-				"not_applicable": "",
-				"not_testable": "",
-				"ok": ""
-			}
 		}
 	},
 	"tour": {

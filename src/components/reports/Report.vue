@@ -4,9 +4,9 @@
     <content-block class="do-not-print">
       <h1>
         <b-icon icon="file-bar-graph"/>
-        {{ $t("title") }}
+        {{ $t("report.page.title") }}
       </h1>
-      <p>{{ $t("intro") }}</p>
+      <p>{{ $t("report.page.intro") }}</p>
 
       <report-selection @tags_applied="apply_tags"/>
 
@@ -20,7 +20,7 @@
           <content-block class="do-not-print">
           <b-container>
             <report-download :report="report" v-for="report in shallow_reports" :key="`d${report.id}`" class="mb-2"></report-download>
-            <small>{{$t("patience")}}</small>
+            <small>{{$t("report.page.patience")}}</small>
             </b-container>
             </content-block>
 
@@ -36,7 +36,7 @@
 
       <b-tabs variant="info" nav-class="">
 
-        <b-tab  :title='$t("tab_metrics")' lazy>
+        <b-tab  :title='$t("report.page.tab_metrics")' lazy>
 
 
           <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
@@ -70,10 +70,10 @@
         </b-tab>
 
 
-        <b-tab :title='$t("tab_graphs")' lazy>
+        <b-tab :title='$t("report.page.tab_graphs")' lazy>
           <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
         </b-tab>
-        <b-tab :title='$t("tab_changes")' lazy>
+        <b-tab :title='$t("report.page.tab_changes")' lazy>
           <ReportImprovementAndRegressions :report_id="reports[0].id"/>
         </b-tab>
 
@@ -159,25 +159,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "settings": "Select visible metrics",
-    "title": "Reports",
-    "intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",
-    "tab_metrics": "Metrics table",
-    "tab_graphs": "Graphs",
-    "tab_changes": "Changes",
-    "patience": "Reports with over 1000 domains may take a minute before downloading starts, please be patient."
-  },
-  "nl": {
-    "settings": "Selecteer zichtbare meetwaarden",
-    "title": "Rapporten",
-    "intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar.",
-    "tab_metrics": "Meetwaardentabel",
-    "tab_graphs": "Grafieken",
-    "tab_changes": "Veranderingen",
-    "patience": "Het kan even duren voordat een download begint van een rapport met meer dan 1000 domeinen. Neem hiervoor even de tijd."
-  }
-}
-</i18n>

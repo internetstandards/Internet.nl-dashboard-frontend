@@ -90,13 +90,8 @@ Chart.register(DoughnutController, ArcElement,  Tooltip);
 
 import donutChart from './../charts/donutChart'
 // import DownloadData from './../charts/DownloadData'
-import field_translations from '../FieldTranslations'
 
 export default {
-  i18n: {
-    sharedMessages: field_translations,
-  },
-
   components: {donutChart},
 
   props: {

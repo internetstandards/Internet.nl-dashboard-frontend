@@ -150,6 +150,10 @@
 			"usage_overview": "",
 			"web_metrics": ""
 		},
+		"scan-type": {
+			"mail": "",
+			"web": ""
+		},
 		"server-response": {
 			"at": "",
 			"error": "",
@@ -216,34 +220,10 @@
 			"title": "",
 			"will_be_added_to": ""
 		},
-		"edit": {
-			"button_labels": {
-				"cancel": "",
-				"remove": "",
-				"save": ""
-			},
-			"cancel_editing_url": "",
-			"delete_edited_url": "",
-			"eligeble_mail": "",
-			"save_edited_url": "",
-			"start_editing_url": ""
-		},
 		"edit-domain": {
-			"button_labels": {
-				"cancel": "",
-				"remove": "",
-				"save": ""
-			},
-			"cancel_editing_url": "",
-			"delete_edited_url": "",
-			"eligeble_mail": "",
-			"eligeble_web": "",
-			"not_eligeble_mail": "",
-			"not_eligeble_web": "",
-			"save_edited_url": "",
-			"start_editing_url": "",
-			"unknown_eligeble_mail": "",
-			"unknown_eligeble_web": ""
+			"cancel": "",
+			"remove": "",
+			"save": ""
 		},
 		"list": {
 			"add-domains": {
@@ -572,6 +552,11 @@
 		},
 		"category_web_tls_tls": {
 			"title": "TLS"
+		},
+		"internet_nl_legacy": {
+			"status_fields": {
+				"title": ""
+			}
 		},
 		"internet_nl_mail_auth_dkim_exist": {
 			"explanation": "Le courrier électronique peut contenir une signature numérique de l'expéditeur, qui peut être vérifiée par le service postal. Si la signature est manquante ou incorrecte, cela peut être considéré comme une tentative d'envoi d'un faux courrier. Lorsque quelqu'un envoie un faux courrier électronique, le service postal peut envoyer une notification au véritable propriétaire de l'adresse électronique, car il pourrait vouloir faire quelque chose à ce sujet.",
@@ -1332,53 +1317,56 @@
 			},
 			"technology": "Sécurité de la couche transport (TLS)",
 			"title": "Connexion sécurisée conforme aux exigences du NCSC-NL (HTTPS)"
+		},
+		"legend": {
+			"subtest_bad": "",
+			"subtest_good": "",
+			"subtest_info": "",
+			"subtest_title": "",
+			"subtest_warning": "",
+			"test_bad": "",
+			"test_good": "",
+			"test_info": "",
+			"test_title": "",
+			"test_warning": ""
+		},
+		"rating": {
+			"pct_error_in_test": "",
+			"pct_high": "",
+			"pct_low": "",
+			"pct_medium": "",
+			"pct_not_applicable": "",
+			"pct_not_testable": "",
+			"pct_ok": ""
 		}
 	},
-	"public_reports": {
-		"components/home/PublicReports.vue": {
-			"Contains": "",
-			"domains": "",
+	"public-reports": {
+		"page": {
 			"introduction": "",
-			"Name": "",
-			"Public reports": "",
-			"Published": "",
-			"Score": "",
-			"View": "",
-			"View report": ""
+			"Public reports": ""
 		},
-		"components/home/PublicReportsPerAccount.vue": {
+		"per-account": {
 			"all": "",
-			"Contains": "",
-			"domains": "",
-			"Name": "",
-			"Published": "",
 			"Recently published reports": "",
 			"scan_frequency": "",
 			"scan_type": "",
-			"Score": "",
-			"View": "",
 			"View latest mail report": "",
 			"View latest report": "",
-			"View latest web report": "",
-			"View report": ""
+			"View latest web report": ""
 		},
-		"components/home/PublicReportsTable.vue": {
+		"table": {
 			"Contains": "",
 			"domains": "",
-			"introduction": "",
 			"Name": "",
 			"Published": "",
-			"Recently published reports": "",
-			"Score": "",
-			"View": "",
-			"View report": ""
+			"Score": ""
 		}
 	},
 	"report": {
-		"components/reports/AppliedTags.vue": {
+		"applied-tags": {
 			"info": ""
 		},
-		"components/reports/DifferencesToCurrentList.vue": {
+		"differences": {
 			"both_list_contain_n_urls": "",
 			"equal": "",
 			"in_report_but_not_in_urllist": "",
@@ -1387,49 +1375,20 @@
 			"report_contains_n_urllist_contains_n": "",
 			"retrieving_differences": ""
 		},
-		"components/reports/NestedReportCharts.vue": {
-			"A": "",
-			"category": "",
-			"G": ""
-		},
-		"components/reports/Report.vue": {
-			"intro": "",
-			"patience": "",
-			"settings": "",
-			"tab_changes": "",
-			"tab_graphs": "",
-			"tab_metrics": "",
-			"title": ""
-		},
-		"components/reports/ReportCharts.vue": {
-			"adoption_bar_chart": {
-				"intro": "",
-				"title": ""
-			},
-			"adoption_circle_chart": {
-				"title": ""
-			},
-			"cumulative_adoption_bar_chart": {
-				"intro": "",
-				"title": ""
-			},
-			"how_charts_work": ""
-		},
-		"components/reports/ReportDownload.vue": {
+		"download": {
 			"csv": "",
-			"intro": "",
 			"ods": "",
 			"title": "",
 			"xlsx": ""
 		},
-		"components/reports/ReportHeader.vue": {
+		"header": {
 			"compared_to": "",
 			"data_from": "",
 			"number_of_domains": "",
 			"only_graphs": "",
 			"type_of_scan_performed": ""
 		},
-		"components/reports/ReportImprovementAndRegressions.vue": {
+		"improvement-regressions": {
 			"days_ago": "",
 			"domains_exclusive_current": "",
 			"domains_exclusive_other": "",
@@ -1445,7 +1404,7 @@
 			"title": "",
 			"url": ""
 		},
-		"components/reports/ReportImprovementAndRegressionsTable.vue": {
+		"improvement-regressions-table": {
 			"improvement": "",
 			"metrics": "",
 			"regression": "",
@@ -1453,23 +1412,7 @@
 			"score_to": "",
 			"url": ""
 		},
-		"components/reports/ReportPasswords.vue": {
-			"Authentication required": "",
-			"code": "",
-			"created_on": "",
-			"name": "",
-			"No password needed": "",
-			"Retry with above settings": "",
-			"Some reports require authentication": "",
-			"Stored password is valid": "",
-			"supply_password": ""
-		},
-		"components/reports/ReportSelection.vue": {
-			"no_options": "",
-			"reload_list": "",
-			"select_report": ""
-		},
-		"components/reports/ReportTableLegend.vue": {
+		"legend": {
 			"icon_legend": {
 				"category_error_in_test": "",
 				"subtest_error_in_test": "",
@@ -1495,7 +1438,49 @@
 				"warning": ""
 			}
 		},
-		"components/reports/ReportTableVirtualList.vue": {
+		"nested-report-charts": {
+			"A": "",
+			"category": "",
+			"G": ""
+		},
+		"page": {
+			"intro": "",
+			"patience": "",
+			"tab_changes": "",
+			"tab_graphs": "",
+			"tab_metrics": "",
+			"title": ""
+		},
+		"password-protection": {
+			"Authentication required": "",
+			"code": "",
+			"created_on": "",
+			"name": "",
+			"No password needed": "",
+			"Retry with above settings": "",
+			"Some reports require authentication": "",
+			"Stored password is valid": "",
+			"supply_password": ""
+		},
+		"report-charts": {
+			"adoption_bar_chart": {
+				"intro": "",
+				"title": ""
+			},
+			"adoption_circle_chart": {
+				"title": ""
+			},
+			"cumulative_adoption_bar_chart": {
+				"intro": "",
+				"title": ""
+			}
+		},
+		"report-selection": {
+			"no_options": "",
+			"reload_list": "",
+			"select_report": ""
+		},
+		"report-table-virtual-list": {
 			"domain": "",
 			"icon_legend": {
 				"category_error_in_test": "",
@@ -1524,7 +1509,45 @@
 			},
 			"score": ""
 		},
-		"components/reports/ReportTableVirtualListRecord.vue": {
+		"shared-report": {
+			"intro": "",
+			"not_found": {
+				"content": "",
+				"title": ""
+			},
+			"title": ""
+		},
+		"sharing_configuration": {
+			"and_password": "",
+			"change_link": "",
+			"configure_password": "",
+			"intro": "",
+			"not_shared": "",
+			"open": "",
+			"password_description": "",
+			"remove_password": "",
+			"response_no_report_found": "",
+			"response_shared": "",
+			"response_unshared": "",
+			"response_updated_report_code": "",
+			"response_updated_share_code": "",
+			"set_password": "",
+			"share_to_anyone_with_url": "",
+			"shared": "",
+			"shared_at_url": "",
+			"stop_sharing": "",
+			"title": "",
+			"with_password": "",
+			"without_password": ""
+		},
+		"tag-filter": {
+			"apply": "",
+			"filter_by_tag": "",
+			"reset": "",
+			"save-as-new-report": "",
+			"tag_explanation": ""
+		},
+		"virtual-list-record": {
 			"evidence": "",
 			"link_to_report": "",
 			"not_eligeble_for_scanning": "",
@@ -1547,41 +1570,6 @@
 				"warning": ""
 			},
 			"since": ""
-		},
-		"components/reports/ReportTagFilter.vue": {
-			"filter_by_tag": "",
-			"tag_explanation": ""
-		},
-		"components/reports/SharedReport.vue": {
-			"intro": "",
-			"not_found": {
-				"content": "",
-				"title": ""
-			},
-			"title": ""
-		},
-		"components/reports/SharingConfiguration.vue": {
-			"and_password": "",
-			"change_link": "",
-			"configure_password": "",
-			"intro": "",
-			"not_shared": "",
-			"open": "",
-			"password_description": "",
-			"remove_password": "",
-			"response_no_report_found": "",
-			"response_shared": "",
-			"response_unshared": "",
-			"response_updated_report_code": "",
-			"response_updated_share_code": "",
-			"set_password": "",
-			"share_to_anyone_with_url": "",
-			"shared": "",
-			"shared_at_url": "",
-			"stop_sharing": "",
-			"title": "",
-			"with_password": "",
-			"without_password": ""
 		}
 	},
 	"scanmonitor": {
@@ -1758,19 +1746,6 @@
 			"procedure_title": "",
 			"support_description": "",
 			"support_title": ""
-		}
-	},
-	"test": {
-		"result": {
-			"percentage": {
-				"error_in_test": "",
-				"high": "",
-				"low": "",
-				"medium": "",
-				"not_applicable": "",
-				"not_testable": "",
-				"ok": ""
-			}
 		}
 	},
 	"tour": {

@@ -3,8 +3,8 @@
   <div id="report-template">
 
     <content-block class="do-not-print">
-        <h1>{{ $t("title") }}</h1>
-        <p>{{ $t("intro") }}</p>
+        <h1>{{ $t("report.shared-report.title") }}</h1>
+        <p>{{ $t("report.shared-report.intro") }}</p>
     </content-block>
 
     <content-block v-if="reports_to_load > 0">
@@ -12,9 +12,9 @@
     </content-block>
 
     <content-block v-if="reports.length === 0 && reports_to_load === 0">
-      <h2>{{$t("not_found.title")}}</h2>
+      <h2>{{$t("report.shared-report.not_found.title")}}</h2>
       <b-alert variant="danger" show >
-        {{$t("not_found.content")}}
+        {{$t("report.shared-report.not_found.content")}}
       </b-alert>
     </content-block>
 
@@ -92,23 +92,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "title": "Shared Report",
-    "intro": " ",
-    "not_found": {
-      "title": "Report could not be found",
-      "content": "Could not find this public report. It may have been revoked, deleted or the share code has changed. Please check your input and try again."
-    }
-  },
-  "nl": {
-    "title": "Gedeeld Rapport",
-    "intro": " ",
-    "not_found": {
-      "title": "Rapport is niet gevonden",
-      "content": "Het opgevraagde rapport kon niet worden gevonden. Het kan zijn dat deze niet meer publiek is omdat deze is verwijderd of niet meer publiek staat. Controleer je invoer en probeer opnieuw."
-    }
-  }
-}
-</i18n>

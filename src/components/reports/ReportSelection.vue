@@ -45,7 +45,7 @@
     <b-input-group>
     <v-select
         v-model="selected_reports"
-        :placeholder='$t("select_report")'
+        :placeholder='$t("report.report-selection.select_report")'
         :options="filtered_recent_reports"
         label="label"
         :spinner="loading"
@@ -53,7 +53,7 @@
         :multiple="true"
         :selectable="() => selected_reports.length < 6"
     >
-      <slot name="no-options">{{ $t("no_options") }}</slot>
+      <slot name="no-options">{{ $t("report.report-selection.no_options") }}</slot>
       <template v-slot:option="option">
         <div class="rowline d-block">
           <div class="d-inline-block col-1">{{ option.id }}</div>
@@ -70,7 +70,7 @@
     </v-select>
 
     <b-input-group-append>
-    <b-button class="lastbutton" variant="info" role="link" @click="get_recent_reports()">🔁 {{ $t("reload_list") }}</b-button>
+    <b-button class="lastbutton" variant="info" role="link" @click="get_recent_reports()">🔁 {{ $t("report.report-selection.reload_list") }}</b-button>
       </b-input-group-append>
     </b-input-group>
 
@@ -228,17 +228,4 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "select_report": "Select report...",
-    "no_options": "No reports available.",
-    "reload_list": "Update"
-  },
-  "nl": {
-    "select_report": "Selecteer rapport...",
-    "no_options": "Geen rapporten beschikbaar.",
-    "reload_list": "Bijwerken"
-  }
-}
-</i18n>
+

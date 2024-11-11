@@ -14,14 +14,14 @@
 <template>
   <div v-if="available_tags.length > 0">
 
-    <small>{{ $t("tag_explanation" )}}</small>
+    <small>{{ $t("report.tag-filter.tag_explanation" )}}</small>
 
     <loading :loading="loading"/>
 
     <b-input-group class="mb-2">
 
       <v-select :options="available_tags" v-model="selected_tags" multiple taggable class="w-75"
-                :placeholder='$t("filter_by_tag")'>
+                :placeholder='$t("report.tag-filter.filter_by_tag")'>
         <template v-slot:option="option">
           <tag :value="option.label"/>
         </template>
@@ -77,11 +77,11 @@
     </template>
 
 
-    <b-button variant="danger" @click="clear" class="normalbutton mr-2">Reset</b-button>
-    <b-button variant="success" @click="apply" class="normalbutton">Apply</b-button>
+    <b-button variant="danger" @click="clear" class="normalbutton mr-2">{{ $t("report.tag-filter.reset" )}}</b-button>
+    <b-button variant="success" @click="apply" class="normalbutton">{{ $t("report.tag-filter.apply" )}}</b-button>
 
 
-    <b-button variant="secondary" @click="save_ad_hoc_report" class="normalbutton float-right">🌟 Save as new report
+    <b-button variant="secondary" @click="save_ad_hoc_report" class="normalbutton float-right">🌟 {{ $t("report.tag-filter.save-as-new-report" )}}
     </b-button>
 
     <server-response :response="server_response" class="mt-2"></server-response>
@@ -158,15 +158,3 @@ export default {
   ...mapState(['report_ids', 'tags']),
 }
 </script>
-<i18n>
-{
-  "en": {
-    "tag_explanation": "This report supports labels. Labels can be used to filter the data in the report and create new sub-reports based on the selected tags. Filtering happens directly on the database, so this may take a while before it's rendered. Selecting multiple tags means that they are all applied per domain.",
-    "filter_by_tag": "-- filter by label"
-  },
-  "nl": {
-    "tag_explanation": "Dit rapport ondersteund label, hierop kan worden gefilterd. Dit gebeurd direct op de database, daardoor kan het even duren voordat het filter is toegepast. Meerdere labels selecteren betekent dat deze per domein allemaal worden gebruikt.",
-    "filter_by_tag": "-- filter op label"
-  }
-}
-</i18n>

@@ -150,6 +150,10 @@
 			"usage_overview": "Usage overview",
 			"web_metrics": "Web metrics"
 		},
+		"scan-type": {
+			"mail": "Mail",
+			"web": "Web"
+		},
 		"server-response": {
 			"at": "At",
 			"error": "An error occurred",
@@ -216,34 +220,10 @@
 			"title": "Discover Subdomains",
 			"will_be_added_to": "selected subdomains will be added to the list named {0}."
 		},
-		"edit": {
-			"button_labels": {
-				"cancel": "Cancel",
-				"remove": "Remove",
-				"save": "Save"
-			},
-			"cancel_editing_url": "Cancel editing and store the original value: {0}",
-			"delete_edited_url": "Delete {0} from this list.",
-			"eligeble_mail": "",
-			"save_edited_url": "Save changes, the change will be applied to {0}.",
-			"start_editing_url": "Edit {0}."
-		},
 		"edit-domain": {
-			"button_labels": {
-				"cancel": "Cancel",
-				"remove": "Remove",
-				"save": "Save"
-			},
-			"cancel_editing_url": "Cancel editing and store the original value: {0}",
-			"delete_edited_url": "Delete {0} from this list.",
-			"eligeble_mail": "{0} is eligible for e-mail scans",
-			"eligeble_web": "{0} is eligible for web scans",
-			"not_eligeble_mail": "{0} is not eligible for e-mail scans. Will be checked again when starting a scan.",
-			"not_eligeble_web": "{0} is not eligible for web scans. Will be checked again when starting a scan.",
-			"save_edited_url": "Save changes, the change will be applied to {0}.",
-			"start_editing_url": "Edit {0}.",
-			"unknown_eligeble_mail": "Not yet known if {0} can be mail scanned.",
-			"unknown_eligeble_web": "Not yet known if {0} can be web scanned."
+			"cancel": "Cancel",
+			"remove": "Remove",
+			"save": "Save"
 		},
 		"list": {
 			"add-domains": {
@@ -572,6 +552,11 @@
 		},
 		"category_web_tls_tls": {
 			"title": "TLS"
+		},
+		"internet_nl_legacy": {
+			"status_fields": {
+				"title": "Status Fields"
+			}
 		},
 		"internet_nl_mail_auth_dkim_exist": {
 			"explanation": "E-mail can contain a digital signature of the sender, this can by verified by the postal service. If the signature is missing or incorrect, it can be seen as an attempt of sending fake mail. When somebody does send a fake e-mail, the postal service can issue a notification to the real owner of the e-mail address as they might want to do something about this.",
@@ -1332,53 +1317,56 @@
 			},
 			"technology": "Transport Layer Security (TLS)",
 			"title": "Secure connection following NCSC-NL requirements (HTTPS)"
+		},
+		"legend": {
+			"subtest_bad": "Bad: fail on REQUIRED subtest ⇒ null score",
+			"subtest_good": "Good: pass on REQUIRED, RECOMMENDED or OPTIONAL subtest ⇒ first: full score / latter two: no score impact",
+			"subtest_info": "Informational: failed at least one OPTIONAL subtest ⇒ full score in test category",
+			"subtest_title": "Icons per subtest",
+			"subtest_warning": "Warning: fail on RECOMMENDED subtest ⇒ no score impact",
+			"test_bad": "Bad: failed at least one REQUIRED subtest ⇒ no full score in test category",
+			"test_good": "Good: passed all subtests ⇒ full score in test category",
+			"test_info": "Informational: failed at least one OPTIONAL subtest ⇒ full score in test category ",
+			"test_title": "Icons per test category",
+			"test_warning": "Warning: failed at least one RECOMMENDED subtest ⇒ full score in test category "
+		},
+		"rating": {
+			"pct_error_in_test": "test error",
+			"pct_high": "failed",
+			"pct_low": "info",
+			"pct_medium": "warning",
+			"pct_not_applicable": "not applicable",
+			"pct_not_testable": "not testable",
+			"pct_ok": "passed"
 		}
 	},
-	"public_reports": {
-		"components/home/PublicReports.vue": {
-			"Contains": "Contains",
-			"domains": "domains",
+	"public-reports": {
+		"page": {
 			"introduction": "These reports are created, curated and shared by the internet.nl dashboard staff",
-			"Name": "Report",
-			"Public reports": "Public reports created by dashboard staff",
-			"Published": "Publication date",
-			"Score": "Internet.nl score",
-			"View": "View",
-			"View report": "View report"
+			"Public reports": "Public reports created by dashboard staff"
 		},
-		"components/home/PublicReportsPerAccount.vue": {
+		"per-account": {
 			"all": "Mail & Web",
-			"Contains": "Contains",
-			"domains": "domains",
-			"Name": "Report",
-			"Published": "Publication date",
 			"Recently published reports": "Public reports",
 			"scan_frequency": "Next update",
 			"scan_type": "Measured",
-			"Score": "Internet.nl score",
-			"View": "View",
 			"View latest mail report": "Newest mail report",
 			"View latest report": "Newest report",
-			"View latest web report": "Newest web report",
-			"View report": "View report"
+			"View latest web report": "Newest web report"
 		},
-		"components/home/PublicReportsTable.vue": {
+		"table": {
 			"Contains": "Contains",
 			"domains": "domains",
-			"introduction": "These reports are created, curated and shared by the internet.nl dashboard staff",
 			"Name": "Report",
 			"Published": "Publication date",
-			"Recently published reports": "Recently published reports",
-			"Score": "Internet.nl score",
-			"View": "View",
-			"View report": "View report"
+			"Score": "Internet.nl score"
 		}
 	},
 	"report": {
-		"components/reports/AppliedTags.vue": {
+		"applied-tags": {
 			"info": "Applied labels"
 		},
-		"components/reports/DifferencesToCurrentList.vue": {
+		"differences": {
 			"both_list_contain_n_urls": "Both the report and the associated list of domains contain {0} domains.",
 			"equal": "The domains in this report are equal to the domains in the associated list of domains.",
 			"in_report_but_not_in_urllist": "Domains in this report, but not in the list",
@@ -1387,49 +1375,20 @@
 			"report_contains_n_urllist_contains_n": "This report contains {0} domains, while the associated list contains {1}.",
 			"retrieving_differences": "Retrieving differences compared to current list."
 		},
-		"components/reports/NestedReportCharts.vue": {
-			"A": "Average",
-			"category": "Category",
-			"G": ""
-		},
-		"components/reports/Report.vue": {
-			"intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",
-			"patience": "Reports with over 1000 domains may take a minute before downloading starts, please be patient.",
-			"settings": "Select visible metrics",
-			"tab_changes": "Changes",
-			"tab_graphs": "Graphs",
-			"tab_metrics": "Metrics table",
-			"title": "Reports"
-		},
-		"components/reports/ReportCharts.vue": {
-			"adoption_bar_chart": {
-				"intro": "This graph shows the average adoption per standard per report.",
-				"title": "Adoption of standards per category"
-			},
-			"adoption_circle_chart": {
-				"title": "Adoption of standards"
-			},
-			"cumulative_adoption_bar_chart": {
-				"intro": "This graph shows the average adoption per standard averaged over multiple reports.",
-				"title": "Adoption of standards over multiple reports"
-			},
-			"how_charts_work": "By clicking on legend labels, it's possible to toggle certain categories. The 'failed' category is disabled by default and can be enabled by clicking on it."
-		},
-		"components/reports/ReportDownload.vue": {
+		"download": {
 			"csv": "Comma Separated (csv)",
-			"intro": "Report data is available in the following formats:",
 			"ods": "Open Spreadsheet (ods)",
 			"title": "Download #{0} as",
 			"xlsx": "Microsoft Excel (xlsx)"
 		},
-		"components/reports/ReportHeader.vue": {
+		"header": {
 			"compared_to": "Compared to",
 			"data_from": "Data from",
 			"number_of_domains": "Number of domains",
 			"only_graphs": "Only showing the timeline and graphs because there are more than two reports selected.",
 			"type_of_scan_performed": "Type of rapport"
 		},
-		"components/reports/ReportImprovementAndRegressions.vue": {
+		"improvement-regressions": {
 			"days_ago": "Het vorige rapport werd {0} dagen geleden gemaakt.",
 			"domains_exclusive_current": "Domeinen exclusief in het huidige rapport",
 			"domains_exclusive_other": "Domeinen exclusief in het vorige rapport",
@@ -1445,7 +1404,7 @@
 			"title": "Changes",
 			"url": ""
 		},
-		"components/reports/ReportImprovementAndRegressionsTable.vue": {
+		"improvement-regressions-table": {
 			"improvement": "Improvements",
 			"metrics": "Metrics",
 			"regression": "Regressions",
@@ -1453,23 +1412,7 @@
 			"score_to": "to",
 			"url": "Domain"
 		},
-		"components/reports/ReportPasswords.vue": {
-			"Authentication required": "Authentication required",
-			"code": "Report",
-			"created_on": "Created on",
-			"name": "Name",
-			"No password needed": "No password needed",
-			"Retry with above settings": "Open with this password",
-			"Some reports require authentication": "Some reports require authentication, please fill in the password / 'share code' for each report:",
-			"Stored password is valid": "Stored password is valid",
-			"supply_password": "Please enter the password for this report:"
-		},
-		"components/reports/ReportSelection.vue": {
-			"no_options": "No reports available.",
-			"reload_list": "Update",
-			"select_report": "Select report..."
-		},
-		"components/reports/ReportTableLegend.vue": {
+		"legend": {
 			"icon_legend": {
 				"category_error_in_test": "Error occurred while testing ⇒ null score",
 				"subtest_error_in_test": "Error occurred while testing ⇒ null score",
@@ -1495,7 +1438,49 @@
 				"warning": "Warning"
 			}
 		},
-		"components/reports/ReportTableVirtualList.vue": {
+		"nested-report-charts": {
+			"A": "Average",
+			"category": "Category",
+			"G": ""
+		},
+		"page": {
+			"intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",
+			"patience": "Reports with over 1000 domains may take a minute before downloading starts, please be patient.",
+			"tab_changes": "Changes",
+			"tab_graphs": "Graphs",
+			"tab_metrics": "Metrics table",
+			"title": "Reports"
+		},
+		"password-protection": {
+			"Authentication required": "Authentication required",
+			"code": "Report",
+			"created_on": "Created on",
+			"name": "Name",
+			"No password needed": "No password needed",
+			"Retry with above settings": "Open with this password",
+			"Some reports require authentication": "Some reports require authentication, please fill in the password / 'share code' for each report:",
+			"Stored password is valid": "Stored password is valid",
+			"supply_password": "Please enter the password for this report:"
+		},
+		"report-charts": {
+			"adoption_bar_chart": {
+				"intro": "This graph shows the average adoption per standard per report.",
+				"title": "Adoption of standards per category"
+			},
+			"adoption_circle_chart": {
+				"title": "Adoption of standards"
+			},
+			"cumulative_adoption_bar_chart": {
+				"intro": "This graph shows the average adoption per standard averaged over multiple reports.",
+				"title": "Adoption of standards over multiple reports"
+			}
+		},
+		"report-selection": {
+			"no_options": "No reports available.",
+			"reload_list": "Update",
+			"select_report": "Select report..."
+		},
+		"report-table-virtual-list": {
 			"domain": "Domain",
 			"icon_legend": {
 				"category_error_in_test": "Error occurred while testing ⇒ null score",
@@ -1524,7 +1509,45 @@
 			},
 			"score": "Score"
 		},
-		"components/reports/ReportTableVirtualListRecord.vue": {
+		"shared-report": {
+			"intro": "",
+			"not_found": {
+				"content": "Could not find this public report. It may have been revoked, deleted or the share code has changed. Please check your input and try again.",
+				"title": "Report could not be found"
+			},
+			"title": "Shared Report"
+		},
+		"sharing_configuration": {
+			"and_password": " and password",
+			"change_link": "New link",
+			"configure_password": "Configure password (optional)",
+			"intro": "Sharing options for this report:",
+			"not_shared": "Not Shared",
+			"open": "open",
+			"password_description": "When entered, the viewer of a report has to enter this password.",
+			"remove_password": "Remove password",
+			"response_no_report_found": "Could not find report.",
+			"response_shared": "Report shared",
+			"response_unshared": "Stopped sharing report",
+			"response_updated_report_code": "Report link updated",
+			"response_updated_share_code": "Password updated",
+			"set_password": "Set password",
+			"share_to_anyone_with_url": "Share report to anyone with the url",
+			"shared": "Shared",
+			"shared_at_url": "The report is shared on the following url",
+			"stop_sharing": "Stop Sharing",
+			"title": "{1} - Change sharing options of report #{0}",
+			"with_password": "with the password set to",
+			"without_password": "without a password."
+		},
+		"tag-filter": {
+			"apply": "Apply",
+			"filter_by_tag": "-- filter by label",
+			"reset": "Reset",
+			"save-as-new-report": "Save as new report",
+			"tag_explanation": "This report supports labels. Labels can be used to filter the data in the report and create new sub-reports based on the selected tags. Filtering happens directly on the database, so this may take a while before it's rendered. Selecting multiple tags means that they are all applied per domain."
+		},
+		"virtual-list-record": {
 			"evidence": "Measurement",
 			"link_to_report": "View score and report from %{url} on internet.nl.",
 			"not_eligeble_for_scanning": "Domain did not match scanning criteria at the time the scan was initiated. The scanning criteria are an SOA DNS record (not NXERROR) for mail and an A or AAAA DNS record for web. This domain is ignored in all statistics.",
@@ -1547,41 +1570,6 @@
 				"warning": "Warning"
 			},
 			"since": "Since"
-		},
-		"components/reports/ReportTagFilter.vue": {
-			"filter_by_tag": "-- filter by label",
-			"tag_explanation": "This report supports labels. Labels can be used to filter the data in the report and create new sub-reports based on the selected tags. Filtering happens directly on the database, so this may take a while before it's rendered. Selecting multiple tags means that they are all applied per domain."
-		},
-		"components/reports/SharedReport.vue": {
-			"intro": "",
-			"not_found": {
-				"content": "Could not find this public report. It may have been revoked, deleted or the share code has changed. Please check your input and try again.",
-				"title": "Report could not be found"
-			},
-			"title": "Shared Report"
-		},
-		"components/reports/SharingConfiguration.vue": {
-			"and_password": " and password",
-			"change_link": "New link",
-			"configure_password": "Configure password (optional)",
-			"intro": "Sharing options for this report:",
-			"not_shared": "Not Shared",
-			"open": "open",
-			"password_description": "When entered, the viewer of a report has to enter this password.",
-			"remove_password": "Remove password",
-			"response_no_report_found": "Could not find report.",
-			"response_shared": "Report shared",
-			"response_unshared": "Stopped sharing report",
-			"response_updated_report_code": "Report link updated",
-			"response_updated_share_code": "Password updated",
-			"set_password": "Set password",
-			"share_to_anyone_with_url": "Share report to anyone with the url",
-			"shared": "Shared",
-			"shared_at_url": "The report is shared on the following url",
-			"stop_sharing": "Stop Sharing",
-			"title": "{1} - Change sharing options of report #{0}",
-			"with_password": "with the password set to",
-			"without_password": "without a password."
 		}
 	},
 	"scanmonitor": {
@@ -1758,19 +1746,6 @@
 			"procedure_title": "Procedure for issuing login details",
 			"support_description": "For questions regarding (the use of) the Batch testing HTTP API and the API Dashboard, an e-mail can be send to <a href=\"mailto:question@internet.nl\">question@internet.nl</a>",
 			"support_title": "Support"
-		}
-	},
-	"test": {
-		"result": {
-			"percentage": {
-				"error_in_test": "",
-				"high": "",
-				"low": "",
-				"medium": "",
-				"not_applicable": "",
-				"not_testable": "",
-				"ok": ""
-			}
 		}
 	},
 	"tour": {

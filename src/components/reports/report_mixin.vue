@@ -5,14 +5,9 @@
 // Done: store filter options for reports (as generic or per report? or as a re-applicable set?) Per user account.
 // Done: how to add a item for legacy views?
 // Done: how to translate graphs?
-import field_translations from '../FieldTranslations'
 import http from "@/httpclient"
 
 export default {
-  i18n: {
-    sharedMessages: field_translations,
-  },
-
   methods: {
     alphabet_sorting: function (a, b) {
       // i already mis sorted()
@@ -558,7 +553,7 @@ export default {
                 {
                   name: 'Status Fields',
                   key: 'category_web_forum_standardisation_status_fields',
-                  label: this.$i18n.t("metric.fields.forum_standardistation.status_fields.title"),
+                  label: this.$i18n.t("metric.internet_nl_legacy.status_fields.title"),
                   fields: [
                     {
                       name: 'internet_nl_web_legacy_tls_1_3',
@@ -846,7 +841,7 @@ export default {
                 {
                   name: 'Status Fields',
                   key: 'category_web_forum_standardisation_status_fields',
-                  label: this.$i18n.t("metric.fields.forum_standardistation.status_fields"),
+                  label: this.$i18n.t("metric.internet_nl_legacy.status_fields.title"),
                   fields: [
                     {
                       name: 'internet_nl_mail_legacy_tls_1_3',

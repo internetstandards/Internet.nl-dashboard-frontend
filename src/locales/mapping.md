@@ -14,8 +14,21 @@ a nice exercise in the future if we don't want to copy all labels to the transla
 
 This will probably happen in the backend, not in this frontend.
 
+## Mapping of legend
 
-## Mapping
+test_title: 'faqs_report_test_title',
+test_good: 'faqs_report_test_good',
+test_bad: 'faqs_report_test_bad',
+test_warning: 'faqs_report_test_warning',
+test_info: 'faqs_report_test_info',
+subtest_title: 'faqs_report_subtest_title',
+subtest_good: 'faqs_report_subtest_good',
+subtest_bad: 'faqs_report_subtest_bad',
+subtest_warning: 'faqs_report_subtest_warning',
+subtest_info: 'faqs_report_subtest_info',
+
+
+## Mapping of Metrics
 
 internet_nl_web_tls: 'test_sitetls',
 internet_nl_web_dnssec: 'test_sitednssec',
