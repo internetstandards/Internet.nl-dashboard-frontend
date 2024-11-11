@@ -13,7 +13,7 @@
             name="checkbox-1"
             :value="true"
             :unchecked-value="false"
-            switch>{{ $t("check_" + user.mail_send_mail_after_scan_finished) }}
+            switch>{{ $t("account.notifications.check_" + user.mail_send_mail_after_scan_finished) }}
         </b-form-checkbox>
         <br>
 

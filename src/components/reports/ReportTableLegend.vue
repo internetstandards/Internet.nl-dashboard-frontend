@@ -31,10 +31,10 @@
         }}</span>{{ $t("metric.legend.subtest_info") }}</span></li>
       <li><span class="faq-test not_tested"><span class="sr-only">{{
           $t("report.legend.results.not_tested")
-        }}</span>{{ $t("icon_legend.subtest_not_tested") }}</span></li>
+        }}</span>{{ $t("report.legend.icon_legend.subtest_not_tested") }}</span></li>
       <li><span class="faq-test error_in_test"><span class="sr-only">{{
           $t("report.legend.results.error_in_test")
-        }}</span>{{ $t("icon_legend.subtest_error_in_test") }}</span></li>
+        }}</span>{{ $t("report.legend.icon_legend.subtest_error_in_test") }}</span></li>
     </ul>
   </div>
 </template>

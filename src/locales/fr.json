@@ -785,6 +785,22 @@
 			"explanation": "",
 			"title": ""
 		},
+		"internet_nl_mail_mx_ns_rpki_exists": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_mx_ns_rpki_valid": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_ns_rpki_exists": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_ns_rpki_valid": {
+			"explanation": "",
+			"title": ""
+		},
 		"internet_nl_mail_rpki_exists": {
 			"explanation": "L'internet est constitué de toutes sortes de petits réseaux. Ces réseaux peuvent être créés de manière ad hoc, ce qui signifie que quelqu'un de malveillant peut le faire. Pour éviter que des acteurs malveillants ne prennent le contrôle de certaines parties de l'internet, un réseau de confiance et de certification a été créé. Il s'agit d'un réseau bureaucratique dans lequel les organisations sont accréditées par des parties de confiance.",
 			"extended-explanation": "Nous vérifions si une autorisation d'origine de route (ROA) RPKI a été publiée pour toutes les adresses IP de votre (vos) serveur(s) de messagerie (MX).</p><p>Votre hébergeur (ou son fournisseur de réseau) annonce par le biais du protocole BGP (Border Gateway Protocol) les blocs d'adresses IP pour lesquels il accepte le trafic Internet entrant. Les autres fournisseurs de réseau utilisent ces annonces d'itinéraires pour déterminer par quel itinéraire envoyer le trafic pour les adresses IP de votre serveur.</p><p>Cependant, une annonce d'itinéraire peut être falsifiée. En effet, un autre fournisseur de réseau peut être en mesure de connecter le bloc d'adresses IP de votre adresse IP à son réseau et donc de recevoir potentiellement du trafic Internet qui est en fait destiné à votre fournisseur de réseau. La cause peut être accidentelle ou malveillante. Dans les deux cas, votre serveur peut devenir inaccessible ou le trafic Internet vers votre serveur peut être intercepté.</p><p>L'infrastructure de clés publiques de ressources (RPKI) améliore considérablement la protection contre ce phénomène. Avec RPKI, le détenteur légitime d'un bloc d'adresses IP peut publier une déclaration signée numériquement avec autorisation d'itinéraire (Route Origin Authorisation ; ROA en abrégé). Un autre fournisseur de réseau qui souhaite envoyer du trafic internet à une adresse IP particulière peut utiliser la déclaration correspondante pour filtrer les itinéraires <code>les itinéraires</code> non valides. De cette manière, le fournisseur de réseau empêche le trafic Internet de son réseau d'être envoyé à des réseaux de fournisseurs non autorisés.</p><p><em>Niveau d'exigence : Recommandé</em>",
@@ -795,6 +811,10 @@
 			},
 			"technology": "Infrastructure à clé publique des ressources (RPKI) / Certification des ressources",
 			"title": "Confiance dans la route du réseau vers le serveur de courrier électronique"
+		},
+		"internet_nl_mail_rpki_valid": {
+			"explanation": "",
+			"title": ""
 		},
 		"internet_nl_mail_starttls_cert_chain": {
 			"explanation": "Nous vérifions si nous sommes en mesure d'établir une chaîne de confiance valide pour les certificats de votre serveur de messagerie. </p><p>Pour que la chaîne de confiance soit valide, votre certificat doit être publié par une autorité de certification <a href=\"https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/\">de confiance</a>, et votre serveur de messagerie récepteur doit présenter tous les certificats intermédiaires nécessaires. et votre serveur de messagerie récepteur doit présenter tous les certificats intermédiaires nécessaires. </p><p>Les serveurs de messagerie expéditeurs ignorent généralement si le certificat d'un serveur de messagerie est délivré par une autorité de certification de confiance publique. Sans DNSSEC, la recherche du domaine du serveur de messagerie est vulnérable à la manipulation. Par conséquent, un certificat délivré par une autorité de certification publiquement reconnue ne peut ajouter aucune valeur d'authenticité. Un grand nombre de serveurs de messagerie récepteurs utilisent donc des certificats auto-signés, souvent délivrés par une autorité de certification interne (privée). Pour assurer l'authenticité, un serveur de messagerie doit utiliser DNSSEC et DANE.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B3-4 (en anglais).</p><p><em>Niveau d'exigence : Facultatif</em>",
@@ -1300,6 +1320,14 @@
 			"explanation": "",
 			"title": ""
 		},
+		"internet_nl_web_ns_rpki_exists": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_ns_rpki_valid": {
+			"explanation": "",
+			"title": ""
+		},
 		"internet_nl_web_rpki": {
 			"title": ""
 		},
@@ -1313,6 +1341,10 @@
 			},
 			"technology": "Infrastructure à clé publique des ressources (RPKI) / Certification des ressources",
 			"title": "Confiance dans l'itinéraire du réseau vers le site web"
+		},
+		"internet_nl_web_rpki_valid": {
+			"explanation": "",
+			"title": ""
 		},
 		"internet_nl_web_tls": {
 			"explanation": "Vérifier si cette connexion est conforme à toutes les exigences de la spécification TLS du NCSC-NL. Cette spécification est mise à jour toutes les quelques années. Le résultat de ce test est basé sur une douzaine de mesures individuelles telles que la force de la sécurité et les paramètres de sécurité.",

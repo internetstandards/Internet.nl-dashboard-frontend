@@ -385,7 +385,7 @@ export default {
                 {
                   name: 'HTTP',
                   key: 'category_web_tls_http',
-                  label: this.$i18n.t("metric.category_web_tls_http.title.title"),
+                  label: this.$i18n.t("metric.category_web_tls_http.title"),
                   fields: [
                     {name: 'internet_nl_web_https_http_available'},
                     {name: 'internet_nl_web_https_http_redirect'},

@@ -27,7 +27,7 @@
                   <DashboardIcon icon="arrow-repeat" :scale="0.8" />
 
 
-                    {{ $t("domain.list.status.scan_frequency") }}: {{ $t("domains.list.status." + list.automated_scan_frequency) }} <br>
+                    {{ $t("domain.list.status.scan_frequency") }}: {{ $t("app.frequency." + list.automated_scan_frequency) }} <br>
                     <span v-if="list.automated_scan_frequency !== 'disabled'">
                         {{ $t("domain.list.status.next_scheduled_scan") }}: {{ humanize_date(list.scheduled_next_scan) }} <br>
                     </span>

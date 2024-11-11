@@ -82,7 +82,7 @@ export default {
                 this.axis.forEach((ax) => {
                     if (ax in data) {
                         if (!this.only_show_dynamic_average) {
-                            labels.push([this.$i18n.t("chart.cumulative-percentage-bar-chart." + ax), this.field_name_to_category_names[ax] ? this.field_name_to_category_names[ax] : ""]);
+                            labels.push([this.$i18n.t("metric." + ax + ".title"), this.field_name_to_category_names[ax] ? this.field_name_to_category_names[ax] : ""]);
                             axis_names.push(ax);
                             chartdata.push((Math.round(cumulative_axis_data[ax][shown_value] / this.chart_data.length * 100)) / 100);
                         }
@@ -113,7 +113,7 @@ export default {
                     borderWidth: 0,
                     lineTension: 0,
                     hidden: shown_value === "pct_high",
-                    label: `${this.$i18n.t("chart.cumulative-percentage-bar-chart." + shown_value)}`,
+                    label: `${this.$i18n.t("metric.rating." + shown_value)}`,
                 });
 
             });

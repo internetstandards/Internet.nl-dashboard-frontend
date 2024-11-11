@@ -785,6 +785,22 @@
 			"explanation": "",
 			"title": ""
 		},
+		"internet_nl_mail_mx_ns_rpki_exists": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_mx_ns_rpki_valid": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_ns_rpki_exists": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_mail_ns_rpki_valid": {
+			"explanation": "",
+			"title": ""
+		},
 		"internet_nl_mail_rpki_exists": {
 			"explanation": "Das Internet besteht aus allen möglichen kleineren Netzen. Diese Netze können ad-hoc geschaffen werden, was bedeutet, dass jemand Böses dies tun könnte. Um zu verhindern, dass böswillige Akteure Teile des Internets übernehmen, wird ein Netz des Vertrauens und der Zertifizierung geschaffen. Dabei handelt es sich um ein bürokratisches Netz mit Organisationen, die von vertrauenswürdigen Parteien akkreditiert werden.",
 			"extended-explanation": "Wir prüfen, ob eine RPKI Route Origin Authorization (ROA) für alle IP-Adressen Ihres/r Mailservers (MX) veröffentlicht wurde.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen Ihres Servers senden sollen.</p><p>Eine Routenankündigung kann jedoch gefälscht werden. Tatsächlich kann ein anderer Netzbetreiber den IP-Adressblock Ihrer IP-Adresse mit seinem Netz verbinden und so möglicherweise Internetverkehr empfangen, der eigentlich für Ihren Netzbetreiber bestimmt ist. Die Ursache kann versehentlich oder böswillig sein. In jedem Fall kann dies dazu führen, dass Ihr Server unerreichbar wird oder dass der Internetverkehr zu Ihrem Server abgefangen wird.</p><p>Die Resource Public Key Infrastructure (RPKI) verbessert den Schutz davor erheblich. Mit RPKI kann der rechtmäßige Inhaber eines Blocks von IP-Adressen eine digital signierte Erklärung mit Routenberechtigung (Route Origin Authorisation; kurz ROA) veröffentlichen. Ein anderer Netzbetreiber, der Internetverkehr an eine bestimmte IP-Adresse senden möchte, kann die entsprechende Erklärung verwenden, um <code>Ungültige</code> Routen. Auf diese Weise verhindert der Netzbetreiber, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze geschickt wird.</p><p><em>Anforderungsstufe: Empfohlen</em>",
@@ -795,6 +811,10 @@
 			},
 			"technology": "Ressource Public Key Infrastructure (RPKI) / Ressourcenzertifizierung",
 			"title": "Vertrauen in die Netzwerkroute zum E-Mail-Server"
+		},
+		"internet_nl_mail_rpki_valid": {
+			"explanation": "",
+			"title": ""
 		},
 		"internet_nl_mail_starttls_cert_chain": {
 			"explanation": "Wir prüfen, ob wir eine gültige Vertrauenskette für Ihre Mailserver-Zertifikate erstellen können. </p><p>Für eine gültige Vertrauenskette muss Ihr Zertifikat von einer <a href=\"https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/\">öffentlich vertrauenswürdigen Zertifizierungsstelle veröffentlicht werden</a>veröffentlicht werden, und Ihr empfangender Mailserver muss alle erforderlichen Zwischenzertifikate vorlegen. </p><p>Versendende Mailserver ignorieren in der Regel, ob ein Mailserver-Zertifikat von einer öffentlich vertrauenswürdigen Zertifizierungsstelle ausgestellt wurde. Ohne DNSSEC ist die Suche nach der Domäne des Mailservers anfällig für Manipulationen. Daher kann ein von einer öffentlich vertrauenswürdigen Zertifizierungsstelle ausgestelltes Zertifikat keinen Authentizitätswert hinzufügen. Nicht wenige empfangende Mailserver verwenden daher selbstsignierte Zertifikate, die oft von einer internen (privaten) Zertifizierungsstelle ausgestellt werden. Für die Authentizität sollte ein Mailserver DNSSEC und DANE verwenden.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-4 (in Englisch).</p><p><em>Anforderungsstufe: Fakultativ</em>",
@@ -1300,6 +1320,14 @@
 			"explanation": "",
 			"title": ""
 		},
+		"internet_nl_web_ns_rpki_exists": {
+			"explanation": "",
+			"title": ""
+		},
+		"internet_nl_web_ns_rpki_valid": {
+			"explanation": "",
+			"title": ""
+		},
 		"internet_nl_web_rpki": {
 			"title": ""
 		},
@@ -1313,6 +1341,10 @@
 			},
 			"technology": "Ressource Public Key Infrastructure (RPKI) / Ressourcenzertifizierung",
 			"title": "Vertrauen in die Netzverbindung zur Website"
+		},
+		"internet_nl_web_rpki_valid": {
+			"explanation": "",
+			"title": ""
 		},
 		"internet_nl_web_tls": {
 			"explanation": "Prüfen Sie, ob diese Verbindung alle Anforderungen der NCSC-NL TLS-Spezifikation erfüllt. Diese Spezifikation wird alle paar Jahre aktualisiert. Das Testergebnis basiert auf einem Dutzend individueller Metriken wie der Stärke der Sicherheit und der Sicherheitseinstellungen.",
