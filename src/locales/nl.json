@@ -110,6 +110,12 @@
 		"loading": {
 			"loading": "Laden..."
 		},
+		"locale": {
+			"de": "Deutsch",
+			"en": "English",
+			"fr": "Français",
+			"nl": "Nederlands"
+		},
 		"login": {
 			"intro": "Log in op het dashboard.",
 			"invalid_credentials": "Gebruikersnaam of wachtwoord niet correct.",
@@ -132,13 +138,11 @@
 			"admin": "Beheer",
 			"authentication": "Authenticatie",
 			"domains": "Domeinen",
-			"en": "English",
 			"home": "Begin",
 			"log_in": "Inloggen",
 			"log_off": "Uitloggen",
 			"logged_out_successfully": "Je bent uitgelogd",
 			"mail_metrics": "Mail meetwaarden",
-			"nl": "Nederlands",
 			"notifications": "Notificaties",
 			"reports": "Rapporten",
 			"request_access": "Toegang aanvragen",

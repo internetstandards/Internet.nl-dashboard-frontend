@@ -110,6 +110,12 @@
 		"loading": {
 			"loading": "Loading..."
 		},
+		"locale": {
+			"de": "Deutsch",
+			"en": "English",
+			"fr": "Français",
+			"nl": "Nederlands"
+		},
 		"login": {
 			"intro": "Log into the dashboard.",
 			"invalid_credentials": "Username or password not correct.",
@@ -132,13 +138,11 @@
 			"admin": "Admin",
 			"authentication": "Authentication",
 			"domains": "Domains",
-			"en": "English",
 			"home": "Home",
 			"log_in": "Log in",
 			"log_off": "Log off",
 			"logged_out_successfully": "You have logged out successfully",
 			"mail_metrics": "Mail metrics",
-			"nl": "Nederlands",
 			"notifications": "Notifications",
 			"reports": "Reports",
 			"request_access": "Request access",

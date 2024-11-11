@@ -166,7 +166,7 @@ li a {
           <b-nav-item v-if="is_superuser">{{ account_name }}</b-nav-item>
           <b-nav-item v-for="(lang_code, index) in supported_languages" :key="index" :disabled="lang_code === locale" @click="set_locale(lang_code)">
             <b-icon icon="check" v-if="lang_code === locale"></b-icon>
-            {{ $t("app.menu." + lang_code) }}
+            {{ $t("app.locale." + lang_code) }}
           </b-nav-item>
         </b-navbar-nav>
 
@@ -255,6 +255,11 @@ export default {
   },
 
   name: 'site-menu',
+
+  mounted() {
+    this.supported_languages = this.$store.state.config.app.supported_languages;
+  },
+
   methods: {
     set_locale: function (locale) {
       // console.log(`Switching app to language: ${locale}.`);

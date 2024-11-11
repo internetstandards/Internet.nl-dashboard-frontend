@@ -1,482 +1,486 @@
 {
 	"account": {
 		"notifications": {
-			"authentication_options": "",
-			"authentication_options_secondfactor": "",
-			"check_false": "",
-			"check_true": "",
-			"en": "",
-			"first_name": "",
-			"last_name": "",
-			"mail_preferred_language": "",
-			"mail_preferred_mail_address": "",
-			"mail_send_mail_after_scan_finished": "",
-			"nl": "",
-			"notification_settings": "",
-			"personalia": "",
-			"reset": "",
-			"save": "",
-			"save_user_settings_error_could_not_retrieve_user": "",
-			"save_user_settings_error_form_incorrect_mail_address": "",
-			"save_user_settings_error_form_unsupported_language": "",
-			"save_user_settings_error_incomplete_data": "",
-			"save_user_settings_success": "",
-			"two_factor_options": ""
+			"authentication_options": "Options d'authentification",
+			"authentication_options_secondfactor": "En raison de limitations techniques, la configuration de l'authentification à deuxième facteur et la saisie du code s'effectueront dans une nouvelle fenêtre.",
+			"check_false": "Non",
+			"check_true": "Oui",
+			"en": "Anglais",
+			"first_name": "Destinataire, prénom",
+			"last_name": "Destinataire, nom de famille",
+			"mail_preferred_language": "Langue du courrier électronique",
+			"mail_preferred_mail_address": "Adresse électronique",
+			"mail_send_mail_after_scan_finished": "Envoi d'une notification une fois l'analyse terminée",
+			"nl": "Néerlandais",
+			"notification_settings": "Paramètres de notification",
+			"personalia": "Données personnelles",
+			"reset": "Remise à zéro",
+			"save": "Enregistrer les modifications",
+			"save_user_settings_error_could_not_retrieve_user": "Impossible de récupérer les informations sur le compte.",
+			"save_user_settings_error_form_incorrect_mail_address": "L'adresse postale n'est pas correcte.",
+			"save_user_settings_error_form_unsupported_language": "Cette langue n'est pas prise en charge, sélectionnez une autre langue.",
+			"save_user_settings_error_incomplete_data": "Toutes les données n'ont pas été saisies correctement.",
+			"save_user_settings_success": "Compte mis à jour avec succès.",
+			"two_factor_options": "Configuration / Modification de l'authentification à deux facteurs"
 		},
 		"page": {
-			"authentication_options": "",
-			"authentication_options_secondfactor": "",
-			"change_password": "",
-			"intro": "",
-			"notifications": "",
-			"password_change_success": "",
-			"title": "",
-			"two_factor_options": "",
-			"visible_metrics_mail": "",
-			"visible_metrics_web": ""
+			"authentication_options": "Authentification",
+			"authentication_options_secondfactor": "En raison de limitations techniques, la configuration de l'authentification à deuxième facteur et la saisie du code s'effectueront dans une nouvelle fenêtre.",
+			"change_password": "Modifier le mot de passe",
+			"intro": "Gérer votre compte.",
+			"notifications": "Notifications",
+			"password_change_success": "Le mot de passe a été modifié avec succès",
+			"title": "Compte",
+			"two_factor_options": "Configuration / Modification de l'authentification à deux facteurs",
+			"visible_metrics_mail": "Mesures du courrier",
+			"visible_metrics_web": "Mesures sur le web"
 		},
 		"visible-metrics": {
 			"buttons": {
-				"reset": "",
-				"reset_label": "",
-				"save": "",
-				"save_label": ""
+				"reset": "Remise à zéro",
+				"reset_label": "Réinitialise toutes les valeurs à leur état d'origine.",
+				"save": "Économiser",
+				"save_label": "Sauvegarder les modifications apportées dans ce formulaire."
 			},
-			"check": "",
-			"intro": "",
-			"main_category": "",
-			"only_show_dynamic_average": "",
+			"check": "Sélectionner tout",
+			"intro": "Cet outil de sélection permet de se concentrer sur des mesures spécifiques. Par exemple, il est possible de ne sélectionner que les mesures HTTPS ou DNSSEC. Les mesures visibles sont appliquées à tous les utilisateurs de votre organisation.",
+			"main_category": "Adoption moyenne des normes",
+			"only_show_dynamic_average": "Afficher uniquement la moyenne dynamique",
 			"settings": {
-				"restored_from_database": "",
-				"updated": ""
+				"restored_from_database": "Paramètres restaurés à partir de la base de données",
+				"updated": "Mise à jour des paramètres"
 			},
-			"show_category": "",
-			"show_dynamic_average": "",
-			"title": "",
-			"uncheck": ""
+			"show_category": "Afficher cette catégorie",
+			"show_dynamic_average": "Afficher la moyenne des champs sélectionnés",
+			"title": "Sélectionner les indicateurs visibles",
+			"uncheck": "Désélectionner tout"
 		}
 	},
 	"admin": {
 		"instant_add_account": {
-			"intro": "",
-			"password": "",
-			"save": "",
-			"title": "",
-			"username": ""
+			"intro": "Cela crée un utilisateur standard, un compte vers une API internet.nl et le pont entre les deux (DashboardUser). Les contrôles de mot de passe sont minimes dans ce formulaire. Ce formulaire est destiné à migrer rapidement les comptes d'utilisateurs de l'API et à leur donner accès au tableau de bord avec le même nom d'utilisateur et le même mot de passe.",
+			"password": "Mot de passe",
+			"save": "Ajouter un utilisateur",
+			"title": "Création instantanée d'un utilisateur",
+			"username": "Nom d'utilisateur"
 		},
 		"switch_account": {
-			"intro": "",
-			"reload_list": "",
-			"reload_page_warning": "",
-			"select": "",
-			"switched_account": "",
-			"title": ""
+			"intro": "Cette fonction vous permet de passer à un autre compte et d'utiliser ce site en tant que tel.",
+			"reload_list": "Recharger la liste des comptes",
+			"reload_page_warning": "Important : rafraîchissez la page après avoir choisi un compte !",
+			"select": "Sélectionnez le compte à utiliser, le compte est instantanément changé.",
+			"switched_account": "Basculé sur le compte {0}. Actualiser la page pour utiliser ce compte.",
+			"title": "Changer de compte"
 		},
 		"usage": {
-			"annotation_metrics": "",
-			"annotations": "",
-			"intro": "",
-			"title": ""
+			"annotation_metrics": "Les métriques de balayage et les domaines collectés sont dédupliqués dans la base de données : cela signifie qu'une nouvelle liste avec les mêmes URL réutilisera les données. Plus il y a de domaines dans le système, moins il y a de nouveaux domaines et de nouvelles mesures de balayage. Par exemple : le domaine \"internet.nl\" n'apparaît qu'une seule fois dans la base de données, même si 100 personnes l'utilisent.",
+			"annotations": "Annotations",
+			"intro": "Un aperçu rapide de l'utilisation du tableau de bord.",
+			"title": "Statistiques d'utilisation"
 		}
 	},
 	"app": {
 		"autorefresh": {
-			"refresh_happening_in": "",
-			"refresh_now": "",
-			"units": ""
+			"refresh_happening_in": "Rafraîchissement automatique :",
+			"refresh_now": "rafraîchir les données maintenant",
+			"units": "Secondes"
 		},
 		"footer": {
-			"copyright": "",
-			"disclosure": "",
-			"followlinkedin": "",
-			"followmastodon": "",
-			"followtwitter": "",
-			"info": "",
-			"privacy": ""
+			"copyright": "Droit d'auteur",
+			"disclosure": "Signaler une vulnérabilité",
+			"followlinkedin": "LinkedIn",
+			"followmastodon": "Mastodon",
+			"followtwitter": "X",
+			"info": "Internet.nl est une initiative de la communauté Internet et du gouvernement néerlandais.",
+			"privacy": "Déclaration de confidentialité"
 		},
 		"frequency": {
-			"at the start of every quarter": "",
-			"disabled": "",
-			"every 1st day of the month": "",
-			"every half year": "",
-			"twice per month": ""
+			"at the start of every quarter": "au début de chaque trimestre",
+			"disabled": "Handicapés",
+			"every 1st day of the month": "chaque premier jour du mois",
+			"every half year": "chaque semestre",
+			"twice per month": "tous les quinze jours, à partir du premier jour du mois"
 		},
 		"github": {
-			"intro": "",
-			"mail": "",
-			"or": "",
-			"view issues": ""
+			"intro": "Quelque chose ne fonctionne pas correctement ? Soumettre un problème via",
+			"mail": "Courrier électronique",
+			"or": "ou",
+			"view issues": "Voir les numéros ouverts"
 		},
 		"loading": {
-			"loading": ""
+			"loading": "Chargement..."
+		},
+		"locale": {
+			"de": "Deutsch",
+			"en": "English",
+			"fr": "Français",
+			"nl": "Nederlands"
 		},
 		"login": {
-			"intro": "",
-			"invalid_credentials": "",
-			"logged_in": "",
-			"logged_out": "",
-			"login": "",
-			"new_login_info": "",
-			"no_credentials_supplied": "",
-			"not_logged_in": "",
-			"password": "",
-			"second_factor_login_required": "",
-			"secondfactor_message": "",
-			"title": "",
-			"user_not_active": "",
-			"username": ""
+			"intro": "Connectez-vous au tableau de bord.",
+			"invalid_credentials": "Le nom d'utilisateur ou le mot de passe n'est pas correct.",
+			"logged_in": "Vous vous êtes connecté avec succès.",
+			"logged_out": "Vous vous êtes déconnecté avec succès.",
+			"login": "Se connecter",
+			"new_login_info": "Veuillez utiliser le lien suivant pour vous connecter au tableau de bord :",
+			"no_credentials_supplied": "Entrez un nom d'utilisateur et un mot de passe pour vous connecter.",
+			"not_logged_in": "Vous n'êtes pas connecté. Entrez vos identifiants pour vous connecter au tableau de bord.",
+			"password": "Mot de passe",
+			"second_factor_login_required": "L'authentification à deuxième facteur est activée pour cet utilisateur, veuillez utiliser le formulaire de connexion alternatif lié à cette page.",
+			"secondfactor_message": "Si l'authentification à deuxième facteur est activée, utilisez ce lien de connexion alternatif.",
+			"title": "Connexion",
+			"user_not_active": "L'utilisateur n'est pas actif.",
+			"username": "Nom d'utilisateur"
 		},
 		"menu": {
-			"account": "",
-			"add_user": "",
-			"admin": "",
-			"authentication": "",
-			"domains": "",
-			"en": "",
-			"home": "",
-			"log_in": "",
-			"log_off": "",
-			"logged_out_successfully": "",
+			"account": "Compte",
+			"add_user": "Ajouter un utilisateur",
+			"admin": "Administrateur",
+			"authentication": "Authentification",
+			"domains": "Domaines",
+			"home": "ACCUEIL",
+			"log_in": "Se connecter",
+			"log_off": "Déconnexion",
+			"logged_out_successfully": "Vous vous êtes déconnecté avec succès",
 			"mail_metrics": "",
-			"nl": "",
-			"notifications": "",
-			"reports": "",
-			"request_access": "",
-			"scans": "",
-			"sitedescription": "",
-			"sitetitle": "",
-			"switch_user": "",
-			"tour": "",
-			"usage_overview": "",
+			"notifications": "Notifications",
+			"reports": "Rapports",
+			"request_access": "Demande d'accès",
+			"scans": "Scans",
+			"sitedescription": "Test des normes Internet modernes IPv6, DNSSEC, HTTPS, HSTS, DMARC, DKIM, SPF, STARTTLS, DANE, RPKI et security.txt",
+			"sitetitle": "Internet.nl",
+			"switch_user": "Changement d'utilisateur",
+			"tour": "Tour",
+			"usage_overview": "Aperçu de l'utilisation",
 			"web_metrics": ""
 		},
 		"scan-type": {
-			"mail": "",
-			"web": ""
+			"mail": "Courrier",
+			"web": "Web"
 		},
 		"server-response": {
-			"at": "",
-			"error": "",
-			"success": ""
+			"at": "À",
+			"error": "Une erreur s'est produite",
+			"success": "Succès !"
 		},
 		"skiplink": {
-			"gotocontents": "",
-			"gotofooter": "",
-			"gotomainmenu": ""
+			"gotocontents": "Aller au contenu",
+			"gotofooter": "Passer au pied de page",
+			"gotomainmenu": "Aller au menu principal"
 		}
 	},
 	"chart": {
 		"cumulative-percentage-bar-chart": {
-			"accessibility_text": "",
-			"average": "",
-			"title": "",
-			"yAxis_label": ""
+			"accessibility_text": "Un tableau reprenant le contenu de ce graphique est présenté ci-dessous.",
+			"average": "Moyenne",
+			"title": "Adoption moyenne des normes sur %{number_of_reports} rapports.",
+			"yAxis_label": "L'adoption"
 		},
 		"donut": {
-			"graph": "",
-			"measurement": "",
-			"rest": "",
-			"score": "",
-			"table": "",
-			"value": ""
+			"graph": "Graphique",
+			"measurement": "Évaluation",
+			"rest": "Repos",
+			"score": "Score",
+			"table": "Tableau",
+			"value": "Pourcentage"
 		},
 		"percentage-bar-chart": {
-			"accessibility_text": "",
-			"average": "",
-			"title_multiple": "",
-			"title_single": "",
-			"yAxis_label": ""
+			"accessibility_text": "Un tableau reprenant le contenu de ce graphique est présenté ci-dessous.",
+			"average": "Moyenne",
+			"title_multiple": "Comparaison de l'adoption des normes entre %{number_of_reports} rapports.",
+			"title_single": "Adoption moyenne des normes, domaines %{list_information}, %{number_of_domains} .",
+			"yAxis_label": "L'adoption"
 		},
 		"timeline": {
-			"accessibility_text": "",
-			"average_internet_nl_score": "",
-			"graph": "",
-			"intro": "",
-			"report": "",
-			"series": "",
-			"table": "",
-			"title": "",
-			"x_axis_label": "",
+			"accessibility_text": "Un tableau reprenant le contenu de ce graphique est présenté ci-dessous.",
+			"average_internet_nl_score": "Score moyen sur internet.nl",
+			"graph": "Graphique",
+			"intro": "Ce graphique compare le score moyen de internet.nl au fil du temps.",
+			"report": "Rapport",
+			"series": "Série",
+			"table": "Tableau",
+			"title": "Score moyen de internet.nl au fil du temps.",
+			"x_axis_label": "Mois",
 			"y_axis_label": ""
 		}
 	},
 	"domain": {
 		"discover-subdomains": {
-			"add_domains_valid_urls_added": "",
-			"add_subdomains_button": "",
-			"added_n_to_list": "",
-			"cancel": "",
-			"clear_selection": "",
-			"dive_into_archive": "",
-			"domains_found": "",
-			"enter_domain_name": "",
-			"find_subdomains_header": "",
-			"ignored_n": "",
-			"ok": "",
-			"removed_n_duplicates": "",
-			"search": "",
-			"select_all": "",
-			"status_report": "",
-			"title": "",
-			"will_be_added_to": ""
+			"add_domains_valid_urls_added": "De nouveaux domaines ont été traités, voir le rapport d'état pour plus de détails.",
+			"add_subdomains_button": "Ajouter {0} sous-domaines sélectionnés",
+			"added_n_to_list": "{0} domaines ajoutés à cette liste. Attention : si les nouveaux domaines n'apparaissent pas immédiatement dans la liste, attendez un peu et rechargez la liste.",
+			"cancel": "Annuler",
+			"clear_selection": "Effacer la sélection",
+			"dive_into_archive": "recherche des sous-domaines plus anciens, jusqu'à {0} jours.",
+			"domains_found": "{0} sous-domaines trouvés",
+			"enter_domain_name": "Entrez un nom de domaine, par exemple internet.nl pour trouver les sous-domaines...",
+			"find_subdomains_header": "Entrez un nom de domaine pour trouver des sous-domaines",
+			"ignored_n": "{0} domaines figurent déjà dans cette liste.",
+			"ok": "Terminé",
+			"removed_n_duplicates": "{0} doublons supprimés de l'entrée.",
+			"search": "Recherche",
+			"select_all": "Sélectionner tout",
+			"status_report": "Rapport de situation",
+			"title": "Découvrir les sous-domaines",
+			"will_be_added_to": "les sous-domaines sélectionnés seront ajoutés à la liste nommée {0}."
 		},
 		"edit-domain": {
-			"cancel": "",
-			"remove": "",
-			"save": ""
+			"cancel": "Annuler",
+			"remove": "Retirer",
+			"save": "Économiser"
 		},
 		"list": {
 			"add-domains": {
-				"a_lot_of_new_domains_message": "",
-				"add_domains_list_does_not_exist": "",
-				"add_domains_valid_urls_added": "",
-				"added_n_to_list": "",
-				"cancel": "",
-				"domains_label": "",
-				"go_to_spreadsheet_upload": "",
+				"a_lot_of_new_domains_message": "Attention : nous recommandons le téléchargement d'une feuille de calcul pour un grand nombre de domaines. Il montre la progression lors de l'ajout de domaines et facilite la gestion d'un grand nombre de domaines.",
+				"add_domains_list_does_not_exist": "Cette liste n'existe pas.",
+				"add_domains_valid_urls_added": "De nouveaux domaines ont été traités, voir le rapport d'état pour plus de détails.",
+				"added_n_to_list": "{0} domaines ajoutés à cette liste. Attention : si les nouveaux domaines n'apparaissent pas immédiatement dans la liste, attendez un peu et rechargez la liste.",
+				"cancel": "Fermer",
+				"domains_label": "Ajouter des domaines dans le champ de texte ci-dessous",
+				"go_to_spreadsheet_upload": "Cliquez ici pour accéder au téléchargeur de feuilles de calcul et au tutoriel.",
 				"ignored_n": "",
-				"loading": "",
-				"message": "",
-				"nothing_added": "",
-				"ok": "",
+				"loading": "Les domaines sont en cours de traitement",
+				"message": "Les domaines sont séparés par une virgule, un espace ou une nouvelle ligne. Ils peuvent être mélangés. Par exemple :\n\ninternet.nl, dashboard.internet.nl\nexemple.com www.example.com,\nhttps://my.example.com:80/index.html",
+				"nothing_added": "rien n'a encore été ajouté.",
+				"ok": "Ajouter les domaines ci-dessus à la liste",
 				"removed_n_duplicates": "",
-				"status": "",
-				"title": "",
-				"too_many_domains": "",
-				"too_many_new_domains_message": "",
-				"undefined": "",
-				"warning": "",
-				"warning_message": ""
+				"status": "Statut",
+				"title": "Ajouter des domaines",
+				"too_many_domains": "Le nombre de domaines dans cette liste dépasse le nombre total de domaines autorisés dans une liste.",
+				"too_many_new_domains_message": "Il y a trop de domaines ajoutés, veuillez utiliser une feuille de calcul pour continuer.",
+				"undefined": "Non défini",
+				"warning": "Attention !",
+				"warning_message": "Certains domaines n'ont pas été ajoutés car leur format est incorrect. Les domaines suivants n'ont pas été ajoutés"
 			},
 			"configure": {
-				"cancel": "",
-				"ok": "",
-				"title": ""
+				"cancel": "Annuler",
+				"ok": "Mise à jour",
+				"title": "Paramètres"
 			},
 			"delete": {
-				"cancel": "",
-				"message": "",
-				"ok": "",
-				"title": ""
+				"cancel": "Non, ramenez-moi",
+				"message": "Êtes-vous sûr de vouloir supprimer cette liste ? La suppression de cette liste ne peut être annulée.",
+				"ok": "Oui, supprimer",
+				"title": "Êtes-vous sûr ?"
 			},
 			"domain-table": {
-				"Clear": "",
-				"Domain": "",
-				"filtered pagination": "",
-				"No filtered results": "",
-				"Not selected": "",
-				"pagination": "",
-				"select label": "",
-				"Selected": "",
-				"Table empty": "",
-				"tags": "",
-				"type to filter": "",
-				"update domain list": ""
+				"Clear": "Clair",
+				"Domain": "Domaine",
+				"filtered pagination": "Page {0}/{1} de {2} filtrée à partir de {3} domaines.",
+				"No filtered results": "Le filtre n'a donné aucun résultat. Vous ne pouvez rechercher que des balises complètes.",
+				"Not selected": "Non séléctionné",
+				"pagination": "Page {0}/{1} des domaines {2} .",
+				"select label": "sélectionner l'étiquette",
+				"Selected": "Sélectionné",
+				"Table empty": "Il n'y a pas encore de domaines dans cette liste... les domaines ajoutés seront affichés ici.",
+				"tags": "Étiquettes",
+				"type to filter": "-- type à filtrer",
+				"update domain list": "mettre à jour la liste des domaines"
 			},
 			"scan": {
-				"cancel": "",
-				"message": "",
-				"notices": "",
-				"ok": "",
-				"starting": "",
-				"title": ""
+				"cancel": "Annuler",
+				"message": "Cliquez sur \"Analyser maintenant\" pour lancer l'analyse.",
+				"notices": "La numérisation est visible sur le moniteur de numérisation. Vous pouvez annuler une numérisation à tout moment dans le moniteur de numérisation.",
+				"ok": "Scanner maintenant",
+				"starting": "Commencer...",
+				"title": "Confirmer la numérisation"
 			},
 			"status": {
-				"Automatically shared": "",
-				"finished": "",
-				"header": "",
-				"last_scan_started": "",
-				"latest_report": "",
-				"Listed on sharing page": "",
-				"next_scheduled_scan": "",
-				"Not automatically shared": "",
-				"not_scanned_before": "",
-				"number_of_domains": "",
-				"on this page": "",
-				"report": "",
-				"scan_frequency": "",
-				"scanning_disabled": "",
-				"sharing": "",
-				"still_running": "",
-				"type_of_scan_performed": "",
-				"with share code": ""
+				"Automatically shared": "Partagé automatiquement",
+				"finished": "Fini",
+				"header": "A propos de cette liste",
+				"last_scan_started": "Dernière analyse",
+				"latest_report": "Dernier rapport",
+				"Listed on sharing page": ", également sur la page de partage",
+				"next_scheduled_scan": "Prochaine analyse programmée",
+				"Not automatically shared": "Pas de partage automatique",
+				"not_scanned_before": "Jamais scanné auparavant",
+				"number_of_domains": "Nombre de domaines",
+				"on this page": "sur cette page",
+				"report": "Rapport",
+				"scan_frequency": "Fréquence de balayage",
+				"scanning_disabled": "L'analyse de cette liste est désactivée.",
+				"sharing": "Partagé",
+				"still_running": "toujours en cours",
+				"type_of_scan_performed": "Type d'analyse",
+				"with share code": "avec code d'action"
 			},
 			"upload": {
-				"cancel": "",
-				"empty_file": "",
-				"file_with_example_data": "",
-				"introduction": "",
-				"microsoft_office_excel": "",
-				"ok": "",
-				"open_document_spreadsheet": "",
-				"title": "",
+				"cancel": "Annuler",
+				"empty_file": "Fichier vide",
+				"file_with_example_data": "Fichier contenant des données d'exemple",
+				"introduction": "Il est possible de télécharger de grandes quantités d'adresses et de listes internet à l'aide de feuilles de calcul. Pour ce faire, veuillez développer les exemples de feuilles de calcul ci-dessous. Cela montre comment les données doivent être structurées. Les exemples avec et sans données sont fournis sous forme de feuilles de calcul Open Document, Microsoft Office Excel et séparées par des virgules. Vous trouverez ci-dessous des exemples de fichiers qui précisent le format exact.",
+				"microsoft_office_excel": "Feuille de calcul Excel (Microsoft Office)",
+				"ok": "Remplacer les domaines",
+				"open_document_spreadsheet": "Tableur Open Document (Libre Office)",
+				"title": "Téléchargement de domaines (écrasement)",
 				"too_many_domains": "",
-				"warning": ""
+				"warning": "Attention : Le téléchargement d'une feuille de calcul de domaines écrasera tous les domaines de cette liste. Il n'est pas possible d'annuler cette opération. Assurez-vous d'avoir téléchargé une copie de cette liste à l'avance. Une copie peut être faite avec le bouton 'Télécharger domaines' sur la liste des domaines."
 			}
 		},
 		"list-manager": {
-			"bulk_upload_link": "",
+			"bulk_upload_link": "Télécharger la feuille de calcul avec les domaines",
 			"icon_legend": {
-				"can_connect": "",
-				"cannot_connect": "",
-				"intro": "",
-				"title": "",
-				"unknown_connectivity": ""
+				"can_connect": "Si vous pouvez vous connecter à ce service, vous serez (probablement) scanné.",
+				"cannot_connect": "Service non disponible, ne sera (probablement) pas scanné.",
+				"intro": "Les domaines figurant dans les listes ci-dessous seront inclus dans chaque analyse. Avant qu'une analyse ne soit effectuée, l'éligibilité du service est vérifiée. Cette vérification est toujours effectuée pour l'analyse. Pour donner un aperçu du degré de connexion de ces services, le dernier état connu est présenté sous la forme de la première icône.",
+				"title": "Légende des icônes utilisées",
+				"unknown_connectivity": "On ne sait pas si ce service est disponible, il sera scanné s'il est disponible."
 			},
 			"icons": {
-				"can_connect": "",
-				"cannot_connect": "",
-				"list_closed": "",
-				"list_opened": "",
-				"list_warning": "",
-				"scan": "",
-				"settings": "",
-				"unknown_connectivity": ""
+				"can_connect": "Icône de connexion possible",
+				"cannot_connect": "Impossible de se connecter",
+				"list_closed": "Liste clôturée",
+				"list_opened": "Liste ouverte",
+				"list_warning": "Avertissement",
+				"scan": "Scanner",
+				"settings": "Paramètres",
+				"unknown_connectivity": "Icône de connectivité inconnue"
 			},
 			"inital_list": {
-				"alternative_start": "",
-				"start": ""
+				"alternative_start": "ou téléchargez une feuille de calcul avec les domaines ici...",
+				"start": "Commencez à créer une nouvelle liste..."
 			},
-			"intro": "",
+			"intro": "Gérer des listes avec des domaines",
 			"new_list": {
-				"add_new_list": "",
-				"button_close_label": "",
-				"button_create_list_label": ""
+				"add_new_list": "Ajouter une nouvelle liste",
+				"button_close_label": "Fermer",
+				"button_create_list_label": "Créer une liste"
 			},
-			"title": "",
-			"warning_found_in_list": ""
+			"title": "Domaines",
+			"warning_found_in_list": "Une ou plusieurs listes contiennent des problèmes, ce qui empêchera l'exécution des analyses."
 		},
 		"scan-eligibility": {
-			"eligeble_mail": "",
-			"eligeble_web": "",
-			"not_eligeble_mail": "",
-			"not_eligeble_web": "",
-			"unknown_eligeble_mail": "",
-			"unknown_eligeble_web": ""
+			"eligeble_mail": "{0} est éligible pour les balayages par courrier électronique",
+			"eligeble_web": "{0} est éligible pour les balayages web",
+			"not_eligeble_mail": "{0} n'est pas éligible pour les analyses de courrier électronique. Sera vérifié à nouveau lors du lancement d'une analyse.",
+			"not_eligeble_web": "{0} n'est pas éligible pour les analyses web. Il sera à nouveau vérifié lors du lancement d'un balayage.",
+			"unknown_eligeble_mail": "On ne sait pas encore si {0} peut être scanné par courrier.",
+			"unknown_eligeble_web": "On ne sait pas encore si {0} peut être scanné sur le web."
 		},
 		"spreadsheet-upload": {
-			"back_to_domains": "",
+			"back_to_domains": "Retour aux domaines",
 			"dropzone": {
-				"subtitle": "",
-				"title": ""
+				"subtitle": "...ou cliquez pour sélectionner un fichier sur votre ordinateur",
+				"title": "Glisser-déposer pour télécharger du contenu !"
 			},
-			"reload": "",
+			"reload": "Mise à jour de l'état actuel des téléchargements",
 			"upload": {
 				"bulk_data_uploader": {
 					"introduction": "",
-					"title": ""
+					"title": "Chargeur de feuilles de calcul pour le domaine"
 				},
-				"comma_separated": "",
+				"comma_separated": "Séparé par des virgules (pour les programmeurs)",
 				"drag_and_drop_uploader": {
-					"details_after_upload": "",
-					"fallback_select_a_file": "",
-					"first_instruction": "",
-					"nomouse": "",
-					"process": "",
-					"title": "",
-					"warnings": ""
+					"details_after_upload": "Des détails sur l'état du fichier téléchargé peuvent être consultés par la suite dans la section \"téléchargements récents\" sous cet uploader.",
+					"fallback_select_a_file": "Sélectionnez un fichier à télécharger :",
+					"first_instruction": "Pour télécharger un fichier d'adresses en vrac, faites-le glisser sur le rectangle \"téléchargement\" ci-dessous.",
+					"nomouse": "Une option de téléchargement plus conventionnelle est disponible en dessous de l'outil de téléchargement par glisser-déposer.",
+					"process": "Le téléchargement s'effectue en deux étapes. Tout d'abord, la barre de progression se remplit, ce qui signifie que les données sont envoyées avec succès à ce site web. Ensuite, un traitement est effectué sur le serveur. Lorsque ce traitement est terminé, l'icône du fichier téléchargé ci-dessous se transforme en succès (vert, avec une coche) ou en échec (rouge, avec une croix).",
+					"title": "Chargeur par glisser-déposer",
+					"warnings": "Important : il est possible de télécharger jusqu'à {0} urls dans {1} listes par téléchargement. Plus le nombre de fichiers téléchargés est important, plus cela prendra de temps. Une fois votre téléchargement confirmé, il sera traité en parallèle, ce qui signifie que vous pouvez quitter cette page et que vos nouvelles listes seront créées dans les minutes qui suivent."
 				},
 				"empty_file": "",
 				"file_with_example_data": "",
 				"microsoft_office_excel": "",
 				"open_document_spreadsheet": "",
 				"recent_uploads": {
-					"date": "",
-					"filename": "",
-					"filesize": "",
-					"intro": "",
-					"no_uploads": "",
-					"progress": "",
-					"status": "",
-					"title": ""
+					"date": "Quand",
+					"filename": "Télécharger",
+					"filesize": "Taille",
+					"intro": "Cette liste montre vos téléchargements récents et est automatiquement mise à jour. Les messages d'état donnent une idée de ce qui a été créé ou ajouté. Si quelque chose n'a pas fonctionné, le statut contient des conseils sur la marche à suivre.",
+					"no_uploads": "Aucun fichier n'a été téléchargé.",
+					"progress": "Progrès",
+					"status": "Statut",
+					"title": "Statut du téléchargement"
 				}
 			}
 		},
 		"urllist": {
 			"button": {
-				"add_domains": "",
-				"configure": "",
-				"delete": "",
-				"discover_subdomains": "",
-				"download": "",
-				"reload": "",
-				"scan_now": "",
-				"scan_now_scanning": "",
-				"scan_now_scanning_title": "",
-				"scanning_disabled": "",
-				"upload": ""
+				"add_domains": "Texte libre",
+				"configure": "Configurer",
+				"delete": "DELETE",
+				"discover_subdomains": "Découverte de sous-domaines",
+				"download": "Télécharger",
+				"reload": "Recharger les domaines",
+				"scan_now": "Scanner maintenant",
+				"scan_now_scanning": "Numérisation",
+				"scan_now_scanning_title": "L'option \"Analyser maintenant\" n'est disponible qu'une fois par jour, lorsqu'aucune analyse n'est en cours.",
+				"scanning_disabled": "Numérisation désactivée",
+				"upload": "Feuille de calcul"
 			},
 			"domains": {
-				"header": "",
-				"intro": ""
+				"header": "Domaines",
+				"intro": "Ces domaines seront inclus dans le balayage. L'éligibilité à l'analyse est vérifiée juste avant la demande d'analyse. Les icônes précédant chaque domaine sont basées sur les informations archivées concernant l'accessibilité la plus récente des services. Ces informations sont vérifiées et mises à jour avant chaque analyse."
 			},
 			"icon": {
-				"bulk_add_new": "",
+				"bulk_add_new": "Ajouter des domaines en masse",
 				"list_closed": "",
 				"list_opened": "",
-				"remove_filter": "",
-				"report": "",
-				"scan": "",
-				"settings": ""
+				"remove_filter": "Afficher les catégories",
+				"report": "Rapport",
+				"scan": "Scanner",
+				"settings": "Paramètres"
 			},
 			"warnings": {
-				"domains_exceed_maximum": ""
+				"domains_exceed_maximum": "Le nombre de domaines dans cette liste dépasse le maximum de {0}. L'analyse est interrompue."
 			}
 		},
 		"www-discovery": {
-			"error": "",
-			"find-www-subdomains": "",
-			"finding-www-subdomains": "",
-			"finished": "",
-			"last-scan-finished": "",
-			"requested": "",
-			"scanning": "",
-			"scanning-done-click-reload": ""
+			"error": "Erreur",
+			"find-www-subdomains": "www. discovery",
+			"finding-www-subdomains": "trouver www.",
+			"finished": "Fini",
+			"last-scan-finished": ", dernier indice terminé",
+			"requested": "Depuis",
+			"scanning": "rassemblement",
+			"scanning-done-click-reload": "L'analyse est terminée, cliquez pour recharger la liste des domaines"
 		},
 		"www-discovery-modal": {
-			"cancel": "",
-			"message": "",
-			"ok": "",
-			"title": ""
+			"cancel": "Retour à la liste",
+			"message": "Recherche des sous-domaines pour tous les domaines de la liste actuelle. Les sous-domaines seront testés s'ils sont résolus pour le courrier, le web ou les deux, en fonction des paramètres de la liste. Chaque sous-domaine valide sera ajouté à la liste. Pour les grandes listes, cette opération peut prendre un certain temps et entraîner une perte de résultats.",
+			"ok": "Trouver les sous-domaines www.",
+			"title": "Ajouter des sous-domaines \"www"
 		}
 	},
 	"home": {
 		"page": {
-			"introduction": "",
-			"learn": "",
-			"log_in": "",
-			"request_access": "",
-			"title": ""
+			"introduction": "Analyse en masse des normes internet modernes sur des milliers de domaines en une seule fois, y compris les rapports.",
+			"learn": "Découvrez ce que le tableau de bord peut faire pour vous, ici...",
+			"log_in": "Se connecter",
+			"request_access": "Pour demander l'accès au tableau de bord, veuillez consulter cette page.",
+			"title": "Bienvenue sur le tableau de bord d'internet.nl"
 		},
 		"short-feature-overview": {
-			"domains": "",
-			"domains_text_1": "",
-			"domains_text_2": "",
-			"icon-bar-chart": "",
-			"icon-list": "",
-			"icon-search": "",
-			"report": "",
-			"report_text_1": "",
-			"report_text_2": "",
-			"scan": "",
-			"scan_text_1": "",
-			"scan_text_2": ""
+			"domains": "Gérer les domaines",
+			"domains_text_1": "Gérer des milliers de domaines avec des étiquettes.",
+			"domains_text_2": "Importation pratique avec des feuilles de calcul ou des fichiers séparés par des virgules.",
+			"icon-bar-chart": "Icône de diagramme à barres",
+			"icon-list": "Icône représentant une liste à puces",
+			"icon-search": "Icône de la loupe",
+			"report": "Rapport",
+			"report_text_1": "Consultez des rapports détaillés avec des graphiques et des mesures par catégorie.",
+			"report_text_2": "Publier un rapport en ligne ou via une feuille de calcul.",
+			"scan": "Balayage en vrac",
+			"scan_text_1": "Scannez les domaines sur des dizaines de standards internet modernes.",
+			"scan_text_2": "Recevoir des courriers électroniques avec des rapports lorsque les numérisations sont terminées."
 		}
 	},
 	"mail": {
 		"unsubscribe": {
-			"error": "",
-			"intro": "",
-			"label_feed": "",
-			"label_unsubscribe_code": "",
-			"perform_unsubscribe": "",
-			"success": "",
-			"title": ""
+			"error": "Une erreur s'est produite lors de la désinscription. Réessayez ci-dessous en utilisant le code et le flux dans votre email.",
+			"intro": "Ce formulaire vous permet de vous désabonner des alertes. Vous pouvez vous désinscrire sans être connecté. Si vous avez atterri sur cette page depuis",
+			"label_feed": "Alimentation",
+			"label_unsubscribe_code": "Code de désinscription (voir e-mail)",
+			"perform_unsubscribe": "Se désabonner de ce flux",
+			"success": "Votre abonnement à ce flux a été annulé. Vous ne recevrez plus d'e-mails de ce flux.",
+			"title": "Se désabonner des alertes"
 		}
 	},
 	"metric": {
 		"category_mail": {
-			"title": ""
+			"title": "Courrier électronique"
 		},
 		"category_mail_dashboard_auth_dkim": {
 			"title": "DKIM"
@@ -488,28 +492,28 @@
 			"title": "SPF"
 		},
 		"category_mail_dnssec_email_address_domain": {
-			"title": ""
+			"title": "Adresse électronique domaine"
 		},
 		"category_mail_dnssec_mail_server_domain": {
-			"title": ""
+			"title": "Domaine(s) du serveur de messagerie"
 		},
 		"category_mail_ipv6_mail_servers": {
-			"title": ""
+			"title": "Serveur(s) de messagerie"
 		},
 		"category_mail_ipv6_name_servers": {
-			"title": ""
+			"title": "Serveurs de noms du domaine"
 		},
 		"category_mail_rpki_mail_server": {
-			"title": ""
+			"title": "Serveur(s) de messagerie"
 		},
 		"category_mail_rpki_name_mail_server": {
-			"title": ""
+			"title": "Serveurs de noms du (des) serveur(s) de messagerie"
 		},
 		"category_mail_rpki_name_server": {
-			"title": ""
+			"title": "Serveurs de noms du domaine"
 		},
 		"category_mail_starttls_certificate": {
-			"title": ""
+			"title": "Certificat"
 		},
 		"category_mail_starttls_dane": {
 			"title": "DANE"
@@ -518,31 +522,31 @@
 			"title": "TLS"
 		},
 		"category_web": {
-			"title": ""
+			"title": "Site Web"
 		},
 		"category_web_dnssec_dnssec": {
-			"title": ""
+			"title": "Nom de domaine signé (DNSSEC)"
 		},
 		"category_web_ipv6_name_server": {
-			"title": ""
+			"title": "Serveurs de noms du domaine"
 		},
 		"category_web_ipv6_web_server": {
-			"title": ""
+			"title": "Serveur web"
 		},
 		"category_web_rpki_name_server": {
-			"title": ""
+			"title": "Serveurs de noms du domaine"
 		},
 		"category_web_rpki_web_server": {
 			"title": ""
 		},
 		"category_web_security_options_appsecpriv": {
-			"title": ""
+			"title": "En-têtes de sécurité HTTP"
 		},
 		"category_web_security_options_other": {
-			"title": ""
+			"title": "Autres options de sécurité"
 		},
 		"category_web_tls_certificate": {
-			"title": ""
+			"title": "Certificat"
 		},
 		"category_web_tls_dane": {
 			"title": "DANE"
@@ -555,7 +559,7 @@
 		},
 		"internet_nl_legacy": {
 			"status_fields": {
-				"title": ""
+				"title": "Champs de statut"
 			}
 		},
 		"internet_nl_mail_auth_dkim_exist": {
@@ -614,22 +618,22 @@
 			"title": "Politique SPF"
 		},
 		"internet_nl_mail_dashboard_auth": {
-			"title": ""
+			"title": "Marques d'authenticité contre le phishing (DMARC, DKIM et SPF)"
 		},
 		"internet_nl_mail_dashboard_dnssec": {
-			"title": ""
+			"title": "Noms de domaine signés (DNSSEC)"
 		},
 		"internet_nl_mail_dashboard_ipv6": {
-			"title": ""
+			"title": "Adresse moderne (IPv6)"
 		},
 		"internet_nl_mail_dashboard_rpki": {
-			"title": ""
+			"title": "Autorisation d'acheminement (RPKI)"
 		},
 		"internet_nl_mail_dashboard_tls": {
-			"title": ""
+			"title": "Connexion sécurisée au serveur de messagerie (STARTTLS et DANE)"
 		},
 		"internet_nl_mail_dashboard_web_rpki": {
-			"title": ""
+			"title": "Autorisation d'acheminement (RPKI)"
 		},
 		"internet_nl_mail_dnssec_mailto_exist": {
 			"extended-explanation": "Nous vérifions si votre domaine, plus précisément son enregistrement SOA, est signé DNSSEC. Avec une signature DNSSEC, les expéditeurs qui valident les signatures de domaine peuvent vérifier l'authenticité de la réponse DNS qui contient les domaines de vos serveurs de messagerie (MX). Cela empêche un pirate de manipuler la réponse DNS afin de rediriger les courriers qui vous sont adressés vers le domaine du serveur de messagerie du pirate.</p><p>Si un domaine redirige vers un autre domaine via <code>CNAME</code>, nous vérifions également si le domaine CNAME est signé (ce qui est conforme à la norme DNSSEC). Si le domaine CNAME n'est pas signé, le résultat de ce sous-test sera négatif.</p><p>Note : la validité de la signature ne fait pas partie de ce sous-test, mais du sous-test suivant.",
@@ -661,10 +665,10 @@
 				"null_mx": "Votre nom de domaine qui a des enregistrements A/AAAA indique clairement avec un enregistrement \"Null MX\" qu'il n'accepte pas le courrier électronique. Cela ne pose pas de problème si vous ne souhaitez pas recevoir de courrier électronique. N'utilisez pas un enregistrement \"Null MX\" et définissez un MX si vous souhaitez envoyer du courrier électronique à partir de ce nom de domaine, car les serveurs de réception peuvent rejeter le courrier électronique dont l'adresse de retour n'est pas valide.",
 				"null_mx_with_other_mx": "Votre domaine annonce un enregistrement \"Null MX\" indiquant qu'il n'accepte pas de courrier électronique. Cependant, sur votre domaine, un serveur de messagerie de réception est défini par un autre enregistrement MX, ce qui rend l'enregistrement \"Null MX\" conflictuel.",
 				"null_mx_without_a_aaaa": "Votre domaine annonce un enregistrement \"Null MX\" indiquant qu'il n'accepte pas le courrier électronique. Cependant, votre domaine n'a pas d'enregistrements A/AAAA, ce qui rend l'enregistrement \"Null MX\" inutile.",
-				"resolver_error": "",
+				"resolver_error": "Une erreur s'est malheureusement produite dans le résolveur d'Internet.nl. Veuillez <a href=\"/about/\">nous contacter</a> .",
 				"servfail": "Les serveurs de noms d'au moins un de vos domaines de serveur de messagerie sont <em>cassés</em>. Ils ont renvoyé une erreur (<code>SERVFAIL</code>) à nos demandes de signature DNSSEC. Veuillez contacter l'opérateur de votre serveur de noms (souvent votre fournisseur de services de messagerie) pour qu'il corrige ce problème rapidement."
 			},
-			"title": ""
+			"title": "Existence de DNSSEC"
 		},
 		"internet_nl_mail_dnssec_mx_valid": {
 			"extended-explanation": "Nous vérifions si les domaines de vos serveurs de courrier électronique de réception (MX), plus précisément leurs enregistrements SOA, portent une signature valide qui les rend \"sûrs\".</p><p>Si un nom de domaine redirige vers un autre nom de domaine signé via <code>CNAME</code>, nous vérifions également si la signature du nom de domaine CNAME est valide (ce qui est conforme à la norme DNSSEC). Si la signature du nom de domaine CNAME n'est pas valide, le résultat de ce sous-test sera négatif.</p><p>Notez que nous ne testons que le serveur de noms qui répond en premier. Si les serveurs de noms d'un nom de domaine ont des configurations incohérentes, les résultats des tests peuvent varier. Dans ce cas, par exemple, le résultat de ce sous-test peut être \"sécurisé\" une fois et \"bidon\" la fois suivante.",
@@ -673,7 +677,7 @@
 				"good": "Tous vos domaines de serveurs de messagerie signés sont sécurisés, car leurs signatures DNSSEC sont valides.",
 				"unsupported_ds_algo": "Au moins un des domaines de votre serveur de messagerie est signé avec un algorithme que notre résolveur de validation ne prend pas en charge actuellement. Nous ne sommes donc pas en mesure de vérifier la validité de sa signature DNSSEC."
 			},
-			"title": ""
+			"title": "Validité du DNSSEC"
 		},
 		"internet_nl_mail_ipv6_mx_address": {
 			"explanation": "Nous vérifions s'il existe au moins un enregistrement AAAA avec une adresse IPv6 pour chaque serveur de messagerie destinataire (MX). Si aucun serveur de messagerie n'est défini, nous envoyons une notification et nous exécutons les autres sous-tests du test de messagerie qui sont toujours pertinents.</p><p>Les \"adresses IPv6 mappées en IPv4\" (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, commençant par ::ffff:) échoueront dans ce sous-test, car elles ne fournissent pas de connectivité IPv6.</p><p>Notez que le test de courrier électronique ne se réfère pas aux enregistrements A/AAAA pour les serveurs de courrier en cas d'absence d'enregistrement MX.",
@@ -683,9 +687,9 @@
 				"invalid_null_mx": "Votre domaine annonce un enregistrement \"Null MX\" indiquant qu'il n'accepte pas le courrier électronique. Cependant, soit votre domaine n'a pas d'enregistrements A/AAAA, ce qui rend l'enregistrement \"Null MX\" inutile. Ou bien, sur votre domaine, un serveur de messagerie de réception est défini par un autre enregistrement MX, ce qui rend l'enregistrement \"Null MX\" conflictuel.",
 				"no_null_mx": "Aucun serveur de messagerie de réception (MX) n'est configuré sur votre domaine qui possède des enregistrements A/AAAA. Nous vous recommandons d'indiquer explicitement que votre domaine n'accepte pas le courrier électronique en configurant un enregistrement \"Null MX\". N'utilisez pas un enregistrement \"Null MX\" et configurez un MX si vous souhaitez envoyer du courrier électronique à partir de ce nom de domaine, car les serveurs de réception peuvent rejeter le courrier électronique dont l'adresse de retour n'est pas valide.",
 				"null_mx": "Votre nom de domaine qui a des enregistrements A/AAAA indique clairement avec un enregistrement \"Null MX\" qu'il n'accepte pas le courrier électronique. Cela ne pose pas de problème si vous ne souhaitez pas recevoir de courrier électronique. N'utilisez pas un enregistrement \"Null MX\" et définissez un MX si vous souhaitez envoyer du courrier électronique à partir de ce nom de domaine, car les serveurs de réception peuvent rejeter le courrier électronique dont l'adresse de retour n'est pas valide.",
-				"null_mx_with_other_mx": "",
-				"null_mx_without_a_aaaa": "",
-				"other": ""
+				"null_mx_with_other_mx": "Votre domaine annonce un enregistrement \"Null MX\" indiquant qu'il n'accepte pas de courrier électronique. Cependant, sur votre domaine, un serveur de messagerie de réception est défini par un autre enregistrement MX, ce qui rend l'enregistrement \"Null MX\" conflictuel.",
+				"null_mx_without_a_aaaa": "Votre domaine annonce un enregistrement \"Null MX\" indiquant qu'il n'accepte pas le courrier électronique. Cependant, votre domaine n'a pas d'enregistrements A/AAAA, ce qui rend l'enregistrement \"Null MX\" inutile.",
+				"other": "Aucun serveur de messagerie de réception (MX) n'est configuré sur votre domaine qui n'a pas d'enregistrements A/AAAA. C'est une bonne chose si vous ne voulez pas recevoir de courrier électronique."
 			},
 			"title": "Adresses IPv6 pour le(s) serveur(s) de messagerie"
 		},
@@ -715,91 +719,91 @@
 			"title": "Accessibilité IPv6 des serveurs de noms"
 		},
 		"internet_nl_mail_legacy_category": {
-			"title": ""
+			"title": "Champs supplémentaires"
 		},
 		"internet_nl_mail_legacy_category_ipv6": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en prenant la valeur de la catégorie pour IPv6.",
+			"title": "Courrier IPv6"
 		},
 		"internet_nl_mail_legacy_dane": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la plus mauvaise valeur de : mail_starttls_dane_exist, mail_starttls_dane_valid. Peut être remplacé par mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "DANE"
 		},
 		"internet_nl_mail_legacy_dkim": {
-			"explanation": "",
+			"explanation": "Calculé en utilisant la valeur de : mail_auth_dkim_exist s'il réussit. Si cette valeur n'est pas disponible, vérifiez si le domaine envoie du courrier électronique. Si ce n'est pas le cas, c'est sans objet. Sinon, c'est un échec.",
 			"title": "DKIM"
 		},
 		"internet_nl_mail_legacy_dmarc": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la valeur de : mail_auth_dkim_exist.",
+			"title": "DMARC"
 		},
 		"internet_nl_mail_legacy_dmarc_policy": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la valeur de : mail_auth_dmarc_policy.",
+			"title": "Politique DMARC"
 		},
 		"internet_nl_mail_legacy_dnssec_mx": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la plus mauvaise valeur de : mail_dnssec_mx_exist, mail_dnssec_mx_valid. Sera mis à no_mx s'il n'y a pas de mx.",
+			"title": "DNSSEC MX"
 		},
 		"internet_nl_mail_legacy_domain_has_mx": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Les serveurs de messagerie sont configurés pour le domaine.",
+			"title": "Le serveur de messagerie a un enregistrement MX"
 		},
 		"internet_nl_mail_legacy_ipv6_mailserver": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la plus mauvaise valeur de : mail_ipv6_mx_address, mail_ipv6_mx_reach. Sera défini à no_mx s'il n'y a pas de mx.",
+			"title": "Serveur de messagerie IPv6"
 		},
 		"internet_nl_mail_legacy_ipv6_nameserver": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la plus mauvaise valeur de : mail_ipv6_ns_address, mail_ipv6_ns_reach. Sera mis à no_mx s'il n'y a pas de mx.",
+			"title": "Serveur de noms IPv6"
 		},
 		"internet_nl_mail_legacy_mail_sending_domain": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Vérifie si le domaine est configuré pour l'envoi de courrier électronique. Pour ce test, il s'agit de tout ce qui n'est pas configuré pour l'envoi de courriels :    Enregistrement SPF avec v=spf1 -all, et enregistrement DMARC avec v=DMARC1;p=reject ;",
+			"title": "Domaine d'envoi de courrier électronique"
 		},
 		"internet_nl_mail_legacy_mail_server_reachable": {
-			"explanation": "",
-			"title": ""
+			"explanation": "La connectivité réseau était possible avec au moins un serveur de messagerie.",
+			"title": "Serveur de messagerie accessible"
 		},
 		"internet_nl_mail_legacy_mail_server_testable": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Tous les serveurs de messagerie ont communiqué en retour et les résultats sont complets.",
+			"title": "Serveur de messagerie testable"
 		},
 		"internet_nl_mail_legacy_spf": {
-			"explanation": "",
+			"explanation": "Calculé en utilisant la valeur de : mail_auth_spf_exist.",
 			"title": "SPF"
 		},
 		"internet_nl_mail_legacy_spf_policy": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la valeur de : mail_auth_spf_policy.",
+			"title": "Politique SPF"
 		},
 		"internet_nl_mail_legacy_start_tls": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la valeur de : mail_starttls_tls_available. Peut être remplacé par mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "STARTTLS"
 		},
 		"internet_nl_mail_legacy_start_tls_ncsc": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la plus mauvaise valeur de : mail_starttls_tls_available, mail_starttls_tls_keyexchange, mail_starttls_tls_compress, mail_starttls_tls_secreneg, mail_starttls_tls_ciphers, mail_starttls_tls_clientreneg, mail_starttls_tls_version,  mail_starttls_tls_cipherorder, mail_starttls_tls_keyexchangehash, mail_starttls_tls_0rtt, mail_starttls_cert_sig, mail_starttls_cert_pubkey, mail_starttls_cert_chain, mail_starttls_cert_domain. Peut être remplacé par mail_servers_testable_status (no_mx, unreachable, not_testable).",
+			"title": "STARTTLS NCSC"
 		},
 		"internet_nl_mail_legacy_tls_1_3": {
-			"explanation": "",
-			"title": ""
+			"explanation": "La prise en charge de TLS1.3 est déduite du test 0-RTT. Le test explicite de la prise en charge de TLS1.3 ne fait pas partie de l'outil de conformité. Cependant, la prise en charge de TLS1.3 pourrait être dérivée du test 0-RTT car la fonction n'est disponible qu'à partir de TLS1.3. Comme il n'y a pas de connexion TLS1.3 explicite pendant le test, le test suppose que le serveur a choisi TLS1.3 lorsqu'il en a eu la possibilité.",
+			"title": "Prise en charge de TLS 1.3"
 		},
 		"internet_nl_mail_mx_ns_rpki_exists": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Nous vérifions si une autorisation d'origine de route (ROA) RPKI a été publiée pour toutes les adresses IP des serveurs de noms de votre/vos serveur(s) de messagerie (MX).</p><p>Votre hébergeur (ou son fournisseur de réseau) annonce par le biais du protocole BGP (Border Gateway Protocol) les blocs d'adresses IP pour lesquels il accepte le trafic Internet entrant. Les autres fournisseurs de réseau utilisent ces annonces d'itinéraires pour déterminer par quel itinéraire envoyer le trafic pour les adresses IP de votre serveur.</p><p>Toutefois, une annonce d'itinéraire peut être falsifiée. En effet, un autre fournisseur de réseau peut être en mesure de connecter le bloc d'adresses IP de votre adresse IP à son réseau et donc de recevoir potentiellement du trafic Internet qui est en fait destiné à votre fournisseur de réseau. La cause peut être accidentelle ou malveillante. Dans les deux cas, votre serveur peut devenir inaccessible ou le trafic Internet vers votre serveur peut être intercepté.</p><p>L'infrastructure de clés publiques de ressources (RPKI) améliore considérablement la protection contre ce phénomène. Avec RPKI, le détenteur légitime d'un bloc d'adresses IP peut publier une déclaration signée numériquement avec autorisation d'itinéraire (Route Origin Authorisation ; ROA en abrégé). Un autre fournisseur de réseau qui souhaite envoyer du trafic internet à une adresse IP particulière peut utiliser la déclaration correspondante pour filtrer les itinéraires <code>les itinéraires</code> non valides. De cette manière, le fournisseur de réseau empêche le trafic Internet de son réseau d'être envoyé à des réseaux de fournisseurs non autorisés.</p><p><em>Niveau d'exigence : Recommandé</em>",
+			"title": "Existence d'une autorisation d'origine de l'itinéraire"
 		},
 		"internet_nl_mail_mx_ns_rpki_valid": {
 			"explanation": "",
-			"title": ""
+			"title": "Validité de l'annonce de l'itinéraire"
 		},
 		"internet_nl_mail_ns_rpki_exists": {
 			"explanation": "",
-			"title": ""
+			"title": "Validité de l'annonce de l'itinéraire"
 		},
 		"internet_nl_mail_ns_rpki_valid": {
 			"explanation": "",
-			"title": ""
+			"title": "Validité de l'annonce de l'itinéraire"
 		},
 		"internet_nl_mail_rpki_exists": {
 			"explanation": "L'internet est constitué de toutes sortes de petits réseaux. Ces réseaux peuvent être créés de manière ad hoc, ce qui signifie que quelqu'un de malveillant peut le faire. Pour éviter que des acteurs malveillants ne prennent le contrôle de certaines parties de l'internet, un réseau de confiance et de certification a été créé. Il s'agit d'un réseau bureaucratique dans lequel les organisations sont accréditées par des parties de confiance.",
@@ -814,7 +818,7 @@
 		},
 		"internet_nl_mail_rpki_valid": {
 			"explanation": "",
-			"title": ""
+			"title": "Validité de l'annonce de l'itinéraire"
 		},
 		"internet_nl_mail_starttls_cert_chain": {
 			"explanation": "Nous vérifions si nous sommes en mesure d'établir une chaîne de confiance valide pour les certificats de votre serveur de messagerie. </p><p>Pour que la chaîne de confiance soit valide, votre certificat doit être publié par une autorité de certification <a href=\"https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/\">de confiance</a>, et votre serveur de messagerie récepteur doit présenter tous les certificats intermédiaires nécessaires. et votre serveur de messagerie récepteur doit présenter tous les certificats intermédiaires nécessaires. </p><p>Les serveurs de messagerie expéditeurs ignorent généralement si le certificat d'un serveur de messagerie est délivré par une autorité de certification de confiance publique. Sans DNSSEC, la recherche du domaine du serveur de messagerie est vulnérable à la manipulation. Par conséquent, un certificat délivré par une autorité de certification publiquement reconnue ne peut ajouter aucune valeur d'authenticité. Un grand nombre de serveurs de messagerie récepteurs utilisent donc des certificats auto-signés, souvent délivrés par une autorité de certification interne (privée). Pour assurer l'authenticité, un serveur de messagerie doit utiliser DNSSEC et DANE.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B3-4 (en anglais).</p><p><em>Niveau d'exigence : Facultatif</em>",
@@ -890,13 +894,13 @@
 				"bad": "Au moins un de vos serveurs de messagerie ne <em>pas</em> offre STARTTLS.",
 				"failed": "Cryptage manquant. Cela signifie que le courrier électronique envoyé à ce serveur peut être lu ou modifié par des intermédiaires.",
 				"good": "Tous vos serveurs de messagerie proposent STARTTLS.",
-				"invalid_null_mx": "",
-				"no_null_mx": "",
-				"null_mx": "",
-				"null_mx_with_other_mx": "",
-				"null_mx_without_a_aaaa": "",
+				"invalid_null_mx": "Votre domaine annonce un enregistrement \"Null MX\" indiquant qu'il n'accepte pas le courrier électronique. Cependant, soit votre domaine n'a pas d'enregistrements A/AAAA, ce qui rend l'enregistrement \"Null MX\" inutile. Ou bien, sur votre domaine, un serveur de messagerie de réception est défini par un autre enregistrement MX, ce qui rend l'enregistrement \"Null MX\" conflictuel.",
+				"no_null_mx": "Aucun serveur de messagerie de réception (MX) n'est configuré sur votre domaine qui possède des enregistrements A/AAAA. Nous vous recommandons d'indiquer explicitement que votre domaine n'accepte pas le courrier électronique en configurant un enregistrement \"Null MX\". N'utilisez pas un enregistrement \"Null MX\" et configurez un MX si vous souhaitez envoyer du courrier électronique à partir de ce nom de domaine, car les serveurs de réception peuvent rejeter le courrier électronique dont l'adresse de retour n'est pas valide.",
+				"null_mx": "Votre nom de domaine qui a des enregistrements A/AAAA indique clairement avec un enregistrement \"Null MX\" qu'il n'accepte pas le courrier électronique. Cela ne pose pas de problème si vous ne souhaitez pas recevoir de courrier électronique. N'utilisez pas un enregistrement \"Null MX\" et définissez un MX si vous souhaitez envoyer du courrier électronique à partir de ce nom de domaine, car les serveurs de réception peuvent rejeter le courrier électronique dont l'adresse de retour n'est pas valide.",
+				"null_mx_with_other_mx": "Votre domaine annonce un enregistrement \"Null MX\" indiquant qu'il n'accepte pas de courrier électronique. Cependant, sur votre domaine, un serveur de messagerie de réception est défini par un autre enregistrement MX, ce qui rend l'enregistrement \"Null MX\" conflictuel.",
+				"null_mx_without_a_aaaa": "Votre domaine annonce un enregistrement \"Null MX\" indiquant qu'il n'accepte pas le courrier électronique. Cependant, votre domaine n'a pas d'enregistrements A/AAAA, ce qui rend l'enregistrement \"Null MX\" inutile.",
 				"other": "Au moins un de vos serveurs de messagerie est inaccessible.",
-				"other_2": "",
+				"other_2": "Aucun serveur de messagerie de réception (MX) n'est configuré sur votre domaine qui n'a pas d'enregistrements A/AAAA. C'est une bonne chose si vous ne voulez pas recevoir de courrier électronique.",
 				"passed": "Cryptage disponible. Cela signifie que le courrier électronique peut être envoyé à cette adresse en toute sécurité."
 			},
 			"technology": "TLS opportuniste / STARTTLS",
@@ -982,11 +986,11 @@
 				"passed": "",
 				"unreachable": "Le serveur est inaccessible. Le test n'a pas pu être effectué."
 			},
-			"technology": "",
+			"technology": "Sécurité de la couche transport (TLS)",
 			"title": "Transmissions sécurisées par courrier électronique conformément aux lignes directrices du NCSC-NL + DANE"
 		},
 		"internet_nl_web_appsecpriv": {
-			"title": ""
+			"title": "Options de sécurité"
 		},
 		"internet_nl_web_appsecpriv_csp": {
 			"explanation": "",
@@ -1006,8 +1010,8 @@
 			"title": "Politique de référencement"
 		},
 		"internet_nl_web_appsecpriv_securitytxt": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Nous vérifions si votre serveur web fournit un fichier <code>security.txt</code> au bon endroit, s'il peut être récupéré et si son contenu est syntaxiquement valide. </p><p> Le fichier<code>security.txt</code> est un fichier texte contenant des informations de contact que vous placez sur votre serveur web. Les chercheurs en sécurité peuvent utiliser ces informations pour contacter directement le bon service ou la bonne personne au sein de votre organisation au sujet des vulnérabilités qu'ils ont trouvées dans votre site web ou vos systèmes informatiques. Cela peut accélérer la correction des vulnérabilités trouvées, réduisant ainsi les possibilités d'exploitation par des parties malveillantes. </p><p>La syntaxe du fichier est conçue pour être lisible par la machine et par l'homme. Les informations de contact peuvent être une adresse électronique, un numéro de téléphone et/ou une page web (par exemple un formulaire web). Notez que les informations de contact publiées sont publiques et peuvent également être utilisées de manière abusive, par exemple pour envoyer du spam à une adresse électronique publiée.</p><p>Outre les informations de contact, le fichier <code>security.txt</code> doit également contenir une date d'expiration. Pour éviter que le fichier ne devienne obsolète, il est recommandé que la date soit fixée à moins d'un an dans l'avenir. Il est facultatif d'inclure d'autres informations pertinentes pour les chercheurs en sécurité, comme un lien vers votre politique de traitement des rapports sur les vulnérabilités de sécurité (généralement appelée politique de divulgation coordonnée des vulnérabilités).</p><p>Il est recommandé de signer avec PGP le fichier <code>security.txt</code> tout en incluant l'URI web sur lequel le fichier est situé dans un champ <code>champ canonique</code> . Actuellement, nous ne <em>pas</em> vérifions la valeur des champs <code>Canonical</code> , car la spécification security.txt n'est pas claire sur sa signification, en particulier lorsque des redirections sont impliquées. Nous vérifions si le fichier <code>security.txt</code> est signé. Cependant, nous ne <em>validons pas</em> la signature car, malheureusement, il n'existe pas d'endroit standardisé pour récupérer une clé PGP publique (qui est nécessaire pour la validation de la signature).</p><p>Le fichier doit être publié sous le chemin <code>/.well-known/</code> . Il est à noter que le fait de le placer sous le chemin de premier niveau n'est plus d'actualité. Chaque (sous) domaine web doit avoir son propre fichier <code>security.txt</code> . La redirection vers un fichier <code>security.txt</code> sur un domaine différent est autorisée. Un exemple de fichier peut être trouvé sur <a href=\"https://example.nl/.well-known/security.txt\"><code>https://example.nl/.well-known/security.txt</code></a>.</p><p>Notez que les fichiers <code>security.txt</code> ne font normalement que quelques kilo-octets. Nous lisons et évaluons donc au maximum les 100 premiers Ko d'un fichier <code>security.txt</code> trouvé. </p><p><em>Niveau d'exigence : Recommandé</em>",
+			"title": "Sécurité.txt"
 		},
 		"internet_nl_web_appsecpriv_x_content_type_options": {
 			"explanation": "Nous vérifions si votre serveur web fournit un en-tête HTTP pour <code>X-Content-Type-Options</code>. Avec cet en-tête HTTP, vous indiquez aux navigateurs web qu'ils ne doivent pas \"renifler les types MIME\" et qu'ils doivent toujours respecter le <code>Content-Type</code> tel qu'il est déclaré par votre serveur web. La seule valeur valide pour cet en-tête HTTP est <code>nosniff</code>. Lorsque cette option est activée, le navigateur bloque les demandes de <code>style</code> et de <code>script</code> lorsqu'elles n'ont pas de <code>Content-Type</code> correspondant (c'est-à-dire <code>text/css</code> ou un \"type MIME JavaScript\" comme <code>application/javascript</code>). ).</p><p>Le \"reniflage de type MIME\" est une technique par laquelle le navigateur analyse le contenu d'un fichier pour en détecter le format, indépendamment du <code>Content-Type</code> déclaré par le serveur web. Cette technique est vulnérable à ce que l'on appelle l'\"attaque par confusion MIME\", dans laquelle l'attaquant manipule le contenu d'un fichier de manière à ce qu'il soit traité par le navigateur comme un autre <code>Content-Type</code>différent, comme un exécutable.</p><p><em>Niveau d'exigence : Recommandé</em> ",
@@ -1015,7 +1019,7 @@
 				"bad": "Votre serveur web ne <em>pas</em> offre X-Content-Type-Options.",
 				"good": "Votre serveur web propose X-Content-Type-Options."
 			},
-			"title": ""
+			"title": "X-Content-Type-Options"
 		},
 		"internet_nl_web_appsecpriv_x_frame_options": {
 			"explanation": "Nous vérifions si votre serveur web fournit un en-tête HTTP pour <code>X-Frame-Options</code> qui a une politique suffisamment sûre. Avec cet en-tête HTTP, vous indiquez aux navigateurs web si vous souhaitez que votre site web soit encadré ou non. La prévention du cadrage protège les visiteurs contre des attaques telles que le détournement de clics. Nous considérons que les valeurs suivantes sont suffisamment sûres : </p><ul><li><code>DENY</code> (cadrage non autorisé) ; ou</li><li><code>SAMEORIGIN</code> (seul le cadrage par votre propre site web est autorisé).</li></ul><p>Bien que la valeur <code>ALLOW-FROM</code> (n'autoriser que des sites web spécifiques à encadrer votre site web) fasse partie de la spécification <code>X-Frame-Options</code> (<a href=\"https://www.rfc-editor.org/rfc/rfc7034\">RFC 7034</a>), elle n'est <em>pas</em> supportée par la plupart des navigateurs web modernes. Par conséquent, nous <em>ne</em> considérons pas cette valeur comme suffisamment sûre.</p><p>Notez que <code>Content-Security-Policy</code> (<a href=\"#control-panel-29\">CSP</a>) offre une protection similaire grâce aux <code>frame-ancestors</code> et bien plus encore pour les visiteurs équipés de navigateurs web modernes. Cependant, <code>X-Frame-Options</code> pourrait encore protéger les visiteurs des anciens navigateurs web qui ne prennent pas en charge CSP. En outre, les <code>X-Frame-Options</code> pourrait offrir une protection précieuse à tous les visiteurs lorsque le CSP n'est pas (correctement) configuré pour le site web concerné.</p><p>Voir également <a href=\"https://www.ncsc.nl/documenten/publicaties/2019/mei/01/ict-beveiligingsrichtlijnen-voor-webapplicaties\">\"Web application guidelines from NCSC-NL\"</a>, ligne directrice U/PW.03 (en néerlandais).</p><p><em>Niveau d'exigence : Facultatif</em> ",
@@ -1023,7 +1027,7 @@
 				"bad": "Votre serveur web ne <em>pas</em> offre des options X-Frame-Options configurées de manière sécurisée.",
 				"good": "Votre serveur web offre des options X-Frame-Options configurées de manière sécurisée."
 			},
-			"title": ""
+			"title": "X-Frame-Options"
 		},
 		"internet_nl_web_appsecpriv_x_xss_protection": {
 			"explanation": "TEXTE PÉRIMÉ ; TEST NON UTILISÉ</p><p>Nous vérifions si votre serveur web fournit un en-tête HTTP pour <code>X-XSS-Protection</code> qui a une valeur suffisamment sûre (c'est-à-dire <code>1</code> ou <code>1 ; mode=block</code>). Cet en-tête HTTP peut être utilisé pour activer le filtre de protection des navigateurs contre les attaques cross-site scripting (XSS) réfléchies. Les valeurs valides de l'en-tête <code>X-XSS-Protection</code> sont les suivantes :</p><ul><li><code>0</code> désactive le filtre XSS. Cette valeur ne doit PAS être utilisée.</li><li><code>1</code> active le filtre XSS. Si une attaque de type cross-site scripting est détectée, le navigateur analyse le script et supprime les parties dangereuses. Cette valeur est généralement utilisée par défaut dans les navigateurs lorsqu'un site web ne propose pas de <code>X-XSS-Protection</code> .</li><li><code>1 ; mode=block</code> active le filtre XSS. Si une attaque par script intersite est détectée, le navigateur bloque la réponse et empêche le rendu de la page. C'est la valeur recommandée.</li></ul><p><code>Content-Security-Policy</code> (CSP) offre une protection similaire et bien plus encore aux visiteurs des navigateurs web modernes. Cependant, la protection <code>X-XSS-Protection</code> pourrait encore protéger les visiteurs des anciens navigateurs web qui ne supportent pas CSP. En outre, <code>La protection X-XSS</code> pourrait offrir une protection précieuse à tous les visiteurs, lorsque le CSP n'est pas (correctement) configuré pour le site web concerné.</p><p><em>Niveau d'exigence : Recommandé</em>",
@@ -1041,19 +1045,19 @@
 			"rating": {
 				"bad": "Votre domaine n'est pas sécurisé, car il est <em>et non</em> signé DNSSEC.",
 				"good": "Votre domaine est signé DNSSEC.",
-				"resolver_error": "",
+				"resolver_error": "Une erreur s'est malheureusement produite dans le résolveur d'Internet.nl. Veuillez <a href=\"/about/\">nous contacter</a> .",
 				"servfail": "Les serveurs de noms de votre domaine sont <em>cassés</em>. Ils ont renvoyé une erreur (<code>SERVFAIL</code>) à nos requêtes pour une signature DNSSEC. Veuillez contacter l'opérateur de votre serveur de noms (souvent votre fournisseur d'hébergement et/ou votre registraire) pour qu'il corrige ce problème rapidement."
 			},
-			"title": ""
+			"title": "Existence de DNSSEC"
 		},
 		"internet_nl_web_dnssec_valid": {
-			"explanation": "",
+			"explanation": "Nous vérifions si votre domaine, et plus précisément son enregistrement SOA, porte une signature valide qui le rend \"sûr\".</p><p>Si un nom de domaine redirige vers un autre nom de domaine signé via <code>CNAME</code>, nous vérifions également si la signature du nom de domaine CNAME est valide (ce qui est conforme à la norme DNSSEC). Si la signature du nom de domaine CNAME n'est pas valide, le résultat de ce sous-test sera négatif.</p><p>Notez que nous ne testons que le serveur de noms qui répond en premier. Si les serveurs de noms d'un nom de domaine ont des configurations incohérentes, les résultats des tests peuvent varier. Dans ce cas, par exemple, le résultat de ce sous-test peut être \"sécurisé\" une fois et \"bidon\" la fois suivante.",
 			"rating": {
 				"bad": "Votre domaine est \"bidon\", car la signature DNSSEC est <em>non</em> valide. Soit quelqu'un a manipulé la réponse de votre serveur de noms, soit votre domaine présente une <em>grave erreur de configuration DNSSEC</em>. Cette dernière rend votre domaine inaccessible à tout utilisateur qui valide les signatures DNSSEC. Vous devez contacter votre opérateur de serveur de noms (souvent votre registraire ou votre hébergeur) dès que possible.",
 				"good": "Votre domaine est sécurisé, car sa signature DNSSEC est valide.",
 				"unsupported_ds_algo": "Votre domaine est signé avec un algorithme que notre résolveur de validation ne prend pas en charge actuellement. Nous ne sommes donc pas en mesure de vérifier la validité de sa signature DNSSEC."
 			},
-			"title": ""
+			"title": "Validité du DNSSEC"
 		},
 		"internet_nl_web_https_cert_chain": {
 			"explanation": "Nous vérifions si nous sommes en mesure d'établir une chaîne de confiance valide pour le certificat de votre site web. </p><p>Pour que la chaîne de confiance soit valide, votre certificat doit être publié par une autorité de certification <a href=\"https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/\">de confiance</a>, et votre serveur web doit présenter tous les certificats intermédiaires nécessaires. et votre serveur web doit présenter tous les certificats intermédiaires nécessaires. </p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B3-4 (en anglais).",
@@ -1061,7 +1065,7 @@
 				"bad": "",
 				"good": "La chaîne de confiance du certificat de votre site web est complète et signée par une autorité de certification racine de confiance."
 			},
-			"title": ""
+			"title": "Chaîne de confiance du certificat"
 		},
 		"internet_nl_web_https_cert_domain": {
 			"explanation": "Nous vérifions si le nom de domaine de votre site web correspond au nom de domaine figurant sur le certificat. </p><p>Il peut être utile d'inclure plus d'un domaine (par exemple le domaine avec et sans www) comme Subject Alternative Name sur le certificat.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B3-1 (en anglais).",
@@ -1069,7 +1073,7 @@
 				"bad": "Le nom de domaine de votre site web ne <em>pas</em> correspond au nom de domaine figurant sur le certificat de votre site web.",
 				"good": "Le nom de domaine de votre site web correspond au nom de domaine figurant sur votre certificat de site web."
 			},
-			"title": ""
+			"title": "Nom de domaine sur le certificat"
 		},
 		"internet_nl_web_https_cert_pubkey": {
 			"explanation": "<p>Nous vérifions si la signature numérique (ECDSA ou RSA) du certificat de votre site Web utilise des paramètres sécurisés. </p><p>La vérification des certificats utilise des signatures numériques. Pour garantir l'authenticité d'une connexion, il faut utiliser un algorithme fiable pour la vérification des certificats. L'algorithme utilisé pour signer un certificat est choisi par son fournisseur. Le certificat spécifie l'algorithme de signature numérique utilisé par son propriétaire lors de l'échange de clés. Il est possible de configurer plusieurs certificats pour qu'ils prennent en charge plusieurs algorithmes.</p><p>La sécurité des signatures numériques ECDSA dépend de la courbe choisie. La sécurité de RSA pour le chiffrement et les signatures numériques est liée à la longueur de la clé publique. </p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B5-1 et tableau 9 pour ECDSA, et ligne directrice B3-3 et tableau 8 pour RSA (en anglais).</p><hr /><p><strong>Courbes elliptiques pour l'ECDSA</strong></p><ul><li>Bon : <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>et <code>x25519</code></li><li>Elimination progressive : <code>secp224r1</code></li><li>Insuffisant : Autres courbes</li></ul><p><strong>Longueur des clés RSA</strong></p><ul><li>Bon : Au moins 3072 bits</li><li>Suffisant : 2048 - 3071 bits</li><li>Insuffisant : Moins de 2048 bits</li></ul>",
@@ -1078,7 +1082,7 @@
 				"good": "La signature numérique du certificat de votre site web utilise des paramètres sécurisés.",
 				"phase_out": "La signature numérique du certificat de votre site web utilise des paramètres qui ont un statut <em>phase out</em> , parce qu'ils sont connus pour être fragiles et risquent de devenir <em>insuffisamment sécurisés</em> ."
 			},
-			"title": ""
+			"title": "Clé publique du certificat"
 		},
 		"internet_nl_web_https_cert_sig": {
 			"explanation": "<p>Nous vérifions si l'empreinte digitale signée du certificat du site web a été créée à l'aide d'un algorithme de hachage sécurisé. </p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">\"IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B3-2 et tableau 3 (en anglais).</p><hr /><p><strong>Fonctions de hachage pour la vérification des certificats</strong></p><ul><li>Bon : SHA-512, SHA-384, SHA-256</li><li>Insuffisant : SHA-1, MD5</li></ul>",
@@ -1086,7 +1090,7 @@
 				"bad": "Le certificat de votre site web est signé à l'aide d'un algorithme de hachage qui est <em>insuffisamment</em> sécurisé.",
 				"good": "Le certificat de votre site web est signé à l'aide d'un algorithme de hachage sécurisé."
 			},
-			"title": ""
+			"title": "Signature du certificat"
 		},
 		"internet_nl_web_https_dane_exist": {
 			"explanation": "Nous vérifions si les serveurs de noms du domaine de votre site Web contiennent un enregistrement TLSA correctement signé pour DANE. </p><p>Le DNSSEC étant une condition préalable au DANE, ce test échouera si le DNSSEC est absent du domaine du site web ou s'il existe des problèmes DNSSEC liés au DANE (par exemple, pas de preuve de \"déni d'existence\").</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, Annexe A, sous \"Certificate pinning and DANE\" (en anglais).</p><p><em>Niveau d'exigence : Facultatif</em>",
@@ -1095,7 +1099,7 @@
 				"bogus": "Le domaine de votre site web ne <em>pas</em> fournit la preuve DNSSEC que les enregistrements DANE TLSA n'existent pas. Vous devez demander à l'opérateur de votre serveur de noms de corriger ce problème.",
 				"good": "Le domaine de votre site web contient un enregistrement TLSA pour DANE."
 			},
-			"title": ""
+			"title": "Existence de DANE"
 		},
 		"internet_nl_web_https_dane_valid": {
 			"explanation": "Nous vérifions si l'empreinte DANE présentée par votre domaine est valide pour votre certificat web. </p><p>DANE vous permet de publier des informations sur le certificat de votre site web dans un enregistrement DNS spécial, appelé enregistrement TLSA. Les clients, comme les navigateurs web, peuvent vérifier l'authenticité de votre certificat non seulement par l'intermédiaire de l'autorité de certification, mais aussi par l'enregistrement TLSA. Un client peut également utiliser l'enregistrement TLSA pour signaler qu'il ne doit utiliser que HTTPS (et non HTTP). DNSSEC est une condition préalable à DANE. Malheureusement, peu de navigateurs web prennent encore en charge la validation DANE.</p><p><em>Niveau d'exigence : Recommandé (seulement si le sous-test \"existence de DANE\" est réussi)</em>",
@@ -1103,7 +1107,7 @@
 				"bad": "L'empreinte DANE de votre domaine est <em>non</em> valide pour votre certificat web. Soit quelqu'un a manipulé la réponse de votre serveur de noms, soit votre domaine présente une grave erreur de configuration DANE. Dans ce dernier cas, votre site web est inaccessible pour tout utilisateur qui vérifie les empreintes DANE. Vous devez contacter votre opérateur de serveur de noms et/ou votre fournisseur d'hébergement dès que possible.",
 				"good": "L'empreinte DANE de votre domaine est valide pour votre certificat web."
 			},
-			"title": ""
+			"title": "Validité de la DANE"
 		},
 		"internet_nl_web_https_http_available": {
 			"explanation": "Nous vérifions si votre site web est accessible sur HTTPS. </p><p>Si c'est le cas, nous vérifions également dans les sous-tests ci-dessous si HTTPS est configuré de manière suffisamment sécurisée conformément aux <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">\"IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL.</p><p>HTTPS garantit la confidentialité et l'intégrité des informations échangées. Étant donné que la sensibilité et la valeur des informations (privées) dépendent de la situation, une configuration HTTPS sécurisée est importante pour chaque site web. Même des informations triviales et publiques peuvent être extrêmement sensibles et précieuses pour un utilisateur. Remarque : pour des raisons de performance, les tests de la section HTTPS ne s'exécutent que pour la première adresse IPv6 et IPv4 disponible.",
@@ -1148,7 +1152,7 @@
 				"good": "Votre serveur web ne supporte pas le 0-RTT.",
 				"na": "Ce sous-test n'est pas applicable car votre serveur web ne supporte pas TLS 1.3."
 			},
-			"title": ""
+			"title": "0-RTT"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
 			"explanation": "Nous vérifions si votre serveur web applique sa propre préférence en matière de chiffrement (\"I\") et propose des chiffrages conformément à l'ordre prescrit (\"II\"). </p><p>Si votre serveur Web ne prend en charge que les \"bons\" algorithmes de chiffrement, ce sous-test n'est pas applicable, car l'ordre ne présente aucun avantage significatif en termes de sécurité. </p><p>I. <em>Préférence de chiffrement appliquée par le serveur</em>: Le serveur web applique sa propre préférence de chiffrement lors de la négociation avec un navigateur web, et n'accepte aucune préférence du navigateur web ;</p><p>II. <em>Ordre prescrit</em>: Les codes sont proposés par le serveur web conformément à l'ordre prescrit, dans lequel \"bon\" est préféré à \"suffisant\" par rapport aux codes \"éliminés progressivement\".</p><p>Dans le tableau ci-dessus avec les détails techniques <strong>, seules les premières sélections d'algorithmes dans l'ordre prescrit</strong> sont énumérées.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B2-5.",
@@ -1159,7 +1163,7 @@
 				"seclevel_bad": "Votre serveur web ne <em>pas</em> préfère les codes \"bons\" aux codes \"suffisants\" aux codes \"sans phase\" (\"II\").",
 				"warning": "TEXTE PÉRIMÉ ; VERDICT NON UTILISÉ</p><p>Votre serveur web ne <em>pas</em> propose des algorithmes de chiffrement conformes à l'ordre prescrit dans un niveau de sécurité particulier (\"II-B\")."
 			},
-			"title": ""
+			"title": "Ordre de chiffrement"
 		},
 		"internet_nl_web_https_tls_ciphers": {
 			"explanation": "<p>Nous vérifions si votre serveur web ne prend en charge que des algorithmes de chiffrement sécurisés, c'est-à-dire \"bons\" et/ou \"suffisants\" (également connus sous le nom de sélections d'algorithmes).</p><p>Une sélection d'algorithmes comprend des algorithmes de chiffrement pour quatre fonctions cryptographiques : 1) l'échange de clés, 2) la vérification des certificats, 3) le chiffrement en masse et 4) le hachage. Un serveur web peut prendre en charge plusieurs sélections d'algorithmes. </p><ul><li>Depuis TLS 1.3, le terme \"suite de chiffrement\" ne comprend que les algorithmes de chiffrement utilisés pour le chiffrement en bloc et le hachage. Lors de l'utilisation de TLS 1.3, les algorithmes de chiffrement pour l'échange de clés et la vérification des certificats sont négociables et ne font pas partie de la désignation de la suite de chiffrement. Comme cela rend le terme \"suite de chiffrement\" ambigu, le NCSC-NL utilise le terme \"sélection d'algorithmes\" pour englober les quatre fonctions de chiffrement. </li><li>Le NCSC-NL utilise la convention de dénomination <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4\">IANA</a> pour les sélections d'algorithmes. Internet.nl utilise la convention de dénomination <a href=\"https://www.openssl.org/docs/manmaster/man1/openssl-ciphers.html#CIPHER-SUITE-NAMES\">OpenSSL</a>. Depuis TLS 1.3, OpenSSL suit la convention de dénomination de l'IANA. Une traduction entre les deux peut être trouvée dans la documentation d'OpenSSL. </li><li>Notez que les algorithmes de chiffrement utilisant PSK ou SRP pour l'échange de clés (qui ne sont pas suffisamment sûrs) ne sont pas détectés dans ce test en raison d'une limitation liée à notre méthode de test. </li></ul><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, lignes directrices B2-1 à B2-4 et tableaux 2, 4, 6 et 7 (en anglais).</p><hr /><p>Vous trouverez ci-dessous les sélections d'algorithmes \"bonnes\", \"suffisantes\" et \"éliminées\" dans l'ordre prescrit par le NCSC-NL, sur la base de l'appendice C des \"IT Security Guidelines for Transport Layer Security (TLS)\" (lignes directrices sur la sécurité informatique pour la sécurité de la couche transport (TLS)). Derrière chaque sélection d'algorithme se trouve la version minimale de TLS (par exemple [1.2]) qui prend en charge cette sélection d'algorithme et qui est au moins \"Phase out\".</p><p>Bon :</p><ul><li><code>ECDHE-ECDSA-AES256-GCM-SHA384</code> (<code>TLS_AES_256_GCM_SHA384</code> en 1.3) [1.2]</li><li><code>ECDHE-ECDSA-CHACHA20-POLY1305</code> (<code>TLS_CHACHA20_POLY1305_SHA256</code> dans 1.3) [1.2]</li><li><code>ECDHE-ECDSA-AES128-GCM-SHA256</code> (<code>TLS_AES_128_GCM_SHA256</code> dans 1.3) [1.2]</li><li><code>ECDHE-RSA-AES256-GCM-SHA384</code> (<code>TLS_AES_256_GCM_SHA384</code> dans 1.3) [1.2]</li><li><code>ECDHE-RSA-CHACHA20-POLY1305</code> (<code>TLS_CHACHA20_POLY1305_SHA256</code> dans 1.3) [1.2]</li><li><code>ECDHE-RSA-AES128-GCM-SHA256</code> (<code>TLS_AES_128_GCM_SHA256</code> dans 1.3) [1.2]</li></ul><p>Suffisant :</p><ul><li><code>ECDHE-ECDSA-AES256-SHA384</code> [1.2]</li><li><code>ECDHE-ECDSA-AES256-SHA</code> [1.0]</li><li><code>ECDHE-ECDSA-AES128-SHA256</code> [1.2]</li><li><code>ECDHE-ECDSA-AES128-SHA</code> [1.0]</li><li><code>ECDHE-RSA-AES256-SHA384</code> [1.2]</li><li><code>ECDHE-RSA-AES256-SHA</code> [1.0]</li><li><code>ECDHE-RSA-AES128-SHA256</code> [1.2]</li><li><code>ECDHE-RSA-AES128-SHA</code> [1.0]</li><li><code>DHE-RSA-AES256-GCM-SHA384</code> [1.2]</li><li><code>DHE-RSA-CHACHA20-POLY1305</code> [1.2]</li><li><code>DHE-RSA-AES128-GCM-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES256-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES256-SHA</code> [1.0]</li><li><code>DHE-RSA-AES128-SHA256</code> [1.2]</li><li><code>DHE-RSA-AES128-SHA</code> [1.0]</li></ul><p>Phase d'élimination :</p><ul><li><code>ECDHE-ECDSA-DES-CBC3-SHA</code> [1.0]</li><li><code>ECDHE-RSA-DES-CBC3-SHA</code> [1.0]</li><li><code>DHE-RSA-DES-CBC3-SHA</code> [1.0]</li><li><code>AES256-GCM-SHA384</code> [1.2]</li><li><code>AES128-GCM-SHA256</code> [1.2]</li><li><code>AES256-SHA256</code> [1.2]</li><li><code>AES256-SHA</code>  [1.0]</li><li><code>AES128-SHA256</code> [1.2]</li><li><code>AES128-SHA</code> [1.0]</li><li><code>DES-CBC3-SHA</code> [1.0]</li></ul>",
@@ -1168,7 +1172,7 @@
 				"good": "Votre serveur web ne prend en charge que les algorithmes de chiffrement sécurisés.",
 				"phase_out": "Votre serveur web prend en charge un ou plusieurs algorithmes de chiffrement qui ont un statut <em>phase out</em> , parce qu'ils sont connus pour être fragiles et risquent de devenir <em>insuffisamment sécurisés</em> ."
 			},
-			"title": ""
+			"title": "Chiffres (sélections d'algorithmes)"
 		},
 		"internet_nl_web_https_tls_clientreneg": {
 			"explanation": "<p>Nous vérifions si un client (généralement un navigateur web) peut initier une renégociation avec votre serveur web. </p><p>Permettre aux clients d'initier une renégociation n'est généralement pas nécessaire et expose un serveur web à des attaques DoS à l'intérieur d'une connexion TLS. Un attaquant peut effectuer des attaques DoS similaires sans renégociation initiée par le client en ouvrant de nombreuses connexions TLS parallèles, mais il est plus facile de les détecter et de s'en défendre à l'aide de mesures d'atténuation standard. Notez que la renégociation initiée par le client a un impact sur la disponibilité et non sur la confidentialité. </p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B8-1 et tableau 13 (en anglais).</p><p><em>Niveau d'exigence : Facultatif</em></p><hr /><p><strong>Renégociation à l'initiative du client</strong></p><ul><li>Bon : Désactivé (ou N/A pour TLS 1.3)</li><li>Suffisant : Activé</li></ul>",
@@ -1176,7 +1180,7 @@
 				"bad": "Votre serveur web permet une renégociation à l'initiative du client, ce qui pourrait avoir un impact négatif sur la disponibilité de votre site web.",
 				"good": "Votre serveur web ne permet pas la renégociation à l'initiative du client."
 			},
-			"title": ""
+			"title": "Renégociation à l'initiative du client"
 		},
 		"internet_nl_web_https_tls_compress": {
 			"explanation": "<p>Nous vérifions si votre serveur web prend en charge la compression TLS. </p><p>L'utilisation de la compression peut donner à un pirate des informations sur les parties secrètes d'une communication cryptée. Un pirate qui peut déterminer ou contrôler des parties des données envoyées peut reconstruire les données originales en effectuant un grand nombre de requêtes. La compression TLS est si rarement utilisée que sa désactivation ne pose généralement pas de problème. </p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B7-1 et tableau 11 (en anglais).</p><hr /><p><strong>Option de compression</strong></p><ul><li>Bon : Pas de compression</li><li>Suffisant : Compression au niveau de l'application (dans ce cas compression HTTP)</li><li>Insuffisant : Compression TLS</li></ul>",
@@ -1184,7 +1188,7 @@
 				"bad": "Votre serveur web prend en charge la compression TLS, qui n'est <em>pas</em> sécurisée.",
 				"good": "Votre serveur web ne prend pas en charge la compression TLS."
 			},
-			"title": ""
+			"title": "Compression TLS"
 		},
 		"internet_nl_web_https_tls_keyexchange": {
 			"explanation": "Nous vérifions si les paramètres publics utilisés dans l'échange de clés Diffie-Hellman par votre serveur web sont sûrs.</p><p><strong>ECDHE</strong>: La sécurité de l'échange de clés éphémères de type Diffie-Hellman à courbe elliptique (ECDHE) dépend de la courbe elliptique utilisée. Nous vérifions que la longueur de bit des courbes elliptiques utilisées est d'au moins 224 bits. Actuellement, nous ne sommes pas en mesure de vérifier le nom de la courbe elliptique.</p><p><strong>DHE</strong>: La sécurité de l'échange de clés éphémères Diffie-Hellman (DHE) dépend de la longueur des clés publiques et secrètes utilisées dans le groupe de champs finis choisi. Nous testons si votre matériel de clé publique DHE utilise l'un des groupes de champs finis prédéfinis qui sont spécifiés dans <a href=\"https://www.rfc-editor.org/rfc/rfc7919\">RFC 7919</a>. Les groupes auto-générés sont \"insuffisants\". </p><p>Les tailles de clés plus importantes requises pour l'utilisation de DHE s'accompagnent d'une pénalité en termes de performances. Évaluez soigneusement et utilisez ECDHE au lieu de DHE si vous le pouvez.</p><p><strong>RSA comme alternative</strong>: Outre ECDHE et DHE, RSA peut être utilisé pour l'échange de clés. Toutefois, il risque de devenir insuffisamment sûr (statut actuel \"phase out\"). Les paramètres publics de RSA sont testés dans la sous-épreuve \"Clé publique du certificat\". Notez que RSA est considéré comme \"bon\" pour la vérification des certificats.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B5-1 et tableau 9 pour ECDHE, et ligne directrice B6-1 et tableau 10 pour DHE (en anglais).</p><hr /><p><strong>Courbe elliptique pour ECDHE</strong></p><ul><li>Bon : <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>et <code>x25519</code></li><li>Phase d'élimination : <code>secp224r1</code></li><li>Insuffisant : Autres courbes</li></ul><p><strong>Groupe de champs finis pour DHE</strong></p><ul><li><p>Suffisant :</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem\">ffdhe4096</a> (RFC 7919)<br /> somme de contrôle sha256 : <code>64852d6890ff9e62eecd1ee89c72af9af244dfef5b853bcedea3dfd7aade22b3</code></li><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe3072.pem\">ffdhe3072</a> (RFC 7919)<br /> somme de contrôle sha256 : <code>c410cc9c4fd85d2c109f7ebe5930ca5304a52927c0ebcb1a11c5cf6b2386bbab</code>  </li><li>Notez que nous testons également ffdhe8192 et ffdhe6144. Cependant, leur gain limité en termes de sécurité l'emporte rarement sur la perte de performance.</li></ul></li><li><p>Sortie de la phase :</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe2048.pem\">ffdhe2048</a> (RFC 7919)<br /> somme de contrôle sha256 : <code>9ba6429597aeed2d8617a7705b56e96d044f64b07971659382e426675105654b</code></li></ul></li><li><p>Insuffisant : Autres groupes</p></li></ul><hr /><p>Note : les noms ci-dessus sont basés sur les conventions de dénomination <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml\">IANA</a>. D'autres noms sont parfois utilisés pour désigner les mêmes courbes, comme <code>prime256v1</code> (ANSI) et <code>NIST P-256</code> pour <code>secp256r1</code>.",
@@ -1194,7 +1198,7 @@
 				"na": "Ce sous-test n'est pas applicable car votre serveur web ne <em>pas</em> supporte l'échange de clés Diffie-Hellman. Notez que RSA est une alternative pour l'échange de clés, mais a le statut <em>phase out</em> .",
 				"phase_out": "Votre serveur web prend en charge des paramètres pour l'échange de clés Diffie-Hellman qui ont un statut <em>phase out</em> , parce qu'ils sont connus pour être fragiles et risquent de devenir <em>insuffisamment sécurisés</em> ."
 			},
-			"title": ""
+			"title": "Paramètres clés de l'échange"
 		},
 		"internet_nl_web_https_tls_keyexchangehash": {
 			"explanation": "<p>Nous vérifions si votre serveur web prend en charge des fonctions de hachage sécurisées pour créer la signature numérique lors de l'échange de clés.</p><p>Le serveur web utilise une signature numérique pendant l'échange de clés pour prouver qu'il possède la clé secrète correspondant au certificat. Le serveur web crée cette signature numérique en signant la sortie d'une fonction de hachage. </p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, tableau 5.</p><p><em>Niveau d'exigence : Recommandé</em></p><hr /><p><strong>Prise en charge de SHA2 pour les signatures</strong></p><ul><li>Bon : Oui (prise en charge de SHA-256, SHA-384 ou SHA-512)</li><li>Suppression progressive : Non (SHA-256, SHA-384 ou SHA-512 <em>non</em> pris en charge)</li></ul>",
@@ -1203,7 +1207,7 @@
 				"other": "Nous n'avons pas pu déterminer la fonction de hachage utilisée par votre serveur web. Cela peut être dû au fait que la combinaison de chiffrement utilisée ne comporte pas de signature pour la vérification du certificat (par exemple, elle utilise l'échange de clés RSA ou est anonyme, c'est-à-dire <code>anon</code>).",
 				"phase_out": "Votre serveur web ne <em>supporte pas</em> une fonction de hachage sécurisée pour l'échange de clés. Vous devriez <em>supprimer progressivement</em> ce paramètre délibérément, car il risque de devenir <em>insuffisamment sécurisé</em> à l'avenir."
 			},
-			"title": ""
+			"title": "Fonction de hachage pour l'échange de clés"
 		},
 		"internet_nl_web_https_tls_ocsp": {
 			"explanation": "<p>Nous vérifions si votre serveur web prend en charge l'extension <a href=\"https://www.rfc-editor.org/rfc/rfc6961\">extension de l'état des certificats TLS</a> également connue sous le nom d'agrafage OCSP. </p><p>Le navigateur web peut vérifier la validité du certificat présenté par le serveur web en contactant l'autorité de certification à l'aide du protocole OCSP. Le protocole OCSP fournit à l'autorité de certification des informations sur les navigateurs qui communiquent avec le serveur web, ce qui peut constituer un risque pour la vie privée. Un serveur web peut également fournir lui-même des réponses OCSP aux navigateurs web par le biais de l'agrafage OCSP. Cette méthode résout le problème de confidentialité, ne nécessite pas de connectivité entre le navigateur web et l'autorité de certification, et est plus rapide. </p><p>Lors de la connexion à votre serveur web, nous utilisons l'extension TLS Certificate Status pour demander que les données OCSP soient incluses dans la réponse du serveur. Si votre serveur web inclut des données OCSP dans la réponse, nous vérifions alors que les données OCSP sont valides, c'est-à-dire correctement signées par une autorité de certification connue. Remarque : nous n'utilisons pas les données OCSP pour évaluer la validité du certificat.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">\"IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, tableau 15 (en anglais).</p><p><em>Niveau d'exigence : Facultatif</em></p><hr /><p><strong>Agrafage OCSP</strong></p><ul><li>Bon : Activé</li><li>Suffisant : Désactivé</li></ul>",
@@ -1220,7 +1224,7 @@
 				"bad": "",
 				"good": "Votre serveur web prend en charge la renégociation sécurisée."
 			},
-			"title": ""
+			"title": "Renégociation sécurisée"
 		},
 		"internet_nl_web_https_tls_version": {
 			"explanation": "<p>Nous vérifions si votre serveur web prend en charge les versions TLS sécurisées uniquement. </p><p>Un serveur web peut prendre en charge plus d'une version TLS. </p><p>Les fabricants de navigateurs ont annoncé qu'ils cesseraient de prendre en charge TLS 1.1 et 1.0. Les sites web qui ne prennent pas en charge TLS 1.2 et/ou 1.3 seront donc inaccessibles.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B1-1 et tableau 1 (en anglais).</p><hr /><p><strong>Version</strong></p><ul><li>Bon : TLS 1.3</li><li>Suffisant : TLS 1.2</li><li>Élimination progressive : TLS 1.1 et 1.0</li><li>Insuffisant : SSL 3.0, 2.0 et 1.0</li></ul>",
@@ -1229,27 +1233,27 @@
 				"good": "Votre serveur web ne prend en charge que les versions sécurisées TLS.",
 				"phase_out": "Votre serveur web supporte des versions de TLS qui devraient être <em>éliminées</em> délibérément, parce qu'elles sont connues pour être fragiles et risquent de devenir <em>insuffisamment sécurisées</em> ."
 			},
-			"title": ""
+			"title": "Version TLS"
 		},
 		"internet_nl_web_ipv6": {
 			"title": ""
 		},
 		"internet_nl_web_ipv6_ns_address": {
-			"explanation": "",
+			"explanation": "Nous vérifions si votre nom de domaine possède au moins deux serveurs de noms avec une adresse IPv6. </p><p>Ceci est conforme aux <a href=\"https://www.sidn.nl/downloads/KwpW_ORWRWetYuoBp5GeYA/7e91faddb53ad85b8c6a2fce15d764cb/Technical_requirements_for_the_registration_and_use_of_nl_domain_names.pdf\">\"Technical requirements for the registration and use of .nl domain names\"</a> d.d. 13 November 2017 by SIDN (.nl TLD registry) qui exigent que chaque domaine .nl ait au moins deux serveurs de noms.</p><p>Les \"adresses IPv6 mappées en IPv4\" (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, commençant par ::ffff:) échoueront dans ce test, car elles ne <em>pas</em> fournissent une connectivité IPv6.",
 			"rating": {
-				"bad": "",
-				"good": "",
-				"other": ""
+				"bad": "Aucun des serveurs de noms de votre domaine n'a d'adresse IPv6.",
+				"good": "Deux ou plusieurs serveurs de noms de votre domaine ont une adresse IPv6.",
+				"other": "Un seul serveur de noms de votre domaine possède une adresse IPv6."
 			},
-			"title": ""
+			"title": "Adresses IPv6 pour les serveurs de noms"
 		},
 		"internet_nl_web_ipv6_ns_reach": {
-			"explanation": "",
+			"explanation": "Nous vérifions si tous les serveurs de noms qui ont un enregistrement AAAA avec une adresse IPv6 sont joignables via IPv6.",
 			"rating": {
-				"bad": "",
-				"good": ""
+				"bad": "<em>Non</em> tous les serveurs de noms ayant une adresse IPv6 sont accessibles via IPv6.",
+				"good": "Tous les serveurs de noms qui ont une adresse IPv6 sont accessibles via IPv6."
 			},
-			"title": ""
+			"title": "Accessibilité IPv6 des serveurs de noms"
 		},
 		"internet_nl_web_ipv6_ws_address": {
 			"explanation": "Nous vérifions s'il existe au moins un enregistrement AAAA avec une adresse IPv6 pour votre serveur web.</p><p>Les \"adresses IPv6 mappées en IPv4\" (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, commençant par ::ffff:) échoueront dans ce sous-test, car elles ne <em></em> fournissent pas de connectivité IPv6.",
@@ -1282,46 +1286,46 @@
 		},
 		"internet_nl_web_legacy_category_ipv6": {
 			"explanation": "",
-			"title": ""
+			"title": "IPv6 web"
 		},
 		"internet_nl_web_legacy_dane": {
-			"explanation": "",
+			"explanation": "Calculé en utilisant la valeur la plus faible de : web_https_dane_exist et web_https_dane_valid.",
 			"title": ""
 		},
 		"internet_nl_web_legacy_dnssec": {
-			"explanation": "",
+			"explanation": "Calculé en utilisant la valeur la plus faible de : web_dnssec_exist et web_dnssec_valid.",
 			"title": "DNSSEC"
 		},
 		"internet_nl_web_legacy_hsts": {
-			"explanation": "",
+			"explanation": "Calculé en utilisant la valeur de : web_https_http_hsts.",
 			"title": "HSTS"
 		},
 		"internet_nl_web_legacy_https_enforced": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la valeur de : web_https_http_redirect.",
+			"title": "Redirection HTTPS"
 		},
 		"internet_nl_web_legacy_ipv6_nameserver": {
-			"explanation": "",
+			"explanation": "Calculé en utilisant la valeur la plus faible de : web_ipv6_ns_address et web_ipv6_ns_reach.",
 			"title": ""
 		},
 		"internet_nl_web_legacy_ipv6_webserver": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la valeur la plus faible parmi : web_ipv6_ws_address, web_ipv6_ws_reach et web_ipv6_ws_similar.",
+			"title": "Serveur web IPv6"
 		},
 		"internet_nl_web_legacy_tls_1_3": {
 			"explanation": "",
 			"title": ""
 		},
 		"internet_nl_web_legacy_tls_available": {
-			"explanation": "",
+			"explanation": "Calculé en utilisant la valeur de : web_https_http_available.",
 			"title": "TLS"
 		},
 		"internet_nl_web_legacy_tls_ncsc_web": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Calculé en utilisant la plus mauvaise valeur de : web_https_tls_keyexchange, web_https_tls_compress, web_https_tls_secreneg, web_https_tls_ciphers, web_https_tls_clientreneg, web_https_tls_version, web_https_tls_cipherorder, web_https_tls_0rtt, web_https_tls_ocsp, web_https_tls_keyexchangehash, web_https_cert_sig, web_https_cert_pubkey, web_https_cert_chain, web_https_cert_domain.",
+			"title": "TLS NCSC"
 		},
 		"internet_nl_web_ns_rpki_exists": {
-			"explanation": "",
+			"explanation": "Nous vérifions si une autorisation d'origine de route (ROA) RPKI a été publiée pour toutes les adresses IP des serveurs de noms de votre domaine.</p><p>Votre hébergeur (ou son fournisseur de réseau) annonce via le protocole BGP (Border Gateway Protocol) les blocs d'adresses IP pour lesquels il accepte le trafic Internet entrant. Les autres fournisseurs de réseau utilisent ces annonces d'itinéraires pour déterminer par quel itinéraire envoyer le trafic pour les adresses IP de votre serveur.</p><p>Cependant, une annonce d'itinéraire peut être falsifiée. En effet, un autre fournisseur de réseau peut être en mesure de connecter le bloc d'adresses IP de votre adresse IP à son réseau et donc de recevoir potentiellement du trafic Internet qui est en fait destiné à votre fournisseur de réseau. La cause peut être accidentelle ou malveillante. Dans les deux cas, votre serveur peut devenir inaccessible ou le trafic Internet vers votre serveur peut être intercepté.</p><p>L'infrastructure de clés publiques de ressources (RPKI) améliore considérablement la protection contre ce phénomène. Avec RPKI, le détenteur légitime d'un bloc d'adresses IP peut publier une déclaration signée numériquement avec autorisation d'itinéraire (Route Origin Authorisation ; ROA en abrégé). Un autre fournisseur de réseau qui souhaite envoyer du trafic internet à une adresse IP particulière peut utiliser la déclaration correspondante pour filtrer les itinéraires <code>les itinéraires</code> non valides. De cette manière, le fournisseur de réseau empêche le trafic Internet de son réseau d'être envoyé à des réseaux de fournisseurs non autorisés.</p><p><em>Niveau d'exigence : Recommandé</em>",
 			"title": ""
 		},
 		"internet_nl_web_ns_rpki_valid": {
@@ -1358,169 +1362,169 @@
 			"title": "Connexion sécurisée conforme aux exigences du NCSC-NL (HTTPS)"
 		},
 		"legend": {
-			"subtest_bad": "",
-			"subtest_good": "",
-			"subtest_info": "",
-			"subtest_title": "",
-			"subtest_warning": "",
-			"test_bad": "",
-			"test_good": "",
-			"test_info": "",
-			"test_title": "",
-			"test_warning": ""
+			"subtest_bad": "Mauvais : échec au sous-test OBLIGATOIRE ⇒ score nul",
+			"subtest_good": "Bon : réussite au sous-test OBLIGATOIRE, RECOMMANDÉ ou FACULTATIF ⇒ premier : score complet / deux derniers : pas d'impact sur le score",
+			"subtest_info": "Informatif : a échoué à au moins un sous-test OPTIONNEL ⇒ score complet dans la catégorie de test",
+			"subtest_title": "Icônes par sous-test",
+			"subtest_warning": "Warning : fail on RECOMMENDED subtest ⇒ no score impact",
+			"test_bad": "Mauvais : échec à au moins un sous-test OBLIGATOIRE ⇒ pas de score complet dans la catégorie de test",
+			"test_good": "Bon : réussite à tous les sous-tests ⇒ score complet dans la catégorie de test",
+			"test_info": "Informatif : a échoué à au moins un sous-test OPTIONNEL ⇒ score complet dans la catégorie de test",
+			"test_title": "Icônes par catégorie de test",
+			"test_warning": "Attention : échec à au moins un sous-test RECOMMENDED ⇒ score complet dans la catégorie de test"
 		},
 		"rating": {
-			"pct_error_in_test": "",
-			"pct_high": "",
-			"pct_low": "",
-			"pct_medium": "",
-			"pct_not_applicable": "",
-			"pct_not_testable": "",
-			"pct_ok": ""
+			"pct_error_in_test": "Erreur de test",
+			"pct_high": "Échec",
+			"pct_low": "Info",
+			"pct_medium": "Avertissement",
+			"pct_not_applicable": "sans objet",
+			"pct_not_testable": "non testable",
+			"pct_ok": "Adopté"
 		}
 	},
 	"public-reports": {
 		"page": {
-			"introduction": "",
-			"Public reports": ""
+			"introduction": "Ces rapports sont créés, classés et partagés par l'équipe du tableau de bord d'internet.nl.",
+			"Public reports": "Rapports publics créés par le personnel du tableau de bord"
 		},
 		"per-account": {
-			"all": "",
-			"Recently published reports": "",
-			"scan_frequency": "",
-			"scan_type": "",
-			"View latest mail report": "",
-			"View latest report": "",
-			"View latest web report": ""
+			"all": "Mail & Web",
+			"Recently published reports": "Rapports publics",
+			"scan_frequency": "Prochaine mise à jour",
+			"scan_type": "Mesure",
+			"View latest mail report": "Dernier rapport de courrier",
+			"View latest report": "Dernier rapport",
+			"View latest web report": "Dernier rapport web"
 		},
 		"table": {
-			"Contains": "",
-			"domains": "",
-			"Name": "",
-			"Published": "",
-			"Score": ""
+			"Contains": "Contient",
+			"domains": "Domaines",
+			"Name": "Rapport",
+			"Published": "Date de publication",
+			"Score": "Score Internet.nl"
 		}
 	},
 	"report": {
 		"applied-tags": {
-			"info": ""
+			"info": "Étiquettes appliquées"
 		},
 		"differences": {
-			"both_list_contain_n_urls": "",
-			"equal": "",
-			"in_report_but_not_in_urllist": "",
-			"in_urllist_but_not_in_report": "",
-			"not_equal": "",
-			"report_contains_n_urllist_contains_n": "",
-			"retrieving_differences": ""
+			"both_list_contain_n_urls": "Le rapport et la liste de domaines associée contiennent tous deux des domaines {0} .",
+			"equal": "Les domaines de ce rapport sont égaux aux domaines de la liste de domaines associée.",
+			"in_report_but_not_in_urllist": "Domaines figurant dans ce rapport, mais pas dans la liste",
+			"in_urllist_but_not_in_report": "Domaines ne figurant pas dans ce rapport",
+			"not_equal": "Les domaines figurant dans ce rapport diffèrent des domaines figurant dans la liste des domaines associés.",
+			"report_contains_n_urllist_contains_n": "Ce rapport contient {0} domaines, tandis que la liste associée contient {1}.",
+			"retrieving_differences": "Récupération des différences par rapport à la liste actuelle."
 		},
 		"download": {
-			"csv": "",
-			"ods": "",
-			"title": "",
-			"xlsx": ""
+			"csv": "Séparé par des virgules (csv)",
+			"ods": "Tableur ouvert (ods)",
+			"title": "Télécharger #{0} en tant que",
+			"xlsx": "Microsoft Excel (xlsx)"
 		},
 		"header": {
-			"compared_to": "",
-			"data_from": "",
+			"compared_to": "Par rapport à",
+			"data_from": "Données de",
 			"number_of_domains": "",
-			"only_graphs": "",
-			"type_of_scan_performed": ""
+			"only_graphs": "Ne montre que la ligne du temps et les graphiques parce qu'il y a plus de deux rapports sélectionnés.",
+			"type_of_scan_performed": "Type de rapport"
 		},
 		"improvement-regressions": {
-			"days_ago": "",
-			"domains_exclusive_current": "",
-			"domains_exclusive_other": "",
-			"domains_with_improvements": "",
-			"domains_with_regressions": "",
-			"improvement": "",
+			"days_ago": "Le dernier rapport a été établi il y a {0} jours.",
+			"domains_exclusive_current": "Les chiffres exclusifs dans le présent rapport",
+			"domains_exclusive_other": "Les frais exclusifs dans le rapport précédent",
+			"domains_with_improvements": "Domaines avec améliorations",
+			"domains_with_regressions": "Domaines avec régressions",
+			"improvement": "Améliorations",
 			"metrics": "",
-			"neutral": "",
-			"no_changes": "",
-			"regression": "",
+			"neutral": "Inchangé",
+			"no_changes": "Il n'y a pas d'éléments à prendre en compte dans le rapport précédent.",
+			"regression": "Régressions",
 			"score_from": "",
 			"score_to": "",
-			"title": "",
+			"title": "Changements",
 			"url": ""
 		},
 		"improvement-regressions-table": {
-			"improvement": "",
-			"metrics": "",
-			"regression": "",
-			"score_from": "",
-			"score_to": "",
-			"url": ""
+			"improvement": "Améliorations",
+			"metrics": "Métriques",
+			"regression": "Régressions",
+			"score_from": "Score de",
+			"score_to": "Pour",
+			"url": "Domaine"
 		},
 		"legend": {
 			"icon_legend": {
-				"category_error_in_test": "",
-				"subtest_error_in_test": "",
-				"subtest_not_applicable": "",
-				"subtest_not_tested": "",
+				"category_error_in_test": "Une erreur s'est produite lors du test de ⇒ score nul",
+				"subtest_error_in_test": "Une erreur s'est produite lors du test de ⇒ score nul",
+				"subtest_not_applicable": "Sans objet ⇒ pas d'impact sur le score",
+				"subtest_not_tested": "Non testé ⇒ pas d'impact sur le score",
 				"title": ""
 			},
 			"results": {
-				"category_error_in_test": "",
+				"category_error_in_test": "Erreur de test",
 				"comparison": {
-					"improved": "",
-					"neutral": "",
-					"regressed": ""
+					"improved": "Amélioration par rapport au deuxième rapport sélectionné.",
+					"neutral": "-",
+					"regressed": "Régressé par rapport au deuxième rapport sélectionné."
 				},
-				"error_in_test": "",
-				"failed": "",
-				"info": "",
-				"not_applicable": "",
+				"error_in_test": "Erreur de test",
+				"failed": "Échec",
+				"info": "Info",
+				"not_applicable": "Sans objet",
 				"not_testable": "",
-				"not_tested": "",
-				"passed": "",
-				"unknown": "",
-				"warning": ""
+				"not_tested": "Non testé",
+				"passed": "Adopté",
+				"unknown": "Inconnu",
+				"warning": "Avertissement"
 			}
 		},
 		"nested-report-charts": {
-			"A": "",
-			"category": "",
+			"A": "Moyenne",
+			"category": "Catégorie",
 			"G": ""
 		},
 		"page": {
-			"intro": "",
-			"patience": "",
-			"tab_changes": "",
-			"tab_graphs": "",
-			"tab_metrics": "",
-			"title": ""
+			"intro": "Il est possible de sélectionner un ou plusieurs rapports. La sélection d'un seul rapport permet d'afficher toutes les données de ce rapport, y compris les graphiques et un tableau avec les résultats détaillés. Si l'on sélectionne deux rapports, une comparaison est effectuée entre ces rapports dans les graphiques et les résultats détaillés. Si vous sélectionnez plus de deux rapports, seuls les graphiques sont affichés.",
+			"patience": "Les rapports contenant plus de 1000 domaines peuvent prendre une minute avant que le téléchargement ne commence, soyez patient.",
+			"tab_changes": "Changements",
+			"tab_graphs": "Graphiques",
+			"tab_metrics": "Tableau des métriques",
+			"title": "Rapports"
 		},
 		"password-protection": {
-			"Authentication required": "",
-			"code": "",
-			"created_on": "",
-			"name": "",
-			"No password needed": "",
-			"Retry with above settings": "",
-			"Some reports require authentication": "",
-			"Stored password is valid": "",
-			"supply_password": ""
+			"Authentication required": "Authentification requise",
+			"code": "Rapport",
+			"created_on": "Créé le",
+			"name": "Nom",
+			"No password needed": "Aucun mot de passe n'est nécessaire",
+			"Retry with above settings": "Ouvrir avec ce mot de passe",
+			"Some reports require authentication": "Certains rapports nécessitent une authentification, veuillez indiquer le mot de passe / \"code de partage\" pour chaque rapport :",
+			"Stored password is valid": "Le mot de passe enregistré est valide",
+			"supply_password": "Veuillez saisir le mot de passe pour ce rapport :"
 		},
 		"report-charts": {
 			"adoption_bar_chart": {
-				"intro": "",
-				"title": ""
+				"intro": "Ce graphique montre l'adoption moyenne par norme et par rapport.",
+				"title": "Adoption de normes par catégorie"
 			},
 			"adoption_circle_chart": {
-				"title": ""
+				"title": "Adoption des normes"
 			},
 			"cumulative_adoption_bar_chart": {
-				"intro": "",
-				"title": ""
+				"intro": "Ce graphique montre l'adoption moyenne par norme sur plusieurs rapports.",
+				"title": "Adoption de normes sur plusieurs rapports"
 			}
 		},
 		"report-selection": {
-			"no_options": "",
-			"reload_list": "",
-			"select_report": ""
+			"no_options": "Aucun rapport disponible.",
+			"reload_list": "Mise à jour",
+			"select_report": "Sélectionner le rapport..."
 		},
 		"report-table-virtual-list": {
-			"domain": "",
+			"domain": "Domaine",
 			"icon_legend": {
 				"category_error_in_test": "",
 				"subtest_error_in_test": "",
@@ -1529,180 +1533,180 @@
 				"title": ""
 			},
 			"icons": {
-				"remove_filter": ""
+				"remove_filter": "Supprimer le filtre"
 			},
 			"report": {
-				"empty_report": "",
-				"intro": "",
+				"empty_report": "Il semble que ce rapport soit vide... avez-vous trop filtré ?",
+				"intro": "Ce tableau présente les résultats détaillés par catégorie. Il est possible de comparer ce rapport à un second rapport. Dans ce cas, les indicateurs de progrès sont ajoutés au premier rapport, le cas échéant. Les domaines du second rapport sont seulement comparés, ils ne sont pas affichés.",
 				"title": "",
-				"url_filter": "",
+				"url_filter": "Filtre sur le domaine...",
 				"zoom": {
 					"buttons": {
-						"remove_zoom": "",
-						"zoom": "",
-						"zoom_in_on": ""
+						"remove_zoom": "Retour à la vue des catégories",
+						"zoom": "Détails",
+						"zoom_in_on": "Voir les détails de {0}"
 					},
-					"explanation": "",
-					"zoomed_in_on": ""
+					"explanation": "Les boutons de détail permettent d'afficher les mesures individuelles pour chaque catégorie.",
+					"zoomed_in_on": "Détails de"
 				}
 			},
-			"score": ""
+			"score": "Score"
 		},
 		"shared-report": {
 			"intro": "",
 			"not_found": {
-				"content": "",
-				"title": ""
+				"content": "Impossible de trouver ce rapport public. Il peut avoir été révoqué, supprimé ou le code d'action a changé. Veuillez vérifier vos données et réessayer.",
+				"title": "Le rapport n'a pas pu être trouvé"
 			},
-			"title": ""
+			"title": "Rapport partagé"
 		},
 		"sharing_configuration": {
-			"and_password": "",
-			"change_link": "",
-			"configure_password": "",
-			"intro": "",
-			"not_shared": "",
-			"open": "",
-			"password_description": "",
-			"remove_password": "",
-			"response_no_report_found": "",
-			"response_shared": "",
-			"response_unshared": "",
-			"response_updated_report_code": "",
-			"response_updated_share_code": "",
-			"set_password": "",
-			"share_to_anyone_with_url": "",
-			"shared": "",
-			"shared_at_url": "",
-			"stop_sharing": "",
-			"title": "",
-			"with_password": "",
-			"without_password": ""
+			"and_password": " et le mot de passe",
+			"change_link": "Nouveau lien",
+			"configure_password": "Configurer le mot de passe (optionnel)",
+			"intro": "Options de partage pour ce rapport :",
+			"not_shared": "Non partagé",
+			"open": "Ouvrir",
+			"password_description": "Lorsqu'il est saisi, le spectateur d'un rapport doit entrer ce mot de passe.",
+			"remove_password": "Supprimer le mot de passe",
+			"response_no_report_found": "Impossible de trouver le rapport.",
+			"response_shared": "Rapport partagé",
+			"response_unshared": "Arrêt du partage du rapport",
+			"response_updated_report_code": "Lien du rapport mis à jour",
+			"response_updated_share_code": "Mise à jour du mot de passe",
+			"set_password": "Définir le mot de passe",
+			"share_to_anyone_with_url": "Partager le rapport avec n'importe qui grâce à l'url",
+			"shared": "Partagé",
+			"shared_at_url": "Le rapport est partagé sur l'url suivante",
+			"stop_sharing": "Arrêter le partage",
+			"title": "{1} - Modifier les options de partage du rapport #{0}",
+			"with_password": "avec le mot de passe défini sur",
+			"without_password": "sans mot de passe."
 		},
 		"tag-filter": {
-			"apply": "",
-			"filter_by_tag": "",
-			"reset": "",
-			"save-as-new-report": "",
-			"tag_explanation": ""
+			"apply": "Appliquer",
+			"filter_by_tag": "-- filtre par étiquette",
+			"reset": "Remise à zéro",
+			"save-as-new-report": "Sauvegarder comme nouveau rapport",
+			"tag_explanation": "Ce rapport prend en charge les étiquettes. Les étiquettes peuvent être utilisées pour filtrer les données du rapport et créer de nouveaux sous-rapports basés sur les balises sélectionnées. Le filtrage s'effectue directement dans la base de données, ce qui peut prendre un certain temps avant d'être rendu. La sélection de plusieurs étiquettes signifie qu'elles sont toutes appliquées par domaine."
 		},
 		"virtual-list-record": {
-			"evidence": "",
-			"link_to_report": "",
-			"not_eligeble_for_scanning": "",
+			"evidence": "Mesures",
+			"link_to_report": "Voir le score et le rapport de %{url} sur internet.nl.",
+			"not_eligeble_for_scanning": "Le domaine ne correspondait pas aux critères d'analyse au moment où l'analyse a été lancée. Les critères d'analyse sont un enregistrement DNS SOA (pas NXERROR) pour le courrier et un enregistrement DNS A ou AAAA pour le web. Ce domaine est ignoré dans toutes les statistiques.",
 			"results": {
-				"category_error_in_test": "",
+				"category_error_in_test": "Erreur de test",
 				"comparison": {
 					"improved": "",
-					"neutral": "",
+					"neutral": "-",
 					"regressed": ""
 				},
-				"error": "",
-				"error_in_test": "",
-				"failed": "",
-				"info": "",
-				"not_applicable": "",
+				"error": "Erreur de test",
+				"error_in_test": "Erreur de test",
+				"failed": "Échec",
+				"info": "Info",
+				"not_applicable": "Sans objet",
 				"not_testable": "",
-				"not_tested": "",
-				"passed": "",
-				"unknown": "",
-				"warning": ""
+				"not_tested": "Non testé",
+				"passed": "Adopté",
+				"unknown": "Inconnu",
+				"warning": "Avertissement"
 			},
-			"since": ""
+			"since": "Depuis"
 		}
 	},
 	"scanmonitor": {
 		"page": {
-			"intro": "",
-			"no_scans": "",
-			"title": ""
+			"intro": "Toutes les analyses effectuées pour ce compte sont affichées ici. Cela donne un aperçu du caractère récent des informations les plus récentes. Cela peut également vous aider à faire des comparaisons pour sélectionner l'analyse idéale.",
+			"no_scans": "Aucun scanner n'a encore été effectué.",
+			"title": "Moniteur de balayage"
 		},
 		"scan": {
 			"cancel": {
-				"are_you_sure": "",
-				"cancel": "",
-				"list": "",
-				"ok": "",
-				"scan_id": ""
+				"are_you_sure": "Voulez-vous annuler cette analyse ?",
+				"cancel": "Poursuivre la numérisation",
+				"list": "Liste",
+				"ok": "Arrêter le balayage",
+				"scan_id": "Scanner"
 			},
-			"cancelled_on": "",
-			"finished_on": "",
+			"cancelled_on": "Annulé",
+			"finished_on": "Fini",
 			"id": "",
-			"last_check": "",
-			"list": "",
-			"live": "",
-			"message": "",
-			"open_in_api": "",
-			"open_list": "",
-			"open_report": "",
-			"processing_results": "",
+			"last_check": "Dernière mise à jour du statut",
+			"list": "Liste",
+			"live": "API",
+			"message": "Statut",
+			"open_in_api": "Voir les résultats de l'API",
+			"open_list": "Liste ouverte",
+			"open_report": "Rapport ouvert",
+			"processing_results": "Résultats du traitement.",
 			"progress": {
-				"cancelled": "",
-				"configuration_error": "",
-				"created report": "",
-				"creating report": "",
-				"discovered endpoints": "",
-				"discovering endpoints": "",
-				"error": "",
-				"finished": "",
-				"imported scan results": "",
-				"importing scan results": "",
-				"network_error": "",
-				"processing scan results": "",
-				"registered": "",
+				"cancelled": "Le balayage a été annulé",
+				"configuration_error": "erreur de configuration détectée, contactez internet.nl",
+				"created report": "Rapport créé",
+				"creating report": "création d'un rapport",
+				"discovered endpoints": "points finaux découverts",
+				"discovering endpoints": "découvrir les points finaux",
+				"error": "Une erreur inconnue s'est produite, contactez internet.nl",
+				"finished": "Fini",
+				"imported scan results": "résultats d'analyse importés",
+				"importing scan results": "importation des résultats de l'analyse",
+				"network_error": "problème de réseau détecté, contactez internet.nl",
+				"processing scan results": "traitement des résultats de l'analyse",
+				"registered": "scan enregistré",
 				"registered scan at internet": {
-					"nl": ""
+					"nl": "scan enregistré"
 				},
 				"registering scan at internet": {
-					"nl": ""
+					"nl": "enregistrement d'un balayage"
 				},
-				"requested": "",
-				"retrieved scannable urls": "",
-				"retrieving scannable urls": "",
-				"running scan": "",
-				"scan results ready": "",
-				"scan results stored": "",
-				"sending mail": "",
-				"sent mail": "",
-				"skipped sending mail: no e-mail addresses associated with account": "",
-				"skipped sending mail: no mail server configured": "",
-				"storing scan results": "",
-				"timeout": ""
+				"requested": "Demande",
+				"retrieved scannable urls": "url scannables récupérées",
+				"retrieving scannable urls": "récupération d'urls scannables",
+				"running scan": "analyse en cours",
+				"scan results ready": "Les résultats de l'analyse sont prêts",
+				"scan results stored": "résultats de l'analyse stockés",
+				"sending mail": "envoi de courrier",
+				"sent mail": "courrier envoyé",
+				"skipped sending mail: no e-mail addresses associated with account": "n'a pas envoyé de courrier : aucune adresse électronique n'est associée au compte",
+				"skipped sending mail: no mail server configured": "n'a pas envoyé de courrier : aucun serveur de courrier n'est configuré",
+				"storing scan results": "stockage des résultats de l'analyse",
+				"timeout": "l'opération a été interrompue, une nouvelle tentative sera effectuée"
 			},
-			"progress_bar": "",
-			"report": "",
-			"report_is_being_generated": "",
-			"runtime": "",
-			"scan": "",
-			"scan history": "",
-			"scan_support_id": "",
-			"started_on": "",
+			"progress_bar": "Progrès",
+			"report": "Rapport",
+			"report_is_being_generated": "Le rapport est en cours de génération.",
+			"runtime": "Temps d'exécution",
+			"scan": "Scanner",
+			"scan history": "Les tâches accomplies",
+			"scan_support_id": "Scanner l'ID du support",
+			"started_on": "Commencé",
 			"stop_scan": "",
-			"type": ""
+			"type": "Type"
 		},
 		"stop_form": {
 			"cancel": {
 				"are_you_sure": "",
-				"cancel": "",
-				"list": "",
+				"cancel": "Poursuivre la numérisation",
+				"list": "Liste",
 				"ok": "",
-				"scan_id": ""
+				"scan_id": "Scanner"
 			},
-			"id": "",
+			"id": " scan #",
 			"last_check": "",
-			"message": "",
+			"message": "Statut",
 			"progress": {
 				"cancelled": "",
-				"configuration_error": "",
+				"configuration_error": "erreur de configuration détectée, contacter l'administrateur du tableau de bord",
 				"created report": "",
 				"creating report": "",
 				"discovered endpoints": "",
 				"discovering endpoints": "",
-				"error": "",
-				"finished": "",
+				"error": "Une erreur inconnue s'est produite, contactez les administrateurs du tableau de bord.",
+				"finished": "Fini",
 				"imported scan results": "",
 				"importing scan results": "",
-				"network_error": "",
+				"network_error": "problème de réseau détecté, contacter l'administrateur du tableau de bord",
 				"registered": "",
 				"registered scan at internet": {
 					"nl": ""
@@ -1710,7 +1714,7 @@
 				"registering scan at internet": {
 					"nl": ""
 				},
-				"requested": "",
+				"requested": "Demande",
 				"retrieved scannable urls": "",
 				"retrieving scannable urls": "",
 				"running scan": "",
@@ -1723,153 +1727,153 @@
 				"timeout": ""
 			},
 			"runtime": "",
-			"started_on": ""
+			"started_on": "Commencé"
 		}
 	},
 	"signup": {
 		"form": {
-			"access_requested": "",
-			"access_to": "",
+			"access_requested": "Votre demande a bien été reçue et sera examinée dans les prochaines semaines. Vous recevrez un e-mail contenant des instructions supplémentaires dans les semaines à venir.",
+			"access_to": "Je souhaite avoir accès à",
 			"api_access": "",
-			"captcha_description": "",
-			"captcha_title": "",
-			"chamber_of_commerce_number": "",
+			"captcha_description": "Veuillez répondre à la question ci-dessus",
+			"captcha_title": "Pour éviter les inscriptions automatiques : quelle est la réponse à 23 * 2 - 4 ?",
+			"chamber_of_commerce_number": "Numéro de la chambre de commerce",
 			"chamber_of_commerce_number_placeholder": "",
-			"dashboard_access": "",
-			"email": "",
-			"email_placeholder": "",
-			"incomplete_form_submitted": "",
-			"incorrect_captcha": "",
-			"intended_usage_frequency": "",
-			"intended_usage_frequency_description": "",
-			"mobile_phone_number": "",
-			"mobile_phone_number_description": "",
-			"mobile_phone_number_placeholder": "",
-			"name": "",
-			"name_placeholder": "",
-			"nature_dutch_cloud_community": "",
-			"nature_for_profit": "",
-			"nature_government": "",
-			"nature_hoster_in_hall_of_fame": "",
-			"nature_non_profit": "",
-			"nature_of_organization": "",
-			"nature_of_organization_description": "",
-			"nature_other": "",
-			"nature_registrar_community": "",
-			"nature_vital_infrastructure": "",
-			"organization_name": "",
+			"dashboard_access": "Tableau de bord",
+			"email": "Courriel",
+			"email_placeholder": "email@",
+			"incomplete_form_submitted": "Le formulaire n'a pas été rempli complètement, veuillez remplir tous les champs.",
+			"incorrect_captcha": "Question visant à empêcher les inscriptions automatisées sans réponse correcte",
+			"intended_usage_frequency": "Fréquence d'utilisation prévue",
+			"intended_usage_frequency_description": "Par exemple : 1000 domaines par semaine/mois/année",
+			"mobile_phone_number": "Numéro de téléphone mobile",
+			"mobile_phone_number_description": "Utilisé pour vous envoyer le mot de passe",
+			"mobile_phone_number_placeholder": "+31...",
+			"name": "Nom",
+			"name_placeholder": "Prénom et nom de famille",
+			"nature_dutch_cloud_community": "membre de la Dutch Cloud Community",
+			"nature_for_profit": "Pour le profit",
+			"nature_government": "Gouvernement",
+			"nature_hoster_in_hall_of_fame": "Hoster au Panthéon des hébergeurs",
+			"nature_non_profit": "Sans but lucratif",
+			"nature_of_organization": "Nature de l'organisation",
+			"nature_of_organization_description": "L'API et le tableau de bord ne sont disponibles que pour les organisations qui répondent à <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">exigences spécifiques</a>.",
+			"nature_other": "Autres",
+			"nature_registrar_community": "membre de la Vereniging van Registrars",
+			"nature_vital_infrastructure": "Infrastructures vitales de catégorie A (NIS2)",
+			"organization_name": "Nom de l'organisation",
 			"organization_name_placeholder": "",
-			"other_type_not_possible": "",
-			"please_explain_vital_infrastructure": "",
-			"reason_for_application": "",
-			"reason_for_application_description": "",
-			"submit": "",
-			"terms_of_use": "",
-			"terms_of_use_accept": "",
-			"terms_of_use_description": ""
+			"other_type_not_possible": "Le tableau de bord n'est pas destiné à d'autres types d'organisations. Votre demande ne sera pas acceptée.",
+			"please_explain_vital_infrastructure": "Veuillez ajouter quelques informations sur votre organisation d'infrastructure vitale dans la raison de votre candidature.",
+			"reason_for_application": "Motif de la demande",
+			"reason_for_application_description": "Comment les résultats des tests seront-ils utilisés ?",
+			"submit": "Envoyer la demande",
+			"terms_of_use": "Conditions d'utilisation",
+			"terms_of_use_accept": "Je respecterai les conditions d'utilisation",
+			"terms_of_use_description": "Le demandeur déclare qu'il <a href='https://github.com/internetstandards/Internet.nl-API-docs/blob/main/terms-of-use.md' target='_blank' rel='_nofollow'>respectera les conditions d'utilisation publiées ici</a>."
 		},
 		"page": {
-			"access_restrictions": "",
-			"api_description": "",
-			"api_link": "",
+			"access_restrictions": "L'api et le tableau de bord ne sont accessibles qu'aux types d'organisations mentionnés dans le formulaire. Les autres organisations n'y auront pas accès.",
+			"api_description": "Pour les développeurs.",
+			"api_link": "L'API est documentée ici.",
 			"api_title": "",
-			"application_description": "",
-			"application_form_title": "",
-			"application_title": "",
-			"dashboard_description": "",
-			"dashboard_link": "",
-			"dashboard_title": "",
-			"note": "",
-			"note_link": "",
-			"procedure_description": "",
-			"procedure_title": "",
-			"support_description": "",
-			"support_title": ""
+			"application_description": "Le formulaire ci-dessous vous permet de demander l'accès à deux types de tests par lots sur Internet.nl : Accès à l'API et Accès au tableau de bord",
+			"application_form_title": "Formulaire de demande",
+			"application_title": "Demande de tests par lots sur internet.nl",
+			"dashboard_description": "Interface utilisateur graphique pour de grandes quantités de scans, avec des rapports.",
+			"dashboard_link": "Voir les caractéristiques ici.",
+			"dashboard_title": "Tableau de bord",
+			"note": "Note : pour un nombre illimité de tests, vous pouvez utiliser le conteneur internet.nl.",
+			"note_link": "Visitez le dépôt github pour commencer",
+			"procedure_description": "Après approbation formelle de votre demande par notre comité directeur, votre nom d'utilisateur et les instructions pour l'utilisation de l'API HTTP pour les tests par lots et/ou du tableau de bord de l'API sont envoyés à l'adresse électronique spécifiée. Le mot de passe correspondant sera envoyé au numéro de téléphone portable indiqué. Voir notre déclaration de confidentialité <a href=\"https://internet.nl/privacy/\"></a> sur les données traitées et stockées par internet.nl.",
+			"procedure_title": "Procédure d'attribution des identifiants de connexion",
+			"support_description": "Pour toute question concernant (l'utilisation de) l'API HTTP pour les tests en lots et le tableau de bord API, un courriel peut être envoyé à <a href=\"mailto:question@internet.nl\">question@internet.nl</a>.",
+			"support_title": "Soutien"
 		}
 	},
 	"tour": {
 		"account_notifications": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "Les paramètres du compte permettent de configurer les notifications.",
+			"introduction": "Recevoir une notification lorsqu'une analyse est terminée. La notification comprend une vue d'ensemble des résultats de l'analyse, y compris les principaux changements par rapport à l'analyse précédente.",
+			"title": "Notifications"
 		},
 		"account_two_fa": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "Un code QR utilisé pour mettre en place une authentification à deux facteurs.",
+			"introduction": "Configurez l'authentification à deux facteurs pour votre compte en utilisant des mots de passe à usage unique.",
+			"title": "Authentification à deux facteurs"
 		},
-		"contact_information": "",
+		"contact_information": "Pour utiliser le tableau de bord sur internet.nl, contactez-nous : <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
 		"export_spreadsheet": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "La feuille de calcul Excel est ouverte dans Numbers. Elle contient les mêmes données que celles présentées dans le tableau.",
+			"introduction": "Le tableau peut être exporté vers Excel, Libreoffice et les données CSV. La feuille de calcul Excel comprend des statistiques sur les paramètres présentés.",
+			"title": "Exportation de feuilles de calcul"
 		},
 		"focus_on_metrics": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "Toutes les mesures IPv6 sont désormais visibles dans le rapport. Activez ou désactivez l'ensemble du groupe en un seul clic et incluez même une moyenne.",
+			"introduction": "Le rapport est imprimable et contient plusieurs graphiques et un tableau de résultats. Il est même possible de télécharger le rapport sous forme de feuille de calcul.",
+			"title": "Rapports configurables"
 		},
 		"import_domains": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "Il est également possible de télécharger des domaines Excel, ODS et des fichiers CSV. Des exemples sont disponibles sur la page de téléchargement.",
+			"introduction": "L'importation de vos domaines est facile grâce à l'importation de texte ou au téléchargement de feuilles de calcul.",
+			"title": "Importer des domaines"
 		},
-		"introduction": "",
+		"introduction": "Le tableau de bord permet d'effectuer des analyses en masse et de produire des rapports sur des milliers de domaines. L'analyse porte sur IPv6, TLS, DMARC, SPF, DANE, DKIM, DNSSEC, les en-têtes HTTP et bien plus encore. Vous trouverez ci-dessous un aperçu des fonctionnalités incluses dans le tableau de bord :",
 		"manage_domains": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "La liste comporte des options de configuration, d'ajout de domaines, d'analyse directe, d'analyse programmée, d'exportation au format csv et, bien sûr, de suppression.",
+			"introduction": "<p>De nombreux domaines peuvent être stockés dans des listes. Ces listes sont configurées pour effectuer un balayage du web ou du courrier.</p><p>En utilisant des balises, il est possible de filtrer le rapport résultant et de créer de nouveaux rapports basés sur ces filtres.</p>",
+			"title": "Analyses de domaines en vrac pour le web et le courrier"
 		},
 		"report_bar_chart": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "Dans cette démo, tout le monde a un score de 100%, ce qui est évident. Cette image montre 6 barres avec un score de 100%.",
+			"introduction": "Ces barres sont plus polyvalentes qu'il n'y paraît. Il est possible de comparer les rapports (jusqu'à cinq) et ils sont disponibles pour chaque catégorie et sous-catégorie (comme IPv6, DNSSEC, TLS).",
+			"title": "Diagrammes à barres"
 		},
 		"report_sharing": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "Les rapports de partage sont exactement les mêmes que les rapports de connexion.",
+			"introduction": "Les rapports peuvent être partagés avec le monde entier ou avec un public sélectionné. Grâce à l'option de partage, toute personne disposant d'un lien ou d'un mot de passe peut consulter le rapport et prendre des mesures.",
+			"title": "Rapports de partage"
 		},
 		"report_table": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "Les résultats IPv6 montrent que tout est correct. Il est possible de filtrer les domaines et de consulter le rapport complet sur internet.nl. Le tri des résultats est bien entendu inclus.",
+			"introduction": "Bien entendu, tous les résultats sont visibles dans un tableau. Le tableau est divisé en plusieurs catégories et n'affiche que les informations nécessaires. Le tableau a une fonction puissante : il est possible de comparer les données avec un deuxième rapport et de voir les améliorations/diminutions pour tous les domaines qui figurent dans les deux rapports.",
+			"title": "Vue en tableau, avec comparaison"
 		},
 		"report_timeline": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "La chronologie montre le score moyen de internet.nl à chaque fois que la même liste est analysée. Cela permet de suivre les progrès réalisés.",
+			"introduction": "Chaque fois qu'une liste est scannée, les données de la ligne de temps augmentent. La ligne de temps permet de comparer plusieurs listes dans le temps, en affichant plusieurs lignes.",
+			"title": "Suivre les progrès au fil du temps"
 		},
 		"scan": {
-			"caption": "",
-			"introduction": "",
-			"title": ""
+			"caption": "L'image montre plusieurs analyses, dont l'une est encore en cours. Notre analyse de démonstration est terminée et un rapport est prêt.",
+			"introduction": "Les balayages peuvent être effectués simultanément. Le moniteur de balayage indique la progression de chaque balayage et permet d'annuler les balayages.",
+			"title": "Contrôler les scans"
 		},
-		"title": ""
+		"title": "Caractéristiques du tableau de bord d'Internet.nl"
 	},
 	"urllist": {
 		"automated_scan_frequency": {
-			"disabled": "",
-			"every_half_year": "",
-			"every_month": "",
-			"every_quarter": "",
-			"twice_per_month": ""
+			"disabled": "Ne pas répéter périodiquement",
+			"every_half_year": "Répéter au début de chaque semestre",
+			"every_month": "Répéter chaque 1er jour du mois",
+			"every_quarter": "Répéter au début de chaque trimestre",
+			"twice_per_month": "Répéter deux fois par mois (1er et 15 du mois)"
 		},
-		"automatically_share_new_reports": "",
-		"default_public_share_code_for_new_reports": "",
-		"empty_is_no_share_code": "",
-		"enable_report_sharing_page": "",
-		"enable_scans_disabled": "",
-		"enable_scans_enabled": "",
-		"field_label_automated_scan_frequency": "",
-		"field_label_enable_scans": "",
-		"field_label_id": "",
-		"field_label_name": "",
-		"field_label_scan_type": "",
-		"generate_code": "",
-		"scan_type_all": "",
-		"scan_type_mail": "",
-		"scan_type_web": "",
-		"to_overview_page": ""
+		"automatically_share_new_reports": "Partager automatiquement les nouveaux rapports avec le public",
+		"default_public_share_code_for_new_reports": "Code d'action par défaut pour les nouveaux rapports",
+		"empty_is_no_share_code": "laisser vide pour aucun code d'action",
+		"enable_report_sharing_page": "Liste de tous les rapports publics sur une seule page",
+		"enable_scans_disabled": "Handicapés",
+		"enable_scans_enabled": "Activé",
+		"field_label_automated_scan_frequency": "Répéter le balayage périodiquement",
+		"field_label_enable_scans": "Activer les balayages",
+		"field_label_id": "ID",
+		"field_label_name": "Nom",
+		"field_label_scan_type": "Quelle analyse effectuer ?",
+		"generate_code": "Générer",
+		"scan_type_all": "Site web et courrier électronique (deux rapports)",
+		"scan_type_mail": "Courrier électronique / Serveur de messagerie et domaine",
+		"scan_type_web": "Site web / Adresses web",
+		"to_overview_page": "Ouvrez la page d'aperçu."
 	}
 }
