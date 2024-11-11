@@ -965,6 +965,9 @@
 			"technology": "",
 			"title": "Transmissions sécurisées par courrier électronique conformément aux lignes directrices du NCSC-NL + DANE"
 		},
+		"internet_nl_web_appsecpriv": {
+			"title": ""
+		},
 		"internet_nl_web_appsecpriv_csp": {
 			"explanation": "",
 			"rating": {
@@ -981,6 +984,10 @@
 				"recommendations": "Soit votre serveur web ne <em>pas</em> propose une politique de référence et s'appuie donc sur la politique par défaut du navigateur, soit votre serveur web propose une politique de référence avec une valeur de politique qui doit être utilisée avec prudence en raison de son impact potentiel sur la sécurité et la vie privée."
 			},
 			"title": "Politique de référencement"
+		},
+		"internet_nl_web_appsecpriv_securitytxt": {
+			"explanation": "",
+			"title": ""
 		},
 		"internet_nl_web_appsecpriv_x_content_type_options": {
 			"explanation": "Nous vérifions si votre serveur web fournit un en-tête HTTP pour <code>X-Content-Type-Options</code>. Avec cet en-tête HTTP, vous indiquez aux navigateurs web qu'ils ne doivent pas \"renifler les types MIME\" et qu'ils doivent toujours respecter le <code>Content-Type</code> tel qu'il est déclaré par votre serveur web. La seule valeur valide pour cet en-tête HTTP est <code>nosniff</code>. Lorsque cette option est activée, le navigateur bloque les demandes de <code>style</code> et de <code>script</code> lorsqu'elles n'ont pas de <code>Content-Type</code> correspondant (c'est-à-dire <code>text/css</code> ou un \"type MIME JavaScript\" comme <code>application/javascript</code>). ).</p><p>Le \"reniflage de type MIME\" est une technique par laquelle le navigateur analyse le contenu d'un fichier pour en détecter le format, indépendamment du <code>Content-Type</code> déclaré par le serveur web. Cette technique est vulnérable à ce que l'on appelle l'\"attaque par confusion MIME\", dans laquelle l'attaquant manipule le contenu d'un fichier de manière à ce qu'il soit traité par le navigateur comme un autre <code>Content-Type</code>différent, comme un exécutable.</p><p><em>Niveau d'exigence : Recommandé</em> ",

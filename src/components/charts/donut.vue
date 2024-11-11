@@ -31,7 +31,7 @@ h3 {
 </style>
 <template>
   <div>
-    <h3 v-if="elements.includes('title')">{{ $t(title) }}</h3>
+    <h3 v-if="elements.includes('title')">{{ $t("metric." + title + ".title") }}</h3>
 
     <template v-if="elements.includes('donut') && !elements.includes('table')">
       <donutChart
@@ -72,7 +72,7 @@ h3 {
 
       </b-tabs>
     </template>
-    <p class="text-center mt-2 font-weight-bolder" v-if="elements.includes('subtitle')">{{ $t(title) }}</p>
+    <p class="text-center mt-2 font-weight-bolder" v-if="elements.includes('subtitle')">{{ $t("metric." + title + ".title") }}</p>
   </div>
 </template>
 

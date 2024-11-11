@@ -965,6 +965,9 @@
 			"technology": "",
 			"title": "Sichere E-Mail-Übertragungen gemäß NCSC-NL-Richtlinien + DANE"
 		},
+		"internet_nl_web_appsecpriv": {
+			"title": ""
+		},
 		"internet_nl_web_appsecpriv_csp": {
 			"explanation": "",
 			"rating": {
@@ -981,6 +984,10 @@
 				"recommendations": ""
 			},
 			"title": "Referrer-Richtlinie"
+		},
+		"internet_nl_web_appsecpriv_securitytxt": {
+			"explanation": "",
+			"title": ""
 		},
 		"internet_nl_web_appsecpriv_x_content_type_options": {
 			"explanation": "Wir prüfen, ob Ihr Webserver einen HTTP-Header für <code>X-Content-Type-Options</code>bereitstellt. Mit diesem HTTP-Header teilen Sie den Webbrowsern mit, dass sie kein \"MIME-Type-Sniffing\" betreiben und sich immer an den <code>Content-Type</code> wie von Ihrem Webserver deklariert. Der einzig gültige Wert für diesen HTTP-Header ist <code>nosniff</code>. Wenn er aktiviert ist, blockiert ein Browser Anfragen für <code>style</code> und <code>script</code> , wenn sie nicht über einen entsprechenden <code>Content-Type</code> (d.h. <code>text/css</code> oder ein 'JavaScript MIME type' wie <code>application/javascript</code>).</p><p>MIME type sniffing' ist eine Technik, bei der der Browser den Inhalt einer Datei scannt, um das Format einer Datei unabhängig vom deklarierten <code>Content-Type</code> durch den Webserver. Diese Technik ist anfällig für den sogenannten \"MIME-Verwechslungsangriff\", bei dem der Angreifer den Inhalt einer Datei so manipuliert, dass er vom Browser als ein anderer <code>Inhalts-Typ</code>, wie eine ausführbare Datei, behandelt wird.</p><p><em>Anforderungsstufe: Empfohlen</em> ",
