@@ -398,6 +398,7 @@
 		},
 		"urllist": {
 			"button": {
+				"add domains using": "Domeinen toevoegen via",
 				"add_domains": "Vrije tekst",
 				"configure": "Instellingen",
 				"delete": "Verwijder",

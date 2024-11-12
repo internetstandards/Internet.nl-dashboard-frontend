@@ -138,11 +138,11 @@
 			"admin": "Administrateur",
 			"authentication": "Authentification",
 			"domains": "Domaines",
-			"home": "ACCUEIL",
+			"home": "Accueil",
 			"log_in": "Se connecter",
 			"log_off": "Déconnexion",
 			"logged_out_successfully": "Vous vous êtes déconnecté avec succès",
-			"mail_metrics": "",
+			"mail_metrics": "Mesures du courrier",
 			"notifications": "Notifications",
 			"reports": "Rapports",
 			"request_access": "Demande d'accès",
@@ -152,7 +152,7 @@
 			"switch_user": "Changement d'utilisateur",
 			"tour": "Tour",
 			"usage_overview": "Aperçu de l'utilisation",
-			"web_metrics": ""
+			"web_metrics": "Mesures sur le web"
 		},
 		"scan-type": {
 			"mail": "Courrier",
@@ -398,9 +398,10 @@
 		},
 		"urllist": {
 			"button": {
+				"add domains using": "Ajouter des domaines en utilisant",
 				"add_domains": "Texte libre",
 				"configure": "Configurer",
-				"delete": "DELETE",
+				"delete": "Supprimer",
 				"discover_subdomains": "Découverte de sous-domaines",
 				"download": "Télécharger",
 				"reload": "Recharger les domaines",

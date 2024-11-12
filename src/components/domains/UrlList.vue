@@ -68,7 +68,7 @@ h2 {
       </template>
 
       <div  style="width: 100%; text-align: right" class="mb-2" v-if="!urls.length">
-        Add domains using:
+        {{$t('add domains using')}}:
         <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}</b-button> &nbsp;
         <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;
         <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button> &nbsp;
@@ -76,7 +76,7 @@ h2 {
       </div>
 
       <div style="width: 100%; text-align: right" class="mb-2" v-if="urls.length">
-        Add domains using:
+        {{$t('add domains using')}}:
         <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}
         </b-button> &nbsp;
         <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;

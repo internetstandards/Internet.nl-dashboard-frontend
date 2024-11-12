@@ -398,6 +398,7 @@
 		},
 		"urllist": {
 			"button": {
+				"add domains using": "Add domains using",
 				"add_domains": "Free text",
 				"configure": "Configure",
 				"delete": "Delete",
