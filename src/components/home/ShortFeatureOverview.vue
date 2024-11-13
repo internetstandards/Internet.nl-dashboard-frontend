@@ -1,20 +1,20 @@
 <template>
-  <b-row>
-    <b-col class="w-100 text-center">
+  <b-row  cols="1" cols-md="3">
+    <b-col class="w-100 text-center p-4">
       <dashboard-icon icon="card-list" :stackscale="6" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-list")'/>
       <h2>{{ $t("home.short-feature-overview.domains") }}</h2>
       <p>{{ $t("home.short-feature-overview.domains_text_1") }}</p>
       <p>{{ $t("home.short-feature-overview.domains_text_2") }}</p>
 
     </b-col>
-    <b-col class="w-100 text-center">
+    <b-col class="w-100 text-center p-4">
       <dashboard-icon icon="search" :stackscale="6" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-search")'/>
       <br>
       <h2>{{ $t("home.short-feature-overview.scan") }}</h2>
       <p>{{ $t("home.short-feature-overview.scan_text_1") }}</p>
       <p>{{ $t("home.short-feature-overview.scan_text_2") }}</p>
     </b-col>
-    <b-col class="w-100 text-center">
+    <b-col class="w-100 text-center p-4">
       <dashboard-icon icon="file-bar-graph" :stackscale="6" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-bar-chart")'/>
       <br>
       <h2>{{ $t("home.short-feature-overview.report") }}</h2>

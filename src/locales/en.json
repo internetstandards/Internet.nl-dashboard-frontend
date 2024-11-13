@@ -73,7 +73,7 @@
 			"title": "Switch Account"
 		},
 		"usage": {
-			"annotation_metrics": "Scan metrics and domains collected are deduplicated in the database: this means that a new list with the same urls will re-use data. The more domains in the system, the fewer new domains and scan metrics. For example: the domain 'internet.nl' is only once in the database, even if 100 people use it.",
+			"annotation_metrics": "Scan metrics and domains collected are de-duplicated in the database: this means that a new list with the same domains will re-use data. The more domains in the system, the fewer new domains and scan metrics. For example: the domain 'internet.nl' is only once in the database, even if 100 people use it.",
 			"annotations": "Annotations",
 			"intro": "A quick insights in usage of the dashboard.",
 			"title": "Usage statistics"
@@ -237,7 +237,7 @@
 				"added_n_to_list": "{0} domains added to this list. Take care: if the new domains are not shown in the list right away, wait a short while and reload the list.",
 				"cancel": "Close",
 				"domains_label": "Add domains in the text field below",
-				"go_to_spreadsheet_upload": "Click here to go to the spreadsheet uploader and tutorial.",
+				"go_to_spreadsheet_upload": "Click here to go to the spreadsheet upload page and tutorial.",
 				"ignored_n": "{0} domains are already in this list.",
 				"loading": "Domains are being processed",
 				"message": "Domains are separated by a comma, space or new line. These can be mixed. For example: \n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com, \nhttps://my.example.com:80/index.html",
@@ -413,7 +413,7 @@
 			},
 			"domains": {
 				"header": "Domains",
-				"intro": "These domains will be included in the scan. Eligibility for scanning is checked just before requesting the scan. The icons before each domain is based on archived information on the most recent reachability of services. This is checked and updated prior to every scan."
+				"intro": "These domains will be included in the scan. Eligibility for scanning is checked just before requesting the scan. The icons before each domain are based on archived data about the most recent availability of services. This is checked and updated prior to every scan."
 			},
 			"icon": {
 				"bulk_add_new": "Add domains in bulk",
@@ -456,7 +456,7 @@
 		"short-feature-overview": {
 			"domains": "Manage domains",
 			"domains_text_1": "Manage thousands of domains with labels.",
-			"domains_text_2": "Convenient importing with spreadsheet or comma separated.",
+			"domains_text_2": "Convenient importing of your domains with spreadsheets, free text and the subdomain finder.",
 			"icon-bar-chart": "Bar chart icon",
 			"icon-list": "Icon depicting a bulleted list",
 			"icon-search": "Magnifying glass icon",
@@ -464,18 +464,18 @@
 			"report_text_1": "Browse extensive reports with graphs and metrics per category.",
 			"report_text_2": "Publish a report online or via a spreadsheet.",
 			"scan": "Bulk scan",
-			"scan_text_1": "Scan domains on dozens of modern internet standerds.",
-			"scan_text_2": "Receive mails with reports when scans are finished."
+			"scan_text_1": "Scan domains on dozens of modern internet standards.",
+			"scan_text_2": "Receive mails with reports, trends and changes when scans are finished."
 		}
 	},
 	"mail": {
 		"unsubscribe": {
-			"error": "An error occured during unsubscribing. Try again below using the code and feed in your email.",
+			"error": "An error occurred during unsubscribing. Try again below using the code and feed in your email.",
 			"intro": "Using this form, you can unsubscribe from alerts. You can unsubscribe without being logged in. If you landed on this page from ",
 			"label_feed": "Feed",
 			"label_unsubscribe_code": "Unsubscribe code (see e-mail)",
 			"perform_unsubscribe": "Unsubscribe from this feed",
-			"success": "Your subscription to this feed has been cancelled. You will no longer receive e-mails from this feed.",
+			"success": "Your subscription to this feed has been canceled. You will no longer receive e-mails from this feed.",
 			"title": "Unsubscribe from alerts"
 		}
 	},
@@ -565,18 +565,18 @@
 		},
 		"internet_nl_mail_auth_dkim_exist": {
 			"explanation": "E-mail can contain a digital signature of the sender, this can by verified by the postal service. If the signature is missing or incorrect, it can be seen as an attempt of sending fake mail. When somebody does send a fake e-mail, the postal service can issue a notification to the real owner of the e-mail address as they might want to do something about this.",
-			"extended-explanation": "We check if your domain supports DKIM records. A receiving mail server canuse the public key in your DKIM record to validate the signature in an email with a user from your domain as sender and determine its authenticity.</p><ul><li>Currently we are not able to query and evaluate the public key in your DKIM record,because we would need the DKIM selector (that should be in the mails you send) to do so.</li><li>To pass this test we expect your name server to answer <code>NOERROR</code> to our query for<code>_domainkey.example.nl</code>. When <code>_domainkey.example.nl</code> is an 'empty non-terminal' some name servers that are not conformant with the standardRFC 2308 incorrectly answer <code>NXDOMAIN</code> instead of <code>NOERROR</code>. This makes itimpossible for us to detect support for DKIM records.</li><li>For this test we assume 'strict alignment' which is conformant with DMARC. The given domain is considered to be the sender domain in the mail body domain (<code>From:</code>) and this must be identical to the DKIM domain (<code>d=</code>) and the SPF domain (envelope sender, i.e. return-path that shows up in <code>MAIL FROM</code>).</li></ul><p>For a \"good practice on domains without mail\" see the <a href=\"#control-panel-9\">explanation of the \"DMARC policy\" subtest</a>.",
+			"extended-explanation": "We check if your domain supports DKIM records. A receiving mail server can use the public key in your DKIM record to validate the signature in an email with a user from your domain as sender and determine its authenticity.</p><ul><li>Currently we are not able to query and evaluate the public key in your DKIM record,because we would need the DKIM selector (that should be in the mails you send) to do so.</li><li>To pass this test we expect your name server to answer <code>NOERROR</code> to our query for<code>_domainkey.example.nl</code>. When <code>_domainkey.example.nl</code> is an 'empty non-terminal' some name servers that are not conformant with the standard RFC 2308 incorrectly answer <code>NXDOMAIN</code> instead of <code>NOERROR</code>. This makes it impossible for us to detect support for DKIM records.</li><li>For this test we assume 'strict alignment' which is conformant with DMARC. The given domain is considered to be the sender domain in the mail body domain (<code>From:</code>) and this must be identical to the DKIM domain (<code>d=</code>) and the SPF domain (envelope sender, i.e. return-path that shows up in <code>MAIL FROM</code>).</li></ul><p>For a \"good practice on domains without mail\" see the <a href=\"#control-panel-9\">explanation of the \"DMARC policy\" subtest</a>.",
 			"rating": {
 				"bad": "DKIM Missing. This means there is no digital signature inside the email, so the sender cannot be verified.",
 				"good": "DKIM Available. This means there is a digital signature inside the email, which can be used to verify the sender.",
 				"no_email": "Your domain does <em>not</em> support DKIM records. However because your DMARC and SPF records hint that no mail is sent from your domain, DKIM is not necessary and this subtest is skipped."
 			},
 			"technology": "DomainKeys Identified Mail (DKIM)",
-			"title": "Sent e-mail contains a signture of the sending organization"
+			"title": "Sent e-mail contains a signature of the sending organization"
 		},
 		"internet_nl_mail_auth_dmarc_exist": {
 			"explanation": "Fake e-mail is commonly used to unsolicited promotion of products (spam) or deception (scam). Attackers of course want to use the good reputation of companies to pass as legitimate. The companies that are being impersonated of course do not want this. To deter abuse of their name, they can set up an automated hotline to receive information about fake e-mails: mails with missing signatures or sent from the wrong address for example. A company can use this information to, for example, block senders of fake e-mail globally.",
-			"extended-explanation": "We check if DMARC is available for your domain. A receiving mail server mayuse your DMARC policy to evaluate how to handle a mail with your domain assender that could not be authenticated with both DKIM and SPF, and it mayuse your mail address from the DMARC record to provide feedback reports onthe authentication to you. Having more than one DMARC record in the same domainis not valid and will lead to a test failure.Note: DMARC requires the SPFdomain (envelope sender, i.e. return-path that shows up in <code>MAIL FROM</code>) andthe DKIM domain (<code>d=</code>) to align with the mail body domain (<code>From:</code>).",
+			"extended-explanation": "We check if DMARC is available for your domain. A receiving mail server mayuse your DMARC policy to evaluate how to handle a mail with your domain as sender that could not be authenticated with both DKIM and SPF, and it may use your mail address from the DMARC record to provide feedback reports onthe authentication to you. Having more than one DMARC record in the same domain is not valid and will lead to a test failure.Note: DMARC requires the SPF domain (envelope sender, i.e. return-path that shows up in <code>MAIL FROM</code>) and the DKIM domain (<code>d=</code>) to align with the mail body domain (<code>From:</code>).",
 			"rating": {
 				"bad": "DMARC Missing. This means there is no way to notify the organization of any fake e-mail.",
 				"good": "DMARC Available. This means an automated hotline is available for receivers of e-mail to check if the origin and/or signature aof the sender are correct. Any fake e-mail can be reported automatically to this hotline."
@@ -1433,20 +1433,20 @@
 			"type_of_scan_performed": "Type of rapport"
 		},
 		"improvement-regressions": {
-			"days_ago": "Het vorige rapport werd {0} dagen geleden gemaakt.",
-			"domains_exclusive_current": "Domeinen exclusief in het huidige rapport",
-			"domains_exclusive_other": "Domeinen exclusief in het vorige rapport",
+			"days_ago": "The previous report was made {0} days ago.",
+			"domains_exclusive_current": "Domains exclusively in the current report",
+			"domains_exclusive_other": "Domains exclusive to the previous report",
 			"domains_with_improvements": "Domains with improvements",
 			"domains_with_regressions": "Domains with regressions",
 			"improvement": "Improvements",
-			"metrics": "",
+			"metrics": "Metrics",
 			"neutral": "Unchanged",
-			"no_changes": "Er zijn geen gegevens beschikbaar van het vorige rapport.",
+			"no_changes": "No data available for the previous report",
 			"regression": "Regressions",
-			"score_from": "",
-			"score_to": "",
+			"score_from": "Score from",
+			"score_to": "to",
 			"title": "Changes",
-			"url": ""
+			"url": "Domain"
 		},
 		"improvement-regressions-table": {
 			"improvement": "Improvements",
@@ -1485,7 +1485,7 @@
 		"nested-report-charts": {
 			"A": "Average",
 			"category": "Category",
-			"G": ""
+			"G": "Average"
 		},
 		"page": {
 			"intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",
@@ -1630,7 +1630,7 @@
 				"ok": "Stop scan",
 				"scan_id": "scan"
 			},
-			"cancelled_on": "Cancelled",
+			"cancelled_on": "Canceled",
 			"finished_on": "Finished",
 			"id": "",
 			"last_check": "Last status update",
@@ -1642,7 +1642,7 @@
 			"open_report": "Open report",
 			"processing_results": "Processing results.",
 			"progress": {
-				"cancelled": "Scan was cancelled",
+				"cancelled": "Scan was canceled",
 				"configuration_error": "configuration error detected, contact internet.nl",
 				"created report": "created report",
 				"creating report": "creating report",
@@ -1662,8 +1662,8 @@
 					"nl": "registering scan"
 				},
 				"requested": "requested",
-				"retrieved scannable urls": "retrieved scannable urls",
-				"retrieving scannable urls": "retrieving scannable urls",
+				"retrieved scannable urls": "retrieved scannable domains",
+				"retrieving scannable urls": "retrieving scannable domains",
 				"running scan": "running scan",
 				"scan results ready": "scan results ready",
 				"scan results stored": "scan results stored",
@@ -1697,7 +1697,7 @@
 			"last_check": "Last status update",
 			"message": "Status",
 			"progress": {
-				"cancelled": "Scan was cancelled",
+				"cancelled": "Scan was canceled",
 				"configuration_error": "configuration error detected, contact the dashboard administrator",
 				"created report": "created report",
 				"creating report": "creating report",
@@ -1716,8 +1716,8 @@
 					"nl": "registering scan"
 				},
 				"requested": "requested",
-				"retrieved scannable urls": "retrieved scannable urls",
-				"retrieving scannable urls": "retrieving scannable urls",
+				"retrieved scannable urls": "retrieved scannable domains",
+				"retrieving scannable urls": "retrieving scannable domains",
 				"running scan": "running scan",
 				"scan results ready": "scan results ready",
 				"sending mail": "sending mail",
@@ -1737,14 +1737,14 @@
 			"access_to": "I would like access to",
 			"api_access": "API",
 			"captcha_description": "Please answer the above question",
-			"captcha_title": "To prevent automated signups: what is the answer to 23 * 2 - 4?",
+			"captcha_title": "To prevent automated sign-ups: what is the answer to 23 * 2 - 4?",
 			"chamber_of_commerce_number": "Chamber of commerce number",
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Dashboard",
 			"email": "Email",
 			"email_placeholder": "email@",
 			"incomplete_form_submitted": "Form was not filled out completely, please fill out all fields",
-			"incorrect_captcha": "Question to prevent automated signups not correctly answered",
+			"incorrect_captcha": "Question to prevent automated sign-ups not correctly answered",
 			"intended_usage_frequency": "Intended usage frequency",
 			"intended_usage_frequency_description": "For example: 1000 domains per week/month/year",
 			"mobile_phone_number": "Mobile phone number",
@@ -1759,7 +1759,7 @@
 				"hoster_in_hall_of_fame": "Hoster in the Hall of Fame for Hosters",
 				"non_profit": "Non profit",
 				"other": "Other",
-				"registrar_community": "member of Vereniging van Registrars",
+				"registrar_community": "member of \"Vereniging van Registrars\"",
 				"vital_infrastructure": "Category A vital infrastructure (NIS2)"
 			},
 			"nature_of_organization": "Nature of organization",
@@ -1776,7 +1776,7 @@
 			"terms_of_use_description": "The applicant declares that they <a href='https://github.com/internetstandards/Internet.nl-API-docs/blob/main/terms-of-use.md' target='_blank' rel='_nofollow'>will honor the terms of use which are published here</a>."
 		},
 		"page": {
-			"access_restrictions": "The api and dashboard are only accessible to the types of organizations mentioned in the form. Other organizations will not be granted access.",
+			"access_restrictions": "The API and dashboard are only accessible to the types of organizations mentioned in the form. Other organizations will not be granted access.",
 			"api_description": "For developers.",
 			"api_link": "The API is documented here.",
 			"api_title": "API",
@@ -1787,7 +1787,7 @@
 			"dashboard_link": "See the features here.",
 			"dashboard_title": "Dashboard",
 			"note": "Note: for unlimited amounts of tests, you can use the internet.nl docker container. ",
-			"note_link": "Visit the github repository to get started",
+			"note_link": "Visit the GitHub repository to get started",
 			"procedure_description": "After formal approval of your request by our Steering Committee, your username and instructions for using the Batch testing HTTP API and/or API Dashboard are send to the specified e-mail address. The corresponding password will be send to the specified mobile phone number. See our <a href=\"https://internet.nl/privacy/\">privacy statement</a> on what data internet.nl processes and stores.",
 			"procedure_title": "Procedure for issuing login details",
 			"support_description": "For questions regarding (the use of) the Batch testing HTTP API and the API Dashboard, an e-mail can be send to <a href=\"mailto:question@internet.nl\">question@internet.nl</a>",
@@ -1833,7 +1833,7 @@
 			"title": "Bar charts"
 		},
 		"report_sharing": {
-			"caption": "Sharing reports look exaclty as reports while being logged in.",
+			"caption": "Sharing reports look exactly as reports while being logged in.",
 			"introduction": "Reports can be shared with the world or with a select audience. Using the sharing option anyone with the link, or anyone with the password, can view the report and take action.",
 			"title": "Share reports"
 		},
@@ -1849,7 +1849,7 @@
 		},
 		"scan": {
 			"caption": "The image shows several scans, of which one is still running. Our demo scan is finished and a report is ready.",
-			"introduction": "Scans can be performed simultaneously. The scan monitor shows the progress of each scan and allows for cancelling scans.",
+			"introduction": "Scans can be performed simultaneously. The scan monitor shows the progress of each scan and allows for canceling scans.",
 			"title": "Monitor scans"
 		},
 		"title": "Internet.nl dashboard features"

@@ -307,8 +307,8 @@
 			},
 			"upload": {
 				"cancel": "Annuleer",
-				"empty_file": "Empty file",
-				"file_with_example_data": "File with example data",
+				"empty_file": "Leeg bestand",
+				"file_with_example_data": "Bestand met voorbeeldgegevens",
 				"introduction": "Hiermee is het mogelijk om grote hoeveelheden internet adressen en lijsten toe te voegen. Dit gebeurd met spreadsheets. Begin met het downloaden van de voorbeelden hieronder, deze geven aan wat het juiste formaat is. De voorbeeldbestanden zijn te downloaden in het Open Document formaat, Microsoft Office formaat en Kommagescheiden. Hieronder staan een aantal voorbeeldbestanden waarin het exacte juiste formaat wordt aangegeven.",
 				"microsoft_office_excel": "Excel Spreadsheet (Microsoft Office)",
 				"ok": "Overschrijf domeinen",
@@ -456,7 +456,7 @@
 		"short-feature-overview": {
 			"domains": "Beheer domeinen",
 			"domains_text_1": "Beheer tot duizenden domeinen tegelijkertijd met labels.",
-			"domains_text_2": "Handig domeinen importeren met spreadsheet of kommagescheiden.",
+			"domains_text_2": "Handig domeinen importeren met spreadsheets, vrije tekst en via de subdomein zoeker.",
 			"icon-bar-chart": "Staafdiagram",
 			"icon-list": "Icoon met ongenummerde lijst",
 			"icon-search": "Vergrootglas",
@@ -465,7 +465,7 @@
 			"report_text_2": "Publiceer het rapport online of via een spreadsheet.",
 			"scan": "Bulk scan",
 			"scan_text_1": "Scan domeinen op tientallen moderne internetstandaarden.",
-			"scan_text_2": "Ontvang een mail wanneer het rapport klaar staat, met rapportage."
+			"scan_text_2": "Ontvang e-mails met rapportages, hierin zitten trends en wijzigingen."
 		}
 	},
 	"mail": {
@@ -1433,15 +1433,15 @@
 			"type_of_scan_performed": "Soort rapport"
 		},
 		"improvement-regressions": {
-			"days_ago": "",
-			"domains_exclusive_current": "",
-			"domains_exclusive_other": "",
+			"days_ago": "Het vorige rapport werd {0} dagen geleden gemaakt.",
+			"domains_exclusive_current": "Domeinen exclusief in het huidige rapport",
+			"domains_exclusive_other": "Domeinen exclusief in het vorige rapport",
 			"domains_with_improvements": "Domeinen met verbeteringen",
 			"domains_with_regressions": "Domeinen met verslechteringen",
 			"improvement": "Verbeteringen",
 			"metrics": "Metingen",
 			"neutral": "Ongewijzigd",
-			"no_changes": "",
+			"no_changes": "Er zijn geen gegevens beschikbaar van het vorige rapport.",
 			"regression": "Verslechteringen",
 			"score_from": "Score van",
 			"score_to": "naar",
@@ -1458,11 +1458,11 @@
 		},
 		"legend": {
 			"icon_legend": {
-				"category_error_in_test": "",
-				"subtest_error_in_test": "",
-				"subtest_not_applicable": "",
-				"subtest_not_tested": "",
-				"title": ""
+				"category_error_in_test": "Fout tijdens het testen ⇒ null score",
+				"subtest_error_in_test": "Fout tijdens het testen ⇒ null score",
+				"subtest_not_applicable": "Niet van toepassing ⇒ geen score impact",
+				"subtest_not_tested": "Niet getest ⇒ geen score impact",
+				"title": "Legenda van gebruikte pictogrammen"
 			},
 			"results": {
 				"category_error_in_test": "Testfout",
@@ -1483,7 +1483,7 @@
 			}
 		},
 		"nested-report-charts": {
-			"A": "",
+			"A": "Gemiddeld",
 			"category": "Categorie",
 			"G": "Gemiddelde"
 		},
@@ -1787,7 +1787,7 @@
 			"dashboard_link": "Bekijk wat het allemaal kan op deze pagina.",
 			"dashboard_title": "Dashboard",
 			"note": "Voetnoot: voor onbeperkte hoeveelheden tests is het ook mogelijk om de internet.nl docker container te gebruiken.",
-			"note_link": "Bekijk het internet.nl project op github om te beginnen.",
+			"note_link": "Bekijk het internet.nl project op GitHub om te beginnen.",
 			"procedure_description": "Na formele goedkeuring door de stuurgroep worden je gebruikersnaam en gebruiksinstructies verstuurd naar het opgegeven e-mail adres. Het wachtwoord wordt verstuurd naar het opgegeven mobiele nummer. Bekijk ons <a href=\"https://internet.nl/privacy/\">privacy statement</a> om te lezen hoe we omgaan met deze gegevens.",
 			"procedure_title": "Procedure voor het uitgeven van inloggegevens",
 			"support_description": "Voor vragen over (het gebruik van) de API of hte dashboard, stuur een e-mail naar <a href=\"mailto:vraag@internet.nl\">vraag@internet.nl</a>",
