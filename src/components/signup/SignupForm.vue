@@ -95,12 +95,13 @@
           id="radios-nature-of-organization"
           plain stacked
         >
-          <b-form-radio value="government">{{$t("signup.form.nature_government")}}</b-form-radio>
-          <b-form-radio value="non-profit">{{$t("signup.form.nature_non_profit")}}</b-form-radio>
-          <b-form-radio value="dutch-cloud-community">{{$t("signup.form.nature_dutch_cloud_community")}} (<a href="https://dutchcloudcommunity.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
-          <b-form-radio value="vereniging-van-registrars">{{$t("signup.form.nature_registrar_community")}} (<a href="https://www.verenigingvanregistrars.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
-          <b-form-radio value="vital_infrastructure">{{$t("signup.form.nature_vital_infrastructure")}}</b-form-radio>
-          <b-form-radio value="hoster_in_hall_of_fame">{{$t("signup.form.nature_hoster_in_hall_of_fame")}}</b-form-radio>
+          <b-form-radio value="government">{{$t("signup.form.nature.government")}}</b-form-radio>
+          <b-form-radio value="non-profit">{{$t("signup.form.nature.non_profit")}}</b-form-radio>
+          <b-form-radio value="dutch-cloud-community">{{$t("signup.form.nature.dutch_cloud_community")}} (<a href="https://dutchcloudcommunity.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
+          <b-form-radio value="vereniging-van-registrars">{{$t("signup.form.nature.registrar_community")}} (<a href="https://www.verenigingvanregistrars.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
+          <b-form-radio value="vital_infrastructure">{{$t("signup.form.nature.vital_infrastructure")}}</b-form-radio>
+          <b-form-radio value="hoster_in_hall_of_fame">{{$t("signup.form.nature.hoster_in_hall_of_fame")}}</b-form-radio>
+          <b-form-radio value="for_profit_organizations_supporting_non_profits">{{$t("signup.form.nature.for_profit_organizations_supporting_non_profits")}}</b-form-radio>
           <!-- <b-form-radio value="other">{{$t("nature_other")}}</b-form-radio> -->
         </b-form-radio-group>
       </b-form-group>
