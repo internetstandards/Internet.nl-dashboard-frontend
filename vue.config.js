@@ -16,13 +16,6 @@ module.exports = {
     //     headers: {"Content-Security-Policy": "default-src 'self'; connect-src http://localhost:8000 https://matomo.internet.nl; script-src 'self' https://matomo.internet.nl; img-src 'self' data: https://matomo.internet.nl;"}
     // },
     chainWebpack: config => {
-        config.module
-            .rule("i18n")
-            .resourceQuery(/blockType=i18n/)
-            .type('javascript/auto')
-            .use("i18n")
-            .loader("@kazupon/vue-i18n-loader")
-            .end();
         config
             .plugin('html')
             .tap(args => {
