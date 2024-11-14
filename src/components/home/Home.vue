@@ -10,18 +10,18 @@ h2 {
 <template>
   <div>
     <content-block>
-      <h1><b-icon icon="house" /> {{ $t("title") }}</h1>
-      <p v-html="$t('introduction')" class="mb-2 mt-2"></p>
+      <h1><b-icon icon="house" /> {{ $t("home.page.title") }}</h1>
+      <p v-html='$t("home.page.introduction")' class="mb-2 mt-2"></p>
     </content-block>
 
     <content-block class="text-center">
       <short-feature-overview />
 
       <div class="mt-4">
-        <button @click="$router.push({name: 'tour'})" variant="info"><b-icon icon="book"/> {{$t('learn')}}</button>
-        <a :href="$baseUrl + '/account/login/'"><button variant="success" class="ml-2" v-if="!user.is_authenticated" ><b-icon icon="box-arrow-in-right" /> {{$t('log_in')}}</button></a><br>
+        <button @click="$router.push({name: 'tour'})" variant="info"><b-icon icon="book"/> {{$t("home.page.learn")}}</button>
+        <a :href="$baseUrl + '/account/login/'"><button variant="success" class="ml-2" v-if="!user.is_authenticated" ><b-icon icon="box-arrow-in-right" /> {{$t("home.page.log_in")}}</button></a><br>
         <br>
-        <router-link to="signup" class="mb-2 mt-2">{{$t('request_access')}}</router-link>
+        <router-link to="signup" class="mb-2 mt-2">{{$t("home.page.request_access")}}</router-link>
       </div>
     </content-block>
 
@@ -41,22 +41,3 @@ export default {
   computed: mapState(['user']),
 }
 </script>
-<i18n>
-{
-  "en": {
-    "title": "Welcome to the internet.nl Dashboard",
-    "introduction": "Bulk scan modern internet standards on thousands of domains in one go, including reports.",
-    "request_access": "To request access to the dashboard, please visit this page.",
-    "learn": "Learn what the dashboard can do for you, here...",
-    "log_in": "Log in"
-  },
-  "nl": {
-    "title": "Welkom op het internet.nl Dashboard",
-    "introduction": "Meet duizenden domeinen tegelijk op moderne internetstandaarden, inclusief rapportage.",
-    "request_access": "Toegang nodig tot het dashboard? Bezoek deze pagina.",
-    "learn": "Bekijk hier wat het dashboard mogelijk maakt",
-    "log_in": "Inloggen"
-  }
-}
-
-</i18n>

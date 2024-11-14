@@ -20,6 +20,10 @@ npm run build
 npm run lint
 ```
 
+## Translations
+Translations are maintained by babeledit in the locales directory. A mapping.md is present
+that helps mapping from the merged-to-js internet.nl repository values to dashboard metrics.
+
 # Deployment
 
 ## On staging

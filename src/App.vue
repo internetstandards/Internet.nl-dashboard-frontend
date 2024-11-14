@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div id="app">
-    <div class="skiplink"><a href="#content">{{ $t('skiplink.gotocontents') }}</a></div>
-    <div class="skiplink" id="skiplink-sitenav"><a href="#sitenav">{{ $t('skiplink.gotomainmenu') }}</a></div>
-    <div class="skiplink"><a href="#footer">{{ $t('skiplink.gotofooter') }}</a></div>
+    <div class="skiplink"><a href="#content">{{ $t("app.skiplink.gotocontents") }}</a></div>
+    <div class="skiplink" id="skiplink-sitenav"><a href="#sitenav">{{ $t("app.skiplink.gotomainmenu") }}</a></div>
+    <div class="skiplink"><a href="#footer">{{ $t("app.skiplink.gotofooter") }}</a></div>
 
     <header>
       <SiteMenu
@@ -28,18 +28,18 @@
       <template>
       <img id="flag" src="static_frontend/images/vendor/internet_nl/clear.gif" alt="">
       <div class="wrap">
-        {{ $t('base.info') }}
+        {{ $t("app.footer.info") }}
         <hr>
         <ul>
-          <li><a class="footlink" href="https://www.internet.nl/disclosure/">{{ $t('base.disclosure') }}</a></li>
-          <li><a class="footlink" href="https://www.internet.nl/privacy/">{{ $t('base.privacy') }}</a></li>
-          <li><a class="footlink" href="https://www.internet.nl/copyright/">{{ $t('base.copyright') }}</a></li>
+          <li><a class="footlink" href="https://www.internet.nl/disclosure/">{{ $t("app.footer.disclosure") }}</a></li>
+          <li><a class="footlink" href="https://www.internet.nl/privacy/">{{ $t("app.footer.privacy") }}</a></li>
+          <li><a class="footlink" href="https://www.internet.nl/copyright/">{{ $t("app.footer.copyright") }}</a></li>
           <li class="follow-us"><a class="footlink twitterfollow"
-                                   href="https://x.com/internet_nl">{{ $t('base.followtwitter') }}</a></li>
+                                   href="https://x.com/internet_nl">{{ $t("app.footer.followtwitter") }}</a></li>
           <li class="follow-us"><a class="footlink linkedinfollow"
-                                   href="https://www.linkedin.com/company/internet-nl/">{{ $t('base.followlinkedin') }}</a></li>
+                                   href="https://www.linkedin.com/company/internet-nl/">{{ $t("app.footer.followlinkedin") }}</a></li>
           <li class="follow-us"><a class="footlink mastodonfollow"
-                                   href="https://mastodon.nl/@internet_nl">{{ $t('base.followmastodon') }}</a></li>
+                                   href="https://mastodon.nl/@internet_nl">{{ $t("app.footer.followmastodon") }}</a></li>
 
 
         </ul>
@@ -119,39 +119,3 @@ export default {
   color:white;
 }
 </style>
-<i18n>
-{
-  "en": {
-    "base": {
-      "copyright": "Copyright",
-      "disclosure": "Report vulnerability",
-      "followlinkedin": "LinkedIn",
-      "followmastodon": "Mastodon",
-      "followtwitter": "X",
-      "info": "Internet.nl is an initiative of the Internet community and the Dutch government.",
-      "privacy": "Privacy statement"
-    },
-    "skiplink": {
-      "gotocontents": "Skip to contents",
-      "gotomainmenu": "Skip to main menu",
-      "gotofooter": "Skip to footer"
-    }
-  },
-  "nl": {
-    "base": {
-      "copyright": "Auteursrecht",
-      "disclosure": "Kwetsbaarheid melden",
-      "followlinkedin": "LinkedIn",
-      "followmastodon": "Mastodon",
-      "followtwitter": "X",
-      "info": "Internet.nl is een initiatief van de internetgemeenschap en de Nederlandse overheid.",
-      "privacy": "Privacyverklaring"
-    },
-    "skiplink": {
-      "gotocontents": "Skip naar inhoud",
-      "gotomainmenu": "Skip naar menu",
-      "gotofooter": "Skip naar footer"
-    }
-  }
-}
-</i18n>

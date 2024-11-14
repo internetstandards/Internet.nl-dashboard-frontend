@@ -1,22 +1,22 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <content-block>
-        <h1><b-icon icon="person-bounding-box" /> {{ $t("title") }}</h1>
-        <p> {{ $t('intro') }}</p>
-        <p><b>{{ $t('reload_page_warning') }}</b></p>
+        <h1><b-icon icon="person-bounding-box" /> {{ $t("admin.switch_account.title") }}</h1>
+        <p> {{ $t("admin.switch_account.intro") }}</p>
+        <p><b>{{ $t("admin.switch_account.reload_page_warning") }}</b></p>
 
         <template v-if="server_response.success">
             <server-response :response="server_response"
-                             :message="$t('switched_account', [server_response.data.account_name])"></server-response>
+                             :message='$t("admin.switch_account.switched_account", [server_response.data.account_name])'></server-response>
         </template>
         <template v-else>
             <server-response :response="server_response"></server-response>
         </template>
 
         <p>
-            <button role="link" @click="get_accounts">🔁 {{ $t("reload_list") }}</button>
+            <button role="link" @click="get_accounts">🔁 {{ $t("admin.switch_account.reload_list") }}</button>
             <br><br>
-            <label for="account_selection">{{ $t("select") }}:</label>
+            <label for="account_selection">{{ $t("admin.switch_account.select") }}:</label>
 
             <!--
             We want to see everything, :sticky-header="true" disabled.
@@ -156,23 +156,3 @@ export default {
     }
 }
 </script>
-<i18n>
-{
-    "en": {
-        "title": "Switch Account",
-        "intro": "This feature allows you to switch to another account, and use this site as them.",
-        "reload_page_warning": "Important: refresh the page after choosing an account!",
-        "select": "Select account to use, the account is instantly switched",
-        "reload_list": "Reload account list",
-        "switched_account": "Switched to account {0}. Refresh the page to use this account."
-    },
-    "nl": {
-        "title": "Wissel van account",
-        "intro": "Hiermee is te wisselen van account. Na een wissel voer je bijvoorbeeld scans uit vanuit die organisatie.",
-        "reload_page_warning": "Let op: herlaad de pagina na het wisselen van account!",
-        "select": "Selecteer het account om te gebruiken, wisselen gebeurd direct",
-        "reload_list": "Lijst met accounts verversen",
-        "switched_account": "Geswitched naar account {0}. Ververs de pagina om dit account te gebruiken."
-    }
-}
-</i18n>

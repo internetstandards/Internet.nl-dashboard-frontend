@@ -1,27 +1,27 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
-    <h2>{{ $t("title") }}</h2>
-    <p>{{ $t("intro") }}</p>
+    <h2>{{ $t("chart.timeline.title") }}</h2>
+    <p>{{ $t("chart.timeline.intro") }}</p>
 
     <b-tabs content-class="mt-3">
-      <b-tab :title="$t('graph')" active>
+      <b-tab :title='$t("chart.timeline.graph")' active>
         <time-line-chart
             :timeline_data="timeline_data"
             :highlight_report_ids="highlight_report_ids"
-            :title="$t('title')"
-            :x_axis_label="$t('x_axis_label')"
-            :y_axis_label="$t('y_axis_label')"
-            :accessibility_text="$t('accessibility_text')"
+            :title='$t("chart.timeline.title")'
+            :x_axis_label='$t("chart.timeline.x_axis_label")'
+            :y_axis_label='$t("chart.timeline.y_axis_label")'
+            :accessibility_text='$t("chart.timeline.accessibility_text")'
             @graph-data-updated="graph_data_to_table"
             :axis="['average_internet_nl_score']">
         </time-line-chart>
       </b-tab>
 
-      <b-tab :title="$t('table')">
+      <b-tab :title='$t("chart.timeline.table")'>
         <download-data :data="data_from_graph" :fields="table_fields"></download-data>
         <b-table striped hover small :items="data_from_graph" :fields="table_fields">
-          <template #table-caption>{{ $t("title") }}</template>
+          <template #table-caption>{{ $t("chart.timeline.title") }}</template>
           <template #cell(value)="data">
             {{ data.value }}%
           </template>
@@ -58,10 +58,10 @@ export default {
       data_from_graph: [],
 
       table_fields: [
-        {key: 'series', label: this.$t("series"), sortable: true},
-        {key: 'date', label: this.$t("x_axis_label"), sortable: true},
-        {key: 'value', label: this.$t("y_axis_label"), sortable: true},
-        {key: 'report', label: this.$t("report"), sortable: true},
+        {key: 'series', label: this.$t("chart.timeline.series"), sortable: true},
+        {key: 'date', label: this.$t("chart.timeline.x_axis_label"), sortable: true},
+        {key: 'value', label: this.$t("chart.timeline.y_axis_label"), sortable: true},
+        {key: 'report', label: this.$t("chart.timeline.report"), sortable: true},
       ]
     }
   },
@@ -103,31 +103,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "title": "Average internet.nl score over time.",
-    "y_axis_label": "Average internet.nl score",
-    "x_axis_label": "Month",
-    "average_internet_nl_score": "Average internet.nl score",
-    "intro": "This graph compares the average internet.nl score over time.",
-    "series": "Series",
-    "report": "Report",
-    "graph": "Graph",
-    "table": "Table",
-    "accessibility_text": "A table with the content of this graph is shown below."
-  },
-  "nl": {
-    "title": "Adoptie van standaarden over tijd.",
-    "y_axis_label": "Gemiddelde internet.nl score",
-    "x_axis_label": "Maand",
-    "average_internet_nl_score": "Gemiddelde internet.nl score",
-    "intro": "Deze grafiek toont de gemiddelde internet.nl score over tijd.",
-    "series": "Reeks",
-    "report": "Rapport",
-    "graph": "Grafiek",
-    "table": "Tabel",
-    "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
-  }
-}
-</i18n>

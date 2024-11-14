@@ -7,7 +7,7 @@
 <template>
   <div>
     <template v-for="chart in charts_to_render">
-      <div v-if="chart.level === 1" :key="chart.axis.join('.') + 'a'">
+      <div v-if="chart.level === 1" :key="chart.axis.join('.') + 'a'" style="overflow: scroll">
         <div class="chart-container w-100 position-relative fixed_ratio">
           <!-- Do not show canvas chart element in accessibility, use the table below -->
           <component :is="my_component" :chart_data="reports" :show_average="chart.average" :axis="chart.axis"
@@ -15,7 +15,7 @@
           <b-table-simple striped hover small responsive v-if="$store.state.rendered_chart_to_table['overall'] !== undefined">
             <b-thead>
               <b-tr>
-                <b-th>{{ $t('category') }}</b-th>
+                <b-th>{{ $t("report.nested-report-charts.category") }}</b-th>
                 <b-th v-for="xAxis in $store.state.rendered_chart_to_table['overall']['datasets']" :key="xAxis.label + 'f'">
                   {{ $t(xAxis.label) }}
                 </b-th>
@@ -39,9 +39,9 @@
         </div>
       </div>
       <div v-else class="not-on-new-page" :key="chart.axis.join('.') + 'b'">
-        <chart-collapse-panel :title="chart.label" :level="chart.level">
+        <chart-collapse-panel :title="chart.label" :level="chart.level" >
           <!-- Do not show canvas chart element in accessibility, use the table below -->
-          <div slot="chart_content">
+          <div slot="chart_content" class="chart-container w-100 position-relative fixed_ratio">
           <component :is="my_component"  :chart_data="reports" :show_average="chart.average"
                      :only_show_dynamic_average="chart.only_average" :axis="chart.axis" :chart-name="chart.label"
                      aria-hidden="true"/>
@@ -165,15 +165,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "category": "Category",
-    "A": "Average"
-  },
-  "nl": {
-    "category": "Categorie",
-    "G": "Gemiddelde"
-  }
-}
-</i18n>

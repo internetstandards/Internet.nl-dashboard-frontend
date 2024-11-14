@@ -56,11 +56,11 @@
                     id="filter-input"
                     v-model="filter"
                     type="search"
-                    :placeholder="$t('type to filter')"
+                    :placeholder='$t("domain.list.domain-table.type to filter")'
                 ></b-form-input>
 
                 <b-input-group-append>
-                  <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t('Clear') }}</b-button>
+                  <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t("domain.list.domain-table.Clear") }}</b-button>
                 </b-input-group-append>
               </b-input-group>
             </b-form-group>
@@ -70,7 +70,7 @@
 
             <div class="float-left w-75" v-if="selected.length > 0">
               <b-input-group>
-                <v-select :options="tags" :inputId='"tagselect"' @search:blur="searched_with_no_result" v-model="selected_tag" class="w-75" taggable :placeholder="$t('select label')">
+                <v-select :options="tags" :inputId='"tagselect"' @search:blur="searched_with_no_result" v-model="selected_tag" class="w-75" taggable :placeholder='$t("domain.list.domain-table.select label")'>
                   <template v-slot:option="option">
                     <!-- Allow clicking on the tag to select it... -->
                     <tag :value="option.label" style="pointer-events: none; "/>
@@ -83,7 +83,7 @@
               </b-input-group>
             </div>
 
-            <b-button class="float-right normalbutton" variant="info" @click="$emit('update')">🔁<span class="sr-only">{{ $t('update domain list') }}</span></b-button>
+            <b-button class="float-right normalbutton" variant="info" @click="$emit('update')">🔁<span class="sr-only">{{ $t("domain.list.domain-table.update domain list") }}</span></b-button>
             <button class="border-danger float-right mr-2" @click="remove_urls" v-if="selected.length > 0">🗑️</button>
 
           </b-th>
@@ -115,19 +115,19 @@
       <template #cell(selected)="{ rowSelected }">
         <template v-if="rowSelected">
           <span aria-hidden="true">&check;</span>
-          <span class="sr-only">{{ $t('Selected') }}</span>
+          <span class="sr-only">{{ $t("domain.list.domain-table.Selected") }}</span>
         </template>
         <template v-else>
           <span aria-hidden="true">&nbsp;</span>
-          <span class="sr-only">{{ $t('Not selected') }}</span>
+          <span class="sr-only">{{ $t("domain.list.domain-table.Not selected") }}</span>
         </template>
       </template>
 
       <template #empty="">
-        <h4>{{ $t('Table empty') }}</h4>
+        <h4>{{ $t("domain.list.domain-table.Table empty") }}</h4>
       </template>
       <template #emptyfiltered="">
-        <h4>{{ $t('No filtered results') }}</h4>
+        <h4>{{ $t("domain.list.domain-table.No filtered results") }}</h4>
       </template>
 
       <template #cell(scannable)="data">
@@ -145,10 +145,10 @@
       <template #table-caption v-if="urls.length>0">
 
         <span v-if="filter">
-          {{$t('filtered pagination', [currentPage, Math.ceil(urls.length / perPage), visibleRows, urls.length])}}
+          {{$t("domain.list.domain-table.filtered pagination", [currentPage, Math.ceil(urls.length / perPage), visibleRows, urls.length])}}
         </span>
         <span v-else>
-          {{$t('pagination', [currentPage, Math.ceil(urls.length / perPage), urls.length])}}
+          {{$t("domain.list.domain-table.pagination", [currentPage, Math.ceil(urls.length / perPage), urls.length])}}
         </span>
 
       </template>
@@ -363,36 +363,3 @@ export default {
 
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "Domain": "Domain",
-    "tags": "Labels",
-    "type to filter": "-- type to filter",
-    "Clear": "Clear",
-    "select label": "select label",
-    "update domain list": "update domain list",
-    "Selected": "Selected",
-    "Not selected": "Not selected",
-    "Table empty": "No domains in this list yet... added domains will be displayed here.",
-    "No filtered results": "The filter yielded no results. You can only search for complete tags.",
-    "filtered pagination": "Page {0}/{1} of {2} filtered from {3} domains.",
-    "pagination": "Page {0}/{1} of {2} domains."
-  },
-  "nl": {
-    "Domain": "Domein",
-    "tags": "Labels",
-    "type to filter": "-- tik hier om te zoeken",
-    "Clear": "Wis",
-    "select label": "selecteer label",
-    "update domain list": "domeinlijst bijwerken",
-    "Selected": "Geslecteerd",
-    "Not selected": "Niet geselecteerd",
-    "Table empty": "Geen domeinen in deze lijst, domeinen die worden toegevoegd verschijnen hier...",
-    "No filtered results": "De zoekopdracht had geen resultaat. Let op: tags moeten volledig worden ingevoerd.",
-    "filtered pagination": "Pagina {0}/{1} van {2} zoekresultaten uit {3} domeinen.",
-    "pagination": "Pagina {0}/{1} van {2} domeinen."
-  }
-}
-</i18n>
