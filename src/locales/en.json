@@ -85,6 +85,9 @@
 			"refresh_now": "refresh data now",
 			"units": "seconds"
 		},
+		"core": {
+			"translated_by_ai": "This translation is performed using artificial intelligence, this may result in contextual mistakes or incorrect wording. Please get in touch to support an official translation. Please refer to the original English or Dutch texts in case of confusion. Our apologies in advance for any translation mistakes."
+		},
 		"footer": {
 			"copyright": "Copyright",
 			"disclosure": "Report vulnerability",
@@ -111,9 +114,10 @@
 			"loading": "Loading..."
 		},
 		"locale": {
-			"de": "Deutsch",
+			"ai_translated": "via AI",
+			"de": "Deutsch - 🤖KI",
 			"en": "English",
-			"fr": "Français",
+			"fr": "Français - 🤖IA",
 			"nl": "Nederlands"
 		},
 		"login": {

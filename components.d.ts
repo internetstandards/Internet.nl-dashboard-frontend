@@ -10,6 +10,7 @@ declare module 'vue' {
     AboutThisList: typeof import('./src/components/domains/list/AboutThisList.vue')['default']
     Account: typeof import('./src/components/account/Account.vue')['default']
     AddDomainsModal: typeof import('./src/components/domains/list/AddDomainsModal.vue')['default']
+    AITranslationMessage: typeof import('./src/components/AITranslationMessage.vue')['default']
     AppliedTags: typeof import('./src/components/reports/AppliedTags.vue')['default']
     Autorefresh: typeof import('./src/components/autorefresh.vue')['default']
     BAlert: typeof import('bootstrap-vue-next/components/BAlert')['BAlert']

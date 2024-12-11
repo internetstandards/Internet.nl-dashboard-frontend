@@ -23,6 +23,7 @@
           </router-view>
 
         </div>
+        <AITranslationMessage v-if="!['nl', 'en'].includes($i18n.locale)"/>
         <GithubMessage v-if="config.app.layout === 'internet_nl'"/>
       </div>
     </main>
@@ -59,6 +60,7 @@ import SiteMenu from './components/SiteMenu.vue'
 import {mapState} from 'pinia'
 import http from "@/httpclient";
 import GithubMessage from "@/components/GithubMessage.vue";
+import AITranslationMessage from "./components/AITranslationMessage.vue";
 
 export default {
 
@@ -116,6 +118,7 @@ export default {
   },
 
   components: {
+    AITranslationMessage,
     GithubMessage,
     SiteMenu
   },

@@ -1527,6 +1527,34 @@
 								</children>
 							</folder_node>
 							<folder_node>
+								<name>core</name>
+								<children>
+									<concept_node>
+										<name>translated_by_ai</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+								</children>
+							</folder_node>
+							<folder_node>
 								<name>footer</name>
 								<children>
 									<concept_node>
@@ -1940,6 +1968,29 @@
 							<folder_node>
 								<name>locale</name>
 								<children>
+									<concept_node>
+										<name>ai_translated</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
 									<concept_node>
 										<name>de</name>
 										<description/>

@@ -85,6 +85,9 @@
 			"refresh_now": "ververs gegevens nu",
 			"units": "s"
 		},
+		"core": {
+			"translated_by_ai": "Deze vertaling is uitgevoerd met behulp van kunstmatige intelligentie, dit kan leiden tot contextuele fouten of onjuiste bewoordingen. Neem contact op voor een officiële vertaling. Raadpleeg de originele Engelse of Nederlandse tekst in geval van verwarring. Bij voorbaat onze excuses voor eventuele vertaalfouten."
+		},
 		"footer": {
 			"copyright": "Auteursrecht",
 			"disclosure": "Kwetsbaarheid melden",
@@ -111,9 +114,10 @@
 			"loading": "Laden..."
 		},
 		"locale": {
-			"de": "Deutsch",
+			"ai_translated": "via AI",
+			"de": "Deutsch - 🤖KI",
 			"en": "English",
-			"fr": "Français",
+			"fr": "Français - 🤖IA",
 			"nl": "Nederlands"
 		},
 		"login": {

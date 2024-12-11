@@ -85,6 +85,9 @@
 			"refresh_now": "Daten jetzt aktualisieren",
 			"units": "Sekunden"
 		},
+		"core": {
+			"translated_by_ai": "Diese Übersetzung wurde mit Hilfe künstlicher Intelligenz erstellt, was zu kontextbezogenen Fehlern oder falschen Formulierungen führen kann. Bitte setzen Sie sich mit uns in Verbindung, um eine offizielle Übersetzung zu erhalten. Bei Unklarheiten beziehen Sie sich bitte auf den englischen oder niederländischen Originaltext. Wir entschuldigen uns im Voraus für etwaige Übersetzungsfehler."
+		},
 		"footer": {
 			"copyright": "Urheberrecht",
 			"disclosure": "Schwachstelle melden",
@@ -111,9 +114,10 @@
 			"loading": "Laden..."
 		},
 		"locale": {
-			"de": "Deutsch",
+			"ai_translated": "via AI",
+			"de": "Deutsch - 🤖KI",
 			"en": "English",
-			"fr": "Français",
+			"fr": "Français - 🤖IA",
 			"nl": "Nederlands"
 		},
 		"login": {
