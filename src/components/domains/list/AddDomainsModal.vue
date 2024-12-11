@@ -54,19 +54,19 @@
       </div>
     </template>
     <template #footer>
-      <b-button variant="secondary" @click="stop()">{{ $t("domain.list.add-domains.cancel") }}</b-button>
-      &nbsp;
       <template v-if="!loading">
-        <b-button variant="warning" @click="bulk_add_new()" :disabled="too_many_new_domains">
+        <b-button variant="success" @click="bulk_add_new()" :disabled="too_many_new_domains">
           {{ $t("domain.list.add-domains.ok") }}
         </b-button>
       </template>
       <template v-else>
-        <b-button variant="warning" disabled="disabled">
+        <b-button variant="success" disabled="disabled">
           <probe/>
           {{ $t("domain.list.add-domains.loading") }}
         </b-button>
       </template>
+      &nbsp;
+      <b-button variant="warning" @click="stop()">{{ $t("domain.list.add-domains.cancel") }}</b-button>
     </template>
   </b-modal>
 </template>

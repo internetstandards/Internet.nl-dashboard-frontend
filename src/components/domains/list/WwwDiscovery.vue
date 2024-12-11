@@ -7,7 +7,7 @@
         🔎 {{ $t("domain.www-discovery.scanning-done-click-reload") }}
       </b-button>
 
-      <b-button variant="success" size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" :disabled="loading" @click="visible=true;">
+      <b-button variant="success" size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" :disabled="loading" @click="make_visible()">
         🔎 {{ $t("domain.www-discovery.find-www-subdomains") }}
         <span v-if="state_changed_on">{{ $t("domain.www-discovery.last-scan-finished") }}</span></b-button>
     </template>
@@ -17,7 +17,8 @@
         {{ $t("domain.www-discovery.finding-www-subdomains") }}
       </b-button>
     </template>
-     <subdomain-discovery-modal :id="`subdomain_discovery_modal_${list_id}`" @ok="request(); visible=false;" @cancel="visible=false;" v-model="visible" :show="visible" />
+
+   <subdomain-discovery-modal :id="`subdomain_discovery_modal_${list_id}`" v-if="modal_visible" @close="modal_visible=false" @ok="request(); modal_visible=false"/>
   </span>
 </template>
 
@@ -45,7 +46,7 @@ export default {
       domains_discovered: {},
       success_while_visible: false,
 
-      visible: false,
+      modal_visible: false,
     }
   },
   beforeDestroy() {
@@ -56,13 +57,20 @@ export default {
   },
   mounted() {
     // todo: recheck every minute or so until the state is finished|error|cancelled
-    // note: do not automatically reload lists as a side effect, might be annoying when someones edits just disappear.
+    // note: do not automatically reload lists as a aside effect, might be annoying when someones edits just disappear.
     this.status()
   },
   computed: {
     is_scanning() {return ['requested', 'scanning'].includes(this.state)}
   },
   methods: {
+    make_visible() {
+      this.modal_visible = true;
+      this.modal_visible = true;
+      this.modal_visible = true;
+      this.modal_visible_2 = "true";
+      console.log('show modal');
+    },
     reset() {
       this.state = 'finished';
       this.state_message = '';
@@ -85,6 +93,7 @@ export default {
       this.reset()
       this.status()
       this.visible = true;
+      console.log('tada')
     },
     status() {
       this.loading = true;

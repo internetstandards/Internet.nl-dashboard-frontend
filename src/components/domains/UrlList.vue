@@ -73,7 +73,7 @@ h2 {
         <b-button variant="success" @click="visible.discover_subdomains = true" v-if="store.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;
         <b-button variant="success" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button> &nbsp;
         <!-- <button class="border-success" @click="get_urls()">⬆️ {{ $t("button.reload") }}</button> -->
-        <SubdomainDiscovery v-if="urls.length" :list_id="list.id" @finished="get_urls"/>
+        <WwwDiscovery v-if="urls.length" :list_id="list.id" @finished="get_urls"/>
       </div>
 
       <template v-if="urls.length">
@@ -121,13 +121,13 @@ import DomainTable from "@/components/domains/DomainTable.vue";
 import autorefresh from '@/components/autorefresh.vue'
 import Probe from '@/components/probe.vue'
 import DiscoverSubdomains from "@/components/domains/list/DiscoverSubdomainsModal.vue";
-import SubdomainDiscovery from "@/components/domains/list/WwwDiscovery.vue";
+import WwwDiscovery from "@/components/domains/list/WwwDiscovery.vue";
 
 import { dashboardStore } from '@/dashboardStore'
 
 export default {
   components: {
-    SubdomainDiscovery,
+    WwwDiscovery,
     DiscoverSubdomains,
 
     DomainTable,
