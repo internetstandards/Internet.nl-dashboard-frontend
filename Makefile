@@ -21,20 +21,12 @@ vue-cli: | $(vue-cli)
 run: vue-cli
 	npm run dev
 
-# run-csp: vue-cli
-# 	npm run serve -- --mode production
-
-build-gui-staging: vue-cli
-	npm run build -- --mode staging
-
-build-gui-production: vue-cli
-	npm run build -- --mode production
-
-build-gui-deploy: vue-cli
+# This option takes the env.deploy file and applies it during build.
+build: vue-cli
 	npm run build -- --mode deploy
 
-build: vue-cli
-	npm run build
+build-local: vue-cli
+	npm run build -- --mode development
 
 pull_image:
 	# optimize build by caching previously build image
