@@ -3,19 +3,19 @@
   <div>
     <content-block>
       <h1>
-        <b-icon icon="person-circle"/>
+        <i-bi-person-circle/>
         {{ $t("account.page.title") }}
       </h1>
       <p>{{ $t("account.page.intro") }}</p>
       <!-- use lazy so that the visiblemetrics is updated when that's visited, instead of manually reloading. -->
       <b-tabs content-class="mt-3" lazy>
         <b-tab :active="active === 'notifications' || active === '' || active === undefined">
-          <span slot="title">📨 {{ $t("account.page.notifications") }}</span>
+          <template #title>📨 {{ $t("account.page.notifications") }}</template>
           <notification-settings></notification-settings>
         </b-tab>
 
         <b-tab :active="active === 'authentication'">
-          <span slot="title">📱 {{ $t("account.page.authentication_options") }}</span>
+          <template #title>📱 {{ $t("account.page.authentication_options") }}</template>
 
           <span v-if="$route.query.password_change_success">
 
@@ -44,12 +44,12 @@
         </b-tab>
 
         <b-tab :active="active === 'web_metrics'">
-          <span slot="title"> <scan-type-icon type="web"></scan-type-icon> {{ $t("account.page.visible_metrics_web") }}</span>
+          <template #title> <scan-type-icon type="web"></scan-type-icon> {{ $t("account.page.visible_metrics_web") }}</template>
           <VisibleMetrics report_type="web" :key="'a'"/>
         </b-tab>
 
         <b-tab :active="active === 'mail_metrics'">
-          <span slot="title"> <scan-type-icon type="mail"></scan-type-icon> {{ $t("account.page.visible_metrics_mail") }}</span>
+          <template #title> <scan-type-icon type="mail"></scan-type-icon> {{ $t("account.page.visible_metrics_mail") }}</template>
           <VisibleMetrics report_type="mail" :key="'b'"/>
         </b-tab>
 
@@ -59,9 +59,9 @@
 </template>
 
 <script>
-import NotificationSettings from "./NotificationSettings"
-import VisibleMetrics from './VisibleMetrics'
-import ScanTypeIcon from "@/components/ScanTypeIcon";
+import NotificationSettings from "@/components/account/NotificationSettings.vue"
+import VisibleMetrics from '@/components/account/VisibleMetrics.vue'
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
 
 export default {
   components: {ScanTypeIcon, NotificationSettings, VisibleMetrics},

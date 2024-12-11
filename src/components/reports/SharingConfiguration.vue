@@ -2,8 +2,8 @@
 <template>
   <content-block class="do-not-print" v-if="report !== undefined">
     <collapse-panel :title='`${$t("report.sharing_configuration.title", [report.id, sharing_status(report["is_publicly_shared"])])} `'
-                    class="do-not-print">
-      <div slot="content">
+                    class="do-not-print" variant="warning">
+      <template #content>
         <template v-if="report['is_publicly_shared']">
           <b-row>
             <b-col>
@@ -20,10 +20,9 @@
                     Yet, the link needs to be complete, otherwise it's hard to use it when sharing.-->
                     <b-form-input
                         id="share-code"
-                        :value="`https://${window.location.host}/#/shared/report/${report['public_report_code']}`"
-                        maxlength="64"
-                        :description="report['public_share_code'] ? 'bla' : 'bla'"
-                        :disabled="true"
+                        :value="`${$baseUrl}/report/${report['public_report_code']}`"
+                        disabled
+                        v-model="share_code"
                     ></b-form-input>
                     <template #append>
                       <b-input-group-text>
@@ -44,8 +43,8 @@
                 </template>
                 <br>
                 <br>
-                <button size="lg" @click="update_report_code">🔁 {{ $t("report.sharing_configuration.change_link") }}</button> &nbsp;
-                <button size="lg" @click="unshare">🔴 {{ $t("report.sharing_configuration.stop_sharing") }}</button>
+                <b-button variant="warning" size="lg" @click="update_report_code">🔁 {{ $t("report.sharing_configuration.change_link") }}</b-button> &nbsp;
+                <b-button variant="warning" size="lg" @click="unshare">🔴 {{ $t("report.sharing_configuration.stop_sharing") }}</b-button>
               </p>
             </b-col>
             <b-col>
@@ -65,9 +64,9 @@
                 </b-form-group>
                 <br>
 
-                <button @click="update_share_code">{{ $t("report.sharing_configuration.set_password") }}</button> &nbsp;
-                <button @click="remove_share_code" v-if="report['public_share_code']">{{ $t("report.sharing_configuration.remove_password") }}
-                </button>
+                <b-button variant="warning" @click="update_share_code">{{ $t("report.sharing_configuration.set_password") }}</b-button> &nbsp;
+                <b-button variant="warning" @click="remove_share_code" v-if="report['public_share_code']">{{ $t("report.sharing_configuration.remove_password") }}
+                </b-button>
               </p>
             </b-col>
 
@@ -79,10 +78,10 @@
 
           <b-row>
             <b-col class="w-50">
-              <button variant="warning" @click="share" class="mb-4">🟢 {{ $t("report.sharing_configuration.share_to_anyone_with_url") }} {{
+              <b-button variant="warning" @click="share" class="mb-4">🟢 {{ $t("report.sharing_configuration.share_to_anyone_with_url") }} {{
                   report['public_share_code'] ? $t("report.sharing_configuration.and_password") : ''
                 }}
-              </button>
+              </b-button>
 
             </b-col>
 
@@ -109,13 +108,13 @@
         </template>
         <loading :loading="loading"/>
         <server-response :response="response" v-if="response" :message="$t('report.sharing_configuration.' + response.message)"></server-response>
-      </div>
+      </template>
     </collapse-panel>
   </content-block>
 </template>
 <script>
 import http from "@/httpclient";
-import CollapsePanel from '@/components/CollapsePanel'
+import CollapsePanel from '@/components/CollapsePanel.vue'
 
 
 export default {
@@ -132,11 +131,17 @@ export default {
     }
   },
 
+  computed: {
+    share_code() {
+      let baseUrl = import.meta.env.VITE_VUE_APP_DJANGO_PATH;
+      return `${baseUrl}/report/${this.report['public_report_code']}`
+    },
+  },
   methods: {
     sharing_status(status) {
       if (status)
-        return `🟢 ${this.$i18n.t("shared")}`
-      return `🔴 ${this.$i18n.t("not_shared")}`
+        return `🟢 ${this.$i18n.t("report.sharing_configuration.shared")}`
+      return `🔴 ${this.$i18n.t("report.sharing_configuration.not_shared")}`
     },
     share() {
       this.loading = true;

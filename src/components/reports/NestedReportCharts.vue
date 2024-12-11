@@ -7,28 +7,29 @@
 <template>
   <div>
     <template v-for="chart in charts_to_render">
-      <div v-if="chart.level === 1" :key="chart.axis.join('.') + 'a'" style="overflow: scroll">
+      <div v-if="chart.level === 1" :key="chart.axis.join('.') + 'a'" style="overflow: scroll" class="mb-3">
+        <!-- Do not show canvas chart element in accessibility, use the table below -->
         <div class="chart-container w-100 position-relative fixed_ratio">
-          <!-- Do not show canvas chart element in accessibility, use the table below -->
           <component :is="my_component" :chart_data="reports" :show_average="chart.average" :axis="chart.axis"
                      chart-name="overall" aria-hidden="true"/>
-          <b-table-simple striped hover small responsive v-if="$store.state.rendered_chart_to_table['overall'] !== undefined">
+
+          <b-table-simple striped hover small responsive v-if="rendered_chart_to_table['overall'] !== undefined">
             <b-thead>
               <b-tr>
                 <b-th>{{ $t("report.nested-report-charts.category") }}</b-th>
-                <b-th v-for="xAxis in $store.state.rendered_chart_to_table['overall']['datasets']" :key="xAxis.label + 'f'">
+                <b-th v-for="xAxis in rendered_chart_to_table['overall']['datasets']" :key="xAxis.label + 'f'">
                   {{ $t(xAxis.label) }}
                 </b-th>
               </b-tr>
             </b-thead>
             <b-tbody>
 
-              <b-tr v-for="(yAxis, yIndex) in $store.state.rendered_chart_to_table['overall']['labels']"
+              <b-tr v-for="(yAxis, yIndex) in rendered_chart_to_table['overall']['labels']"
                     :key="yAxis[0] + 'g'">
                 <b-td style="width: 20%">
                   {{ $t(yAxis[0]) }}
                 </b-td>
-                <b-td v-for="(value, index) in $store.state.rendered_chart_to_table['overall']['datasets']"
+                <b-td v-for="(value, index) in rendered_chart_to_table['overall']['datasets']"
                       :key="`${yIndex}${index}h`">
                   {{ value["data"][yIndex] }}%
                 </b-td>
@@ -36,54 +37,61 @@
             </b-tbody>
           </b-table-simple>
 
-        </div>
+        </div>-
       </div>
       <div v-else class="not-on-new-page" :key="chart.axis.join('.') + 'b'">
+        <!-- Do not show canvas chart element in accessibility, use the table below -->
+        <!-- There is a slight challenge making unique keys for ths row. Some axis might be the same per category or so. Fix this with a random number -->
+
         <chart-collapse-panel :title="chart.label" :level="chart.level" >
-          <!-- Do not show canvas chart element in accessibility, use the table below -->
-          <div slot="chart_content" class="chart-container w-100 position-relative fixed_ratio">
+
+          <template #chart_content>
+            <div class="chart-container w-100 position-relative fixed_ratio">
           <component :is="my_component"  :chart_data="reports" :show_average="chart.average"
                      :only_show_dynamic_average="chart.only_average" :axis="chart.axis" :chart-name="chart.label"
                      aria-hidden="true"/>
-          <b-table-simple striped hover small responsive v-if="$store.state.rendered_chart_to_table[chart.label] !== undefined">
+          <b-table-simple striped hover small responsive v-if="rendered_chart_to_table[chart.label] !== undefined">
             <b-thead>
               <b-tr>
                 <b-th></b-th>
-                <b-th v-for="xAxis in $store.state.rendered_chart_to_table[chart.label]['datasets']" :key="xAxis.label + 'c'">
+                <b-th v-for="xAxis in rendered_chart_to_table[chart.label]['datasets']" :key="xAxis.label + 'c'">
                   {{ $t(xAxis.label) }}
                 </b-th>
               </b-tr>
             </b-thead>
             <b-tbody>
-              <!-- There is a slight challenge making unique keys for ths row. Some axis might be the same per category or so. Fix this with a random number -->
-              <b-tr v-for="(yAxis, yIndex) in $store.state.rendered_chart_to_table[chart.label]['labels']"
+
+              <b-tr v-for="(yAxis, yIndex) in rendered_chart_to_table[chart.label]['labels']"
                     :key="yAxis[0] + Math.floor(Math.random() * 100000000)">
                 <b-td style="width: 20%">
                   {{ $t(yAxis[0]) }}
                 </b-td>
-                <b-td v-for="(value, index) in $store.state.rendered_chart_to_table[chart.label]['datasets']"
+                <b-td v-for="(value, index) in rendered_chart_to_table[chart.label]['datasets']"
                       :key="`${yIndex}${index}e`">
                   {{ value["data"][yIndex] }}%
                 </b-td>
               </b-tr>
             </b-tbody>
           </b-table-simple>
-
           </div>
+          </template>
 
         </chart-collapse-panel>
+
       </div>
     </template>
   </div>
 </template>
 
 <script>
-import CumulativePercentageBarChart from './../charts/render-cumulative-percentage-bar-chart'
-import PercentageBarChart from './../charts/render-percentage-bar-chart'
-import ChartCollapsePanel from '@/components/charts/ChartCollapsePanel'
-import report_mixin from "@/components/reports/report_mixin";
-import VisibleFields from "@/components/reports/VisibleFields";
-import CollapsePanel from '@/components/CollapsePanel'
+import CumulativePercentageBarChart from './../charts/render-cumulative-percentage-bar-chart.vue'
+import PercentageBarChart from './../charts/render-percentage-bar-chart.vue'
+import ChartCollapsePanel from '@/components/charts/ChartCollapsePanel.vue'
+import report_mixin from "@/components/reports/report_mixin.vue";
+import VisibleFields from "@/components/reports/VisibleFields.vue";
+import CollapsePanel from '@/components/CollapsePanel.vue'
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
 
 export default {
   mixins: [report_mixin, VisibleFields, CollapsePanel],
@@ -162,6 +170,7 @@ export default {
       // remove all charts that do not have any axis, as that would result in an empty chart.
       return charts.filter(chart => chart.axis.length > 0);
     },
+    ...mapState(dashboardStore, ['rendered_chart_to_table']),
   }
 }
 </script>

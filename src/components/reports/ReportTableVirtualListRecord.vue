@@ -1,7 +1,7 @@
 <template>
   <tr :class="index % 2 === 0 ? 'stripe' : 'plain'" style="display: inline-block; width: 100%;">
     <template v-if="!source.endpoints.length">
-      <td>
+      <td class="px-78" style="white-space: nowrap">
         -
       </td>
       <td><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
@@ -22,7 +22,7 @@
             <img :src='`/static_frontend/images/report_comparison_${score_comparison(source)}.png`'
                  v-if="score_comparison(source)" />
           </span>
-          <span class="visuallyhidden"> {{ $t("report.virtual-list-record.link_to_report", {'url': source.url}) }}</span>
+          <span class="visually-hidden"> {{ $t("report.virtual-list-record.link_to_report", {'url': source.url}) }}</span>
         </a>
       </td>
       <td class="px-225"><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
@@ -31,9 +31,9 @@
         <td class="testresultcell px-100"
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
-            v-b-tooltip.hover="{ customClass: 'my-tooltip-class', html: true }" :title="make_tooltip(source, category_name)"
+
           >
-          <span :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
+          <span v-b-tooltip :title="make_tooltip(source, category_name)" :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
             <template v-if="category_comparison(category_name, source)">
               {{$t("report.virtual-list-record.results.comparison." + category_comparison(category_name, source))}}
             </template>
@@ -47,10 +47,8 @@
         <td class="testresultcell px-56"
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
-            v-b-tooltip.hover="{ customClass: 'my-tooltip-class', html: true }" :title="make_tooltip(source, category_name)"
         >
-
-          <span :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
+          <span  v-b-tooltip :title="make_tooltip(source, category_name)" :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
             {{detail_value_simple_value(category_name, source)}}
             <template v-if="detail_comparison(category_name, source)">
               {{$t("report.virtual-list-record.results.comparison." + detail_comparison(category_name, source))}}
@@ -67,7 +65,10 @@
 
 <script>
 
-import report_mixin from "@/components/reports/report_mixin";
+import report_mixin from "@/components/reports/report_mixin.vue";
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
+
 
 export default {
   name: "ReportTableVirtualListRecord",
@@ -333,23 +334,26 @@ export default {
         }
       });
       // console.log("Preferred fields:         " + preferred_fields)
-      let visible_preferred_fields = preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
+      let visible_preferred_fields = preferred_fields.filter(field => this.visible_metrics[field].visible)
       // console.log("Visible preferred fields: " + visible_preferred_fields)
       return visible_preferred_fields
     },
+    ...mapState(dashboardStore, ['visible_metrics']),
   }
 }
 </script>
 
 <style scoped>
+
+
+#___BVN__ID__v-0__popover____placeholder {
+  display: none;
+}
+
 .my-tooltip-class::v-deep .tooltip-inner {
   min-width: 400px !important;
   width: 400px !important;
   text-align: left;
-}
-
-.my-tooltip-class::v-deep .tooltip-inner pre {
-  color: var(--light);
 }
 
 .logo_image {

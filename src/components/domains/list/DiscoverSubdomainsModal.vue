@@ -1,9 +1,16 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
+<style scoped>
+.form-check-inline {
+  /* cant get stuff per line otherwise... this is a bug in the default layout */
+  display: block !important
+}
+
+</style>
 <template>
-  <b-modal :visible="visible" @hidden="close()" header-bg-variant="info" header-text-variant="light" no-fade
-           scrollable size="lg">
-    <h3 slot="modal-title">📝 {{ $t("domain.discover-subdomains.title") }}</h3>
-    <div slot="default" style="min-height: 50vh;">
+  <b-modal @hidden="close()" header-bg-variant="info" header-text-variant="light" no-fade scrollable size="lg">
+    <template #header><h4>📝 {{ $t("domain.discover-subdomains.title") }}</h4></template>
+    <template #default>
+      <div style="min-height: 50vh;">
 
       <label for="domain_name">{{ $t("domain.discover-subdomains.find_subdomains_header", [list.name]) }}:</label><br>
 
@@ -12,15 +19,15 @@
 
       <b-form-input id="domain_name" type="text" maxlength="120" v-model="input_domain" debounce="400" :placeholder='$t("domain.discover-subdomains.enter_domain_name")'></b-form-input>
 
-      <b-input-group-append>
-        <b-button class="lastbutton" role="link" @click="find_suggestions()" style="min-width: 120px">🔎 {{ $t("domain.discover-subdomains.search") }} <b-spinner variant="info" label="Spinning" small v-if="loading_suggestions"/></b-button>
-      </b-input-group-append>
+
+      <b-button class="lastbutton" role="link" @click="find_suggestions()" style="min-width: 120px">🔎 {{ $t("domain.discover-subdomains.search") }} <b-spinner variant="info" label="Spinning" small v-if="loading_suggestions"/></b-button>
+
     </b-input-group>
       <p class="mb-2">{{$t("domain.discover-subdomains.will_be_added_to", [list.name])}}</p>
 
       <server-response :response="response" v-if="response" :message='$t("domain.discover-subdomains." + response.message)'/>
 
-      <b-alert variant="info" show v-if="response.success === true" dismissible>
+      <b-alert variant="info" :model-value="true" v-if="response.success === true" dismissible>
         <h4>{{ $t("domain.discover-subdomains.status_report") }}</h4>
         <li v-if="response.data.duplicates_removed">
           {{ $t("domain.discover-subdomains.removed_n_duplicates", [response.data.duplicates_removed]) }}
@@ -36,7 +43,7 @@
           {{ $t("domain.discover-subdomains.domains_found", [suggestions.length]) }}, <a @click="dive_into_archive">{{$t("domain.discover-subdomains.dive_into_archive", [period + this.extend_period])}}</a>
         </p>
 
-      <b-button @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button><br><br>
+      <b-button variant="success" @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button><br><br>
 
       <b-button id="select_all" @click="toggle_all" v-model="select_all" size="sm">{{ $t("domain.discover-subdomains.select_all") }}</b-button><b-button size="sm" @click="clear_selection" class="ml-4">{{ $t("domain.discover-subdomains.clear_selection") }}</b-button>
       <br><br>
@@ -48,32 +55,32 @@
         v-model="selected_suggestions"
         name="flavour-2"
       >
-          <b-form-checkbox :value="suggestion" style="width: 100%"
-                           v-for="suggestion in suggestions" :key="`${suggestion}`">
-              {{suggestion}}
+          <b-form-checkbox :value="suggestion" v-for="suggestion in suggestions" :key="`${suggestion}`" style="display: block">
+            {{suggestion}}
           </b-form-checkbox>
         </b-form-checkbox-group>
       </p>
 
-      <b-button @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button>
+      <b-button variant="success" @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button>
 
       </div>
 
-
-    </div>
-    <div slot="modal-footer">
-      <button class="modal-default-button altbutton" @click="cancel()">
+      </div>
+    </template>
+    <template #footer>
+      <b-button variant="secondary" @click="cancel()">
         {{ $t("domain.discover-subdomains.cancel") }}
-      </button> &nbsp;
-      <button class="modal-default-button defaultbutton" @click="close()">
+      </b-button> &nbsp;
+      <b-button variant="warning" @click="close()">
         {{ $t("domain.discover-subdomains.ok") }}
-      </button>
-    </div>
+      </b-button>
+    </template>
   </b-modal>
 </template>
 
 <script>
 import http from "@/httpclient";
+import { dashboardStore } from '@/dashboardStore'
 
 export default {
   name: "discover-subdomains",
@@ -81,9 +88,7 @@ export default {
     list: {
       type: Object,
     },
-    visible: {
-      type: Boolean,
-    },
+
     prefill_input: {
       type: String,
       default: "",
@@ -99,8 +104,12 @@ export default {
       input_domain: "",
       period: 370,
 
+      visible: false,
+
       loading_suggestions: false,
       loading_add_suggestions: false,
+
+      store: dashboardStore(),
     }
   },
   methods: {
@@ -119,8 +128,8 @@ export default {
       this.select_all = false;
 
       this.input_domain = "";
-      this.period = this.$store.state.config.app.subdomain_suggestion.default_period;
-      this.extend_period = this.$store.state.config.app.subdomain_suggestion.default_extend_period;
+      this.period = this.store.config.app.subdomain_suggestion.default_period;
+      this.extend_period = this.store.config.app.subdomain_suggestion.default_extend_period;
 
       this.loading_suggestions = false;
       this.loading_add_suggestions = false;
@@ -177,15 +186,15 @@ export default {
       // make sure nothing is selected that is hidden, that would not be nice.
       this.selected_suggestions = [];
       this.find_suggestions();
-      this.period = this.$store.state.config.app.subdomain_suggestion.default_period;
+      this.period = this.store.config.app.subdomain_suggestion.default_period;
     },
 
   },
   mounted: function () {
     this.response = {};
 
-    this.period = this.$store.state.config.app.subdomain_suggestion.default_period;
-    this.extend_period = this.$store.state.config.app.subdomain_suggestion.default_extend_period;
+    this.period = this.store.config.app.subdomain_suggestion.default_period;
+    this.extend_period = this.store.config.app.subdomain_suggestion.default_extend_period;
 
 
     // make it super easy to add subdomains from a certain domain...

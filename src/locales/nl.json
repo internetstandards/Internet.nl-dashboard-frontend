@@ -138,6 +138,7 @@
 			"admin": "Beheer",
 			"authentication": "Authenticatie",
 			"domains": "Domeinen",
+			"domains_upload": "Domeinen Uploaden",
 			"home": "Begin",
 			"log_in": "Inloggen",
 			"log_off": "Uitloggen",
@@ -222,6 +223,7 @@
 			"select_all": "Selecteer alles",
 			"status_report": "Statusoverzicht",
 			"title": "Subdomeinen Zoeker",
+			"undefined": "Ongedefinieerd",
 			"will_be_added_to": "geselecteerde subdomeinen worden toegevoegd aan de lijst genaamd {0}."
 		},
 		"edit-domain": {
@@ -292,6 +294,7 @@
 				"last_scan_started": "Laatste scan",
 				"latest_report": "Actueelste rapportage",
 				"Listed on sharing page": "en ook op deze openbare pagina",
+				"mail": "mail",
 				"next_scheduled_scan": "Volgende ingeplande scan",
 				"Not automatically shared": "Niet automatisch gedeeld",
 				"not_scanned_before": "Niet eerder gescand",
@@ -303,6 +306,7 @@
 				"sharing": "Delen",
 				"still_running": "loopt nog",
 				"type_of_scan_performed": "Soort scan",
+				"web": "web",
 				"with share code": "met deelcode"
 			},
 			"upload": {
@@ -396,7 +400,12 @@
 				}
 			}
 		},
+		"table": {
+			"domain": "Domein",
+			"tags": "Labels"
+		},
 		"urllist": {
+			"add domains using": "Domeinen toevoegen met",
 			"button": {
 				"add domains using": "Domeinen toevoegen via",
 				"add_domains": "Vrije tekst",
@@ -1374,6 +1383,9 @@
 			"test_title": "Iconen per testcategorie",
 			"test_warning": "Waarschuwing: gezakt voor tenminste één AANBEVOLEN subtest ⇒ volledige score voor testcategorie "
 		},
+		"mail": {
+			"title": "Mail"
+		},
 		"rating": {
 			"pct_error_in_test": "testfout",
 			"pct_high": "gezakt",
@@ -1382,6 +1394,9 @@
 			"pct_not_applicable": "niet van toepassing",
 			"pct_not_testable": "niet testbaar",
 			"pct_ok": "geslaagd"
+		},
+		"web": {
+			"title": "Web"
 		}
 	},
 	"public-reports": {
@@ -1646,6 +1661,7 @@
 				"configuration_error": "configuratie onjuist ingesteld, neem contact op met internet.nl",
 				"created report": "rapport gemaakt",
 				"creating report": "rapport wordt gemaakt",
+				"credential_error": "API authenticatie mislukt",
 				"discovered endpoints": "mogelijke scans bekend",
 				"discovering endpoints": "inventariseren mogelijke scans",
 				"error": "Onbekende fout opgetreden, neem contact op met internet.nl",
@@ -1695,6 +1711,7 @@
 			},
 			"id": "scan #",
 			"last_check": "Laatste status update",
+			"list": "Lijst",
 			"message": "Status",
 			"progress": {
 				"cancelled": "Scan was gestopt",
@@ -1742,7 +1759,7 @@
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Dashboard",
 			"email": "Email",
-			"email_placeholder": "email@",
+			"email_placeholder": "email{'@'}",
 			"incomplete_form_submitted": "Het formulier is niet volledig ingevoerd, vul de ontbrekende velden in en probeer opnieuw.",
 			"incorrect_captcha": "Antwoord op de controlevraag om geautomatiseerde inschrijvingen tegen te gaan is niet juist beantwoord. Beantwoord de vraag en probeer opnieuw.",
 			"intended_usage_frequency": "Verwacht verbruik en frequentie",
@@ -1790,7 +1807,7 @@
 			"note_link": "Bekijk het internet.nl project op GitHub om te beginnen.",
 			"procedure_description": "Na formele goedkeuring door de stuurgroep worden je gebruikersnaam en gebruiksinstructies verstuurd naar het opgegeven e-mail adres. Het wachtwoord wordt verstuurd naar het opgegeven mobiele nummer. Bekijk ons <a href=\"https://internet.nl/privacy/\">privacy statement</a> om te lezen hoe we omgaan met deze gegevens.",
 			"procedure_title": "Procedure voor het uitgeven van inloggegevens",
-			"support_description": "Voor vragen over (het gebruik van) de API of hte dashboard, stuur een e-mail naar <a href=\"mailto:vraag@internet.nl\">vraag@internet.nl</a>",
+			"support_description": "Voor vragen over (het gebruik van) de API of hte dashboard, stuur een e-mail naar <a href=\"mailto:vraag{'@'}internet.nl\">vraag{'@'}internet.nl</a>",
 			"support_title": "Ondersteuning"
 		}
 	},
@@ -1805,7 +1822,7 @@
 			"introduction": "Set up two factor authentication for your account using One Time Passwords.",
 			"title": "Two factor authentication"
 		},
-		"contact_information": "Om gebruik te maken van het dashboard is een account nodig. Vraag deze aan via: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
+		"contact_information": "Om gebruik te maken van het dashboard is een account nodig. Vraag deze aan via: <a href='mailto:vraag{'@'}internet.nl?subject=dashboard%20access%20request'>vraag{'@'}internet.nl</a>",
 		"export_spreadsheet": {
 			"caption": "Het spreadsheet kan ook worden geopend in andere programma's, zoals in Numbers in deze afbeelding. Hierop is net als op de tabel te zien welk domein, de score, een link naar de internet.nl site met alle metingen en de uitslag per meting",
 			"introduction": "Een rapport kan worden geëxporteerd naar Excel, Libre Office en kommagescheiden tekst. De Excel spreadsheet bevat ook extra berekeningen per kolom.",
@@ -1854,6 +1871,7 @@
 		},
 		"title": "Internet.nl dashboard rondleiding"
 	},
+	"undefined": "Ongedefinieerd",
 	"urllist": {
 		"automated_scan_frequency": {
 			"disabled": "Niet automatisch herhalen",

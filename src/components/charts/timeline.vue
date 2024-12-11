@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import TimeLineChart from './../charts/render-line-chart'
-import DownloadData from './../charts/DownloadData'
+import TimeLineChart from './../charts/render-line-chart.vue'
+import DownloadData from './../charts/DownloadData.vue'
 // where do normal reports get theri data from? from a mixin? I mean? timeline graph is just 1 graph right?
 import http from "@/httpclient";
 

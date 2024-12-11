@@ -4,7 +4,7 @@
 </template>
 <script>
 
-import SharedReport from "@/components/reports/SharedReport";
+import SharedReport from "@/components/reports/SharedReport.vue";
 export default {
   components: {SharedReport},
   data() {
@@ -13,7 +13,7 @@ export default {
     }
   },
   mounted() {
-    let router_params = this.$router.history.current.params;
+    let router_params = this.$route.params;
     // the route to this component can determine what is shown
     this.requested_report_ids = [router_params.report, router_params.compare_with].filter(Boolean);
   },

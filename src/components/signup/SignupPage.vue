@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import SignupForm from "@/components/signup/SignupForm";
+import SignupForm from "@/components/signup/SignupForm.vue";
 export default {
   name: "SignupPage",
   components: {SignupForm}

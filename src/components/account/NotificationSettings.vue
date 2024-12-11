@@ -39,7 +39,7 @@
           <b-form-select-option value="nl">{{ $t("account.notifications.nl") }}</b-form-select-option>
         </b-form-select>
 
-        <button @click="save">{{ $t("account.notifications.save") }}</button>
+        <b-button variant="warning" @click="save">{{ $t("account.notifications.save") }}</b-button>
       </div>
 </template>
 

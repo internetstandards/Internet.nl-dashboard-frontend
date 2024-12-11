@@ -157,6 +157,11 @@ div.rotate > span {
 
 
 #report-template .testresultcell span {
+  display: none; /* This is a fix for popups that inject a span after every usage! */
+}
+
+ /* first-of-type: This is a fix for popups that inject a span after every usage! */
+#report-template .testresultcell span:first-of-type {
   background-size: 1.125em 1.125em;
   background-repeat: no-repeat;
   /**
@@ -216,56 +221,69 @@ div.rotate > span {
 
 .category_passed {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.svg");
+  background-size: cover;
 }
 
 .passed {
   background-image: url("/static_frontend/images/vendor/internet_nl/li-shield-ok.svg");
+  background-size: cover;
 }
 
 .category_failed {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-error.svg");
+  background-size: cover;
 }
 
 .failed {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-error.svg");
+  background-size: cover;
 }
 
 .warning {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-warning.svg");
+  background-size: cover;
 }
 
 .category_info {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg");
+  background-size: cover;
 }
 
 .category_unknown {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-check.svg");
+  background-size: cover;
 }
 
 
 .category_warning {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-circle-warning.svg");
+  background-size: cover;
 }
 
 .category_error {
   background-image: url("/static_frontend/images/vendor/internet_nl/probe-error.svg");
+  background-size: cover;
 }
 
 .info {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-info.svg");
+  background-size: cover;
 }
 
 /* First name was old internet.nl v1 api, second is v2 api.*/
 .good_not_tested {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-question-mark.svg");
+  background-size: cover;
 }
 
 .error_in_test, .error, .not_testable, .unreachable, .untestable {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested-bolt.svg");
+  background-size: cover;
 }
 
 .not_applicable, .not_tested, .no_mx {
   background-image: url("/static_frontend/images/vendor/internet_nl/icon-not-tested.svg");
+  background-size: cover;
 }
 
 .compared_with_next_report_neutral:before {
@@ -343,12 +361,14 @@ div.rotate > span {
     <differences-to-current-list :report_id="reports[0].id" v-if="load_comparison_with_current" />
 
     <collapse-panel :title='$t("report.report-table-virtual-list.icon_legend.title")' class="do-not-print">
-      <div slot="content">
-        <report-table-legend />
-      </div>
+      <template #content>
+        <b-alert variant="info" :model-value="true">
+          <report-table-legend />
+        </b-alert>
+      </template>
     </collapse-panel>
 
-    <div class="start-on-new-page position-relative">
+    <div class="start-on-new-page position-relative pt-3">
       <div id="report-table"></div>
 
 
@@ -368,7 +388,7 @@ div.rotate > span {
               selected_category: this.selected_category,
             }"
           >
-            <div slot="header">
+            <template #header>
 
 
         <table class="table table-striped" style="position: absolute;">
@@ -428,25 +448,25 @@ div.rotate > span {
         </thead>
 
         <tbody class="gridtable">
-        <template>
+
           <!-- Zoom buttons for accessibility -->
           <tr class="summaryrow">
             <td colspan="2" class="sticky_search">
-              <label class="visuallyhidden" for="url_filter">{{ $t("report.report-table-virtual-list.report.url_filter") }}</label>
+              <label class="visually-hidden" for="url_filter">{{ $t("report.report-table-virtual-list.report.url_filter") }}</label>
               <b-input debounce="200" type="text" v-model="url_filter" id="url_filter"
                        :placeholder='$t("report.report-table-virtual-list.report.url_filter")'></b-input>
-              <p class="visuallyhidden">{{ $t("report.report-table-virtual-list.report.zoom.explanation") }}</p>
+              <p class="visually-hidden">{{ $t("report.report-table-virtual-list.report.zoom.explanation") }}</p>
             </td>
             <template v-if="['web', 'mail'].includes(selected_category)">
               <td
                   v-for="category_name in relevant_categories_based_on_settings"
                   class="sticky_search px-100" :key="category_name">
-                <button @click="select_category(category_name)">
+                <b-button variant="warning" @click="select_category(category_name)">
                   {{ $t("report.report-table-virtual-list.report.zoom.buttons.zoom") }}
-                  <span class="visuallyhidden">{{
+                  <span class="visually-hidden">{{
                       $t("report.report-table-virtual-list.report.zoom.buttons.zoom_in_on", [$t("metric." + category_name + ".title")])
                     }}</span>
-                </button>
+                </b-button>
                 <br>&nbsp;
               </td>
               <td class="sticky_search w-100"></td>
@@ -454,18 +474,18 @@ div.rotate > span {
             <template v-else>
               <td :colspan="relevant_categories_based_on_settings.length + 1"
                   class="sticky_search text-center">
-                <button class="w-100"
+                <b-button variant="warning" class="w-100"
                         @click="select_category(report_category)">
                   <span role="img" :aria-label='$t("report.report-table-virtual-list.icons.remove_filter")'>↩️</span>
                   {{ $t("report.report-table-virtual-list.report.zoom.buttons.remove_zoom") }}
-                </button>
+                </b-button>
                 <br>
                 {{ $t("report.report-table-virtual-list.report.zoom.zoomed_in_on") }} {{ $t("metric." + selected_category + ".title") }}.
               </td>
             </template>
 
           </tr>
-        </template>
+
         <tr v-if="filtered_urls.length < 1">
           <td :colspan="relevant_categories_based_on_settings.length + 2"
               class="text-center">😱 {{ $t("report.report-table-virtual-list.report.empty_report") }}
@@ -474,7 +494,7 @@ div.rotate > span {
         </tbody>
         </table>
 
-            </div>
+            </template>
           </virtual-list>
         </div>
 
@@ -483,14 +503,18 @@ div.rotate > span {
 </template>
 
 <script>
-import report_mixin from "@/components/reports/report_mixin";
+import report_mixin from "@/components/reports/report_mixin.vue";
 
-import ReportTableLegend from "@/components/reports/ReportTableLegend";
-import DifferencesToCurrentList from "@/components/reports/DifferencesToCurrentList";
-import AppliedTags from "@/components/reports/AppliedTags";
-import CollapsePanel from '@/components/CollapsePanel';
-import VirtualList from 'vue-virtual-scroll-list';
-import ReportTableVirtualListRecord from "@/components/reports/ReportTableVirtualListRecord";
+import ReportTableLegend from "@/components/reports/ReportTableLegend.vue";
+import DifferencesToCurrentList from "@/components/reports/DifferencesToCurrentList.vue";
+import AppliedTags from "@/components/reports/AppliedTags.vue";
+import CollapsePanel from '@/components/CollapsePanel.vue';
+import VirtualList from 'vue3-virtual-scroll-list';
+import ReportTableVirtualListRecord from "@/components/reports/ReportTableVirtualListRecord.vue";
+
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
+import {markRaw} from 'vue'
 
 export default {
   components: {AppliedTags, DifferencesToCurrentList, ReportTableLegend, CollapsePanel, VirtualList},
@@ -510,7 +534,9 @@ export default {
   data: function () {
     return {
       // todo: this could/should be computed.
-      itemComponent: ReportTableVirtualListRecord,
+      // Vue received a Component that was made a reactive object. This can lead to unnecessary performance
+      // overhead and should be avoided by marking the component with `markRaw` or using `shallowRef` instead of `ref`
+      itemComponent: markRaw(ReportTableVirtualListRecord),
 
       categories: {
         // fallback category
@@ -752,10 +778,11 @@ export default {
         }
       });
       // console.log("Preferred fields:         " + preferred_fields)
-      let visible_preferred_fields = preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
+      let visible_preferred_fields = preferred_fields.filter(field => this.visible_metrics[field].visible)
       // console.log("Visible preferred fields: " + visible_preferred_fields)
       return visible_preferred_fields
     },
+    ...mapState(dashboardStore, ['visible_metrics']),
   }
 }
 </script>

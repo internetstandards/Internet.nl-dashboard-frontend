@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <div v-if='visible' class="mb-0">
-        <button @click="reload_now()">🔁 {{ $t("app.autorefresh.refresh_now") }}</button>
+        <b-button variant="warning" @click="reload_now()">🔁 {{ $t("app.autorefresh.refresh_now") }}</b-button>
         {{ $t("app.autorefresh.refresh_happening_in") }} <span v-html="this.current_step_inverted"></span>
         {{ $t("app.autorefresh.units") }}
     </div>

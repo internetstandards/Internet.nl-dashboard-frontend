@@ -3,7 +3,7 @@
   <div id="report-template">
     <content-block class="do-not-print">
       <h1>
-        <b-icon icon="file-bar-graph"/>
+        <i-bi-file-bar-graph/>
         {{ $t("report.page.title") }}
       </h1>
       <p>{{ $t("report.page.intro") }}</p>
@@ -17,17 +17,18 @@
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
       <template v-if="!tags_applied">
-          <content-block class="do-not-print">
+        <content-block class="do-not-print">
           <b-container>
-            <report-download :report="report" v-for="report in shallow_reports" :key="`d${report.id}`" class="mb-2"></report-download>
-            <small>{{$t("report.page.patience")}}</small>
-            </b-container>
-            </content-block>
+            <report-download :report="report" v-for="report in shallow_reports" :key="`d${report.id}`"
+                             class="mb-2"></report-download>
+            <small>{{ $t("report.page.patience") }}</small>
+          </b-container>
+        </content-block>
 
         <!-- create a shallow report that can be mutated and does not contain the full data, which saves a lot of memory. -->
         <sharing-configuration
-            :report="report" v-for="report in shallow_reports"
-            :key="`shared_report_${report.id}`"></sharing-configuration>
+          :report="report" v-for="report in shallow_reports"
+          :key="`shared_report_${report.id}`"></sharing-configuration>
       </template>
 
       <content-block>
@@ -35,37 +36,9 @@
       </content-block>
 
       <b-tabs variant="info" nav-class="">
-
-        <b-tab  :title='$t("report.page.tab_metrics")' lazy>
-
-
-          <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
+        <b-tab :title='$t("report.page.tab_metrics")' lazy>
           <content-block v-if="reports.length < 3" class="start-on-new-page ultra-wide">
             <ReportTableVirtualList :reports="reports" :load_comparison_with_current="!tags_applied"/>
-
-            <!--
-             <b-tabs>
-               <b-tab title="Origineel">
-                 <ReportTable :reports="reports" :load_comparison_with_current="!tags_applied"/>
-               </b-tab>
-               <b-tab title="BootstrapVue" lazy>
-                 <p>Een tabeloverzicht met standaard componenten. Werkt redelijk vlot tot 10.000 domeinen, zitten er nu 5000 in.
-                    Eerste laadtijd is het maken van deze 5000 records.
-                 Printen, sorteren, zoeken, documentatie en toegankelijkheid zitten er standaard in. Let op de sticky headers
-                   bij het scrollen, vooral goed zichtbaar bij HTTPS metingen. In deze demo zitten 5000 records en het
-                   eet best wat memory.
-                 </p>
-                 <ReportTableBv :reports="reports" :load_comparison_with_current="!tags_applied" />
-               </b-tab>
-               <b-tab title="Virtual List" lazy>
-                 <p>Het origineel maar dan als virtual list.
-                   Bevat ook 5000 items. Eerste laadtijd is het maken van deze 5000 records. Bij https metingen is het lastig om de kolommen gelijk te laten lopen met de inhoud van de tabel.
-                   Het moet uitgezocht worden hoe het scrollen van de tabel ook de headers mee laat scrollen. Sticky headers aan de linkerkant
-                   is nog niet gelukt. Zoeken en sorteren werken vlot. Printen van de huidige set werkt niet voldoende nog.
-                 </p>
-
-               </b-tab>
-             </b-tabs>-->
           </content-block>
         </b-tab>
 
@@ -73,30 +46,30 @@
         <b-tab :title='$t("report.page.tab_graphs")' lazy>
           <ReportCharts :reports="reports" :show_timeline="!tags_applied"/>
         </b-tab>
+
         <b-tab :title='$t("report.page.tab_changes")' lazy>
           <ReportImprovementAndRegressions :report_id="reports[0].id"/>
         </b-tab>
 
-
       </b-tabs>
-
     </div>
-
   </div>
 </template>
 
 <script>
-import ReportCharts from '@/components/reports/ReportCharts'
+import ReportCharts from '@/components/reports/ReportCharts.vue'
 
-import ReportTableVirtualList from '@/components/reports/ReportTableVirtualList'
-import report_mixin from '@/components/reports/report_mixin'
-import report_mixin_2 from '@/components/reports/report_mixin_2'
-import ReportHeader from '@/components/reports/ReportHeader'
-import ReportDownload from '@/components/reports/ReportDownload'
-import ReportSelection from "@/components/reports/ReportSelection";
-import {mapState} from 'vuex'
-import SharingConfiguration from '@/components/reports/SharingConfiguration'
-import ReportImprovementAndRegressions from "@/components/reports/ReportImprovementAndRegressions";
+import ReportTableVirtualList from '@/components/reports/ReportTableVirtualList.vue'
+import report_mixin from '@/components/reports/report_mixin.vue'
+import report_mixin_2 from '@/components/reports/report_mixin_2.vue'
+import ReportHeader from '@/components/reports/ReportHeader.vue'
+import ReportDownload from '@/components/reports/ReportDownload.vue'
+import ReportSelection from "@/components/reports/ReportSelection.vue";
+import {mapState} from 'pinia'
+import SharingConfiguration from '@/components/reports/SharingConfiguration.vue'
+import ReportImprovementAndRegressions from "@/components/reports/ReportImprovementAndRegressions.vue";
+
+import {dashboardStore} from '@/dashboardStore'
 
 export default {
   components: {
@@ -122,7 +95,7 @@ export default {
   mounted() {
     this.load_visible_metrics();
     // only do this when there is no report selection component, otherwise let that component handle it...
-    let router_params = this.$router.history.current.params;
+    let router_params = this.$route.params;
     // the route to this component can determine what is shown
     this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
   },
@@ -155,7 +128,7 @@ export default {
         return this.reports[0].report_type;
       return ""
     },
-    ...mapState(['report_ids', 'tags', 'ad_hoc_report_custom_date', 'ad_hoc_report_custom_time']),
+    ...mapState(dashboardStore, ['report_ids', 'tags', 'ad_hoc_report_custom_date', 'ad_hoc_report_custom_time']),
   }
 }
 </script>

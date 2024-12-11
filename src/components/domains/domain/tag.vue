@@ -5,7 +5,7 @@ span {
   font-weight: bolder;
   color: #00000088;
   margin: 0.1em;
-  border-radius: 21px;
+  border-radius: 5px;
   font-family: arial, sans-serif;
   min-width: 38px;
   display: inline-block;
@@ -32,6 +32,7 @@ export default {
   },
   data() {
     return {
+      pSBCr: null,
       color_hashtable: {
         a: {border: '', background: ''}
       }

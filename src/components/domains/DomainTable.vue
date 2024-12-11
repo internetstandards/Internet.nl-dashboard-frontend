@@ -1,20 +1,3 @@
-<style scoped>
-.form-group {
-  margin-bottom: 0 !important;
-}
-
-.intermediatebutton {
-  border-radius: 0 0 0 0 !important;
-}
-
-.lastbutton {
-  border-radius: 0 4px 4px 0 !important;
-}
-
-.normalbutton {
-  border-radius: 4px !important;
-}
-</style>
 <style>
 .vs__dropdown-toggle {
   min-height: 38px;
@@ -36,7 +19,7 @@
              :filter-function="myFilterFunction"
              :filter-included-fields="['tags', 'url']"
              selected-variant="info"
-             ref="selectableTable"
+             v-model:selected-items="selectedItems"
              @filtered="onFiltered"
              @row-selected="onRowSelected"
     >
@@ -44,12 +27,8 @@
       <template #thead-top="">
 
         <b-tr>
-          <b-th colspan='3' class="col-6">
-            <b-form-group
-                label-for="filter-input"
-                label-align-sm="right"
-                class="mr-0"
-            >
+          <b-th colspan='3' class="col-6 pt-4">
+
               <b-input-group>
                 <b-form-input
                     debounce="200"
@@ -58,17 +37,14 @@
                     type="search"
                     :placeholder='$t("domain.list.domain-table.type to filter")'
                 ></b-form-input>
-
-                <b-input-group-append>
-                  <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t("domain.list.domain-table.Clear") }}</b-button>
-                </b-input-group-append>
+                <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t("domain.list.domain-table.Clear") }}</b-button>
               </b-input-group>
-            </b-form-group>
+
 
           </b-th>
-          <b-th class="col-6">
+          <b-th class="col-6" style="vertical-align: bottom;">
 
-            <div class="float-left w-75" v-if="selected.length > 0">
+            <div class="float-start w-75" v-if="selectedItems.length > 0">
               <b-input-group>
                 <v-select :options="tags" :inputId='"tagselect"' @search:blur="searched_with_no_result" v-model="selected_tag" class="w-75" taggable :placeholder='$t("domain.list.domain-table.select label")'>
                   <template v-slot:option="option">
@@ -76,15 +52,15 @@
                     <tag :value="option.label" style="pointer-events: none; "/>
                   </template>
                 </v-select>
-                <b-input-group-append>
-                  <b-button variant="success" @click="add_tags" class="intermediatebutton">+</b-button>
+
+                  <b-button variant="warning" @click="add_tags" class="intermediatebutton">+</b-button>
                   <b-button variant="danger" @click="remove_tags" class="lastbutton">-</b-button>
-                </b-input-group-append>
+
               </b-input-group>
             </div>
 
-            <b-button class="float-right normalbutton" variant="info" @click="$emit('update')">🔁<span class="sr-only">{{ $t("domain.list.domain-table.update domain list") }}</span></b-button>
-            <button class="border-danger float-right mr-2" @click="remove_urls" v-if="selected.length > 0">🗑️</button>
+            <b-button class="float-end normalbutton" variant="warning" @click="$emit('update')">🔁<span class="visually-hidden">{{ $t("domain.list.domain-table.update domain list") }}</span></b-button>
+            <b-button variant="danger" @click="remove_urls" v-if="selected.length > 0">🗑️</b-button>
 
           </b-th>
         </b-tr>
@@ -100,8 +76,6 @@
                 hide-ellipsis
                 :limit="8"
                 last-number
-                pills
-                @page-click="nextpage"
             ></b-pagination>
           </b-th>
         </b-tr>
@@ -109,17 +83,17 @@
       </template>
 
       <template #head(selected)="">
-        <b-check v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected"></b-check>
+        <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected"></b-form-checkbox>
       </template>
 
       <template #cell(selected)="{ rowSelected }">
         <template v-if="rowSelected">
           <span aria-hidden="true">&check;</span>
-          <span class="sr-only">{{ $t("domain.list.domain-table.Selected") }}</span>
+          <span class="visually-hidden">{{ $t("domain.list.domain-table.Selected") }}</span>
         </template>
         <template v-else>
           <span aria-hidden="true">&nbsp;</span>
-          <span class="sr-only">{{ $t("domain.list.domain-table.Not selected") }}</span>
+          <span class="visually-hidden">{{ $t("domain.list.domain-table.Not selected") }}</span>
         </template>
       </template>
 
@@ -154,15 +128,14 @@
       </template>
 
     </b-table>
-
   </div>
 </template>
 
 <script>
-import Tag from "@/components/domains/domain/tag";
-import EditDomain from "@/components/domains/domain/editDomain";
+import Tag from "@/components/domains/domain/tag.vue";
+import EditDomain from "@/components/domains/domain/editDomain.vue";
 import http from "@/httpclient";
-import FormatScanEligibility from "@/components/domains/FormatScanEligibility";
+import FormatScanEligibility from "@/components/domains/FormatScanEligibility.vue";
 import vSelect from 'vue-select';
 
 export default {
@@ -201,6 +174,7 @@ export default {
       allSelected: false,
       allSelectedIndeterminate: false,
       selected: [],
+      selectedItems: [],
       currentPage: 1,
       perPage: 100,
       table_fields: [
@@ -217,14 +191,14 @@ export default {
         {
           key: 'url',
           sortable: true,
-          label: this.$t("Domain"),
+          label: this.$t("domain.table.domain"),
           thStyle: 'min-width: 300px',
           tdClass: 'nowrap'
         },
         {
           key: 'tags',
           sortable: true,
-          label: this.$t("tags")
+          label: this.$t("domain.table.tags")
         },
       ],
     }
@@ -233,29 +207,29 @@ export default {
     searched_with_no_result(){
       this.last_searched = document.getElementById('tagselect').value;
     },
-    nextpage() {
-      this.allSelected = false;
-    },
     onFiltered(filteredItems) {
       this.visibleRows = filteredItems.length;
       this.currentPage = 1;
-      this.allSelected = false;
     },
     onRowSelected(items) {
-      this.selected = items
+      this.selected = items;
+      this.updateCheckBox();
     },
     selectAllRows() {
-      this.$refs.selectableTable.selectAllRows()
+      this.selectedItems = this.urls;
+      this.allSelected = true;
+      this.allSelectedIndeterminate = false;
     },
     clearSelected() {
-      this.$refs.selectableTable.clearSelected()
+      this.selectedItems = [];
+      this.allSelected = false;
+      this.allSelectedIndeterminate = false;
     },
     toggleSelected() {
 
       // indeterminate state can reset all selected.
       if (this.allSelectedIndeterminate === true) {
         this.allSelectedIndeterminate = false;
-        this.allSelected = false;
         this.clearSelected();
         return
       }
@@ -288,12 +262,12 @@ export default {
       if (!this.selected_tag)
         return
 
-      this.selected.forEach((item) => {
+      this.selectedItems.forEach((item) => {
         if (!item.tags.includes(this.selected_tag)) {
           item.tags.push(this.selected_tag)
         }
       })
-      http.post('/data/urllist/tag/add/', {'urllist_id': this.urllist.id, 'url_ids': this.selected.map(item => item.id), 'tag': this.selected_tag});
+      http.post('/data/urllist/tag/add/', {'urllist_id': this.urllist.id, 'url_ids': this.selectedItems.map(item => item.id), 'tag': this.selected_tag});
     },
     remove_tags() {
       // support the scenario from issue #344
@@ -301,18 +275,18 @@ export default {
           this.selected_tag = this.last_searched.toLowerCase()
 
       let ids = []
-      this.selected.forEach((item) => {
+      this.selectedItems.forEach((item) => {
         const index = item.tags.indexOf(this.selected_tag);
         if (index > -1) {
           item.tags.splice(index, 1);
           ids.push(item.id)
         }
       })
-      http.post('/data/urllist/tag/remove/', {'urllist_id': this.urllist.id, 'url_ids': this.selected.map(item => item.id), 'tag': this.selected_tag});
+      http.post('/data/urllist/tag/remove/', {'urllist_id': this.urllist.id, 'url_ids': this.selectedItems.map(item => item.id), 'tag': this.selected_tag});
     },
     remove_urls() {
       // todo: make a list of url id's, add that with the list id and send it to the server
-      this.selected.forEach((item) => {
+      this.selectedItems.forEach((item) => {
         this.remove_url(item)
       });
     },
@@ -328,7 +302,25 @@ export default {
           this.urls.splice(index, 1);
         }
       }
+    },
+
+    updateCheckBox(){
+      // since a watch is always one step too late on tables for some reason, just compute this directly :)
+      if (this.selectedItems.length === this.visibleRows){
+        this.allSelectedIndeterminate = false
+        this.allSelected = true
+        return
+      }
+
+      if (this.selectedItems.length === 0){
+        this.allSelectedIndeterminate = false
+        this.allSelected = false
+        return
+      }
+
+      this.allSelectedIndeterminate = true
     }
+
   },
 
   watch: {
@@ -341,24 +333,6 @@ export default {
         return
       this.visibleRows = new_value.length;
     },
-    selected(old_value, new_value) {
-      console.log(old_value)
-      console.log(new_value)
-      console.log(`${new_value.length} / ${ this.visibleRows}`)
-      if (new_value.length === this.visibleRows){
-        this.allSelectedIndeterminate = false
-        this.allSelected = true
-        return
-      }
-
-      if (new_value.length === 0){
-        this.allSelectedIndeterminate = false
-        this.allSelected = false
-        return
-      }
-      this.allSelectedIndeterminate = true
-    }
-
   }
 
 }

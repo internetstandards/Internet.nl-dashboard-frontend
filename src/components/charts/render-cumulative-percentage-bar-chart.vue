@@ -9,6 +9,8 @@
 
 <script>
 import chart_mixin from './chart_mixin.vue'
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
 
 export default {
     mixins: [chart_mixin],
@@ -117,7 +119,7 @@ export default {
                 });
 
             });
-            this.$store.state.rendered_chart_to_table[this.chartName] = this.chart.data;
+            this.rendered_chart_to_table[this.chartName] = this.chart.data;
             this.chart.update();
         },
         renderTitle: function () {
@@ -131,6 +133,7 @@ export default {
 
       return `(${this.report_titles.join(" + ")}) / ${this.chart_data.length}`
     },
+    ...mapState(dashboardStore, ['rendered_chart_to_table']),
   }
 
 }

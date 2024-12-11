@@ -80,7 +80,7 @@
     }
 
     #site-title a {
-        content: url("/static_frontend/logo_en.png");
+        content: url("/static_frontend/images/vendor/internet_nl/logo_en.png");
         width: 296px;
         height: 65px
     }

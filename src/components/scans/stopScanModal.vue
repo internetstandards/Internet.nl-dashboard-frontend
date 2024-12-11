@@ -1,9 +1,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-    <b-modal :visible="visible" @hidden="stop()" header-bg-variant="info"
-             header-text-variant="light" no-fade scrollable>
-        <h3 slot="modal-title">🛑 {{ $t("scanmonitor.stop_form.cancel.are_you_sure") }}</h3>
-        <div slot="default">
+    <b-modal @hidden="stop()" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+        <template #header><h4>🛑 {{ $t("scanmonitor.stop_form.cancel.are_you_sure") }}</h4></template>
+        <template #default>
 
             <server-response :response="response"></server-response>
 
@@ -11,6 +10,7 @@
             <span><probe /></span> &nbsp;
                 <b>{{ scan.type }} {{ $t("scanmonitor.stop_form.id") }}{{ scan.id }}</b><br>
                 <br>
+                <b>{{ $t("scanmonitor.stop_form.list") }}</b><br>
                 📘 {{ scan.list }}<br>
                 <br>
                 <b>{{ $t("scanmonitor.stop_form.runtime") }}</b><br>
@@ -31,22 +31,22 @@
             </span><br>
             </div>
 
-        </div>
-        <div slot="modal-footer">
-            <button class="altbutton" @click="stop()">{{ $t("scanmonitor.stop_form.cancel.cancel") }}</button>
+        </template>
+        <template #footer>
+            <b-button variant="secondary" @click="stop()">{{ $t("scanmonitor.stop_form.cancel.cancel") }}</b-button>
             &nbsp;
-            <button class="modal-default-button defaultbutton border-danger" @click="confirm_stop_scan()">{{
+            <b-button variant="danger" @click="confirm_stop_scan()">{{
                     $t("scanmonitor.stop_form.cancel.ok")
                 }}
-            </button>
-        </div>
+            </b-button>
+        </template>
     </b-modal>
 </template>
 
 
 <script>
 import http from "@/httpclient";
-import Probe from '@/components/probe'
+import Probe from '@/components/probe.vue'
 
 export default {
     name: 'stop_scan',
@@ -65,9 +65,6 @@ export default {
     props: {
         scan: {
             type: Object,
-        },
-        visible: {
-            type: Boolean,
         }
     },
     methods: {

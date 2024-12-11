@@ -1,22 +1,21 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-    <b-modal :visible="visible" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade
-             scrollable>
-        <h3 slot="modal-title">🔬 {{ $t("domain.list.scan.title") }}</h3>
-        <div slot="default">
+    <b-modal @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+      <template #header><h4>🔬 {{ $t("domain.list.scan.title") }}</h4></template>
+        <template #default>
             <server-response :response="response"></server-response>
-            <p>{{ $t("domain.list.scan.message") }}</p>
+            <p>{{ $t("domain.list.scan.message") }}</p><br>
             <p><i>{{ $t("domain.list.scan.notices") }}</i></p>
-        </div>
-        <div slot="modal-footer">
-            <button class='altbutton' @click="cancel()">{{ $t("domain.list.scan.cancel") }}</button>
+        </template>
+        <template #footer>
+            <b-button variant="secondary" @click="cancel()">{{ $t("domain.list.scan.cancel") }}</b-button>
             &nbsp;
-            <button class="defaultbutton modal-default-button" :disabled="scan_now_confirmed"
+            <b-button variant="warning" :disabled="scan_now_confirmed"
                     @click="confirm_scan_now()">
                 <span v-if="!scan_now_confirmed">{{ $t("domain.list.scan.ok") }}</span>
                 <span v-if="scan_now_confirmed">{{ $t("domain.list.scan.starting") }}</span>
-            </button>
-        </div>
+            </b-button>
+        </template>
     </b-modal>
 </template>
 
@@ -28,9 +27,6 @@ export default {
     props: {
         list: {
             type: Object,
-        },
-        visible: {
-            type: Boolean,
         }
     },
     data: function () {

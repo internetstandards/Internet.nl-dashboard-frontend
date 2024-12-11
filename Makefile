@@ -18,22 +18,20 @@ $(vue-cli):
 	npm install
 vue-cli: | $(vue-cli)
 
-run: vue-cli ## only run the gui
-	# the extra -- is because of hell and fail. https://github.com/vuejs/vue-cli/issues/1528
-	# Because of a legacy stuff this flag needs to be set. This is also set in the deployed environment
-	NODE_OPTIONS=--openssl-legacy-provider npm run serve -- --mode development
+run: vue-cli
+	npm run dev
 
-run-csp: vue-cli
-	npm run serve -- --mode production
+# run-csp: vue-cli
+# 	npm run serve -- --mode production
+#
+# build-gui-staging: vue-cli
+# 	npm run build -- --mode staging
+#
+# build-gui-production: vue-cli
+# 	npm run build -- --mode production
 
-build-gui-staging: vue-cli
-	npm run build -- --mode staging
-
-build-gui-production: vue-cli
-	npm run build -- --mode production
-
-build-gui-deploy: vue-cli
-	npm run build -- --mode deploy
+build: vue-cli
+	npm run build
 
 pull_image:
 	# optimize build by caching previously build image

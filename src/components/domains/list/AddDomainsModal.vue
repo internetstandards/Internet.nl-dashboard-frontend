@@ -15,12 +15,12 @@
 </style>
 
 <template>
-  <b-modal :visible="visible" @hidden="stop()" header-bg-variant="info"
-           header-text-variant="light" no-fade scrollable size="lg">
-    <h3 slot="modal-title">🌐 {{ $t("domain.list.add-domains.title") }}</h3>
-    <div slot="default" style="min-height: 50vh;">
+  <b-modal @hidden="stop()" header-bg-variant="info" header-text-variant="light" no-fade scrollable size="lg">
+    <template #header><h4>🌐 {{ $t("domain.list.add-domains.title") }}</h4></template>
+    <template #default>
+      <div style="min-height: 50vh;">
 
-      <server-response :response="response" v-if="response" :message='$t("" + response.message)'/>
+      <server-response :response="response" v-if="response" :message='$t("domain.list.add-domains." + response.message)'/>
 
       <ul v-if="response.success === true">
         <li v-if="response.data.duplicates_removed">
@@ -41,38 +41,39 @@
       </template>
 
       <label>{{ $t("domain.list.add-domains.domains_label") }}:</label>
-      <b-alert variant="warning" :show="a_lot_of_new_domains">
+      <b-alert variant="warning" :model-value="a_lot_of_new_domains">
         ⚠️ {{$t("domain.list.add-domains.a_lot_of_new_domains_message")}} <a @click="nav_to_upload">{{$t("domain.list.add-domains.go_to_spreadsheet_upload")}}</a>
       </b-alert>
-      <b-alert variant="danger" :show="too_many_new_domains">
+      <b-alert variant="danger" :model-value="too_many_new_domains">
         ⚠️ {{$t("domain.list.add-domains.too_many_new_domains_message")}} <a @click="nav_to_upload">{{$t("domain.list.add-domains.go_to_spreadsheet_upload")}}</a>
       </b-alert>
       <textarea id="dms" v-model="new_domains" class="url_textarea" :placeholder='$t("domain.list.add-domains.message")'></textarea>
       <br>
       <br>
 
-    </div>
-    <div slot="modal-footer">
-      <button class="altbutton" @click="stop()">{{ $t("domain.list.add-domains.cancel") }}</button>
+      </div>
+    </template>
+    <template #footer>
+      <b-button variant="secondary" @click="stop()">{{ $t("domain.list.add-domains.cancel") }}</b-button>
       &nbsp;
       <template v-if="!loading">
-        <button class="defaultbutton modal-default-button" @click="bulk_add_new()" :disabled="too_many_new_domains">
+        <b-button variant="warning" @click="bulk_add_new()" :disabled="too_many_new_domains">
           {{ $t("domain.list.add-domains.ok") }}
-        </button>
+        </b-button>
       </template>
       <template v-else>
-        <button disabled="disabled" class="defaultbutton modal-default-button">
+        <b-button variant="warning" disabled="disabled">
           <probe/>
           {{ $t("domain.list.add-domains.loading") }}
-        </button>
+        </b-button>
       </template>
-    </div>
+    </template>
   </b-modal>
 </template>
 
 <script>
 import http from "@/httpclient";
-import Probe from '@/components/probe'
+import Probe from '@/components/probe.vue'
 
 export default {
   name: "AddDomains",
@@ -83,9 +84,6 @@ export default {
     list: {
       type: Object,
     },
-    visible: {
-      type: Boolean,
-    }
   },
   data: function () {
     return {

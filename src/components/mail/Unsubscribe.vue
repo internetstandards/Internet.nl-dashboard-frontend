@@ -27,14 +27,14 @@
                 <b>{{ $t("mail.unsubscribe.label_unsubscribe_code") }}</b><br>
                 <input id="unsubscribe_code" type="text" maxlength="120" v-model="unsubscribe_code"><br><br>
                 <template v-if="!unsubscribe_code || !feed">
-                    <button class="defaultbutton modal-default-button" disabled>
+                    <b-button variant="warning" disabled>
                         {{ $t("mail.unsubscribe.perform_unsubscribe") }}
-                    </button>
+                    </b-button>
                 </template>
                 <template v-else>
-                    <button class="defaultbutton modal-default-button" @click="unsubscribe()">
+                    <b-button variant="warning" @click="unsubscribe()">
                         {{ $t("mail.unsubscribe.perform_unsubscribe") }}
-                    </button>
+                    </b-button>
                 </template>
             </template>
 

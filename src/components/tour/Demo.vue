@@ -26,9 +26,10 @@ img.scaled {
 
 <template>
   <div id="demo-template">
+
     <content-block>
       <h1>
-        <b-icon icon="info-circle"/>
+        <i-bi-info-circle/>
         {{ $t("tour.title") }}
       </h1>
       <p v-html='$t("tour.introduction")'></p>
@@ -47,7 +48,7 @@ img.scaled {
 </template>
 
 <script>
-import FeatureRow from "@/components/tour/FeatureRow";
+import FeatureRow from "@/components/tour/FeatureRow.vue";
 
 export default {
   components: {FeatureRow},

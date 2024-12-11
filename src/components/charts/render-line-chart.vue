@@ -1,18 +1,19 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <LineChart :chartData="testData" :height="300" :options="options"><p>{{ accessibility_text }}</p></LineChart>
+  <Line :data="testData" :height="300" :options="options"><p>{{ accessibility_text }}</p></Line>
 </template>
 
 <script>
 
 
-import {computed, defineComponent, ref} from '@vue/composition-api';
-import {LineChart} from 'vue-chart-3';
-import 'chartjs-adapter-date-fns';
+import {computed, defineComponent, ref} from 'vue';
+import {Line} from 'vue-chartjs';
+// todo: add date fns again
+// import 'chartjs-adapter-date-fns';
 import {nl} from 'date-fns/locale';
 
 export default defineComponent({
-  components: {LineChart},
+  components: {Line},
 
   props: {
     timeline_data: {type: Array, required: true},
@@ -159,15 +160,15 @@ export default defineComponent({
       },
       scales: {
         x: {
-          adapters: {
-            date: nl
-          },
-          type: 'time',
-          time: {
-            display: true,
-            unit: 'month',
-            tooltipFormat: 'dd'
-          },
+          // adapters: {
+          //   date: nl
+          // },
+          // type: 'time',
+          // time: {
+          //   display: true,
+          //   unit: 'month',
+          //   tooltipFormat: 'dd'
+          // },
           title: {
             display: true,
             text: props.x_axis_label,

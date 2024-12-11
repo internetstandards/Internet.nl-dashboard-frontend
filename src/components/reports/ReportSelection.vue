@@ -62,16 +62,16 @@
             {{ option.type }}
           </div>
           <div class="d-inline-block">{{ option.list_name }}</div>
-          <div class="d-inline-block float-right">{{ humanize_date(option.at_when) }}
+          <div class="d-inline-block float-end">{{ humanize_date(option.at_when) }}
             ({{ humanize_relative_date(option.at_when) }})
           </div>
         </div>
       </template>
     </v-select>
 
-    <b-input-group-append>
-    <b-button class="lastbutton" variant="info" role="link" @click="get_recent_reports()">🔁 {{ $t("report.report-selection.reload_list") }}</b-button>
-      </b-input-group-append>
+
+    <b-button class="lastbutton" variant="warning" role="link" @click="get_recent_reports()">🔁 {{ $t("report.report-selection.reload_list") }}</b-button>
+
     </b-input-group>
 
     <br>
@@ -84,10 +84,11 @@
 </template>
 <script>
 import http from "@/httpclient";
-import ReportTagFilter from "@/components/reports/ReportTagFilter";
-import ScanTypeIcon from "@/components/ScanTypeIcon";
+import ReportTagFilter from "@/components/reports/ReportTagFilter.vue";
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
 import vSelect from 'vue-select';
-import autorefresh from '@/components/autorefresh'
+import autorefresh from '@/components/autorefresh.vue'
+import { dashboardStore } from '@/dashboardStore'
 
 export default {
   components: {ScanTypeIcon, ReportTagFilter, vSelect, autorefresh},
@@ -101,6 +102,8 @@ export default {
 
   data: function () {
     return {
+      store: dashboardStore(),
+
       loading: false,
 
       // List of all available reports for selection. These reports are fetched on load or on change of length of the
@@ -121,7 +124,7 @@ export default {
 
   mounted() {
     this.get_recent_reports();
-    this.match_with_environment(this.$router.history.current);
+    this.match_with_environment(this.$route);
   },
 
   methods: {
@@ -130,7 +133,7 @@ export default {
       this.loading = true;
       http.get(`/data/report/recent/`).then(response => {
         let data = response.data;
-        data.forEach(o => {o.label = `#${o.id} - ${o.list_name} - type: ${o.type} - from: ${o.at_when.human_date()}`});
+        data.forEach(o => {o.label = `#${o.id} - ${o.list_name} - type: ${o.type} - from: ${this.humanize_date(o.at_when)}`});
         this.available_recent_reports = this.filtered_recent_reports = data;
         this.loading = false;
       });
@@ -186,14 +189,14 @@ export default {
 
       // create a list of id's, these id's are shared in the app for other controls.
       this.selected_report_ids = dropdown_items.map(item => item.id);
-      this.$store.commit("set_report_ids", this.selected_report_ids);
+      this.store.set_report_ids(this.selected_report_ids);
 
       // Always update the URL to reflect the latest report, so it can be easily shared and the page reloaded
 
       if (dropdown_items[1] !== undefined)
-        history.pushState({}, null, `/#/report/${dropdown_items[0].id}/${dropdown_items[1].id}`);
+        history.pushState({}, null, `/report/${dropdown_items[0].id}/${dropdown_items[1].id}`);
       else
-        history.pushState({}, null, `/#/report/${dropdown_items[0].id}`);
+        history.pushState({}, null, `/report/${dropdown_items[0].id}`);
 
     },
 
@@ -213,13 +216,13 @@ export default {
       //  other scans end?
 
       // In the case no scans
-      if (this.$store.state.scan_monitor_data.length === 0)
+      if (this.store.scan_monitor_data.length === 0)
         return 0;
 
       let finished = 0;
       // the first scan-monitor record where list_id is the same, is the one with the most recent state
-      for (let i = 0; i < this.$store.state.scan_monitor_data.length; i++) {
-        if (this.$store.state.scan_monitor_data[i].state === "finished") {
+      for (let i = 0; i < this.store.scan_monitor_data.length; i++) {
+        if (this.store.scan_monitor_data[i].state === "finished") {
           finished++;
         }
       }

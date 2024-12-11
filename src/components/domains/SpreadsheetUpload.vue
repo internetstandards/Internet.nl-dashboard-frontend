@@ -41,14 +41,15 @@
     <content-block>
       <p>&nbsp;
         <router-link to="/domains" custom v-slot="{ navigate }">
-          <button @click="navigate" @keypress.enter="navigate">
+          <b-button variant="warning" @click="navigate" @keypress.enter="navigate">
             📚 {{ $t("domain.spreadsheet-upload.back_to_domains") }}
-          </button>
+          </b-button>
         </router-link>
       </p>
       <h1>{{ $t("domain.spreadsheet-upload.upload.bulk_data_uploader.title") }}</h1>
       <p>{{ $t("domain.spreadsheet-upload.upload.bulk_data_uploader.introduction") }}</p>
       <table>
+        <tbody>
         <tr>
           <th></th>
           <th>{{ $t("domain.spreadsheet-upload.upload.empty_file") }}</th>
@@ -76,6 +77,7 @@
             <a href="/static_frontend/sample_spreadsheets/microsoft_office_spreadsheet_with_example_data.xlsx">Example.xlsx</a>
           </td>
         </tr>
+        </tbody>
       </table>
     </content-block>
     <content-block>
@@ -133,7 +135,7 @@
         </tbody>
       </b-table-simple>
 
-      <autorefresh :visible="true" :callback="get_recent_uploads" :refresh_per_seconds="30" v-if="$store.state.user.is_authenticated" />
+      <autorefresh :visible="true" :callback="get_recent_uploads" :refresh_per_seconds="30" v-if="store.user.is_authenticated" />
 
       <span v-if="!upload_history.length">{{ $t("domain.spreadsheet-upload.upload.recent_uploads.no_uploads") }}</span>
     </content-block>
@@ -141,16 +143,18 @@
 </template>
 
 <script>
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import vue2Dropzone from 'vue2-dropzone-vue3'
+// import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import http from "@/httpclient";
-import Autorefresh from "@/components/autorefresh";
+import Autorefresh from "@/components/autorefresh.vue";
+import { dashboardStore } from '@/dashboardStore'
 
 export default {
   mixins: [],
   data: function () {
     let self = this;
     return {
+      store: dashboardStore(),
       loading: false,
       csrf_token: "",
       upload_history: [],
@@ -217,6 +221,25 @@ export default {
     vueDropzone: vue2Dropzone
   },
   methods: {
+    get_cookie: function (name) {
+      // isn't there a nicer vue alternative instead of the crude get_cookie parsing misery?
+      let value = "; " + document.cookie;
+      let parts = value.split("; " + name + "=");
+      if (parts.length === 2) {
+        return parts.pop().split(";").shift();
+      }
+    },
+    humanize_filesize: function (size_in_bytes, decimals = 0) {
+        if (size_in_bytes === 0) {
+          return '0 Bytes';
+        }
+        let k = 1024,
+          dm = decimals <= 0 ? 0 : decimals || 2,
+          sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+          i = Math.floor(Math.log(size_in_bytes) / Math.log(k));
+        return parseFloat((size_in_bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+      },
+
     dropzone_sendingEvent(file, xhr, formData) {
       // add the csrfmiddlewaretoken to the form.
       formData.append('csrfmiddlewaretoken', this.get_cookie('csrftoken'));
@@ -226,7 +249,7 @@ export default {
       http.get(`/data/upload-history/`).then(data => {
         // don't create a very long list because updates can flash
         this.upload_history = data.data.splice(0, 10);
-        this.$store.commit("set_uploads_performed", data.data.length);
+        this.store.set_uploads_performed(data.data.length);
       });
     },
   }

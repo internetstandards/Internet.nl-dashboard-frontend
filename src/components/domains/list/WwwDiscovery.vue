@@ -3,27 +3,28 @@
     <template
         v-if="['not_scanned_at_all'].includes(state_message) || ['finished', 'error', 'cancelled'].includes(state)">
 
-      <b-button style="font-weight: bold" size="sm" v-if="success_while_visible" @click="reload_and_reset" variant="success" :disabled="loading">
-        {{ $t("domain.www-discovery.scanning-done-click-reload") }}
+      <b-button size="sm" v-if="success_while_visible" @click="reload_and_reset();" variant="success" :disabled="loading">
+        🔎 {{ $t("domain.www-discovery.scanning-done-click-reload") }}
       </b-button>
 
-      <b-button style="font-weight: bold" size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" :disabled="loading">{{ $t("domain.www-discovery.find-www-subdomains") }}
+      <b-button variant="success" size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" :disabled="loading" @click="visible=true;">
+        🔎 {{ $t("domain.www-discovery.find-www-subdomains") }}
         <span v-if="state_changed_on">{{ $t("domain.www-discovery.last-scan-finished") }}</span></b-button>
     </template>
     <template v-else>
-      <b-button style="font-weight: bold" size="sm"  @click="status" :disabled="loading">
+      <b-button size="sm"  @click="status" :disabled="loading">
         <probe/>
         {{ $t("domain.www-discovery.finding-www-subdomains") }}
       </b-button>
     </template>
-     <subdomain-discovery-modal :id="`subdomain_discovery_modal_${list_id}`" @ok="request" />
+     <subdomain-discovery-modal :id="`subdomain_discovery_modal_${list_id}`" @ok="request(); visible=false;" @cancel="visible=false;" v-model="visible" :show="visible" />
   </span>
 </template>
 
 <script>
 import http from "@/httpclient";
-import SubdomainDiscoveryModal from "@/components/domains/list/WwwDiscoveryModal";
-import Probe from '@/components/probe'
+import SubdomainDiscoveryModal from "@/components/domains/list/WwwDiscoveryModal.vue";
+import Probe from '@/components/probe.vue'
 
 export default {
   name: "SubdomainDiscovery",
@@ -43,6 +44,8 @@ export default {
       state_changed_on: '',
       domains_discovered: {},
       success_while_visible: false,
+
+      visible: false,
     }
   },
   beforeDestroy() {
@@ -81,6 +84,7 @@ export default {
       this.$emit('finished')
       this.reset()
       this.status()
+      this.visible = true;
     },
     status() {
       this.loading = true;

@@ -3,7 +3,7 @@
   <content-block>
 
     <h1>
-      <b-icon icon="person-plus"/>
+      <i-bi-person-plus/>
       {{ $t("admin.instant_add_account.title") }}
     </h1>
     <p>{{ $t("admin.instant_add_account.intro") }}</p>
@@ -20,7 +20,7 @@
       <b-form-input id="password" type="password" maxlength="120" v-model="password"
                     :placeholder='$t("admin.instant_add_account.password")'></b-form-input>
       <br/>
-      <button type="button" @click="save_instant_account()">{{ $t("admin.instant_add_account.save") }}</button>
+      <b-button variant="warning" @click="save_instant_account()">{{ $t("admin.instant_add_account.save") }}</b-button>
     </p>
 
   </content-block>

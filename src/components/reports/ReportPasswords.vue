@@ -7,7 +7,7 @@
       <b-row v-for="report in reports" :key="report.id" class="p-4 border-top border-secondary">
         <b-col>{{ $t("report.password-protection.code") }}: 📊 {{report.public_report_code}}<br>
           {{ $t("report.password-protection.name") }}: 📘 {{report.urllist_name}}<br>
-          {{ $t("report.password-protection.created_on") }}: {{report.at_when.human_date()}}
+          {{ $t("report.password-protection.created_on") }}: {{humanize_date(report.at_when)}}
         </b-col>
         <b-col>
         <template v-if="report.authentication_required">
@@ -19,12 +19,12 @@
             <b-form-input
                 type="password"
                 id="share-code"
-                v-model="$store.state.public_share_codes[report.public_report_code]"
+                v-model="public_share_codes[report.public_report_code]"
                 maxlength="64"
             ></b-form-input>
           </b-form-group>
         </template><template v-else>
-          <template v-if="$store.state.public_share_codes[report.public_report_code]">
+          <template v-if="public_share_codes[report.public_report_code]">
             ✅ <i>{{ $t("report.password-protection.Stored password is valid") }}</i>
           </template>
           <template v-else>
@@ -36,16 +36,19 @@
 
     <!-- onclick emit retry. -->
     <b-row class="pt-4 pl-3 pb-2 border-top border-secondary">
-      <button type="submit" @click="$emit('retry')">{{ $t("report.password-protection.Retry with above settings") }}</button>
+      <b-button variant="warning" type="submit" @click="$emit('retry')">{{ $t("report.password-protection.Retry with above settings") }}</b-button>
     </b-row>
 
   </content-block>
 </template>
 <script>
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
 export default {
   props: {
     reports: {type: Array, required: true}
   },
+  computed: mapState(dashboardStore, ['public_share_codes']),
   emits: ['retry']
 }
 </script>

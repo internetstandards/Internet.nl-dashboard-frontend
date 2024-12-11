@@ -102,7 +102,7 @@
 			"twice per month": "every two weeks, from the first day of the month"
 		},
 		"github": {
-			"intro": "Is something not working right? Raise an issue via ",
+			"intro": "Is something not working well? Raise an issue via ",
 			"mail": "E-Mail",
 			"or": "or",
 			"view issues": "View open issues"
@@ -138,6 +138,7 @@
 			"admin": "Admin",
 			"authentication": "Authentication",
 			"domains": "Domains",
+			"domains_upload": "Upload Domains",
 			"home": "Home",
 			"log_in": "Log in",
 			"log_off": "Log off",
@@ -222,6 +223,7 @@
 			"select_all": "Select all",
 			"status_report": "Status report",
 			"title": "Discover Subdomains",
+			"undefined": "Undefined",
 			"will_be_added_to": "selected subdomains will be added to the list named {0}."
 		},
 		"edit-domain": {
@@ -292,6 +294,7 @@
 				"last_scan_started": "Last scan",
 				"latest_report": "Latest report",
 				"Listed on sharing page": ", also on sharing page",
+				"mail": "mail",
 				"next_scheduled_scan": "Next scheduled scan",
 				"Not automatically shared": "Not automatically shared",
 				"not_scanned_before": "Not scanned before",
@@ -303,6 +306,7 @@
 				"sharing": "Sharing",
 				"still_running": "still running",
 				"type_of_scan_performed": "Type of scan",
+				"web": "web",
 				"with share code": "with share code"
 			},
 			"upload": {
@@ -396,7 +400,12 @@
 				}
 			}
 		},
+		"table": {
+			"domain": "Domain",
+			"tags": "Tags"
+		},
 		"urllist": {
+			"add domains using": "Add domains using",
 			"button": {
 				"add domains using": "Add domains using",
 				"add_domains": "Free text",
@@ -1374,6 +1383,9 @@
 			"test_title": "Icons per test category",
 			"test_warning": "Warning: failed at least one RECOMMENDED subtest ⇒ full score in test category "
 		},
+		"mail": {
+			"title": "Mail"
+		},
 		"rating": {
 			"pct_error_in_test": "test error",
 			"pct_high": "failed",
@@ -1382,6 +1394,9 @@
 			"pct_not_applicable": "not applicable",
 			"pct_not_testable": "not testable",
 			"pct_ok": "passed"
+		},
+		"web": {
+			"title": "Web"
 		}
 	},
 	"public-reports": {
@@ -1646,6 +1661,7 @@
 				"configuration_error": "configuration error detected, contact internet.nl",
 				"created report": "created report",
 				"creating report": "creating report",
+				"credential_error": "API credential error",
 				"discovered endpoints": "discovered endpoints",
 				"discovering endpoints": "discovering endpoints",
 				"error": "An unknown error occurred, contact internet.nl",
@@ -1695,6 +1711,7 @@
 			},
 			"id": " scan #",
 			"last_check": "Last status update",
+			"list": "List",
 			"message": "Status",
 			"progress": {
 				"cancelled": "Scan was canceled",
@@ -1742,7 +1759,7 @@
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Dashboard",
 			"email": "Email",
-			"email_placeholder": "email@",
+			"email_placeholder": "email{'@'}",
 			"incomplete_form_submitted": "Form was not filled out completely, please fill out all fields",
 			"incorrect_captcha": "Question to prevent automated sign-ups not correctly answered",
 			"intended_usage_frequency": "Intended usage frequency",
@@ -1790,7 +1807,7 @@
 			"note_link": "Visit the GitHub repository to get started",
 			"procedure_description": "After formal approval of your request by our Steering Committee, your username and instructions for using the Batch testing HTTP API and/or API Dashboard are send to the specified e-mail address. The corresponding password will be send to the specified mobile phone number. See our <a href=\"https://internet.nl/privacy/\">privacy statement</a> on what data internet.nl processes and stores.",
 			"procedure_title": "Procedure for issuing login details",
-			"support_description": "For questions regarding (the use of) the Batch testing HTTP API and the API Dashboard, an e-mail can be send to <a href=\"mailto:question@internet.nl\">question@internet.nl</a>",
+			"support_description": "For questions regarding (the use of) the Batch testing HTTP API and the API Dashboard, an e-mail can be send to <a href=\"mailto:question{'@'}internet.nl\">question{'@'}internet.nl</a>",
 			"support_title": "Support"
 		}
 	},
@@ -1805,7 +1822,7 @@
 			"introduction": "Set up two factor authentication for your account using One Time Passwords.",
 			"title": "Two factor authentication"
 		},
-		"contact_information": "To use the dashboard on internet.nl, contact: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
+		"contact_information": "To use the dashboard on internet.nl, contact: <a href='mailto:vraag{'@'}internet.nl?subject=dashboard%20access%20request'>vraag{'@'}internet.nl</a>",
 		"export_spreadsheet": {
 			"caption": "The Excel spreadsheet is opened in Numbers. It contains the same data as presented in the table.",
 			"introduction": "The table can be exported to Excel, Libreoffice and CSV data. The Excel spreadsheet includes some statistics over the presented metrics.",
@@ -1854,6 +1871,7 @@
 		},
 		"title": "Internet.nl dashboard features"
 	},
+	"undefined": "Undefined",
 	"urllist": {
 		"automated_scan_frequency": {
 			"disabled": "Do not repeat periodically",

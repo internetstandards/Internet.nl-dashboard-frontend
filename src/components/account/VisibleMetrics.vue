@@ -3,11 +3,11 @@
   <div>
     <p>{{ $t("account.visible-metrics.intro") }}</p>
     <server-response :response="issue_filters_response"
-                     :message="$t(issue_filters_response.message)"></server-response>
+                     :message="$t('account.visible-metrics.' + issue_filters_response.message)" v-if="issue_filters_response.message"></server-response>
 
     <div v-for="scan_form in scan_methods" :key="scan_form.name">
       <b-card no-body>
-        <b-tabs pills vertical card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0"
+        <b-tabs vertical card v-if="scan_form.name === report_type && Object.keys(issue_filters).length > 0"
                 id="visible_metrics_tabs">
           <b-tab v-for="category in scan_form.categories" :title="category.label" :key="category.label"
                  class="p-3">
@@ -64,16 +64,19 @@
       </b-card>
     </div>
     <br>
-    <button @click="reset_issue_filters()">{{ $t("account.visible-metrics.buttons.reset") }}</button> &nbsp;
-    <button @click="save_visible_metrics()">{{ $t("account.visible-metrics.buttons.save") }}</button>
+    <div class="w-100" style="text-align: right;">
+      <b-button variant="secondary" @click="reset_issue_filters()">{{ $t("account.visible-metrics.buttons.reset") }}</b-button> &nbsp;
+      <b-button variant="warning" @click="save_visible_metrics()">{{ $t("account.visible-metrics.buttons.save") }}</b-button>
+    </div>
     <br><br>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState} from 'pinia'
 import http from "@/httpclient";
-import report_mixin from "@/components/reports/report_mixin"
+import report_mixin from "@/components/reports/report_mixin.vue"
+import { dashboardStore } from '@/dashboardStore'
 
 export default {
   mixins: [report_mixin],
@@ -226,7 +229,7 @@ export default {
       console.log(this.issue_filters['internet_nl_web_https_tls_version']['visible'])
     }
   },
-  computed: mapState(['visible_metrics']),
+  computed: mapState(dashboardStore, ['visible_metrics']),
   watch: {
     visible_metrics(new_value) {
       // console.log('Visible metrics changed, saved to issue filters...')
@@ -250,8 +253,15 @@ export default {
   padding-bottom: 10px;
 }
 
-#visible_metrics_tabs .nav-item .active {
-  color: white !important;
+.card-header {
+  width: 800px;
+}
+.tab-content {
+  width: 100%;
+}
 
+button {
+  text-align: left;
+  border-bottom: 1px solid silver;
 }
 </style>

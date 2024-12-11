@@ -57,7 +57,7 @@
 
 <script>
 import http from "@/httpclient";
-import ReportImprovementAndRegressionsTable from "@/components/reports/ReportImprovementAndRegressionsTable";
+import ReportImprovementAndRegressionsTable from "@/components/reports/ReportImprovementAndRegressionsTable.vue";
 
 export default {
   name: "ReportImprovementAndRegressions",

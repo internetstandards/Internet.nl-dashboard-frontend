@@ -1,5 +1,5 @@
 <template>
-    <b-row class="mb-4">
+    <b-row class="mb-4" cols="1" cols-md="2">
       <b-col cols="7">
         <demo-image :filename="`${feature}`" :caption=" translation.t(`tour.${feature}.caption`)"  />
       </b-col>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import DemoImage from "@/components/tour/DemoImage";
+import DemoImage from "@/components/tour/DemoImage.vue";
 export default {
 name: "FeatureRow",
   components: {DemoImage},
@@ -21,9 +21,3 @@ name: "FeatureRow",
   }
 }
 </script>
-
-<style scoped>
-h2 {
- font-size: 1.5em;
-}
-</style>

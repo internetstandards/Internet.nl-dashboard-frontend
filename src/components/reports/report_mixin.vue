@@ -6,8 +6,21 @@
 // Done: how to add a item for legacy views?
 // Done: how to translate graphs?
 import http from "@/httpclient"
+import { dashboardStore } from '@/dashboardStore'
 
 export default {
+
+  data() {
+    return {
+      dashboardStore: dashboardStore,
+    }
+  },
+
+  mounted() {
+    this.dashboardStore = dashboardStore();
+  },
+
+
   methods: {
     alphabet_sorting: function (a, b) {
       // i already mis sorted()
@@ -184,17 +197,17 @@ export default {
             this.upgrade_issue_filter_with_new_field(issue_filters, field_name);
           })
           // console.log(issue_filters);
-          this.$store.commit("set_visible_metrics", issue_filters);
+          this.dashboardStore.set_visible_metrics(issue_filters);
         } else {
           // no issue filters at all, set it to the default:
           console.log('Using default visible metrics, to change this, set visible metrics in the report page.');
-          this.$store.commit("set_visible_metrics", default_metric_visibility);
+          this.dashboardStore.set_visible_metrics(default_metric_visibility);
         }
 
       }).catch(() => {});
         // When a user is not logged in, defaults are used.
         console.log("Using fallback visible metrics.")
-        this.$store.commit("set_visible_metrics", default_metric_visibility);
+        this.dashboardStore.set_visible_metrics(default_metric_visibility);
     },
     upgrade_issue_filter_with_new_field: function (issue_filters, field_name) {
       if (!Object.keys(issue_filters).includes(field_name)) {

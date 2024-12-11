@@ -3,7 +3,7 @@
   <div>
     <a class="anchor" name="charts"></a>
     <content-block v-if="show_timeline">
-      <timeline :urllist_ids="report_urllist_ids" :highlight_report_ids="$store.state.report_ids" :report_type="reports[0].report_type"></timeline>
+      <timeline :urllist_ids="report_urllist_ids" :highlight_report_ids="report_ids" :report_type="reports[0].report_type"></timeline>
     </content-block>
 
     <content-block class="start-on-new-page" v-if='reports.length > 0'>
@@ -34,10 +34,12 @@
 </template>
 
 <script>
-import Timeline from "@/components/charts/timeline";
-import NestedReportCharts from "@/components/reports/NestedReportCharts";
-import Donuts from "@/components/charts/donuts";
-import AppliedTags from "@/components/reports/AppliedTags";
+import Timeline from "@/components/charts/timeline.vue";
+import NestedReportCharts from "@/components/reports/NestedReportCharts.vue";
+import Donuts from "@/components/charts/donuts.vue";
+import AppliedTags from "@/components/reports/AppliedTags.vue";
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
 
 export default {
   components: {
@@ -56,6 +58,7 @@ export default {
     report_urllist_ids() {
       return this.reports.map(report => report.urllist_id);
     },
+    ... mapState(dashboardStore, ['report_ids'])
   }
 }
 </script>

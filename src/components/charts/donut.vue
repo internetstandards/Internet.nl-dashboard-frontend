@@ -41,13 +41,14 @@ h3 {
           :datalabels="datalabels"
           :tooltip="tooltip"
           :height="height"
+          :width="width"
           :show_number_in_center="show_number_in_center"
           @graph-data-updated="graph_data_to_table"
       >
       </donutChart>
     </template>
     <template v-else>
-      <b-tabs content-class="mt-3" pills end>
+      <b-tabs content-class="mt-3" end>
         <b-tab :title='$t("chart.donut.graph")' active v-if="elements.includes('donut')">
           <donutChart
               :donut_data="data"
@@ -56,6 +57,7 @@ h3 {
               :datalabels="datalabels"
               :tooltip="tooltip"
               :height="height"
+              :width="width"
               :show_number_in_center="show_number_in_center"
               @graph-data-updated="graph_data_to_table"
           >
@@ -88,7 +90,7 @@ Chart.register(DoughnutController, ArcElement,  Tooltip);
 
 
 
-import donutChart from './../charts/donutChart'
+import donutChart from '@/components/charts/donutChart.vue'
 // import DownloadData from './../charts/DownloadData'
 
 export default {
@@ -99,7 +101,8 @@ export default {
     title: {type: String, required: false},
     datalabels: {type: Boolean, required: false, default: true},
     tooltip: {type: Boolean, required: false, default: true},
-    height: {type: Number, required: false, default: 300},
+    height: {type: Number, required: false, default: 100},
+    width: {type: Number, required: false, default: 100},
     show_number_in_center: {type: Boolean, required: false, default: true},
     elements: {
       type: Array, required: false, default: () => {

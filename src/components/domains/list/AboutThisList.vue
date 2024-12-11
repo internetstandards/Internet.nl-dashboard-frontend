@@ -2,7 +2,7 @@
 <template>
     <div>
         <p>
-          <DashboardIcon icon="hourglass-split" />
+          <i-bi-hourglass-split class="mr-1"/>
 
             <span v-if="list.last_scan">
                 {{ $t("domain.list.status.last_scan_started") }}: {{ humanize_date(list.last_scan) }}, {{ list.last_scan_state }}
@@ -10,11 +10,12 @@
             <span v-if="!list.last_scan">
                 {{ $t("domain.list.status.last_scan_started") }}: {{ $t("domain.list.status.not_scanned_before") }}
             </span>
+
             <br>
             <template class="scan-configuration">
                 <span v-if="list.enable_scans">
 
-                  <DashboardIcon icon="link" />
+                  <i-bi-link />
 
                     {{ $t("domain.list.status.type_of_scan_performed") }}:
                     <span v-if="list.enable_scans">
@@ -24,7 +25,7 @@
                         🚫 {{ list.scan_type }}
                     </span><br>
 
-                  <DashboardIcon icon="arrow-repeat" :scale="0.8" />
+                  <i-bi-arrow-repeat />
 
 
                     {{ $t("domain.list.status.scan_frequency") }}: {{ $t("app.frequency." + list.automated_scan_frequency) }} <br>
@@ -35,7 +36,7 @@
                 <span v-if="!list.enable_scans"> {{ $t("domain.list.status.scanning_disabled") }} </span>
             </template>
 
-            <DashboardIcon icon="share" :scale="0.5" class="mr-1"/>{{$t("domain.list.status.sharing")}}:
+            <i-bi-share class="mr-1"/>{{$t("domain.list.status.sharing")}}:
             <span v-if="!list.automatically_share_new_reports">{{$t("domain.list.status.Not automatically shared")}}</span>
             <span v-if="list.automatically_share_new_reports">{{$t("domain.list.status.Automatically shared")}}
 
@@ -47,9 +48,11 @@
                 <router-link :to="`/latest/${list.id}/`">{{ $t("domain.list.status.on this page") }}</router-link>
               </span>
 
-              <span v-if="list.default_public_share_code_for_new_reports">{{$t("domain.list.status.with share code")}}</span>
+              <span v-if="list.default_public_share_code_for_new_reports"> - {{$t("domain.list.status.with share code")}}</span>
             </span>
-             <a v-if="list.enable_report_sharing_page && list.automatically_share_new_reports" :href="`/#/published/${$store.state.user.account_id}/`" target="_blank"> {{$t("domain.list.status.Listed on sharing page")}}</a>
+            <span v-if="list.enable_report_sharing_page && list.automatically_share_new_reports">
+               - <a :href="`/published/${user.account_id}/`" target="_blank">{{$t("domain.list.status.Listed on sharing page")}}</a>
+            </span>
           <br>
 
             <span v-if="list.last_report_id">
@@ -64,11 +67,13 @@
 </template>
 
 <script>
-import ScanTypeIcon from "@/components/ScanTypeIcon";
-import DashboardIcon from "@/components/DashboardIcon";
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
+
 export default {
     name: "about-this-list",
-  components: {DashboardIcon, ScanTypeIcon},
+  components: {ScanTypeIcon},
   props: {
         list: {
             type: Object
@@ -76,6 +81,7 @@ export default {
         urls: {
             type: Array
         }
-    }
+    },
+    computed: mapState(dashboardStore, ['user']),
 }
 </script>

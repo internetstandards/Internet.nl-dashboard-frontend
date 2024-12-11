@@ -1,9 +1,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-    <b-modal :visible="visible" @hidden="cancel()" header-bg-variant="danger" header-text-variant="light" no-fade
-             scrollable>
-        <h3 slot="modal-title">🗑️ {{ $t("domain.list.delete.title") }}</h3>
-        <div slot="default">
+    <b-modal @hidden="cancel()" header-bg-variant="danger" header-text-variant="light" no-fade scrollable>
+        <template #header><h4>🗑️ {{ $t("domain.list.delete.title") }}</h4></template>
+        <template #default>
             <server-response :response="delete_response"></server-response>
 
             <p class="dialog_warning">{{ $t("domain.list.delete.message") }}</p>
@@ -26,14 +25,14 @@
             {{ list.automated_scan_frequency }}<br>
             <br>
 
-        </div>
-        <div slot="modal-footer">
-            <button class="altbutton" @click="cancel()">{{ $t("domain.list.delete.cancel") }}</button>
+        </template>
+        <template #footer>
+            <b-button variant="secondary" @click="cancel()">{{ $t("domain.list.delete.cancel") }}</b-button>
             &nbsp;
-            <button class="defaultbutton modal-default-button" @click="confirm_deletion()">
+            <b-button variant="danger" @click="confirm_deletion()">
                 {{ $t("domain.list.delete.ok") }}
-            </button>
-        </div>
+            </b-button>
+        </template>
     </b-modal>
 </template>
 
@@ -45,9 +44,6 @@ export default {
     props: {
         list: {
             type: Object,
-        },
-        visible: {
-            type: Boolean,
         }
     },
     data: function () {

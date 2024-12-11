@@ -33,20 +33,21 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 <template>
     <div>
         <content-block>
-            <h1><b-icon icon="card-list" /> {{ $t("domain.list-manager.title") }}</h1>
-            <p>{{ $t("domain.list-manager.intro") }}</p>
+            <h1><i-bi-card-list /> {{ $t("domain.list-manager.title") }}</h1>
+            <p class="mb-4">{{ $t("domain.list-manager.intro") }}</p>
             <p>
-                <button v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</button>
+                <b-button variant="warning" @click="show_add_new = true" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</b-button>
                 &nbsp;
                 <router-link to="/domains/upload" custom v-slot="{ navigate }">
-                  <button  @click="navigate" @keypress.enter="navigate">
+                  <b-button variant="warning" @click="navigate" @keypress.enter="navigate">
                   📓 {{ $t("domain.list-manager.bulk_upload_link") }}
-                  </button>
+                  </b-button>
                 </router-link>
             </p>
 
-            <collapse-panel :title='$t("domain.list-manager.icon_legend.title")'>
-                <div slot="content">
+            <collapse-panel :title='$t("domain.list-manager.icon_legend.title")' class="mt-2">
+                <template #content>
+                  <b-alert variant="info" :model-value="true" >
                     <p>{{ $t("domain.list-manager.icon_legend.intro") }}</p>
                     <ul>
                         <li>
@@ -61,11 +62,13 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                             {{ $t("domain.list-manager.icon_legend.cannot_connect") }}
                         </li>
                     </ul>
-                </div>
+
+                    </b-alert>
+                </template>
             </collapse-panel>
 
-            <b-modal id="show_add_new" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
-                <h3 slot="modal-title">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</h3>
+            <b-modal id="show_add_new" v-model="show_add_new" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+              <template #header><h4>📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</h4></template>
 
                 <div slot="default">
                     <server-response :response="add_new_server_response"></server-response>
@@ -118,27 +121,28 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                                       v-model="add_new_new_list.default_public_share_code_for_new_reports">
 
                         </b-form-input>
-                        <b-input-group-append>
+
                           <!-- better would be to btoa(String.fromCharCode.apply(null,self.crypto.getRandomValues(new Uint8Array(15)))).replaceAll('+','-').replaceAll('/','_') -->
                           <b-button variant="outline-success" @click="add_new_new_list.default_public_share_code_for_new_reports = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);;">{{ $t("urllist.generate_code") }}</b-button>
-                        </b-input-group-append>
+
                       </b-input-group>
                     <br>
 
                     <b-form-checkbox id="enable_report_sharing_page" v-model="add_new_new_list.enable_report_sharing_page">
                       {{ $t("urllist.enable_report_sharing_page") }}.
-                      <a :href="`/#/published/${$store.state.user.account_id}/`" target="_blank">{{$t("urllist.to_overview_page")}}</a>
+                      <!-- move to separate component so that user variable is present via mapstate. -->
+                      <a :href="`/published/user.account_id/`" target="_blank">{{$t("urllist.to_overview_page")}}</a>
                     </b-form-checkbox>
 
                 </div>
-                <div slot="modal-footer">
-                    <button class='altbutton' @click="$bvModal.hide('show_add_new')">
+                <template #footer>
+                    <b-button variant="secondary" @click="show_add_new = false">
                         {{ $t("domain.list-manager.new_list.button_close_label") }}
-                    </button> &nbsp;
-                    <button class="defaultbutton modal-default-button" @click="create_list()">
+                    </b-button> &nbsp;
+                    <b-button variant="warning" @click="create_list()">
                         {{ $t("domain.list-manager.new_list.button_create_list_label") }}
-                    </button>
-                </div>
+                    </b-button>
+                </template>
             </b-modal>
 
         </content-block>
@@ -168,9 +172,9 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
             v-on:removelist="removelist"
             v-for="list in lists" />
 
-        <content-block v-if="!lists.length" class="no-content">
+        <content-block v-if="!lists.length">
             {{ $t("domain.list-manager.inital_list.start") }} <br>
-            <button class="border-success m-4" size="" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</button>
+            <b-button variant="warning" size="" v-b-modal="'show_add_new'" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</b-button>
             <br>
             <br>
             <p>
@@ -184,7 +188,10 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 <script>
 import UrlList from './UrlList.vue'
 import http from "@/httpclient";
-import CollapsePanel from '@/components/CollapsePanel'
+import CollapsePanel from '@/components/CollapsePanel.vue'
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
+
 
 export default {
     components: {
@@ -194,22 +201,31 @@ export default {
         return {
             loading: false,
             lists: [],
+            show_add_new: false,
 
             // possible things that can go wrong in list validation.
             maximum_domains_per_list: 10000,
 
             // everything that has something to do with adding a new list:
             add_new_server_response: {},
-            add_new_new_list: {},
+            add_new_new_list: {
+              id: -1,
+              name: '',
+              enable_scans: true,
+              scan_type: 'web',
+              automated_scan_frequency: 'disabled',
+              scheduled_next_scan: '1',
+              automatically_share_new_reports: false,
+              default_public_share_code_for_new_reports: '',
+              enable_report_sharing_page: false
+            },
+
+          store: dashboardStore,
         }
     },
     mounted: function () {
+      this.store = dashboardStore();
         this.get_lists();
-        this.$root.$on('bv::modal::show', (bvEvent, modalId) => {
-            if (modalId === "show_add_new") {
-                this.reset_add_new_form()
-            }
-        })
     },
     methods: {
         removelist: function (list_id) {
@@ -231,8 +247,15 @@ export default {
         reset_add_new_form: function () {
             // Fixes #105: we don't need an explicit enable scans checkmark.
             this.add_new_new_list = {
-                'id': -1, 'name': '', 'enable_scans': true, 'scan_type': 'web',
-                'automated_scan_frequency': 'disabled', 'scheduled_next_scan': '1', automatically_share_new_reports: false, default_public_share_code_for_new_reports: '',  enable_report_sharing_page: false
+              id: -1,
+              name: '',
+              enable_scans: true,
+              scan_type: 'web',
+              automated_scan_frequency: 'disabled',
+              scheduled_next_scan: '1',
+              automatically_share_new_reports: false,
+              default_public_share_code_for_new_reports: '',
+              enable_report_sharing_page: false
             };
             this.add_new_server_response = {};
         },
@@ -252,7 +275,9 @@ export default {
                     // Doing it properly retains reactivity such as unshifting and reversing the list.
                     this.add_new_server_response.data.start_opened = true;
                     this.lists.unshift(this.add_new_server_response.data);
-                    this.$bvModal.hide('show_add_new')
+                    this.show_add_new = false;
+
+                    this.reset_add_new_form();
                 }
             });
         }
@@ -278,8 +303,13 @@ export default {
         },
         // can't seem to find the mapstate method the old school way:
         uploads_performed: function () {
-            return this.$store.state.uploads_performed
+            return this.store.uploads_performed
+        },
+        user() {
+          return this.store.user
         }
-    }
+    },
+  // mapstate doesnt seem to work here it seems
+  //...mapState(dashboardStore, ['user'])
 }
 </script>

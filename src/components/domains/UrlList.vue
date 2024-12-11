@@ -11,44 +11,44 @@ h2 {
       <span>
             <a :name="list.id"></a>
             <h2>
-                <button v-if="!is_opened" aria-expanded="false" @click="open_list()">
+                <b-button variant="warning" v-if="!is_opened" aria-expanded="false" @click="open_list()">
                     <span v-if="list_contains_warnings" :aria-label='$t("domain.urllist.icon.list_warning")' role="img">⚠️</span>
                     <span :aria-label='$t("domain.urllist.icon.list_closed")' role="img">📘</span> <probe
                     v-if="list.enable_scans && !list.scan_now_available" class="mr-2"/>{{ list.name }} <scan-type-icon
                     :type="list.scan_type"/>
-                </button>
-                <button v-if="is_opened" aria-expanded="true" @click="close_list()">
+                </b-button>
+                <b-button variant="warning" v-if="is_opened" aria-expanded="true" @click="close_list()">
                     <span v-if="list_contains_warnings" :aria-label='$t("domain.urllist.icon.list_warning")' role="img">⚠️</span>
                     <span :aria-label='$t("domain.urllist.icon.list_opened")' role="img">📖</span> <probe
                     v-if="list.enable_scans && !list.scan_now_available" class="mr-2"/>
                   {{ list.name }} <scan-type-icon
                     :type="list.scan_type"/>
-                </button>
+                </b-button>
             </h2>
 
-            <div v-if="is_opened" class="float-right">
+            <div v-if="is_opened" class="float-end">
                 <template v-if="urls.length">
                     <template v-if="list.enable_scans">
-                        <button v-if="list.scan_now_available" @click="visible.scan = true">
+                        <b-button variant="warning" v-if="list.scan_now_available" @click="visible.scan = true">
                             <span :aria-label='$t("domain.urllist.icon.scan")' role="img">🔬</span> {{ $t("domain.urllist.button.scan_now") }}
-                        </button> &nbsp;
-                        <button v-if="!list.scan_now_available" :title='$t("domain.urllist.button.scan_now_scanning")'
+                        </b-button> &nbsp;
+                        <b-button variant="warning" v-if="!list.scan_now_available" :title='$t("domain.urllist.button.scan_now_scanning")'
                                 disabled="disabled">
                             <probe/> {{ $t("domain.urllist.button.scan_now_scanning") }}
-                        </button>
+                        </b-button>
                     </template>
-                    <button v-else :title='$t("domain.urllist.button.scanning_disabled")' disabled="disabled">
+                    <b-button variant="warning" v-else :title='$t("domain.urllist.button.scanning_disabled")' disabled="disabled">
                         <span :aria-label='$t("domain.urllist.icon.scan")' role="img">🔬</span> {{ $t("domain.urllist.button.scanning_disabled") }}
-                    </button> &nbsp;
+                    </b-button> &nbsp;
                 </template>
 
-                <button @click="visible.configure = true">
+                <b-button variant="warning" @click="visible.configure = true">
                     <span :aria-label='$t("domain.urllist.icon.settings")' role="img">📝</span> {{ $t("domain.urllist.button.configure") }}
-                </button> &nbsp;
+                </b-button> &nbsp;
 
-              <button @click="download_list" v-if="urls.length">⬇️ {{ $t("domain.urllist.button.download") }}</button> &nbsp;
+              <b-button variant="warning" @click="download_list" v-if="urls.length">⬇️ {{ $t("domain.urllist.button.download") }}</b-button> &nbsp;
 
-              <button class="border-danger" @click="visible.delete = true">🗑️ {{ $t("domain.urllist.button.delete") }}</button>
+              <b-button variant="danger" @click="visible.delete = true">🗑️ {{ $t("domain.urllist.button.delete") }}</b-button>
             </div>
         </span>
 
@@ -67,23 +67,14 @@ h2 {
         </div>
       </template>
 
-      <div  style="width: 100%; text-align: right" class="mb-2" v-if="!urls.length">
-        {{$t('add domains using')}}:
-        <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}</b-button> &nbsp;
-        <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;
-        <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button> &nbsp;
+      <div  style="width: 100%; text-align: right" class="mb-2">
+        {{$t('domain.urllist.add domains using')}}:<br>
+        <b-button variant="success" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}</b-button> &nbsp;
+        <b-button variant="success" @click="visible.discover_subdomains = true" v-if="store.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;
+        <b-button variant="success" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button> &nbsp;
         <!-- <button class="border-success" @click="get_urls()">⬆️ {{ $t("button.reload") }}</button> -->
-      </div>
-
-      <div style="width: 100%; text-align: right" class="mb-2" v-if="urls.length">
-        {{$t('add domains using')}}:
-        <b-button style="font-weight: bold" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}
-        </b-button> &nbsp;
-        <b-button style="font-weight: bold" @click="visible.discover_subdomains = true" v-if="$store.state.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;
-        <b-button style="font-weight: bold" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button> &nbsp;
         <SubdomainDiscovery v-if="urls.length" :list_id="list.id" @finished="get_urls"/>
       </div>
-
 
       <template v-if="urls.length">
         <DomainTable :loading="loading" :urllist="list" :urls="urls" @update="get_urls()"/>
@@ -94,22 +85,22 @@ h2 {
 
     </div>
 
-    <Configure :list="list" :show="visible.configure" :visible="visible.configure" @cancel="visible.configure = false"
+    <Configure :list="list" :show="visible.configure" v-model="visible.configure" @cancel="visible.configure = false"
                @done="visible.configure = false"></Configure>
-    <DiscoverSubdomains :list="list" :show="visible.discover_subdomains" :visible="visible.discover_subdomains" @cancel="visible.discover_subdomains = false"
+    <DiscoverSubdomains :list="list" :show="visible.discover_subdomains" v-model="visible.discover_subdomains" @cancel="visible.discover_subdomains = false"
                @done="visible.discover_subdomains = false; get_urls();"></DiscoverSubdomains>
-    <Upload :list="list" :show="visible.upload" :visible="visible.upload" @cancel="visible.upload = false"
+    <Upload :list="list" :show="visible.upload" v-model="visible.upload" @cancel="visible.upload = false"
                @done="visible.upload = false; get_urls();"></Upload>
-    <Delete :list="list" :show="visible.delete" :visible="visible.delete" @cancel="visible.delete = false"
+    <Delete :list="list" :show="visible.delete" v-model="visible.delete" @cancel="visible.delete = false"
             @removelist="is_deleted = true; visible.delete = false"></Delete>
-    <Scan :list="list" :show="visible.scan" :visible="visible.scan" @cancel="visible.scan = false"
+    <Scan :list="list" :show="visible.scan" v-model="visible.scan" @cancel="visible.scan = false"
           @started="visible.scan = false"></Scan>
-    <AddDomains :list="list" :show="visible.add_domains" :visible="visible.add_domains"
+    <AddDomains :list="list" :show="visible.add_domains" v-model="visible.add_domains"
                 @added="get_urls()" @cancel="visible.add_domains = false"></AddDomains>
 
     <!-- This is already auto-refreshed by a watch, but we keep this as a backup solution for edge cases like
      the monitor page not loading or the used did not open the monitor page. -->
-    <autorefresh v-if="$store.state.user.is_authenticated" :callback="get_scan_status_of_list"
+    <autorefresh v-if="store.user.is_authenticated" :callback="get_scan_status_of_list"
                  :refresh_per_seconds="600"
                  :visible="false"></autorefresh>
   </content-block>
@@ -117,20 +108,22 @@ h2 {
 
 <script>
 
-import Delete from './list/DeleteListModal'
-import Scan from './list/ScanModal'
-import AddDomains from './list/AddDomainsModal'
-import Configure from './list/ConfigurationModal'
-import Upload from './list/UploadModal'
-import About from './list/AboutThisList'
+import Delete from './list/DeleteListModal.vue'
+import Scan from './list/ScanModal.vue'
+import AddDomains from './list/AddDomainsModal.vue'
+import Configure from './list/ConfigurationModal.vue'
+import Upload from './list/UploadModal.vue'
+import About from './list/AboutThisList.vue'
 import http from "@/httpclient";
-import ScanTypeIcon from "@/components/ScanTypeIcon";
-import DomainTable from "@/components/domains/DomainTable";
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
+import DomainTable from "@/components/domains/DomainTable.vue";
 
-import autorefresh from '@/components/autorefresh'
-import Probe from '@/components/probe'
-import DiscoverSubdomains from "@/components/domains/list/DiscoverSubdomainsModal";
-import SubdomainDiscovery from "@/components/domains/list/WwwDiscovery";
+import autorefresh from '@/components/autorefresh.vue'
+import Probe from '@/components/probe.vue'
+import DiscoverSubdomains from "@/components/domains/list/DiscoverSubdomainsModal.vue";
+import SubdomainDiscovery from "@/components/domains/list/WwwDiscovery.vue";
+
+import { dashboardStore } from '@/dashboardStore'
 
 export default {
   components: {
@@ -169,6 +162,8 @@ export default {
         upload: false,
         discover_subdomains: false,
       },
+
+      store: dashboardStore(),
     }
   },
   props: {
@@ -222,8 +217,8 @@ export default {
     }
   },
   mounted: function () {
-    if (this.$router.history.current.params.list) {
-      if (this.list.id === parseInt(this.$router.history.current.params.list)) {
+    if (this.$route.params.list) {
+      if (this.list.id === parseInt(this.$route.params.list)) {
         this.open_list();
       }
     }
@@ -306,13 +301,13 @@ export default {
     },
     // can't seem to find the mapstate method the old school way:
     current_scan_status_from_scan_monitor: function () {
-      if (this.$store.state.scan_monitor_data.length === 0)
+      if (this.store.scan_monitor_data.length === 0)
         return "";
 
       // the first scan-monitor record where list_id is the same, is the one with the most recent state
-      for (let i = 0; i < this.$store.state.scan_monitor_data.length; i++) {
-        if (this.$store.state.scan_monitor_data[i].list_id === this.list.id) {
-          return this.$store.state.scan_monitor_data[i].state;
+      for (let i = 0; i < this.store.scan_monitor_data.length; i++) {
+        if (this.store.scan_monitor_data[i].list_id === this.list.id) {
+          return this.store.scan_monitor_data[i].state;
         }
       }
 

@@ -5,7 +5,7 @@
         📊 <span v-if="show_application_links">#{{ reports[0].id }} - </span>{{ reports[0].urllist_name }}
     </h2>
     <applied-tags/>
-    <donut class="mr-2 d-inline-block float-left col-2" :data="{'score': reports[0].average_internet_nl_score, 'rest': 100-reports[0].average_internet_nl_score}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='600' :elements="['donut']" />
+    <donut class="mr-2 d-inline-block float-start col-2" :data="{'score': reports[0].average_internet_nl_score, 'rest': 100-reports[0].average_internet_nl_score}" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='100' :elements="['donut']" />
     <span>{{ $t("report.header.type_of_scan_performed") }}:
       <scan-type-icon :type="reports[0].report_type" />
 
@@ -44,9 +44,9 @@
 </template>
 <script>
 
-import ScanTypeIcon from "@/components/ScanTypeIcon";
-import Donut from "@/components/charts/donut";
-import AppliedTags from "@/components/reports/AppliedTags";
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
+import Donut from "@/components/charts/donut.vue";
+import AppliedTags from "@/components/reports/AppliedTags.vue";
 export default {
   components: {AppliedTags, Donut, ScanTypeIcon},
   props: {

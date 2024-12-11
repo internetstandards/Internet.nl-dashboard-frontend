@@ -8,6 +8,8 @@
 </template>
 <script>
 import chart_mixin from './chart_mixin.vue'
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
 
 export default {
   mixins: [chart_mixin],
@@ -18,6 +20,7 @@ export default {
 
   methods: {
     renderData: function () {
+
       this.configure_barchart();
       // console.log("Rendering bar chart.");
 
@@ -90,11 +93,12 @@ export default {
           });
         });
       }
-      if (this.$store.state.rendered_chart_to_table === undefined) {
-        this.$store.state.rendered_chart_to_table = {}
+      if (this.rendered_chart_to_table === undefined) {
+        this.rendered_chart_to_table = {}
       }
-      this.$store.state.rendered_chart_to_table[this.chartName] = this.chart.data;
-      this.chart.update();
+      this.rendered_chart_to_table[this.chartName] = this.chart.data;
+      // causes too much recursion
+      // this.chart.update();
     },
     renderTitle: function () {
       this.chart.options.plugins.title.text = this.title;
@@ -107,6 +111,7 @@ export default {
 
       return this.report_titles.join(" vs ");
     },
+    ...mapState(dashboardStore, ['rendered_chart_to_table']),
   }
 }
 </script>

@@ -138,6 +138,7 @@
 			"admin": "Verwaltung",
 			"authentication": "Authentifizierung",
 			"domains": "Domains",
+			"domains_upload": "",
 			"home": "Startseite",
 			"log_in": "Einloggen",
 			"log_off": "Abmelden",
@@ -222,6 +223,7 @@
 			"select_all": "Alle auswählen",
 			"status_report": "Statusbericht",
 			"title": "Subdomains entdecken",
+			"undefined": "",
 			"will_be_added_to": "Die ausgewählten Subdomains werden in die Liste {0}aufgenommen."
 		},
 		"edit-domain": {
@@ -292,6 +294,7 @@
 				"last_scan_started": "Letzter Scan",
 				"latest_report": "Letzter Bericht",
 				"Listed on sharing page": "auch auf der Sharing-Seite",
+				"mail": "",
 				"next_scheduled_scan": "Nächster geplanter Scan",
 				"Not automatically shared": "Nicht automatisch freigegeben",
 				"not_scanned_before": "Vorher nicht gescannt",
@@ -303,6 +306,7 @@
 				"sharing": "Teilen",
 				"still_running": "läuft noch",
 				"type_of_scan_performed": "Art des Scans",
+				"web": "",
 				"with share code": "mit Aktiencode"
 			},
 			"upload": {
@@ -396,7 +400,12 @@
 				}
 			}
 		},
+		"table": {
+			"domain": "",
+			"tags": ""
+		},
 		"urllist": {
+			"add domains using": "",
 			"button": {
 				"add domains using": "Domains hinzufügen mit",
 				"add_domains": "Freier Text",
@@ -1374,6 +1383,9 @@
 			"test_title": "Icons pro Testkategorie",
 			"test_warning": "Warnung: Mindestens einen EMPFOHLENEN Untertest nicht bestanden ⇒ volle Punktzahl in der Testkategorie"
 		},
+		"mail": {
+			"title": ""
+		},
 		"rating": {
 			"pct_error_in_test": "Testfehler",
 			"pct_high": "Gescheitert",
@@ -1382,6 +1394,9 @@
 			"pct_not_applicable": "Nicht anwendbar",
 			"pct_not_testable": "nicht prüfbar",
 			"pct_ok": "Bestanden"
+		},
+		"web": {
+			"title": ""
 		}
 	},
 	"public-reports": {
@@ -1646,6 +1661,7 @@
 				"configuration_error": "Konfigurationsfehler entdeckt, kontaktieren Sie internet.nl",
 				"created report": "Erstellter Bericht",
 				"creating report": "Bericht erstellen",
+				"credential_error": "",
 				"discovered endpoints": "ermittelte Endpunkte",
 				"discovering endpoints": "Erkennung von Endpunkten",
 				"error": "Ein unbekannter Fehler ist aufgetreten, kontaktieren Sie internet.nl",
@@ -1695,6 +1711,7 @@
 			},
 			"id": " scan #",
 			"last_check": "",
+			"list": "",
 			"message": "Status",
 			"progress": {
 				"cancelled": "",
@@ -1742,7 +1759,7 @@
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Dashboard",
 			"email": "E-Mail",
-			"email_placeholder": "E-Mail@",
+			"email_placeholder": "E-Mail{'@'}",
 			"incomplete_form_submitted": "Das Formular wurde nicht vollständig ausgefüllt, bitte füllen Sie alle Felder aus",
 			"incorrect_captcha": "Frage zur Verhinderung automatischer Anmeldungen nicht korrekt beantwortet",
 			"intended_usage_frequency": "Vorgesehene Nutzungshäufigkeit",
@@ -1790,7 +1807,7 @@
 			"note_link": "Besuchen Sie das GitHub-Repository, um loszulegen",
 			"procedure_description": "Nach der formellen Genehmigung Ihres Antrags durch unseren Lenkungsausschuss werden Ihr Benutzername und die Anweisungen für die Nutzung der Batch-Testing-HTTP-API und/oder des API-Dashboards an die angegebene E-Mail-Adresse gesendet. Das entsprechende Passwort wird an die angegebene Mobiltelefonnummer gesendet. In unserer <a href=\"https://internet.nl/privacy/\">Datenschutzerklärung</a> erfahren Sie, welche Daten internet.nl verarbeitet und speichert.",
 			"procedure_title": "Verfahren zur Vergabe von Anmeldedaten",
-			"support_description": "Bei Fragen zur (Verwendung der) Batch-Testing-HTTP-API und dem API-Dashboard können Sie eine E-Mail an <a href=\"mailto:question@internet.nl\">question@internet.nl</a>senden.",
+			"support_description": "Bei Fragen zur (Verwendung der) Batch-Testing-HTTP-API und dem API-Dashboard können Sie eine E-Mail an <a href=\"mailto:question{'@'}internet.nl\">question{'@'}internet.nl</a>senden.",
 			"support_title": "Unterstützung"
 		}
 	},
@@ -1805,7 +1822,7 @@
 			"introduction": "Richten Sie die Zwei-Faktor-Authentifizierung für Ihr Konto mit Einmalpasswörtern ein.",
 			"title": "Zwei-Faktor-Authentifizierung"
 		},
-		"contact_information": "Um das Dashboard auf internet.nl zu nutzen, wenden Sie sich an: <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
+		"contact_information": "Um das Dashboard auf internet.nl zu nutzen, wenden Sie sich an: <a href='mailto:vraag{'@'}internet.nl?subject=dashboard%20access%20request'>vraag{'@'}internet.nl</a>",
 		"export_spreadsheet": {
 			"caption": "Das Excel-Tabellenblatt wird in Numbers geöffnet. Sie enthält die gleichen Daten wie in der Tabelle dargestellt.",
 			"introduction": "Die Tabelle kann in Excel, Libreoffice und CSV-Daten exportiert werden. Die Excel-Tabelle enthält einige Statistiken über die dargestellten Metriken.",
@@ -1854,6 +1871,7 @@
 		},
 		"title": "Funktionen des Internet.nl-Dashboards"
 	},
+	"undefined": "",
 	"urllist": {
 		"automated_scan_frequency": {
 			"disabled": "Nicht periodisch wiederholen",

@@ -6,13 +6,13 @@
         ⬇️ {{$t("report.download.title", [report.id, report.urllist_name])}}
       </b-col>
       <b-col>
-        <b-icon icon="file-earmark-spreadsheet"/> <a :href="make_downloadlink(report.id, 'xlsx')">{{ $t("report.download.xlsx") }}</a>
+        <i-bi-file-earmark-spreadsheet/> <a :href="make_downloadlink(report.id, 'xlsx')">{{ $t("report.download.xlsx") }}</a>
       </b-col>
       <b-col>
-        <b-icon icon="file-earmark-spreadsheet"/> <a :href="make_downloadlink(report.id, 'ods')">{{ $t("report.download.ods") }}</a>
+        <i-bi-file-earmark-spreadsheet/> <a :href="make_downloadlink(report.id, 'ods')">{{ $t("report.download.ods") }}</a>
       </b-col>
       <b-col>
-       <b-icon icon="file-text"/> <a :href="make_downloadlink(report.id, 'csv')">{{ $t("report.download.csv") }}</a>
+       <i-bi-file-text/> <a :href="make_downloadlink(report.id, 'csv')">{{ $t("report.download.csv") }}</a>
       </b-col>
     </b-row>
 
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     make_downloadlink: function (report_id, filetype) {
-      return `${process.env.VUE_APP_DJANGO_PATH}/data/download-spreadsheet/${report_id}/${filetype}/`
+      return `${import.meta.env.VITE_VUE_APP_DJANGO_PATH}/data/download-spreadsheet/${report_id}/${filetype}/`
     },
   }
 }

@@ -6,7 +6,7 @@
 </template>
 <script>
 import http from "@/httpclient";
-import SharedReport from "@/components/reports/SharedReport";
+import SharedReport from "@/components/reports/SharedReport.vue";
 export default {
   components: {SharedReport},
   data() {
@@ -18,10 +18,10 @@ export default {
   methods: {
     get_report_type(){
        let report_type = '';
-        if (this.$router.history.current.path.includes('/mail')) {
+        if (this.$route.path.includes('/mail')) {
           report_type ='mail';
         }
-        if (this.$router.history.current.path.includes('/web')) {
+        if (this.$route.path.includes('/web')) {
           report_type ='web';
         }
         return report_type
@@ -29,7 +29,7 @@ export default {
     load() {
         // a list can create both a web and mail report. Those are added to the system in random order.
       // So you can specify web or mail to have more certainty.
-      let urllist_id = this.$router.history.current.params.list_id;
+      let urllist_id = this.$route.params.list_id;
 
       let url = `/data/report/public/lists/${urllist_id}/latest/`
       if(this.get_report_type())

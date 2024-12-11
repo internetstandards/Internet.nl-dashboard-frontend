@@ -138,6 +138,7 @@
 			"admin": "Administrateur",
 			"authentication": "Authentification",
 			"domains": "Domaines",
+			"domains_upload": "",
 			"home": "Accueil",
 			"log_in": "Se connecter",
 			"log_off": "Déconnexion",
@@ -222,6 +223,7 @@
 			"select_all": "Sélectionner tout",
 			"status_report": "Rapport de situation",
 			"title": "Découvrir les sous-domaines",
+			"undefined": "",
 			"will_be_added_to": "les sous-domaines sélectionnés seront ajoutés à la liste nommée {0}."
 		},
 		"edit-domain": {
@@ -292,6 +294,7 @@
 				"last_scan_started": "Dernière analyse",
 				"latest_report": "Dernier rapport",
 				"Listed on sharing page": ", également sur la page de partage",
+				"mail": "",
 				"next_scheduled_scan": "Prochaine analyse programmée",
 				"Not automatically shared": "Pas de partage automatique",
 				"not_scanned_before": "Jamais scanné auparavant",
@@ -303,6 +306,7 @@
 				"sharing": "Partagé",
 				"still_running": "toujours en cours",
 				"type_of_scan_performed": "Type d'analyse",
+				"web": "",
 				"with share code": "avec code d'action"
 			},
 			"upload": {
@@ -396,7 +400,12 @@
 				}
 			}
 		},
+		"table": {
+			"domain": "",
+			"tags": ""
+		},
 		"urllist": {
+			"add domains using": "",
 			"button": {
 				"add domains using": "Ajouter des domaines en utilisant",
 				"add_domains": "Texte libre",
@@ -1374,6 +1383,9 @@
 			"test_title": "Icônes par catégorie de test",
 			"test_warning": "Attention : échec à au moins un sous-test RECOMMENDED ⇒ score complet dans la catégorie de test"
 		},
+		"mail": {
+			"title": ""
+		},
 		"rating": {
 			"pct_error_in_test": "Erreur de test",
 			"pct_high": "Échec",
@@ -1382,6 +1394,9 @@
 			"pct_not_applicable": "sans objet",
 			"pct_not_testable": "non testable",
 			"pct_ok": "Adopté"
+		},
+		"web": {
+			"title": ""
 		}
 	},
 	"public-reports": {
@@ -1646,6 +1661,7 @@
 				"configuration_error": "erreur de configuration détectée, contactez internet.nl",
 				"created report": "Rapport créé",
 				"creating report": "création d'un rapport",
+				"credential_error": "",
 				"discovered endpoints": "points finaux découverts",
 				"discovering endpoints": "découvrir les points finaux",
 				"error": "Une erreur inconnue s'est produite, contactez internet.nl",
@@ -1695,6 +1711,7 @@
 			},
 			"id": " scan #",
 			"last_check": "",
+			"list": "",
 			"message": "Statut",
 			"progress": {
 				"cancelled": "",
@@ -1742,7 +1759,7 @@
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Tableau de bord",
 			"email": "Courriel",
-			"email_placeholder": "email@",
+			"email_placeholder": "email{'@'}",
 			"incomplete_form_submitted": "Le formulaire n'a pas été rempli complètement, veuillez remplir tous les champs.",
 			"incorrect_captcha": "Question visant à empêcher les inscriptions automatisées sans réponse correcte",
 			"intended_usage_frequency": "Fréquence d'utilisation prévue",
@@ -1790,7 +1807,7 @@
 			"note_link": "Visitez le dépôt GitHub pour commencer",
 			"procedure_description": "Après approbation formelle de votre demande par notre comité directeur, votre nom d'utilisateur et les instructions pour l'utilisation de l'API HTTP pour les tests par lots et/ou du tableau de bord de l'API sont envoyés à l'adresse électronique spécifiée. Le mot de passe correspondant sera envoyé au numéro de téléphone portable indiqué. Voir notre déclaration de confidentialité <a href=\"https://internet.nl/privacy/\"></a> sur les données traitées et stockées par internet.nl.",
 			"procedure_title": "Procédure d'attribution des identifiants de connexion",
-			"support_description": "Pour toute question concernant (l'utilisation de) l'API HTTP pour les tests en lots et le tableau de bord API, un courriel peut être envoyé à <a href=\"mailto:question@internet.nl\">question@internet.nl</a>.",
+			"support_description": "Pour toute question concernant (l'utilisation de) l'API HTTP pour les tests en lots et le tableau de bord API, un courriel peut être envoyé à <a href=\"mailto:question{'@'}internet.nl\">question{'@'}internet.nl</a>.",
 			"support_title": "Soutien"
 		}
 	},
@@ -1805,7 +1822,7 @@
 			"introduction": "Configurez l'authentification à deux facteurs pour votre compte en utilisant des mots de passe à usage unique.",
 			"title": "Authentification à deux facteurs"
 		},
-		"contact_information": "Pour utiliser le tableau de bord sur internet.nl, contactez-nous : <a href='mailto:vraag@internet.nl?subject=dashboard%20access%20request'>vraag@internet.nl</a>",
+		"contact_information": "Pour utiliser le tableau de bord sur internet.nl, contactez-nous : <a href='mailto:vraag{'@'}internet.nl?subject=dashboard%20access%20request'>vraag{'@'}internet.nl</a>",
 		"export_spreadsheet": {
 			"caption": "La feuille de calcul Excel est ouverte dans Numbers. Elle contient les mêmes données que celles présentées dans le tableau.",
 			"introduction": "Le tableau peut être exporté vers Excel, Libreoffice et les données CSV. La feuille de calcul Excel comprend des statistiques sur les paramètres présentés.",
@@ -1854,6 +1871,7 @@
 		},
 		"title": "Caractéristiques du tableau de bord d'Internet.nl"
 	},
+	"undefined": "",
 	"urllist": {
 		"automated_scan_frequency": {
 			"disabled": "Ne pas répéter périodiquement",

@@ -2,6 +2,7 @@
 <style scoped>
 ol {
     list-style: decimal;
+  padding-left: 1em;
 }
 .card-header {
     min-height: 5em;
@@ -104,20 +105,25 @@ ol {
         <br>
 
         <collapse-panel :title='$t("scanmonitor.scan.scan history")'>
-            <div slot="content">
+            <template #content>
+              <b-alert variant="info" :model-value="true">
                 <ol class="small" reversed>
                     <li v-for="log_item in scan.log" :key="log_item.id">
                         {{ $t("scanmonitor.scan.progress." + log_item.state) }},
                         {{ humanize_relative_date(log_item.at_when) }}
                     </li>
                 </ol>
+                </b-alert>
                 <template v-if="!['finished', 'cancelled'].includes(scan.state)">
-                    <button @click="visible.stop_scan = true" class="border-danger">🛑 {{ $t("scanmonitor.scan.stop_scan") }}</button>
+                    <b-button variant="danger" @click="visible.stop_scan = true">🛑 {{ $t("scanmonitor.scan.stop_scan") }}</b-button>
 
-                    <StopScan :scan="scan" :show="visible.stop_scan" :visible="visible.stop_scan" @cancel="visible.stop_scan = false" @scan-stopped="scan_stopped()" ></StopScan>
+                    <StopScanModal
+                      :scan="scan" v-model="visible.stop_scan"
+                     @cancel="visible.stop_scan = false" @scan-stopped="scan_stopped()"
+                    />
 
                 </template>
-            </div>
+            </template>
         </collapse-panel>
 
         </b-card-text>
@@ -140,15 +146,15 @@ ol {
 
 <script>
 
-import StopScan from './stop'
-import ScanTypeIcon from "@/components/ScanTypeIcon";
-import Probe from '@/components/probe'
-import CollapsePanel from '@/components/CollapsePanel'
+import StopScanModal from './stopScanModal.vue'
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
+import Probe from '@/components/probe.vue'
+import CollapsePanel from '@/components/CollapsePanel.vue'
 
 export default {
     components: {
       ScanTypeIcon,
-        StopScan, Probe, CollapsePanel
+        StopScanModal, Probe, CollapsePanel
     },
     name: 'scan_monitor',
 

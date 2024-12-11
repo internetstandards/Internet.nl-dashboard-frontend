@@ -14,7 +14,7 @@ button {
 <template>
   <div>
 
-    <button @click="start_url_editing()" aria-expanded="false"> 🖊 </button> &nbsp;
+    <b-button variant="warning" @click="start_url_editing()" aria-expanded="false"> 🖊 </b-button> &nbsp;
 
     <a v-if="!editing" @click="start_url_editing()">
       <template v-if="displayed_url.subdomain">
@@ -23,9 +23,9 @@ button {
 
     <span v-if="editing">
       <input autofocus :placeholder="edited_url_value" v-model="edited_url_value">&nbsp;
-      <a @click="save()"><span class="sr-only">{{ $t("domain.edit-domain.save") }}</span>✅</a>&nbsp;
-      <a @click="cancel()"><span class="sr-only">{{ $t("domain.edit-domain.cancel") }}</span>⏪</a>&nbsp;
-      <a @click="delete_url(list.id, url.id)"><span class="sr-only">{{ $t("domain.edit-domain.remove") }}</span>🗑️</a>
+      <a @click="save()"><span class="visually-hidden">{{ $t("domain.edit-domain.save") }}</span>✅</a>&nbsp;
+      <a @click="cancel()"><span class="visually-hidden">{{ $t("domain.edit-domain.cancel") }}</span>⏪</a>&nbsp;
+      <a @click="delete_url(list.id, url.id)"><span class="visually-hidden">{{ $t("domain.edit-domain.remove") }}</span>🗑️</a>
     </span>
 
   </div>

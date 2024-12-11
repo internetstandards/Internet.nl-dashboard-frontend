@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <button @click="download_data_as_csv">Download</button>
+  <b-button variant="warning" @click="download_data_as_csv">Download</b-button>
 </template>
 
 <script>

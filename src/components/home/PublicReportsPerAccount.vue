@@ -16,16 +16,16 @@
           <key-value-badge :k='$t("public-reports.per-account.scan_type")' :v="$t('app.scan-type.' + reportset.list.scan_type)" />
         </p>
         <template v-if="reportset.list.scan_type === 'all'">
-          <button class="mb-2 mr-2 darklink">
+          <b-button variant="warning" class="mb-2 mr-2 darklink">
             <router-link :to="`/latest/${reportset.list.id}/mail/`">{{ $t("public-reports.per-account.View latest mail report") }}</router-link>
-          </button>
-          <button class="mb-2 darklink">
+          </b-button>
+          <b-button variant="warning" class="mb-2 darklink">
             <router-link :to="`/latest/${reportset.list.id}/web/`">{{ $t("public-reports.per-account.View latest web report") }}</router-link>
-          </button>
+          </b-button>
         </template>
-        <button class="mb-2 darklink" v-if="reportset.list.scan_type === 'web' || reportset.list.scan_type === 'mail'">
+        <b-button variant="warning" class="mb-2 darklink" v-if="reportset.list.scan_type === 'web' || reportset.list.scan_type === 'mail'">
           <router-link :to="`/latest/${reportset.list.id}/`">{{ $t("public-reports.per-account.View latest report") }}</router-link>
-        </button>
+        </b-button>
         <PublicReportsTable :reports="reportset.reports"/>
       </content-block>
     </div>
@@ -40,8 +40,8 @@
 <script>
 
 import http from "@/httpclient";
-import PublicReportsTable from "@/components/home/PublicReportsTable";
-import KeyValueBadge from "@/components/KeyValueBadge";
+import PublicReportsTable from "@/components/home/PublicReportsTable.vue";
+import KeyValueBadge from "@/components/KeyValueBadge.vue";
 
 export default {
   components: {KeyValueBadge, PublicReportsTable},
@@ -56,7 +56,7 @@ export default {
   methods: {
     load() {
       this.loading = true;
-      http.get(`data/report/public/account/${this.$router.history.current.params.account}/lists/all/`).then(data => {
+      http.get(`data/report/public/account/${this.$route.params.account}/lists/all/`).then(data => {
         this.reportsets = data.data;
         this.loading = false;
       });

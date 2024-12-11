@@ -3,7 +3,7 @@
     <div>
         <content-block>
 
-            <h1><b-icon icon="graph-up" /> {{ $t("admin.usage.title") }}</h1>
+            <h1><i-bi-graph-up /> {{ $t("admin.usage.title") }}</h1>
             <p>{{ $t("admin.usage.intro") }}</p>
             <p>{{ $t("admin.usage.annotations") }}:</p>
             <ol>
@@ -76,7 +76,7 @@
 </template>
 <script>
 
-import stats_yearview from './usage_yearview'
+import stats_yearview from './usage_yearview.vue'
 import http from "@/httpclient";
 
 export default {

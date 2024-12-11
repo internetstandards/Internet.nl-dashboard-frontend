@@ -1,16 +1,14 @@
 /* SPDX-License-Identifier: Apache-2.0 */
 @font-face {
     font-family: 'robotobold';
-    src: url("/static_frontend/fonts/robotobold.eot");
-    src: url("/static_frontend/fonts/robotobold.eot?#iefix") format("embedded-opentype"), url("/static_frontend/fonts/robotobold.woff") format("woff"), url("/static_frontend/fonts/robotobold.ttf") format("truetype"), url("/static_frontend/fonts/robotobold.svg#robotobold") format("svg");
+    src: url("/static_frontend/fonts/robotobold.woff") format("woff"), url("/static_frontend/fonts/robotobold.ttf") format("truetype");
     font-weight: bold;
     font-style: normal
 }
 
 @font-face {
     font-family: 'robotoregular';
-    src: url("/static_frontend/fonts/robotoregular.eot");
-    src: url("/static_frontend/fonts/robotoregular.eot?#iefix") format("embedded-opentype"), url("/static_frontend/fonts/robotoregular.woff") format("woff"), url("/static_frontend/fonts/robotoregular.ttf") format("truetype"), url("/static_frontend/fonts/robotoregular.svg#robotoregular") format("svg");
+    src: url("/static_frontend/fonts/robotoregular.woff") format("woff"), url("/static_frontend/fonts/robotoregular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal
 }
@@ -126,13 +124,13 @@ header {
 }
 
 main {
-    background-color: #e3e3e3;
+    background-color: #eef6f9;
     padding-bottom: .5em
 }
 
 .mainwrap {
     padding-top: .25em;
-    background-color: #e3e3e3
+    background-color: #eef6f9;
 }
 
 .home .mainwrap {
@@ -183,8 +181,8 @@ header .wrap {
     height: 33px;
     font-size: 100%;
     width: 100%;
-    background: url("/static/logo_en.png");
-    background: url("/static/logo_en.svg");
+    background: url("/static_frontend/images/vendor/internet_nl/logo_en.png");
+    background: url("/static_frontend/images/vendor/internet_nl/logo_en.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left center;
@@ -451,14 +449,14 @@ aside .emailtest li a, aside .websitetest li a, aside .connectiontest li a, asid
     color: black;
     text-decoration: underline;
     padding-right: 1.5em;
-    background: url("/static/icon-arrow-right.png") center right no-repeat;
-    background-image: url("/static/icon-arrow-right.svg"), none
+    background: url("/static_frontend/images/vendor/internet_nl/icon-arrow-right.png") center right no-repeat;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-arrow-right.svg"), none
 }
 
 .dark .read-more a {
     color: #ffffff;
-    background: url("/static/icon-arrow-right-white.png") center right no-repeat;
-    background-image: url("/static/icon-arrow-right-white.svg"), none
+    background: url("/static_frontend/images/vendor/internet_nl/icon-arrow-right-white.png") center right no-repeat;
+    background-image: url("/static_frontend/images/vendor/internet_nl/icon-arrow-right-white.svg"), none
 }
 
 .read-more a, .read-more a:hover, .read-more a:focus, .read-more a:active {
@@ -560,7 +558,8 @@ li.probing {
 }
 
 .faq-subtest, .faq-test {
-    padding-left: 1em;
+    padding-left: 1.4em;
+    margin-right: 0.4em;
     margin-top: .7em;
     margin-bottom: .7em;
     background-color: #fff
@@ -811,7 +810,7 @@ table td {
 }
 
 .body-with-semifixed-header {
-    background-color: #e3e3e3
+    background-color: #ffffff
 }
 
 .body-with-semifixed-header main {
@@ -863,8 +862,8 @@ footer ul li:last-child {
 }
 
 .twitterfollow {
-    background: url("/static/icon-twitterfollow.svg");
-    background: url("/static/icon-twitterfollow.png");
+    background: url("/static_frontend/images/vendor/internet_nl/icon-twitterfollow.svg");
+    background: url("/static_frontend/images/vendor/internet_nl/icon-twitterfollow.png");
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: 5px center;

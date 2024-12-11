@@ -1,15 +1,16 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <b-modal size="lg" :visible="visible" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade
-           scrollable>
-    <h3 slot="modal-title">📝 {{ $t("domain.list.upload.title") }}</h3>
-    <div slot="default" style="min-height: 50vh;">
+  <b-modal size="lg" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+    <template #header><h4>📝 {{ $t("domain.list.upload.title") }}</h4></template>
+    <template #default>
+      <div style="min-height: 50vh;">
 
-      <server-response :response="response" :message="$t(response.message)"></server-response>
+      <server-response :response="response" :message="$t(response.message)" v-if="response.message"></server-response>
 
       <p>{{ $t("domain.list.upload.introduction") }}</p>
 
       <table class="mb-4">
+        <tbody>
         <tr>
           <th></th>
           <th>{{ $t("domain.list.upload.empty_file") }}</th>
@@ -37,9 +38,10 @@
             <a href="/static_frontend/sample_spreadsheets/microsoft_office_spreadsheet_with_example_data.xlsx">Example.xlsx</a>
           </td>
         </tr>
+        </tbody>
       </table>
 
-      <b-alert variant="danger" show>{{ $t("domain.list.upload.warning") }}</b-alert>
+      <b-alert variant="danger" :model-value="true">{{ $t("domain.list.upload.warning") }}</b-alert>
 
       <input
           type="file"
@@ -49,15 +51,15 @@
           name="file"
           accept="text/csv, application/vnd.oasis.opendocument.spreadsheet, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       >
-
     </div>
-    <div slot="modal-footer">
-      <button class='altbutton' @click="cancel()">{{ $t("domain.list.upload.cancel") }}</button>
+    </template>
+    <template #footer>
+      <b-button variant="secondary" @click="cancel()">{{ $t("domain.list.upload.cancel") }}</b-button>
       &nbsp;
-      <button class="modal-default-button defaultbutton border-danger" @click="upload()">
+      <b-button variant="danger" @click="upload()">
         {{ $t("domain.list.upload.ok") }}
-      </button>
-    </div>
+      </b-button>
+    </template>
   </b-modal>
 </template>
 
@@ -69,9 +71,6 @@ export default {
   props: {
     list: {
       type: Object,
-    },
-    visible: {
-      type: Boolean,
     }
   },
   data: function () {

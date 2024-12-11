@@ -40,7 +40,7 @@
                         :placeholder='$t("app.login.password")'></b-form-input>
 
           <br>
-          <button id="login" type="submit">{{ $t("app.login.login") }}</button>
+          <b-button variant="warning" id="login" type="submit">{{ $t("app.login.login") }}</b-button>
         </form>
 
       </div>
@@ -52,14 +52,19 @@
   </div>
 </template>
 
-<script>
+<script lang="js">
 
-import {mapState} from 'vuex'
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
 import http from "@/httpclient";
 
 export default {
+  name: "login",
+
   data() {
     return {
+      // todo: wss maakt dit een nieuwe, het is geen global state?
+      store: dashboardStore(),
       loading: false,
       username: "",
       password: "",
@@ -80,10 +85,11 @@ export default {
 
     login_status: function () {
       this.loading = true;
+      console.log("Checking if the user is logged in at the login page.")
       http.get('/session/status/').then(data => {
-        this.$store.commit("set_user", data.data);
+        this.store.set_user(data.data);
         this.loading = false;
-        if (this.$store.state.user.is_authenticated) {
+        if (this.user.is_authenticated) {
           this.reset();
           // This is not a solution to double navigation, but i think the error is weird and incorrect.
           // https://stackoverflow.com/questions/62462276/how-to-solve-avoided-redundant-navigation-to-current-location-error-in-vue
@@ -104,6 +110,6 @@ export default {
       })
     },
   },
-  computed: mapState(['user']),
+  computed: mapState(dashboardStore, ['user']),
 }
 </script>

@@ -2,7 +2,7 @@
   <div>
 
     <loading :loading="loading"></loading>
-    <server-response :response="server_response" :message="$t(server_response.message)"></server-response>
+    <server-response :response="server_response" :message="$t(server_response.message)" v-if="server_response.message"></server-response>
 
 
     <b-form @submit="onSubmit" v-if="!loading && !submitted_succesfully">
@@ -106,7 +106,7 @@
         </b-form-radio-group>
       </b-form-group>
 
-      <b-alert v-if="form.nature_of_organization === 'vital_infrastructure'" variant="warning" show>
+      <b-alert v-if="form.nature_of_organization === 'vital_infrastructure'" variant="warning" :model-value="true">
         {{$t("signup.form.please_explain_vital_infrastructure")}}
       </b-alert>
 
@@ -177,13 +177,13 @@
           :state="form.terms_of_use.includes('accepted')"
         >
           <span v-html='$t("signup.form.terms_of_use_description")' /><br />
-          <b-form-checkbox value="accepted" :state="form.terms_of_use !== ['accepted']">{{$t("signup.form.terms_of_use_accept")}}</b-form-checkbox>
+          <b-form-checkbox value="accepted" :state="form.terms_of_use.includes('accepted')">{{$t("signup.form.terms_of_use_accept")}}</b-form-checkbox>
         </b-form-checkbox-group>
         <b-form-invalid-feedback id="checkboxes-terms-of-use">
           &nbsp;
         </b-form-invalid-feedback>
       </b-form-group>
-      <button type="submit" variant="info" :disabled="!submit_possible"><b>{{ $t("signup.form.submit") }}</b></button>
+      <b-button variant="warning" type="submit" :disabled="!submit_possible"><b>{{ $t("signup.form.submit") }}</b></b-button>
     </b-form>
 
   </div>

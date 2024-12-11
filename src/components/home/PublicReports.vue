@@ -15,7 +15,7 @@
 <script>
 
 import http from "@/httpclient";
-import PublicReportsTable from "@/components/home/PublicReportsTable";
+import PublicReportsTable from "@/components/home/PublicReportsTable.vue";
 
 export default {
   components: {PublicReportsTable},
