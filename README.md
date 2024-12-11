@@ -73,3 +73,11 @@ make push_image
 
 ## Step 2: on the server run the update
 /usr/local/bin/dashboard-frontend-update
+
+
+
+# Testing a build locally:
+```sh
+make build
+cd dist && python -m http.server 7777
+```
