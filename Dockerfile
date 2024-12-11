@@ -16,3 +16,4 @@ RUN make build-gui-deploy
 # Copy all compiled content into simple http server container
 FROM nginx
 COPY --from=build /src/dist/ /usr/share/nginx/html/
+COPY misc/default.conf /etc/nginx/conf.d/default.conf
