@@ -3,29 +3,29 @@
   <div>
     <content-block>
       <h1>
-        <b-icon icon="person-circle"/>
-        {{ $t("title") }}
+        <i-bi-person-circle/>
+        {{ $t("account.page.title") }}
       </h1>
-      <p>{{ $t("intro") }}</p>
+      <p>{{ $t("account.page.intro") }}</p>
       <!-- use lazy so that the visiblemetrics is updated when that's visited, instead of manually reloading. -->
       <b-tabs content-class="mt-3" lazy>
         <b-tab :active="active === 'notifications' || active === '' || active === undefined">
-          <span slot="title">📨 {{ $t('notifications') }}</span>
+          <template #title>📨 {{ $t("account.page.notifications") }}</template>
           <notification-settings></notification-settings>
         </b-tab>
 
         <b-tab :active="active === 'authentication'">
-          <span slot="title">📱 {{ $t('authentication_options') }}</span>
+          <template #title>📱 {{ $t("account.page.authentication_options") }}</template>
 
           <span v-if="$route.query.password_change_success">
 
             <server-response
-                :response="{
+                :response='{
                 success: true,
                 error: false,
                 timestamp: new Date().toISOString(),
-                message: $t('password_change_success')}
-                "
+                message: $t("account.page.password_change_success")}
+                '
                 :force_show="true"
             ></server-response>
           </span>
@@ -37,19 +37,19 @@
 
           <ul class="ml-0">
             <li class="mb-2">
-              <a :href="`${$baseUrl}/accounts/password/change/`" target="_blank">🔑 {{ $t("change_password") }}</a>
+              <a :href="`${$baseUrl}/accounts/password/change/`" target="_blank">🔑 {{ $t("account.page.change_password") }}</a>
             </li>
-            <li><a :href="`${$baseUrl}/account/two_factor/`" target="_blank">📱 {{ $t("two_factor_options") }}</a></li>
+            <li><a :href="`${$baseUrl}/account/two_factor/`" target="_blank">📱 {{ $t("account.page.two_factor_options") }}</a></li>
           </ul>
         </b-tab>
 
         <b-tab :active="active === 'web_metrics'">
-          <span slot="title"> <scan-type-icon type="web"></scan-type-icon> {{ $t('visible_metrics_web') }}</span>
+          <template #title> <scan-type-icon type="web"></scan-type-icon> {{ $t("account.page.visible_metrics_web") }}</template>
           <VisibleMetrics report_type="web" :key="'a'"/>
         </b-tab>
 
         <b-tab :active="active === 'mail_metrics'">
-          <span slot="title"> <scan-type-icon type="mail"></scan-type-icon> {{ $t('visible_metrics_mail') }}</span>
+          <template #title> <scan-type-icon type="mail"></scan-type-icon> {{ $t("account.page.visible_metrics_mail") }}</template>
           <VisibleMetrics report_type="mail" :key="'b'"/>
         </b-tab>
 
@@ -59,9 +59,9 @@
 </template>
 
 <script>
-import NotificationSettings from "./NotificationSettings"
-import VisibleMetrics from './VisibleMetrics'
-import ScanTypeIcon from "@/components/ScanTypeIcon";
+import NotificationSettings from "@/components/account/NotificationSettings.vue"
+import VisibleMetrics from '@/components/account/VisibleMetrics.vue'
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
 
 export default {
   components: {ScanTypeIcon, NotificationSettings, VisibleMetrics},
@@ -74,31 +74,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "title": "Account",
-    "intro": "Manage your account.",
-    "authentication_options": "Authentication",
-    "authentication_options_secondfactor": "Due to technical limitations setting up second factor authentication and entering the code will happen in a new window.",
-    "two_factor_options": "Setup / Change Two Factor Authentication",
-    "change_password": "Change Password",
-    "notifications": "Notifications",
-    "visible_metrics_mail": "Mail metrics",
-    "visible_metrics_web": "Web metrics",
-    "password_change_success": "Password changed successfully"
-  },
-  "nl": {
-    "title": "Account",
-    "intro": "Beheer je account.",
-    "authentication_options": "Authenticatie",
-    "authentication_options_secondfactor": "Door technische beperkingen wordt het instellen en configureren van tweetrapsauthenticatie gestart in een apart venster.",
-    "two_factor_options": "Instellen / Aanpassen twee-factor authenticatie",
-    "change_password": "Wachtwoord wijzigen",
-    "notifications": "Notificaties",
-    "visible_metrics_mail": "Mail meetwaarden",
-    "visible_metrics_web": "Web meetwaarden",
-    "password_change_success": "Wachtwoord wijzigen succesvol"
-  }
-}
-</i18n>

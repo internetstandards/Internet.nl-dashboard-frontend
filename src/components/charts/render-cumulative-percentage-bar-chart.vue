@@ -1,14 +1,16 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
-    <canvas ref="canvas" role="img" class="graph-image" :aria-label="title">
-      <p>{{ $t("accessibility_text") }}</p>
+    <canvas ref="canvas" role="img" class="graph-image" :aria-label='$t("chart.cumulative-percentage-bar-chart.title")'>
+      <p>{{ $t("chart.cumulative-percentage-bar-chart.accessibility_text") }}</p>
     </canvas>
   </div>
 </template>
 
 <script>
 import chart_mixin from './chart_mixin.vue'
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
 
 export default {
     mixins: [chart_mixin],
@@ -82,7 +84,7 @@ export default {
                 this.axis.forEach((ax) => {
                     if (ax in data) {
                         if (!this.only_show_dynamic_average) {
-                            labels.push([this.$i18n.t(ax), this.field_name_to_category_names[ax] ? this.field_name_to_category_names[ax] : ""]);
+                            labels.push([this.$i18n.t("metric." + ax + ".title"), this.field_name_to_category_names[ax] ? this.field_name_to_category_names[ax] : ""]);
                             axis_names.push(ax);
                             chartdata.push((Math.round(cumulative_axis_data[ax][shown_value] / this.chart_data.length * 100)) / 100);
                         }
@@ -100,7 +102,7 @@ export default {
                     } else {
                         chartdata.push(Math.round((average / this.axis.length) * 100) / 100);
                     }
-                    labels.push(this.$i18n.t('average'));
+                    labels.push(this.$i18n.t("chart.cumulative-percentage-bar-chart.average"));
                     axis_names.push("Average");
                 }
 
@@ -113,11 +115,11 @@ export default {
                     borderWidth: 0,
                     lineTension: 0,
                     hidden: shown_value === "pct_high",
-                    label: `${this.$i18n.t(shown_value)}`,
+                    label: `${this.$i18n.t("metric.rating." + shown_value)}`,
                 });
 
             });
-            this.$store.state.rendered_chart_to_table[this.chartName] = this.chart.data;
+            this.rendered_chart_to_table[this.chartName] = this.chart.data;
             this.chart.update();
         },
         renderTitle: function () {
@@ -131,23 +133,8 @@ export default {
 
       return `(${this.report_titles.join(" + ")}) / ${this.chart_data.length}`
     },
+    ...mapState(dashboardStore, ['rendered_chart_to_table']),
   }
 
 }
 </script>
-<i18n>
-{
-  "en": {
-    "title": "Average adoption of standards over %{number_of_reports} reports.",
-    "yAxis_label": "Adoption",
-    "average": "Average",
-    "accessibility_text": "A table with the content of this graph is shown below."
-  },
-  "nl": {
-    "title": "Gemiddelde adoptie van standaarden van %{number_of_reports} rapporten.",
-    "yAxis_label": "Adoptiegraad",
-    "average": "Gemiddeld",
-    "accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond."
-  }
-}
-</i18n>

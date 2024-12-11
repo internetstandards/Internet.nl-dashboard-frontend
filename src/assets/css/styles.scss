@@ -1,18 +1,26 @@
 // SPDX-License-Identifier: Apache-2.0
 /* https://bootstrap-vue.org/docs/reference/theming */
 // https://www.bootstrapdash.com/bootstrap-css-styles/
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
-$theme-colors: (
-    info: #05BFD6,
-);
+// @import "bootstrap/scss/functions";
+// https://stackoverflow.com/questions/68446551/bootstrap-5-sass-error-undefined-mixin-include-assert-ascending
 
 
-@import "vue-select/src/scss/vue-select.scss";
-@import 'bootstrap/scss/bootstrap.scss';
-@import 'bootstrap-vue/src/index.scss';
+// It's not possible to remove all the 'blue' components to 'yellow' components by just swapping the theme colors
+// primary and warning. The swap will work (barely, if you edit out the unfindable variables-dark, which is present...
+// but still pagination and everything else uses blue in their components throughout bootstrap.css, which is a pretty
+// poor design. Eg: --bs-link-hover-color: #0a58ca;. This should be a defined color and the total amount of colors
+// should have been reduced to 40 instead of 200 or so. This means we'll stay with whatever bootstrap offers and
+// we're not swapping or altering colors. We'll just overwrite the 'danger' color in overrides and that's that.
+// [sass] Can't find stylesheet to import. "variables-dark"
+
+
+@import "vue-select/dist/vue-select.css";
+//@import 'bootstrap/scss/bootstrap.scss';
+
+@import 'bootstrap/dist/css/bootstrap.css';
+@import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
 
 @import './vendor/internet_nl/style-min.css';
 @import './vendor/internet_nl/print-min.css';
-@import './alt-min.css';
+// @import './alt-min.css';
 @import './overrides_dashboard.css';

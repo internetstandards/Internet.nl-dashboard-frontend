@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <div v-if='visible' class="mb-0">
-        <button @click="reload_now()">🔁 {{ $t("refresh_now") }}</button>
-        {{ $t("refresh_happening_in") }} <span v-html="this.current_step_inverted"></span>
-        {{ $t("units") }}
+        <b-button variant="warning" @click="reload_now()">🔁 {{ $t("app.autorefresh.refresh_now") }}</b-button>
+        {{ $t("app.autorefresh.refresh_happening_in") }} <span v-html="this.current_step_inverted"></span>
+        {{ $t("app.autorefresh.units") }}
     </div>
 </template>
 <script>
@@ -77,17 +77,3 @@ export default {
     }
 }
 </script>
-<i18n>
-{
-    "en": {
-        "refresh_happening_in": "Auto refresh in:",
-        "units": "seconds",
-        "refresh_now": "refresh data now"
-    },
-    "nl": {
-        "refresh_happening_in": "Gegevens worden ververst over:",
-        "units": "s",
-        "refresh_now": "ververs gegevens nu"
-    }
-}
-</i18n>

@@ -14,7 +14,7 @@ button {
 <template>
   <div>
 
-    <button @click="start_url_editing()" aria-expanded="false"> 🖊 </button> &nbsp;
+    <b-button variant="warning" @click="start_url_editing()" aria-expanded="false"> 🖊 </b-button> &nbsp;
 
     <a v-if="!editing" @click="start_url_editing()">
       <template v-if="displayed_url.subdomain">
@@ -23,9 +23,9 @@ button {
 
     <span v-if="editing">
       <input autofocus :placeholder="edited_url_value" v-model="edited_url_value">&nbsp;
-      <a @click="save()"><span class="sr-only">{{ $t("button_labels.save") }}</span>✅</a>&nbsp;
-      <a @click="cancel()"><span class="sr-only">{{ $t("button_labels.cancel") }}</span>⏪</a>&nbsp;
-      <a @click="delete_url(list.id, url.id)"><span class="sr-only">{{ $t("button_labels.remove") }}</span>🗑️</a>
+      <a @click="save()"><span class="visually-hidden">{{ $t("domain.edit-domain.save") }}</span>✅</a>&nbsp;
+      <a @click="cancel()"><span class="visually-hidden">{{ $t("domain.edit-domain.cancel") }}</span>⏪</a>&nbsp;
+      <a @click="delete_url(list.id, url.id)"><span class="visually-hidden">{{ $t("domain.edit-domain.remove") }}</span>🗑️</a>
     </span>
 
   </div>
@@ -104,39 +104,3 @@ export default {
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "start_editing_url": "Edit {0}.",
-    "cancel_editing_url": "Cancel editing and store the original value: {0}",
-    "eligeble_mail": "{0} is eligible for e-mail scans",
-    "unknown_eligeble_mail": "Not yet known if {0} can be mail scanned.",
-    "not_eligeble_mail": "{0} is not eligible for e-mail scans. Will be checked again when starting a scan.",
-    "eligeble_web": "{0} is eligible for web scans",
-    "unknown_eligeble_web": "Not yet known if {0} can be web scanned.",
-    "not_eligeble_web": "{0} is not eligible for web scans. Will be checked again when starting a scan.",
-    "save_edited_url": "Save changes, the change will be applied to {0}.",
-    "delete_edited_url": "Delete {0} from this list.",
-    "button_labels": {
-      "save": "Save",
-      "cancel": "Cancel",
-      "remove": "Remove"
-    }
-  },
-  "nl": {
-    "eligeble_mail": "E-mail scannen is mogelijk",
-    "start_editing_url": "Bewerk {0}.",
-    "unknown_eligeble_mail": "Onbekend of E-mail scannen mogelijk is",
-    "not_eligeble_mail": "Kan geen E-mail scan uitvoeren (wordt opnieuw gecheckt bij het starten van de scan)",
-    "eligeble_web": "Web scan is mogelijk",
-    "unknown_eligeble_web": "Niet bekend of het mogelijk is een web scan uit te voeren",
-    "not_eligeble_web": "Web scan kan niet worden uitgevoerd. Dit wordt opnieuw gecheckt bij het starten van de scan.",
-    "button_labels": {
-      "save": "Opslaan",
-      "cancel": "Annuleren",
-      "remove": "Verwijderen"
-    }
-  }
-}
-</i18n>

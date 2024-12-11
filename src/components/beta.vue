@@ -1,9 +1,55 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
+
+    <content-block>
+      collapse test:
+     <BButton variant="primary" :aria-controls="'collapse-1112312312'">Toggle Collapse</BButton>
+
+      <BCollapse id="collapse-1112312312">
+        <BCard class="mt-4">
+          <p class="card-text">Collapse contents Here</p>
+          <BButton v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</BButton>
+          <BCollapse id="collapse-1-inner">
+            <BCard class="mt-4">Hello!</BCard>
+          </BCollapse>
+        </BCard>
+      </BCollapse>
+
+      <BCollapse id="my-collapse">
+  <template #header="{visible, toggle, id}">
+    <BButton variant="primary" :aria-expanded="visible" :aria-controls="id" @click="toggle">
+      <span>{{ visible ? 'Close' : 'Open' }}</span> My Collapse
+    </BButton>
+  </template>
+  <!-- Content here -->
+  <div class="mt-2">This is data that is being collapsed</div>
+</BCollapse>
+    </content-block>
+
     <content-block>
       <h1>This page is used to test components.</h1>
     </content-block>
+
+
+    <content-block>
+
+      virtual list...
+      <virtual-list style="height: 125vh; overflow-y: auto; width: 100%"
+            :data-key="'url'"
+
+            :keeps="75"
+            wrap-class="vl-wrap"
+            header-class="vl-head"
+            footer-class="vl-foot"
+            item-class="vl-item"
+      >
+        <template #container>test</template>
+      </virtual-list>
+
+
+    </content-block>
+
 
     <content-block>
       <b-row cols-sm="1" cols-md="2">
@@ -52,9 +98,9 @@
       <b-modal id="my-modal">Hello From My Modal!</b-modal>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <b-button variant="warning" type="button" data-toggle="modal" data-target="#exampleModal">
         Launch demo modal
-      </button>
+      </b-button>
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -131,12 +177,16 @@
   </div>
 </template>
 <script>
-import Donut from "@/components/charts/donut";
+import Donut from "@/components/charts/donut.vue";
+import VirtualList from 'vue3-virtual-scroll-list';
+
 
 export default {
-  components: {Donut},
+  components: {Donut, VirtualList},
   data() {
     return {
+      visible: true,
+
       value: 45,
       max: 100,
 

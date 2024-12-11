@@ -1,24 +1,17 @@
 <template>
 <div>
-  <p v-if="$store.state.tags.length > 0">{{ $t('info') }}: <tag :value="tag" :key="tag" v-for="tag in $store.state.tags"/></p>
+  <p v-if="tags.length > 0">{{ $t("report.applied-tags.info") }}: <tag :value="tag" :key="tag" v-for="tag in tags"/></p>
 </div>
 </template>
 
 <script>
-import Tag from "@/components/domains/domain/tag";
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
+
+import Tag from "@/components/domains/domain/tag.vue";
 export default {
 name: "AppliedTags",
-  components: {Tag}
+  components: {Tag},
+  computed: mapState(dashboardStore, ['tags']),
 }
 </script>
-<i18n>
-{
-  "en": {
-    "info": "Applied labels"
-  },
-  "nl": {
-    "info": "Toegepaste labels"
-  }
-}
-
-</i18n>

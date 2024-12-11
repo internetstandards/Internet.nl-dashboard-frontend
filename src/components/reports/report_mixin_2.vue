@@ -2,6 +2,8 @@
 <script>
 import http from "@/httpclient"
 // import structuredClone from '@ungap/structured-clone';
+import { dashboardStore } from '@/dashboardStore'
+import { shallowRef } from 'vue'
 
 export default {
 
@@ -18,6 +20,7 @@ export default {
       // number of reports that still need to be retrieved. If this is 0 all reports are in. Up to 6 reports
       // can be loaded and compared with graphs in a somewhat meaningful way.
       reports_to_load: 0,
+      my_store: dashboardStore(),
     }
   },
 
@@ -51,7 +54,7 @@ export default {
       let shallow_reports = [];
 
       for (let i = 0; i < this.reports_to_load; i++) {
-        let stored_share_code = this.$store.state.public_share_codes[report_ids[i]];
+        let stored_share_code = this.my_store.public_share_codes[report_ids[i]];
         let post_data = {...{share_code: stored_share_code ? stored_share_code : ""}, ...data}
 
         // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
@@ -79,7 +82,7 @@ export default {
           this.reports_to_load--;
 
           if (this.reports_to_load === 0 && reports.length > 0) {
-            this.reports = Object.freeze(reports);
+            this.reports = shallowRef(reports);
             // these can be changed by the user
             this.shallow_reports = shallow_reports;
           }

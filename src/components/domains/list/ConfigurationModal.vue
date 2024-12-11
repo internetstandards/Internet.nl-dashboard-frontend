@@ -1,9 +1,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <b-modal :visible="visible" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade
-           scrollable>
-    <h3 slot="modal-title">📝 {{ $t("title") }}</h3>
-    <div slot="default">
+  <b-modal @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+    <template #header><h4>📝 {{ $t("domain.list.configure.title") }}</h4></template>
+    <template #default>
 
       <server-response :response="response"></server-response>
 
@@ -50,49 +49,44 @@
         }}:</label><br>
       <b-input-group class="mt-3">
         <b-form-input id="default_public_share_code_for_new_reports" type="text" maxlength="64"
-                      :placeholder="$t('urllist.empty_is_no_share_code')"
+                      :placeholder='$t("urllist.empty_is_no_share_code")'
                       v-model="list.default_public_share_code_for_new_reports">
 
         </b-form-input>
-        <b-input-group-append>
+
           <!-- better would be to btoa(String.fromCharCode.apply(null,self.crypto.getRandomValues(new Uint8Array(15)))).replaceAll('+','-').replaceAll('/','_') -->
-          <b-button variant="outline-success" @click="list.default_public_share_code_for_new_reports = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);;">{{ $t('urllist.generate_code') }}</b-button>
-        </b-input-group-append>
+          <b-button variant="outline-success" @click="list.default_public_share_code_for_new_reports = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);">{{ $t("urllist.generate_code") }}</b-button>
+
       </b-input-group>
       <br>
 
       <b-form-checkbox id="enable_report_sharing_page" v-model="list.enable_report_sharing_page">
         {{ $t("urllist.enable_report_sharing_page") }}.
-        <a :href="`/#/published/${$store.state.user.account_id}/`" target="_blank">{{$t('urllist.to_overview_page')}}</a>
+        <a :href="`/published/${user.account_id}/`" target="_blank">{{$t("urllist.to_overview_page")}}</a>
       </b-form-checkbox>
 
-    </div>
-    <div slot="modal-footer">
-      <button class='altbutton' @click="cancel()">{{ $t("cancel") }}</button>
+    </template>
+    <template #footer>
+      <b-button variant="secondary" @click="cancel()">{{ $t("domain.list.configure.cancel") }}</b-button>
       &nbsp;
-      <button class="modal-default-button defaultbutton" @click="update_list_settings()">
-        {{ $t("ok") }}
-      </button>
-    </div>
+      <b-button variant="warning" class="modal-default-button defaultbutton" @click="update_list_settings()">
+        {{ $t("domain.list.configure.ok") }}
+      </b-button>
+    </template>
   </b-modal>
 </template>
 
 <script>
-import sharedMessages from "@/components/translations/dashboard";
 import http from "@/httpclient";
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from "pinia";
 
 export default {
   name: "configure-list",
-  i18n: {
-    sharedMessages: sharedMessages,
-  },
   props: {
     list: {
       type: Object,
     },
-    visible: {
-      type: Boolean,
-    }
   },
   data: function () {
     return {
@@ -125,21 +119,9 @@ export default {
   mounted: function () {
     this.old_list_settings = this.copy_json_value(this.list);
     this.response = {};
+  },
+  computed: {
+    ...mapState(dashboardStore, ['user']),
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "title": "Settings",
-    "cancel": "Cancel",
-    "ok": "Update"
-  },
-  "nl": {
-    "title": "Instellingen",
-    "cancel": "Annuleer",
-    "ok": "Opslaan"
-  }
-}
-</i18n>

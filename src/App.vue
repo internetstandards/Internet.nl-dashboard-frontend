@@ -1,11 +1,11 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <div id="app">
-    <div class="skiplink"><a href="#content">{{ $t('skiplink.gotocontents') }}</a></div>
-    <div class="skiplink" id="skiplink-sitenav"><a href="#sitenav">{{ $t('skiplink.gotomainmenu') }}</a></div>
-    <div class="skiplink"><a href="#footer">{{ $t('skiplink.gotofooter') }}</a></div>
+  <div id="app" :dir="html_page_reading_direction">
+    <div class="skiplink"><a href="#content">{{ $t("app.skiplink.gotocontents") }}</a></div>
+    <div class="skiplink" id="skiplink-sitenav"><a href="#sitenav">{{ $t("app.skiplink.gotomainmenu") }}</a></div>
+    <div class="skiplink"><a href="#footer">{{ $t("app.skiplink.gotofooter") }}</a></div>
 
-    <header>
+    <header class="headroom headroom--unpinned">
       <SiteMenu
         :is_authenticated="user.is_authenticated"
         :is_superuser="user.is_superuser"
@@ -15,55 +15,89 @@
 
     <main id="content" tabindex="-1">
       <div class="wrap mt-3">
-        <div class="w-100">
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
+        <div class="w-100" style="min-height: 80vh">
+          <router-view v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component"/>
+            </keep-alive>
+          </router-view>
+
         </div>
-        <GithubMessage v-if="$store.state.config.app.layout === 'internet_nl'" />
+        <GithubMessage v-if="config.app.layout === 'internet_nl'"/>
       </div>
     </main>
 
-    <footer id="footer" v-if="$store.state.config.app.layout === 'internet_nl'">
-      <template>
-      <img id="flag" src="static_frontend/images/vendor/internet_nl/clear.gif" alt="">
+    <footer id="footer" v-if="config.app.layout === 'internet_nl'">
+
+      <!-- <img id="flag" src="static_frontend/images/vendor/internet_nl/clear.gif" alt="">-->
       <div class="wrap">
-        {{ $t('base.info') }}
+        {{ $t("app.footer.info") }}
         <hr>
         <ul>
-          <li><a class="footlink" href="https://www.internet.nl/disclosure/">{{ $t('base.disclosure') }}</a></li>
-          <li><a class="footlink" href="https://www.internet.nl/privacy/">{{ $t('base.privacy') }}</a></li>
-          <li><a class="footlink" href="https://www.internet.nl/copyright/">{{ $t('base.copyright') }}</a></li>
+          <li><a class="footlink" href="https://www.internet.nl/disclosure/">{{ $t("app.footer.disclosure") }}</a></li>
+          <li><a class="footlink" href="https://www.internet.nl/privacy/">{{ $t("app.footer.privacy") }}</a></li>
+          <li><a class="footlink" href="https://www.internet.nl/copyright/">{{ $t("app.footer.copyright") }}</a></li>
           <li class="follow-us"><a class="footlink twitterfollow"
-                                   href="https://x.com/internet_nl">{{ $t('base.followtwitter') }}</a></li>
+                                   href="https://x.com/internet_nl">{{ $t("app.footer.followtwitter") }}</a></li>
           <li class="follow-us"><a class="footlink linkedinfollow"
-                                   href="https://www.linkedin.com/company/internet-nl/">{{ $t('base.followlinkedin') }}</a></li>
+                                   href="https://www.linkedin.com/company/internet-nl/">{{
+              $t("app.footer.followlinkedin")
+            }}</a></li>
           <li class="follow-us"><a class="footlink mastodonfollow"
-                                   href="https://mastodon.nl/@internet_nl">{{ $t('base.followmastodon') }}</a></li>
-
-
+                                   href="https://mastodon.nl/@internet_nl">{{ $t("app.footer.followmastodon") }}</a>
+          </li>
         </ul>
       </div>
-      </template>
     </footer>
   </div>
 </template>
 
 <script>
+import {dashboardStore} from '@/dashboardStore'
 import Headroom from "headroom.js";
-import SiteMenu from './components/SiteMenu'
-import {mapState} from 'vuex'
+import SiteMenu from './components/SiteMenu.vue'
+import {mapState} from 'pinia'
 import http from "@/httpclient";
-import GithubMessage from "@/components/GithubMessage";
+import GithubMessage from "@/components/GithubMessage.vue";
 
 export default {
-  i18n: {
-    locale: 'en',
-    fallbackLocale: 'en',
-    silentFallbackWarn: true,
-  },
-  mounted: function () {
-    this.login_status();
+
+
+  mounted() {
+
+     // perform some calls we need otherwise we cannot route logged in pages.
+    http.get('/data/config/').then(data => {
+      if (!(data && data.data && Object.keys(data.data).length !== 0)) {
+        throw new Error("Config is empty!");
+      }
+      this.store.set_config(data.data)
+      http.get('/session/status/').then(data => {
+        this.store.set_user(data.data);
+
+        // todo: is the navigation reactive to user? If the user is logged in / out: is that being taken into account?
+        // todo: get app name from config. / how is that translated?
+
+        const appName = "Internet.nl Dashboard"
+
+        this.$router.beforeEach((to, from, next) => {
+          // dynamically set the page title based on the used route
+          const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+          if (!nearestWithTitle) {
+            next({name: 'login'})
+          }
+
+          document.title = `${this.$i18n.t('app.menu.' + nearestWithTitle.meta.title)} / ${appName}`;
+
+          // support authenticated and non authenticated routes
+          if (nearestWithTitle.meta.access === 'public' || this.user.is_authenticated) {
+            next()
+          } else {
+            next({name: 'login'})
+          }
+        });
+      });
+    })
+
     this.$nextTick(function () {
       let fixedHeader = new Headroom(document.querySelector("header"), {
         "offset": 205,
@@ -76,25 +110,16 @@ export default {
   name: 'App',
   data: function () {
     return {
-      maximum_lists_per_spreadsheet: 200,
-      maximum_urls_per_spreadsheet: 5000,
+      html_page_reading_direction: "ltr",
+      store: dashboardStore(),
     }
   },
-  methods: {
-    login_status: function () {
-      this.server_response = {};
-      this.loading = true;
-      http.get('/session/status/').then(data => {
-        this.$store.commit("set_user", data.data);
-        this.loading = false;
-      });
-    },
-  },
+
   components: {
     GithubMessage,
     SiteMenu
   },
-  computed: mapState(['user']),
+  computed: mapState(dashboardStore, ['user', 'config']),
 }
 </script>
 
@@ -104,11 +129,13 @@ export default {
   background-size: 1.25em 1.25em !important;
   padding-left: 2em !important;
 }
+
 .linkedinfollow {
   background: transparent url("/static_frontend/images/vendor/internet_nl/icon-linkedinfollow.png") no-repeat 5px center !important;
   background-size: 1.25em 1.25em !important;
   padding-left: 2em !important;
 }
+
 .mastodonfollow {
   background: transparent url("/static_frontend/images/vendor/internet_nl/icon-mastodonfollow-small.png") no-repeat 5px center !important;
   background-size: 1.25em 1.25em !important;
@@ -116,42 +143,6 @@ export default {
 }
 
 .footlink:hover, .footlink:visited, .footlink:active {
-  color:white;
+  color: white;
 }
 </style>
-<i18n>
-{
-  "en": {
-    "base": {
-      "copyright": "Copyright",
-      "disclosure": "Report vulnerability",
-      "followlinkedin": "LinkedIn",
-      "followmastodon": "Mastodon",
-      "followtwitter": "X",
-      "info": "Internet.nl is an initiative of the Internet community and the Dutch government.",
-      "privacy": "Privacy statement"
-    },
-    "skiplink": {
-      "gotocontents": "Skip to contents",
-      "gotomainmenu": "Skip to main menu",
-      "gotofooter": "Skip to footer"
-    }
-  },
-  "nl": {
-    "base": {
-      "copyright": "Auteursrecht",
-      "disclosure": "Kwetsbaarheid melden",
-      "followlinkedin": "LinkedIn",
-      "followmastodon": "Mastodon",
-      "followtwitter": "X",
-      "info": "Internet.nl is een initiatief van de internetgemeenschap en de Nederlandse overheid.",
-      "privacy": "Privacyverklaring"
-    },
-    "skiplink": {
-      "gotocontents": "Skip naar inhoud",
-      "gotomainmenu": "Skip naar menu",
-      "gotofooter": "Skip naar footer"
-    }
-  }
-}
-</i18n>

@@ -69,15 +69,15 @@
 </style>
 <template>
   <div class="relative">
-    <DoughnutChart aria-hidden="true"
-        :chartData="testData" :height="height" :options="options"
+    <Doughnut aria-hidden="true"
+        :data="testData" :height="height" :width="width" :options="options"
         :aria-label="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
         :aria-text="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
         :aria-description="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
         :aria-value="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
         :alt="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
         :title="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
-    ></DoughnutChart>
+    ></Doughnut>
     <div class="absolute-center text-center" v-if="show_number_in_center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{round_one_decimal(donut_data[axis[0]])}}%</span></div>
   </div>
 </template>
@@ -85,17 +85,19 @@
 <script>
 
 
-import {computed, defineComponent, ref} from '@vue/composition-api';
-import {DoughnutChart} from 'vue-chart-3';
-import 'chartjs-adapter-date-fns';
+import {computed, defineComponent, ref} from 'vue';
+import {Doughnut} from 'vue-chartjs';
+// todo: add date fns again
+// import 'chartjs-adapter-date-fns';
 
 
 export default defineComponent({
-  components: {DoughnutChart},
+  components: {Doughnut},
 
   props: {
     donut_data: {type: Object, required: true},
     height: {type: Number, required: false, default: 300},
+    width: {type: Number, required: false, default: 300},
     datalabels: {type: Boolean, required: false, default: true},
     tooltip: {type: Boolean, required: false, default: true},
     show_number_in_center: {type: Boolean, required: false, default: true},

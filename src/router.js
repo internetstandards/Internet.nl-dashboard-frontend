@@ -1,98 +1,149 @@
-// SPDX-License-Identifier: Apache-2.0
-import VueRouter from "vue-router";
+import {createRouter, createWebHistory} from 'vue-router'
 
-const Login = () => import(/* webpackChunkName: "login" */ './components/Login')
-const DomainListManager = () => import('./components/domains/DomainListManager');
-const SpreadsheetUpload = () => import('./components/domains/SpreadsheetUpload');
-const ScanMonitor = () => import('./components/scans/ScanMonitor');
-const Report = () => import('./components/reports/Report');
-const SharedReportViaNumbersInUrl = () => import('./components/reports/SharedReportViaNumbersInUrl');
-const SharedReportLatest = () => import('./components/reports/SharedReportLatest');
-const SwitchAccount = () => import('./components/admin/SwitchAccount');
-const InstantAddAccount = () => import('./components/admin/InstantAddAccount');
-const Usage = () => import('./components/admin/usage');
-const Account = () => import('./components/account/Account');
-const Demo = () => import('./components/tour/Demo');
-const Unsubscribe = () => import('./components/mail/Unsubscribe');
-const Home = () => import('./components/home/Home');
-const PublicReportsPerAccount = () => import('./components/home/PublicReportsPerAccount');
-const SignupPage = () => import('./components/signup/SignupPage');
-const Beta = () => import('./components/beta');
+const Account = () => import('@/components/account/Account.vue');
+const Demo = () => import('@/components/tour/Demo.vue');
+const Home = () => import('@/components/home/Home.vue');
+const Report = () => import('@/components/reports/Report.vue');
+const ScanMonitor = () => import('@/components/scans/ScanMonitor.vue');
+const DomainListManager = () => import('@/components/domains/DomainListManager.vue');
+const SpreadsheetUpload = () => import('@/components/domains/SpreadsheetUpload.vue');
+const SwitchAccount = () => import('@/components/admin/SwitchAccount.vue');
+const InstantAddAccount = () => import('@/components/admin/InstantAddAccount.vue');
+const Usage = () => import('@/components/admin/usage.vue');
+const SignupPage = () => import('@/components/signup/SignupPage.vue');
+const Unsubscribe = () => import('@/components/mail/Unsubscribe.vue');
 
-const routes = [
-    // todo: Make page title translations...
-    {path: '/home', component: Home, name: "home", meta: {title: 'Internet.nl Dashboard / Home'}, alias: '/', },
-    {path: '/login', component: Login, name: "login", meta: {title: 'Internet.nl Dashboard / Login'}},
-    {
-        path: '/domains/list/:list',
-        component: DomainListManager,
-        name: 'numbered_lists',
-        meta: {title: 'Internet.nl Dashboard / Domains'}
-    },
-    {
-        path: '/domains',
-        component: DomainListManager,
-        name: 'domains',
-        meta: {title: 'Internet.nl Dashboard / Domains'},
-    },
-    {
-        path: '/domains/upload', component: SpreadsheetUpload,
-        name: "spreadsheet-upload",
-        props: {
-            max_lists: 200,
-            max_urls: 5000,
-        },
-        meta: {title: 'Internet.nl Dashboard / Domains / Upload'}
-    },
-    {path: '/scans', component: ScanMonitor, meta: {title: 'Internet.nl Dashboard / Scan Monitor'}},
+const SharedReportViaNumbersInUrl = () => import('@/components/reports/SharedReportViaNumbersInUrl.vue');
+const SharedReportLatest = () => import('@/components/reports/SharedReportLatest.vue');
+const PublicReportsPerAccount = () => import('@/components/home/PublicReportsPerAccount.vue');
+const Login = () => import('@/components/Login.vue')
+const Beta = () => import('@/components/beta.vue');
 
-    {
-        path: '/report/:report/:compare_with',
-        component: Report,
-        name: 'compared_numbered_report',
-        meta: {title: 'Internet.nl Dashboard / Reports'}
-    },
-    {
-        path: '/report/:report',
-        component: Report,
-        name: 'numbered_report',
-        meta: {title: 'Internet.nl Dashboard / Reports'}
-    },
-    {path: '/report', component: Report, meta: {title: 'Internet.nl Dashboard / Reports'}},
 
-    {path: '/shared/report/:report', component: SharedReportViaNumbersInUrl, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'shared_report'},
-    {path: '/shared/report/:report/:compare_with', component: SharedReportViaNumbersInUrl, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'compared_shared_report'},
+const publicRoutes = [
+  {
+    path: '/home',
+    component: Home,
+    name: "home",
+    meta: {title: 'home', access: 'public'},
+    alias: '/'
+  },
+  {
+    path: '/login',
+    component: Login,
+    name: "login",
+    meta: {title: 'login', access: 'public'}
+  },
+  {
+    path: '/shared/report/:report',
+    component: SharedReportViaNumbersInUrl,
+    meta: {title: 'reports', access: 'public'},
+    'name': 'shared_report',
+    alias: ['/shared/report/:report/:compare_with']
+  },
+  {
+    path: '/published/:account/',
+    component: PublicReportsPerAccount,
+    meta: {title: 'reports', access: 'public'},
+    'name': 'published_report',
+    alias: ['/published/:account/:list_id/']
+  },
+  {
+    path: '/latest/:list_id/',
+    component: SharedReportLatest,
+    meta: {title: 'reports', access: 'public'},
+    'name': 'published_report_latest_in_list',
+    alias: ['/latest/:list_id/web/', '/latest/:list_id/mail/']
+  },
+  {
+    path: '/tour',
+    component: Demo,
+    meta: {title: 'tour', access: 'public'},
+    name: 'tour',
+    alias: '/demo'
+  },
+  {
+    path: '/unsubscribe',
+    component: Unsubscribe,
+    meta: {title: 'Unsubscribe', access: 'public'}
+  },
+  {
+    path: '/signup',
+    component: SignupPage,
+    meta: {title: 'Signup', access: 'public'},
+    'name': 'signup'
+  },
+]
 
-    {path: '/published/:account/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report'},
-    {path: '/published/:account/:list_id/', component: PublicReportsPerAccount, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_and_list'},
-    {path: '/latest/:list_id/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list'},
-    {path: '/latest/:list_id/web/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list_web'},
-    {path: '/latest/:list_id/mail/', component: SharedReportLatest, meta: {title: 'Internet.nl Dashboard / Reports'}, 'name': 'published_report_latest_in_list_mail'},
+const privateRoutes = [
+  {
+    path: '/domains/list/:list',
+    component: DomainListManager,
+    name: 'numbered_lists',
+    meta: {title: 'domains', access: 'private'},
+    alias: ['/domains']
+  },
+  {
+    path: '/domains/upload',
+    component: SpreadsheetUpload,
+    name: "spreadsheet-upload",
+    meta: {title: 'domains_upload', access: 'private'}
+  },
+  {
+    path: '/scans',
+    component: ScanMonitor,
+    meta: {title: 'Scan Monitor', access: 'private'}
+  },
+  {
+    path: '/report/:report/:compare_with',
+    component: Report,
+    name: 'compared_numbered_report',
+    meta: {title: 'reports', access: 'private'}
+  },
+  {
+    path: '/report/:report',
+    component: Report,
+    name: 'numbered_report',
+    meta: {title: 'reports', access: 'private'}
+  },
+  {
+    path: '/report',
+    component: Report,
+    meta: {title: 'reports', access: 'private'}
+  },
+  {
+    path: '/switch-account',
+    component: SwitchAccount,
+    meta: {title: 'Switch Account', access: 'private'}
+  },
+  {
+    path: '/add-user',
+    component: InstantAddAccount,
+    meta: {title: 'Add User', access: 'private'}
+  },
 
-    {path: '/switch-account', component: SwitchAccount, meta: {title: 'Internet.nl Dashboard / Switch Account'}},
-    {path: '/add-user', component: InstantAddAccount, meta: {title: 'Internet.nl Dashboard / Add User'}},
-    {path: '/tour', component: Demo, meta: {title: 'Internet.nl Dashboard / Tour'}, name: 'tour'},
-    {path: '/demo', component: Demo, meta: {title: 'Internet.nl Dashboard / Tour'}, name: 'demo'},
-    {path: '/unsubscribe', component: Unsubscribe, meta: {title: 'Internet.nl Dashboard / Unsubscribe'}},
-    {path: '/profile', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
-    {path: '/account', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
-    {path: '/account/:active_tab', component: Account, meta: {title: 'Internet.nl Dashboard / Account'}},
-    {path: '/usage', component: Usage, meta: {title: 'Internet.nl Dashboard / Usage'}},
-    {path: '/beta', component: Beta, meta: {title: 'Internet.nl Dashboard / Beta'}},
+  {
+    path: '/account',
+    component: Account,
+    meta: {title: 'Account', access: 'private'},
+    alias: ["/profile", '/account/:active_tab']
+  },
+  {
+    path: '/usage',
+    component: Usage,
+    meta: {title: 'Usage', access: 'private'}
+  },
+  {
+    path: '/beta',
+    component: Beta,
+    meta: {title: 'Beta', access: 'private'},
+    alias: "/dev"
+  }
+]
 
-    {path: '/signup', component: SignupPage, meta: {title: 'Internet.nl Dashboard / Signup'}, 'name': 'signup'},
-];
-
-const router = new VueRouter({
-    routes, // short for `routes: routes`
-    props: true,
-    // https://reactgo.com/scroll-to-anchor-tags-vue-router/
-    // does not work, as nested anchors is not a thing (and not reliable). So do this in component.
-    scrollBehavior: function (to) {
-        if (to.hash) {
-            return {selector: to.hash}
-        }
-    },
-});
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [...publicRoutes, ...privateRoutes]
+})
 
 export default router

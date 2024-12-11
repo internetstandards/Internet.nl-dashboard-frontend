@@ -1,65 +1,37 @@
 <template>
-  <b-row>
-    <b-col class="w-100 text-center">
-      <dashboard-icon icon="card-list" :stackscale="6" class="mb-2" :aria-label="$t('icon-list')"/>
-      <h2>{{ $t('domains') }}</h2>
-      <p>{{ $t('domains_text_1') }}</p>
-      <p>{{ $t('domains_text_2') }}</p>
+  <b-row cols="1" cols-md="3">
+    <b-col class="text-center p-4">
+      <span style="display: inline-block; font-size: 3.7em; background-color: var(--bs-info); border-radius: 200px; height: 150px; width: 150px; padding-top:0.4em;" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-list")'>
+        <i-bi-card-list style="color: white" />
+      </span>
+      <h2>{{ $t("home.short-feature-overview.domains") }}</h2>
+      <p>{{ $t("home.short-feature-overview.domains_text_1") }}</p>
+      <p>{{ $t("home.short-feature-overview.domains_text_2") }}</p>
 
     </b-col>
-    <b-col class="w-100 text-center">
-      <dashboard-icon icon="search" :stackscale="6" class="mb-2" :aria-label="$t('icon-search')"/>
+    <b-col class="text-center p-4">
+      <span style="display: inline-block; font-size: 3.7em; background-color: var(--bs-info); border-radius: 200px; height: 150px; width: 150px; padding-top:0.4em;" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-search")'>
+        <i-bi-search style="color: white"/>
+      </span>
       <br>
-      <h2>{{ $t('scan') }}</h2>
-      <p>{{ $t('scan_text_1') }}</p>
-      <p>{{ $t('scan_text_2') }}</p>
+      <h2>{{ $t("home.short-feature-overview.scan") }}</h2>
+      <p>{{ $t("home.short-feature-overview.scan_text_1") }}</p>
+      <p>{{ $t("home.short-feature-overview.scan_text_2") }}</p>
     </b-col>
-    <b-col class="w-100 text-center">
-      <dashboard-icon icon="file-bar-graph" :stackscale="6" class="mb-2" :aria-label="$t('icon-bar-chart')"/>
+    <b-col class="text-center p-4">
+      <span style="display: inline-block; font-size: 3.7em; background-color: var(--bs-info); border-radius: 200px; height: 150px; width: 150px; padding-top:0.4em;" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-bar-chart")'>
+        <i-bi-file-bar-graph style="color: white"/>
+      </span>
       <br>
-      <h2>{{ $t('report') }}</h2>
-      <p>{{ $t('report_text_1') }}</p>
-      <p>{{ $t('report_text_2') }}</p>
+      <h2>{{ $t("home.short-feature-overview.report") }}</h2>
+      <p>{{ $t("home.short-feature-overview.report_text_1") }}</p>
+      <p>{{ $t("home.short-feature-overview.report_text_2") }}</p>
     </b-col>
   </b-row>
 </template>
 
 <script>
-import DashboardIcon from "@/components/DashboardIcon";
 export default {
   name: "ShortFeatureOverview",
-  components: {DashboardIcon}
 }
 </script>
-<i18n>
-{
-  "en": {
-    "domains": "Manage domains",
-    "domains_text_1": "Manage thousands of domains with labels.",
-    "domains_text_2": "Convenient importing with spreadsheet or comma separated.",
-    "scan": "Bulk scan",
-    "scan_text_1": "Scan domains on dozens of modern internet standerds.",
-    "scan_text_2": "Receive mails with reports when scans are finished.",
-    "report": "Report",
-    "report_text_1": "Browse extensive reports with graphs and metrics per category.",
-    "report_text_2": "Publish a report online or via a spreadsheet.",
-    "icon-list": "Icon depicting a bulleted list",
-    "icon-search": "Magnifying glass icon",
-    "icon-bar-chart": "Bar chart icon"
-  },
-  "nl": {
-    "domains": "Beheer domeinen",
-    "domains_text_1": "Beheer tot duizenden domeinen tegelijkertijd met labels.",
-    "domains_text_2": "Handig domeinen importeren met spreadsheet of kommagescheiden.",
-    "scan": "Bulk scan",
-    "scan_text_1": "Scan domeinen op tientallen moderne internetstandaarden.",
-    "scan_text_2": "Ontvang een mail wanneer het rapport klaar staat, met rapportage.",
-    "report": "Rapporteer",
-    "report_text_1": "Bekijk een uitgebreide rapportage met grafieken en gegevens per categorie.",
-    "report_text_2": "Publiceer het rapport online of via een spreadsheet.",
-    "icon-list": "Icoon met ongenummerde lijst",
-    "icon-search": "Vergrootglas",
-    "icon-bar-chart": "Staafdiagram"
-  }
-}
-</i18n>

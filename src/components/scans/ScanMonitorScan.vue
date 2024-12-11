@@ -2,6 +2,7 @@
 <style scoped>
 ol {
     list-style: decimal;
+  padding-left: 1em;
 }
 .card-header {
     min-height: 5em;
@@ -22,13 +23,13 @@ ol {
             <span v-if="scan.state === 'cancelled'">🛑️</span>
             <span v-if="!['finished', 'cancelled'].includes(scan.state)">
             <probe /></span>
-            <b>&nbsp; {{ scan.type }} {{ $t("scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</b> <scan-type-icon :type="scan.type" />
+            <b>&nbsp; {{ scan.type }} {{ $t("scanmonitor.scan.scan") }} "<span v-html="abbreviate(scan.list, 50)" />"</b> <scan-type-icon :type="scan.type" />
 
         </template>
 
         <b-card-text>
 
-        <small>{{ $t("started_on") }}:
+        <small>{{ $t("scanmonitor.scan.started_on") }}:
         <span :title="scan.started_on">{{
                 humanize_date(scan.started_on)
             }},<br>{{ humanize_relative_date(scan.started_on) }}</span></small><br>
@@ -38,27 +39,27 @@ ol {
             <template v-if="scan.last_report_id">
                 📊
                 <router-link :to="{ name: 'numbered_report', params: { report: scan.last_report_id }}">
-                    {{ $t("open_report") }}
+                    {{ $t("scanmonitor.scan.open_report") }}
                 </router-link>
                 <br>
                 <br>
             </template>
             <template v-if="!scan.last_report_id">
-                📊 {{ $t("report_is_being_generated") }}<br>
+                📊 {{ $t("scanmonitor.scan.report_is_being_generated") }}<br>
                 <br>
             </template>
         </template>
         📘
         <router-link :to="{ name: 'numbered_lists', params: { list: scan.list_id }}">
-            {{ $t("open_list") }}
+            {{ $t("scanmonitor.scan.open_list") }}
         </router-link>
         <br><br>
 
-        <b>{{ $t("progress_bar") }}</b><br>
+        <b>{{ $t("scanmonitor.scan.progress_bar") }}</b><br>
         <template v-if="progress_bar_data(scan.log[0]['state']).state === 'error'">
             <b-progress :value="100" variant="danger">
                 <b-progress-bar :value="100">
-                    <span>{{ $t('progress.' + scan.log[0]['state']) }}</span>
+                    <span>{{ $t("scanmonitor.scan.progress." + scan.log[0]['state']) }}</span>
                 </b-progress-bar>
             </b-progress>
         </template>
@@ -73,51 +74,56 @@ ol {
         <br>
 
         <template v-if="['finished', 'cancelled'].includes(scan.state)">
-            <b v-if="scan.state === 'cancelled'">{{ $t("cancelled_on") }}</b>
-            <b v-if="scan.state === 'finished'">{{ $t("finished_on") }}</b> <br>
+            <b v-if="scan.state === 'cancelled'">{{ $t("scanmonitor.scan.cancelled_on") }}</b>
+            <b v-if="scan.state === 'finished'">{{ $t("scanmonitor.scan.finished_on") }}</b> <br>
             <span :title="scan.finished_on">{{
                     humanize_date(scan.finished_on)
                 }},<br>{{ humanize_relative_date(scan.finished_on) }}</span><br><br>
         </template>
 
 
-        <b>{{ $t("runtime") }}</b><br>
+        <b>{{ $t("scanmonitor.scan.runtime") }}</b><br>
         {{ humanize_duration(scan.runtime) }}<br>
         <br>
         <template v-if="!['finished', 'cancelled'].includes(scan.state)">
-            <b>{{ $t("message") }}</b>
-            <p>{{ $t('progress.' + scan.state) }}</p>
-            <b>{{ $t("last_check") }}</b><br>
+            <b>{{ $t("scanmonitor.scan.message") }}</b>
+            <p>{{ $t("scanmonitor.scan.progress." + scan.state) }}</p>
+            <b>{{ $t("scanmonitor.scan.last_check") }}</b><br>
             <span :title="scan.last_check">{{
                     humanize_date(scan.last_check)
                 }},<br>{{ humanize_relative_date(scan.last_check) }}</span><br>
             <br>
         </template>
-        <b>{{ $t("started_on") }}</b><br>
+        <b>{{ $t("scanmonitor.scan.started_on") }}</b><br>
         <span :title="scan.started_on">{{
                 humanize_date(scan.started_on)
             }},<br>{{ humanize_relative_date(scan.started_on) }}</span><br>
         <br>
 
-        <b>{{ $t("scan_support_id") }}</b><br>
+        <b>{{ $t("scanmonitor.scan.scan_support_id") }}</b><br>
         <span>Scan #{{ scan.id }}</span><br>
         <br>
 
-        <collapse-panel :title='$t("scan history")'>
-            <div slot="content">
+        <collapse-panel :title='$t("scanmonitor.scan.scan history")'>
+            <template #content>
+              <b-alert variant="info" :model-value="true">
                 <ol class="small" reversed>
                     <li v-for="log_item in scan.log" :key="log_item.id">
-                        {{ $t('progress.' + log_item.state) }},
+                        {{ $t("scanmonitor.scan.progress." + log_item.state) }},
                         {{ humanize_relative_date(log_item.at_when) }}
                     </li>
                 </ol>
+                </b-alert>
                 <template v-if="!['finished', 'cancelled'].includes(scan.state)">
-                    <button @click="visible.stop_scan = true" class="border-danger">🛑 {{ $t("stop_scan") }}</button>
+                    <b-button variant="danger" @click="visible.stop_scan = true">🛑 {{ $t("scanmonitor.scan.stop_scan") }}</b-button>
 
-                    <StopScan :scan="scan" :show="visible.stop_scan" :visible="visible.stop_scan" @cancel="visible.stop_scan = false" @scan-stopped="scan_stopped()" ></StopScan>
+                    <StopScanModal
+                      :scan="scan" v-model="visible.stop_scan"
+                     @cancel="visible.stop_scan = false" @scan-stopped="scan_stopped()"
+                    />
 
                 </template>
-            </div>
+            </template>
         </collapse-panel>
 
         </b-card-text>
@@ -126,10 +132,10 @@ ol {
             <template v-if="scan.status_url">
                 🔖
                 <template v-if="scan.state === 'finished'">
-                    <a :href="scan.status_url + '/results'" target="_blank">{{ $t("open_in_api") }}</a>
+                    <a :href="scan.status_url + '/results'" target="_blank">{{ $t("scanmonitor.scan.open_in_api") }}</a>
                 </template>
                 <template v-else>
-                    <a :href="scan.status_url" target="_blank">{{ $t("open_in_api") }}</a>
+                    <a :href="scan.status_url" target="_blank">{{ $t("scanmonitor.scan.open_in_api") }}</a>
                 </template>
                 <br>
             </template>
@@ -140,15 +146,15 @@ ol {
 
 <script>
 
-import StopScan from './stop'
-import ScanTypeIcon from "@/components/ScanTypeIcon";
-import Probe from '@/components/probe'
-import CollapsePanel from '@/components/CollapsePanel'
+import StopScanModal from './stopScanModal.vue'
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
+import Probe from '@/components/probe.vue'
+import CollapsePanel from '@/components/CollapsePanel.vue'
 
 export default {
     components: {
       ScanTypeIcon,
-        StopScan, Probe, CollapsePanel
+        StopScanModal, Probe, CollapsePanel
     },
     name: 'scan_monitor',
 
@@ -244,131 +250,3 @@ export default {
   }
 }
 </script>
-<i18n>
-{
-    "en": {
-        "scan": "scan",
-        "type": "Type",
-        "list": "List",
-        "started_on": "Started",
-        "finished_on": "Finished",
-        "cancelled_on": "Cancelled",
-        "message": "Status",
-        "live": "API",
-        "report": "Report",
-        "runtime": "Runtime",
-        "open_in_api": "View API results",
-        "open_report": "Open report",
-        "open_list": "Open list",
-        "last_check": "Last status update",
-        "report_is_being_generated": "Report is being generated.",
-        "processing_results": "Processing results.",
-        "progress_bar": "Progress",
-        "scan history": "Performed tasks",
-        "stop_scan": "Stop scan",
-        "scan_support_id": "Scan Support ID",
-        "cancel": {
-            "are_you_sure": "Do you want to cancel this scan?",
-            "scan_id": "scan",
-            "list": "list",
-            "ok": "Stop scan",
-            "cancel": "Continue scanning"
-        },
-        "progress": {
-            "requested": "requested",
-            "discovering endpoints": "discovering endpoints",
-            "discovered endpoints": "discovered endpoints",
-            "retrieving scannable urls": "retrieving scannable urls",
-            "retrieved scannable urls": "retrieved scannable urls",
-            "registering scan at internet": {
-                "nl": "registering scan"
-            },
-            "registered scan at internet": {
-                "nl": "registered scan"
-            },
-            "running scan": "running scan",
-            "registered": "registered scan",
-            "scan results ready": "scan results ready",
-            "importing scan results": "importing scan results",
-            "imported scan results": "imported scan results",
-            "processing scan results": "processing scan results",
-            "storing scan results": "storing scan results",
-            "scan results stored": "scan results stored",
-            "creating report": "creating report",
-            "created report": "created report",
-            "sending mail": "sending mail",
-            "sent mail": "sent mail",
-            "finished": "finished",
-            "skipped sending mail: no mail server configured": "skipped sending mail: no mail server configured",
-            "skipped sending mail: no e-mail addresses associated with account": "skipped sending mail: no e-mail addresses associated with account",
-            "network_error": "network problem detected, contact internet.nl",
-            "configuration_error": "configuration error detected, contact internet.nl",
-            "timeout": "operation timed out, will retry",
-            "error": "An unknown error occurred, contact internet.nl",
-            "cancelled": "Scan was cancelled"
-        }
-    },
-    "nl": {
-        "id": "scan",
-        "type": "Soort",
-        "list": "Lijst",
-        "started_on": "Gestart",
-        "finished_on": "Klaar",
-        "cancelled_on": "Gestopt",
-        "message": "Status",
-        "live": "API",
-        "report": "Rapport",
-        "runtime": "Looptijd",
-        "open_in_api": "Open API resultaat",
-        "open_report": "Open rapport",
-        "open_list": "Bekijk lijst",
-        "last_check": "Laatste status update",
-        "report_is_being_generated": "Report wordt gemaakt.",
-        "processing_results": "Resultaten worden verwerkt.",
-        "progress_bar": "Voortgang",
-        "scan history": "Uitgevoerde stappen",
-        "stop_scan": "Stop scan",
-        "scan_support_id": "Scan supportnummer",
-        "cancel": {
-            "are_you_sure": "Deze scan stoppen?",
-            "scan_id": "scan",
-            "list": "lijst",
-            "ok": "Stop scan",
-            "cancel": "Blijf scannen"
-        },
-        "progress": {
-            "requested": "aangevraagd",
-            "discovering endpoints": "inventariseren mogelijke scans",
-            "discovered endpoints": "mogelijke scans bekend",
-            "retrieving scannable urls": "ophalen scanbare domeinen",
-            "retrieved scannable urls": "scanbare domeinen opgehaald",
-            "registering scan at internet": {
-                "nl": "scan registreren"
-            },
-            "registered scan at internet": {
-                "nl": "scan geregistreerd"
-            },
-            "running scan": "scan wordt uitgevoerd",
-            "registered": "scan geregistreerd",
-            "scan results ready": "scanresultaten beschikbaar",
-            "importing scan results": "scanresultaten importeren",
-            "imported scan results": "scanresultaten geïmporteerd",
-            "processing scan results": "verwerken van scan resultaten",
-            "storing scan results": "scanresultaten opslaan",
-            "scan results stored": "scanresultaten opgeslagen",
-            "creating report": "rapport wordt gemaakt",
-            "created report": "rapport gemaakt",
-            "sending mail": "versturen e-mails",
-            "sent mail": "mail verstuurd",
-            "finished": "klaar",
-            "skipped sending mail: no mail server configured": "sturen van mail overgeslagen: geen mailserver ingesteld",
-            "skipped sending mail: no e-mail addresses associated with account": "sturen van mail overgeslagen: geen mail adres bekend",
-            "network_error": "netwerkproblemen ontdekt, neem contact op met internet.nl",
-            "configuration_error": "configuratie onjuist ingesteld, neem contact op met internet.nl",
-            "timeout": "wachttijd vertreken, probeert opnieuw",
-            "error": "Onbekende fout opgetreden, neem contact op met internet.nl",
-            "cancelled": "Scan was gestopt"
-        }
-    }
-}
-</i18n>

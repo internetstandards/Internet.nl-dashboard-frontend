@@ -2,39 +2,39 @@
 <template type="text/x-template" id="unsubscribe_template">
     <div>
         <content-block>
-            <h1>{{ $t("title") }}</h1>
+            <h1>{{ $t("mail.unsubscribe.title") }}</h1>
 
             <loading :loading="loading"></loading>
 
             <div v-if="unsubscribed">
                 <div class="server-response-success">
-                    <span>✅ {{ $t("success") }}</span>
+                    <span>✅ {{ $t("mail.unsubscribe.success") }}</span>
                 </div>
             </div>
 
             <div v-if="error_occurred">
                 <div class="server-response-error">
-                    <span>❌ {{ $t("error") }}</span>
+                    <span>❌ {{ $t("mail.unsubscribe.error") }}</span>
                 </div>
             </div>
 
             <template v-if="show_unsubscribe_form">
-                <p>{{ $t("intro") }}</p>
+                <p>{{ $t("mail.unsubscribe.intro") }}</p>
 
-                <b>{{ $t("label_feed") }}</b><br>
+                <b>{{ $t("mail.unsubscribe.label_feed") }}</b><br>
                 <input id="feed" type="text" maxlength="120" v-model="feed"><br><br>
                 <br>
-                <b>{{ $t("label_unsubscribe_code") }}</b><br>
+                <b>{{ $t("mail.unsubscribe.label_unsubscribe_code") }}</b><br>
                 <input id="unsubscribe_code" type="text" maxlength="120" v-model="unsubscribe_code"><br><br>
                 <template v-if="!unsubscribe_code || !feed">
-                    <button class="defaultbutton modal-default-button" disabled>
-                        {{ $t("perform_unsubscribe") }}
-                    </button>
+                    <b-button variant="warning" disabled>
+                        {{ $t("mail.unsubscribe.perform_unsubscribe") }}
+                    </b-button>
                 </template>
                 <template v-else>
-                    <button class="defaultbutton modal-default-button" @click="unsubscribe()">
-                        {{ $t("perform_unsubscribe") }}
-                    </button>
+                    <b-button variant="warning" @click="unsubscribe()">
+                        {{ $t("mail.unsubscribe.perform_unsubscribe") }}
+                    </b-button>
                 </template>
             </template>
 
@@ -93,25 +93,3 @@ export default {
     name: 'unsubscribe',
 }
 </script>
-<i18n>
-{
-    "en": {
-        "title": "Unsubscribe from alerts",
-        "label_feed": "Feed",
-        "label_unsubscribe_code": "Unsubscribe code (see e-mail)",
-        "intro": "Using this form, you can unsubscribe from alerts. You can unsubscribe without being logged in. If you landed on this page from ",
-        "error": "An error occured during unsubscribing. Try again below using the code and feed in your email.",
-        "success": "Your subscription to this feed has been cancelled. You will no longer receive e-mails from this feed.",
-        "perform_unsubscribe": "Unsubscribe from this feed"
-    },
-    "nl": {
-        "title": "Geen meldingen ontvangen",
-        "label_feed": "Meldingen",
-        "label_unsubscribe_code": "Uitschrijfcode (zie e-mail)",
-        "intro": "Met onderstaand formulier is het mogelijk om uit te schrijven voor meldingen. Het is niet nodig om in te loggen om je af te melden.",
-        "error": "Er is een fout opgetreden bij het uitschrijven. Probeer het opnieuw met de code en feed uit de email.",
-        "success": "Je bent succesvol afgemeld van deze meldingen. Je ontvangt deze meldingen niet meer per e-mail.",
-        "perform_unsubscribe": "Afmelden van deze meldingen"
-    }
-}
-</i18n>

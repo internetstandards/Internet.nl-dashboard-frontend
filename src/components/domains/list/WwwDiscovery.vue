@@ -3,27 +3,28 @@
     <template
         v-if="['not_scanned_at_all'].includes(state_message) || ['finished', 'error', 'cancelled'].includes(state)">
 
-      <b-button style="font-weight: bold" size="sm" v-if="success_while_visible" @click="reload_and_reset" variant="success" :disabled="loading">
-        {{ $t('Scanning done, click to reload domain list') }}
+      <b-button size="sm" v-if="success_while_visible" @click="reload_and_reset();" variant="success" :disabled="loading">
+        🔎 {{ $t("domain.www-discovery.scanning-done-click-reload") }}
       </b-button>
 
-      <b-button style="font-weight: bold" size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" :disabled="loading">{{ $t("Find 'www.' subdomains") }}<span
-          v-if="state_changed_on">{{ $t(', last scan finished ') }}</span></b-button>
+      <b-button variant="success" size="sm" v-if="!success_while_visible" v-b-modal="`subdomain_discovery_modal_${list_id}`" :disabled="loading" @click="visible=true;">
+        🔎 {{ $t("domain.www-discovery.find-www-subdomains") }}
+        <span v-if="state_changed_on">{{ $t("domain.www-discovery.last-scan-finished") }}</span></b-button>
     </template>
     <template v-else>
-      <b-button style="font-weight: bold" size="sm"  @click="status" :disabled="loading">
+      <b-button size="sm"  @click="status" :disabled="loading">
         <probe/>
-        {{ $t("... finding 'www.' subdomains ") }}
+        {{ $t("domain.www-discovery.finding-www-subdomains") }}
       </b-button>
     </template>
-     <subdomain-discovery-modal :id="`subdomain_discovery_modal_${list_id}`" @ok="request" />
+     <subdomain-discovery-modal :id="`subdomain_discovery_modal_${list_id}`" @ok="request(); visible=false;" @cancel="visible=false;" v-model="visible" :show="visible" />
   </span>
 </template>
 
 <script>
 import http from "@/httpclient";
-import SubdomainDiscoveryModal from "@/components/domains/SubdomainDiscoveryModal";
-import Probe from '@/components/probe'
+import SubdomainDiscoveryModal from "@/components/domains/list/WwwDiscoveryModal.vue";
+import Probe from '@/components/probe.vue'
 
 export default {
   name: "SubdomainDiscovery",
@@ -43,6 +44,8 @@ export default {
       state_changed_on: '',
       domains_discovered: {},
       success_while_visible: false,
+
+      visible: false,
     }
   },
   beforeDestroy() {
@@ -81,6 +84,7 @@ export default {
       this.$emit('finished')
       this.reset()
       this.status()
+      this.visible = true;
     },
     status() {
       this.loading = true;
@@ -115,28 +119,3 @@ export default {
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "Scanning done, click to reload domain list": "Scanning done, click to reload domain list",
-    "Find 'www.' subdomains": "www. discovery",
-    ", last scan finished ": ", last index finished ",
-    "... finding 'www.' subdomains ": "finding www. ",
-    "requested": "since",
-    "scanning": "gathering",
-    "finished": "finished",
-    "error": "error"
-  },
-  "nl": {
-    "Scanning done, click to reload domain list": "Klaar met zoeken, klik om de domeinlijst te herladen",
-    "Find 'www.' subdomains": "www. zoeker",
-    ", last scan finished ":  ", laatste keer was ",
-    "... finding 'www.' subdomains ": "zoekt www. ",
-    "requested": "vanaf",
-    "scanning": "verzamelen",
-    "finished": "afgerond",
-    "error": "fout"
-  }
-}
-</i18n>

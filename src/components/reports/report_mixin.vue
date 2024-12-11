@@ -5,13 +5,21 @@
 // Done: store filter options for reports (as generic or per report? or as a re-applicable set?) Per user account.
 // Done: how to add a item for legacy views?
 // Done: how to translate graphs?
-import field_translations from '../FieldTranslations'
 import http from "@/httpclient"
+import { dashboardStore } from '@/dashboardStore'
 
 export default {
-  i18n: {
-    sharedMessages: field_translations,
+
+  data() {
+    return {
+      dashboardStore: dashboardStore,
+    }
   },
+
+  mounted() {
+    this.dashboardStore = dashboardStore();
+  },
+
 
   methods: {
     alphabet_sorting: function (a, b) {
@@ -189,17 +197,17 @@ export default {
             this.upgrade_issue_filter_with_new_field(issue_filters, field_name);
           })
           // console.log(issue_filters);
-          this.$store.commit("set_visible_metrics", issue_filters);
+          this.dashboardStore.set_visible_metrics(issue_filters);
         } else {
           // no issue filters at all, set it to the default:
           console.log('Using default visible metrics, to change this, set visible metrics in the report page.');
-          this.$store.commit("set_visible_metrics", default_metric_visibility);
+          this.dashboardStore.set_visible_metrics(default_metric_visibility);
         }
 
       }).catch(() => {});
         // When a user is not logged in, defaults are used.
         console.log("Using fallback visible metrics.")
-        this.$store.commit("set_visible_metrics", default_metric_visibility);
+        this.dashboardStore.set_visible_metrics(default_metric_visibility);
     },
     upgrade_issue_filter_with_new_field: function (issue_filters, field_name) {
       if (!Object.keys(issue_filters).includes(field_name)) {
@@ -319,11 +327,11 @@ export default {
           name: 'web',
           fields: [],
 
-          label: this.$i18n.t('web'),
+          label: this.$i18n.t("metric.web.title"),
           categories: [
             {
               name: 'ipv6',
-              label: this.$i18n.t('internet_nl_web_ipv6'),
+              label: this.$i18n.t("metric.internet_nl_web_ipv6.title"),
               // key is being used by selected categories to not iterate through fields.
               key: 'internet_nl_web_ipv6',
               fields: [
@@ -336,7 +344,7 @@ export default {
                   name: 'Name servers',
                   key: 'category_web_ipv6_name_server',
                   // there is NO translations for web, only for mail.
-                  label: this.$i18n.t('category_web_ipv6_name_server'),
+                  label: this.$i18n.t("metric.category_web_ipv6_name_server.title"),
                   fields: [
                     {name: 'internet_nl_web_ipv6_ns_address'},
                     {name: 'internet_nl_web_ipv6_ns_reach'},
@@ -346,7 +354,7 @@ export default {
                 {
                   name: 'Web server',
                   key: 'category_web_ipv6_web_server',
-                  label: this.$i18n.t('category_web_ipv6_web_server'),
+                  label: this.$i18n.t("metric.category_web_ipv6_web_server.title"),
                   fields: [
                     {name: 'internet_nl_web_ipv6_ws_address'},
                     {name: 'internet_nl_web_ipv6_ws_reach'},
@@ -358,7 +366,7 @@ export default {
             },
             {
               name: 'dnssec',
-              label: this.$i18n.t('internet_nl_web_dnssec'),
+              label: this.$i18n.t("metric.internet_nl_web_dnssec.title"),
               key: 'internet_nl_web_dnssec',
               fields: [
                 {name: 'internet_nl_web_dnssec'}
@@ -369,7 +377,7 @@ export default {
                   // the exception to the rule
                   name: 'DNSSEC',
                   key: 'category_web_dnssec_dnssec',
-                  label: this.$i18n.t('category_web_dnssec_dnssec'),
+                  label: this.$i18n.t("metric.category_web_dnssec_dnssec.title"),
                   fields: [
                     {name: 'internet_nl_web_dnssec_exist'},
                     {name: 'internet_nl_web_dnssec_valid'},
@@ -380,7 +388,7 @@ export default {
             },
             {
               name: 'tls',
-              label: this.$i18n.t('internet_nl_web_tls'),
+              label: this.$i18n.t("metric.internet_nl_web_tls.title"),
               key: 'internet_nl_web_tls',
               fields: [
                 {name: 'internet_nl_web_tls'},
@@ -390,7 +398,7 @@ export default {
                 {
                   name: 'HTTP',
                   key: 'category_web_tls_http',
-                  label: this.$i18n.t('category_web_tls_http'),
+                  label: this.$i18n.t("metric.category_web_tls_http.title"),
                   fields: [
                     {name: 'internet_nl_web_https_http_available'},
                     {name: 'internet_nl_web_https_http_redirect'},
@@ -402,7 +410,7 @@ export default {
                 {
                   name: 'TLS',
                   key: 'category_web_tls_tls',
-                  label: this.$i18n.t('category_web_tls_tls'),
+                  label: this.$i18n.t("metric.category_web_tls_tls.title"),
                   fields: [
                     {name: 'internet_nl_web_https_tls_version'},
                     {name: 'internet_nl_web_https_tls_ciphers'},
@@ -420,7 +428,7 @@ export default {
                   name: 'Certificate',
                   key: 'category_web_tls_certificate',
                   // mail is being reused as there is no alternative translation (!)
-                  label: this.$i18n.t('category_web_tls_certificate'),
+                  label: this.$i18n.t("metric.category_web_tls_certificate.title"),
                   fields: [
                     {name: 'internet_nl_web_https_cert_chain'},
                     {name: 'internet_nl_web_https_cert_pubkey'},
@@ -432,7 +440,7 @@ export default {
                 {
                   name: 'DANE',
                   key: 'category_web_tls_dane',
-                  label: this.$i18n.t('category_web_tls_dane'),
+                  label: this.$i18n.t("metric.category_web_tls_dane.title"),
                   fields: [
                     {name: 'internet_nl_web_https_dane_exist'},
                     {name: 'internet_nl_web_https_dane_valid'},
@@ -443,7 +451,7 @@ export default {
             },
             {
               name: 'security_options',
-              label: this.$i18n.t('internet_nl_web_appsecpriv'),
+              label: this.$i18n.t("metric.internet_nl_web_appsecpriv.title"),
               key: 'internet_nl_web_appsecpriv',
               fields: [
                 {name: 'internet_nl_web_appsecpriv'},
@@ -453,7 +461,7 @@ export default {
                 {
                   name: 'HTTP security headers',
                   key: 'category_web_security_options_appsecpriv',
-                  label: this.$i18n.t('category_web_security_options_appsecpriv'),
+                  label: this.$i18n.t("metric.category_web_security_options_appsecpriv.title"),
                   fields: [
                     {name: 'internet_nl_web_appsecpriv_x_frame_options'},
                     {name: 'internet_nl_web_appsecpriv_x_content_type_options'},
@@ -465,7 +473,7 @@ export default {
                 {
                   name: 'Other options',
                   key: 'category_web_security_options_other',
-                  label: this.$i18n.t('category_web_security_options_other'),
+                  label: this.$i18n.t("metric.category_web_security_options_other.title"),
                   fields: [
                     {name: 'internet_nl_web_appsecpriv_securitytxt'},
                   ],
@@ -476,7 +484,7 @@ export default {
             },
             {
               name: 'rpki',
-              label: this.$i18n.t('internet_nl_web_rpki'),
+              label: this.$i18n.t("metric.internet_nl_web_rpki.title"),
               key: 'internet_nl_web_rpki',
               fields: [
                 {name: 'internet_nl_web_rpki'},
@@ -486,7 +494,7 @@ export default {
                 {
                   name: 'Name Server',
                   key: 'category_web_rpki_name_server',
-                  label: this.$i18n.t('category_web_rpki_name_server'),
+                  label: this.$i18n.t("metric.category_web_rpki_name_server.title"),
                   fields: [
                     {name: 'internet_nl_web_rpki_exists'},
                     {name: 'internet_nl_web_rpki_valid'},
@@ -496,7 +504,7 @@ export default {
                 {
                   name: 'Web Server',
                   key: 'category_web_rpki_web_server',
-                  label: this.$i18n.t('category_web_rpki_web_server'),
+                  label: this.$i18n.t("metric.category_web_rpki_web_server.title"),
                   fields: [
                     {name: 'internet_nl_web_ns_rpki_exists'},
                     {name: 'internet_nl_web_ns_rpki_valid'},
@@ -507,7 +515,7 @@ export default {
             },
             {
               name: 'forum_standardisation',
-              label: this.$i18n.t('internet_nl_web_legacy_category'),
+              label: this.$i18n.t("metric.internet_nl_web_legacy_category.title"),
               key: 'internet_nl_web_legacy_category',
               fields: [
                 {name: 'internet_nl_web_legacy_category'},
@@ -558,7 +566,7 @@ export default {
                 {
                   name: 'Status Fields',
                   key: 'category_web_forum_standardisation_status_fields',
-                  label: this.$i18n.t('fields.forum_standardistation.status_fields'),
+                  label: this.$i18n.t("metric.internet_nl_legacy.status_fields.title"),
                   fields: [
                     {
                       name: 'internet_nl_web_legacy_tls_1_3',
@@ -574,11 +582,11 @@ export default {
         {
           name: 'mail',
           fields: [],
-          label: this.$i18n.t('mail'),
+          label: this.$i18n.t("metric.category_mail.title"),
           categories: [
             {
               name: 'IPv6',
-              label: this.$i18n.t('internet_nl_mail_dashboard_ipv6'),
+              label: this.$i18n.t("metric.internet_nl_mail_dashboard_ipv6.title"),
               key: 'internet_nl_mail_dashboard_ipv6',
               fields: [
                 {name: 'internet_nl_mail_dashboard_ipv6'}
@@ -589,7 +597,7 @@ export default {
                 {
                   name: 'Name servers',
                   key: 'category_mail_ipv6_name_servers',
-                  label: this.$i18n.t('category_mail_ipv6_name_servers'),
+                  label: this.$i18n.t("metric.category_mail_ipv6_name_servers.title"),
                   fields: [
                     {name: 'internet_nl_mail_ipv6_ns_address'},
                     {name: 'internet_nl_mail_ipv6_ns_reach'},
@@ -599,7 +607,7 @@ export default {
                 {
                   name: 'Mail server(s)',
                   key: 'category_mail_ipv6_mail_servers',
-                  label: this.$i18n.t('category_mail_ipv6_mail_servers'),
+                  label: this.$i18n.t("metric.category_mail_ipv6_mail_servers.title"),
                   fields: [
                     {name: 'internet_nl_mail_ipv6_mx_address'},
                     {name: 'internet_nl_mail_ipv6_mx_reach'},
@@ -610,7 +618,7 @@ export default {
             },
             {
               name: 'DNSSEC',
-              label: this.$i18n.t('internet_nl_mail_dashboard_dnssec'),
+              label: this.$i18n.t("metric.internet_nl_mail_dashboard_dnssec.title"),
               key: 'internet_nl_mail_dashboard_dnssec',
               fields: [
                 {name: 'internet_nl_mail_dashboard_dnssec',}
@@ -620,7 +628,7 @@ export default {
                 {
                   name: 'Email address domain',
                   key: 'category_mail_dnssec_email_address_domain',
-                  label: this.$i18n.t('category_mail_dnssec_email_address_domain'),
+                  label: this.$i18n.t("metric.category_mail_dnssec_email_address_domain.title"),
                   fields: [
                     {name: 'internet_nl_mail_dnssec_mailto_exist'},
                     {name: 'internet_nl_mail_dnssec_mailto_valid'},
@@ -630,7 +638,7 @@ export default {
                 {
                   name: 'Mail server domain(s)',
                   key: 'category_mail_dnssec_mail_server_domain',
-                  label: this.$i18n.t('category_mail_dnssec_mail_server_domain'),
+                  label: this.$i18n.t("metric.category_mail_dnssec_mail_server_domain.title"),
                   fields: [
                     {name: 'internet_nl_mail_dnssec_mx_exist'},
                     {name: 'internet_nl_mail_dnssec_mx_valid'},
@@ -640,7 +648,7 @@ export default {
             },
             {
               name: 'DMARC, DKIM and SPF',
-              label: this.$i18n.t('internet_nl_mail_dashboard_auth'),
+              label: this.$i18n.t("metric.internet_nl_mail_dashboard_auth.title"),
               key: 'internet_nl_mail_dashboard_auth',
               fields: [
                 {name: 'internet_nl_mail_dashboard_auth'}
@@ -650,7 +658,7 @@ export default {
                 {
                   name: 'DMARC',
                   key: 'category_mail_dashboard_auth_dmarc',
-                  label: this.$i18n.t('category_mail_dashboard_auth_dmarc'),
+                  label: this.$i18n.t("metric.category_mail_dashboard_auth_dmarc.title"),
                   fields: [
                     {name: 'internet_nl_mail_auth_dmarc_exist'},
                     {name: 'internet_nl_mail_auth_dmarc_policy'},
@@ -660,7 +668,7 @@ export default {
                 {
                   name: 'DKIM',
                   key: 'category_mail_dashboard_aut_dkim',
-                  label: this.$i18n.t('category_mail_dashboard_aut_dkim'),
+                  label: this.$i18n.t("metric.category_mail_dashboard_auth_dkim.title"),
                   fields: [
                     {name: 'internet_nl_mail_auth_dkim_exist'},
                   ],
@@ -669,7 +677,7 @@ export default {
                 {
                   name: 'SPF',
                   key: 'category_mail_dashboard_aut_spf',
-                  label: this.$i18n.t('category_mail_dashboard_aut_spf'),
+                  label: this.$i18n.t("metric.category_mail_dashboard_auth_spf.title"),
                   fields: [
                     {name: 'internet_nl_mail_auth_spf_exist'},
                     {name: 'internet_nl_mail_auth_spf_policy'},
@@ -680,7 +688,7 @@ export default {
             },
             {
               name: 'STARTTLS and DANE',
-              label: this.$i18n.t('internet_nl_mail_dashboard_tls'),
+              label: this.$i18n.t("metric.internet_nl_mail_dashboard_tls.title"),
               key: 'internet_nl_mail_dashboard_tls',
               fields: [
                 {name: 'internet_nl_mail_dashboard_tls'},
@@ -690,7 +698,7 @@ export default {
                 {
                   name: 'TLS',
                   key: 'category_mail_starttls_tls',
-                  label: this.$i18n.t('category_mail_starttls_tls'),
+                  label: this.$i18n.t("metric.category_mail_starttls_tls.title"),
                   fields: [
                     {name: 'internet_nl_mail_starttls_tls_available'},
                     {name: 'internet_nl_mail_starttls_tls_version'},
@@ -708,7 +716,7 @@ export default {
                 {
                   name: 'Certificate',
                   key: 'category_mail_starttls_certificate',
-                  label: this.$i18n.t('category_mail_starttls_certificate'),
+                  label: this.$i18n.t("metric.category_mail_starttls_certificate.title"),
                   fields: [
                     {name: 'internet_nl_mail_starttls_cert_chain'},
                     {name: 'internet_nl_mail_starttls_cert_pubkey'},
@@ -720,7 +728,7 @@ export default {
                 {
                   name: 'DANE',
                   key: 'category_mail_starttls_dane',
-                  label: this.$i18n.t('category_mail_starttls_dane'),
+                  label: this.$i18n.t("metric.category_mail_starttls_dane.title"),
                   fields: [
                     {name: 'internet_nl_mail_starttls_dane_exist'},
                     {name: 'internet_nl_mail_starttls_dane_valid'},
@@ -733,7 +741,7 @@ export default {
             },
             {
               name: 'rpki',
-              label: this.$i18n.t('internet_nl_mail_dashboard_rpki'),
+              label: this.$i18n.t("metric.internet_nl_mail_dashboard_rpki.title"),
               key: 'internet_nl_mail_dashboard_rpki',
               fields: [
                 {name: 'internet_nl_mail_dashboard_rpki'},
@@ -743,7 +751,7 @@ export default {
                 {
                   name: 'Name Server Domain',
                   key: 'category_mail_rpki_name_server',
-                  label: this.$i18n.t('category_mail_rpki_name_server'),
+                  label: this.$i18n.t("metric.category_mail_rpki_name_server.title"),
                   fields: [
                     {name: 'internet_nl_mail_rpki_exists'},
                     {name: 'internet_nl_mail_rpki_valid'},
@@ -753,7 +761,7 @@ export default {
                 {
                   name: 'Name Server Mail Server(s)',
                   key: 'category_mail_rpki_name_mail_server',
-                  label: this.$i18n.t('category_mail_rpki_name_mail_server'),
+                  label: this.$i18n.t("metric.category_mail_rpki_name_mail_server.title"),
                   fields: [
                     {name: 'internet_nl_mail_ns_rpki_exists'},
                     {name: 'internet_nl_mail_ns_rpki_valid'},
@@ -763,7 +771,7 @@ export default {
                 {
                   name: 'Mail Server(s)',
                   key: 'category_mail_rpki_mail_server',
-                  label: this.$i18n.t('category_mail_rpki_mail_server'),
+                  label: this.$i18n.t("metric.category_mail_rpki_mail_server.title"),
                   fields: [
                     {name: 'internet_nl_mail_mx_ns_rpki_exists'},
                     {name: 'internet_nl_mail_mx_ns_rpki_valid'},
@@ -774,7 +782,7 @@ export default {
             },
             {
               name: 'forum_standardisation',
-              label: this.$i18n.t('internet_nl_mail_legacy_category'),
+              label: this.$i18n.t("metric.internet_nl_mail_legacy_category.title"),
               key: 'internet_nl_mail_legacy_category',
               fields: [
                 {
@@ -846,7 +854,7 @@ export default {
                 {
                   name: 'Status Fields',
                   key: 'category_web_forum_standardisation_status_fields',
-                  label: this.$i18n.t('fields.forum_standardistation.status_fields'),
+                  label: this.$i18n.t("metric.internet_nl_legacy.status_fields.title"),
                   fields: [
                     {
                       name: 'internet_nl_mail_legacy_tls_1_3',

@@ -5,8 +5,8 @@
 <template>
   <div v-if="reports.length > 0">
     <content-block>
-      <h3>{{ $t('Public reports') }}</h3>
-      <p>{{ $t('introduction') }}</p>
+      <h3>{{ $t("public-reports.page.Public reports") }}</h3>
+      <p>{{ $t("public-reports.page.introduction") }}</p>
       <PublicReportsTable :reports="reports"/>
     </content-block>
   </div>
@@ -15,7 +15,7 @@
 <script>
 
 import http from "@/httpclient";
-import PublicReportsTable from "@/components/home/PublicReportsTable";
+import PublicReportsTable from "@/components/home/PublicReportsTable.vue";
 
 export default {
   components: {PublicReportsTable},
@@ -43,30 +43,3 @@ export default {
 
 }
 </script>
-<i18n>
-{
-  "en": {
-    "domains": "domains",
-    "View report": "View report",
-    "Public reports": "Public reports created by dashboard staff",
-    "introduction": "These reports are created, curated and shared by the internet.nl dashboard staff",
-    "Score": "Internet.nl score",
-    "Name": "Report",
-    "Published": "Publication date",
-    "View": "View",
-    "Contains": "Contains"
-  },
-  "nl": {
-    "domains": "domeinen",
-    "View report": "Bekijk rapport",
-    "Public reports": "Openbare rapporten samengesteld door dashboard beheerders",
-    "introduction": "Deze rapporten worden gemaakt, samengesteld en gedeeld door het internet.nl dashboard team",
-    "Score": "Internet.nl score",
-    "Name": "Rapport",
-    "Published": "Gepubliceerd op",
-    "View": "Bekijken",
-    "Contains": "Bevat"
-  }
-}
-
-</i18n>

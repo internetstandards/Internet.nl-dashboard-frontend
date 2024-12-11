@@ -1,6 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
-import report_mixin from "@/components/reports/report_mixin";
+import report_mixin from "@/components/reports/report_mixin.vue";
+import { dashboardStore } from '@/dashboardStore'
 
 export default {
   mixins: [report_mixin],
@@ -8,11 +9,12 @@ export default {
   name: "NestedReportCharts.vue",
 
   mounted: function () {
-    this.issue_filters = this.$store.state.visible_metrics;
+    this.issue_filters = this.store.visible_metrics;
   },
 
   data: function () {
     return {
+      store: dashboardStore(),
       issue_filters: {},
     }
   },

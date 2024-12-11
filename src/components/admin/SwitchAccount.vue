@@ -1,22 +1,23 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <content-block>
-        <h1><b-icon icon="person-bounding-box" /> {{ $t("title") }}</h1>
-        <p> {{ $t('intro') }}</p>
-        <p><b>{{ $t('reload_page_warning') }}</b></p>
+        <h1><i-bi-person-bounding-box /> {{ $t("admin.switch_account.title") }}</h1>
+        <p> {{ $t("admin.switch_account.intro") }}</p>
+
+      {{this.current_account.id}}: {{this.current_account.name}}
 
         <template v-if="server_response.success">
             <server-response :response="server_response"
-                             :message="$t('switched_account', [server_response.data.account_name])"></server-response>
+                             :message='$t("admin.switch_account.switched_account", [server_response.data.account_name])'></server-response>
         </template>
         <template v-else>
             <server-response :response="server_response"></server-response>
         </template>
 
         <p>
-            <button role="link" @click="get_accounts">🔁 {{ $t("reload_list") }}</button>
+            <b-button variant="warning" role="link" @click="get_accounts">🔁 {{ $t("admin.switch_account.reload_list") }}</b-button>
             <br><br>
-            <label for="account_selection">{{ $t("select") }}:</label>
+            <label for="account_selection">{{ $t("admin.switch_account.select") }}:</label>
 
             <!--
             We want to see everything, :sticky-header="true" disabled.
@@ -28,18 +29,18 @@
                 placeholder="Type to Search"
             ></b-form-input>
             <br />
-                        <b-pagination
+            <b-pagination
                 v-model="currentPage"
                 :total-rows="totalRows"
                 :per-page="perPage"
-                pills
+                v-if="totalRows > perPage"
                 size="sm"
                 class="my-0"
             ></b-pagination>
             <br />
 
             <b-table striped hover selectable
-                     ref="selectableTable"
+                     v-model:selected-items="selected_items"
                      :responsive="'sm'"
                      :select-mode="'single'"
                      :no-border-collapse="true"
@@ -48,22 +49,20 @@
                      :primary-key="'id'"
                      :busy="loading"
                      :filter-included-fields="filterOn"
-                     :sort-by.sync="sortBy"
-                     :sort-desc.sync="sortDesc"
-                     sort-icon-left
                      :current-page="currentPage"
                      :per-page="perPage"
                      :filter="filter"
+
                      @row-selected="onRowSelected"
             >
                 <template #cell(selected)="{ rowSelected }">
                     <template v-if="rowSelected">
                         <span aria-hidden="true">&check;</span>
-                        <span class="sr-only">Selected</span>
+                        <span class="visually-hidden">Selected</span>
                     </template>
                     <template v-else>
                         <span aria-hidden="true">&nbsp;</span>
-                        <span class="sr-only">Not selected</span>
+                        <span class="visually-hidden">Not selected</span>
                     </template>
                 </template>
 
@@ -93,8 +92,9 @@ export default {
                 {key: "lists", sortable: true, label: 'Lists'},
                 {key: "users", sortable: true, label: 'Users'}
             ],
-            sortBy: 'id',
-            sortDesc: false,
+
+          selected_items: [],
+
             filter: "",
             filterOn: ['name', 'id', 'users'],
             perPage: 10,
@@ -109,23 +109,17 @@ export default {
             initial_selected: {}
         }
     },
-    mounted: function () {
+    beforeMount: function () {
         this.get_accounts();
     },
     methods: {
-        onRowSelected(items) {
-            if (this.initial_selected.id !== items[0]['id']) {
-                this.set_account(items[0]['id'])
-                this.selected = items;
-                this.initial_selected = items[0];
-            }
+        onRowSelected(x) {
+          if (x.id !== this.current_account.id) {
+            this.set_account(x.id)
+          }
         },
-        selectAccountRow() {
-            for (let i = 0; i < this.$refs.selectableTable.items.length; i++) {
-                if (this.$refs.selectableTable.items[i]['id'] === this.current_account['id']) {
-                    this.$refs.selectableTable.selectRow(i);
-                }
-            }
+        selectAccountRow(x) {
+          this.selected_items = [this.current_account];
         },
         get_accounts: function () {
             this.loading = true;
@@ -146,33 +140,10 @@ export default {
         set_account: function (account_id) {
             http.post('/data/powertools/set_account/', {'id': account_id}).then(server_response => {
                 this.server_response = server_response.data;
-                // enabling this will flash the table, which is annoying
-                // this.get_accounts();
-
                 // not the nicest solution, but it works and prevents mistakes by not reloading the page...
                 location.reload();
             });
         }
-    }
+    },
 }
 </script>
-<i18n>
-{
-    "en": {
-        "title": "Switch Account",
-        "intro": "This feature allows you to switch to another account, and use this site as them.",
-        "reload_page_warning": "Important: refresh the page after choosing an account!",
-        "select": "Select account to use, the account is instantly switched",
-        "reload_list": "Reload account list",
-        "switched_account": "Switched to account {0}. Refresh the page to use this account."
-    },
-    "nl": {
-        "title": "Wissel van account",
-        "intro": "Hiermee is te wisselen van account. Na een wissel voer je bijvoorbeeld scans uit vanuit die organisatie.",
-        "reload_page_warning": "Let op: herlaad de pagina na het wisselen van account!",
-        "select": "Selecteer het account om te gebruiken, wisselen gebeurd direct",
-        "reload_list": "Lijst met accounts verversen",
-        "switched_account": "Geswitched naar account {0}. Ververs de pagina om dit account te gebruiken."
-    }
-}
-</i18n>

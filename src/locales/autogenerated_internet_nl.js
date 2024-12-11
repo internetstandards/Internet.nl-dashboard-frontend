@@ -577,7 +577,8 @@ export default {
             faqs_report_test_bad: 'Slecht: gezakt voor tenminste één VEREISTE subtest ⇒ geen volledige score voor testcategorie',
             faqs_report_test_error: 'Testfout: uitvoeringsfout voor tenminste één subtest ⇒ geen resultaat voor testcategorie',
             faqs_report_test_good: 'Goed: geslaagd voor alle subtesten ⇒ volledige score voor testcategorie ',
-            faqs_report_test_info: 'Ter informatie: gezakt voor tenminste één OPTIONELE subtest ⇒ volledige score voor testcategorie',
+            faqs_report_test_info: '' +
+                'Ter informatie: gezakt voor tenminste één OPTIONELE subtest ⇒ volledige score voor testcategorie',
             faqs_report_test_title: 'Iconen per testcategorie',
             faqs_report_test_warning: 'Waarschuwing: gezakt voor tenminste één AANBEVOLEN subtest ⇒ volledige score voor testcategorie ',
             faqs_report_title: 'Toelichting op testrapport',
@@ -643,7 +644,7 @@ export default {
             results_empty_argument_alt_text: 'Geen',
             results_explanation_label: 'Testuitleg:',
             results_further_testing_connection_label: 'Aanvullende verbindingstesten',
-            results_further_testing_mail_label: 'Aanvullende e-mailtesten',
+            results_further_testing_mail_label: 'Aanvulresults_mail_auth_dmarclende e-mailtesten',
             results_further_testing_web_label: 'Aanvullende websitetesten',
             results_mail_auth_dkim_label: 'DKIM',
             results_mail_auth_dmarc_label: 'DMARC',

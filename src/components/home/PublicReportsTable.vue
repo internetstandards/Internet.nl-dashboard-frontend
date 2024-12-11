@@ -5,14 +5,13 @@
     v-model="currentPage"
     :total-rows="reports.length"
     :per-page="perPage"
-    pills
     class="mb-2"
     :value="currentPage"
     v-if="reports.length > perPage"
   ></b-pagination>
 
-  <b-table :items="reports" :fields="fields" striped hover :busy="loading" :sort-by.sync="sortBy"
-           :sort-desc.sync="sortDesc" sort-icon-left
+  <b-table :items="reports" :fields="fields" striped hover :busy="loading" v-model:sort-by="multiSortBy"
+           :multisort="true"  sort-icon-left
             :current-page="currentPage"
             :per-page="perPage">
 
@@ -21,21 +20,17 @@
     </template>
 
     <template #cell(average_internet_nl_score)="data">
-
-        <div class="text-dark">
-          <donut class="float-left w-50" :data="{'score': data.value, 'rest': 100-data.value}" :show_number_in_center="false" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='200' :elements="['donut']" />
-          <span>{{data.value}}%</span>
-        </div>
-
+      <donut class="float-start" :data="{'score': data.value, 'rest': 100-data.value}" :show_number_in_center="false" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='25' :width='25' :elements="['donut']" />
+      <div class="ml-2">{{data.value}}%</div>
     </template>
 
     <template #cell(urllist__name)="data">
-      <a :href="`#/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow">
+      <a :href="`/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow">
        <scan-type-icon :type="data.item.report_type" /> {{data.value}} ({{data.item.report_type}})<br />
-        {{$t('Contains')}} {{data.item.total_urls}} {{$t('domains')}} <b-icon icon="box-arrow-in-up-right"></b-icon>
+        {{$t("public-reports.table.Contains")}} {{data.item.total_urls}} {{$t("public-reports.table.domains")}} <i-bi-box-arrow-in-up-right/>
       </a>
       <b-badge variant="danger" class="ml-2" v-if="data.has_public_share_code">
-        <b-icon icon="lock"></b-icon> Requires password
+        <i-bi-lock/> Requires password
       </b-badge>
     </template>
 
@@ -44,15 +39,13 @@
 </template>
 <style scoped>
 .text-dark {
-  font-size: 2em;
-
+  font-size: 40px;
 }
-
 </style>
 
 <script>
-import Donut from "@/components/charts/donut";
-import ScanTypeIcon from "@/components/ScanTypeIcon";
+import Donut from "@/components/charts/donut.vue";
+import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
 
 export default {
   components: {ScanTypeIcon, Donut},
@@ -65,8 +58,10 @@ export default {
     return {
       loading: false,
 
-      sortBy: 'at_when',
-      sortDesc: true,
+      multiSortBy: [
+        // {key: 'average_internet_nl_score', order: 'desc'},
+        {key: 'at_when', order: 'desc'},
+      ],
 
       currentPage: 1,
       perPage: 24,
@@ -75,38 +70,11 @@ export default {
       fields: [
         // tdClass: 'col-3', makes all cells 100% width which does not work in safari, therefore tdStyle is used as
         // a workaround
-        {key: "average_internet_nl_score", sortable: true, label: this.$t('Score'),  tdStyle: "width: 25%;"},
-        {key: "urllist__name", sortable: true, label: this.$t('Name'),  tdStyle: "width: 50%"},
-        {key: "at_when", sortable: true, label: this.$t('Published'), tdStyle: "width: 25%"},
+        {key: "average_internet_nl_score", sortable: false, label: this.$t("public-reports.table.Score")},
+        {key: "urllist__name", sortable: false, label: this.$t("public-reports.table.Name")},
+        {key: "at_when", sortable: false, label: this.$t("public-reports.table.Published")},
       ]
     }
   },
 }
 </script>
-<i18n>
-{
-  "en": {
-    "domains": "domains",
-    "View report": "View report",
-    "Recently published reports": "Recently published reports",
-    "introduction": "These reports are created, curated and shared by the internet.nl dashboard staff",
-    "Score": "Internet.nl score",
-    "Name": "Report",
-    "Published": "Publication date",
-    "View": "View",
-    "Contains": "Contains"
-  },
-  "nl": {
-    "domains": "domeinen",
-    "View report": "Bekijk rapport",
-    "Recently published reports": "Recent gepubliceerde rapporten",
-    "introduction": "Deze rapporten worden gemaakt, samengesteld en gedeeld door het internet.nl dashboard team",
-    "Score": "Internet.nl score",
-    "Name": "Rapport",
-    "Published": "Gepubliceerd op",
-    "View": "Bekijken",
-    "Contains": "Bevat"
-  }
-}
-
-</i18n>

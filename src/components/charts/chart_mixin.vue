@@ -1,7 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
-import {debounce} from "debounce";
-import field_translations from "@/components/FieldTranslations";
+import debounce from "debounce";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import {
@@ -26,7 +25,7 @@ Chart.register(LineController, LineElement, PointElement, LinearScale, Title, Do
 
 
 // for field_name_to_category_names
-import report_mixin from "@/components/reports/report_mixin";
+import report_mixin from "@/components/reports/report_mixin.vue";
 
 // this prevents the legend being written over the 100% scores
 // Legend.prototype.afterFit = function() {
@@ -51,10 +50,9 @@ let tooltip_configuration = {
   // add the Z axis to the data, is harder, so (n) is unclear...
 }
 
+import { dashboardStore } from '@/dashboardStore'
+
 export default {
-  i18n: {
-    sharedMessages: field_translations,
-  },
   mixins: [report_mixin],
   props: {
     chart_data: {type: Array, required: true},
@@ -64,6 +62,7 @@ export default {
   },
   data: function () {
     return {
+      store: dashboardStore(),
       chart: undefined,
 
       // some bar chart settings
@@ -81,7 +80,7 @@ export default {
     }
   },
   mounted: function () {
-    this.issue_filters = this.$store.state.visible_metrics;
+    this.issue_filters = this.store.visible_metrics;
     this.renderData();
   },
   methods: {
@@ -203,7 +202,8 @@ export default {
               },
               title: {
                 display: true,
-                labelString: this.$i18n.t('yAxis_label')
+                // todo: fix this label over multiple components, probably by using less abstraction...
+                labelString: this.$i18n.t("yAxis_label")
               },
             }
           },

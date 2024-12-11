@@ -2,8 +2,6 @@
 <style scoped>
 .panel-content {
   padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 20px;
 }
 
 .collapse_panel {
@@ -21,11 +19,6 @@
   text-decoration: underline dotted;
 }
 
-button {
-  border: 0 !important;
-  color: dimgray;
-  font-weight: bold !important;
-}
 
 .animate_opening {
   transition: transform 200ms linear;
@@ -37,47 +30,32 @@ button {
   transform: rotate(180deg);
   transition: transform 300ms linear;
 }
-
-.collapse_panel button:hover, .collapse_panel button:focus, .collapse_panel button:active, .collapse_panel button:visited {
-  background-color: white;
-}
-
-.level_2 {
-  padding-left: 2em;
-  font-size: 0.9em;
-}
-
-.level_3 {
-  padding-left: 4em;
-  font-size: 0.8em;
-}
-
-
 </style>
 
 <template>
   <div class="collapse_panel">
-    <button
-        :class="status_visible ? null : 'collapsed'"
-        :aria-expanded="status_visible ? 'true' : 'false'"
-        :aria-controls="'collapse-' + id"
-        @click="status_visible = !status_visible"
-    >
-      <span :class="`panel-title ${custom_title_class}`">
-        <div :class="status_visible ? 'animate_opening open' : 'animate_opening'">
-          <img src="/static_frontend/images/vendor/internet_nl/push-open.png" alt="open panel">
-        </div>
-        {{ title }}
-      </span>
-    </button>
 
-    <b-collapse :id="'collapse-' + id" v-model="status_visible" class="panel-content">
 
-      <slot name="content">
-        default content
-      </slot>
+    <BCollapse id="my-collapse">
+      <template #header="{visible, toggle, id}">
 
-    </b-collapse>
+        <b-button :variant="variant" :aria-expanded="visible" :aria-controls="id" @click="() => {toggle(); status_visible = !status_visible}">
+          <span :class="`panel-title`">
+            <div :class="status_visible ? 'animate_opening open' : 'animate_opening'">
+              <img src="/static_frontend/images/vendor/internet_nl/push-open.png" alt="open panel" height="15px">
+            </div>
+            {{ title }}
+          </span>
+        </b-button>
+      </template>
+      <!-- Content here -->
+      <div class="panel-content">
+        <slot name="content">
+          default content
+        </slot>
+      </div>
+    </BCollapse>
+
   </div>
 </template>
 
@@ -85,16 +63,11 @@ button {
 export default {
   name: "collapse_panel",
   mounted: function () {
-    // generated random id for this thing to be collapsable. Chance to be the same is 1 in 1 000 000 000 000.
-    this.id = Math.round((Math.random() * 1000000000000));
-
     // support being open on start using :visible.
     this.status_visible = this.visible;
   },
   data: function () {
     return {
-      // random ID so the button knows what element to collapse or expand.
-      id: 0,
       status_visible: false,
     }
   },
@@ -107,9 +80,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    custom_title_class: {
+    variant: {
       type: String,
-      default: ""
+      default: "info"
     }
   }
 

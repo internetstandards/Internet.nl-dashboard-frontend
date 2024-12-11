@@ -1,12 +1,12 @@
 <template>
   <tr :class="index % 2 === 0 ? 'stripe' : 'plain'" style="display: inline-block; width: 100%;">
     <template v-if="!source.endpoints.length">
-      <td>
+      <td class="px-78" style="white-space: nowrap">
         -
       </td>
       <td><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
       <td colspan="200">
-        <small>{{ $t('not_eligeble_for_scanning') }}</small>
+        <small>{{ $t("report.virtual-list-record.not_eligeble_for_scanning") }}</small>
       </td>
     </template>
     <template v-else>
@@ -22,7 +22,7 @@
             <img :src='`/static_frontend/images/report_comparison_${score_comparison(source)}.png`'
                  v-if="score_comparison(source)" />
           </span>
-          <span class="visuallyhidden"> {{ $t('link_to_report', {'url': source.url}) }}</span>
+          <span class="visually-hidden"> {{ $t("report.virtual-list-record.link_to_report", {'url': source.url}) }}</span>
         </a>
       </td>
       <td class="px-225"><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
@@ -31,11 +31,11 @@
         <td class="testresultcell px-100"
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
-            v-b-tooltip.hover="{ customClass: 'my-tooltip-class', html: true }" :title="make_tooltip(source, category_name)"
+
           >
-          <span :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
+          <span v-b-tooltip :title="make_tooltip(source, category_name)" :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
             <template v-if="category_comparison(category_name, source)">
-              {{$t("results.comparison." + category_comparison(category_name, source))}}
+              {{$t("report.virtual-list-record.results.comparison." + category_comparison(category_name, source))}}
             </template>
             {{category_verdict_to_simple_value(category_name, source)}}
           </span>
@@ -47,13 +47,11 @@
         <td class="testresultcell px-56"
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
-            v-b-tooltip.hover="{ customClass: 'my-tooltip-class', html: true }" :title="make_tooltip(source, category_name)"
         >
-
-          <span :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
+          <span  v-b-tooltip :title="make_tooltip(source, category_name)" :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
             {{detail_value_simple_value(category_name, source)}}
             <template v-if="detail_comparison(category_name, source)">
-              {{$t("results.comparison." + detail_comparison(category_name, source))}}
+              {{$t("report.virtual-list-record.results.comparison." + detail_comparison(category_name, source))}}
             </template>
           </span>
         </td>
@@ -67,7 +65,10 @@
 
 <script>
 
-import report_mixin from "@/components/reports/report_mixin";
+import report_mixin from "@/components/reports/report_mixin.vue";
+import { dashboardStore } from '@/dashboardStore'
+import {mapState} from 'pinia'
+
 
 export default {
   name: "ReportTableVirtualListRecord",
@@ -286,12 +287,12 @@ export default {
       }
 
       let data = `${url.url}<br>
-          ${this.$t(category_name)}:
-          ${this.$t('results.' + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
-          ${this.$t('since')}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
+          ${this.$t('metric.' + category_name + '.title')}:
+          ${this.$t("report.virtual-list-record.results." + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
+          ${this.$t("report.virtual-list-record.since")}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
 
       if (displayed_evidence) {
-        data += `<br>${this.$t('evidence')}:<br> <pre>${displayed_evidence}</pre>`
+        data += `<br>${this.$t("report.virtual-list-record.evidence")}:<br> <pre>${displayed_evidence}</pre>`
       }
       return data;
     },
@@ -333,75 +334,26 @@ export default {
         }
       });
       // console.log("Preferred fields:         " + preferred_fields)
-      let visible_preferred_fields = preferred_fields.filter(field => this.$store.state.visible_metrics[field].visible)
+      let visible_preferred_fields = preferred_fields.filter(field => this.visible_metrics[field].visible)
       // console.log("Visible preferred fields: " + visible_preferred_fields)
       return visible_preferred_fields
     },
+    ...mapState(dashboardStore, ['visible_metrics']),
   }
 }
 </script>
-<i18n>
-{
-  "en": {
-    "link_to_report": "View score and report from %{url} on internet.nl.",
-    "not_eligeble_for_scanning": "Domain did not match scanning criteria at the time the scan was initiated. The scanning criteria are an SOA DNS record (not NXERROR) for mail and an A or AAAA DNS record for web. This domain is ignored in all statistics.",
-    "since": "Since",
-    "evidence": "Measurement",
-    "results": {
-      "not_applicable": "Not applicable",
-      "not_testable": "Not testable",
-      "error_in_test": "Test error",
-      "error": "Test error",
-      "category_error_in_test": "Test error",
-      "not_tested": "Not tested",
-      "failed": "Failed",
-      "warning": "Warning",
-      "info": "Info",
-      "passed": "Passed",
-      "unknown": "Unknown",
-      "comparison": {
-        "neutral": "-",
-        "improved": "Improved compared to the second report selected.",
-        "regressed": "Regressed compared to the second report selected."
-      }
-    }
-  },
-  "nl": {
-    "link_to_report": "Bekijk de score en rapportage van %{url} op internet.nl.",
-    "not_eligeble_for_scanning": "Dit domein voldeed niet aan de scan-criteria op het moment van scannen. Deze criteria zijn een SOA DNS record (geen NXERROR) voor mail en een A of AAAA DNS record voor web. Dit domein komt niet terug in de statistieken.",
-    "since": "Sinds",
-    "evidence": "Meetgegevens",
-    "results": {
-      "not_applicable": "Niet van toepassing",
-      "not_testable": "Niet testbaar",
-      "error_in_test": "Testfout",
-      "error": "Testfout",
-      "category_error_in_test": "Testfout",
-      "not_tested": "Niet getest",
-      "failed": "Niet goed",
-      "warning": "Waarschuwing",
-      "info": "Info",
-      "passed": "Goed",
-      "unknown": "Onbekend",
-      "comparison": {
-        "neutral": "-",
-        "improved": "Verbeterd vergeleken met het 2e geselecteerde rapport.",
-        "regressed": "Verslechterd vergeleken met het 2e geselecteerde rapport."
-      }
-    }
-  }
-}
-</i18n>
 
 <style scoped>
+
+
+#___BVN__ID__v-0__popover____placeholder {
+  display: none;
+}
+
 .my-tooltip-class::v-deep .tooltip-inner {
   min-width: 400px !important;
   width: 400px !important;
   text-align: left;
-}
-
-.my-tooltip-class::v-deep .tooltip-inner pre {
-  color: var(--light);
 }
 
 .logo_image {
@@ -431,5 +383,4 @@ td, th {
 
 
 }
-
 </style>

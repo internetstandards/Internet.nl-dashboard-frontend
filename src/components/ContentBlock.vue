@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-    <b-container class="shadow p-3 mb-3 mt-2 rounded bg-white" fluid="xl">
+    <b-container class="p-3 mb-3 mt-2 rounded bg-white" fluid="xl">
         <b-row>
             <b-col>
                 <slot>
