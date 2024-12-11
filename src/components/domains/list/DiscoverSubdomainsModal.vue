@@ -167,7 +167,7 @@ export default {
     find_suggestions: function () {
 
       this.loading_suggestions = true;
-      http.post('data/urllist/suggest-subdomains/', {domain: this.input_domain, period: this.period}).then(server_response => {
+      http.get('data/urllist/suggest-subdomains/', { params: {domain: this.input_domain, period: this.period}}).then(server_response => {
         if (server_response.data.length > 0) {
           // allow the top level domain also to be added / selected as a convenience.
           this.suggestions = [this.input_domain];
@@ -175,6 +175,7 @@ export default {
             this.suggestions.push(suggestion + "." + this.input_domain);
           })
         } else {
+          console.error("Failed loading suggestions.")
           this.suggestions = [];
         }
         this.loading_suggestions = false;
