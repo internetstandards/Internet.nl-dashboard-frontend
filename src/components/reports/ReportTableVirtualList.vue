@@ -157,7 +157,8 @@ div.rotate > span {
 
 
 #report-template .testresultcell span {
-  display: none; /* This is a fix for popups that inject a span after every usage! */
+  float: left; /* This is a fix for popups that inject a span after every usage! */
+  width: 0px;
 }
 
  /* first-of-type: This is a fix for popups that inject a span after every usage! */
@@ -170,7 +171,7 @@ div.rotate > span {
   */
   width: 32px; /* Needs to be 32 px for comparison to be visible.*/
   height: 20px;
-  display: block;
+  display: inline-block;
   color: transparent;
 
   /** While hidden, can a screen reader still find it? */

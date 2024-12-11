@@ -11,7 +11,7 @@ ADD package-lock.json package-lock.json
 RUN make setup
 
 ADD . /src/
-RUN make build-gui-deploy
+RUN make build
 
 # Copy all compiled content into simple http server container
 FROM nginx
