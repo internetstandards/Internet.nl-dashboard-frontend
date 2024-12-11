@@ -68,6 +68,7 @@ declare module 'vue' {
     Demo: typeof import('./src/components/tour/Demo.vue')['default']
     DemoImage: typeof import('./src/components/tour/DemoImage.vue')['default']
     DifferencesToCurrentList: typeof import('./src/components/reports/DifferencesToCurrentList.vue')['default']
+    DiscoverSubdomains: typeof import('./src/components/domains/list/discover-subdomains.vue')['default']
     DiscoverSubdomainsModal: typeof import('./src/components/domains/list/DiscoverSubdomainsModal.vue')['default']
     DomainListManager: typeof import('./src/components/domains/DomainListManager.vue')['default']
     DomainTable: typeof import('./src/components/domains/DomainTable.vue')['default']
