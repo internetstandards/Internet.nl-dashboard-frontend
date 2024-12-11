@@ -24,7 +24,7 @@
 
               </div>
             </section>
-            <section class="testresults">
+            <div class="testresults">
               <span class="select-deselect-category">
                   <a @click="check_fields(all_field_names_from_categories(category))"> {{
                       $t("account.visible-metrics.check")
@@ -50,7 +50,7 @@
                   </template>
                 </div>
               </div>
-            </section>
+            </div>
           </b-tab>
           <b-tab :title='$t("account.visible-metrics.main_category")' class="p-3">
             <h4>{{ $t("account.visible-metrics.main_category") }}</h4>
@@ -243,7 +243,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .select-deselect-category {
   font-size: 0.9em;
   display: block;
@@ -251,17 +251,5 @@ export default {
   text-align: right;
   padding-top: 5px;
   padding-bottom: 10px;
-}
-
-.card-header {
-  width: 800px;
-}
-.tab-content {
-  width: 100%;
-}
-
-button {
-  text-align: left;
-  border-bottom: 1px solid silver;
 }
 </style>
