@@ -86,6 +86,9 @@
 			"units": "sekundy"
 		},
 		"core": {
+			"error_connecting_to_backend": "Nepodařilo se připojit k datovému serveru.",
+			"error_loading_config": "Nelze načíst konfiguraci, konfigurace může být v nesprávném formátu.",
+			"reload_application": "Kliknutím sem aplikaci znovu načtete a zkusíte to znovu.",
 			"translated_by_ai": "Tento překlad je prováděn pomocí umělé inteligence, což může vést k chybám v kontextu nebo nesprávnému znění. Pro podporu oficiálního překladu se s námi prosím spojte. V případě nejasností se prosím obraťte na originální anglický nebo nizozemský text. Za případné chyby v překladu se předem omlouváme."
 		},
 		"footer": {
@@ -592,12 +595,19 @@
 			"extended-explanation": "Zkontrolujeme, zda je pro vaši doménu k dispozici DMARC. Přijímající poštovní server může použít vaši zásadu DMARC k vyhodnocení, jak naložit s poštou s vaší doménou jako odesílatelem, kterou nebylo možné ověřit pomocí DKIM a SPF, a může použít vaši poštovní adresu ze záznamu DMARC, aby vám poskytl zpětnou vazbu o ověření. Mít více než jeden záznam DMARC ve stejné doméně není platné a povede to k selhání testu.Poznámka: DMARC vyžaduje, aby se doména SPF (odesílatel obálky, tj. návratová cesta, která se zobrazuje v <code>MAIL FROM</code>) a doména DKIM (<code>d=</code>) shodovaly s doménou těla pošty (<code>From:</code>).",
 			"rating": {
 				"bad": "Chybí DMARC. To znamená, že neexistuje žádný způsob, jak organizaci upozornit na falešný e-mail.",
-				"good": "DMARC k dispozici. To znamená, že příjemci e-mailu mají k dispozici automatickou horkou linku, která jim umožní zkontrolovat, zda je původ a/nebo podpis odesílatele správný. Na tuto horkou linku lze automaticky nahlásit jakýkoli falešný e-mail."
+				"external": "Doména externí poštovní adresy následující po <code>rua=</code> a/nebo <code>ruf=</code> nemá <em>žádný</em> (platný) autorizační záznam pro příjem zpráv DMARC pro testovanou doménu.",
+				"good": "DMARC k dispozici. To znamená, že příjemci e-mailu mají k dispozici automatickou horkou linku, která jim umožní zkontrolovat, zda je původ a/nebo podpis odesílatele správný. Na tuto horkou linku lze automaticky nahlásit jakýkoli falešný e-mail.",
+				"policy": ""
+			},
+			"tech_table": {
+				"dmarc_record": "Záznam DMARC",
+				"found_on": "Nalezeno na"
 			},
 			"technology": "Ověřování, hlášení a shoda zpráv na bázi domény (DMARC)",
 			"title": "Organizace má automatickou horkou linku pro falešné e-maily."
 		},
 		"internet_nl_mail_auth_dmarc_policy": {
+			"explanation": "<p>Zkontrolujeme, zda je syntaxe vašeho záznamu DMARC správná a zda obsahuje dostatečně přísnou politiku (<code>p=quarantine</code> nebo <code>p=reject</code>), abychom zabránili zneužití vaší domény phishery a spammery. I bez striktní politiky může být DMARC užitečný pro získání většího přehledu o legitimních a nelegitimních tocích odchozí pošty prostřednictvím zpráv DMARC. Aby však byla účinná proti zneužití vaší domény, je liberální politika (<code>p=none</code>) nedostatečná.</p><p>Kontrolujeme také, zda jsou poštovní adresy pod <code>rua=</code> a <code>ruf=</code> platné. V případě, že obsahují externí poštovní adresu, zkontrolujeme, zda je externí doména oprávněna přijímat zprávy DMARC. Ujistíme se, že autorizační záznam DMARC na externí doméně obsahuje alespoň <code>. \"v=DMARC1;\"</code>.</p><p>Test povoluje použití experimentální značky <code>np</code> (<a href=\"https://www.rfc-editor.org/rfc/rfc9091\">RFC 9091</a>).</p><p><em>Správná praxe pro domény bez pošty</em>:</p><ul><li>Neodesílání: Pro doménu, kterou nepoužíváte k odesílání pošty, použijte nejpřísnější politiku DMARC (<code>p=reject</code>) a politiku SPF (<code>-all</code>), abyste zabránili zneužití (\"spoofing\"). Všimněte si, že DKIM není v tomto případě nutný.</li><li>Nepřijímání: Více informací o \"Null MX\" a \"No MX\" naleznete ve <a href=\"#control-panel-13\">vysvětlení subtestu \"STARTTLS available\"</a>. </li></ul><p>Níže najdete dva základní příklady konfigurace DNS pro názvy domén, které se nepoužívají k odesílání a přijímání pošty. </p><p><em>A. Jedna doména bez záznamu A nebo AAAA</em></p><pre><code>example.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all\"_dmarc.example.nl. TXT \"v=DMARC1; p=reject;\"</code></pre><p>&nbsp;</p><p><em>B. Jedna doména bez e-mailu se záznamem A nebo AAAA</em></p><pre><code>example.nl. AAAA 2a00:d78:0:712:94:198:159:35example.nl. A 94.198.159.35example.nl. MX 0 .example.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all \"www.example.nl. CNAME example.nl_dmarc.example.nl. TXT \"v=DMARC1; p=reject;\"</code></pre>",
 			"extended-explanation": "<p>Zkontrolujeme, zda je syntaxe vašeho záznamu DMARC správná a zda obsahuje dostatečně přísnou politiku (<code>p=quarantine</code> nebo <code>p=reject</code>), abychom zabránili zneužití vaší domény phishery a spammery. I bez striktní politiky může být DMARC užitečný pro získání většího přehledu o legitimních a nelegitimních tocích odchozí pošty prostřednictvím zpráv DMARC. Aby však byla účinná proti zneužití vaší domény, je liberální politika (<code>p=none</code>) nedostatečná.</p><p>Kontrolujeme také, zda jsou poštovní adresy pod <code>rua=</code> a <code>ruf=</code> platné. V případě, že obsahují externí poštovní adresu, zkontrolujeme, zda je externí doména oprávněna přijímat zprávy DMARC. Ujistíme se, že autorizační záznam DMARC na externí doméně obsahuje alespoň <code>. \"v=DMARC1;\"</code>.</p><p>Test povoluje použití experimentální značky <code>np</code> (RFC 9091).</p><p><em>Správná praxe pro domény bez pošty</em>:</p><ul><li>Neodesílání: Pro doménu, kterou nepoužíváte k odesílání pošty, použijte nejpřísnější politiku DMARC (<code>p=reject</code>) a politiku SPF (<code>-all</code>), abyste zabránili zneužití (\"spoofingu\"). Všimněte si, že DKIM není v tomto případě nutný.</li><li>Nepřijímání: Více informací o \"Null MX\" a \"No MX\" naleznete ve <a href=\"#control-panel-13\">vysvětlení subtestu \"STARTTLS available\"</a>. </li></ul><p>Níže najdete dva základní příklady konfigurace DNS pro názvy domén, které se nepoužívají k odesílání a přijímání pošty. </p><p><em>A. Jedna doména bez záznamu A nebo AAAA</em></p><pre><code>example.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all\"_dmarc.example.nl. TXT \"v=DMARC1; p=reject;\"</code></pre><p>&nbsp;</p><p><em>B. Jedna doména bez e-mailu se záznamem A nebo AAAA</em></p><pre><code>example.nl. AAAA 2a00:d78:0:712:94:198:159:35example.nl. A 94.198.159.35example.nl. MX 0 .example.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all \"www.example.nl. CNAME example.nl_dmarc.example.nl. TXT \"v=DMARC1; p=reject;\"</code></pre>",
 			"rating": {
 				"bad": "",
@@ -612,13 +622,22 @@
 			"explanation": "E-mail by měl být odesílán pouze ze známé poštovní adresy: známé domény. Pokud se někdo jiný pokusí odeslat e-mail cizím jménem a zfalšuje odesílatele, toto nastavení zajistí, že pošta falešný e-mail odmítne. Vlastník skutečné poštovní adresy navíc může dostat upozornění, že někdo odesílá falešný e-mail.",
 			"extended-explanation": "Zkontrolujeme, zda má vaše doména záznam SPF. Přijímající poštovní server může použít IP adresy ve vašem záznamu SPF k ověření odesílajícího poštovního serveru přijatého e-mailu s vaší doménou jako odesílatelem. V případě neúspěšného ověření lze pomocí přiložené zásady provést příslušnou akci. Mít více než jeden záznam SPF ve stejné doméně není platné a povede to k selhání testu.</p><p>Pro \"správný postup u domén bez pošty\" viz <a href=\"#control-panel-9\">vysvětlení subtestu \"Zásady DMARC\"</a>.",
 			"rating": {
+				"all": "",
 				"bad": "Chybějící SPF. To znamená, že není možné zkontrolovat odesílací adresu tohoto e-mailu. E-mail z této adresy lze snadno podvrhnout.",
-				"good": "K dispozici je SPF. To znamená, že příjemce může odesílací adresu e-mailu zkontrolovat."
+				"good": "K dispozici je SPF. To znamená, že příjemce může odesílací adresu e-mailu zkontrolovat.",
+				"include": "",
+				"max_lookups": "",
+				"redirect": ""
+			},
+			"tech_table": {
+				"domain": "Doména",
+				"spf_record": "Záznam SPF"
 			},
 			"technology": "Rámec zásad odesílání (SPF)",
 			"title": "E-mail odeslaný ze známé poštovní adresy"
 		},
 		"internet_nl_mail_auth_spf_policy": {
+			"explanation": "Kontrolujeme, zda je syntaxe vašeho záznamu SPF správná a zda obsahuje dostatečně přísné zásady, tj. <code>~all</code> (softfail) nebo <code>-all</code> (fail), abychom zabránili zneužití phishery a spammery. Aby byla účinná proti zneužití vaší domény, je třeba liberální politika, tj. <code>. +all</code> (vyhovuje) nebo <code>. ?all</code> (neutrální) je nedostatečná. Pokud chybí <code>all</code> a v záznamu SPF není přítomen modifikátor <code>redirect</code> , je výchozí <code>. ?all</code>. </p><p>U platných záznamů SPF sledujeme také <code>include</code> a <code>redirect</code> . Kromě toho kontrolujeme, zda váš záznam SPF nepřekračuje povolený počet 10 vyhledávání DNS, čímž se stává neúčinným. Každý z následujících výrazů SPF se počítá jako vyhledávání DNS: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> a <code>exist</code>. Zatímco termíny SPF <code>všechny</code>, <code>ip4</code>, <code>ip6</code> a <code>exp</code> se nepočítají jako vyhledávání DNS.</p><p>Všimněte si, že pokud se doména <code>include</code> nebo <code>redirect</code> skládá z maker, nebudeme je sledovat, protože nemáme potřebné informace ze skutečného spojení s poštou nebo poštovním serverem, abychom tato makra mohli rozšířit. To znamená, že výsledek maker nevyhodnocujeme. Kromě toho nepočítáme vyhledávání DNS způsobená makry, abychom zjistili, zda byl překročen povolený počet vyhledávání DNS.</p><p>U odesílajících domén použijeme <code>~all</code> (softfail) namísto <code>-all</code> (selhání) se obvykle dává přednost. Je tomu tak proto, že při selhání ověření SPF pomocí SPF fail může přijímající poštovní server již zablokovat spojení, aniž by vyhodnotil podpis DKIM a zásady DMARC. To může vést k falešně zablokovaným e-mailům (např. když jsou e-maily automaticky přeposílány přijímacím poštovním serverem na jiný přijímací poštovní server). Všimněte si, že spuštěný softfail SPF stále zajišťuje, že přísná politika DMARC chrání vaši doménu, pokud selže i ověření DKIM.</p><p>Pro domény bez pošty viz správný postup na <a href=\"#control-panel-9\">vysvětlení subtestu \"politika DMARC\"</a>.",
 			"extended-explanation": "Kontrolujeme, zda je syntaxe vašeho záznamu SPF správná a zda obsahuje dostatečně přísné zásady, tj. <code>~all</code> (softfail) nebo <code>-all</code> (fail), abychom zabránili zneužití phishery a spammery. Aby byla účinná proti zneužití vaší domény, je třeba liberální politika, tj. <code>. +all</code> (vyhovuje) nebo <code>. ?all</code> (neutrální) je nedostatečná. Pokud chybí <code>all</code> a v záznamu SPF není přítomen modifikátor <code>redirect</code> , je výchozí <code>. ?all</code>. </p><p>U platných záznamů SPF sledujeme také <code>include</code> a <code>redirect</code> . Kromě toho kontrolujeme, zda váš záznam SPF nepřekračuje povolený počet 10 vyhledávání DNS, čímž se stává neúčinným. Každý z následujících výrazů SPF se počítá jako vyhledávání DNS: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> a <code>exist</code>. Zatímco termíny SPF <code>všechny</code>, <code>ip4</code>, <code>ip6</code> a <code>exp</code> se nepočítají jako vyhledávání DNS.</p><p>Všimněte si, že pokud se doména <code>include</code> nebo <code>redirect</code> skládá z maker, nebudeme je sledovat, protože nemáme potřebné informace ze skutečného spojení s poštou nebo poštovním serverem, abychom tato makra mohli rozšířit. To znamená, že výsledek maker nevyhodnocujeme. Kromě toho nepočítáme vyhledávání DNS způsobená makry, abychom zjistili, zda byl překročen povolený počet vyhledávání DNS.</p><p>U odesílajících domén použijeme <code>~all</code> (softfail) namísto <code>-all</code> (selhání) se obvykle dává přednost. Je tomu tak proto, že při selhání ověření SPF pomocí SPF fail může přijímající poštovní server již zablokovat spojení, aniž by vyhodnotil podpis DKIM a zásady DMARC. To může vést k falešně zablokovaným e-mailům (např. když jsou e-maily automaticky přeposílány přijímacím poštovním serverem na jiný přijímací poštovní server). Všimněte si, že spuštěný softfail SPF stále zajišťuje, že přísná politika DMARC chrání vaši doménu, pokud selže i ověření DKIM.</p><p>Pro domény bez pošty viz správný postup na <a href=\"#control-panel-9\">vysvětlení subtestu \"politika DMARC\"</a>.",
 			"rating": {
 				"all": "",
@@ -627,6 +646,10 @@
 				"include": "",
 				"max_lookups": "",
 				"redirect": ""
+			},
+			"tech_table": {
+				"domain": "Doména",
+				"spf_record": "Záznam SPF"
 			},
 			"technology": "Rámec zásad odesílání (SPF)",
 			"title": "Zásady SPF"
@@ -650,6 +673,7 @@
 			"title": "Povolení trasy (RPKI)"
 		},
 		"internet_nl_mail_dnssec_mailto_exist": {
+			"explanation": "",
 			"extended-explanation": "",
 			"rating": {
 				"bad": "Doména vaší e-mailové adresy je nezabezpečená, protože je <em>, nikoli</em> . DNSSEC podepsaná.",
@@ -657,18 +681,28 @@
 				"resolver_error": "",
 				"servfail": "Jmenné servery domény vaší e-mailové adresy jsou <em>rozbité</em>. Na naše dotazy na podpis DNSSEC vrátily chybu (<code>SERVFAIL</code>). Obraťte se prosím na provozovatele jmenného serveru (často poskytovatele hostingu a/nebo registrátora), aby to brzy opravil."
 			},
+			"tech_table": {
+				"email_address_domain": "Doména e-mailové adresy",
+				"registrar": "Registrátor"
+			},
 			"title": "Existence DNSSEC"
 		},
 		"internet_nl_mail_dnssec_mailto_valid": {
+			"explanation": "Zkontrolujeme, zda je vaše doména, konkrétně její záznam SOA, podepsána platným podpisem, který ji činí \"bezpečnou\".</p><p>Pokud doménové jméno přesměrovává na jiné podepsané doménové jméno prostřednictvím <code>CNAME</code>. , pak také kontrolujeme, zda je podpis doménového jména CNAME platný (což je v souladu se standardem DNSSEC). Pokud podpis doménového jména CNAME není platný, bude výsledek tohoto subtestu záporný.</p><p>Všimněte si, že testujeme pouze jmenný server, který odpovídá jako první. Pokud mají jmenné servery doménového jména nekonzistentní konfigurace, může to vést k rozdílným výsledkům testu. V takovém případě může být například výsledek tohoto subtestu jednou \"bezpečný\" a podruhé \"falešný\".",
 			"extended-explanation": "Zkontrolujeme, zda je vaše doména, konkrétně její záznam SOA, podepsána platným podpisem, který ji činí \"bezpečnou\".</p><p>Pokud doménové jméno přesměrovává na jiné podepsané doménové jméno prostřednictvím <code>CNAME</code>. , pak také kontrolujeme, zda je podpis doménového jména CNAME platný (což je v souladu se standardem DNSSEC). Pokud podpis doménového jména CNAME není platný, bude výsledek tohoto subtestu záporný.</p><p>Všimněte si, že testujeme pouze jmenný server, který odpovídá jako první. Pokud mají jmenné servery doménového jména nekonzistentní konfigurace, může to vést k rozdílným výsledkům testu. V takovém případě může být například výsledek tohoto subtestu jednou \"bezpečný\" a podruhé \"falešný\".",
 			"rating": {
 				"bad": "",
 				"good": "Vaše doména e-mailové adresy je bezpečná, protože její podpis DNSSEC je platný.",
 				"unsupported_ds_algo": "Doména vaší e-mailové adresy je podepsána algoritmem, který náš ověřovací resolver v současné době nepodporuje. Proto nejsme schopni ověřit platnost jejího podpisu DNSSEC."
 			},
+			"tech_table": {
+				"email_address_domain": "Doména e-mailové adresy",
+				"status": "Stav"
+			},
 			"title": "Platnost DNSSEC"
 		},
 		"internet_nl_mail_dnssec_mx_exist": {
+			"explanation": "",
 			"extended-explanation": "",
 			"rating": {
 				"bad": "Alespoň jedna z domén vašeho poštovního serveru je nezabezpečená, protože není <em>, ale</em> . DNSSEC podepsána.",
@@ -682,14 +716,23 @@
 				"resolver_error": "",
 				"servfail": "Jmenné servery alespoň jedné z domén vašeho poštovního serveru jsou <em>rozbité</em>. Na naše dotazy na podpis DNSSEC vrátily chybu (<code>SERVFAIL</code>). Obraťte se prosím na provozovatele jmenného serveru (často na poskytovatele poštovních služeb), aby to brzy opravil."
 			},
+			"tech_table": {
+				"dnssec_existent": "DNSSEC existuje",
+				"domain_of_mail_server_mx": "Doména poštovního serveru (MX)"
+			},
 			"title": "Existence DNSSEC"
 		},
 		"internet_nl_mail_dnssec_mx_valid": {
+			"explanation": "Zkontrolujeme, zda jsou domény vašich přijímajících poštovních serverů (MX), konkrétně jejich záznamy SOA, podepsány platným podpisem, který je činí \"bezpečnými\".</p><p>Pokud doménové jméno přesměrovává na jiné podepsané doménové jméno prostřednictvím <code>CNAME</code>. , pak také kontrolujeme, zda je podpis doménového jména CNAME platný (což je v souladu se standardem DNSSEC). Pokud podpis doménového jména CNAME není platný, bude výsledek tohoto subtestu záporný.</p><p>Všimněte si, že testujeme pouze jmenný server, který odpovídá jako první. Pokud mají jmenné servery doménového jména nekonzistentní konfigurace, může to vést k rozdílným výsledkům testu. V takovém případě může být například výsledek tohoto subtestu jednou \"bezpečný\" a podruhé \"falešný\".",
 			"extended-explanation": "Zkontrolujeme, zda jsou domény vašich přijímajících poštovních serverů (MX), konkrétně jejich záznamy SOA, podepsány platným podpisem, který je činí \"bezpečnými\".</p><p>Pokud doménové jméno přesměrovává na jiné podepsané doménové jméno prostřednictvím <code>CNAME</code>. , pak také kontrolujeme, zda je podpis doménového jména CNAME platný (což je v souladu se standardem DNSSEC). Pokud podpis doménového jména CNAME není platný, bude výsledek tohoto subtestu záporný.</p><p>Všimněte si, že testujeme pouze jmenný server, který odpovídá jako první. Pokud mají jmenné servery doménového jména nekonzistentní konfigurace, může to vést k rozdílným výsledkům testu. V takovém případě může být například výsledek tohoto subtestu jednou \"bezpečný\" a podruhé \"falešný\".",
 			"rating": {
 				"bad": "Přinejmenším jedna z podepsaných domén vašeho poštovního serveru je \"falešná\", protože její podpis DNSSEC není platný. Buď někdo manipuloval s odpověďmi z jejích jmenných serverů, nebo má doména vašeho poštovního serveru závažné chyby v konfiguraci DNSSEC. V druhém případě je váš přijímající poštovní server nedostupný pro jakýkoli odesílající poštovní server, který ověřuje podpisy DNSSEC. Měli byste co nejdříve kontaktovat provozovatele jmenného serveru (často poskytovatele poštovních služeb).",
 				"good": "Všechny podepsané domény poštovního serveru jsou bezpečné, protože jejich podpisy DNSSEC jsou platné.",
 				"unsupported_ds_algo": "Alespoň jedna z domén vašeho poštovního serveru je podepsána algoritmem, který náš ověřovací překladač v současné době nepodporuje. Proto nejsme schopni ověřit platnost jejího podpisu DNSSEC."
+			},
+			"tech_table": {
+				"domain_of_mail_server_mx": "",
+				"status": "Stav"
 			},
 			"title": "Platnost DNSSEC"
 		},
@@ -705,6 +748,11 @@
 				"null_mx_without_a_aaaa": "Vaše doména inzeruje záznam \"Null MX\", který označuje, že nepřijímá e-maily. Vaše doména však nemá záznamy A/AAAA, takže záznam \"Null MX\" není nutný.",
 				"other": "Na vaší doméně, která nemá záznamy A/AAAA, nejsou nastaveny žádné přijímací poštovní servery (MX). To je v pořádku, pokud nechcete přijímat elektronickou poštu."
 			},
+			"tech_table": {
+				"ipv4_address": "Adresa IPv4",
+				"ipv6_address": "Adresa IPv6",
+				"mail_server_mx": "Poštovní server (MX)"
+			},
 			"title": "Adresy IPv6 pro poštovní server(y)"
 		},
 		"internet_nl_mail_ipv6_mx_reach": {
@@ -712,6 +760,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Všechny vaše přijímací poštovní servery s adresou IPv6 jsou dosažitelné přes IPv6."
+			},
+			"tech_table": {
+				"mail_server_mx": "Poštovní server (MX)",
+				"unreachable_ipv6_address": "Nedosažitelná adresa IPv6"
 			},
 			"title": "Dosažitelnost poštovních serverů protokolem IPv6"
 		},
@@ -722,6 +774,11 @@
 				"good": "Dva nebo více jmenných serverů vaší domény mají adresu IPv6.",
 				"other": "Pouze jeden jmenný server vaší domény má adresu IPv6."
 			},
+			"tech_table": {
+				"ipv4_address": "Adresa IPv4",
+				"ipv6_address": "Adresa IPv6",
+				"name_server": "Jmenný server"
+			},
 			"title": "Adresy IPv6 pro jmenné servery"
 		},
 		"internet_nl_mail_ipv6_ns_reach": {
@@ -729,6 +786,10 @@
 			"rating": {
 				"bad": "<em>Ne</em> všechny jmenné servery s adresou IPv6 jsou dosažitelné přes IPv6.",
 				"good": "Všechny jmenné servery s adresou IPv6 jsou dosažitelné přes IPv6."
+			},
+			"tech_table": {
+				"name_server": "Jmenný server",
+				"unreachable_ipv6_address": "Nedosažitelná adresa IPv6"
 			},
 			"title": "Dosažitelnost jmenných serverů protokolem IPv6"
 		},
@@ -805,18 +866,64 @@
 		},
 		"internet_nl_mail_mx_ns_rpki_exists": {
 			"explanation": "Zkontrolujeme, zda byla zveřejněna autorizace původu trasy RPKI (ROA) pro všechny IP adresy jmenných serverů vašeho poštovního serveru (MX).</p><p>Váš hostitel (nebo jeho poskytovatel sítě) oznamuje prostřednictvím protokolu BGP (Border Gateway Protocol), pro které ze svých bloků IP adres přijímá příchozí internetový provoz. Ostatní poskytovatelé sítě používají tato oznámení o trasách k určení, přes kterou trasu mají odesílat provoz pro IP adresy vašeho serveru.</p><p>Oznámení trasy však lze zfalšovat. Jiný poskytovatel sítě totiž může být schopen připojit blok IP adres vaší IP adresy ke své síti, a tak potenciálně přijímat internetový provoz, který je ve skutečnosti určen pro vašeho poskytovatele sítě. Příčina může být náhodná nebo zlovolná. V obou případech to může vést k tomu, že se váš server stane nedostupným nebo že bude zachycen internetový provoz směřující na váš server.</p><p>Infrastruktura veřejných klíčů zdrojů (RPKI) výrazně zlepšuje ochranu proti tomuto jevu. Pomocí RPKI může oprávněný držitel bloku IP adres zveřejnit digitálně podepsané prohlášení s autorizací trasy (Route Origin Authorisation; zkráceně ROA). Jiný poskytovatel sítě, který chce posílat internetový provoz na určitou IP adresu, může pomocí příslušného prohlášení odfiltrovat <code>. Neplatné</code> trasy. Tímto způsobem poskytovatel sítě zabrání tomu, aby byl internetový provoz z jeho sítě odesílán do sítí neautorizovaných poskytovatelů.</p><p><em>Úroveň požadavků: Doporučená</em>",
+			"rating": {
+				"bad": "Alespoň pro jednu z IP adres jmenných serverů vašeho poštovního serveru (serverů) <em>ne</em> RPKI Route Origin Authorisation (ROA) je zveřejněna.",
+				"good": "Pro všechny IP adresy jmenných serverů vašeho poštovního serveru (serverů) je zveřejněna autorizace původu trasy RPKI (ROA).",
+				"no_addresses": "Vaše doména <em>neobsahuje</em> žádné poštovní servery. Proto tento subtest nemohl být proveden."
+			},
+			"tech_table": {
+				"ip_address": "Ip adresa",
+				"name_server_of_mx": "Name server MX",
+				"rpki_route_origin_authorization": "Autorizace původu trasy RPKI"
+			},
 			"title": "Existence oprávnění k původu trasy"
 		},
 		"internet_nl_mail_mx_ns_rpki_valid": {
 			"explanation": "",
+			"rating": {
+				"bad": "Alespoň jedna IP adresa jmenných serverů vašich přijímajících poštovních serverů má stav ověření <code>NotFound</code> . Neexistuje žádný <em></em> RPKI Route Origin Authorization (ROA) zveřejněno pro oznámení trasy každé z dotčených IP adres.",
+				"good": "Všechny IP adresy jmenných serverů vašich přijímajících poštovních serverů mají stav ověření <code>Platné</code> . Oznámení trasy těchto IP adres odpovídá zveřejněnému autorizačnímu stavu původu trasy RPKI (Route Origin Authorisation - ROA).",
+				"invalid": "Alespoň jedna IP adresa jmenných serverů vašich přijímajících poštovních serverů má stav ověření <code>Neplatný</code> . Oznámení trasy dotčených IP adres není <em>v souladu s</em> publikovaným autorizačním protokolem původu trasy RPKI (ROA). To znamená neúmyslnou nebo škodlivou chybu v konfiguraci trasy, která může být způsobena vaším poštovním hostitelem (interní chyba) nebo třetí stranou (externí chyba). V obou případech zvyšuje riziko nedostupnosti vašeho serveru nebo odposlechu internetového provozu na váš server. Obraťte se co nejdříve na svého poštovního hostitele. V případě interní chyby by měl váš poštovní hostitel požádat svého poskytovatele sítě, který vlastní IP adresy vašeho serveru, o opravu chyby v konfiguraci trasy.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "Původ trasy BGP ASN",
+				"bgp_route_prefix": "Předpona trasy BGP",
+				"name_server_of_mx": "",
+				"rpki_origin_validation_state": "Stav ověření původu RPKI"
+			},
 			"title": "Platnost oznámení trasy"
 		},
 		"internet_nl_mail_ns_rpki_exists": {
 			"explanation": "",
+			"rating": {
+				"bad": "Alespoň jedna IP adresa vašich názvových serverů má stav ověření <code>NotFound</code> . Neexistuje žádný <em></em> RPKI Route Origin Authorisation (ROA) je publikována pro její ohlášení trasy.",
+				"good": "Všechny IP adresy vašich názvových serverů mají stav ověření <code>Platné</code> . Oznámení trasy těchto IP adres odpovídá zveřejněnému autorizačnímu protokolu RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Alespoň jedna IP adresa vašich názvových serverů má stav ověření <code>Invalid</code> . Oznámení trasy dotčených IP adres neodpovídá <em></em> zveřejněnému autorizačnímu stavu původu trasy RPKI (ROA). To znamená neúmyslnou nebo škodlivou chybu v konfiguraci trasy, kterou může způsobit váš hostitel jmenného serveru (interní chyba) nebo třetí strana (externí chyba). V obou případech zvyšuje riziko nedostupnosti vašeho serveru nebo odposlechu internetového provozu na váš server. Obraťte se co nejdříve na svého hostitele jmenného serveru. V případě interní chyby by měl váš hostitel jmenného serveru požádat svého poskytovatele sítě, který vlastní IP adresy vašeho serveru, o opravu chyby v konfiguraci trasy.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Platnost oznámení trasy"
 		},
 		"internet_nl_mail_ns_rpki_valid": {
 			"explanation": "",
+			"rating": {
+				"bad": "Alespoň jedna IP adresa vašich názvových serverů má stav ověření <code>NotFound</code> . Neexistuje žádný <em></em> RPKI Route Origin Authorisation (ROA) je publikována pro její ohlášení trasy.",
+				"good": "Všechny IP adresy vašich názvových serverů mají stav ověření <code>Platné</code> . Oznámení trasy těchto IP adres odpovídá zveřejněnému autorizačnímu protokolu RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Alespoň jedna IP adresa vašich názvových serverů má stav ověření <code>Invalid</code> . Oznámení trasy dotčených IP adres neodpovídá <em></em> zveřejněnému autorizačnímu stavu původu trasy RPKI (ROA). To znamená neúmyslnou nebo škodlivou chybu v konfiguraci trasy, kterou může způsobit váš hostitel jmenného serveru (interní chyba) nebo třetí strana (externí chyba). V obou případech zvyšuje riziko nedostupnosti vašeho serveru nebo odposlechu internetového provozu na váš server. Obraťte se co nejdříve na svého hostitele jmenného serveru. V případě interní chyby by měl váš hostitel jmenného serveru požádat svého poskytovatele sítě, který vlastní IP adresy vašeho serveru, o opravu chyby v konfiguraci trasy.",
+				"not_routed": "Tento dílčí test <em>neproběhl</em> , protože <em>pro žádnou z IP adres nebylo k dispozici oznámení o trase</em> ."
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "BGP Route Origin ASN",
+				"bgp_route_prefix": "BGP Route Prefix",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Platnost oznámení trasy"
 		},
 		"internet_nl_mail_rpki_exists": {
@@ -827,11 +934,28 @@
 				"good": "Pro všechny IP adresy přijímajících poštovních serverů je zveřejněna autorizace původu trasy RPKI (ROA).",
 				"no_addresses": "Vaše doména <em>neobsahuje</em> žádné přijímací poštovní servery. Proto tento subtest nemohl být proveden."
 			},
+			"tech_table": {
+				"ip_address": "Ip adresa",
+				"mail_server": "Poštovní server",
+				"rpki_route_origin_authorization": ""
+			},
 			"technology": "Infrastruktura veřejných klíčů zdrojů (RPKI) / Certifikace zdrojů",
 			"title": "Důvěra v síťovou trasu k e-mailovému serveru"
 		},
 		"internet_nl_mail_rpki_valid": {
 			"explanation": "",
+			"rating": {
+				"bad": "Alespoň jedna IP adresa vašich přijímajících poštovních serverů má stav ověření <code>NotFound</code> . Neexistuje žádný <em></em> RPKI Route Origin Authorization (ROA) zveřejněno pro oznámení trasy každé z dotčených IP adres.",
+				"good": "Všechny IP adresy vašich přijímajících poštovních serverů mají stav ověření <code>Platné</code> . Oznámení trasy těchto IP adres odpovídá zveřejněnému autorizačnímu protokolu RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Alespoň jedna IP adresa vašich přijímajících poštovních serverů má stav ověření <code>Invalid</code> . Oznámení o trase dotčených IP adres není <em>v souladu s</em> publikovanou autorizací původu trasy RPKI (ROA). To znamená neúmyslnou nebo škodlivou chybu v konfiguraci trasy, která může být způsobena vaším poštovním hostitelem (interní chyba) nebo třetí stranou (externí chyba). V obou případech zvyšuje riziko nedostupnosti vašeho serveru nebo odposlechu internetového provozu na váš server. Obraťte se co nejdříve na svého poštovního hostitele. V případě interní chyby by měl váš poštovní hostitel požádat svého poskytovatele sítě, který vlastní IP adresy vašeho serveru, o opravu chyby v konfiguraci trasy.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"mail_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Platnost oznámení trasy"
 		},
 		"internet_nl_mail_starttls_cert_chain": {
@@ -840,6 +964,10 @@
 				"bad": "",
 				"good": "Řetězec důvěryhodnosti všech certifikátů poštovního serveru je kompletní a podepsaný důvěryhodnou kořenovou certifikační autoritou."
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"untrusted_certificate_chain": "Nedůvěryhodný řetězec certifikátů"
+			},
 			"title": "Řetězec důvěryhodnosti certifikátu"
 		},
 		"internet_nl_mail_starttls_cert_domain": {
@@ -847,6 +975,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Názvy domén všech vašich poštovních serverů se shodují s názvy domén v certifikátech poštovních serverů."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"unmatched_domains_on_certificate": "Neshodné domény v certifikátu"
 			},
 			"title": "Název domény v certifikátu"
 		},
@@ -857,6 +989,11 @@
 				"good": "Digitální podpisy všech certifikátů poštovního serveru používají zabezpečené parametry.",
 				"phase_out": "Digitální podpis alespoň jednoho z certifikátů vašeho poštovního serveru používá parametry, které mají status <em>phase out</em> , protože je známo, že jsou křehké a hrozí, že se stanou <em>nedostatečně</em> bezpečnými."
 			},
+			"tech_table": {
+				"affected_signature_parameters": "Ovlivněné parametry podpisu",
+				"mail_server_mx": "",
+				"status": "Stav"
+			},
 			"title": "Veřejný klíč certifikátu"
 		},
 		"internet_nl_mail_starttls_cert_sig": {
@@ -864,6 +1001,11 @@
 			"rating": {
 				"bad": "Alespoň jeden z certifikátů vašeho poštovního serveru je podepsán pomocí algoritmu hash, který je <em>nedostatečně</em> bezpečný.",
 				"good": "Všechny certifikáty poštovního serveru jsou podepsány pomocí bezpečného hashovacího algoritmu."
+			},
+			"tech_table": {
+				"affected_hash_algorithm": "Ovlivněný algoritmus hash",
+				"mail_server_mx": "",
+				"status": "Stav"
 			},
 			"title": "Podpis certifikátu"
 		},
@@ -874,6 +1016,10 @@
 				"bogus": "Alespoň jedna z domén vašeho poštovního serveru neposkytuje <em></em> důkaz DNSSEC, že záznamy DANE TLSA neexistují. To by mohlo vést k nedoručitelnosti pošty odeslané vám odesílateli ověřujícími DANE. Měli byste požádat provozovatele svého jmenného serveru, aby tento problém odstranil.",
 				"good": "Všechny domény vašeho poštovního serveru poskytují záznam TLSA pro DANE."
 			},
+			"tech_table": {
+				"dane_tlsa_record_existent": "Záznam DANE TLSA existuje",
+				"mail_server_mx": ""
+			},
 			"title": "Existence společnosti DANE"
 		},
 		"internet_nl_mail_starttls_dane_rollover": {
@@ -881,6 +1027,10 @@
 			"rating": {
 				"bad": "Alespoň jedna z domén vašeho poštovního serveru nemá <em></em> aktivní schéma DANE pro spolehlivý rollover klíčů certifikátů.",
 				"good": "Všechny domény vašeho poštovního serveru mají aktivní schéma DANE pro spolehlivé převádění klíčů certifikátů."
+			},
+			"tech_table": {
+				"dane_rollover_scheme": "Režim překlopení DANE",
+				"mail_server_mx": ""
 			},
 			"title": "Režim překlopení DANE"
 		},
@@ -890,6 +1040,10 @@
 				"bad": "Alespoň jeden z vašich poštovních serverů nemá <em></em> platné otisky DANE. Buď někdo zmanipuloval odpověď vašeho poštovního serveru, nebo má váš poštovní server závažnou chybu v konfiguraci DANE. V druhém případě je vaše doména nedostupná pro jakýkoli odesílající poštovní server, který kontroluje otisky DANE. Měli byste co nejdříve kontaktovat svého poskytovatele poštovních služeb.",
 				"good": "Každý z vašich poštovních serverů má alespoň jeden platný otisk DANE. To umožňuje odesílajícím poštovním serverům, které podporují ověření DANE, navázat ověřené šifrované transportní spojení s vašimi přijímajícími poštovními servery."
 			},
+			"tech_table": {
+				"dane_tlsa_record_valid": "Platnost záznamu DANE TLSA",
+				"mail_server_mx": ""
+			},
 			"title": "Platnost DANE"
 		},
 		"internet_nl_mail_starttls_tls_0rtt": {
@@ -898,6 +1052,10 @@
 				"bad": "Alespoň jeden z vašich poštovních serverů podporuje 0-RTT, což je <em>, nikoli</em> bezpečné.",
 				"good": "Žádný z vašich poštovních serverů nepodporuje 0-RTT.",
 				"na": "Tento subtest nelze použít, protože vaše poštovní servery nepodporují TLS 1.3."
+			},
+			"tech_table": {
+				"0_rtt": "0-RTT",
+				"mail_server_mx": ""
 			},
 			"title": "0-RTT"
 		},
@@ -917,6 +1075,10 @@
 				"other_2": "Na vaší doméně, která nemá záznamy A/AAAA, nejsou nastaveny žádné přijímací poštovní servery (MX). To je v pořádku, pokud nechcete přijímat elektronickou poštu.",
 				"passed": "K dispozici je šifrování. To znamená, že na tuto adresu lze bezpečně odesílat e-maily."
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"starttls": "STARTTLS"
+			},
 			"technology": "Oportunistická TLS / STARTTLS",
 			"title": "Použití šifrování přijatých e-mailů"
 		},
@@ -929,6 +1091,11 @@
 				"seclevel_bad": "",
 				"warning": ""
 			},
+			"tech_table": {
+				"first_found_affected_cipher_pair": "První nalezený postižený pár šifer",
+				"mail_server_mx": "",
+				"violated_rule_ii_b": "Porušené pravidlo # (\"II-B\")"
+			},
 			"title": "Pořadí šifry"
 		},
 		"internet_nl_mail_starttls_tls_ciphers": {
@@ -938,6 +1105,11 @@
 				"good": "Všechny vaše poštovní servery podporují pouze bezpečné šifry.",
 				"phase_out": "Alespoň jeden z vašich poštovních serverů podporuje jednu nebo více šifer, které mají status <em>phase out</em> , protože jsou známé jako křehké a hrozí, že se stanou <em>nedostatečně</em> bezpečnými."
 			},
+			"tech_table": {
+				"first_found_affected_cipher": "První nalezená postižená šifra",
+				"mail_server_mx": "",
+				"status": "Stav"
+			},
 			"title": "Šifry (výběr algoritmů)"
 		},
 		"internet_nl_mail_starttls_tls_clientreneg": {
@@ -946,6 +1118,10 @@
 				"bad": "Přinejmenším jeden z vašich poštovních serverů umožňuje opětovné vyjednávání z podnětu klienta, což může mít negativní dopad na dostupnost poštovního serveru.",
 				"good": "Všechny vaše poštovní servery neumožňují opětovné vyjednávání z podnětu klienta."
 			},
+			"tech_table": {
+				"client_initiated_renegotiation": "Opětovné vyjednávání z podnětu klienta",
+				"mail_server_mx": ""
+			},
 			"title": "Opětovné vyjednávání z podnětu klienta"
 		},
 		"internet_nl_mail_starttls_tls_compress": {
@@ -953,6 +1129,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Všechny vaše poštovní servery nepodporují kompresi TLS."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"tls_compression": "Komprese TLS"
 			},
 			"title": "Komprese TLS"
 		},
@@ -964,6 +1144,11 @@
 				"na": "Tento dílčí test nelze použít, protože vaše poštovní servery nepodporují výměnu klíčů Diffie-Hellman. Všimněte si, že RSA je alternativou pro výměnu klíčů, ale má status <em>phase out</em> .",
 				"phase_out": "Alespoň jeden z vašich poštovních serverů podporuje parametry pro výměnu klíčů Diffie-Hellman, které mají status <em>phase out</em> , protože je známo, že jsou křehké a hrozí, že se stanou <em>nedostatečně</em> bezpečnými."
 			},
+			"tech_table": {
+				"affected_parameters": "Ovlivněné parametry",
+				"mail_server_mx": "",
+				"security_level": "Úroveň zabezpečení"
+			},
 			"title": "Klíčové parametry výměny"
 		},
 		"internet_nl_mail_starttls_tls_keyexchangehash": {
@@ -973,6 +1158,10 @@
 				"other": "Nepodařilo se nám určit hashovací funkci používanou alespoň jedním z vašich poštovních serverů. Důvodem může být to, že použitá kombinace šifer nemá podpis pro ověření certifikátu (např. používá výměnu klíčů RSA nebo je anonymní, tj. <code>anon</code>).",
 				"phase_out": ""
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"sha2_support_for_signatures": "Podpora SHA2 pro podpisy"
+			},
 			"title": "Hašovací funkce pro výměnu klíčů"
 		},
 		"internet_nl_mail_starttls_tls_secreneg": {
@@ -980,6 +1169,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Všechny vaše poštovní servery podporují bezpečné opětovné vyjednávání."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"secure_renegotiation": "Bezpečné nové vyjednávání"
 			},
 			"title": "Bezpečné nové vyjednávání"
 		},
@@ -989,6 +1182,11 @@
 				"bad": "Alespoň jeden z vašich poštovních serverů podporuje jednu nebo více <em>nedostatečně</em> zabezpečených verzí TLS.",
 				"good": "Všechny vaše poštovní servery podporují pouze zabezpečené verze TLS.",
 				"phase_out": ""
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"status": "Stav",
+				"tls_versions": "Verze TLS"
 			},
 			"title": "Verze TLS"
 		},
@@ -1012,6 +1210,10 @@
 				"bad": "",
 				"good": "Váš webový server nabízí Content-Security-Policy (CSP) a nepoužívá některá nezabezpečená nastavení CSP."
 			},
+			"tech_table": {
+				"findings": "Zjištění",
+				"web_server_ip_address": "IP adresa webového serveru"
+			},
 			"title": "Content-Security-Policy"
 		},
 		"internet_nl_web_appsecpriv_referrer_policy": {
@@ -1021,10 +1223,23 @@
 				"good": "Váš webový server nabízí Zásadu odkazování s hodnotou zásady, která je dostatečně bezpečná a chrání soukromí.",
 				"recommendations": "Váš webový server buď <em>nenabízí</em> Zásady odkazování, a spoléhá se tedy na výchozí zásady prohlížeče, nebo váš webový server nabízí Zásady odkazování s hodnotou, kterou je třeba používat opatrně kvůli jejímu potenciálnímu dopadu na bezpečnost a soukromí."
 			},
+			"tech_table": {
+				"findings": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Referrer-Policy"
 		},
 		"internet_nl_web_appsecpriv_securitytxt": {
 			"explanation": "",
+			"rating": {
+				"bad": "",
+				"good": "Váš webový server nabízí soubor security.txt na správném místě a jeho obsah je syntakticky správný.",
+				"recommendations": "Váš webový server nabízí soubor security.txt na správném místě a jeho obsah je syntakticky správný. Existuje však jedno nebo více doporučení ke zlepšení."
+			},
+			"tech_table": {
+				"findings": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Security.txt"
 		},
 		"internet_nl_web_appsecpriv_x_content_type_options": {
@@ -1033,6 +1248,10 @@
 				"bad": "Váš webový server <em>nenabízí</em> X-Content-Type-Options.",
 				"good": "Váš webový server nabízí X-Content-Type-Options."
 			},
+			"tech_table": {
+				"web_server_ip_address": "",
+				"x_content_type_options_value": "X-Content-Type-Options hodnota"
+			},
 			"title": "X-Content-Type-Options"
 		},
 		"internet_nl_web_appsecpriv_x_frame_options": {
@@ -1040,6 +1259,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Váš webový server nabízí bezpečně nakonfigurované možnosti X-Frame-Options."
+			},
+			"tech_table": {
+				"web_server_ip_address": "",
+				"x_frame_options_value": "Hodnota X-Frame-Options"
 			},
 			"title": "X-Frame-Options"
 		},
@@ -1062,6 +1285,10 @@
 				"resolver_error": "",
 				"servfail": "Jmenné servery vaší domény jsou <em>rozbité</em>. Na naše dotazy na podpis DNSSEC vrátily chybu (<code>SERVFAIL</code>). Obraťte se prosím na provozovatele jmenného serveru (často poskytovatele hostingu a/nebo registrátora), aby to brzy opravil."
 			},
+			"tech_table": {
+				"domain": "Doména",
+				"registrar": ""
+			},
 			"title": "Existence DNSSEC"
 		},
 		"internet_nl_web_dnssec_valid": {
@@ -1071,6 +1298,10 @@
 				"good": "Vaše doména je bezpečná, protože její podpis DNSSEC je platný.",
 				"unsupported_ds_algo": "Vaše doména je podepsána algoritmem, který náš ověřovací překladač v současné době nepodporuje. Proto nejsme schopni ověřit platnost jejího podpisu DNSSEC."
 			},
+			"tech_table": {
+				"domain": "Doména",
+				"status": "Stav"
+			},
 			"title": "Platnost DNSSEC"
 		},
 		"internet_nl_web_https_cert_chain": {
@@ -1079,6 +1310,10 @@
 				"bad": "",
 				"good": "Řetězec důvěryhodnosti certifikátu vašeho webu je kompletní a podepsaný důvěryhodnou kořenovou certifikační autoritou."
 			},
+			"tech_table": {
+				"untrusted_certificate_chain": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Řetězec důvěryhodnosti certifikátu"
 		},
 		"internet_nl_web_https_cert_domain": {
@@ -1086,6 +1321,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Název domény vašeho webu se shoduje s názvem domény v certifikátu webu."
+			},
+			"tech_table": {
+				"unmatched_domains_on_certificate": "",
+				"web_server_ip_address": ""
 			},
 			"title": "Název domény v certifikátu"
 		},
@@ -1096,6 +1335,11 @@
 				"good": "Digitální podpis certifikátu vaší webové stránky používá zabezpečené parametry.",
 				"phase_out": "Digitální podpis certifikátu vaší webové stránky používá parametry, které mají status <em>phase out</em> , protože je známo, že jsou křehké a hrozí, že se stanou <em>nedostatečně</em> bezpečnými."
 			},
+			"tech_table": {
+				"affected_signature_parameters": "",
+				"status": "Stav",
+				"web_server_ip_address": ""
+			},
 			"title": "Veřejný klíč certifikátu"
 		},
 		"internet_nl_web_https_cert_sig": {
@@ -1103,6 +1347,11 @@
 			"rating": {
 				"bad": "Certifikát vaší webové stránky je podepsán pomocí algoritmu hash, který je <em>nedostatečně</em> bezpečný.",
 				"good": "Certifikát vaší webové stránky je podepsán pomocí bezpečného hashovacího algoritmu."
+			},
+			"tech_table": {
+				"affected_hash_algorithm": "",
+				"status": "Stav",
+				"web_server_ip_address": ""
 			},
 			"title": "Podpis certifikátu"
 		},
@@ -1113,6 +1362,10 @@
 				"bogus": "Vaše webová doména neposkytuje <em></em> důkaz DNSSEC, že záznamy DANE TLSA neexistují. Měli byste požádat provozovatele svého jmenného serveru, aby tento problém odstranil.",
 				"good": "Vaše webová doména obsahuje záznam TLSA pro DANE."
 			},
+			"tech_table": {
+				"dane_tlsa_record_existent": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Existence společnosti DANE"
 		},
 		"internet_nl_web_https_dane_valid": {
@@ -1120,6 +1373,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Otisk DANE ve vaší doméně je platný pro váš webový certifikát."
+			},
+			"tech_table": {
+				"dane_tlsa_record_valid": "",
+				"web_server_ip_address": ""
 			},
 			"title": "Platnost DANE"
 		},
@@ -1130,6 +1387,10 @@
 				"good": "Vaše webové stránky nabízejí protokol HTTPS.",
 				"other": "Váš webový server je nedostupný."
 			},
+			"tech_table": {
+				"https_existent": "HTTPS existuje",
+				"web_server_ip_address": ""
+			},
 			"title": "HTTPS k dispozici"
 		},
 		"internet_nl_web_https_http_compress": {
@@ -1137,6 +1398,10 @@
 			"rating": {
 				"bad": "Váš webový server podporuje kompresi HTTP, což může představovat bezpečnostní riziko.",
 				"good": "Váš webový server nepodporuje kompresi HTTP."
+			},
+			"tech_table": {
+				"http_compression": "Komprese HTTP",
+				"web_server_ip_address": ""
 			},
 			"title": "Komprese HTTP"
 		},
@@ -1146,6 +1411,10 @@
 				"bad": "",
 				"good": "Váš webový server nabízí zásady HSTS.",
 				"other": ""
+			},
+			"tech_table": {
+				"hsts_policy": "Politika HSTS",
+				"web_server_ip_address": ""
 			},
 			"title": "HSTS"
 		},
@@ -1157,6 +1426,10 @@
 				"no_https": "Tento test nebylo možné provést, protože váš webový server buď nenabízí žádný protokol HTTPS, nebo nabízí protokol HTTPS s velmi zastaralou a nezabezpečenou konfigurací protokolu TLS.",
 				"other": "Váš webový server podporuje pouze protokol HTTPS, nikoli HTTP."
 			},
+			"tech_table": {
+				"https_redirect": "Přesměrování HTTPS",
+				"web_server_ip_address": ""
+			},
 			"title": "Přesměrování HTTPS"
 		},
 		"internet_nl_web_https_tls_0rtt": {
@@ -1165,6 +1438,10 @@
 				"bad": "Váš webový server podporuje 0-RTT, což je <em>, nikoli</em> bezpečné.",
 				"good": "Váš webový server nepodporuje 0-RTT.",
 				"na": "Tento subtest nelze použít, protože váš webový server nepodporuje TLS 1.3."
+			},
+			"tech_table": {
+				"0_rtt": "0-RTT",
+				"web_server_ip_address": ""
 			},
 			"title": "0-RTT"
 		},
@@ -1177,6 +1454,11 @@
 				"seclevel_bad": "Váš webový server nedává <em>přednost</em> šifrám \"Good\" před \"Sufficient\" před šiframi \"Phase out\" (\"II\").",
 				"warning": ""
 			},
+			"tech_table": {
+				"first_found_affected_cipher_pair": "",
+				"violated_rule_ii_b": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Pořadí šifry"
 		},
 		"internet_nl_web_https_tls_ciphers": {
@@ -1186,6 +1468,11 @@
 				"good": "Váš webový server podporuje pouze zabezpečené šifry.",
 				"phase_out": "Váš webový server podporuje jednu nebo více šifer, které mají status <em>phase out</em> , protože jsou známé jako křehké a hrozí u nich riziko, že se stanou <em>nedostatečně</em> bezpečnými."
 			},
+			"tech_table": {
+				"affected_ciphers": "Dotčené šifry",
+				"status": "Stav",
+				"web_server_ip_address": ""
+			},
 			"title": "Šifry (výběr algoritmů)"
 		},
 		"internet_nl_web_https_tls_clientreneg": {
@@ -1194,6 +1481,10 @@
 				"bad": "Váš webový server umožňuje klientem iniciované opětovné vyjednávání, což by mohlo mít negativní dopad na dostupnost vašich webových stránek.",
 				"good": "Váš webový server neumožňuje opětovné vyjednávání z podnětu klienta."
 			},
+			"tech_table": {
+				"client_initiated_renegotiation": "Opětovné vyjednávání z podnětu klienta",
+				"web_server_ip_address": ""
+			},
 			"title": "Opětovné vyjednávání z podnětu klienta"
 		},
 		"internet_nl_web_https_tls_compress": {
@@ -1201,6 +1492,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Váš webový server nepodporuje kompresi TLS."
+			},
+			"tech_table": {
+				"tls_compression": "Komprese TLS",
+				"web_server_ip_address": ""
 			},
 			"title": "Komprese TLS"
 		},
@@ -1212,6 +1507,11 @@
 				"na": "",
 				"phase_out": "Váš webový server podporuje parametry pro Diffie-Hellmanovu výměnu klíčů, které mají <em>status phase out</em> , protože je známo, že jsou křehké a hrozí, že se stanou <em>nedostatečně</em> bezpečnými."
 			},
+			"tech_table": {
+				"affected_parameters": "",
+				"status": "Stav",
+				"web_server_ip_address": ""
+			},
 			"title": "Klíčové parametry výměny"
 		},
 		"internet_nl_web_https_tls_keyexchangehash": {
@@ -1220,6 +1520,10 @@
 				"good": "Váš webový server podporuje zabezpečenou hashovací funkci pro výměnu klíčů.",
 				"other": "Nepodařilo se nám určit hashovací funkci používanou vaším webovým serverem. To může být způsobeno tím, že použitá kombinace šifer nemá podpis pro ověření certifikátu (např. používá výměnu klíčů RSA nebo je anonymní, tj. <code>anon</code>).",
 				"phase_out": ""
+			},
+			"tech_table": {
+				"sha2_support_for_signatures": "",
+				"web_server_ip_address": ""
 			},
 			"title": "Hašovací funkce pro výměnu klíčů"
 		},
@@ -1230,6 +1534,10 @@
 				"good": "Váš webový server podporuje sešívání OCSP a data v odpovědi jsou platná.",
 				"ok": ""
 			},
+			"tech_table": {
+				"ocsp_stapling": "Sešívání OCSP",
+				"web_server_ip_address": ""
+			},
 			"title": "Sešívání OCSP"
 		},
 		"internet_nl_web_https_tls_secreneg": {
@@ -1237,6 +1545,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Váš webový server podporuje zabezpečené opětovné vyjednávání."
+			},
+			"tech_table": {
+				"secure_renegotiation": "Bezpečné nové vyjednávání",
+				"web_server_ip_address": ""
 			},
 			"title": "Bezpečné nové vyjednávání"
 		},
@@ -1246,6 +1558,11 @@
 				"bad": "Váš webový server podporuje <em>nedostatečně</em> zabezpečené verze TLS.",
 				"good": "Váš webový server podporuje pouze zabezpečené verze TLS.",
 				"phase_out": ""
+			},
+			"tech_table": {
+				"status": "Stav",
+				"tls_version": "Verze TLS",
+				"web_server_ip_address": ""
 			},
 			"title": "Verze TLS"
 		},
@@ -1259,6 +1576,11 @@
 				"good": "Dva nebo více jmenných serverů vaší domény mají adresu IPv6.",
 				"other": "Pouze jeden jmenný server vaší domény má adresu IPv6."
 			},
+			"tech_table": {
+				"ipv4_address": "",
+				"ipv6_address": "",
+				"name_server": ""
+			},
 			"title": "Adresy IPv6 pro jmenné servery"
 		},
 		"internet_nl_web_ipv6_ns_reach": {
@@ -1266,6 +1588,10 @@
 			"rating": {
 				"bad": "<em>Ne</em> všechny jmenné servery s adresou IPv6 jsou dosažitelné přes IPv6.",
 				"good": "Všechny jmenné servery s adresou IPv6 jsou dosažitelné přes IPv6."
+			},
+			"tech_table": {
+				"name_server": "",
+				"unreachable_ipv6_address": ""
 			},
 			"title": "Dosažitelnost jmenných serverů protokolem IPv6"
 		},
@@ -1275,6 +1601,11 @@
 				"bad": "<em>Žádný</em> z vašich webových serverů nemá adresu IPv6.",
 				"good": "Alespoň jeden z vašich webových serverů má adresu IPv6."
 			},
+			"tech_table": {
+				"ipv4_address": "",
+				"ipv6_address": "",
+				"web_server": "Webový server"
+			},
 			"title": "Adresy IPv6 pro webový server"
 		},
 		"internet_nl_web_ipv6_ws_reach": {
@@ -1282,6 +1613,10 @@
 			"rating": {
 				"bad": "",
 				"good": "Všechny vaše webové servery s adresou IPv6 jsou dosažitelné přes IPv6."
+			},
+			"tech_table": {
+				"unreachable_ipv6_address": "",
+				"web_server": "Webový server"
 			},
 			"title": "Dosažitelnost webového serveru protokolem IPv6"
 		},
@@ -1340,10 +1675,32 @@
 		},
 		"internet_nl_web_ns_rpki_exists": {
 			"explanation": "Zkontrolujeme, zda byla pro všechny IP adresy jmenných serverů vaší domény zveřejněna autorizace původu trasy (ROA).</p><p>Váš hostitel (nebo jeho poskytovatel sítě) oznamuje prostřednictvím protokolu BGP (Border Gateway Protocol), pro které ze svých bloků IP adres přijímá příchozí internetový provoz. Ostatní poskytovatelé sítě používají tato oznámení o trasách k určení, přes kterou trasu mají odesílat provoz pro IP adresy vašeho serveru.</p><p>Oznámení trasy však lze zfalšovat. Jiný poskytovatel sítě totiž může být schopen připojit blok IP adres vaší IP adresy ke své síti, a tak potenciálně přijímat internetový provoz, který je ve skutečnosti určen pro vašeho poskytovatele sítě. Příčina může být náhodná nebo zlovolná. V obou případech to může vést k tomu, že se váš server stane nedostupným nebo že bude zachycen internetový provoz směřující na váš server.</p><p>Infrastruktura veřejných klíčů zdrojů (RPKI) výrazně zlepšuje ochranu proti tomuto jevu. Pomocí RPKI může oprávněný držitel bloku IP adres zveřejnit digitálně podepsané prohlášení s autorizací trasy (Route Origin Authorisation; zkráceně ROA). Jiný poskytovatel sítě, který chce posílat internetový provoz na určitou IP adresu, může pomocí příslušného prohlášení odfiltrovat <code>. Neplatné</code> trasy. Tímto způsobem poskytovatel sítě zabrání tomu, aby byl internetový provoz z jeho sítě odesílán do sítí neautorizovaných poskytovatelů.</p><p><em>Úroveň požadavků: Doporučená</em>",
+			"rating": {
+				"bad": "Alespoň pro jednu z IP adres vašich názvových serverů <em>ne</em> RPKI Route Origin Authorisation (ROA) je zveřejněna.",
+				"good": "Pro všechny IP adresy vašich názvových serverů je zveřejněna autorizace původu trasy RPKI (ROA).",
+				"no_addresses": "Vaše doména <em>neobsahuje</em> žádné jmenné servery. Proto tento subtest nemohl být proveden."
+			},
+			"tech_table": {
+				"ip_address": "Ip adresa",
+				"name_server": "",
+				"rpki_route_origin_authorization": ""
+			},
 			"title": "Existence oprávnění k původu trasy"
 		},
 		"internet_nl_web_ns_rpki_valid": {
 			"explanation": "",
+			"rating": {
+				"bad": "",
+				"good": "",
+				"invalid": "",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Platnost oznámení trasy"
 		},
 		"internet_nl_web_rpki": {
@@ -1357,11 +1714,28 @@
 				"good": "Pro všechny IP adresy vašeho webového serveru je zveřejněna autorizace původu trasy RPKI (ROA).",
 				"no_addresses": "Vaše doména <em>neobsahuje</em> žádné IP adresy webových serverů. Proto tento subtest nemohl být proveden."
 			},
+			"tech_table": {
+				"ip_address": "Ip adresa",
+				"rpki_route_origin_authorization": "",
+				"web_server": "Webový server"
+			},
 			"technology": "Infrastruktura veřejných klíčů zdrojů (RPKI) / Certifikace zdrojů",
 			"title": "Důvěra v síťovou cestu na webové stránky"
 		},
 		"internet_nl_web_rpki_valid": {
 			"explanation": "",
+			"rating": {
+				"bad": "Alespoň jedna IP adresa vašeho webového serveru má stav ověření <code>NotFound</code> . Neexistuje žádný <em></em> RPKI Route Origin Authorization (ROA) zveřejněno pro oznámení trasy každé z dotčených IP adres.",
+				"good": "Všechny IP adresy vašeho webového serveru mají stav ověření <code>Platné</code> . Oznámení trasy těchto IP adres odpovídá zveřejněnému autorizačnímu protokolu RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Alespoň jedna IP adresa vašeho webového serveru má stav ověření <code>Invalid</code> . Oznámení trasy dotčených IP adres neodpovídá <em></em> zveřejněnému autorizačnímu protokolu RPKI Route Origin Authorisation (ROA). To znamená neúmyslnou nebo škodlivou chybu v konfiguraci trasy, kterou může způsobit váš webový hostitel (interní chyba) nebo třetí strana (externí chyba). V obou případech zvyšuje riziko nedostupnosti vašeho serveru nebo odposlechu internetového provozu na váš server. Obraťte se co nejdříve na svého webového poskytovatele hostingových služeb. V případě interní chyby by měl váš webový hostitel požádat svého poskytovatele sítě, který vlastní IP adresy vašeho serveru, o opravu chyby v konfiguraci trasy.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"rpki_origin_validation_state": "",
+				"web_server": "Webový server"
+			},
 			"title": "Platnost oznámení trasy"
 		},
 		"internet_nl_web_tls": {

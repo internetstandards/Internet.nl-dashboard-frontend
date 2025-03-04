@@ -16,6 +16,9 @@
     <main id="content" tabindex="-1">
       <div class="wrap mt-3">
         <div class="w-100" style="min-height: 80vh">
+          <b-alert variant="danger" :model-value="error_loading_config">{{ $t("app.core.error_loading_config")}} <b-button style="float:right" size="sm" variant="success" v-on:click="reload">{{ $t("app.core.reload_application")}}</b-button></b-alert>
+          <b-alert variant="danger" :model-value="error_connecting_to_backend">{{ $t("app.core.error_connecting_to_backend")}} <b-button style="float:right" size="sm" variant="success" v-on:click="reload">{{ $t("app.core.reload_application")}}</b-button></b-alert>
+
           <router-view v-slot="{ Component }">
             <keep-alive>
               <component :is="Component"/>
@@ -70,6 +73,7 @@ export default {
      // perform some calls we need otherwise we cannot route logged in pages.
     http.get('/data/config/').then(data => {
       if (!(data && data.data && Object.keys(data.data).length !== 0)) {
+        this.error_loading_config = true;
         throw new Error("Config is empty!");
       }
       this.store.set_config(data.data)
@@ -98,6 +102,9 @@ export default {
           }
         });
       });
+    }).catch(error => {
+      this.error_connecting_to_backend = true;
+      console.error('Error loading config', error)
     })
 
     this.$nextTick(function () {
@@ -109,10 +116,20 @@ export default {
       fixedHeader.init();
     })
   },
+
+  methods: {
+    reload() {
+      window.location.reload();
+    }
+
+  },
+
   name: 'App',
   data: function () {
     return {
       html_page_reading_direction: "ltr",
+      error_loading_config: false,
+      error_connecting_to_backend: false,
       store: dashboardStore(),
     }
   },

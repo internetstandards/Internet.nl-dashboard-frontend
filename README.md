@@ -50,6 +50,10 @@ npm run lint
 Translations are maintained by babeledit in the locales directory. A mapping.md is present
 that helps mapping from the merged-to-js internet.nl repository values to dashboard metrics.
 
+Use the conversion tool `python3 tools/convert_translations/main.py` to convert the .po stuff from the dashboard
+backend to the frontend. This will overwrite the keys as needed.
+
+
 # Deployment
 
 ## On staging

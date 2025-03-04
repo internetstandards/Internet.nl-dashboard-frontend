@@ -86,6 +86,9 @@
 			"units": "sekunder"
 		},
 		"core": {
+			"error_connecting_to_backend": "Kunne ikke oprette forbindelse til dataserveren.",
+			"error_loading_config": "Kunne ikke indlæse konfigurationen, konfigurationen er måske i et forkert format.",
+			"reload_application": "Klik her for at genindlæse appen og prøve igen",
 			"translated_by_ai": "Denne oversættelse er udført ved hjælp af kunstig intelligens, hvilket kan resultere i kontekstuelle fejl eller forkerte formuleringer. Kontakt os venligst for at få en officiel oversættelse. Se venligst de originale engelske eller hollandske tekster i tilfælde af forvirring. Vi undskylder på forhånd for eventuelle oversættelsesfejl."
 		},
 		"footer": {
@@ -592,12 +595,19 @@
 			"extended-explanation": "Vi kontrollerer, om DMARC er tilgængelig for dit domæne. En modtagende mailserver kan bruge din DMARC-politik til at vurdere, hvordan den skal håndtere en mail med dit domæne som afsender, der ikke kunne godkendes med både DKIM og SPF, og den kan bruge din mailadresse fra DMARC-posten til at give dig feedbackrapporter om godkendelsen. At have mere end én DMARC-post i det samme domæne er ikke gyldigt og vil føre til en fejl i testen. Bemærk: DMARC kræver, at SPF-domænet (konvolutafsender, dvs. returvej, der vises i <code>MAIL FROM</code>) og DKIM-domænet (<code>d=</code>) stemmer overens med mailens hoveddomæne (<code>From:</code>).",
 			"rating": {
 				"bad": "DMARC mangler. Det betyder, at der ikke er nogen måde at underrette organisationen om falske e-mails på.",
-				"good": "DMARC tilgængelig. Det betyder, at en automatiseret hotline er tilgængelig for modtagere af e-mail for at kontrollere, om afsenderens oprindelse og/eller signatur er korrekt. Enhver falsk e-mail kan automatisk rapporteres til denne hotline."
+				"external": "Domænet for den eksterne mailadresse efter <code>rua=</code> og/eller <code>ruf=</code> har <em>ingen</em> (gyldig) autorisationspost til modtagelse af DMARC-rapporter for det testede domæne.",
+				"good": "DMARC tilgængelig. Det betyder, at en automatiseret hotline er tilgængelig for modtagere af e-mail for at kontrollere, om afsenderens oprindelse og/eller signatur er korrekt. Enhver falsk e-mail kan automatisk rapporteres til denne hotline.",
+				"policy": "Din DMARC-politik er <em>ikke</em> tilstrækkelig streng."
+			},
+			"tech_table": {
+				"dmarc_record": "DMARC-post",
+				"found_on": "Fundet på"
 			},
 			"technology": "Domænebaseret meddelelsesgodkendelse, -rapportering og -overensstemmelse (DMARC)",
 			"title": "Organisationen har en automatiseret hotline for falske e-mails"
 		},
 		"internet_nl_mail_auth_dmarc_policy": {
+			"explanation": "",
 			"extended-explanation": "",
 			"rating": {
 				"bad": "Din DMARC-politik er <em>ikke</em> syntaktisk korrekt.",
@@ -612,13 +622,22 @@
 			"explanation": "E-mail bør kun sendes fra en kendt postadresse: et kendt domæne. Hvis nogen prøver at sende en e-mail i en andens navn og forfalske afsenderen, sørger denne indstilling for, at den falske e-mail bliver afvist af postvæsenet. Derudover kan ejeren af den rigtige postadresse få en meddelelse om, at nogen sender en falsk e-mail.",
 			"extended-explanation": "Vi tjekker, om dit domæne har en SPF-record. En modtagende mailserver kan bruge IP-adresserne i din SPF-record til at godkende den afsendende mailserver for en modtaget mail med dit domæne som afsender. Den medfølgende politik kan bruges til at træffe passende foranstaltninger, hvis godkendelsen mislykkes. Det er ikke gyldigt at have mere end én SPF-post i det samme domæne, og det vil føre til en fejl i testen.</p><p>For en \"god praksis for domæner uden mail\", se <a href=\"#control-panel-9\">forklaringen på deltesten \"DMARC-politik\"</a>.",
 			"rating": {
+				"all": "Din SPF-politik er <em>ikke</em> tilstrækkelig streng.",
 				"bad": "SPF mangler. Det betyder, at der ikke er nogen måde at kontrollere afsenderadressen på denne e-mail. E-mails fra denne adresse kan nemt forfalskes.",
-				"good": "SPF tilgængelig. Det betyder, at afsenderadressen på en e-mail kan kontrolleres af en modtager."
+				"good": "SPF tilgængelig. Det betyder, at afsenderadressen på en e-mail kan kontrolleres af en modtager.",
+				"include": "Din SPF-politik er <em>ikke</em> tilstrækkelig streng. Mekanismen 'include' i din SPF-post peger på en utilstrækkelig streng SPF-politik eller en ikke-eksisterende SPF-post.",
+				"max_lookups": "Din SPF-politik er <em>ikke</em> effektiv, da den kræver mere end de tilladte 10 DNS-opslag. Hver af de følgende SPF-termer tæller som et DNS-opslag: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> og <code>exist</code>. SPF-begreberne <code>all</code>, <code>ip4</code>, <code>ip6</code> og <code>exp</code> tæller ikke som DNS-opslag.",
+				"redirect": "Din SPF-politik er <em>ikke</em> tilstrækkelig streng. Modifikatoren 'redirect' i din SPF-post peger på en utilstrækkelig streng SPF-politik eller en ikke-eksisterende SPF-post."
+			},
+			"tech_table": {
+				"domain": "Domæne",
+				"spf_record": "SPF-post"
 			},
 			"technology": "Ramme for afsenderpolitik (SPF)",
 			"title": "E-mail sendes fra en kendt postadresse"
 		},
 		"internet_nl_mail_auth_spf_policy": {
+			"explanation": "",
 			"extended-explanation": "",
 			"rating": {
 				"all": "Din SPF-politik er <em>ikke</em> tilstrækkelig streng.",
@@ -627,6 +646,10 @@
 				"include": "Din SPF-politik er <em>ikke</em> tilstrækkelig streng. Mekanismen 'include' i din SPF-post peger på en utilstrækkelig streng SPF-politik eller en ikke-eksisterende SPF-post.",
 				"max_lookups": "Din SPF-politik er <em>ikke</em> effektiv, da den kræver mere end de tilladte 10 DNS-opslag. Hver af de følgende SPF-termer tæller som et DNS-opslag: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> og <code>exist</code>. SPF-begreberne <code>all</code>, <code>ip4</code>, <code>ip6</code> og <code>exp</code> tæller ikke som DNS-opslag.",
 				"redirect": "Din SPF-politik er <em>ikke</em> tilstrækkelig streng. Modifikatoren 'redirect' i din SPF-post peger på en utilstrækkelig streng SPF-politik eller en ikke-eksisterende SPF-post."
+			},
+			"tech_table": {
+				"domain": "Domæne",
+				"spf_record": "SPF-post"
 			},
 			"technology": "Ramme for afsenderpolitik (SPF)",
 			"title": "SPF-politik"
@@ -650,6 +673,7 @@
 			"title": "Autorisation af rute (RPKI)"
 		},
 		"internet_nl_mail_dnssec_mailto_exist": {
+			"explanation": "Vi kontrollerer, om dit domæne, nærmere bestemt dets SOA-post, er DNSSEC-signeret. Med en DNSSEC-signatur kan afsendere, der validerer domænesignaturer, verificere ægtheden af det DNS-svar, der indeholder dine mailserverdomæner (MX). Dette forhindrer en angriber i at manipulere DNS-svaret for at omdirigere mails sendt til dig til angriberens mailserverdomæne.</p><p>Hvis et domæne omdirigerer til et andet domæne via <code>CNAME</code>så tjekker vi også, om CNAME-domænet er signeret (hvilket er i overensstemmelse med DNSSEC-standarden). Hvis CNAME-domænet ikke er signeret, vil resultatet af denne deltest være negativt.</p><p>Bemærk: Signaturens gyldighed er ikke en del af denne deltest, men en del af den næste deltest.",
 			"extended-explanation": "Vi kontrollerer, om dit domæne, nærmere bestemt dets SOA-post, er DNSSEC-signeret. Med en DNSSEC-signatur kan afsendere, der validerer domænesignaturer, verificere ægtheden af det DNS-svar, der indeholder dine mailserverdomæner (MX). Dette forhindrer en angriber i at manipulere DNS-svaret for at omdirigere mails sendt til dig til angriberens mailserver-domæne.</p><p>Hvis et domæne omdirigerer til et andet domæne via <code>CNAME</code>så tjekker vi også, om CNAME-domænet er signeret (hvilket er i overensstemmelse med DNSSEC-standarden). Hvis CNAME-domænet ikke er signeret, vil resultatet af denne deltest være negativt.</p><p>Bemærk: Signaturens gyldighed er ikke en del af denne deltest, men en del af den næste deltest.",
 			"rating": {
 				"bad": "Dit e-mail-adressedomæne er usikkert, fordi det er <em>ikke</em> DNSSEC-signeret.",
@@ -657,18 +681,28 @@
 				"resolver_error": "Der opstod desværre en fejl i Internet.nl's resolver. Venligst <a href=\"/about/\">kontakt</a> os.",
 				"servfail": "Navneserverne for dit e-mail-adressedomæne er <em>i stykker</em>. De returnerede en fejl (<code>SERVFAIL</code>) til vores forespørgsler om en DNSSEC-signatur. Kontakt venligst din navneserveroperatør (ofte din hostingudbyder og/eller registrator) for at få det ordnet snart."
 			},
+			"tech_table": {
+				"email_address_domain": "E-mail-adresse domæne",
+				"registrar": "Registrator"
+			},
 			"title": "DNSSEC-eksistens"
 		},
 		"internet_nl_mail_dnssec_mailto_valid": {
+			"explanation": "Vi tjekker, om dit domæne, nærmere bestemt dets SOA-post, er signeret med en gyldig signatur, der gør det 'sikkert'.</p><p>Hvis et domænenavn omdirigerer til et andet signeret domænenavn via <code>CNAME</code>kontrollerer vi også, om signaturen for CNAME-domænenavnet er gyldig (hvilket er i overensstemmelse med DNSSEC-standarden). Hvis signaturen for CNAME-domænenavnet ikke er gyldig, vil resultatet af denne deltest være negativt.</p><p>Bemærk, at vi kun tester den navneserver, der svarer først. Hvis navneserverne for et domænenavn har inkonsistente konfigurationer, kan det føre til varierende testresultater. I så fald kan resultatet af denne deltest f.eks. være \"sikker\" den ene gang og \"falsk\" den næste.",
 			"extended-explanation": "Vi tjekker, om dit domæne, nærmere bestemt dets SOA-post, er signeret med en gyldig signatur, der gør det 'sikkert'.</p><p>Hvis et domænenavn omdirigerer til et andet signeret domænenavn via <code>CNAME</code>kontrollerer vi også, om signaturen for CNAME-domænenavnet er gyldig (hvilket er i overensstemmelse med DNSSEC-standarden). Hvis signaturen for CNAME-domænenavnet ikke er gyldig, vil resultatet af denne deltest være negativt.</p><p>Bemærk, at vi kun tester den navneserver, der svarer først. Hvis navneserverne for et domænenavn har inkonsistente konfigurationer, kan det føre til varierende testresultater. I så fald kan resultatet af denne deltest f.eks. være \"sikker\" den ene gang og \"falsk\" den næste.",
 			"rating": {
 				"bad": "Dit e-mail-adressedomæne er 'falsk', fordi DNSSEC-signaturen er <em>ikke</em> gyldig. Enten har nogen manipuleret svaret fra din navneserver, eller også har dit domæne en <em>alvorlig DNSSEC-konfigurationsfejl</em>. Sidstnævnte gør dit domæne utilgængeligt for enhver bruger, der validerer DNSSEC-signaturer. Du bør kontakte din navneserveroperatør (ofte din registrator eller hostingudbyder) så hurtigt som muligt.",
 				"good": "Dit e-mailadressedomæne er sikkert, fordi dets DNSSEC-signatur er gyldig.",
 				"unsupported_ds_algo": "Dit e-maildomæne er signeret med en algoritme, som vores valideringsresolver ikke understøtter i øjeblikket. Derfor er vi ikke i stand til at kontrollere gyldigheden af dets DNSSEC-signatur."
 			},
+			"tech_table": {
+				"email_address_domain": "E-mail-adresse domæne",
+				"status": "Status"
+			},
 			"title": "DNSSEC-validitet"
 		},
 		"internet_nl_mail_dnssec_mx_exist": {
+			"explanation": "Vi kontrollerer, om dine mailserveres domæner (MX), nærmere bestemt deres SOA-poster, er DNSSEC-signerede. Med en DNSSEC-signatur kan afsendere, der validerer domænesignaturer, verificere ægtheden af DNS-svaret, der indeholder IP-adresser og DANE-poster for din(e) mailserver(e). Dette forhindrer en angriber i at manipulere DNS-svaret for at omdirigere mails sendt til dig til en IP-adresse, der kontrolleres af angriberen, eller for at aflytte den sikrede mailserverforbindelse.</p><p>Hvis et domæne omdirigerer til et andet domæne via <code>CNAME</code>så tjekker vi også, om CNAME-domænet er signeret (hvilket er i overensstemmelse med DNSSEC-standarden). Hvis CNAME-domænet ikke er signeret, vil resultatet af denne deltest være negativt.</p><p>Bemærk, at e-mailtesten ikke falder tilbage på A/AAAA-records for mailservere, hvis der ikke findes en MX-record.</p><p>Signaturens gyldighed er ikke en del af denne deltest, men en del af den næste deltest.",
 			"extended-explanation": "Vi kontrollerer, om dine mailserveres domæner (MX), nærmere bestemt deres SOA-poster, er DNSSEC-signerede. Med en DNSSEC-signatur kan afsendere, der validerer domænesignaturer, verificere ægtheden af DNS-svaret, der indeholder IP-adresser og DANE-poster for din(e) mailserver(e). Dette forhindrer en angriber i at manipulere DNS-svaret for at omdirigere mails sendt til dig til en IP-adresse, der kontrolleres af angriberen, eller for at aflytte den sikrede mailserverforbindelse.</p><p>Hvis et domæne omdirigerer til et andet domæne via <code>CNAME</code>så tjekker vi også, om CNAME-domænet er signeret (hvilket er i overensstemmelse med DNSSEC-standarden). Hvis CNAME-domænet ikke er signeret, vil resultatet af denne deltest være negativt.</p><p>Bemærk, at e-mailtesten ikke falder tilbage på A/AAAA-records for mailservere, hvis der ikke findes en MX-record.</p><p>Signaturens gyldighed er ikke en del af denne deltest, men en del af den næste deltest.",
 			"rating": {
 				"bad": "Mindst et af dine mailserver-domæner er usikkert, fordi det er <em>ikke</em> DNSSEC-signeret.",
@@ -682,14 +716,23 @@
 				"resolver_error": "Der opstod desværre en fejl i Internet.nl's resolver. Venligst <a href=\"/about/\">kontakt</a> os.",
 				"servfail": "Navneserverne for mindst et af dine mailserverdomæner er <em>i stykker</em>. De returnerede en fejl (<code>SERVFAIL</code>) til vores forespørgsler om en DNSSEC-signatur. Kontakt venligst din navneserveroperatør (ofte din mailudbyder) for at få det ordnet snart."
 			},
+			"tech_table": {
+				"dnssec_existent": "DNSSEC findes",
+				"domain_of_mail_server_mx": "Mailserverens domæne (MX)"
+			},
 			"title": "DNSSEC-eksistens"
 		},
 		"internet_nl_mail_dnssec_mx_valid": {
+			"explanation": "Vi kontrollerer, om domænerne for dine modtagende mailservere (MX), nærmere bestemt deres SOA-poster, er underskrevet med en gyldig signatur, der gør dem 'sikre'.</p><p>Hvis et domænenavn omdirigerer til et andet signeret domænenavn via <code>CNAME</code>kontrollerer vi også, om signaturen for CNAME-domænenavnet er gyldig (hvilket er i overensstemmelse med DNSSEC-standarden). Hvis signaturen for CNAME-domænenavnet ikke er gyldig, vil resultatet af denne deltest være negativt.</p><p>Bemærk, at vi kun tester den navneserver, der svarer først. Hvis navneserverne for et domænenavn har inkonsistente konfigurationer, kan det føre til varierende testresultater. I så fald kan resultatet af denne deltest f.eks. være \"sikker\" den ene gang og \"falsk\" den næste.",
 			"extended-explanation": "Vi kontrollerer, om domænerne for dine modtagende mailservere (MX), nærmere bestemt deres SOA-poster, er underskrevet med en gyldig signatur, der gør dem 'sikre'.</p><p>Hvis et domænenavn omdirigerer til et andet signeret domænenavn via <code>CNAME</code>kontrollerer vi også, om signaturen for CNAME-domænenavnet er gyldig (hvilket er i overensstemmelse med DNSSEC-standarden). Hvis signaturen for CNAME-domænenavnet ikke er gyldig, vil resultatet af denne deltest være negativt.</p><p>Bemærk, at vi kun tester den navneserver, der svarer først. Hvis navneserverne for et domænenavn har inkonsistente konfigurationer, kan det føre til varierende testresultater. I så fald kan resultatet af denne deltest f.eks. være \"sikker\" den ene gang og \"falsk\" den næste.",
 			"rating": {
 				"bad": "Mindst et af dine signerede mailserver-domæner er \"falsk\", fordi dets DNSSEC-signatur ikke er gyldig. Enten har nogen manipuleret svarene fra dets navneservere, eller også har dit mailserverdomæne alvorlige DNSSEC-konfigurationsfejl. Sidstnævnte gør din modtagende mailserver utilgængelig for enhver afsendende mailserver, der validerer DNSSEC-signaturer. Du bør kontakte navneserveroperatøren (ofte din mailudbyder) så hurtigt som muligt.",
 				"good": "Alle dine signerede mailserverdomæner er sikre, fordi deres DNSSEC-signaturer er gyldige.",
 				"unsupported_ds_algo": "Mindst et af dine mailserverdomæner er signeret med en algoritme, som vores valideringsresolver ikke understøtter i øjeblikket. Derfor er vi ikke i stand til at kontrollere gyldigheden af dets DNSSEC-signatur."
+			},
+			"tech_table": {
+				"domain_of_mail_server_mx": "",
+				"status": "Status"
 			},
 			"title": "DNSSEC-validitet"
 		},
@@ -705,6 +748,11 @@
 				"null_mx_without_a_aaaa": "Dit domæne annoncerer en \"Null MX\"-record, der angiver, at det ikke accepterer e-mail. Men dit domæne har ikke A/AAAA-poster, hvilket gør \"Null MX\"-posten unødvendig.",
 				"other": "Der er ikke sat nogen modtagende mailservere (MX) på dit domæne, som ikke har A/AAAA-poster. Det er fint, hvis du ikke ønsker at modtage e-mail."
 			},
+			"tech_table": {
+				"ipv4_address": "IPv4-adresse",
+				"ipv6_address": "IPv6-adresse",
+				"mail_server_mx": "Mailserver (MX)"
+			},
 			"title": "IPv6-adresser til mailserver(e)"
 		},
 		"internet_nl_mail_ipv6_mx_reach": {
@@ -712,6 +760,10 @@
 			"rating": {
 				"bad": "Mindst én af dine modtagende mailservere med en IPv6-adresse er <em>ikke</em> tilgængelig via IPv6.",
 				"good": "Alle dine modtagende mailservere med en IPv6-adresse kan nås via IPv6."
+			},
+			"tech_table": {
+				"mail_server_mx": "Mailserver (MX)",
+				"unreachable_ipv6_address": "Uopnåelig IPv6-adresse"
 			},
 			"title": "IPv6-rækkevidde for mailserver(e)"
 		},
@@ -722,6 +774,11 @@
 				"good": "To eller flere navneservere for dit domæne har en IPv6-adresse.",
 				"other": "Kun én navneserver for dit domæne har en IPv6-adresse."
 			},
+			"tech_table": {
+				"ipv4_address": "IPv4-adresse",
+				"ipv6_address": "IPv6-adresse",
+				"name_server": "Navneserver"
+			},
 			"title": "IPv6-adresser til navneservere"
 		},
 		"internet_nl_mail_ipv6_ns_reach": {
@@ -729,6 +786,10 @@
 			"rating": {
 				"bad": "<em>Ikke</em> alle navneservere, der har en IPv6-adresse, kan nås via IPv6.",
 				"good": "Alle navneservere, der har en IPv6-adresse, kan nås via IPv6."
+			},
+			"tech_table": {
+				"name_server": "Navneserver",
+				"unreachable_ipv6_address": "Uopnåelig IPv6-adresse"
 			},
 			"title": "IPv6-rækkevidde for navneservere"
 		},
@@ -805,18 +866,64 @@
 		},
 		"internet_nl_mail_mx_ns_rpki_exists": {
 			"explanation": "Vi kontrollerer, om en RPKI Route Origin Authorization (ROA) er blevet offentliggjort for alle IP-adresser på navneserverne til din(e) mailserver(e) (MX).</p><p>Din hoster (eller dens netværksudbyder) meddeler via Border Gateway Protocol (BGP), for hvilke af sine IP-adresseblokke den accepterer indgående internettrafik. Andre netværksudbydere bruger disse rutemeddelelser til at afgøre, via hvilken rute de skal sende trafik til din servers IP-adresser.</p><p>Men en route announcement kan forfalskes. Faktisk kan en anden netværksudbyder være i stand til at forbinde IP-adresseblokken for din IP-adresse til sit netværk og dermed potentielt modtage internettrafik, der faktisk er beregnet til din netværksudbyder. Årsagen kan være utilsigtet eller ondsindet. I begge tilfælde kan det resultere i, at din server bliver utilgængelig, eller at internettrafikken til din server bliver opfanget.</p><p>Resource Public Key Infrastructure (RPKI) forbedrer beskyttelsen mod dette betydeligt. Med RPKI kan den retmæssige indehaver af en blok af IP-adresser offentliggøre en digitalt signeret erklæring med ruteautorisation (Route Origin Authorisation; forkortet ROA). En anden netværksudbyder, der ønsker at sende internettrafik til en bestemt IP-adresse, kan bruge den tilsvarende erklæring til at filtrere <code>Ugyldige</code> ruter. På denne måde forhindrer netværksudbyderen, at internettrafik fra dens netværk sendes til uautoriserede udbydernetværk.</p><p><em>Kravniveau: Anbefalet</em>",
+			"rating": {
+				"bad": "For mindst en af IP-adresserne på navneserverne på din(e) mailserver(e) <em>ingen</em> RPKI Route Origin Authorisation (ROA) er offentliggjort.",
+				"good": "For alle IP-adresser på navneserverne på din(e) mailserver(e) offentliggøres en RPKI Route Origin Authorisation (ROA).",
+				"no_addresses": "Dit domæne indeholder <em>ikke</em> nogen mailservere. Derfor kunne denne deltest ikke udføres."
+			},
+			"tech_table": {
+				"ip_address": "IP-adresse",
+				"name_server_of_mx": "Navneserver for MX",
+				"rpki_route_origin_authorization": "RPKI Autorisation af ruteoprindelse"
+			},
 			"title": "Eksistens af ruteoprindelsesgodkendelse"
 		},
 		"internet_nl_mail_mx_ns_rpki_valid": {
 			"explanation": "Vi kontrollerer, om valideringsstatus for alle IP-adresser på dine mailserveres navneservere (MX) er <code>Valid</code>. Hvis der er flere overlappende rutemeddelelser for IP-adressen, tester vi, at de alle er <code>Gyldige</code>.</p><p>Din hoster (eller dens netværksudbyder) annoncerer via Border Gateway Protocol (BGP), for hvilke af sine IP-adresseblokke den accepterer indgående internettrafik. Det gør den ved at knytte (dele af) sine IP-adresseblokke (Route Prefix) til det unikke nummer på sit udbydernetværk (Route Origin ASN) og derefter distribuere denne routinginformation. Andre netværksudbydere bruger disse rutemeddelelser til at afgøre, via hvilken rute de skal sende trafik til IP-adresserne.</p><p>Derudover skal din hoster (eller dens netværksudbyder) for hver ruteannoncering offentliggøre en digitalt signeret erklæring med ruteautorisation (Route Origin Authorisation; forkortet: ROA) ved hjælp af Resource Public Key Infrastructure (RPKI). </p><p>En anden netværksudbyder, der bliver bedt om at sende internettrafik til din servers IP-adresse, kan kryptografisk verificere den tilknyttede erklæring. Det verificerede indhold (Validated ROA Payload; forkortet: VRP) omfatter, hvilke udbydernetværk (VRP ASN) der er autoriseret til at modtage internettrafik for hver registreret IP-adresseblok (VRP Prefix). </p><p>Netværksudbyderen kan derefter bruge dette indhold til at filtrere BGP-ruter. For eksempel kan han afvise enhver <code>Ugyldige</code> ruter for at forhindre, at internettrafik fra hans netværk sendes til uautoriserede udbydernetværk.</p><p>Kontrol af rutemeddelelser mod ruteautorisationer (RPKI Origin Validation; forkortet: ROV) har følgende tre mulige udfald.</p><ul><li><p><code>Gyldig</code>: Ruteannonceringen for den pågældende IP-adresse matches af mindst én offentliggjort ruteautorisation. En ruteautorisation matches også for mere specifikke ruteannonceringer (dvs. for en del af den IP-adresseblok, der er indeholdt i ruteautorisationen), medmindre de er mere specifikke end den grænse, der er angivet i ruteautorisationen (via attributten <code>maxLength</code> ). </p></li><li><p><code>Ugyldig</code>: Ruteannonceringen for den pågældende IP-adresse er dækket af en ruteautorisation, men den <em>matcher ikke</em> . Der er to mulige årsager: </p></li><li><p>IP-adresseblokken (Route Prefix) er annonceret fra et udbydernetværk (Route Origin ASN), som <em>ikke</em> er autoriseret i ruteautorisationen (resultat i tabellen nedenfor: \"invalid (as)\");</p></li><li>den annoncerede IP-adresseblok (rutepræfiks) er <em>mindre end tilladt</em> i ruteautorisationen, dvs. overskrider <code>maxLength</code> -værdien (resultat i tabellen nedenfor: \"ugyldig (længde)\").</li></ul><p>Bemærk: Status <code>Ugyldig</code> angiver en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din hoster eller dennes netværksudbyder (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde kan det føre til, at din server ikke kan nås, eller at internettrafikken til din server bliver aflyttet. Kontakt din hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din hoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen. </p><ul><li><code>NotFound</code>: Der er ikke fundet nogen erklæring med route-authorisation, som dækker ruteannonceringen af den pågældende IP-adresse. Dette gør routingen af internettrafik til din server mindre sikker. Kontakt venligst din hoster om dette. Han kan bede sin netværksudbyder, der ejer din servers IP-adresser, om at offentliggøre route-autorisationer.</li></ul><p><em>Kravniveau: Anbefalet</em>",
+			"rating": {
+				"bad": "Mindst én IP-adresse på navneserverne til dine modtagende mailservere har en <code>NotFound</code> valideringsstatus. Der er <em>ingen</em> RPKI Route Origin Authorization (ROA) offentliggjort for ruteannonceringen for hver af de berørte IP-adresser.",
+				"good": "Alle IP-adresser på navneserverne på dine modtagende mailservere har en <code>Valid</code> valideringsstatus. Ruteannonceringen af disse IP-adresser matches af den offentliggjorte RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Mindst én IP-adresse på navneserverne på dine modtagende mailservere har en <code>ugyldig</code> valideringstilstand. Ruteannonceringen for de berørte IP-adresser er <em>ikke</em> matchet af den offentliggjorte RPKI Route Origin Authorisation (ROA). Dette indikerer en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din mailhoster (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde øger det risikoen for, at din server ikke kan nås, eller at internettrafikken til din server bliver opfanget. Kontakt din mail-hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din mailhoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen.",
+				"not_routed": "Denne deltest <em>kørte ikke</em> , fordi <em>ingen</em> ruteannoncering var tilgængelig for nogen af IP-adresserne."
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "BGP Rute Oprindelse ASN",
+				"bgp_route_prefix": "BGP rutepræfiks",
+				"name_server_of_mx": "",
+				"rpki_origin_validation_state": "RPKI-oprindelsesvalideringsstatus"
+			},
 			"title": "Ruteannonceringens gyldighed"
 		},
 		"internet_nl_mail_ns_rpki_exists": {
 			"explanation": "Vi kontrollerer, om valideringsstatus for alle IP-adresser på dit domænes navneservere er <code>Valid</code>. Hvis der er flere overlappende rutemeddelelser for IP-adressen, tester vi, at de alle er <code>Gyldige</code>.</p><p>Din hoster (eller dens netværksudbyder) meddeler via Border Gateway Protocol (BGP), for hvilke af sine IP-adresseblokke den accepterer indgående internettrafik. Det gør den ved at knytte (dele af) sine IP-adresseblokke (Route Prefix) til det unikke nummer på sit udbydernetværk (Route Origin ASN) og derefter distribuere denne routinginformation. Andre netværksudbydere bruger disse rutemeddelelser til at afgøre, via hvilken rute de skal sende trafik til IP-adresserne.</p><p>Derudover skal din hoster (eller dens netværksudbyder) for hver ruteannoncering offentliggøre en digitalt signeret erklæring med ruteautorisation (Route Origin Authorisation; forkortet: ROA) ved hjælp af Resource Public Key Infrastructure (RPKI). </p><p>En anden netværksudbyder, der bliver bedt om at sende internettrafik til din servers IP-adresse, kan kryptografisk verificere den tilknyttede erklæring. Det verificerede indhold (Validated ROA Payload; forkortet: VRP) omfatter, hvilke udbydernetværk (VRP ASN) der er autoriseret til at modtage internettrafik for hver registreret IP-adresseblok (VRP Prefix). </p><p>Netværksudbyderen kan derefter bruge dette indhold til at filtrere BGP-ruter. For eksempel kan han afvise enhver <code>Ugyldige</code> ruter for at forhindre, at internettrafik fra hans netværk sendes til uautoriserede udbydernetværk.</p><p>Kontrol af rutemeddelelser mod ruteautorisationer (RPKI Origin Validation; forkortet: ROV) har følgende tre mulige udfald.</p><ul><li><p><code>Gyldig</code>: Ruteannonceringen for den pågældende IP-adresse matches af mindst én offentliggjort ruteautorisation. En ruteautorisation matches også for mere specifikke ruteannonceringer (dvs. for en del af den IP-adresseblok, der er indeholdt i ruteautorisationen), medmindre de er mere specifikke end den grænse, der er angivet i ruteautorisationen (via attributten <code>maxLength</code> ). </p></li><li><p><code>Ugyldig</code>: Ruteannonceringen for den pågældende IP-adresse er dækket af en ruteautorisation, men den <em>matcher ikke</em> . Der er to mulige årsager: </p></li><li><p>IP-adresseblokken (Route Prefix) er annonceret fra et udbydernetværk (Route Origin ASN), som <em>ikke</em> er autoriseret i ruteautorisationen (resultat i tabellen nedenfor: \"invalid (as)\");</p></li><li>den annoncerede IP-adresseblok (rutepræfiks) er <em>mindre end tilladt</em> i ruteautorisationen, dvs. overskrider <code>maxLength</code> -værdien (resultat i tabellen nedenfor: \"ugyldig (længde)\").</li></ul><p>Bemærk: Status <code>Ugyldig</code> angiver en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din hoster eller dennes netværksudbyder (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde kan det føre til, at din server ikke kan nås, eller at internettrafikken til din server bliver aflyttet. Kontakt din hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din hoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen. </p><ul><li><code>NotFound</code>: Der er ikke fundet nogen erklæring med route-authorisation, som dækker ruteannonceringen af den pågældende IP-adresse. Dette gør routingen af internettrafik til din server mindre sikker. Kontakt venligst din hoster om dette. Han kan bede sin netværksudbyder, der ejer din servers IP-adresser, om at offentliggøre route-autorisationer.</li></ul><p><em>Kravniveau: Anbefalet</em>",
+			"rating": {
+				"bad": "Mindst én IP-adresse på dine navneservere har en <code>NotFound</code> valideringsstatus. Der er <em>ingen</em> RPKI Route Origin Authorisation (ROA) er offentliggjort for dens ruteannoncering.",
+				"good": "Alle IP-adresser på dine navneservere har en <code>Valid</code> valideringsstatus. Ruteannonceringen af disse IP-adresser matches af den offentliggjorte RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Mindst én IP-adresse på dine navneservere har en <code>ugyldig</code> valideringsstatus. Ruteannonceringen for de berørte IP-adresser er <em>ikke</em> matchet af den offentliggjorte RPKI Route Origin Authorisation (ROA). Dette indikerer en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din navneserver-hoster (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde øger det risikoen for, at din server ikke kan nås, eller at internettrafikken til din server bliver opfanget. Kontakt din navneserver-hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din navneserverhoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Ruteannonceringens gyldighed"
 		},
 		"internet_nl_mail_ns_rpki_valid": {
 			"explanation": "Vi kontrollerer, om valideringsstatus for alle IP-adresser på dit domænes navneservere er <code>Valid</code>. Hvis der er flere overlappende rutemeddelelser for IP-adressen, tester vi, at de alle er <code>Gyldige</code>.</p><p>Din hoster (eller dens netværksudbyder) meddeler via Border Gateway Protocol (BGP), for hvilke af sine IP-adresseblokke den accepterer indgående internettrafik. Det gør den ved at knytte (dele af) sine IP-adresseblokke (Route Prefix) til det unikke nummer på sit udbydernetværk (Route Origin ASN) og derefter distribuere denne routinginformation. Andre netværksudbydere bruger disse rutemeddelelser til at afgøre, via hvilken rute de skal sende trafik til IP-adresserne.</p><p>Derudover skal din hoster (eller dens netværksudbyder) for hver ruteannoncering offentliggøre en digitalt signeret erklæring med ruteautorisation (Route Origin Authorisation; forkortet: ROA) ved hjælp af Resource Public Key Infrastructure (RPKI). </p><p>En anden netværksudbyder, der bliver bedt om at sende internettrafik til din servers IP-adresse, kan kryptografisk verificere den tilknyttede erklæring. Det verificerede indhold (Validated ROA Payload; forkortet: VRP) omfatter, hvilke udbydernetværk (VRP ASN) der er autoriseret til at modtage internettrafik for hver registreret IP-adresseblok (VRP Prefix). </p><p>Netværksudbyderen kan derefter bruge dette indhold til at filtrere BGP-ruter. For eksempel kan han afvise enhver <code>Ugyldige</code> ruter for at forhindre, at internettrafik fra hans netværk sendes til uautoriserede udbydernetværk.</p><p>Kontrol af rutemeddelelser mod ruteautorisationer (RPKI Origin Validation; forkortet: ROV) har følgende tre mulige udfald.</p><ul><li><p><code>Gyldig</code>: Ruteannonceringen for den pågældende IP-adresse matches af mindst én offentliggjort ruteautorisation. En ruteautorisation matches også for mere specifikke ruteannonceringer (dvs. for en del af den IP-adresseblok, der er indeholdt i ruteautorisationen), medmindre de er mere specifikke end den grænse, der er angivet i ruteautorisationen (via attributten <code>maxLength</code> ). </p></li><li><p><code>Ugyldig</code>: Ruteannonceringen for den pågældende IP-adresse er dækket af en ruteautorisation, men den <em>matcher ikke</em> . Der er to mulige årsager: </p></li><li><p>IP-adresseblokken (Route Prefix) er annonceret fra et udbydernetværk (Route Origin ASN), som <em>ikke</em> er autoriseret i ruteautorisationen (resultat i tabellen nedenfor: \"invalid (as)\");</p></li><li>den annoncerede IP-adresseblok (rutepræfiks) er <em>mindre end tilladt</em> i ruteautorisationen, dvs. overskrider <code>maxLength</code> -værdien (resultat i tabellen nedenfor: \"ugyldig (længde)\").</li></ul><p>Bemærk: Status <code>Ugyldig</code> angiver en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din hoster eller dennes netværksudbyder (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde kan det føre til, at din server ikke kan nås, eller at internettrafikken til din server bliver aflyttet. Kontakt din hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din hoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen. </p><ul><li><code>NotFound</code>: Der er ikke fundet nogen erklæring med route-authorisation, som dækker ruteannonceringen af den pågældende IP-adresse. Dette gør routingen af internettrafik til din server mindre sikker. Kontakt venligst din hoster om dette. Han kan bede sin netværksudbyder, der ejer din servers IP-adresser, om at offentliggøre route-autorisationer.</li></ul><p><em>Kravniveau: Anbefalet</em>",
+			"rating": {
+				"bad": "Mindst én IP-adresse på dine navneservere har en <code>NotFound</code> valideringsstatus. Der er <em>ingen</em> RPKI Route Origin Authorisation (ROA) er offentliggjort for dens ruteannoncering.",
+				"good": "Alle IP-adresser på dine navneservere har en <code>Valid</code> valideringsstatus. Ruteannonceringen af disse IP-adresser matches af den offentliggjorte RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Mindst én IP-adresse på dine navneservere har en <code>ugyldig</code> valideringsstatus. Ruteannonceringen for de berørte IP-adresser er <em>ikke</em> matchet af den offentliggjorte RPKI Route Origin Authorisation (ROA). Dette indikerer en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din navneserver-hoster (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde øger det risikoen for, at din server ikke kan nås, eller at internettrafikken til din server bliver opfanget. Kontakt din navneserver-hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din navneserverhoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen.",
+				"not_routed": "Denne deltest <em>kørte ikke</em> , fordi <em>ingen</em> ruteannoncering var tilgængelig for nogen af IP-adresserne."
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "BGP Route Origin ASN",
+				"bgp_route_prefix": "BGP Route Prefix",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Ruteannonceringens gyldighed"
 		},
 		"internet_nl_mail_rpki_exists": {
@@ -827,11 +934,28 @@
 				"good": "For alle IP-adresser på din(e) modtagende mailserver(e) offentliggøres en RPKI Route Origin Authorisation (ROA).",
 				"no_addresses": "Dit domæne indeholder <em>ikke</em> nogen modtagende mailservere. Derfor kunne denne deltest ikke udføres."
 			},
+			"tech_table": {
+				"ip_address": "",
+				"mail_server": "Mailserver",
+				"rpki_route_origin_authorization": ""
+			},
 			"technology": "Ressource Public Key Infrastructure (RPKI) / Ressource-certificering",
 			"title": "Tillid til netværksrute til e-mailserver"
 		},
 		"internet_nl_mail_rpki_valid": {
 			"explanation": "Vi kontrollerer, om valideringsstatus for alle IP-adresser på dine mailservere (MX) er <code>Valid</code>. Hvis der er flere overlappende rutemeddelelser for IP-adressen, tester vi, at de alle er <code>Gyldige</code>.</p><p>Din hoster (eller dens netværksudbyder) meddeler via Border Gateway Protocol (BGP), for hvilke af sine IP-adresseblokke den accepterer indgående internettrafik. Det gør den ved at knytte (dele af) sine IP-adresseblokke (Route Prefix) til det unikke nummer på sit udbydernetværk (Route Origin ASN) og derefter distribuere denne routinginformation. Andre netværksudbydere bruger disse rutemeddelelser til at afgøre, via hvilken rute de skal sende trafik til IP-adresserne.</p><p>Derudover skal din hoster (eller dens netværksudbyder) for hver ruteannoncering offentliggøre en digitalt signeret erklæring med ruteautorisation (Route Origin Authorisation; forkortet: ROA) ved hjælp af Resource Public Key Infrastructure (RPKI). </p><p>En anden netværksudbyder, der bliver bedt om at sende internettrafik til din servers IP-adresse, kan kryptografisk verificere den tilknyttede erklæring. Det verificerede indhold (Validated ROA Payload; forkortet: VRP) omfatter, hvilke udbydernetværk (VRP ASN) der er autoriseret til at modtage internettrafik for hver registreret IP-adresseblok (VRP Prefix). </p><p>Netværksudbyderen kan derefter bruge dette indhold til at filtrere BGP-ruter. For eksempel kan han afvise enhver <code>Ugyldige</code> ruter for at forhindre, at internettrafik fra hans netværk sendes til uautoriserede udbydernetværk.</p><p>Kontrol af rutemeddelelser mod ruteautorisationer (RPKI Origin Validation; forkortet: ROV) har følgende tre mulige udfald.</p><ul><li><p><code>Gyldig</code>: Ruteannonceringen for den pågældende IP-adresse matches af mindst én offentliggjort ruteautorisation. En ruteautorisation matches også for mere specifikke ruteannonceringer (dvs. for en del af den IP-adresseblok, der er indeholdt i ruteautorisationen), medmindre de er mere specifikke end den grænse, der er angivet i ruteautorisationen (via attributten <code>maxLength</code> ). </p></li><li><p><code>Ugyldig</code>: Ruteannonceringen for den pågældende IP-adresse er dækket af en ruteautorisation, men den <em>matcher ikke</em> . Der er to mulige årsager: </p></li><li><p>IP-adresseblokken (Route Prefix) er annonceret fra et udbydernetværk (Route Origin ASN), som <em>ikke</em> er autoriseret i ruteautorisationen (resultat i tabellen nedenfor: \"invalid (as)\");</p></li><li>den annoncerede IP-adresseblok (rutepræfiks) er <em>mindre end tilladt</em> i ruteautorisationen, dvs. overskrider <code>maxLength</code> -værdien (resultat i tabellen nedenfor: \"ugyldig (længde)\").</li></ul><p>Bemærk: Status <code>Ugyldig</code> angiver en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din hoster eller dennes netværksudbyder (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde kan det føre til, at din server ikke kan nås, eller at internettrafikken til din server bliver aflyttet. Kontakt din hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din hoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen. </p><ul><li><code>NotFound</code>: Der er ikke fundet nogen erklæring med route-authorisation, som dækker ruteannonceringen af den pågældende IP-adresse. Dette gør routingen af internettrafik til din server mindre sikker. Kontakt venligst din hoster om dette. Han kan bede sin netværksudbyder, der ejer din servers IP-adresser, om at offentliggøre route-autorisationer.</li></ul><p><em>Kravniveau: Anbefalet</em>",
+			"rating": {
+				"bad": "Mindst én IP-adresse på dine modtagende mailservere har en <code>NotFound</code> valideringsstatus. Der er <em>ingen</em> RPKI Route Origin Authorization (ROA) offentliggjort for ruteannonceringen for hver af de berørte IP-adresser.",
+				"good": "Alle IP-adresser på dine modtagende mailservere har en <code>Valid</code> valideringsstatus. Ruteannonceringen af disse IP-adresser matches af den offentliggjorte RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Mindst én IP-adresse på dine modtagende mailservere har en <code>ugyldig</code> valideringsstatus. Ruteannonceringen for de berørte IP-adresser er <em>ikke</em> matchet af den offentliggjorte RPKI Route Origin Authorisation (ROA). Dette indikerer en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din mailhoster (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde øger det risikoen for, at din server ikke kan nås, eller at internettrafikken til din server bliver opfanget. Kontakt din mail-hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din mailhoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"mail_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Ruteannonceringens gyldighed"
 		},
 		"internet_nl_mail_starttls_cert_chain": {
@@ -840,6 +964,10 @@
 				"bad": "Tillidskæden for mindst et af dine mailservercertifikater er <em>ikke</em> komplet og/eller <em>ikke</em> signeret af en betroet rodcertifikatmyndighed.",
 				"good": "Tillidskæden for alle dine mailservercertifikater er komplet og underskrevet af en pålidelig rodcertifikatmyndighed."
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"untrusted_certificate_chain": "Ikke-betroet certifikatkæde"
+			},
 			"title": "Certifikatets tillidskæde"
 		},
 		"internet_nl_mail_starttls_cert_domain": {
@@ -847,6 +975,10 @@
 			"rating": {
 				"bad": "Domænenavnet på mindst en af dine mailservere <em>matcher ikke</em> domænenavnet på mailservercertifikatet.",
 				"good": "Domænenavnene på alle dine mailservere stemmer overens med domænenavnene på dine mailservercertifikater."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"unmatched_domains_on_certificate": "Uoverensstemmende domæner på certifikatet"
 			},
 			"title": "Domænenavn på certifikat"
 		},
@@ -857,6 +989,11 @@
 				"good": "De digitale signaturer på alle dine mailservercertifikater bruger sikre parametre.",
 				"phase_out": "Den digitale signatur i mindst et af dine mailservercertifikater bruger parametre, der har en <em>udfasningsstatus</em> , fordi de er kendt for at være skrøbelige og risikerer at blive <em>utilstrækkeligt</em> sikre."
 			},
+			"tech_table": {
+				"affected_signature_parameters": "Berørte signaturparametre",
+				"mail_server_mx": "",
+				"status": "Status"
+			},
 			"title": "Certifikatets offentlige nøgle"
 		},
 		"internet_nl_mail_starttls_cert_sig": {
@@ -864,6 +1001,11 @@
 			"rating": {
 				"bad": "Mindst et af dine mailservercertifikater er signeret med en hashalgoritme, der er <em>utilstrækkelig</em> sikker.",
 				"good": "Alle dine mailservercertifikater er signeret ved hjælp af en sikker hashalgoritme."
+			},
+			"tech_table": {
+				"affected_hash_algorithm": "Berørt hash-algoritme",
+				"mail_server_mx": "",
+				"status": "Status"
 			},
 			"title": "Underskrift af certifikat"
 		},
@@ -874,6 +1016,10 @@
 				"bogus": "Mindst et af dine mailserverdomæner leverer <em>ikke</em> DNSSEC-bevis for, at der ikke findes DANE TLSA-poster. Dette kan føre til, at post sendt til dig af DANE-validerende postafsendere ikke kan leveres. Du bør bede din navneserveroperatør om at løse dette problem.",
 				"good": "Alle dine mailserver-domæner har en TLSA-record for DANE."
 			},
+			"tech_table": {
+				"dane_tlsa_record_existent": "DANE TLSA record findes",
+				"mail_server_mx": ""
+			},
 			"title": "DANE-eksistens"
 		},
 		"internet_nl_mail_starttls_dane_rollover": {
@@ -881,6 +1027,10 @@
 			"rating": {
 				"bad": "Mindst et af dine mailserverdomæner har <em>ikke</em> en aktiv DANE-ordning til pålidelig overførsel af certifikatnøgler.",
 				"good": "Alle dine mailserverdomæner har en aktiv DANE-ordning til pålidelig overførsel af certifikatnøgler."
+			},
+			"tech_table": {
+				"dane_rollover_scheme": "DANE rollover-ordning",
+				"mail_server_mx": ""
 			},
 			"title": "DANE rollover-ordning"
 		},
@@ -890,6 +1040,10 @@
 				"bad": "Mindst én af dine mailservere har <em>ikke</em> nogen gyldige DANE-fingeraftryk. Enten har nogen manipuleret med svaret fra din mailserver, eller også har din mailserver en alvorlig DANE-konfigurationsfejl. Sidstnævnte gør dit domæne utilgængeligt for enhver afsendende mailserver, der kontrollerer DANE-fingeraftryk. Du bør kontakte din mailudbyder så hurtigt som muligt.",
 				"good": "Hver af dine mailservere har mindst ét gyldigt DANE-fingeraftryk. Det gør det muligt for afsendende mailservere, der understøtter DANE-verifikation, at oprette en autentificeret, krypteret transportforbindelse med dine modtagende mailservere."
 			},
+			"tech_table": {
+				"dane_tlsa_record_valid": "DANE TLSA-rekord gyldig",
+				"mail_server_mx": ""
+			},
 			"title": "DANE-validitet"
 		},
 		"internet_nl_mail_starttls_tls_0rtt": {
@@ -898,6 +1052,10 @@
 				"bad": "Mindst én af dine mailservere understøtter 0-RTT, som er <em>ikke</em> sikker.",
 				"good": "Ingen af dine mailservere understøtter 0-RTT.",
 				"na": "Denne deltest er ikke relevant, da dine mailservere ikke understøtter TLS 1.3."
+			},
+			"tech_table": {
+				"0_rtt": "0-RTT",
+				"mail_server_mx": ""
 			},
 			"title": "0-RTT"
 		},
@@ -917,6 +1075,10 @@
 				"other_2": "Der er ikke sat nogen modtagende mailservere (MX) på dit domæne, som ikke har A/AAAA-poster. Det er fint, hvis du ikke ønsker at modtage e-mail.",
 				"passed": "Kryptering er tilgængelig. Det betyder, at e-mail kan sendes sikkert til denne adresse."
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"starttls": "STARTTLS"
+			},
 			"technology": "Opportunistisk TLS / STARTTLS",
 			"title": "Anvendelse af kryptering af modtaget e-mail"
 		},
@@ -929,6 +1091,11 @@
 				"seclevel_bad": "Mindst én af dine mailservere foretrækker <em>ikke</em> 'Good' frem for 'Sufficient' frem for 'Phase out'-chiffer ('II').",
 				"warning": "FORÆLDET TEKST; DOM IKKE BRUGT</p><p>Mindst én af dine mailservere <em>tilbyder ikke</em> cifre i overensstemmelse med den foreskrevne rækkefølge inden for et bestemt sikkerhedsniveau ('II-B')."
 			},
+			"tech_table": {
+				"first_found_affected_cipher_pair": "Første fundne berørte cipher-par",
+				"mail_server_mx": "",
+				"violated_rule_ii_b": "Overtrådte regel # ('II-B')"
+			},
 			"title": "Cifferrækkefølge"
 		},
 		"internet_nl_mail_starttls_tls_ciphers": {
@@ -938,6 +1105,11 @@
 				"good": "Alle dine mailservere understøtter kun sikre cifre.",
 				"phase_out": "Mindst en af dine mailservere understøtter en eller flere cifre, der har en <em>udfasningsstatus</em> , fordi de er kendt for at være skrøbelige og risikerer at blive <em>utilstrækkeligt</em> sikre."
 			},
+			"tech_table": {
+				"first_found_affected_cipher": "Første fundne berørte chiffer",
+				"mail_server_mx": "",
+				"status": "Status"
+			},
 			"title": "Cifre (udvælgelse af algoritmer)"
 		},
 		"internet_nl_mail_starttls_tls_clientreneg": {
@@ -946,6 +1118,10 @@
 				"bad": "Mindst én af dine mailservere giver mulighed for klientinitieret genforhandling, hvilket kan have en negativ indvirkning på din mailservers tilgængelighed.",
 				"good": "Alle dine mailservere tillader ikke klientinitieret genforhandling."
 			},
+			"tech_table": {
+				"client_initiated_renegotiation": "Klient-initieret genforhandling",
+				"mail_server_mx": ""
+			},
 			"title": "Klient-initieret genforhandling"
 		},
 		"internet_nl_mail_starttls_tls_compress": {
@@ -953,6 +1129,10 @@
 			"rating": {
 				"bad": "Mindst én af dine mailservere understøtter TLS-komprimering, som er <em>ikke</em> sikker.",
 				"good": "Alle dine mailservere understøtter ikke TLS-komprimering."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"tls_compression": "TLS-komprimering"
 			},
 			"title": "TLS-komprimering"
 		},
@@ -964,6 +1144,11 @@
 				"na": "Denne deltest er ikke relevant, da dine mailservere ikke understøtter Diffie-Hellman-nøgleudveksling. Bemærk, at RSA er et alternativ til nøgleudveksling, men har <em>udfasningsstatus</em> .",
 				"phase_out": "Mindst én af dine mailservere understøtter parametre for Diffie-Hellman-nøgleudveksling, der har en <em>udfasningsstatus</em> , fordi de er kendt for at være skrøbelige og risikerer at blive <em>utilstrækkeligt</em> sikre."
 			},
+			"tech_table": {
+				"affected_parameters": "Berørte parametre",
+				"mail_server_mx": "",
+				"security_level": "Sikkerhedsniveau"
+			},
 			"title": "Vigtige udvekslingsparametre"
 		},
 		"internet_nl_mail_starttls_tls_keyexchangehash": {
@@ -973,6 +1158,10 @@
 				"other": "Vi var ikke i stand til at bestemme den hashfunktion, der bruges af mindst en af dine mailservere. Det kan skyldes, at den anvendte chifferkombination ikke har nogen signatur til certifikatverifikation (f.eks. bruger den RSA-nøgleudveksling eller er anonym, dvs. <code>anon</code>).",
 				"phase_out": "Mindst én af dine mailservere <em>understøtter ikke</em> en sikker hashfunktion til nøgleudveksling. Du bør <em>udfase</em> denne indstilling med vilje, fordi den risikerer at blive <em>utilstrækkeligt</em> sikker i fremtiden."
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"sha2_support_for_signatures": "SHA2-understøttelse af signaturer"
+			},
 			"title": "Hash-funktion til nøgleudveksling"
 		},
 		"internet_nl_mail_starttls_tls_secreneg": {
@@ -980,6 +1169,10 @@
 			"rating": {
 				"bad": "Mindst én af dine mailservere understøtter usikker genforhandling, som naturligvis er <em>ikke</em> sikker.",
 				"good": "Alle dine mailservere understøtter sikker genforhandling."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"secure_renegotiation": "Sikker genforhandling"
 			},
 			"title": "Sikker genforhandling"
 		},
@@ -989,6 +1182,11 @@
 				"bad": "Mindst én af dine mailservere understøtter en eller flere <em>utilstrækkeligt</em> sikre TLS-versioner.",
 				"good": "Alle dine mailservere understøtter kun sikre TLS-versioner.",
 				"phase_out": "Mindst en af dine mailservere understøtter en eller flere TLS-versioner, som bør <em>udfases</em> bevidst, fordi de er kendt for at være skrøbelige og i risiko for at blive <em>utilstrækkeligt</em> sikre."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"status": "Status",
+				"tls_versions": "TLS-versioner"
 			},
 			"title": "TLS-version"
 		},
@@ -1012,6 +1210,10 @@
 				"bad": "Din webserver tilbyder <em>ikke</em> Content-Security-Policy (CSP), eller tilbyder CSP med visse <em>usikre</em> indstillinger.",
 				"good": "Din webserver tilbyder Content-Security-Policy (CSP) og bruger ikke visse usikre CSP-indstillinger."
 			},
+			"tech_table": {
+				"findings": "Resultater",
+				"web_server_ip_address": "Webserverens IP-adresse"
+			},
 			"title": "Politik for indholdssikkerhed"
 		},
 		"internet_nl_web_appsecpriv_referrer_policy": {
@@ -1021,10 +1223,23 @@
 				"good": "Din webserver tilbyder en Referrer-Policy med en policy-værdi, der er tilstrækkelig sikker og beskytter privatlivets fred.",
 				"recommendations": "Din webserver tilbyder enten <em>ikke</em> en Referrer-Policy og er derfor afhængig af browserens standardpolitik, eller din webserver tilbyder en Referrer-Policy med en politikværdi, der bør bruges med forsigtighed på grund af dens potentielle indvirkning på sikkerhed og privatliv."
 			},
+			"tech_table": {
+				"findings": "Resultater",
+				"web_server_ip_address": "Webserverens IP-adresse"
+			},
 			"title": "Henvisningspolitik"
 		},
 		"internet_nl_web_appsecpriv_securitytxt": {
 			"explanation": "",
+			"rating": {
+				"bad": "Din webserver <em>tilbyder ikke</em> en security.txt-fil på den rigtige placering, den kunne <em>ikke</em> hentes, eller dens indhold er <em>ikke</em> syntaktisk gyldigt.",
+				"good": "Din webserver tilbyder en security.txt-fil på den rigtige placering, og dens indhold er syntaktisk gyldigt.",
+				"recommendations": "Din webserver tilbyder en security.txt-fil på den rigtige placering, og dens indhold er syntaktisk gyldigt. Der er dog en eller flere anbefalinger til forbedringer."
+			},
+			"tech_table": {
+				"findings": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Sikkerhed.txt"
 		},
 		"internet_nl_web_appsecpriv_x_content_type_options": {
@@ -1033,6 +1248,10 @@
 				"bad": "Din webserver tilbyder <em>ikke</em> X-Content-Type-Options.",
 				"good": "Din webserver tilbyder X-Content-Type-Options."
 			},
+			"tech_table": {
+				"web_server_ip_address": "",
+				"x_content_type_options_value": "X-Content-Type-Options værdi"
+			},
 			"title": "X-Content-Type-Options"
 		},
 		"internet_nl_web_appsecpriv_x_frame_options": {
@@ -1040,6 +1259,10 @@
 			"rating": {
 				"bad": "Din webserver tilbyder <em>ikke</em> sikkert konfigurerede X-Frame-Options.",
 				"good": "Din webserver tilbyder sikkert konfigurerede X-Frame-Options."
+			},
+			"tech_table": {
+				"web_server_ip_address": "",
+				"x_frame_options_value": "X-Frame-Options-værdi"
 			},
 			"title": "X-Frame-Options"
 		},
@@ -1062,6 +1285,10 @@
 				"resolver_error": "Der opstod desværre en fejl i Internet.nl's resolver. Venligst <a href=\"/about/\">kontakt</a> os.",
 				"servfail": "Navneserverne for dit domæne er <em>i stykker</em>. De returnerede en fejl (<code>SERVFAIL</code>) til vores forespørgsler om en DNSSEC-signatur. Kontakt venligst din navneserveroperatør (ofte din hostingudbyder og/eller registrator) for at få det ordnet snart."
 			},
+			"tech_table": {
+				"domain": "Domæne",
+				"registrar": ""
+			},
 			"title": "DNSSEC-eksistens"
 		},
 		"internet_nl_web_dnssec_valid": {
@@ -1071,6 +1298,10 @@
 				"good": "Dit domæne er sikkert, fordi dets DNSSEC-signatur er gyldig.",
 				"unsupported_ds_algo": "Dit domæne er signeret med en algoritme, som vores valideringsresolver ikke understøtter i øjeblikket. Derfor er vi ikke i stand til at kontrollere gyldigheden af dets DNSSEC-signatur."
 			},
+			"tech_table": {
+				"domain": "Domæne",
+				"status": "Status"
+			},
 			"title": "DNSSEC-validitet"
 		},
 		"internet_nl_web_https_cert_chain": {
@@ -1079,6 +1310,10 @@
 				"bad": "Tillidskæden for dit webstedscertifikat er <em>ikke</em> komplet og/eller <em>ikke</em> underskrevet af en betroet rodcertifikatmyndighed.",
 				"good": "Tillidskæden for dit webstedscertifikat er komplet og underskrevet af en pålidelig rodcertifikatmyndighed."
 			},
+			"tech_table": {
+				"untrusted_certificate_chain": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Certifikatets tillidskæde"
 		},
 		"internet_nl_web_https_cert_domain": {
@@ -1086,6 +1321,10 @@
 			"rating": {
 				"bad": "Domænenavnet på din hjemmeside stemmer <em>ikke</em> overens med domænenavnet på dit hjemmesidecertifikat.",
 				"good": "Domænenavnet på din hjemmeside stemmer overens med domænenavnet på dit hjemmesidecertifikat."
+			},
+			"tech_table": {
+				"unmatched_domains_on_certificate": "",
+				"web_server_ip_address": ""
 			},
 			"title": "Domænenavn på certifikat"
 		},
@@ -1096,6 +1335,11 @@
 				"good": "Den digitale signatur for dit webstedscertifikat bruger sikre parametre.",
 				"phase_out": "Den digitale signatur på dit webstedscertifikat bruger parametre, der har en <em>udfasningsstatus</em> , fordi de er kendt for at være skrøbelige og risikerer at blive <em>utilstrækkeligt</em> sikre."
 			},
+			"tech_table": {
+				"affected_signature_parameters": "",
+				"status": "Status",
+				"web_server_ip_address": ""
+			},
 			"title": "Certifikatets offentlige nøgle"
 		},
 		"internet_nl_web_https_cert_sig": {
@@ -1103,6 +1347,11 @@
 			"rating": {
 				"bad": "Dit webstedscertifikat er signeret med en hashalgoritme, der er <em>utilstrækkelig</em> sikker.",
 				"good": "Dit webstedscertifikat er signeret ved hjælp af en sikker hashalgoritme."
+			},
+			"tech_table": {
+				"affected_hash_algorithm": "",
+				"status": "Status",
+				"web_server_ip_address": ""
 			},
 			"title": "Underskrift af certifikat"
 		},
@@ -1113,6 +1362,10 @@
 				"bogus": "Dit webstedsdomæne giver <em>ikke</em> DNSSEC-bevis for, at der ikke findes DANE TLSA-poster. Du bør bede din navneserveroperatør om at løse dette problem.",
 				"good": "Dit webstedsdomæne indeholder en TLSA-post for DANE."
 			},
+			"tech_table": {
+				"dane_tlsa_record_existent": "",
+				"web_server_ip_address": ""
+			},
 			"title": "DANE-eksistens"
 		},
 		"internet_nl_web_https_dane_valid": {
@@ -1120,6 +1373,10 @@
 			"rating": {
 				"bad": "DANE-fingeraftrykket på dit domæne er <em>ikke</em> gyldigt for dit webcertifikat. Enten har nogen manipuleret svaret fra din navneserver, eller også har dit domæne en alvorlig DANE-konfigurationsfejl. Sidstnævnte gør din hjemmeside utilgængelig for alle brugere, der tjekker DANE-fingeraftryk. Du bør kontakte din navneserveroperatør og/eller din hostingudbyder så hurtigt som muligt.",
 				"good": "DANE-fingeraftrykket på dit domæne er gyldigt for dit webcertifikat."
+			},
+			"tech_table": {
+				"dane_tlsa_record_valid": "",
+				"web_server_ip_address": ""
 			},
 			"title": "DANE-validitet"
 		},
@@ -1130,6 +1387,10 @@
 				"good": "Din hjemmeside tilbyder HTTPS.",
 				"other": "Din webserver kan ikke nås."
 			},
+			"tech_table": {
+				"https_existent": "HTTPS findes",
+				"web_server_ip_address": ""
+			},
 			"title": "HTTPS tilgængelig"
 		},
 		"internet_nl_web_https_http_compress": {
@@ -1137,6 +1398,10 @@
 			"rating": {
 				"bad": "Din webserver understøtter HTTP-komprimering, hvilket kan udgøre en sikkerhedsrisiko.",
 				"good": "Din webserver understøtter ikke HTTP-komprimering."
+			},
+			"tech_table": {
+				"http_compression": "HTTP-komprimering",
+				"web_server_ip_address": ""
 			},
 			"title": "HTTP-komprimering"
 		},
@@ -1146,6 +1411,10 @@
 				"bad": "Din webserver tilbyder <em>ikke</em> en HSTS-politik.",
 				"good": "Din webserver tilbyder en HSTS-politik.",
 				"other": "Din webserver tilbyder en HSTS-politik med en cache-gyldighedsperiode (<code>max-age</code>), der er <em>ikke</em> tilstrækkelig lang (dvs. mindre end 1 år)."
+			},
+			"tech_table": {
+				"hsts_policy": "HSTS-politik",
+				"web_server_ip_address": ""
 			},
 			"title": "HSTS"
 		},
@@ -1157,6 +1426,10 @@
 				"no_https": "Denne test kunne ikke udføres, fordi din webserver enten ikke tilbyder HTTPS eller HTTPS med en meget forældet, usikker TLS-konfiguration.",
 				"other": "Din webserver understøtter kun HTTPS og ikke HTTP."
 			},
+			"tech_table": {
+				"https_redirect": "HTTPS-omdirigering",
+				"web_server_ip_address": ""
+			},
 			"title": "HTTPS-omdirigering"
 		},
 		"internet_nl_web_https_tls_0rtt": {
@@ -1165,6 +1438,10 @@
 				"bad": "Din webserver understøtter 0-RTT, hvilket er <em>ikke</em> sikkert.",
 				"good": "Din webserver understøtter ikke 0-RTT.",
 				"na": "Denne deltest er ikke relevant, da din webserver ikke understøtter TLS 1.3."
+			},
+			"tech_table": {
+				"0_rtt": "0-RTT",
+				"web_server_ip_address": ""
 			},
 			"title": "0-RTT"
 		},
@@ -1177,6 +1454,11 @@
 				"seclevel_bad": "Din webserver foretrækker <em>ikke</em> 'God' frem for 'Tilstrækkelig' frem for 'Udfasning'-chiffer ('II').",
 				"warning": "FORÆLDET TEKST; DOM IKKE BRUGT</p><p>Din webserver tilbyder <em>ikke</em> cifre i overensstemmelse med den foreskrevne rækkefølge inden for et bestemt sikkerhedsniveau ('II-B')."
 			},
+			"tech_table": {
+				"first_found_affected_cipher_pair": "",
+				"violated_rule_ii_b": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Cifferrækkefølge"
 		},
 		"internet_nl_web_https_tls_ciphers": {
@@ -1186,6 +1468,11 @@
 				"good": "Din webserver understøtter kun sikre cifre.",
 				"phase_out": "Din webserver understøtter en eller flere cifre, der har en <em>udfasningsstatus</em> , fordi de er kendt for at være skrøbelige og risikerer at blive <em>utilstrækkeligt</em> sikre."
 			},
+			"tech_table": {
+				"affected_ciphers": "Berørte cifre",
+				"status": "Status",
+				"web_server_ip_address": ""
+			},
 			"title": "Cifre (udvælgelse af algoritmer)"
 		},
 		"internet_nl_web_https_tls_clientreneg": {
@@ -1194,6 +1481,10 @@
 				"bad": "Din webserver giver mulighed for klientinitieret genforhandling, hvilket kan have negativ indflydelse på tilgængeligheden af dit website.",
 				"good": "Din webserver tillader ikke klientinitieret genforhandling."
 			},
+			"tech_table": {
+				"client_initiated_renegotiation": "Klient-initieret genforhandling",
+				"web_server_ip_address": ""
+			},
 			"title": "Klient-initieret genforhandling"
 		},
 		"internet_nl_web_https_tls_compress": {
@@ -1201,6 +1492,10 @@
 			"rating": {
 				"bad": "Din webserver understøtter TLS-komprimering, som er <em>ikke</em> sikker.",
 				"good": "Din webserver understøtter ikke TLS-komprimering."
+			},
+			"tech_table": {
+				"tls_compression": "TLS-komprimering",
+				"web_server_ip_address": ""
 			},
 			"title": "TLS-komprimering"
 		},
@@ -1212,6 +1507,11 @@
 				"na": "Denne deltest er ikke relevant, da din webserver <em>ikke</em> understøtter Diffie-Hellman-nøgleudveksling. Bemærk, at RSA er et alternativ til nøgleudveksling, men har <em>udfasningsstatus</em> .",
 				"phase_out": "Din webserver understøtter parametre for Diffie-Hellman-nøgleudveksling, der har en <em>udfasningsstatus</em> , fordi de er kendt for at være skrøbelige og risikerer at blive <em>utilstrækkeligt</em> sikre."
 			},
+			"tech_table": {
+				"affected_parameters": "",
+				"status": "Status",
+				"web_server_ip_address": ""
+			},
 			"title": "Vigtige udvekslingsparametre"
 		},
 		"internet_nl_web_https_tls_keyexchangehash": {
@@ -1220,6 +1520,10 @@
 				"good": "Din webserver understøtter en sikker hashfunktion til nøgleudveksling.",
 				"other": "Vi kunne ikke finde ud af, hvilken hashfunktion din webserver bruger. Det kan skyldes, at den anvendte chifferkombination ikke har nogen signatur til certifikatverifikation (f.eks. bruger den RSA-nøgleudveksling eller er anonym, dvs. <code>anon</code>).",
 				"phase_out": "Din webserver <em>understøtter ikke</em> en sikker hashfunktion til nøgleudveksling. Du bør <em>udfase</em> denne indstilling med vilje, fordi den risikerer at blive <em>utilstrækkelig</em> sikker i fremtiden."
+			},
+			"tech_table": {
+				"sha2_support_for_signatures": "",
+				"web_server_ip_address": ""
 			},
 			"title": "Hash-funktion til nøgleudveksling"
 		},
@@ -1230,6 +1534,10 @@
 				"good": "Din webserver understøtter OCSP-hæftning, og dataene i svaret er gyldige.",
 				"ok": "Din webserver understøtter <em>ikke</em> OCSP-hæftning."
 			},
+			"tech_table": {
+				"ocsp_stapling": "OCSP-hæftning",
+				"web_server_ip_address": ""
+			},
 			"title": "OCSP-hæftning"
 		},
 		"internet_nl_web_https_tls_secreneg": {
@@ -1237,6 +1545,10 @@
 			"rating": {
 				"bad": "Din webserver understøtter usikker genforhandling, som tydeligvis er <em>ikke</em> sikker.",
 				"good": "Din webserver understøtter sikker genforhandling."
+			},
+			"tech_table": {
+				"secure_renegotiation": "Sikker genforhandling",
+				"web_server_ip_address": ""
 			},
 			"title": "Sikker genforhandling"
 		},
@@ -1246,6 +1558,11 @@
 				"bad": "Din webserver understøtter <em>utilstrækkeligt</em> sikre TLS-versioner.",
 				"good": "Din webserver understøtter kun sikre TLS-versioner.",
 				"phase_out": "Din webserver understøtter TLS-versioner, som bør <em>udfases</em> bevidst, fordi de er kendt for at være skrøbelige og i fare for at blive <em>utilstrækkeligt</em> sikre."
+			},
+			"tech_table": {
+				"status": "Status",
+				"tls_version": "TLS-version",
+				"web_server_ip_address": ""
 			},
 			"title": "TLS-version"
 		},
@@ -1259,6 +1576,11 @@
 				"good": "To eller flere navneservere for dit domæne har en IPv6-adresse.",
 				"other": "Kun én navneserver for dit domæne har en IPv6-adresse."
 			},
+			"tech_table": {
+				"ipv4_address": "",
+				"ipv6_address": "",
+				"name_server": ""
+			},
 			"title": "IPv6-adresser til navneservere"
 		},
 		"internet_nl_web_ipv6_ns_reach": {
@@ -1266,6 +1588,10 @@
 			"rating": {
 				"bad": "<em>Ikke</em> alle navneservere, der har en IPv6-adresse, kan nås via IPv6.",
 				"good": "Alle navneservere, der har en IPv6-adresse, kan nås via IPv6."
+			},
+			"tech_table": {
+				"name_server": "",
+				"unreachable_ipv6_address": ""
 			},
 			"title": "IPv6-rækkevidde for navneservere"
 		},
@@ -1275,6 +1601,11 @@
 				"bad": "<em>Ingen</em> af dine webservere har en IPv6-adresse.",
 				"good": "Mindst én af dine webservere har en IPv6-adresse."
 			},
+			"tech_table": {
+				"ipv4_address": "",
+				"ipv6_address": "",
+				"web_server": "Webserver"
+			},
 			"title": "IPv6-adresser til webserver"
 		},
 		"internet_nl_web_ipv6_ws_reach": {
@@ -1282,6 +1613,10 @@
 			"rating": {
 				"bad": "Mindst én af dine webservere med en IPv6-adresse er <em>ikke</em> tilgængelig via IPv6.",
 				"good": "Alle dine webservere med en IPv6-adresse kan nås via IPv6."
+			},
+			"tech_table": {
+				"unreachable_ipv6_address": "",
+				"web_server": "Webserver"
 			},
 			"title": "Webserverens IPv6-rækkevidde"
 		},
@@ -1340,10 +1675,32 @@
 		},
 		"internet_nl_web_ns_rpki_exists": {
 			"explanation": "Vi kontrollerer, om en RPKI Route Origin Authorization (ROA) er blevet offentliggjort for alle IP-adresser på dit domænes navneservere.</p><p>Din hoster (eller dens netværksudbyder) meddeler via Border Gateway Protocol (BGP), for hvilke af sine IP-adresseblokke den accepterer indgående internettrafik. Andre netværksudbydere bruger disse rutemeddelelser til at afgøre, via hvilken rute de skal sende trafik til din servers IP-adresser.</p><p>Men en route announcement kan forfalskes. Faktisk kan en anden netværksudbyder være i stand til at forbinde IP-adresseblokken for din IP-adresse til sit netværk og dermed potentielt modtage internettrafik, der faktisk er beregnet til din netværksudbyder. Årsagen kan være utilsigtet eller ondsindet. I begge tilfælde kan det resultere i, at din server bliver utilgængelig, eller at internettrafikken til din server bliver opfanget.</p><p>Resource Public Key Infrastructure (RPKI) forbedrer beskyttelsen mod dette betydeligt. Med RPKI kan den retmæssige indehaver af en blok af IP-adresser offentliggøre en digitalt signeret erklæring med ruteautorisation (Route Origin Authorisation, forkortet ROA). En anden netværksudbyder, der ønsker at sende internettrafik til en bestemt IP-adresse, kan bruge den tilsvarende erklæring til at filtrere <code>Ugyldige</code> ruter. På denne måde forhindrer netværksudbyderen, at internettrafik fra dens netværk sendes til uautoriserede udbydernetværk.</p><p><em>Kravniveau: Anbefalet</em>",
+			"rating": {
+				"bad": "For mindst en af IP-adresserne på dine navneservere <em>er ingen</em> RPKI Route Origin Authorisation (ROA) offentliggjort.",
+				"good": "For alle IP-adresser på dine navneservere offentliggøres en RPKI Route Origin Authorisation (ROA).",
+				"no_addresses": "Dit domæne indeholder <em>ikke</em> nogen navneservere. Derfor kunne denne deltest ikke udføres."
+			},
+			"tech_table": {
+				"ip_address": "",
+				"name_server": "",
+				"rpki_route_origin_authorization": ""
+			},
 			"title": "Eksistens af ruteoprindelsesgodkendelse"
 		},
 		"internet_nl_web_ns_rpki_valid": {
 			"explanation": "Vi kontrollerer, om valideringsstatus for alle IP-adresser på dit domænes navneservere er <code>Valid</code>. Hvis der er flere overlappende rutemeddelelser for IP-adressen, tester vi, at de alle er <code>Gyldige</code>.</p><p>Din hoster (eller dens netværksudbyder) meddeler via Border Gateway Protocol (BGP), for hvilke af sine IP-adresseblokke den accepterer indgående internettrafik. Det gør den ved at knytte (dele af) sine IP-adresseblokke (Route Prefix) til det unikke nummer på sit udbydernetværk (Route Origin ASN) og derefter distribuere denne routinginformation. Andre netværksudbydere bruger disse rutemeddelelser til at afgøre, via hvilken rute de skal sende trafik til IP-adresserne.</p><p>Derudover skal din hoster (eller dens netværksudbyder) for hver ruteannoncering offentliggøre en digitalt signeret erklæring med ruteautorisation (Route Origin Authorisation; forkortet: ROA) ved hjælp af Resource Public Key Infrastructure (RPKI). </p><p>En anden netværksudbyder, der bliver bedt om at sende internettrafik til din servers IP-adresse, kan kryptografisk verificere den tilknyttede erklæring. Det verificerede indhold (Validated ROA Payload; forkortet: VRP) omfatter, hvilke udbydernetværk (VRP ASN) der er autoriseret til at modtage internettrafik for hver registreret IP-adresseblok (VRP Prefix). </p><p>Netværksudbyderen kan derefter bruge dette indhold til at filtrere BGP-ruter. For eksempel kan han afvise enhver <code>Ugyldige</code> ruter for at forhindre, at internettrafik fra hans netværk sendes til uautoriserede udbydernetværk.</p><p>Kontrol af rutemeddelelser mod ruteautorisationer (RPKI Origin Validation; forkortet: ROV) har følgende tre mulige udfald.</p><ul><li><p><code>Gyldig</code>: Ruteannonceringen for den pågældende IP-adresse matches af mindst én offentliggjort ruteautorisation. En ruteautorisation matches også for mere specifikke ruteannonceringer (dvs. for en del af den IP-adresseblok, der er indeholdt i ruteautorisationen), medmindre de er mere specifikke end den grænse, der er angivet i ruteautorisationen (via attributten <code>maxLength</code> ). </p></li><li><p><code>Ugyldig</code>: Ruteannonceringen for den pågældende IP-adresse er dækket af en ruteautorisation, men den <em>matcher ikke</em> . Der er to mulige årsager: </p></li><li><p>IP-adresseblokken (Route Prefix) er annonceret fra et udbydernetværk (Route Origin ASN), som <em>ikke</em> er autoriseret i ruteautorisationen (resultat i tabellen nedenfor: \"invalid (as)\");</p></li><li>den annoncerede IP-adresseblok (rutepræfiks) er <em>mindre end tilladt</em> i ruteautorisationen, dvs. overskrider <code>maxLength</code> -værdien (resultat i tabellen nedenfor: \"ugyldig (længde)\").</li></ul><p>Bemærk: Status <code>Ugyldig</code> angiver en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din hoster eller dennes netværksudbyder (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde kan det føre til, at din server ikke kan nås, eller at internettrafikken til din server bliver aflyttet. Kontakt din hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din hoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen. </p><ul><li><code>NotFound</code>: Der er ikke fundet nogen erklæring med route-authorisation, som dækker ruteannonceringen af den pågældende IP-adresse. Dette gør routingen af internettrafik til din server mindre sikker. Kontakt venligst din hoster om dette. Han kan bede sin netværksudbyder, der ejer din servers IP-adresser, om at offentliggøre route-autorisationer.</li></ul><p><em>Kravniveau: Anbefalet</em>",
+			"rating": {
+				"bad": "",
+				"good": "",
+				"invalid": "",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Ruteannonceringens gyldighed"
 		},
 		"internet_nl_web_rpki": {
@@ -1357,11 +1714,28 @@
 				"good": "For alle IP-adresser på din webserver offentliggøres en RPKI Route Origin Authorisation (ROA).",
 				"no_addresses": "Dit domæne indeholder <em>ikke</em> nogen webserver-IP-adresser. Derfor kunne denne deltest ikke udføres."
 			},
+			"tech_table": {
+				"ip_address": "",
+				"rpki_route_origin_authorization": "",
+				"web_server": "Webserver"
+			},
 			"technology": "Ressource Public Key Infrastructure (RPKI) / Ressource-certificering",
 			"title": "Tillid til netværksruten til hjemmesiden"
 		},
 		"internet_nl_web_rpki_valid": {
 			"explanation": "Vi kontrollerer, om valideringsstatus for alle IP-adresser på din webserver er <code>Valid</code>. Hvis der er flere overlappende rutemeddelelser for IP-adressen, tester vi, at de alle er <code>. Gyldige</code>.</p><p>Din hoster (eller dens netværksudbyder) annoncerer via Border Gateway Protocol (BGP), for hvilke af sine IP-adresseblokke den accepterer indgående internettrafik. Det gør den ved at knytte (dele af) sine IP-adresseblokke (Route Prefix) til det unikke nummer på sit udbydernetværk (Route Origin ASN) og derefter distribuere denne routinginformation. Andre netværksudbydere bruger disse rutemeddelelser til at afgøre, via hvilken rute de skal sende trafik til IP-adresserne.</p><p>Derudover skal din hoster (eller dens netværksudbyder) for hver ruteannoncering offentliggøre en digitalt signeret erklæring med ruteautorisation (Route Origin Authorisation; forkortet: ROA) ved hjælp af Resource Public Key Infrastructure (RPKI). </p><p>En anden netværksudbyder, der bliver bedt om at sende internettrafik til din servers IP-adresse, kan kryptografisk verificere den tilknyttede erklæring. Det verificerede indhold (Validated ROA Payload; forkortet: VRP) omfatter, hvilke udbydernetværk (VRP ASN) der er autoriseret til at modtage internettrafik for hver registreret IP-adresseblok (VRP Prefix). </p><p>Netværksudbyderen kan derefter bruge dette indhold til at filtrere BGP-ruter. For eksempel kan han afvise enhver <code>Ugyldige</code> ruter for at forhindre, at internettrafik fra hans netværk sendes til uautoriserede udbydernetværk.</p><p>Kontrol af rutemeddelelser mod ruteautorisationer (RPKI Origin Validation; forkortet: ROV) har følgende tre mulige udfald.</p><ul><li><p><code>Gyldig</code>: Ruteannonceringen for den pågældende IP-adresse matches af mindst én offentliggjort ruteautorisation. En ruteautorisation matches også for mere specifikke ruteannonceringer (dvs. for en del af den IP-adresseblok, der er indeholdt i ruteautorisationen), medmindre de er mere specifikke end den grænse, der er angivet i ruteautorisationen (via attributten <code>maxLength</code> ). </p></li><li><p><code>Ugyldig</code>: Ruteannonceringen for den pågældende IP-adresse er dækket af en ruteautorisation, men den <em>matcher ikke</em> . Der er to mulige årsager: </p></li><li><p>IP-adresseblokken (Route Prefix) er annonceret fra et udbydernetværk (Route Origin ASN), som <em>ikke</em> er autoriseret i ruteautorisationen (resultat i tabellen nedenfor: \"invalid (as)\");</p></li><li>den annoncerede IP-adresseblok (rutepræfiks) er <em>mindre end tilladt</em> i ruteautorisationen, dvs. overskrider <code>maxLength</code> -værdien (resultat i tabellen nedenfor: \"ugyldig (længde)\").</li></ul><p>Bemærk: Status <code>Ugyldig</code> angiver en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din hoster eller dennes netværksudbyder (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde kan det føre til, at din server ikke kan nås, eller at internettrafikken til din server bliver aflyttet. Kontakt din hoster så hurtigt som muligt. I tilfælde af en intern fejl bør din hoster bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen. </p><ul><li><code>NotFound</code>: Der er ikke fundet nogen erklæring med route-authorisation, som dækker ruteannonceringen af den pågældende IP-adresse. Dette gør routingen af internettrafik til din server mindre sikker. Kontakt venligst din hoster om dette. Han kan bede sin netværksudbyder, der ejer din servers IP-adresser, om at offentliggøre route-autorisationer.</li></ul><p><em>Kravniveau: Anbefalet</em>",
+			"rating": {
+				"bad": "Mindst én IP-adresse på din webserver har en <code>NotFound</code> valideringsstatus. Der er <em>ingen</em> RPKI Route Origin Authorization (ROA) offentliggjort for ruteannonceringen for hver af de berørte IP-adresser.",
+				"good": "Alle IP-adresser på din webserver har en <code>Valid</code> valideringsstatus. Ruteannonceringen af disse IP-adresser matches af den offentliggjorte RPKI Route Origin Authorisation (ROA).",
+				"invalid": "Mindst én IP-adresse på din webserver har en <code>ugyldig</code> valideringsstatus. Ruteannonceringen for de berørte IP-adresser er <em>ikke</em> matchet af den offentliggjorte RPKI Route Origin Authorisation (ROA). Dette indikerer en utilsigtet eller ondsindet fejl i rutekonfigurationen, som kan være forårsaget af din webhoster (intern fejl) eller af en tredjepart (ekstern fejl). I begge tilfælde øger det risikoen for, at din server ikke kan nås, eller at internettrafikken til din server bliver aflyttet. Kontakt din webhoster så hurtigt som muligt. I tilfælde af en intern fejl bør dit webhotel bede sin netværksudbyder, som ejer din servers IP-adresser, om at rette fejlen i rutekonfigurationen.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"rpki_origin_validation_state": "",
+				"web_server": "Webserver"
+			},
 			"title": "Ruteannonceringens gyldighed"
 		},
 		"internet_nl_web_tls": {
