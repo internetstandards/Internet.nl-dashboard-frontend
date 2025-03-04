@@ -31,7 +31,7 @@ app.component('server-response', server_response)
 
 
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
-import {enGB, nl} from 'date-fns/locale'
+import {enGB, nl, pt, de, fr, da, cs} from 'date-fns/locale'
 
 
 // todo: mixins are not recommended in vue3, but composables are. But i don't want to include the same file everywhere.
@@ -44,7 +44,7 @@ app.mixin(
     },
     computed: {
       dateLocales: function () {
-        return {nl: nl, en: enGB}
+        return {nl: nl, en: enGB, fr: fr, de: de, pt: pt, dk: da, cz: cs}
       },
       ...mapState(dashboardStore, ['locale']),
     },

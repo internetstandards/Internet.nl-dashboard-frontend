@@ -3081,7 +3081,77 @@
 										</translations>
 									</concept_node>
 									<concept_node>
+										<name>cz</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
 										<name>de</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>dk</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -3187,6 +3257,41 @@
 									</concept_node>
 									<concept_node>
 										<name>nl</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>pt</name>
 										<description/>
 										<comment/>
 										<translations>

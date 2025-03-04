@@ -118,10 +118,13 @@
 		},
 		"locale": {
 			"ai_translated": "via IA",
-			"de": "Deutsch - 🤖KI",
+			"cz": "Česky (🤖UI)",
+			"de": "Deutsch (🤖KI)",
+			"dk": "Dansk (🤖AI)",
 			"en": "Inglês",
-			"fr": "Français - 🤖IA",
-			"nl": "Países Baixos"
+			"fr": "Français (🤖IA)",
+			"nl": "Nederlands",
+			"pt": "Português (🤖IA)"
 		},
 		"login": {
 			"intro": "Aceder ao painel de controlo.",

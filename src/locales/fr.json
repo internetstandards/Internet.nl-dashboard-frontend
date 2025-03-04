@@ -118,10 +118,13 @@
 		},
 		"locale": {
 			"ai_translated": "via AI",
-			"de": "Deutsch - 🤖KI",
+			"cz": "Česky (🤖UI)",
+			"de": "Deutsch (🤖KI)",
+			"dk": "Dansk (🤖AI)",
 			"en": "English",
-			"fr": "Français - 🤖IA",
-			"nl": "Nederlands"
+			"fr": "Français (🤖IA)",
+			"nl": "Nederlands",
+			"pt": "Português (🤖IA)"
 		},
 		"login": {
 			"intro": "Connectez-vous au tableau de bord.",

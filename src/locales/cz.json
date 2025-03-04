@@ -118,10 +118,13 @@
 		},
 		"locale": {
 			"ai_translated": "prostřednictvím AI",
-			"de": "Deutsch - 🤖KI",
+			"cz": "Česky (🤖UI)",
+			"de": "Deutsch (🤖KI)",
+			"dk": "Dansk (🤖AI)",
 			"en": "Angličtina",
-			"fr": "Français - 🤖IA",
-			"nl": "Nederlands"
+			"fr": "Français (🤖IA)",
+			"nl": "Nederlands",
+			"pt": "Português (🤖IA)"
 		},
 		"login": {
 			"intro": "Přihlaste se do řídicího panelu.",

@@ -118,10 +118,13 @@
 		},
 		"locale": {
 			"ai_translated": "via AI",
-			"de": "Tysk - 🤖KI",
+			"cz": "Česky (🤖UI)",
+			"de": "Deutsch (🤖KI)",
+			"dk": "Dansk (🤖AI)",
 			"en": "Engelsk",
-			"fr": "Français - 🤖IA",
-			"nl": "Holland"
+			"fr": "Français (🤖IA)",
+			"nl": "Nederlands",
+			"pt": "Português (🤖IA)"
 		},
 		"login": {
 			"intro": "Log ind på dashboardet.",
