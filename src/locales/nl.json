@@ -238,7 +238,7 @@
 			"status_report": "Statusoverzicht",
 			"title": "Subdomeinen Zoeker",
 			"undefined": "Ongedefinieerd",
-			"will_be_added_to": "geselecteerde subdomeinen worden toegevoegd aan de lijst genaamd {0}."
+			"will_be_added_to": "Geselecteerde subdomeinen worden toegevoegd aan de lijst genaamd {0}."
 		},
 		"edit-domain": {
 			"cancel": "Annuleren",

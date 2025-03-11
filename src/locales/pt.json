@@ -238,7 +238,7 @@
 			"status_report": "Relatório de situação",
 			"title": "Descobrir subdomínios",
 			"undefined": "Indefinido",
-			"will_be_added_to": "os subdomínios selecionados serão adicionados à lista denominada {0}."
+			"will_be_added_to": "Os subdomínios selecionados serão adicionados à lista denominada {0}."
 		},
 		"edit-domain": {
 			"cancel": "Cancelar",

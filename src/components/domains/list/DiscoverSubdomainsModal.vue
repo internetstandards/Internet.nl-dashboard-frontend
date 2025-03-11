@@ -45,7 +45,7 @@
 
       <b-button variant="success" @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button><br><br>
 
-      <b-button id="select_all" @click="toggle_all" v-model="select_all" size="sm">{{ $t("domain.discover-subdomains.select_all") }}</b-button><b-button size="sm" @click="clear_selection" class="ml-4">{{ $t("domain.discover-subdomains.clear_selection") }}</b-button>
+      <b-button id="select_all" @click="toggle_all" v-model="select_all" size="sm" class="mr-2">{{ $t("domain.discover-subdomains.select_all") }}</b-button> <b-button size="sm" @click="clear_selection" class="pl-4">{{ $t("domain.discover-subdomains.clear_selection") }}</b-button>
       <br><br>
 
       <p>
@@ -167,13 +167,13 @@ export default {
     find_suggestions: function () {
 
       this.loading_suggestions = true;
-      http.get('data/urllist/suggest-subdomains/', { params: {domain: this.input_domain, period: this.period}}).then(server_response => {
+      http.get('data/urllist/suggest-subdomains/', { params: {domain: this.input_domain, period: this.period, urllist_id: this.list.id}}).then(server_response => {
         if (server_response.data.length > 0) {
           // allow the top level domain also to be added / selected as a convenience.
-          this.suggestions = [this.input_domain];
-          server_response.data.forEach(suggestion => {
-            this.suggestions.push(suggestion + "." + this.input_domain);
-          })
+          this.suggestions = server_response.data;
+          // add the domain itself also
+          this.suggestions.unshift(this.input_domain);
+
         } else {
           console.error("Failed loading suggestions.")
           this.suggestions = [];

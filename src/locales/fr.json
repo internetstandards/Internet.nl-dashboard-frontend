@@ -238,7 +238,7 @@
 			"status_report": "Rapport de situation",
 			"title": "Découvrir les sous-domaines",
 			"undefined": "Non défini",
-			"will_be_added_to": "les sous-domaines sélectionnés seront ajoutés à la liste nommée {0}."
+			"will_be_added_to": "Les sous-domaines sélectionnés seront ajoutés à la liste nommée {0}."
 		},
 		"edit-domain": {
 			"cancel": "Annuler",

@@ -238,7 +238,7 @@
 			"status_report": "Statusrapport",
 			"title": "Opdag underdomæner",
 			"undefined": "Udefineret",
-			"will_be_added_to": "valgte underdomæner føjes til listen med navnet {0}."
+			"will_be_added_to": "Valgte underdomæner føjes til listen med navnet {0}."
 		},
 		"edit-domain": {
 			"cancel": "Annuller",

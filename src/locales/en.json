@@ -238,7 +238,7 @@
 			"status_report": "Status report",
 			"title": "Discover Subdomains",
 			"undefined": "Undefined",
-			"will_be_added_to": "selected subdomains will be added to the list named {0}."
+			"will_be_added_to": "Selected subdomains will be added to the list named {0}."
 		},
 		"edit-domain": {
 			"cancel": "Cancel",
