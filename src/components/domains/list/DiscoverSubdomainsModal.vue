@@ -2,9 +2,8 @@
 <style scoped>
 .form-check-inline {
   /* cant get stuff per line otherwise... this is a bug in the default layout */
-  display: block !important
+  display: block !important;
 }
-
 </style>
 <template>
   <b-modal @hidden="close()" header-bg-variant="info" header-text-variant="light" no-fade scrollable size="lg">
@@ -54,9 +53,10 @@
         id="checkbox-group-2"
         v-model="selected_suggestions"
         name="flavour-2"
+        style="display: block; width: 100%;"
       >
-          <b-form-checkbox :value="suggestion" v-for="suggestion in suggestions" :key="`${suggestion}`" style="display: block">
-            {{suggestion}}
+          <b-form-checkbox :value="suggestion" v-for="suggestion in suggestions" :key="`${suggestion}`" style="display: block;">
+            <span style="display: block; min-width: 600px;">{{suggestion}}</span>
           </b-form-checkbox>
         </b-form-checkbox-group>
       </p>
@@ -169,11 +169,7 @@ export default {
       this.loading_suggestions = true;
       http.get('data/urllist/suggest-subdomains/', { params: {domain: this.input_domain, period: this.period, urllist_id: this.list.id}}).then(server_response => {
         if (server_response.data.length > 0) {
-          // allow the top level domain also to be added / selected as a convenience.
           this.suggestions = server_response.data;
-          // add the domain itself also
-          this.suggestions.unshift(this.input_domain);
-
         } else {
           console.error("Failed loading suggestions.")
           this.suggestions = [];
