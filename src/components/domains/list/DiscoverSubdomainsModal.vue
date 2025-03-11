@@ -55,8 +55,8 @@
         name="flavour-2"
         style="display: block; width: 100%;"
       >
-          <b-form-checkbox :value="suggestion" v-for="suggestion in suggestions" :key="`${suggestion}`" style="display: block;">
-            <span style="display: block; min-width: 600px;">{{suggestion}}</span>
+          <b-form-checkbox :value="suggestion.domain" v-for="suggestion in suggestions" :key="`${suggestion}`" style="display: block;">
+            <span style="display: block;"><span style="display: inline-block; min-width: 500px;">{{suggestion.domain}}</span>  <span v-if="suggestion.has_email === true">🌍️ e-mail</span> <span v-if="suggestion.has_website === true">🌍️ website</span></span>
           </b-form-checkbox>
         </b-form-checkbox-group>
       </p>
