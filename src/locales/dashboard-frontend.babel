@@ -3966,6 +3966,41 @@
 										</translations>
 									</concept_node>
 									<concept_node>
+										<name>beta</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
 										<name>domains</name>
 										<description/>
 										<comment/>
@@ -4316,7 +4351,77 @@
 										</translations>
 									</concept_node>
 									<concept_node>
+										<name>scan_monitor</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
 										<name>scans</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>signup</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -4457,6 +4562,41 @@
 									</concept_node>
 									<concept_node>
 										<name>tour</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>unsubscribe</name>
 										<description/>
 										<comment/>
 										<translations>
