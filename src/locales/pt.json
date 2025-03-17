@@ -2165,7 +2165,7 @@
 				"vital_infrastructure": "Infra-estruturas vitais de categoria A (NIS2)"
 			},
 			"nature_of_organization": "Natureza da organização",
-			"nature_of_organization_description": "A API e o Dashboard só estão disponíveis para organizações que cumpram <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">requisitos específicos</a>.",
+			"nature_of_organization_description": "A API e o Dashboard só estão disponíveis para organizações que cumpram <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/API-dashboard-access-request.md\">requisitos específicos</a>.",
 			"organization_name": "Nome da organização",
 			"organization_name_placeholder": "",
 			"other_type_not_possible": "O painel de controlo não se destina a outros tipos de organizações. O seu pedido não será aceite.",

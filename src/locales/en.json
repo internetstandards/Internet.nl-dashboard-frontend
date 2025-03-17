@@ -2165,7 +2165,7 @@
 				"vital_infrastructure": "Category A vital infrastructure (NIS2)"
 			},
 			"nature_of_organization": "Nature of organization",
-			"nature_of_organization_description": "The API and Dashboard are only available for organizations that meet <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">specific requirements</a>.",
+			"nature_of_organization_description": "The API and Dashboard are only available for organizations that meet <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/API-dashboard-access-request.md\">specific requirements</a>.",
 			"organization_name": "Organization name",
 			"organization_name_placeholder": "",
 			"other_type_not_possible": "The dashboard is not meant for other types of organizations. Your request will not be accepted.",

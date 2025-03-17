@@ -2165,7 +2165,7 @@
 				"vital_infrastructure": "Livsvigtig infrastruktur i kategori A (NIS2)"
 			},
 			"nature_of_organization": "Organisationens art",
-			"nature_of_organization_description": "API'en og Dashboardet er kun tilgængelige for organisationer, der opfylder <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">specifikke krav</a>.",
+			"nature_of_organization_description": "API'en og Dashboardet er kun tilgængelige for organisationer, der opfylder <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/API-dashboard-access-request.md\">specifikke krav</a>.",
 			"organization_name": "Organisationens navn",
 			"organization_name_placeholder": "",
 			"other_type_not_possible": "Dashboardet er ikke beregnet til andre typer organisationer. Din anmodning vil ikke blive accepteret.",
