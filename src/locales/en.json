@@ -2141,6 +2141,7 @@
 			"captcha_description": "Please answer the above question",
 			"captcha_title": "To prevent automated sign-ups: what is the answer to 23 * 2 - 4?",
 			"chamber_of_commerce_number": "Chamber of commerce number",
+			"chamber_of_commerce_number_description": "Only required for organizations registered in the Netherlands, otherwise leave empty.",
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Dashboard",
 			"email": "Email",

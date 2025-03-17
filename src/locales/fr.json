@@ -2141,6 +2141,7 @@
 			"captcha_description": "Veuillez répondre à la question ci-dessus",
 			"captcha_title": "Pour éviter les inscriptions automatiques : quelle est la réponse à 23 * 2 - 4 ?",
 			"chamber_of_commerce_number": "Numéro de la chambre de commerce",
+			"chamber_of_commerce_number_description": "Nécessaire uniquement pour les organisations enregistrées aux Pays-Bas, sinon laisser vide.",
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Tableau de bord",
 			"email": "Courriel",

@@ -2141,6 +2141,7 @@
 			"captcha_description": "Odpovězte prosím na výše uvedenou otázku",
 			"captcha_title": "Jak zabránit automatické registraci: jaká je odpověď na 23 * 2 - 4?",
 			"chamber_of_commerce_number": "Číslo obchodní komory",
+			"chamber_of_commerce_number_description": "Vyžaduje se pouze pro organizace registrované v Nizozemsku, jinak nechte prázdné.",
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Přístrojová deska",
 			"email": "E-mail",

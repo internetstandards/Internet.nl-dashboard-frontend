@@ -2141,6 +2141,7 @@
 			"captcha_description": "Graag het antwoord op deze vraag invullen",
 			"captcha_title": "Om geautomatiseerde inschrijvingen te voorkomen: wat is de uitkomst van 23 * 2 - 4?",
 			"chamber_of_commerce_number": "Kamer van koophandel nummer",
+			"chamber_of_commerce_number_description": "Alleen verplicht voor in Nederland gevestigde organisaties, anders leeg laten.",
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Dashboard",
 			"email": "Email",

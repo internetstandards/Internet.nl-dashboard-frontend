@@ -2141,6 +2141,7 @@
 			"captcha_description": "Besvar venligst ovenstående spørgsmål",
 			"captcha_title": "For at forhindre automatiske tilmeldinger: Hvad er svaret på 23 * 2 - 4?",
 			"chamber_of_commerce_number": "Handelskammerets nummer",
+			"chamber_of_commerce_number_description": "Kun påkrævet for organisationer, der er registreret i Holland, ellers lad den stå tom.",
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Dashboard",
 			"email": "E-mail",

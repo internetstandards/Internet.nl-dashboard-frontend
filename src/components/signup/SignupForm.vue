@@ -7,9 +7,8 @@
 
     <b-form @submit="onSubmit" v-if="!loading && !submitted_succesfully">
 
-      <div class="mb-2" style="font-weight: bold">{{ $t("signup.form.access_to")}}:</div>
-
       <!--
+      <div class="mb-2" style="font-weight: bold">{{ $t("signup.form.access_to")}}:</div>
       <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
         <b-form-checkbox-group
           v-model="form.access"
@@ -23,7 +22,7 @@
       </b-form-group>
       -->
 
-      <b-form-group
+      <b-form-group class="mb-4 mt-4"
         id="input-group-name"
         :label='$t("signup.form.name")'
         label-for="input-name"
@@ -39,7 +38,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group
+      <b-form-group class="mb-4"
         id="input-group-email"
         :label='$t("signup.form.email")'
         label-for="input-email"
@@ -54,7 +53,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group
+      <b-form-group class="mb-4"
         id="input-group-mobile"
         :label='$t("signup.form.mobile_phone_number")'
         label-for="input-mobile"
@@ -69,7 +68,7 @@
         ></b-form-input>
       </b-form-group>
 
-       <b-form-group
+       <b-form-group class="mb-4"
         id="input-group-organization"
         :label='$t("signup.form.organization_name")'
         label-for="input-organization"
@@ -84,8 +83,8 @@
         ></b-form-input>
       </b-form-group>
 
-      <div class="mb-2" style="font-weight: bold">{{ $t("signup.form.nature_of_organization")}}:</div>
-      <b-form-group id="input-group-nature-of-organization" >
+      <div class="mb-2">{{ $t("signup.form.nature_of_organization")}}</div>
+      <b-form-group id="input-group-nature-of-organization" class="mb-4">
         <template #description>
           <span v-html='$t("signup.form.nature_of_organization_description")' />
         </template>
@@ -95,13 +94,13 @@
           id="radios-nature-of-organization"
           plain stacked
         >
-          <b-form-radio value="government">{{$t("signup.form.nature.government")}}</b-form-radio>
-          <b-form-radio value="non-profit">{{$t("signup.form.nature.non_profit")}}</b-form-radio>
-          <b-form-radio value="dutch-cloud-community">{{$t("signup.form.nature.dutch_cloud_community")}} (<a href="https://dutchcloudcommunity.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
-          <b-form-radio value="vereniging-van-registrars">{{$t("signup.form.nature.registrar_community")}} (<a href="https://www.verenigingvanregistrars.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
-          <b-form-radio value="vital_infrastructure">{{$t("signup.form.nature.vital_infrastructure")}}</b-form-radio>
-          <b-form-radio value="hoster_in_hall_of_fame">{{$t("signup.form.nature.hoster_in_hall_of_fame")}}</b-form-radio>
-          <b-form-radio value="for_profit_organizations_supporting_non_profits">{{$t("signup.form.nature.for_profit_organizations_supporting_non_profits")}}</b-form-radio>
+          <b-form-radio value="government">&nbsp;{{$t("signup.form.nature.government")}}</b-form-radio>
+          <b-form-radio value="non-profit">&nbsp;{{$t("signup.form.nature.non_profit")}}</b-form-radio>
+          <b-form-radio value="dutch-cloud-community">&nbsp;{{$t("signup.form.nature.dutch_cloud_community")}} (<a href="https://dutchcloudcommunity.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
+          <b-form-radio value="vereniging-van-registrars">&nbsp;{{$t("signup.form.nature.registrar_community")}} (<a href="https://www.verenigingvanregistrars.nl/" target="_blank" rel="nofollow">link</a>)</b-form-radio>
+          <b-form-radio value="vital_infrastructure">&nbsp;{{$t("signup.form.nature.vital_infrastructure")}}</b-form-radio>
+          <b-form-radio value="hoster_in_hall_of_fame">&nbsp;{{$t("signup.form.nature.hoster_in_hall_of_fame")}}</b-form-radio>
+          <b-form-radio value="for_profit_organizations_supporting_non_profits">&nbsp;{{$t("signup.form.nature.for_profit_organizations_supporting_non_profits")}}</b-form-radio>
           <!-- <b-form-radio value="other">{{$t("nature_other")}}</b-form-radio> -->
         </b-form-radio-group>
       </b-form-group>
@@ -110,22 +109,21 @@
         {{$t("signup.form.please_explain_vital_infrastructure")}}
       </b-alert>
 
-      <b-form-group
+      <b-form-group class="mb-4"
         id="input-group-coc-number"
         :label='$t("signup.form.chamber_of_commerce_number")'
         label-for="input-chamber-of-commerce-number"
-        description=""
+        :description='$t("signup.form.chamber_of_commerce_number_description")'
       >
         <b-form-input
           id="input-chamber-of-commerce-number"
           v-model="form.chamber_of_commerce_number"
           type="text"
           placeholder=""
-          required
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group
+      <b-form-group class="mb-4"
         id="input-group-reason-for-application"
         :label='$t("signup.form.reason_for_application")'
         label-for="input-reason-for-application"
@@ -140,7 +138,7 @@
         ></b-form-textarea>
       </b-form-group>
 
-      <b-form-group
+      <b-form-group class="mb-4"
         id="input-group-usage-frequency"
         :label='$t("signup.form.intended_usage_frequency")'
         label-for="input-usage-frequency"
@@ -155,7 +153,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group
+      <b-form-group class="mb-4"
         id="input-group-captcha"
         :label='$t("signup.form.captcha_title")'
         label-for="input-captcha"
