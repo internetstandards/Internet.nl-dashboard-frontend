@@ -65,12 +65,12 @@ const publicRoutes = [
   {
     path: '/unsubscribe',
     component: Unsubscribe,
-    meta: {title: 'Unsubscribe', access: 'public'}
+    meta: {title: 'unsubscribe', access: 'public'}
   },
   {
     path: '/signup',
     component: SignupPage,
-    meta: {title: 'Signup', access: 'public'},
+    meta: {title: 'signup', access: 'public'},
     'name': 'signup'
   },
 ]
@@ -92,7 +92,7 @@ const privateRoutes = [
   {
     path: '/scans',
     component: ScanMonitor,
-    meta: {title: 'Scan Monitor', access: 'private'}
+    meta: {title: 'scan_monitor', access: 'private'}
   },
   {
     path: '/report/:report/:compare_with',
@@ -114,29 +114,29 @@ const privateRoutes = [
   {
     path: '/switch-account',
     component: SwitchAccount,
-    meta: {title: 'Switch Account', access: 'private'}
+    meta: {title: 'switch_user', access: 'private'}
   },
   {
     path: '/add-user',
     component: InstantAddAccount,
-    meta: {title: 'Add User', access: 'private'}
+    meta: {title: 'add_user', access: 'private'}
   },
 
   {
     path: '/account',
     component: Account,
-    meta: {title: 'Account', access: 'private'},
+    meta: {title: 'account', access: 'private'},
     alias: ["/profile", '/account/:active_tab']
   },
   {
     path: '/usage',
     component: Usage,
-    meta: {title: 'Usage', access: 'private'}
+    meta: {title: 'usage_overview', access: 'private'}
   },
   {
     path: '/beta',
     component: Beta,
-    meta: {title: 'Beta', access: 'private'},
+    meta: {title: 'beta', access: 'private'},
     alias: "/dev"
   }
 ]

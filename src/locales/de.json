@@ -86,6 +86,9 @@
 			"units": "Sekunden"
 		},
 		"core": {
+			"error_connecting_to_backend": "Es konnte keine Verbindung zum Datenserver hergestellt werden.",
+			"error_loading_config": "Die Konfiguration konnte nicht geladen werden, da sie möglicherweise in einem falschen Format vorliegt.",
+			"reload_application": "Klicken Sie hier, um die App neu zu laden und es erneut zu versuchen",
 			"translated_by_ai": "Diese Übersetzung wurde mit Hilfe künstlicher Intelligenz erstellt, was zu kontextbezogenen Fehlern oder falschen Formulierungen führen kann. Bitte setzen Sie sich mit uns in Verbindung, um eine offizielle Übersetzung zu erhalten. Bei Unklarheiten beziehen Sie sich bitte auf den englischen oder niederländischen Originaltext. Wir entschuldigen uns im Voraus für etwaige Übersetzungsfehler."
 		},
 		"footer": {
@@ -115,10 +118,13 @@
 		},
 		"locale": {
 			"ai_translated": "via AI",
-			"de": "Deutsch - 🤖KI",
+			"cz": "Česky (🤖UI)",
+			"de": "Deutsch (🤖KI)",
+			"dk": "Dansk (🤖AI)",
 			"en": "English",
-			"fr": "Français - 🤖IA",
-			"nl": "Nederlands"
+			"fr": "Français (🤖IA)",
+			"nl": "Nederlands",
+			"pt": "Português (🤖IA)"
 		},
 		"login": {
 			"intro": "Loggen Sie sich in das Dashboard ein.",
@@ -141,8 +147,9 @@
 			"add_user": "Benutzer hinzufügen",
 			"admin": "Verwaltung",
 			"authentication": "Authentifizierung",
+			"beta": "beta",
 			"domains": "Domains",
-			"domains_upload": "",
+			"domains_upload": "Domains hochladen",
 			"home": "Startseite",
 			"log_in": "Einloggen",
 			"log_off": "Abmelden",
@@ -151,11 +158,14 @@
 			"notifications": "Benachrichtigungen",
 			"reports": "Berichte",
 			"request_access": "Zugang beantragen",
+			"scan_monitor": "Monitor scannen",
 			"scans": "Scannt",
+			"signup": "Anmeldung für Batch-Tests auf internet.nl",
 			"sitedescription": "Test für moderne Internetstandards IPv6, DNSSEC, HTTPS, HSTS, DMARC, DKIM, SPF, STARTTLS, DANE, RPKI und security.txt",
 			"sitetitle": "Internet.nl",
 			"switch_user": "Benutzer wechseln",
 			"tour": "Tour",
+			"unsubscribe": "Abbestellen von Berichtsmails",
 			"usage_overview": "Überblick über die Verwendung",
 			"web_metrics": "Web-Metriken"
 		},
@@ -206,7 +216,7 @@
 			"table": "Tabelle",
 			"title": "Durchschnittliche Punktzahl von internet.nl im Laufe der Zeit.",
 			"x_axis_label": "Monat",
-			"y_axis_label": ""
+			"y_axis_label": "Durchschnittliche internet.nl-Punktzahl"
 		}
 	},
 	"domain": {
@@ -227,7 +237,7 @@
 			"select_all": "Alle auswählen",
 			"status_report": "Statusbericht",
 			"title": "Subdomains entdecken",
-			"undefined": "",
+			"undefined": "Unbestimmt",
 			"will_be_added_to": "Die ausgewählten Subdomains werden in die Liste {0}aufgenommen."
 		},
 		"edit-domain": {
@@ -244,12 +254,12 @@
 				"cancel": "Schließen Sie",
 				"domains_label": "Fügen Sie Domains in das Textfeld unten ein",
 				"go_to_spreadsheet_upload": "Klicken Sie hier, um zum Spreadsheet Uploader und zur Anleitung zu gelangen.",
-				"ignored_n": "",
+				"ignored_n": "{0} Domänen sind bereits in dieser Liste enthalten.",
 				"loading": "Die Domains werden bearbeitet",
 				"message": "Die Bereiche werden durch ein Komma, ein Leerzeichen oder eine neue Zeile getrennt. Diese können gemischt werden. Zum Beispiel:\n\ninternet.nl, dashboard.internet.nl\nexample.com www.example.com,\nhttps://my.example.com:80/index.html",
 				"nothing_added": "noch nichts hinzugefügt.",
 				"ok": "Fügen Sie die oben genannten Domänen zur Liste hinzu",
-				"removed_n_duplicates": "",
+				"removed_n_duplicates": "{0} Duplikate aus der Eingabe entfernt.",
 				"status": "Status",
 				"title": "Domänen hinzufügen",
 				"too_many_domains": "Die Anzahl der Domänen in dieser Liste übersteigt die zulässige Gesamtanzahl der Domänen in einer Liste.",
@@ -298,7 +308,7 @@
 				"last_scan_started": "Letzter Scan",
 				"latest_report": "Letzter Bericht",
 				"Listed on sharing page": "auch auf der Sharing-Seite",
-				"mail": "",
+				"mail": "E-Mail",
 				"next_scheduled_scan": "Nächster geplanter Scan",
 				"Not automatically shared": "Nicht automatisch freigegeben",
 				"not_scanned_before": "Vorher nicht gescannt",
@@ -310,7 +320,7 @@
 				"sharing": "Teilen",
 				"still_running": "läuft noch",
 				"type_of_scan_performed": "Art des Scans",
-				"web": "",
+				"web": "Web",
 				"with share code": "mit Aktiencode"
 			},
 			"upload": {
@@ -322,7 +332,7 @@
 				"ok": "Domains überschreiben",
 				"open_document_spreadsheet": "Open Document Tabellenkalkulation (Libre Office)",
 				"title": "Domains hochladen (überschreiben)",
-				"too_many_domains": "",
+				"too_many_domains": "Die Anzahl der Domänen in dieser Liste übersteigt die zulässige Gesamtanzahl der Domänen in einer Liste.",
 				"warning": "Achtung! Wenn Sie eine Tabelle mit Domänen hochladen, werden alle Domänen in dieser Liste überschrieben. Dies kann nicht rückgängig gemacht werden. Stellen Sie sicher, dass Sie vorher eine Kopie dieser Liste heruntergeladen haben. Eine Kopie können Sie über die Schaltfläche \"Domains herunterladen\" auf der Domänenliste erstellen."
 			}
 		},
@@ -375,7 +385,7 @@
 			"reload": "Aktuellen Status der Uploads aktualisieren",
 			"upload": {
 				"bulk_data_uploader": {
-					"introduction": "",
+					"introduction": "Es ist möglich, große Mengen von Internetadressen und -listen mit Hilfe von Tabellenkalkulationen hochzuladen. Erweitern Sie dazu bitte die unten aufgeführten Beispieltabellen. Dies zeigt, wie die Daten strukturiert werden müssen. Beispiele mit und ohne Daten werden als Open Document Spreadsheet, Microsoft Office Excel und Comma Separated bereitgestellt. Nachfolgend finden Sie einige Beispieldateien, die das genaue Format angeben.",
 					"title": "Domain Spreadsheet Uploader"
 				},
 				"comma_separated": "Kommagetrennt (für Programmierer)",
@@ -388,10 +398,10 @@
 					"title": "Drag-and-Drop-Uploader",
 					"warnings": "Wichtig: Es ist möglich, bis zu {0} URLs in {1} Listen pro Upload hochzuladen. Je mehr hochgeladen wird, desto mehr Zeit wird benötigt. Nachdem Ihr Upload bestätigt wurde, wird er parallel verarbeitet, d.h. Sie können diese Seite verlassen und Ihre neuen Listen werden in den nächsten Minuten erstellt."
 				},
-				"empty_file": "",
-				"file_with_example_data": "",
-				"microsoft_office_excel": "",
-				"open_document_spreadsheet": "",
+				"empty_file": "Leere Datei",
+				"file_with_example_data": "Datei mit Beispieldaten",
+				"microsoft_office_excel": "Excel-Tabelle (Microsoft Office)",
+				"open_document_spreadsheet": "Open Document Tabellenkalkulation (Libre Office)",
 				"recent_uploads": {
 					"date": "Wenn",
 					"filename": "Hochladen",
@@ -405,11 +415,11 @@
 			}
 		},
 		"table": {
-			"domain": "",
-			"tags": ""
+			"domain": "Bereich",
+			"tags": "Tags"
 		},
 		"urllist": {
-			"add domains using": "",
+			"add domains using": "Domains hinzufügen mit",
 			"button": {
 				"add domains using": "Domains hinzufügen mit",
 				"add_domains": "Freier Text",
@@ -430,8 +440,8 @@
 			},
 			"icon": {
 				"bulk_add_new": "Domains in großen Mengen hinzufügen",
-				"list_closed": "",
-				"list_opened": "",
+				"list_closed": "Liste geschlossen",
+				"list_opened": "Liste geöffnet",
 				"remove_filter": "Kategorien anzeigen",
 				"report": "Bericht",
 				"scan": "Scannen",
@@ -551,7 +561,7 @@
 			"title": "Nameserver der Domäne"
 		},
 		"category_web_rpki_web_server": {
-			"title": ""
+			"title": "Webserver"
 		},
 		"category_web_security_options_appsecpriv": {
 			"title": "HTTP-Sicherheits-Header"
@@ -592,12 +602,19 @@
 			"extended-explanation": "Wir prüfen, ob DMARC für Ihre Domäne verfügbar ist. Ein empfangender Mailserver kann Ihre DMARC-Richtlinie verwenden, um zu beurteilen, wie eine Mail mit Ihrem Domain-Absender zu behandeln ist, die nicht mit DKIM und SPF authentifiziert werden konnte, und er kann Ihre Mailadresse aus dem DMARC-Eintrag verwenden, um Ihnen Rückmeldungen über die Authentifizierung zu geben. Hinweis: DMARC erfordert, dass die SPF-Domäne (Absender des Umschlags, d.h. der Rückweg, der in <code>MAIL FROM</code>auftaucht) und die DKIM-Domäne (<code>d=</code>) mit der Domäne des Mailkörpers (<code>From:</code>) übereinstimmen.",
 			"rating": {
 				"bad": "DMARC fehlt. Dies bedeutet, dass es keine Möglichkeit gibt, die Organisation über gefälschte E-Mails zu informieren.",
-				"good": "DMARC verfügbar. Dies bedeutet, dass den Empfängern von E-Mails eine automatische Hotline zur Verfügung steht, um zu überprüfen, ob die Herkunft und/oder die Signatur des Absenders korrekt sind. Jede gefälschte E-Mail kann automatisch an diese Hotline gemeldet werden."
+				"external": "Die Domain der externen Mailadresse, die <code>rua=</code> und/oder <code>ruf=</code> folgt, hat <em>keinen</em> (gültigen) Berechtigungseintrag für den Empfang von DMARC-Berichten für die getestete Domain.",
+				"good": "DMARC verfügbar. Dies bedeutet, dass den Empfängern von E-Mails eine automatische Hotline zur Verfügung steht, um zu überprüfen, ob die Herkunft und/oder die Signatur des Absenders korrekt sind. Jede gefälschte E-Mail kann automatisch an diese Hotline gemeldet werden.",
+				"policy": "Ihre DMARC-Richtlinie ist <em>nicht</em> streng genug."
+			},
+			"tech_table": {
+				"dmarc_record": "DMARC-Eintrag",
+				"found_on": "Gefunden am"
 			},
 			"technology": "Bereichsbezogene Nachrichtenauthentifizierung, Berichterstattung und Konformität (DMARC)",
 			"title": "Die Organisation hat eine automatische Hotline für gefälschte E-Mails eingerichtet."
 		},
 		"internet_nl_mail_auth_dmarc_policy": {
+			"explanation": "<p>Wir prüfen, ob die Syntax Ihres DMARC-Eintrags korrekt ist und ob er eine ausreichend strenge Richtlinie enthält (<code>p=quarantine</code> oder <code>p=reject</code>), um den Missbrauch Ihrer Domain durch Phisher und Spammer zu verhindern. Auch ohne eine strenge Richtlinie kann DMARC nützlich sein, um durch DMARC-Berichte mehr Einblick in legitime und illegale ausgehende Postflüsse zu erhalten. Um jedoch wirksam gegen den Missbrauch Ihrer Domain vorzugehen, ist eine liberale Richtlinie (<code>p=none</code>) nicht ausreichend.</p><p>Wir prüfen auch, ob die Mailadressen unter <code>rua=</code> und <code>ruf=</code> gültig sind. Falls sie eine externe Mailadresse enthalten, prüfen wir, ob die externe Domäne zum Empfang von DMARC-Berichten berechtigt ist. Stellen Sie sicher, dass der DMARC-Autorisierungseintrag auf der externen Domain mindestens <code>\"v=DMARC1;\"</code>.</p><p>Der Test erlaubt die Verwendung des experimentellen <code>np</code> Tags (<a href=\"https://www.rfc-editor.org/rfc/rfc9091\">RFC 9091</a>).</p><p><em>Gute Praxis für Domains ohne Mail</em>:</p><ul><li>Nicht-Senden: Verwenden Sie die strengste DMARC-Richtlinie (<code>p=reject</code>) und SPF-Richtlinie (<code>-all</code>) für Ihre Domain, die Sie nicht zum Versenden von Mails verwenden, um Missbrauch (\"spoofing\") zu verhindern. Beachten Sie, dass DKIM in diesem Fall nicht notwendig ist.</li><li>Nicht-Empfang: Weitere Informationen zu \"Null MX\" und \"No MX\" finden Sie in den <a href=\"#control-panel-13\">Erläuterungen zum Untertest \"STARTTLS verfügbar\"</a>. </li></ul><p>Nachfolgend finden Sie zwei grundlegende Beispiel-DNS-Konfigurationen für Domänennamen, die nicht zum Senden und Empfangen von E-Mails verwendet werden. </p><p><em>A. Einzelne Domäne ohne A- oder AAAA-Eintrag</em></p><pre><code>example.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all\"_dmarc.example.nl. TXT \"v=DMARC1; p=reject;\"</code></pre><p>&nbsp;</p><p><em>B. Einzelne No-Mail-Domain mit A- oder AAAA-Eintrag</em></p><pre><code>beispiel.nl. AAAA 2a00:d78:0:712:94:198:159:35example.nl. A 94.198.159.35example.nl. MX 0 .example.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all \"www.example.nl. CNAME example.nl_dmarc.example.nl. TXT \"v=DMARC1; p=reject;\"</code></pre>",
 			"extended-explanation": "<p>Wir prüfen, ob die Syntax Ihres DMARC-Eintrags korrekt ist und ob er eine ausreichend strenge Richtlinie enthält (<code>p=quarantine</code> oder <code>p=reject</code>), um den Missbrauch Ihrer Domain durch Phisher und Spammer zu verhindern. Auch ohne eine strenge Richtlinie kann DMARC nützlich sein, um durch DMARC-Berichte mehr Einblick in legitime und illegale ausgehende Postflüsse zu erhalten. Um jedoch wirksam gegen den Missbrauch Ihrer Domain vorzugehen, ist eine liberale Richtlinie (<code>p=none</code>) nicht ausreichend.</p><p>Wir prüfen auch, ob die Mailadressen unter <code>rua=</code> und <code>ruf=</code> gültig sind. Falls sie eine externe Mailadresse enthalten, prüfen wir, ob die externe Domäne zum Empfang von DMARC-Berichten berechtigt ist. Stellen Sie sicher, dass der DMARC-Autorisierungseintrag auf der externen Domain mindestens <code>\"v=DMARC1;\"</code>.</p><p>Der Test erlaubt die Verwendung des experimentellen <code>np</code> Tags (RFC 9091).</p><p><em>Gute Praxis für Domains ohne Mail</em>:</p><ul><li>Nicht-Senden: Verwenden Sie die strengste DMARC-Richtlinie (<code>p=reject</code>) und SPF-Richtlinie (<code>-all</code>) für Ihre Domain, die Sie nicht zum Versenden von Mails verwenden, um Missbrauch (\"spoofing\") zu verhindern. Beachten Sie, dass DKIM in diesem Fall nicht notwendig ist.</li><li>Nicht-Empfang: Weitere Informationen zu \"Null MX\" und \"No MX\" finden Sie in den <a href=\"#control-panel-13\">Erläuterungen zum Untertest \"STARTTLS verfügbar\"</a>. </li></ul><p>Nachfolgend finden Sie zwei grundlegende Beispiel-DNS-Konfigurationen für Domänennamen, die nicht zum Senden und Empfangen von E-Mails verwendet werden. </p><p><em>A. Einzelne Domain ohne A- oder AAAA-Eintrag</em></p><pre><code>beispiel.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all\"_dmarc.example.nl. TXT \"v=DMARC1; p=reject;\"</code></pre><p>&nbsp;</p><p><em>B. Einzelne No-Mail-Domain mit A- oder AAAA-Eintrag</em></p><pre><code>beispiel.nl. AAAA 2a00:d78:0:712:94:198:159:35example.nl. A 94.198.159.35example.nl. MX 0 .example.nl. TXT \"v=spf1 -all \"*.example.nl. TXT \"v=spf1 -all \"www.example.nl. CNAME example.nl_dmarc.example.nl. TXT \"v=DMARC1; p=ablehnen;\"</code></pre>",
 			"rating": {
 				"bad": "Ihre DMARC-Richtlinie ist <em>nicht</em> syntaktisch korrekt.",
@@ -612,13 +629,22 @@
 			"explanation": "E-Mails sollten nur von einer bekannten Postadresse gesendet werden: einer bekannten Domäne. Wenn jemand versucht, E-Mails in fremdem Namen zu versenden und den Absender zu fälschen, sorgt diese Einstellung dafür, dass die gefälschten E-Mails vom Postdienst zurückgewiesen werden. Außerdem kann der Besitzer der echten Postadresse eine Benachrichtigung erhalten, dass jemand eine gefälschte E-Mail versendet.",
 			"extended-explanation": "Wir prüfen, ob Ihre Domain einen SPF-Eintrag hat. Ein empfangender Mailserver kann die IP-Adressen in Ihrem SPF-Eintrag verwenden, um den sendenden Mailserver einer empfangenen E-Mail mit Ihrer Domain als Absender zu authentifizieren. Die zugehörige Richtlinie kann verwendet werden, um geeignete Maßnahmen zu ergreifen, wenn die Authentifizierung fehlschlägt. Mehr als ein SPF-Eintrag in derselben Domäne ist nicht zulässig und führt zu einem Fehlschlag des Tests.</p><p>Für eine \"gute Praxis bei Domänen ohne Mail\" siehe die <a href=\"#control-panel-9\">Erklärung des Untertests \"DMARC-Richtlinie\"</a>.",
 			"rating": {
+				"all": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug.",
 				"bad": "SPF fehlt. Dies bedeutet, dass es keine Möglichkeit gibt, die Absenderadresse dieser E-Mail zu überprüfen. E-Mails von dieser Adresse können leicht gefälscht werden.",
-				"good": "SPF verfügbar. Dies bedeutet, dass die Absenderadresse einer E-Mail von einem Empfänger überprüft werden kann."
+				"good": "SPF verfügbar. Dies bedeutet, dass die Absenderadresse einer E-Mail von einem Empfänger überprüft werden kann.",
+				"include": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug. Der \"include\"-Mechanismus in Ihrem SPF-Eintrag weist auf eine unzureichend strenge SPF-Richtlinie oder einen nicht existierenden SPF-Eintrag hin.",
+				"max_lookups": "Ihre SPF-Richtlinie ist <em>nicht</em> effektiv, da sie mehr als die erlaubten 10 DNS-Lookups erfordert. Jeder der folgenden SPF-Begriffe zählt als ein DNS-Lookup: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> und <code>exist</code>. Die SPF-Terme <code>all</code>, <code>ip4</code>, <code>ip6</code> und <code>exp</code> zählen nicht als DNS-Lookups.",
+				"redirect": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug. Der Modifikator \"redirect\" in Ihrem SPF-Eintrag deutet auf eine unzureichend strenge SPF-Richtlinie oder einen nicht existierenden SPF-Eintrag hin."
+			},
+			"tech_table": {
+				"domain": "Bereich",
+				"spf_record": "SPF-Eintrag"
 			},
 			"technology": "Rahmenwerk für Absenderrichtlinien (SPF)",
 			"title": "E-Mail wird von einer bekannten Postadresse gesendet"
 		},
 		"internet_nl_mail_auth_spf_policy": {
+			"explanation": "Wir prüfen, ob die Syntax Ihres SPF-Eintrags korrekt ist und ob er eine ausreichend strenge Richtlinie enthält, d. h. <code>~all</code> (softfail) oder <code>-all</code> (fail), um Missbrauch durch Phisher und Spammer zu verhindern. Um wirksam gegen den Missbrauch Ihrer Domäne vorzugehen, ist eine liberale Politik, d. h. <code>+alle</code> (bestanden) oder <code>?alle</code> (neutral) ist nicht ausreichend. Wenn <code>all</code> fehlt und ein <code>redirect</code> Modifikator in Ihrem SPF-Eintrag nicht vorhanden ist, ist der Standard <code>?all</code>. </p><p>Wir folgen auch <code>include</code> und <code>redirect</code> für gültige SPF-Einträge. Außerdem überprüfen wir, ob Ihr SPF-Eintrag die zulässige Anzahl von 10 DNS-Lookups nicht überschreitet und damit unwirksam ist. Jeder der folgenden SPF-Begriffe zählt als ein DNS-Lookup: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> und <code>exist</code>. Während die SPF-Terme <code>all</code>, <code>ip4</code>, <code>ip6</code> und <code>exp</code> nicht als DNS-Lookups gelten.</p><p>Wenn die Domäne <code>include</code> oder <code>redirect</code> aus Makros besteht, folgen wir ihnen nicht, da wir nicht über die notwendigen Informationen aus einer tatsächlichen Mail- oder Mailserververbindung verfügen, um diese Makros zu erweitern. Dies bedeutet, dass wir das Ergebnis von Makros nicht bewerten. Außerdem zählen wir nicht die durch Makros verursachten DNS-Lookups, um festzustellen, ob die zulässige Anzahl von DNS-Lookups überschritten wurde.</p><p>Für sendende Domänen wird mit <code>~all</code> (softfail) anstelle von <code>-all</code> (fail) ist in der Regel vorzuziehen. Denn wenn die SPF-Authentifizierung mit einem SPF-Fail fehlschlägt, kann ein empfangender Mailserver die Verbindung bereits blockieren, ohne die DKIM-Signatur und die DMARC-Richtlinie zu bewerten. Dies kann zu fälschlicherweise blockierten Mails führen (z. B. wenn Mails vom empfangenden Mailserver automatisch an einen anderen empfangenden Mailserver weitergeleitet werden). Beachten Sie, dass ein ausgelöster SPF-Softfail immer noch sicherstellt, dass eine strenge DMARC-Richtlinie Ihre Domain schützt, wenn die DKIM-Authentifizierung ebenfalls fehlschlägt.</p><p>Für No-Mail-Domains siehe die gute Praxis auf <a href=\"#control-panel-9\">Erklärung der \"DMARC-Richtlinie\" Untertest</a>.",
 			"extended-explanation": "Wir prüfen, ob die Syntax Ihres SPF-Eintrags korrekt ist und ob er eine ausreichend strenge Richtlinie enthält, d. h. <code>~all</code> (softfail) oder <code>-all</code> (fail), um Missbrauch durch Phisher und Spammer zu verhindern. Um wirksam gegen den Missbrauch Ihrer Domäne vorzugehen, ist eine liberale Politik, d. h. <code>+alle</code> (bestanden) oder <code>?alle</code> (neutral) ist nicht ausreichend. Wenn <code>all</code> fehlt und ein <code>redirect</code> Modifikator in Ihrem SPF-Eintrag nicht vorhanden ist, ist der Standard <code>?all</code>. </p><p>Wir folgen auch <code>include</code> und <code>redirect</code> für gültige SPF-Einträge. Außerdem überprüfen wir, ob Ihr SPF-Eintrag die zulässige Anzahl von 10 DNS-Lookups nicht überschreitet und damit unwirksam ist. Jeder der folgenden SPF-Begriffe zählt als ein DNS-Lookup: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> und <code>exist</code>. Während die SPF-Terme <code>all</code>, <code>ip4</code>, <code>ip6</code> und <code>exp</code> nicht als DNS-Lookups gelten.</p><p>Wenn die Domäne <code>include</code> oder <code>redirect</code> aus Makros besteht, folgen wir ihnen nicht, da wir nicht über die notwendigen Informationen aus einer tatsächlichen Mail- oder Mailserververbindung verfügen, um diese Makros zu erweitern. Dies bedeutet, dass wir das Ergebnis von Makros nicht bewerten. Außerdem zählen wir nicht die durch Makros verursachten DNS-Lookups, um festzustellen, ob die zulässige Anzahl von DNS-Lookups überschritten wurde.</p><p>Für sendende Domänen wird mit <code>~all</code> (softfail) anstelle von <code>-all</code> (fail) ist in der Regel vorzuziehen. Denn wenn die SPF-Authentifizierung mit einem SPF-Fail fehlschlägt, kann ein empfangender Mailserver die Verbindung bereits blockieren, ohne die DKIM-Signatur und die DMARC-Richtlinie zu bewerten. Dies kann zu fälschlicherweise blockierten Mails führen (z. B. wenn Mails vom empfangenden Mailserver automatisch an einen anderen empfangenden Mailserver weitergeleitet werden). Beachten Sie, dass ein ausgelöster SPF-Softfail immer noch sicherstellt, dass eine strenge DMARC-Richtlinie Ihre Domain schützt, wenn die DKIM-Authentifizierung ebenfalls fehlschlägt.</p><p>Für No-Mail-Domains siehe die gute Praxis auf <a href=\"#control-panel-9\">Erklärung der \"DMARC-Richtlinie\" Untertest</a>.",
 			"rating": {
 				"all": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug.",
@@ -627,6 +653,10 @@
 				"include": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug. Der \"include\"-Mechanismus in Ihrem SPF-Eintrag weist auf eine unzureichend strenge SPF-Richtlinie oder einen nicht existierenden SPF-Eintrag hin.",
 				"max_lookups": "Ihre SPF-Richtlinie ist <em>nicht</em> effektiv, da sie mehr als die erlaubten 10 DNS-Lookups erfordert. Jeder der folgenden SPF-Begriffe zählt als ein DNS-Lookup: <code>redirect</code>, <code>include</code>, <code>a</code>, <code>mx</code>, <code>ptr</code> und <code>exist</code>. Die SPF-Terme <code>all</code>, <code>ip4</code>, <code>ip6</code> und <code>exp</code> zählen nicht als DNS-Lookups.",
 				"redirect": "Ihre SPF-Richtlinie ist <em>nicht</em> streng genug. Der Modifikator \"redirect\" in Ihrem SPF-Eintrag deutet auf eine unzureichend strenge SPF-Richtlinie oder einen nicht existierenden SPF-Eintrag hin."
+			},
+			"tech_table": {
+				"domain": "Bereich",
+				"spf_record": "SPF-Eintrag"
 			},
 			"technology": "Rahmenwerk für Absenderrichtlinien (SPF)",
 			"title": "SPF-Politik"
@@ -650,6 +680,7 @@
 			"title": "Streckengenehmigung (RPKI)"
 		},
 		"internet_nl_mail_dnssec_mailto_exist": {
+			"explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, DNSSEC-signiert ist. Mit einer DNSSEC-Signatur können Absender, die Domänensignaturen validieren, die Authentizität der DNS-Antwort, die Ihre Mailserver-Domänen (MX) enthält, überprüfen. Dies verhindert, dass ein Angreifer die DNS-Antwort manipuliert, um an Sie gesendete Mails an die Mailserver-Domäne des Angreifers umzuleiten.</p><p>Wenn eine Domain auf eine andere Domain über <code>umgeleitet wird CNAME</code>umleitet, wird auch geprüft, ob die CNAME-Domäne signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Hinweis: Die Gültigkeit der Signatur ist nicht Teil dieses Subtests, sondern Teil des nächsten Subtests.",
 			"extended-explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, DNSSEC-signiert ist. Mit einer DNSSEC-Signatur können Absender, die Domänensignaturen validieren, die Authentizität der DNS-Antwort überprüfen, die Ihre Mailserver-Domänen (MX) enthält. Dies verhindert, dass ein Angreifer die DNS-Antwort manipuliert, um an Sie gesendete Mails an die Mailserver-Domäne des Angreifers umzuleiten.</p><p>Wenn eine Domain auf eine andere Domain über <code>umgeleitet wird CNAME</code>umleitet, wird auch geprüft, ob die CNAME-Domäne signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Hinweis: Die Gültigkeit der Signatur ist nicht Teil dieses Subtests, sondern Teil des nächsten Subtests.",
 			"rating": {
 				"bad": "Ihre E-Mail-Adressdomäne ist unsicher, weil sie <em>nicht</em> DNSSEC signiert ist.",
@@ -657,18 +688,28 @@
 				"resolver_error": "Leider ist ein Fehler im Resolver von Internet.nl aufgetreten. Bitte <a href=\"/about/\">kontaktieren Sie</a> uns.",
 				"servfail": "Die Nameserver Ihrer E-Mail-Adressdomäne sind <em>defekt</em>. Sie haben einen Fehler (<code>SERVFAIL</code>) auf unsere Abfragen nach einer DNSSEC-Signatur zurückgegeben. Bitte wenden Sie sich an Ihren Nameserver-Betreiber (oft Ihr Hosting-Provider und/oder Registrar), um dies bald zu beheben."
 			},
+			"tech_table": {
+				"email_address_domain": "E-Mail Adresse Domäne",
+				"registrar": "Registrierstelle"
+			},
 			"title": "Existenz von DNSSEC"
 		},
 		"internet_nl_mail_dnssec_mailto_valid": {
+			"explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, mit einer gültigen Signatur versehen ist, die sie \"sicher\" macht.</p><p>Wenn ein Domainname auf einen anderen signierten Domainnamen über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die Signatur des CNAME-Domänennamens gültig ist (was mit dem DNSSEC-Standard konform ist). Wenn die Signatur des CNAME-Domänennamens nicht gültig ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass nur der Nameserver getestet wird, der zuerst antwortet. Wenn Nameserver eines Domänennamens inkonsistente Konfigurationen haben, kann dies zu unterschiedlichen Testergebnissen führen. In diesem Fall kann das Ergebnis dieses Untertests zum Beispiel einmal \"sicher\" und das nächste Mal \"falsch\" lauten.",
 			"extended-explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, mit einer gültigen Signatur versehen ist, die sie \"sicher\" macht.</p><p>Wenn ein Domainname auf einen anderen signierten Domainnamen über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die Signatur des CNAME-Domänennamens gültig ist (was mit dem DNSSEC-Standard konform ist). Wenn die Signatur des CNAME-Domänennamens nicht gültig ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass nur der Nameserver getestet wird, der zuerst antwortet. Wenn Nameserver eines Domänennamens inkonsistente Konfigurationen haben, kann dies zu unterschiedlichen Testergebnissen führen. In diesem Fall kann das Ergebnis dieses Untertests zum Beispiel einmal \"sicher\" und das nächste Mal \"falsch\" lauten.",
 			"rating": {
 				"bad": "Ihre E-Mail-Adressdomäne ist \"gefälscht\", weil die DNSSEC-Signatur <em>nicht</em> gültig ist. Entweder hat jemand die Antwort Ihres Nameservers manipuliert, oder Ihre Domain hat einen <em>schwerwiegenden DNSSEC-Konfigurationsfehler</em>. Im letzteren Fall ist Ihre Domäne für jeden Benutzer, der DNSSEC-Signaturen validiert, unerreichbar. Wenden Sie sich so schnell wie möglich an Ihren Nameserver-Betreiber (oft Ihr Registrar oder Hosting-Provider).",
 				"good": "Ihre E-Mail-Adressdomäne ist sicher, da ihre DNSSEC-Signatur gültig ist.",
 				"unsupported_ds_algo": "Die Domain Ihrer E-Mail-Adresse ist mit einem Algorithmus signiert, den unser Validierungsresolver derzeit nicht unterstützt. Daher sind wir nicht in der Lage, die Gültigkeit der DNSSEC-Signatur zu überprüfen."
 			},
+			"tech_table": {
+				"email_address_domain": "E-Mail Adresse Domäne",
+				"status": "Status"
+			},
 			"title": "DNSSEC-Gültigkeit"
 		},
 		"internet_nl_mail_dnssec_mx_exist": {
+			"explanation": "Wir prüfen, ob die Domänen Ihrer Mailserver (MX), genauer gesagt deren SOA-Einträge, DNSSEC-signiert sind. Mit einer DNSSEC-Signatur können Absender, die Domänensignaturen validieren, die Authentizität der DNS-Antwort mit den IP-Adressen und DANE-Einträgen Ihrer Mailserver überprüfen. Dies verhindert, dass ein Angreifer die DNS-Antwort manipuliert, um an Sie gesendete Mails an eine vom Angreifer kontrollierte IP-Adresse umzuleiten oder die gesicherte Mailserververbindung abzuhören.</p><p>Wenn eine Domain auf eine andere Domain über <code>CNAME</code>umleitet, wird auch geprüft, ob die CNAME-Domäne signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass der E-Mail-Test nicht auf A/AAAA-Einträge für Mailserver zurückgreift, wenn kein MX-Eintrag vorhanden ist.</p><p>Die Gültigkeit der Signatur ist nicht Teil dieses Untertests, sondern Teil des nächsten Untertests.",
 			"extended-explanation": "Wir prüfen, ob die Domänen Ihrer Mailserver (MX), genauer gesagt deren SOA-Einträge, DNSSEC-signiert sind. Mit einer DNSSEC-Signatur können Absender, die Domänensignaturen validieren, die Authentizität der DNS-Antwort mit den IP-Adressen und DANE-Einträgen Ihrer Mailserver überprüfen. Dies verhindert, dass ein Angreifer die DNS-Antwort manipuliert, um an Sie gesendete Mails an eine vom Angreifer kontrollierte IP-Adresse umzuleiten oder die gesicherte Mailserververbindung abzuhören.</p><p>Wenn eine Domain auf eine andere Domain über <code>CNAME</code>umleitet, wird auch geprüft, ob die CNAME-Domäne signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass der E-Mail-Test nicht auf A/AAAA-Einträge für Mailserver zurückgreift, wenn kein MX-Eintrag vorhanden ist.</p><p>Die Gültigkeit der Signatur ist nicht Teil dieses Untertests, sondern Teil des nächsten Untertests.",
 			"rating": {
 				"bad": "Mindestens eine Ihrer Mailserver-Domänen ist unsicher, weil sie <em>nicht</em> DNSSEC signiert ist.",
@@ -682,14 +723,23 @@
 				"resolver_error": "Leider ist ein Fehler im Resolver von Internet.nl aufgetreten. Bitte <a href=\"/about/\">kontaktieren Sie</a> uns.",
 				"servfail": "Die Nameserver von mindestens einer Ihrer Mailserver-Domänen sind <em>defekt</em>. Sie haben auf unsere Abfragen nach einer DNSSEC-Signatur einen Fehler (<code>SERVFAIL</code>) zurückgegeben. Bitte wenden Sie sich an Ihren Nameserver-Betreiber (oft Ihr Mail-Provider), um dies bald zu beheben."
 			},
+			"tech_table": {
+				"dnssec_existent": "DNSSEC vorhanden",
+				"domain_of_mail_server_mx": "Domäne des Mailservers (MX)"
+			},
 			"title": "Existenz von DNSSEC"
 		},
 		"internet_nl_mail_dnssec_mx_valid": {
+			"explanation": "Wir prüfen, ob die Domänen Ihrer empfangenden Mailserver (MX), genauer gesagt deren SOA-Einträge, mit einer gültigen Signatur versehen sind, die sie \"sicher\" macht.</p><p>Wenn ein Domainname auf einen anderen signierten Domainnamen über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die Signatur des CNAME-Domänennamens gültig ist (was dem DNSSEC-Standard entspricht). Wenn die Signatur des CNAME-Domänennamens nicht gültig ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass nur der Nameserver getestet wird, der zuerst antwortet. Wenn Nameserver eines Domänennamens inkonsistente Konfigurationen haben, kann dies zu unterschiedlichen Testergebnissen führen. In diesem Fall kann das Ergebnis dieses Untertests zum Beispiel einmal \"sicher\" und das nächste Mal \"falsch\" lauten.",
 			"extended-explanation": "Wir prüfen, ob die Domänen Ihrer empfangenden Mailserver (MX), genauer gesagt deren SOA-Einträge, mit einer gültigen Signatur versehen sind, die sie \"sicher\" macht.</p><p>Wenn ein Domainname auf einen anderen signierten Domainnamen über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die Signatur des CNAME-Domänennamens gültig ist (was dem DNSSEC-Standard entspricht). Wenn die Signatur des CNAME-Domänennamens nicht gültig ist, ist das Ergebnis dieses Subtests negativ.</p><p>Beachten Sie, dass nur der Nameserver getestet wird, der zuerst antwortet. Wenn Nameserver eines Domänennamens inkonsistente Konfigurationen haben, kann dies zu unterschiedlichen Testergebnissen führen. In diesem Fall kann das Ergebnis dieses Untertests zum Beispiel einmal \"sicher\" und das nächste Mal \"falsch\" lauten.",
 			"rating": {
 				"bad": "Mindestens eine Ihrer signierten Mailserver-Domänen ist \"gefälscht\", da ihre DNSSEC-Signatur nicht gültig ist. Entweder hat jemand die Antworten seiner Nameserver manipuliert, oder Ihre Mailserver-Domäne weist gravierende DNSSEC-Konfigurationsfehler auf. In letzterem Fall ist Ihr Postempfangsserver für jeden sendenden Postserver, der DNSSEC-Signaturen validiert, unerreichbar. Wenden Sie sich so bald wie möglich an den Betreiber des Nameservers (häufig Ihr Mail-Provider).",
 				"good": "Alle Ihre signierten Mailserver-Domänen sind sicher, da ihre DNSSEC-Signaturen gültig sind.",
 				"unsupported_ds_algo": "Mindestens eine Ihrer Mailserver-Domänen ist mit einem Algorithmus signiert, den unser validierender Resolver derzeit nicht unterstützt. Daher sind wir nicht in der Lage, die Gültigkeit der DNSSEC-Signatur zu überprüfen."
+			},
+			"tech_table": {
+				"domain_of_mail_server_mx": "",
+				"status": "Status"
 			},
 			"title": "DNSSEC-Gültigkeit"
 		},
@@ -705,6 +755,11 @@
 				"null_mx_without_a_aaaa": "Ihre Domäne gibt einen \"Null MX\"-Eintrag an, der besagt, dass sie keine E-Mails akzeptiert. Ihre Domäne verfügt jedoch nicht über A/AAAA-Einträge, so dass der \"Null MX\"-Eintrag nicht erforderlich ist.",
 				"other": "Auf Ihrer Domäne, die keine A/AAAA-Einträge hat, sind keine empfangenden Mailserver (MX) eingerichtet. Dies ist in Ordnung, wenn Sie keine E-Mails empfangen möchten."
 			},
+			"tech_table": {
+				"ipv4_address": "IPv4-Adresse",
+				"ipv6_address": "IPv6-Adresse",
+				"mail_server_mx": "Mail-Server (MX)"
+			},
 			"title": "IPv6-Adressen für den/die Mailserver"
 		},
 		"internet_nl_mail_ipv6_mx_reach": {
@@ -712,6 +767,10 @@
 			"rating": {
 				"bad": "Mindestens einer Ihrer empfangenden Mailserver mit einer IPv6-Adresse ist <em>nicht</em> über IPv6 erreichbar.",
 				"good": "Alle Ihre empfangenden Mailserver mit einer IPv6-Adresse sind über IPv6 erreichbar."
+			},
+			"tech_table": {
+				"mail_server_mx": "Mail-Server (MX)",
+				"unreachable_ipv6_address": "Unerreichbare IPv6-Adresse"
 			},
 			"title": "IPv6-Erreichbarkeit des/der Mailserver(s)"
 		},
@@ -722,6 +781,11 @@
 				"good": "Zwei oder mehr Nameserver Ihrer Domäne haben eine IPv6-Adresse.",
 				"other": "Nur ein Nameserver Ihrer Domäne hat eine IPv6-Adresse."
 			},
+			"tech_table": {
+				"ipv4_address": "IPv4-Adresse",
+				"ipv6_address": "IPv6-Adresse",
+				"name_server": "Namensserver"
+			},
 			"title": "IPv6-Adressen für Namenserver"
 		},
 		"internet_nl_mail_ipv6_ns_reach": {
@@ -729,6 +793,10 @@
 			"rating": {
 				"bad": "<em>Nicht</em> alle Nameserver, die eine IPv6-Adresse haben, sind über IPv6 erreichbar.",
 				"good": "Alle Nameserver, die eine IPv6-Adresse haben, sind über IPv6 erreichbar."
+			},
+			"tech_table": {
+				"name_server": "Namensserver",
+				"unreachable_ipv6_address": "Unerreichbare IPv6-Adresse"
 			},
 			"title": "IPv6-Erreichbarkeit von Namensservern"
 		},
@@ -805,18 +873,64 @@
 		},
 		"internet_nl_mail_mx_ns_rpki_exists": {
 			"explanation": "Wir prüfen, ob eine RPKI Route Origin Authorization (ROA) für alle IP-Adressen der Nameserver Ihres/r Mailserver(s) (MX) veröffentlicht worden ist.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen Ihres Servers senden sollen.</p><p>Eine Routenankündigung kann jedoch gefälscht werden. Tatsächlich kann ein anderer Netzbetreiber den IP-Adressblock Ihrer IP-Adresse mit seinem Netz verbinden und so möglicherweise Internetverkehr empfangen, der eigentlich für Ihren Netzbetreiber bestimmt ist. Die Ursache kann versehentlich oder böswillig sein. In jedem Fall kann dies dazu führen, dass Ihr Server unerreichbar wird oder dass der Internetverkehr zu Ihrem Server abgefangen wird.</p><p>Die Resource Public Key Infrastructure (RPKI) verbessert den Schutz davor erheblich. Mit RPKI kann der rechtmäßige Inhaber eines Blocks von IP-Adressen eine digital signierte Erklärung mit Routenberechtigung (Route Origin Authorisation; kurz ROA) veröffentlichen. Ein anderer Netzbetreiber, der Internetverkehr an eine bestimmte IP-Adresse senden möchte, kann die entsprechende Erklärung verwenden, um <code>Ungültige</code> Routen. Auf diese Weise verhindert der Netzbetreiber, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze geschickt wird.</p><p><em>Anforderungsstufe: Empfohlen</em>",
+			"rating": {
+				"bad": "Für mindestens eine der IP-Adressen der Nameserver Ihres/r Mailserver(s) <em>ist keine</em> RPKI Route Origin Authorisation (ROA) wird veröffentlicht.",
+				"good": "Für alle IP-Adressen der Nameserver Ihres/r Mailservers/e wird eine RPKI Route Origin Authorisation (ROA) veröffentlicht.",
+				"no_addresses": "Ihre Domäne enthält <em>keine</em> Mailserver. Daher konnte dieser Untertest nicht durchgeführt werden."
+			},
+			"tech_table": {
+				"ip_address": "IP-Adresse",
+				"name_server_of_mx": "Nameserver von MX",
+				"rpki_route_origin_authorization": "RPKI-Routenherkunftsberechtigung"
+			},
 			"title": "Route Herkunft Autorisierung Existenz"
 		},
 		"internet_nl_mail_mx_ns_rpki_valid": {
 			"explanation": "Wir prüfen, ob der Validierungsstatus für alle IP-Adressen der Nameserver Ihrer Mailserver (MX) <code>gültig</code>ist. Wenn es mehrere sich überschneidende Routenankündigungen für die IP-Adresse gibt, prüfen wir, ob sie alle <code>Gültig</code>.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Er tut dies, indem er (Teile) seiner IP-Adressblöcke (Route Prefix) mit der eindeutigen Nummer seines Providernetzes (Route Origin ASN) verknüpft und diese Routing-Informationen dann weitergibt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen weiterleiten sollen.</p><p>Zusätzlich sollte Ihr Hoster (oder sein Netzbetreiber) für jede Routenankündigung eine digital signierte Erklärung mit einer Routenautorisierungserklärung (Route Origin Authorisation; abgekürzt: ROA) unter Verwendung der Resource Public Key Infrastructure (RPKI) veröffentlichen. </p><p>Ein anderer Netzbetreiber, der gebeten wird, Internetverkehr an die IP-Adresse Ihres Servers zu senden, kann die zugehörige Erklärung kryptografisch verifizieren. Der verifizierte Inhalt (Validated ROA Payload; abgekürzt: VRP) beinhaltet, welche Providernetzwerke (VRP ASN) berechtigt sind, Internetverkehr für jeden aufgezeichneten IP-Adressblock (VRP Prefix) zu empfangen. </p><p>Der Netzbetreiber kann diesen Inhalt dann nutzen, um BGP-Routen zu filtern. Zum Beispiel kann er alle <code>Ungültige</code> Routen zurückweisen, um zu verhindern, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze gesendet wird.</p><p>Die Überprüfung von Routenankündigungen gegen Routenautorisierungen (RPKI Origin Validation; abgekürzt: ROV) hat die folgenden drei möglichen Ergebnisse.</p><ul><li><p><code>Gültig</code>: Die Streckenankündigung der betreffenden IP-Adresse wird von mindestens einer veröffentlichten Streckengenehmigung abgedeckt. Eine Routenzulassung wird auch für spezifischere Routenankündigungen (d. h. für einen Teil des in der Routenzulassung enthaltenen IP-Adressblocks) abgeglichen, es sei denn, sie sind spezifischer als die in der Routenzulassung (über das Attribut <code>maxLength</code> ) angegebene Grenze. </p></li><li><p><code>Ungültig</code>: Die Routenankündigung der betrachteten IP-Adresse ist durch eine Routengenehmigung abgedeckt, aber sie stimmt <em>nicht</em> überein. Es gibt zwei mögliche Ursachen: </p></li><li><p>der IP-Adressblock (Route Prefix) wird von einem Providernetz (Route Origin ASN) angekündigt, das <em>nicht</em> in der Routenzulassung autorisiert ist (Ergebnis in der Tabelle unten: \"ungültig (as)\");</p></li><li>der angekündigte IP-Adressblock (Route Prefix) ist <em>kleiner als in der Routenautorisierung erlaubt</em> , d.h. er überschreitet den <code>maxLength</code> Wert (Ergebnis in der Tabelle unten: \"ungültig (Länge)\").</li></ul><p>Hinweis: Der Status <code>Ungültig</code> weist auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Hoster oder dessen Netzbetreiber (interner Fehler) oder von einem Dritten (externer Fehler) verursacht werden kann. In jedem Fall kann er zur Nichterreichbarkeit Ihres Servers oder zum Abfangen des Internetverkehrs zu Ihrem Server führen. Wenden Sie sich so schnell wie möglich an Ihren Hoster. Im Falle eines internen Fehlers sollte Ihr Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben. </p><ul><li><code>NotFound</code>: Es wurde keine Anweisung mit Route-Authorisation gefunden, die die Routenankündigung der betreffenden IP-Adresse abdeckt. Dies macht die Weiterleitung des Internetverkehrs zu Ihrem Server unsicherer. Bitte wenden Sie sich diesbezüglich an Ihren Hoster. Er kann seinen Netzwerkprovider, dem die IP-Adressen Ihres Servers gehören, bitten, Routenautorisierungen zu veröffentlichen.</li></ul><p><em>Anforderungsniveau: Empfohlen</em>",
+			"rating": {
+				"bad": "Mindestens eine IP-Adresse der Nameserver Ihrer empfangenden Mailserver hat einen <code>NotFound</code> Validierungsstatus. Es ist <em>keine</em> RPKI Route Origin Authorization (ROA) für die Routenansage jeder der betroffenen IP-Adressen veröffentlicht.",
+				"good": "Alle IP-Adressen der Nameserver Ihrer empfangenden Mailserver haben einen <code>gültigen</code> Validierungsstatus. Die Routenankündigung dieser IP-Adressen wird mit der veröffentlichten RPKI Route Origin Authorisation (ROA) abgeglichen.",
+				"invalid": "Mindestens eine IP-Adresse der Nameserver Ihrer empfangenden Mailserver hat einen <code>ungültigen</code> Validierungsstatus. Die Routenankündigung der betroffenen IP-Adressen stimmt <em>nicht</em> mit der veröffentlichten RPKI Route Origin Authorisation (ROA) überein. Dies deutet auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Mail-Hoster (interner Fehler) oder von einer dritten Partei (externer Fehler) verursacht werden kann. In beiden Fällen erhöht sich das Risiko der Nichterreichbarkeit Ihres Servers oder des Abfangens des Internetverkehrs zu Ihrem Server. Wenden Sie sich so bald wie möglich an Ihren Mail-Hoster. Im Falle eines internen Fehlers sollte Ihr Mail-Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben.",
+				"not_routed": "Dieser Subtest ist <em>nicht</em> gelaufen, weil <em>keine</em> Routenankündigung für eine der IP-Adressen verfügbar war."
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "BGP-Route Herkunft ASN",
+				"bgp_route_prefix": "BGP-Route Präfix",
+				"name_server_of_mx": "",
+				"rpki_origin_validation_state": "RPKI-Herkunftsprüfungsstatus"
+			},
 			"title": "Gültigkeit der Routenansage"
 		},
 		"internet_nl_mail_ns_rpki_exists": {
 			"explanation": "Wir prüfen, ob der Validierungsstatus für alle IP-Adressen der Nameserver Ihrer Domäne <code>gültig</code>ist. Wenn es mehrere sich überschneidende Routenankündigungen für die IP-Adresse gibt, prüfen wir, ob sie alle <code>Gültig</code>.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Er tut dies, indem er (Teile) seiner IP-Adressblöcke (Route Prefix) mit der eindeutigen Nummer seines Providernetzes (Route Origin ASN) verknüpft und diese Routing-Informationen dann weitergibt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen weiterleiten sollen.</p><p>Zusätzlich sollte Ihr Hoster (oder sein Netzbetreiber) für jede Routenankündigung eine digital signierte Erklärung mit einer Routenautorisierungserklärung (Route Origin Authorisation; abgekürzt: ROA) unter Verwendung der Resource Public Key Infrastructure (RPKI) veröffentlichen. </p><p>Ein anderer Netzbetreiber, der gebeten wird, Internetverkehr an die IP-Adresse Ihres Servers zu senden, kann die zugehörige Erklärung kryptografisch verifizieren. Der verifizierte Inhalt (Validated ROA Payload; abgekürzt: VRP) beinhaltet, welche Providernetzwerke (VRP ASN) berechtigt sind, Internetverkehr für jeden aufgezeichneten IP-Adressblock (VRP Prefix) zu empfangen. </p><p>Der Netzbetreiber kann diesen Inhalt dann nutzen, um BGP-Routen zu filtern. Zum Beispiel kann er alle <code>Ungültige</code> Routen zurückweisen, um zu verhindern, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze gesendet wird.</p><p>Die Überprüfung von Routenankündigungen gegen Routenautorisierungen (RPKI Origin Validation; abgekürzt: ROV) hat die folgenden drei möglichen Ergebnisse.</p><ul><li><p><code>Gültig</code>: Die Streckenankündigung der betreffenden IP-Adresse wird von mindestens einer veröffentlichten Streckengenehmigung abgedeckt. Eine Streckenzulassung wird auch für spezifischere Streckenankündigungen (d. h. für einen Teil des in der Streckenzulassung enthaltenen IP-Adressblocks) abgeglichen, es sei denn, sie sind spezifischer als die in der Streckenzulassung angegebene Grenze (über das Attribut <code>maxLength</code> ). </p></li><li><p><code>Ungültig</code>: Die Routenankündigung der betrachteten IP-Adresse ist durch eine Routengenehmigung abgedeckt, aber sie stimmt <em>nicht</em> überein. Es gibt zwei mögliche Ursachen: </p></li><li><p>der IP-Adressblock (Route Prefix) wird von einem Providernetz (Route Origin ASN) angekündigt, das <em>nicht</em> in der Routenzulassung autorisiert ist (Ergebnis in der Tabelle unten: \"ungültig (as)\");</p></li><li>der angekündigte IP-Adressblock (Route Prefix) ist <em>kleiner als in der Routenautorisierung erlaubt</em> , d.h. er überschreitet den <code>maxLength</code> Wert (Ergebnis in der Tabelle unten: \"ungültig (Länge)\").</li></ul><p>Hinweis: Der Status <code>Ungültig</code> weist auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Hoster oder dessen Netzbetreiber (interner Fehler) oder von einem Dritten (externer Fehler) verursacht werden kann. In jedem Fall kann er zur Nichterreichbarkeit Ihres Servers oder zum Abfangen des Internetverkehrs zu Ihrem Server führen. Wenden Sie sich so schnell wie möglich an Ihren Hoster. Im Falle eines internen Fehlers sollte Ihr Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben. </p><ul><li><code>NotFound</code>: Es wurde keine Anweisung mit Route-Authorisation gefunden, die die Routenankündigung der betreffenden IP-Adresse abdeckt. Dies macht die Weiterleitung des Internetverkehrs zu Ihrem Server unsicherer. Bitte wenden Sie sich diesbezüglich an Ihren Hoster. Er kann seinen Netzwerkprovider, dem die IP-Adressen Ihres Servers gehören, bitten, Routenautorisierungen zu veröffentlichen.</li></ul><p><em>Anforderungsniveau: Empfohlen</em>",
+			"rating": {
+				"bad": "Mindestens eine IP-Adresse Ihrer Nameserver hat einen <code>NotFound</code> Validierungsstatus. Es gibt <em>keine</em> RPKI Route Origin Authorisation (ROA) für ihre Routenankündigung veröffentlicht.",
+				"good": "Alle IP-Adressen Ihrer Nameserver haben einen <code>gültigen</code> Validierungsstatus. Die Routenankündigung dieser IP-Adressen wird mit der veröffentlichten RPKI Route Origin Authorisation (ROA) abgeglichen.",
+				"invalid": "Mindestens eine IP-Adresse Ihrer Nameserver hat einen <code>ungültigen</code> Validierungsstatus. Die Routenankündigung der betroffenen IP-Adressen ist <em>nicht</em> mit der veröffentlichten RPKI Route Origin Authorisation (ROA) übereinstimmend. Dies deutet auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Nameserver-Hoster (interner Fehler) oder von einer dritten Partei (externer Fehler) verursacht werden kann. In beiden Fällen erhöht sich das Risiko der Nichterreichbarkeit Ihres Servers oder des Abfangens des Internetverkehrs zu Ihrem Server. Wenden Sie sich so bald wie möglich an Ihren Nameserver-Hoster. Im Falle eines internen Fehlers sollte Ihr Name-Server-Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Gültigkeit der Routenansage"
 		},
 		"internet_nl_mail_ns_rpki_valid": {
 			"explanation": "Wir prüfen, ob der Validierungsstatus für alle IP-Adressen der Nameserver Ihrer Domäne <code>gültig</code>ist. Wenn es mehrere sich überschneidende Routenankündigungen für die IP-Adresse gibt, prüfen wir, ob sie alle <code>Gültig</code>.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Er tut dies, indem er (Teile) seiner IP-Adressblöcke (Route Prefix) mit der eindeutigen Nummer seines Providernetzes (Route Origin ASN) verknüpft und diese Routing-Informationen dann weitergibt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen weiterleiten sollen.</p><p>Zusätzlich sollte Ihr Hoster (oder sein Netzbetreiber) für jede Routenankündigung eine digital signierte Erklärung mit einer Routenautorisierungserklärung (Route Origin Authorisation; abgekürzt: ROA) unter Verwendung der Resource Public Key Infrastructure (RPKI) veröffentlichen. </p><p>Ein anderer Netzbetreiber, der gebeten wird, Internetverkehr an die IP-Adresse Ihres Servers zu senden, kann die zugehörige Erklärung kryptografisch verifizieren. Der verifizierte Inhalt (Validated ROA Payload; abgekürzt: VRP) beinhaltet, welche Providernetzwerke (VRP ASN) berechtigt sind, Internetverkehr für jeden aufgezeichneten IP-Adressblock (VRP Prefix) zu empfangen. </p><p>Der Netzbetreiber kann diesen Inhalt dann nutzen, um BGP-Routen zu filtern. Zum Beispiel kann er alle <code>Ungültige</code> Routen zurückweisen, um zu verhindern, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze gesendet wird.</p><p>Die Überprüfung von Routenankündigungen gegen Routenautorisierungen (RPKI Origin Validation; abgekürzt: ROV) hat die folgenden drei möglichen Ergebnisse.</p><ul><li><p><code>Gültig</code>: Die Streckenankündigung der betreffenden IP-Adresse wird von mindestens einer veröffentlichten Streckengenehmigung abgedeckt. Eine Streckenzulassung wird auch für spezifischere Streckenankündigungen (d. h. für einen Teil des in der Streckenzulassung enthaltenen IP-Adressblocks) abgeglichen, es sei denn, sie sind spezifischer als die in der Streckenzulassung angegebene Grenze (über das Attribut <code>maxLength</code> ). </p></li><li><p><code>Ungültig</code>: Die Routenankündigung der betrachteten IP-Adresse ist durch eine Routengenehmigung abgedeckt, aber sie stimmt <em>nicht</em> überein. Es gibt zwei mögliche Ursachen: </p></li><li><p>der IP-Adressblock (Route Prefix) wird von einem Providernetz (Route Origin ASN) angekündigt, das <em>nicht</em> in der Routenzulassung autorisiert ist (Ergebnis in der Tabelle unten: \"ungültig (as)\");</p></li><li>der angekündigte IP-Adressblock (Route Prefix) ist <em>kleiner als in der Routenautorisierung erlaubt</em> , d.h. er überschreitet den <code>maxLength</code> Wert (Ergebnis in der Tabelle unten: \"ungültig (Länge)\").</li></ul><p>Hinweis: Der Status <code>Ungültig</code> weist auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Hoster oder dessen Netzbetreiber (interner Fehler) oder von einem Dritten (externer Fehler) verursacht werden kann. In jedem Fall kann er zur Nichterreichbarkeit Ihres Servers oder zum Abfangen des Internetverkehrs zu Ihrem Server führen. Wenden Sie sich so schnell wie möglich an Ihren Hoster. Im Falle eines internen Fehlers sollte Ihr Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben. </p><ul><li><code>NotFound</code>: Es wurde keine Anweisung mit Route-Authorisation gefunden, die die Routenankündigung der betreffenden IP-Adresse abdeckt. Dies macht die Weiterleitung des Internetverkehrs zu Ihrem Server unsicherer. Bitte wenden Sie sich diesbezüglich an Ihren Hoster. Er kann seinen Netzwerkprovider, dem die IP-Adressen Ihres Servers gehören, bitten, Routenautorisierungen zu veröffentlichen.</li></ul><p><em>Anforderungsniveau: Empfohlen</em>",
+			"rating": {
+				"bad": "Mindestens eine IP-Adresse Ihrer Nameserver hat einen <code>NotFound</code> Validierungsstatus. Es gibt <em>keine</em> RPKI Route Origin Authorisation (ROA) für ihre Routenankündigung veröffentlicht.",
+				"good": "Alle IP-Adressen Ihrer Nameserver haben einen <code>gültigen</code> Validierungsstatus. Die Routenankündigung dieser IP-Adressen wird mit der veröffentlichten RPKI Route Origin Authorisation (ROA) abgeglichen.",
+				"invalid": "Mindestens eine IP-Adresse Ihrer Nameserver hat einen <code>ungültigen</code> Validierungsstatus. Die Routenankündigung der betroffenen IP-Adressen ist <em>nicht</em> mit der veröffentlichten RPKI Route Origin Authorisation (ROA) übereinstimmend. Dies deutet auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Nameserver-Hoster (interner Fehler) oder von einer dritten Partei (externer Fehler) verursacht werden kann. In beiden Fällen erhöht sich das Risiko der Nichterreichbarkeit Ihres Servers oder des Abfangens des Internetverkehrs zu Ihrem Server. Wenden Sie sich so bald wie möglich an Ihren Nameserver-Hoster. Im Falle eines internen Fehlers sollte Ihr Name-Server-Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben.",
+				"not_routed": "Dieser Subtest ist <em>nicht</em> gelaufen, weil <em>keine</em> Routenankündigung für eine der IP-Adressen verfügbar war."
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "BGP Route Origin ASN",
+				"bgp_route_prefix": "BGP Route Prefix",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Gültigkeit der Routenansage"
 		},
 		"internet_nl_mail_rpki_exists": {
@@ -827,11 +941,28 @@
 				"good": "Für alle IP-Adressen des/der empfangenden Mailserver(s) wird eine RPKI Route Origin Authorisation (ROA) veröffentlicht.",
 				"no_addresses": "Ihre Domäne enthält <em>keine</em> empfangenden Mailserver. Daher konnte dieser Subtest nicht durchgeführt werden."
 			},
+			"tech_table": {
+				"ip_address": "IP-Adresse",
+				"mail_server": "Mail-Server",
+				"rpki_route_origin_authorization": ""
+			},
 			"technology": "Ressource Public Key Infrastructure (RPKI) / Ressourcenzertifizierung",
 			"title": "Vertrauen in die Netzwerkroute zum E-Mail-Server"
 		},
 		"internet_nl_mail_rpki_valid": {
 			"explanation": "Wir prüfen, ob der Validierungsstatus für alle IP-Adressen Ihrer Mailserver (MX) <code>gültig</code>ist. Wenn es mehrere sich überschneidende Routenankündigungen für die IP-Adresse gibt, prüfen wir, ob sie alle <code>Gültig</code>.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Er tut dies, indem er (Teile) seiner IP-Adressblöcke (Route Prefix) mit der eindeutigen Nummer seines Providernetzes (Route Origin ASN) verknüpft und diese Routing-Informationen dann weitergibt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen weiterleiten sollen.</p><p>Zusätzlich sollte Ihr Hoster (oder sein Netzbetreiber) für jede Routenankündigung eine digital signierte Erklärung mit einer Routenautorisierungserklärung (Route Origin Authorisation; abgekürzt: ROA) unter Verwendung der Resource Public Key Infrastructure (RPKI) veröffentlichen. </p><p>Ein anderer Netzbetreiber, der gebeten wird, Internetverkehr an die IP-Adresse Ihres Servers zu senden, kann die zugehörige Erklärung kryptografisch verifizieren. Der verifizierte Inhalt (Validated ROA Payload; abgekürzt: VRP) beinhaltet, welche Providernetzwerke (VRP ASN) berechtigt sind, Internetverkehr für jeden aufgezeichneten IP-Adressblock (VRP Prefix) zu empfangen. </p><p>Der Netzbetreiber kann diesen Inhalt dann nutzen, um BGP-Routen zu filtern. Zum Beispiel kann er alle <code>Ungültige</code> Routen zurückweisen, um zu verhindern, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze gesendet wird.</p><p>Die Überprüfung von Routenankündigungen gegen Routenautorisierungen (RPKI Origin Validation; abgekürzt: ROV) hat die folgenden drei möglichen Ergebnisse.</p><ul><li><p><code>Gültig</code>: Die Streckenankündigung der betreffenden IP-Adresse wird von mindestens einer veröffentlichten Streckengenehmigung abgedeckt. Eine Routenzulassung wird auch für spezifischere Routenankündigungen (d. h. für einen Teil des in der Routenzulassung enthaltenen IP-Adressblocks) abgeglichen, es sei denn, sie sind spezifischer als die in der Routenzulassung (über das Attribut <code>maxLength</code> ) angegebene Grenze. </p></li><li><p><code>Ungültig</code>: Die Routenankündigung der betrachteten IP-Adresse ist durch eine Routengenehmigung abgedeckt, aber sie stimmt <em>nicht</em> überein. Es gibt zwei mögliche Ursachen: </p></li><li><p>der IP-Adressblock (Route Prefix) wird von einem Providernetz (Route Origin ASN) angekündigt, das <em>nicht</em> in der Routenzulassung autorisiert ist (Ergebnis in der Tabelle unten: \"ungültig (as)\");</p></li><li>der angekündigte IP-Adressblock (Route Prefix) ist <em>kleiner als in der Routenautorisierung erlaubt</em> , d.h. er überschreitet den <code>maxLength</code> Wert (Ergebnis in der Tabelle unten: \"ungültig (Länge)\").</li></ul><p>Hinweis: Der Status <code>Ungültig</code> weist auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Hoster oder dessen Netzbetreiber (interner Fehler) oder von einem Dritten (externer Fehler) verursacht werden kann. In jedem Fall kann er zur Nichterreichbarkeit Ihres Servers oder zum Abfangen des Internetverkehrs zu Ihrem Server führen. Wenden Sie sich so schnell wie möglich an Ihren Hoster. Im Falle eines internen Fehlers sollte Ihr Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben. </p><ul><li><code>NotFound</code>: Es wurde keine Anweisung mit Route-Authorisation gefunden, die die Routenankündigung der betreffenden IP-Adresse abdeckt. Dies macht die Weiterleitung des Internetverkehrs zu Ihrem Server unsicherer. Bitte wenden Sie sich diesbezüglich an Ihren Hoster. Er kann seinen Netzwerkprovider, dem die IP-Adressen Ihres Servers gehören, bitten, Routenautorisierungen zu veröffentlichen.</li></ul><p><em>Anforderungsniveau: Empfohlen</em>",
+			"rating": {
+				"bad": "Mindestens eine IP-Adresse Ihrer empfangenden Mailserver hat einen <code>NotFound</code> Validierungsstatus. Es ist <em>keine</em> RPKI Route Origin Authorization (ROA) für die Routenansage jeder der betroffenen IP-Adressen veröffentlicht.",
+				"good": "Alle IP-Adressen Ihrer empfangenden Mailserver haben einen <code>gültigen</code> Validierungsstatus. Die Routenankündigung dieser IP-Adressen wird mit der veröffentlichten RPKI Route Origin Authorisation (ROA) abgeglichen.",
+				"invalid": "Mindestens eine IP-Adresse Ihrer empfangenden Mailserver hat einen <code>ungültigen</code> Validierungsstatus. Die Routenankündigung der betroffenen IP-Adressen stimmt <em>nicht</em> mit der veröffentlichten RPKI Route Origin Authorisation (ROA) überein. Dies deutet auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Mail-Hoster (interner Fehler) oder von einer dritten Partei (externer Fehler) verursacht werden kann. In beiden Fällen erhöht sich das Risiko der Nichterreichbarkeit Ihres Servers oder des Abfangens des Internetverkehrs zu Ihrem Server. Wenden Sie sich so bald wie möglich an Ihren Mail-Hoster. Im Falle eines internen Fehlers sollte Ihr Mail-Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"mail_server": "",
+				"rpki_origin_validation_state": ""
+			},
 			"title": "Gültigkeit der Routenansage"
 		},
 		"internet_nl_mail_starttls_cert_chain": {
@@ -840,6 +971,10 @@
 				"bad": "Die Vertrauenskette von mindestens einem Ihrer Mailserver-Zertifikate ist <em>nicht</em> vollständig und/oder <em>nicht</em> von einer vertrauenswürdigen Stammzertifizierungsstelle signiert.",
 				"good": "Die Vertrauenskette aller Zertifikate Ihres Mailservers ist vollständig und von einer vertrauenswürdigen Stammzertifizierungsstelle signiert."
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"untrusted_certificate_chain": "Nicht vertrauenswürdige Zertifikatskette"
+			},
 			"title": "Vertrauenskette des Zertifikats"
 		},
 		"internet_nl_mail_starttls_cert_domain": {
@@ -847,6 +982,10 @@
 			"rating": {
 				"bad": "Der Domänenname von mindestens einem Ihrer Mailserver stimmt <em>nicht mit dem Domänennamen auf dem Mailserver-Zertifikat überein</em> .",
 				"good": "Die Domänennamen aller Ihrer Mailserver stimmen mit den Domänennamen auf Ihren Mailserver-Zertifikaten überein."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"unmatched_domains_on_certificate": "Nicht übereinstimmende Domänen auf dem Zertifikat"
 			},
 			"title": "Domänenname auf dem Zertifikat"
 		},
@@ -857,6 +996,11 @@
 				"good": "Die digitalen Signaturen aller Zertifikate Ihres Mailservers verwenden sichere Parameter.",
 				"phase_out": "Die digitale Signatur mindestens eines Ihrer Mailserver-Zertifikate verwendet Parameter, die den Status <em>phase out</em> haben, weil sie als anfällig gelten und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
 			},
+			"tech_table": {
+				"affected_signature_parameters": "Betroffene Signaturparameter",
+				"mail_server_mx": "",
+				"status": "Status"
+			},
 			"title": "Öffentlicher Schlüssel des Zertifikats"
 		},
 		"internet_nl_mail_starttls_cert_sig": {
@@ -864,6 +1008,11 @@
 			"rating": {
 				"bad": "Mindestens eines Ihrer Mailserver-Zertifikate ist mit einem Hash-Algorithmus signiert, der <em>unzureichend</em> sicher ist.",
 				"good": "Alle Ihre Mailserver-Zertifikate werden mit einem sicheren Hash-Algorithmus signiert."
+			},
+			"tech_table": {
+				"affected_hash_algorithm": "Betroffener Hash-Algorithmus",
+				"mail_server_mx": "",
+				"status": "Status"
 			},
 			"title": "Unterschrift des Zertifikats"
 		},
@@ -874,6 +1023,10 @@
 				"bogus": "Mindestens eine Ihrer Mailserver-Domänen liefert <em>nicht</em> den DNSSEC-Nachweis, dass keine DANE TLSA-Einträge existieren. Dies kann dazu führen, dass an Sie gerichtete E-Mails von DANE-validierenden Absendern nicht zugestellt werden können. Sie sollten Ihren Nameserver-Betreiber bitten, dieses Problem zu beheben.",
 				"good": "Alle Ihre Mailserver-Domänen bieten einen TLSA-Eintrag für DANE."
 			},
+			"tech_table": {
+				"dane_tlsa_record_existent": "DANE TLSA-Datensatz vorhanden",
+				"mail_server_mx": ""
+			},
 			"title": "DANE Existenz"
 		},
 		"internet_nl_mail_starttls_dane_rollover": {
@@ -881,6 +1034,10 @@
 			"rating": {
 				"bad": "Mindestens eine Ihrer Mailserver-Domänen verfügt <em>nicht</em> über ein aktives DANE-Schema für ein zuverlässiges Rollover von Zertifikatsschlüsseln.",
 				"good": "Alle Ihre Mailserver-Domänen verfügen über ein aktives DANE-Schema für ein zuverlässiges Rollover der Zertifikatsschlüssel."
+			},
+			"tech_table": {
+				"dane_rollover_scheme": "DANE-Rollover-Regelung",
+				"mail_server_mx": ""
 			},
 			"title": "DANE-Rollover-Regelung"
 		},
@@ -890,6 +1047,10 @@
 				"bad": "Mindestens einer Ihrer Mailserver hat <em>keine</em> gültigen DANE-Fingerprints. Entweder hat jemand die Antwort Ihres Mailservers manipuliert, oder Ihr Mailserver hat einen schweren DANE-Konfigurationsfehler. Im letzteren Fall ist Ihre Domäne für jeden sendenden Mailserver, der DANE-Fingerprints prüft, unerreichbar. Sie sollten sich so schnell wie möglich an Ihren Mail-Provider wenden.",
 				"good": "Jeder Ihrer Mailserver verfügt über mindestens einen gültigen DANE-Fingerabdruck. Dadurch können sendende Mailserver, die die DANE-Verifizierung unterstützen, eine authentifizierte, verschlüsselte Transportverbindung mit Ihren empfangenden Mailservern aufbauen."
 			},
+			"tech_table": {
+				"dane_tlsa_record_valid": "DANE TLSA-Datensatz gültig",
+				"mail_server_mx": ""
+			},
 			"title": "DANE Gültigkeit"
 		},
 		"internet_nl_mail_starttls_tls_0rtt": {
@@ -898,6 +1059,10 @@
 				"bad": "Mindestens einer Ihrer Mailserver unterstützt 0-RTT, was <em>nicht</em> sicher ist.",
 				"good": "Keiner Ihrer Mailserver unterstützt 0-RTT.",
 				"na": "Dieser Untertest ist nicht anwendbar, da Ihre Mailserver TLS 1.3 nicht unterstützen."
+			},
+			"tech_table": {
+				"0_rtt": "0-RTT",
+				"mail_server_mx": ""
 			},
 			"title": "0-RTT"
 		},
@@ -917,6 +1082,10 @@
 				"other_2": "Auf Ihrer Domäne, die keine A/AAAA-Einträge hat, sind keine empfangenden Mailserver (MX) eingerichtet. Dies ist in Ordnung, wenn Sie keine E-Mails empfangen möchten.",
 				"passed": "Verschlüsselung verfügbar. Dies bedeutet, dass E-Mails sicher an diese Adresse gesendet werden können."
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"starttls": "StartTLS"
+			},
 			"technology": "Opportunistisches TLS / STARTTLS",
 			"title": "Anwendung der Verschlüsselung von empfangenen E-Mails"
 		},
@@ -929,6 +1098,11 @@
 				"seclevel_bad": "Mindestens einer Ihrer Mailserver bevorzugt <em>nicht</em> \"Gut\" gegenüber \"Ausreichend\" gegenüber \"Auslauf\"-Chiffren (\"II\").",
 				"warning": "VERALTETER TEXT; URTEIL NICHT VERWENDET</p><p>Mindestens einer Ihrer Mailserver bietet <em>keine</em> Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge innerhalb einer bestimmten Sicherheitsstufe ('II-B') an."
 			},
+			"tech_table": {
+				"first_found_affected_cipher_pair": "Erstes betroffenes Chiffrierpaar gefunden",
+				"mail_server_mx": "",
+				"violated_rule_ii_b": "Verstoß gegen Regel # ('II-B')"
+			},
 			"title": "Chiffrierauftrag"
 		},
 		"internet_nl_mail_starttls_tls_ciphers": {
@@ -938,6 +1112,11 @@
 				"good": "Alle Ihre Mailserver unterstützen nur sichere Verschlüsselungen.",
 				"phase_out": "Mindestens einer Ihrer Mailserver unterstützt eine oder mehrere Chiffren, die den Status <em>phase out</em> haben, weil sie als anfällig gelten und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
 			},
+			"tech_table": {
+				"first_found_affected_cipher": "Erste betroffene Chiffre gefunden",
+				"mail_server_mx": "",
+				"status": "Status"
+			},
 			"title": "Chiffren (Auswahl der Algorithmen)"
 		},
 		"internet_nl_mail_starttls_tls_clientreneg": {
@@ -946,6 +1125,10 @@
 				"bad": "Mindestens einer Ihrer Mailserver lässt eine vom Kunden initiierte Neuverhandlung zu, was sich negativ auf die Verfügbarkeit Ihres Mailservers auswirken könnte.",
 				"good": "Alle Ihre Mailserver erlauben keine vom Kunden initiierte Neuaushandlung."
 			},
+			"tech_table": {
+				"client_initiated_renegotiation": "Neuverhandlung auf Veranlassung des Kunden",
+				"mail_server_mx": ""
+			},
 			"title": "Neuverhandlung auf Veranlassung des Kunden"
 		},
 		"internet_nl_mail_starttls_tls_compress": {
@@ -953,6 +1136,10 @@
 			"rating": {
 				"bad": "Mindestens einer Ihrer Mailserver unterstützt TLS-Kompression, die <em>nicht</em> sicher ist.",
 				"good": "Nicht alle Ihre Mailserver unterstützen die TLS-Komprimierung."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"tls_compression": "TLS-Komprimierung"
 			},
 			"title": "TLS-Komprimierung"
 		},
@@ -964,6 +1151,11 @@
 				"na": "Dieser Untertest ist nicht anwendbar, da Ihre Mailserver den Diffie-Hellman-Schlüsselaustausch nicht unterstützen. Beachten Sie, dass RSA eine Alternative für den Schlüsselaustausch ist, aber den Status <em>phase out</em> hat.",
 				"phase_out": "Mindestens einer Ihrer Mailserver unterstützt Parameter für den Diffie-Hellman-Schlüsselaustausch, die den Status <em>phase out</em> haben, weil sie bekanntermaßen anfällig sind und Gefahr laufen, <em>unzureichend</em> sicher zu werden."
 			},
+			"tech_table": {
+				"affected_parameters": "Betroffene Parameter",
+				"mail_server_mx": "",
+				"security_level": "Sicherheitsstufe"
+			},
 			"title": "Wichtige Austauschparameter"
 		},
 		"internet_nl_mail_starttls_tls_keyexchangehash": {
@@ -973,6 +1165,10 @@
 				"other": "Wir waren nicht in der Lage, die von mindestens einem Ihrer Mailserver verwendete Hash-Funktion zu ermitteln. Dies könnte daran liegen, dass die verwendete Chiffrierkombination keine Signatur für die Zertifikatsüberprüfung hat (z. B. verwendet sie RSA-Schlüsselaustausch oder ist anonym, d. h. <code>anon</code>).",
 				"phase_out": "Mindestens einer Ihrer Mailserver unterstützt <em>keine</em> sichere Hashfunktion für den Schlüsselaustausch. Sie sollten <em>diese Einstellung bewusst</em> auslaufen lassen, da die Gefahr besteht, dass sie in Zukunft <em>nicht mehr ausreichend</em> sicher ist."
 			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"sha2_support_for_signatures": "SHA2-Unterstützung für Signaturen"
+			},
 			"title": "Hash-Funktion für den Schlüsselaustausch"
 		},
 		"internet_nl_mail_starttls_tls_secreneg": {
@@ -980,6 +1176,10 @@
 			"rating": {
 				"bad": "Mindestens einer Ihrer Mailserver unterstützt eine unsichere Neuaushandlung, die offensichtlich <em>nicht</em> sicher ist.",
 				"good": "Alle Ihre Mailserver unterstützen eine sichere Neuaushandlung."
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"secure_renegotiation": "Sichere Neuverhandlung"
 			},
 			"title": "Sichere Neuverhandlung"
 		},
@@ -989,6 +1189,11 @@
 				"bad": "Mindestens einer Ihrer Mailserver unterstützt eine oder mehrere <em>unzureichend</em> sichere TLS-Versionen.",
 				"good": "Alle Ihre Mailserver unterstützen nur sichere TLS-Versionen.",
 				"phase_out": ""
+			},
+			"tech_table": {
+				"mail_server_mx": "",
+				"status": "Status",
+				"tls_versions": "TLS-Versionen"
 			},
 			"title": "TLS-Version"
 		},
@@ -1012,6 +1217,10 @@
 				"bad": "Ihr Webserver bietet <em>keine</em> Content-Security-Policy (CSP) an oder bietet CSP mit bestimmten <em>unsicheren</em> Einstellungen an.",
 				"good": "Ihr Webserver bietet Content-Security-Policy (CSP) und verwendet bestimmte unsichere CSP-Einstellungen nicht."
 			},
+			"tech_table": {
+				"findings": "Fundstücke",
+				"web_server_ip_address": "IP-Adresse des Webservers"
+			},
 			"title": "Content-Security-Policy"
 		},
 		"internet_nl_web_appsecpriv_referrer_policy": {
@@ -1021,10 +1230,23 @@
 				"good": "Ihr Webserver bietet eine Referrer-Policy mit einem Policy-Wert, der ausreichend sicher und datenschutzfreundlich ist.",
 				"recommendations": ""
 			},
+			"tech_table": {
+				"findings": "Fundstücke",
+				"web_server_ip_address": "IP-Adresse des Webservers"
+			},
 			"title": "Referrer-Richtlinie"
 		},
 		"internet_nl_web_appsecpriv_securitytxt": {
 			"explanation": "Wir prüfen, ob Ihr Webserver eine <code>security.txt</code> Datei am richtigen Ort bereitstellt, ob sie abgerufen werden kann und ob ihr Inhalt syntaktisch gültig ist. </p><p><code>security.txt</code> ist eine Textdatei mit Kontaktinformationen, die Sie auf Ihrem Webserver ablegen. Sicherheitsforscher können diese Informationen nutzen, um die richtige Abteilung oder Person in Ihrem Unternehmen direkt über Schwachstellen zu informieren, die sie in Ihrer Website oder Ihren IT-Systemen gefunden haben. Dies kann die Behebung der gefundenen Schwachstellen beschleunigen und die Möglichkeiten für böswillige Parteien verringern, diese auszunutzen. </p><p>Die Syntax der Datei sollte maschinen- und menschenlesbar sein. Bei den Kontaktinformationen kann es sich um eine E-Mail-Adresse, eine Telefonnummer und/oder eine Webseite (z. B. ein Webformular) handeln. Beachten Sie, dass veröffentlichte Kontaktinformationen öffentlich sind und auch missbraucht werden können, z. B. um Spam an eine veröffentlichte E-Mail-Adresse zu senden.</p><p>Neben den Kontaktinformationen muss die Datei <code>security.txt</code> auch ein Verfallsdatum enthalten. Um zu vermeiden, dass es veraltet, wird empfohlen, dass das Datum weniger als ein Jahr in der Zukunft liegt. Es ist fakultativ, auch andere relevante Informationen für Sicherheitsforscher aufzunehmen, wie z.B. einen Link zu Ihrer Richtlinie über den Umgang mit Meldungen von Sicherheitslücken (üblicherweise Coordinated Vulnerability Disclosure Policy genannt).</p><p>Es wird empfohlen, die Datei <code>security.txt</code> mit PGP zu signieren und die Web-URI, auf der sich die Datei befindet, in einem <code>Kanonischen Feld</code> aufzunehmen. Derzeit überprüfen wir <em>den Wert des <code>Canonical</em> Feldes nicht. Canonical</code> -Feldes, da die security.txt-Spezifikation nicht eindeutig ist, insbesondere wenn es um Weiterleitungen geht. Wir prüfen, ob die <code>security.txt</code> Datei signiert ist. Allerdings <em>validieren wir die Signatur nicht</em> , da es leider keinen standardisierten Ort gibt, um einen öffentlichen PGP-Schlüssel (der für die Signaturvalidierung erforderlich ist) abzurufen.</p><p>Die Datei muss unter dem <code>/.well-known/</code> Pfad veröffentlicht werden. Beachten Sie, dass die Platzierung unter dem Top-Level-Pfad veraltet ist. Jede Web(sub)domain sollte ihre eigene <code>security.txt</code> Datei haben. Die Weiterleitung zu einer <code>security.txt</code> auf einer anderen Domain ist erlaubt. Eine Beispieldatei finden Sie auf <a href=\"https://example.nl/.well-known/security.txt\"><code>https://example.nl/.well-known/security.txt</code></a>.</p><p>Beachten Sie, dass <code>security.txt</code> Dateien normalerweise nur wenige Kilobyte groß sind. Wir lesen und bewerten daher maximal die ersten 100 kB einer gefundenen <code>security.txt</code> Datei. </p><p><em>Anforderungsstufe: Empfohlen</em>",
+			"rating": {
+				"bad": "Ihr Webserver bietet <em>keine</em> security.txt-Datei am richtigen Ort an, sie konnte <em>nicht</em> abgerufen werden, oder ihr Inhalt ist <em>syntaktisch nicht</em> gültig.",
+				"good": "Ihr Webserver bietet eine Datei security.txt an der richtigen Stelle an und ihr Inhalt ist syntaktisch gültig.",
+				"recommendations": "Ihr Webserver bietet eine Datei security.txt an der richtigen Stelle an, und ihr Inhalt ist syntaktisch gültig. Es gibt jedoch eine oder mehrere Empfehlungen für Verbesserungen."
+			},
+			"tech_table": {
+				"findings": "Fundstücke",
+				"web_server_ip_address": "IP-Adresse des Webservers"
+			},
 			"title": "Sicherheit.txt"
 		},
 		"internet_nl_web_appsecpriv_x_content_type_options": {
@@ -1033,6 +1255,10 @@
 				"bad": "Ihr Webserver bietet <em>nicht</em> X-Content-Type-Options.",
 				"good": "Ihr Webserver bietet X-Content-Type-Options."
 			},
+			"tech_table": {
+				"web_server_ip_address": "IP-Adresse des Webservers",
+				"x_content_type_options_value": "X-Content-Type-Options-Wert"
+			},
 			"title": "X-Content-Type-Options"
 		},
 		"internet_nl_web_appsecpriv_x_frame_options": {
@@ -1040,6 +1266,10 @@
 			"rating": {
 				"bad": "Ihr Webserver bietet <em>nicht</em> sicher konfigurierte X-Frame-Options.",
 				"good": "Ihr Webserver bietet sicher konfigurierte X-Frame-Options."
+			},
+			"tech_table": {
+				"web_server_ip_address": "IP-Adresse des Webservers",
+				"x_frame_options_value": "X-Frame-Options-Wert"
 			},
 			"title": "X-Frame-Options"
 		},
@@ -1052,7 +1282,7 @@
 			"title": "VERALTETER TEXT; TEST NICHT VERWENDET</p><p>X-XSS-Schutz"
 		},
 		"internet_nl_web_dnssec": {
-			"title": ""
+			"title": "Signierter Domänenname (DNSSEC)"
 		},
 		"internet_nl_web_dnssec_exist": {
 			"explanation": "Wir prüfen, ob Ihre Domain, genauer gesagt ihr SOA-Eintrag, DNSSEC-signiert ist.</p><p>Wenn eine Domain auf eine andere Domain über <code>CNAME</code>weiterleitet, wird auch geprüft, ob die CNAME-Domain signiert ist (was dem DNSSEC-Standard entspricht). Wenn die CNAME-Domain nicht signiert ist, ist das Ergebnis dieses Subtests negativ.</p><p>Hinweis: Die Gültigkeit der Signatur ist nicht Teil dieses Subtests, sondern Teil des nächsten Subtests.",
@@ -1061,6 +1291,10 @@
 				"good": "Ihre Domäne ist DNSSEC-signiert.",
 				"resolver_error": "Leider ist ein Fehler im Resolver von Internet.nl aufgetreten. Bitte <a href=\"/about/\">kontaktieren Sie</a> uns.",
 				"servfail": "Die Nameserver Ihrer Domäne sind <em>defekt</em>. Sie haben einen Fehler (<code>SERVFAIL</code>) auf unsere Abfragen nach einer DNSSEC-Signatur zurückgegeben. Bitte wenden Sie sich an Ihren Nameserver-Betreiber (oft Ihr Hosting-Provider und/oder Registrar), um dies bald zu beheben."
+			},
+			"tech_table": {
+				"domain": "Bereich",
+				"registrar": ""
 			},
 			"title": "Existenz von DNSSEC"
 		},
@@ -1071,6 +1305,10 @@
 				"good": "Ihre Domäne ist sicher, da ihre DNSSEC-Signatur gültig ist.",
 				"unsupported_ds_algo": "Ihre Domain ist mit einem Algorithmus signiert, den unser Validierungsresolver derzeit nicht unterstützt. Daher sind wir nicht in der Lage, die Gültigkeit der DNSSEC-Signatur zu prüfen."
 			},
+			"tech_table": {
+				"domain": "Bereich",
+				"status": "Status"
+			},
 			"title": "DNSSEC-Gültigkeit"
 		},
 		"internet_nl_web_https_cert_chain": {
@@ -1079,6 +1317,10 @@
 				"bad": "Die Vertrauenskette Ihres Website-Zertifikats ist <em>nicht</em> vollständig und/oder <em>nicht</em> von einer vertrauenswürdigen Stammzertifizierungsstelle signiert.",
 				"good": "Die Vertrauenskette Ihres Website-Zertifikats ist vollständig und von einer vertrauenswürdigen Stammzertifizierungsstelle unterzeichnet."
 			},
+			"tech_table": {
+				"untrusted_certificate_chain": "",
+				"web_server_ip_address": "IP-Adresse des Webservers"
+			},
 			"title": "Vertrauenskette des Zertifikats"
 		},
 		"internet_nl_web_https_cert_domain": {
@@ -1086,6 +1328,10 @@
 			"rating": {
 				"bad": "Der Domainname Ihrer Website stimmt <em>nicht</em> mit dem Domainnamen auf Ihrem Website-Zertifikat überein.",
 				"good": "Der Domänenname Ihrer Website stimmt mit dem Domänennamen auf Ihrem Website-Zertifikat überein."
+			},
+			"tech_table": {
+				"unmatched_domains_on_certificate": "",
+				"web_server_ip_address": "IP-Adresse des Webservers"
 			},
 			"title": "Domänenname auf dem Zertifikat"
 		},
@@ -1096,6 +1342,11 @@
 				"good": "Die digitale Signatur Ihres Website-Zertifikats verwendet sichere Parameter.",
 				"phase_out": "Die digitale Signatur Ihres Website-Zertifikats verwendet Parameter, die einen <em>Auslaufstatus</em> haben, weil sie als anfällig gelten und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
 			},
+			"tech_table": {
+				"affected_signature_parameters": "",
+				"status": "Status",
+				"web_server_ip_address": "IP-Adresse des Webservers"
+			},
 			"title": "Öffentlicher Schlüssel des Zertifikats"
 		},
 		"internet_nl_web_https_cert_sig": {
@@ -1103,6 +1354,11 @@
 			"rating": {
 				"bad": "Ihr Website-Zertifikat ist mit einem Hash-Algorithmus signiert, der <em>unzureichend</em> sicher ist.",
 				"good": "Das Zertifikat Ihrer Website wird mit einem sicheren Hash-Algorithmus signiert."
+			},
+			"tech_table": {
+				"affected_hash_algorithm": "",
+				"status": "Status",
+				"web_server_ip_address": "IP-Adresse des Webservers"
 			},
 			"title": "Unterschrift des Zertifikats"
 		},
@@ -1113,6 +1369,10 @@
 				"bogus": "Ihre Website-Domain liefert <em>nicht</em> den DNSSEC-Beweis, dass keine DANE TLSA-Einträge existieren. Sie sollten Ihren Nameserver-Betreiber bitten, dieses Problem zu beheben.",
 				"good": "Ihre Website-Domäne enthält einen TLSA-Eintrag für DANE."
 			},
+			"tech_table": {
+				"dane_tlsa_record_existent": "",
+				"web_server_ip_address": "IP-Adresse des Webservers"
+			},
 			"title": "DANE Existenz"
 		},
 		"internet_nl_web_https_dane_valid": {
@@ -1120,6 +1380,10 @@
 			"rating": {
 				"bad": "Der DANE-Fingerabdruck auf Ihrer Domain ist <em>nicht</em> gültig für Ihr Webzertifikat. Entweder hat jemand die Antwort Ihres Nameservers manipuliert, oder Ihre Domain hat einen schwerwiegenden DANE-Konfigurationsfehler. Im letzteren Fall ist Ihre Website für alle Benutzer, die DANE-Fingerabdrücke überprüfen, nicht erreichbar. Wenden Sie sich so schnell wie möglich an Ihren Nameserver-Betreiber und/oder Ihren Hosting-Provider.",
 				"good": "Der DANE-Fingerabdruck auf Ihrer Domain ist für Ihr Webzertifikat gültig."
+			},
+			"tech_table": {
+				"dane_tlsa_record_valid": "",
+				"web_server_ip_address": "IP-Adresse des Webservers"
 			},
 			"title": "DANE Gültigkeit"
 		},
@@ -1130,6 +1394,10 @@
 				"good": "Ihre Website bietet HTTPS.",
 				"other": "Ihr Webserver ist unerreichbar."
 			},
+			"tech_table": {
+				"https_existent": "HTTPS vorhanden",
+				"web_server_ip_address": "IP-Adresse des Webservers"
+			},
 			"title": "HTTPS verfügbar"
 		},
 		"internet_nl_web_https_http_compress": {
@@ -1137,6 +1405,10 @@
 			"rating": {
 				"bad": "Ihr Webserver unterstützt die HTTP-Komprimierung, die ein Sicherheitsrisiko darstellen könnte.",
 				"good": "Ihr Webserver unterstützt keine HTTP-Komprimierung."
+			},
+			"tech_table": {
+				"http_compression": "HTTP-Komprimierung",
+				"web_server_ip_address": "IP-Adresse des Webservers"
 			},
 			"title": "HTTP-Komprimierung"
 		},
@@ -1146,6 +1418,10 @@
 				"bad": "Ihr Webserver bietet <em>keine</em> HSTS-Richtlinie an.",
 				"good": "Ihr Webserver bietet eine HSTS-Richtlinie an.",
 				"other": "Ihr Webserver bietet eine HSTS-Richtlinie mit einer Cache-Gültigkeitsdauer (<code>max-age</code>), die <em>nicht</em> ausreichend lang ist (d. h. weniger als 1 Jahr)."
+			},
+			"tech_table": {
+				"hsts_policy": "HSTS-Politik",
+				"web_server_ip_address": "IP-Adresse des Webservers"
 			},
 			"title": "HSTS"
 		},
@@ -1157,6 +1433,10 @@
 				"no_https": "Dieser Test konnte nicht durchgeführt werden, weil Ihr Webserver entweder kein HTTPS oder HTTPS mit einer sehr veralteten, unsicheren TLS-Konfiguration anbietet.",
 				"other": "Ihr Webserver bietet nur Unterstützung für HTTPS und nicht für HTTP."
 			},
+			"tech_table": {
+				"https_redirect": "HTTPS-Umleitung",
+				"web_server_ip_address": ""
+			},
 			"title": "HTTPS-Umleitung"
 		},
 		"internet_nl_web_https_tls_0rtt": {
@@ -1165,6 +1445,10 @@
 				"bad": "Ihr Webserver unterstützt 0-RTT, was <em>nicht</em> sicher ist.",
 				"good": "Ihr Webserver unterstützt 0-RTT nicht.",
 				"na": "Dieser Untertest ist nicht anwendbar, da Ihr Webserver TLS 1.3 nicht unterstützt."
+			},
+			"tech_table": {
+				"0_rtt": "0-RTT",
+				"web_server_ip_address": ""
 			},
 			"title": "0-RTT"
 		},
@@ -1177,6 +1461,11 @@
 				"seclevel_bad": "Ihr Webserver bevorzugt <em>nicht</em> \"Gut\" gegenüber \"Ausreichend\" gegenüber \"Auslauf\"-Chiffren (\"II\").",
 				"warning": "VERALTETER TEXT; URTEIL NICHT VERWENDET</p><p>Ihr Webserver bietet <em>keine</em> Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge innerhalb einer bestimmten Sicherheitsstufe ('II-B') an."
 			},
+			"tech_table": {
+				"first_found_affected_cipher_pair": "",
+				"violated_rule_ii_b": "",
+				"web_server_ip_address": ""
+			},
 			"title": "Chiffrierauftrag"
 		},
 		"internet_nl_web_https_tls_ciphers": {
@@ -1186,6 +1475,11 @@
 				"good": "Ihr Webserver unterstützt nur sichere Chiffren.",
 				"phase_out": "Ihr Webserver unterstützt eine oder mehrere Chiffren, die den Status <em>phase out</em> haben, weil sie als anfällig gelten und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
 			},
+			"tech_table": {
+				"affected_ciphers": "Betroffene Chiffren",
+				"status": "Status",
+				"web_server_ip_address": ""
+			},
 			"title": "Chiffren (Auswahl der Algorithmen)"
 		},
 		"internet_nl_web_https_tls_clientreneg": {
@@ -1194,6 +1488,10 @@
 				"bad": "Ihr Webserver erlaubt eine vom Kunden veranlasste Neuverhandlung, die sich negativ auf die Verfügbarkeit Ihrer Website auswirken kann.",
 				"good": "Ihr Webserver lässt keine vom Client initiierte Neuverhandlung zu."
 			},
+			"tech_table": {
+				"client_initiated_renegotiation": "Neuverhandlung auf Veranlassung des Kunden",
+				"web_server_ip_address": ""
+			},
 			"title": "Neuverhandlung auf Veranlassung des Kunden"
 		},
 		"internet_nl_web_https_tls_compress": {
@@ -1201,6 +1499,10 @@
 			"rating": {
 				"bad": "Ihr Webserver unterstützt TLS-Kompression, die <em>nicht</em> sicher ist.",
 				"good": "Ihr Webserver unterstützt keine TLS-Komprimierung."
+			},
+			"tech_table": {
+				"tls_compression": "TLS-Komprimierung",
+				"web_server_ip_address": ""
 			},
 			"title": "TLS-Komprimierung"
 		},
@@ -1212,6 +1514,11 @@
 				"na": "Dieser Untertest ist nicht anwendbar, da Ihr Webserver <em>den Diffie-Hellman-Schlüsselaustausch nicht</em> unterstützt. Beachten Sie, dass RSA eine Alternative für den Schlüsselaustausch ist, aber den <em>phase out</em> Status hat.",
 				"phase_out": "Ihr Webserver unterstützt Parameter für den Diffie-Hellman-Schlüsselaustausch, die den Status <em>phase out</em> haben, weil sie bekanntermaßen anfällig sind und Gefahr laufen, <em>unzureichend</em> sicher zu werden."
 			},
+			"tech_table": {
+				"affected_parameters": "",
+				"status": "Status",
+				"web_server_ip_address": ""
+			},
 			"title": "Wichtige Austauschparameter"
 		},
 		"internet_nl_web_https_tls_keyexchangehash": {
@@ -1220,6 +1527,10 @@
 				"good": "Ihr Webserver unterstützt eine sichere Hash-Funktion für den Schlüsselaustausch.",
 				"other": "Wir waren nicht in der Lage, die von Ihrem Webserver verwendete Hash-Funktion zu ermitteln. Dies könnte daran liegen, dass die verwendete Chiffrierkombination keine Signatur für die Zertifikatsüberprüfung hat (z. B. verwendet sie RSA-Schlüsselaustausch oder ist anonym, d. h. <code>anon</code>).",
 				"phase_out": "Ihr Webserver unterstützt <em>keine</em> sichere Hash-Funktion für den Schlüsselaustausch. Sie sollten <em>diese Einstellung bewusst</em> auslaufen lassen, da die Gefahr besteht, dass sie in Zukunft <em>nicht mehr ausreichend</em> sicher ist."
+			},
+			"tech_table": {
+				"sha2_support_for_signatures": "",
+				"web_server_ip_address": ""
 			},
 			"title": "Hash-Funktion für den Schlüsselaustausch"
 		},
@@ -1230,6 +1541,10 @@
 				"good": "Ihr Webserver unterstützt OCSP Stapling und die Daten in der Antwort sind gültig.",
 				"ok": "Ihr Webserver unterstützt <em>nicht</em> OCSP Stapling."
 			},
+			"tech_table": {
+				"ocsp_stapling": "OCSP-Heftung",
+				"web_server_ip_address": ""
+			},
 			"title": "OCSP-Heftung"
 		},
 		"internet_nl_web_https_tls_secreneg": {
@@ -1237,6 +1552,10 @@
 			"rating": {
 				"bad": "Ihr Webserver unterstützt eine unsichere Neuaushandlung, die offensichtlich <em>nicht</em> sicher ist.",
 				"good": "Ihr Webserver unterstützt eine sichere Neuaushandlung."
+			},
+			"tech_table": {
+				"secure_renegotiation": "Sichere Neuverhandlung",
+				"web_server_ip_address": ""
 			},
 			"title": "Sichere Neuverhandlung"
 		},
@@ -1247,10 +1566,15 @@
 				"good": "Ihr Webserver unterstützt nur sichere TLS-Versionen.",
 				"phase_out": "Ihr Webserver unterstützt TLS-Versionen, die <em>absichtlich eingestellt werden sollten</em> , weil sie bekanntermaßen anfällig sind und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
 			},
+			"tech_table": {
+				"status": "Status",
+				"tls_version": "TLS-Version",
+				"web_server_ip_address": ""
+			},
 			"title": "TLS-Version"
 		},
 		"internet_nl_web_ipv6": {
-			"title": ""
+			"title": "Moderne Adresse (IPv6)"
 		},
 		"internet_nl_web_ipv6_ns_address": {
 			"explanation": "Wir prüfen, ob Ihr Domain-Name mindestens zwei Name-Server mit einer IPv6-Adresse hat. </p><p>Dies steht im Einklang mit den <a href=\"https://www.sidn.nl/downloads/KwpW_ORWRWetYuoBp5GeYA/7e91faddb53ad85b8c6a2fce15d764cb/Technical_requirements_for_the_registration_and_use_of_nl_domain_names.pdf\">\"Technischen Anforderungen für die Registrierung und Nutzung von .nl-Domainnamen\"</a> d.d. 13. November 2017 von SIDN (.nl TLD Registry), die verlangen, dass jede .nl-Domain mindestens zwei Nameserver hat.</p><p>'IPv4-mapped IPv6-Adressen' (<a href=\"https://www.rfc-editor.org/rfc/rfc4291\">RFC 4291</a>, beginnend mit ::ffff:) fallen bei diesem Test durch, da sie <em>nicht</em> IPv6-Konnektivität bieten.",
@@ -1258,6 +1582,11 @@
 				"bad": "Keiner der Nameserver Ihrer Domäne hat eine IPv6-Adresse.",
 				"good": "Zwei oder mehr Nameserver Ihrer Domäne haben eine IPv6-Adresse.",
 				"other": "Nur ein Nameserver Ihrer Domäne hat eine IPv6-Adresse."
+			},
+			"tech_table": {
+				"ipv4_address": "",
+				"ipv6_address": "",
+				"name_server": ""
 			},
 			"title": "IPv6-Adressen für Namenserver"
 		},
@@ -1267,6 +1596,10 @@
 				"bad": "<em>Nicht</em> alle Nameserver, die eine IPv6-Adresse haben, sind über IPv6 erreichbar.",
 				"good": "Alle Nameserver, die eine IPv6-Adresse haben, sind über IPv6 erreichbar."
 			},
+			"tech_table": {
+				"name_server": "",
+				"unreachable_ipv6_address": ""
+			},
 			"title": "IPv6-Erreichbarkeit von Namensservern"
 		},
 		"internet_nl_web_ipv6_ws_address": {
@@ -1275,6 +1608,11 @@
 				"bad": "<em>Keiner</em> Ihrer Webserver hat eine IPv6-Adresse.",
 				"good": "Mindestens einer Ihrer Webserver hat eine IPv6-Adresse."
 			},
+			"tech_table": {
+				"ipv4_address": "",
+				"ipv6_address": "",
+				"web_server": "Webserver"
+			},
 			"title": "IPv6-Adressen für Webserver"
 		},
 		"internet_nl_web_ipv6_ws_reach": {
@@ -1282,6 +1620,10 @@
 			"rating": {
 				"bad": "Mindestens einer Ihrer Webserver mit einer IPv6-Adresse ist <em>nicht</em> über IPv6 erreichbar.",
 				"good": "Alle Ihre Webserver mit einer IPv6-Adresse sind über IPv6 erreichbar."
+			},
+			"tech_table": {
+				"unreachable_ipv6_address": "",
+				"web_server": "Webserver"
 			},
 			"title": "IPv6-Erreichbarkeit des Webservers"
 		},
@@ -1296,15 +1638,15 @@
 			"title": "Dieselbe Website für IPv6 und IPv4"
 		},
 		"internet_nl_web_legacy_category": {
-			"title": ""
+			"title": "Extra Felder"
 		},
 		"internet_nl_web_legacy_category_ipv6": {
-			"explanation": "",
+			"explanation": "Berechnet anhand des Kategoriewerts für IPv6.",
 			"title": "IPv6-Web"
 		},
 		"internet_nl_web_legacy_dane": {
 			"explanation": "Berechnet unter Verwendung des schlechtesten Wertes aus: web_https_dane_exist und web_https_dane_valid.",
-			"title": ""
+			"title": "DANE"
 		},
 		"internet_nl_web_legacy_dnssec": {
 			"explanation": "Berechnet unter Verwendung des schlechtesten Wertes aus: web_dnssec_exist und web_dnssec_valid.",
@@ -1320,15 +1662,15 @@
 		},
 		"internet_nl_web_legacy_ipv6_nameserver": {
 			"explanation": "Berechnet unter Verwendung des schlechtesten Wertes aus: web_ipv6_ns_address und web_ipv6_ns_reach.",
-			"title": ""
+			"title": "IPv6-Nameserver"
 		},
 		"internet_nl_web_legacy_ipv6_webserver": {
 			"explanation": "Berechnet unter Verwendung des schlechtesten Wertes aus: web_ipv6_ws_address, web_ipv6_ws_reach und web_ipv6_ws_similar.",
 			"title": "IPv6-Webserver"
 		},
 		"internet_nl_web_legacy_tls_1_3": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Ableitung der TLS1.3-Unterstützung durch den 0-RTT-Test. Die explizite Prüfung auf TLS1.3-Unterstützung ist nicht Teil des Konformitätstools. Die TLS1.3-Unterstützung könnte jedoch aus dem 0-RTT-Test abgeleitet werden, da die Funktion erst ab TLS1.3 verfügbar ist. Da es während des Tests keine explizite TLS1.3-Verbindung gibt, geht der Test davon aus, dass der Server TLS1.3 wählt, wenn er die Möglichkeit dazu hat.",
+			"title": "TLS 1.3-Unterstützung"
 		},
 		"internet_nl_web_legacy_tls_available": {
 			"explanation": "Berechnet unter Verwendung des Wertes aus: web_https_http_available.",
@@ -1340,14 +1682,36 @@
 		},
 		"internet_nl_web_ns_rpki_exists": {
 			"explanation": "Wir prüfen, ob für alle IP-Adressen der Nameserver Ihrer Domain eine RPKI Route Origin Authorization (ROA) veröffentlicht wurde.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen Ihres Servers senden sollen.</p><p>Eine Routenankündigung kann jedoch gefälscht werden. Tatsächlich kann ein anderer Netzbetreiber den IP-Adressblock Ihrer IP-Adresse mit seinem Netz verbinden und so möglicherweise Internetverkehr empfangen, der eigentlich für Ihren Netzbetreiber bestimmt ist. Die Ursache kann versehentlich oder böswillig sein. In jedem Fall kann dies dazu führen, dass Ihr Server unerreichbar wird oder dass der Internetverkehr zu Ihrem Server abgefangen wird.</p><p>Die Resource Public Key Infrastructure (RPKI) verbessert den Schutz davor erheblich. Mit RPKI kann der rechtmäßige Inhaber eines Blocks von IP-Adressen eine digital signierte Erklärung mit Routenberechtigung (Route Origin Authorisation; kurz ROA) veröffentlichen. Ein anderer Netzbetreiber, der Internetverkehr an eine bestimmte IP-Adresse senden möchte, kann die entsprechende Erklärung verwenden, um <code>Ungültige</code> Routen. Auf diese Weise verhindert der Netzbetreiber, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze geschickt wird.</p><p><em>Anforderungsstufe: Empfohlen</em>",
-			"title": ""
+			"rating": {
+				"bad": "Für mindestens eine der IP-Adressen Ihrer Nameserver <em>wird keine</em> RPKI Route Origin Authorisation (ROA) veröffentlicht.",
+				"good": "Für alle IP-Adressen Ihrer Nameserver wird eine RPKI Route Origin Authorisation (ROA) veröffentlicht.",
+				"no_addresses": "Ihre Domäne enthält <em>keine</em> Nameserver. Daher konnte dieser Subtest nicht durchgeführt werden."
+			},
+			"tech_table": {
+				"ip_address": "IP-Adresse",
+				"name_server": "",
+				"rpki_route_origin_authorization": ""
+			},
+			"title": "Route Herkunft Autorisierung Existenz"
 		},
 		"internet_nl_web_ns_rpki_valid": {
-			"explanation": "",
-			"title": ""
+			"explanation": "Wir prüfen, ob der Validierungsstatus für alle IP-Adressen der Nameserver Ihrer Domäne <code>gültig</code>ist. Wenn es mehrere sich überschneidende Routenankündigungen für die IP-Adresse gibt, prüfen wir, ob sie alle <code>Gültig</code>.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Er tut dies, indem er (Teile) seiner IP-Adressblöcke (Route Prefix) mit der eindeutigen Nummer seines Providernetzes (Route Origin ASN) verknüpft und diese Routing-Informationen dann weitergibt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen weiterleiten sollen.</p><p>Zusätzlich sollte Ihr Hoster (oder sein Netzbetreiber) für jede Routenankündigung eine digital signierte Erklärung mit einer Routenautorisierungserklärung (Route Origin Authorisation; abgekürzt: ROA) unter Verwendung der Resource Public Key Infrastructure (RPKI) veröffentlichen. </p><p>Ein anderer Netzbetreiber, der gebeten wird, Internetverkehr an die IP-Adresse Ihres Servers zu senden, kann die zugehörige Erklärung kryptografisch verifizieren. Der verifizierte Inhalt (Validated ROA Payload; abgekürzt: VRP) beinhaltet, welche Providernetzwerke (VRP ASN) berechtigt sind, Internetverkehr für jeden aufgezeichneten IP-Adressblock (VRP Prefix) zu empfangen. </p><p>Der Netzbetreiber kann diesen Inhalt dann nutzen, um BGP-Routen zu filtern. Zum Beispiel kann er alle <code>Ungültige</code> Routen zurückweisen, um zu verhindern, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze gesendet wird.</p><p>Die Überprüfung von Routenankündigungen gegen Routenautorisierungen (RPKI Origin Validation; abgekürzt: ROV) hat die folgenden drei möglichen Ergebnisse.</p><p>1․ <code>Gültig</code>: Die Routenankündigung der betrachteten IP-Adresse wird von mindestens einer veröffentlichten Routenautorisierung abgeglichen. Eine Routenzulassung wird auch für spezifischere Routenankündigungen (d. h. für einen Teil des in der Routenzulassung enthaltenen IP-Adressblocks) abgeglichen, es sei denn, sie sind spezifischer als die in der Routenzulassung angegebene Grenze (über das Attribut <code>maxLength</code> ). </p><p>2․ <code>Ungültig</code>: Die Routenankündigung der betrachteten IP-Adresse ist durch eine Routenautorisierung abgedeckt, aber sie stimmt <em>nicht</em> überein. Es gibt zwei mögliche Ursachen:</p><ul><li>der IP-Adressblock (Route Prefix) wird von einem Providernetz (Route Origin ASN) angekündigt, das <em>nicht</em> in der Routenzulassung autorisiert ist (Ergebnis in der Tabelle unten: \"ungültig (as)\");</li><li>der angekündigte IP-Adressblock (Route Prefix) ist <em>kleiner als in der Routenautorisierung erlaubt</em> , d.h. er überschreitet den <code>maxLength</code> Wert (Ergebnis in der Tabelle unten: \"ungültig (Länge)\").</li></ul><p>3․ <code>NotFound</code>: Es wurde keine Anweisung mit route-authorisation gefunden, die die Routenankündigung der betreffenden IP-Adresse abdeckt. Dies macht die Weiterleitung des Internetverkehrs zu Ihrem Server weniger sicher. Bitte wenden Sie sich diesbezüglich an Ihren Hoster. Er kann seinen Netzwerkprovider, dem die IP-Adressen Ihres Servers gehören, bitten, Routenautorisierungen zu veröffentlichen.</p><p><strong>Was ist zu tun, wenn das Testergebnis den Status Ungültig anzeigt?</strong></p><p>Der Status <code>Ungültig</code> weist auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Hoster oder dessen Netzbetreiber (interner Fehler) oder von einem Dritten (externer Fehler) verursacht werden kann. In jedem Fall erhöht sich das Risiko der Nichterreichbarkeit Ihres Servers oder des Abfangens des Internetverkehrs zu Ihrem Server. Kontaktieren Sie Ihren Hoster so schnell wie möglich. Im Falle eines internen Fehlers sollte Ihr Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben.",
+			"rating": {
+				"bad": "",
+				"good": "",
+				"invalid": "",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"name_server": "",
+				"rpki_origin_validation_state": ""
+			},
+			"title": "Gültigkeit der Routenansage"
 		},
 		"internet_nl_web_rpki": {
-			"title": ""
+			"title": "Streckengenehmigung (RPKI)"
 		},
 		"internet_nl_web_rpki_exists": {
 			"explanation": "Das Internet besteht aus allen möglichen kleineren Netzen. Diese Netze können ad-hoc geschaffen werden, was bedeutet, dass jemand Böses dies tun könnte. Um zu verhindern, dass böswillige Akteure Teile des Internets übernehmen, wird ein Netz des Vertrauens und der Zertifizierung geschaffen. Dabei handelt es sich um ein bürokratisches Netz mit Organisationen, die von vertrauenswürdigen Parteien akkreditiert werden.",
@@ -1357,12 +1721,29 @@
 				"good": "Für alle IP-Adressen Ihres Webservers wird eine RPKI Route Origin Authorisation (ROA) veröffentlicht.",
 				"no_addresses": "Ihre Domain enthält <em>keine</em> Webserver-IP-Adressen. Daher konnte dieser Untertest nicht durchgeführt werden."
 			},
+			"tech_table": {
+				"ip_address": "IP-Adresse",
+				"rpki_route_origin_authorization": "",
+				"web_server": "Webserver"
+			},
 			"technology": "Ressource Public Key Infrastructure (RPKI) / Ressourcenzertifizierung",
 			"title": "Vertrauen in die Netzverbindung zur Website"
 		},
 		"internet_nl_web_rpki_valid": {
 			"explanation": "Wir prüfen, ob der Validierungsstatus für alle IP-Adressen Ihres Webservers <code>gültig</code>ist. Wenn es mehrere sich überschneidende Routenankündigungen für die IP-Adresse gibt, prüfen wir, ob sie alle <code>Gültig</code>.</p><p>Ihr Hoster (oder sein Netzbetreiber) gibt über das Border Gateway Protocol (BGP) bekannt, für welche seiner IP-Adressblöcke er eingehenden Internetverkehr annimmt. Er tut dies, indem er (Teile) seiner IP-Adressblöcke (Route Prefix) mit der eindeutigen Nummer seines Providernetzes (Route Origin ASN) verknüpft und diese Routing-Informationen dann weitergibt. Andere Netzbetreiber verwenden diese Routenankündigungen, um zu bestimmen, über welche Route sie den Verkehr für die IP-Adressen weiterleiten sollen.</p><p>Zusätzlich sollte Ihr Hoster (oder sein Netzbetreiber) für jede Routenankündigung eine digital signierte Erklärung mit einer Routenautorisierungserklärung (Route Origin Authorisation; abgekürzt: ROA) unter Verwendung der Resource Public Key Infrastructure (RPKI) veröffentlichen. </p><p>Ein anderer Netzbetreiber, der gebeten wird, Internetverkehr an die IP-Adresse Ihres Servers zu senden, kann die zugehörige Erklärung kryptografisch verifizieren. Der verifizierte Inhalt (Validated ROA Payload; abgekürzt: VRP) beinhaltet, welche Providernetzwerke (VRP ASN) berechtigt sind, Internetverkehr für jeden aufgezeichneten IP-Adressblock (VRP Prefix) zu empfangen. </p><p>Der Netzbetreiber kann diesen Inhalt dann nutzen, um BGP-Routen zu filtern. Zum Beispiel kann er alle <code>Ungültige</code> Routen zurückweisen, um zu verhindern, dass Internetverkehr aus seinem Netz an nicht autorisierte Providernetze gesendet wird.</p><p>Die Überprüfung von Routenankündigungen gegen Routenautorisierungen (RPKI Origin Validation; abgekürzt: ROV) hat die folgenden drei möglichen Ergebnisse.</p><ul><li><p><code>Gültig</code>: Die Streckenankündigung der betreffenden IP-Adresse wird von mindestens einer veröffentlichten Streckengenehmigung abgedeckt. Eine Streckenzulassung wird auch für spezifischere Streckenankündigungen (d. h. für einen Teil des in der Streckenzulassung enthaltenen IP-Adressblocks) abgeglichen, es sei denn, sie sind spezifischer als die in der Streckenzulassung angegebene Grenze (über das Attribut <code>maxLength</code> ). </p></li><li><p><code>Ungültig</code>: Die Routenankündigung der betrachteten IP-Adresse ist durch eine Routengenehmigung abgedeckt, aber sie stimmt <em>nicht</em> überein. Es gibt zwei mögliche Ursachen: </p></li><li><p>der IP-Adressblock (Route Prefix) wird von einem Providernetz (Route Origin ASN) angekündigt, das <em>nicht</em> in der Routenzulassung autorisiert ist (Ergebnis in der Tabelle unten: \"ungültig (as)\");</p></li><li>der angekündigte IP-Adressblock (Route Prefix) ist <em>kleiner als in der Routenautorisierung erlaubt</em> , d.h. er überschreitet den <code>maxLength</code> Wert (Ergebnis in der Tabelle unten: \"ungültig (Länge)\").</li></ul><p>Hinweis: Der Status <code>Ungültig</code> weist auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Hoster oder dessen Netzbetreiber (interner Fehler) oder von einem Dritten (externer Fehler) verursacht werden kann. In jedem Fall kann er zur Nichterreichbarkeit Ihres Servers oder zum Abfangen des Internetverkehrs zu Ihrem Server führen. Kontaktieren Sie Ihren Hoster so schnell wie möglich. Im Falle eines internen Fehlers sollte Ihr Hoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben. </p><ul><li><code>NotFound</code>: Es wurde keine Anweisung mit Route-Authorisation gefunden, die die Routenankündigung der betreffenden IP-Adresse abdeckt. Dies macht die Weiterleitung des Internetverkehrs zu Ihrem Server unsicherer. Bitte wenden Sie sich diesbezüglich an Ihren Hoster. Er kann seinen Netzwerkprovider, dem die IP-Adressen Ihres Servers gehören, bitten, Routenautorisierungen zu veröffentlichen.</li></ul><p><em>Anforderungsniveau: Empfohlen</em>",
-			"title": ""
+			"rating": {
+				"bad": "Mindestens eine IP-Adresse Ihres Webservers hat einen <code>NotFound</code> Validierungsstatus. Es ist <em>keine</em> RPKI Route Origin Authorization (ROA) für die Routenansage jeder der betroffenen IP-Adressen veröffentlicht.",
+				"good": "Alle IP-Adressen Ihres Webservers haben einen <code>gültigen</code> Validierungsstatus. Die Routenankündigung dieser IP-Adressen wird mit der veröffentlichten RPKI Route Origin Authorisation (ROA) abgeglichen.",
+				"invalid": "Mindestens eine IP-Adresse Ihres Webservers hat einen <code>ungültigen</code> Validierungsstatus. Die Routenankündigung der betroffenen IP-Adressen ist <em>nicht</em> mit der veröffentlichten RPKI Route Origin Authorisation (ROA) übereinstimmend. Dies deutet auf einen unbeabsichtigten oder böswilligen Fehler in der Routenkonfiguration hin, der von Ihrem Webhoster (interner Fehler) oder von einer dritten Partei (externer Fehler) verursacht werden kann. In beiden Fällen erhöht sich das Risiko der Nichterreichbarkeit Ihres Servers oder des Abfangens des Internetverkehrs zu Ihrem Server. Kontaktieren Sie Ihren Webhoster so schnell wie möglich. Im Falle eines internen Fehlers sollte Ihr Webhoster seinen Netzbetreiber, dem die IP-Adressen Ihres Servers gehören, bitten, den Fehler in der Routenkonfiguration zu beheben.",
+				"not_routed": ""
+			},
+			"tech_table": {
+				"bgp_route_origin_asn": "",
+				"bgp_route_prefix": "",
+				"rpki_origin_validation_state": "",
+				"web_server": "Webserver"
+			},
+			"title": "Gültigkeit der Routenansage"
 		},
 		"internet_nl_web_tls": {
 			"explanation": "Prüfen Sie, ob diese Verbindung alle Anforderungen der NCSC-NL TLS-Spezifikation erfüllt. Diese Spezifikation wird alle paar Jahre aktualisiert. Das Testergebnis basiert auf einem Dutzend individueller Metriken wie der Stärke der Sicherheit und der Sicherheitseinstellungen.",
@@ -1388,7 +1769,7 @@
 			"test_warning": "Warnung: Mindestens einen EMPFOHLENEN Untertest nicht bestanden ⇒ volle Punktzahl in der Testkategorie"
 		},
 		"mail": {
-			"title": ""
+			"title": "E-Mail"
 		},
 		"rating": {
 			"pct_error_in_test": "Testfehler",
@@ -1400,7 +1781,7 @@
 			"pct_ok": "Bestanden"
 		},
 		"web": {
-			"title": ""
+			"title": "Web"
 		}
 	},
 	"public-reports": {
@@ -1447,7 +1828,7 @@
 		"header": {
 			"compared_to": "Verglichen mit",
 			"data_from": "Daten von",
-			"number_of_domains": "",
+			"number_of_domains": "Anzahl der Domänen",
 			"only_graphs": "Es werden nur die Zeitleiste und die Diagramme angezeigt, da mehr als zwei Berichte ausgewählt sind.",
 			"type_of_scan_performed": "Art des Verhältnisses"
 		},
@@ -1458,14 +1839,14 @@
 			"domains_with_improvements": "Domains mit Verbesserungen",
 			"domains_with_regressions": "Domänen mit Regressionen",
 			"improvement": "Verbesserungen",
-			"metrics": "",
+			"metrics": "Metriken",
 			"neutral": "Unverändert",
-			"no_changes": "",
+			"no_changes": "Für den letzten Bericht liegen keine Daten vor",
 			"regression": "Regressionen",
-			"score_from": "",
-			"score_to": "",
+			"score_from": "Ergebnis von",
+			"score_to": "zu",
 			"title": "Änderungen",
-			"url": ""
+			"url": "Bereich"
 		},
 		"improvement-regressions-table": {
 			"improvement": "Verbesserungen",
@@ -1481,7 +1862,7 @@
 				"subtest_error_in_test": "Bei der Prüfung ist ein Fehler aufgetreten ⇒ null score",
 				"subtest_not_applicable": "Nicht anwendbar ⇒ keine Auswirkung auf das Ergebnis",
 				"subtest_not_tested": "Nicht getestet ⇒ keine Auswirkung auf das Ergebnis",
-				"title": ""
+				"title": "Legende der verwendeten Icons"
 			},
 			"results": {
 				"category_error_in_test": "Testfehler",
@@ -1494,7 +1875,7 @@
 				"failed": "Gescheitert",
 				"info": "Infos",
 				"not_applicable": "Nicht anwendbar",
-				"not_testable": "",
+				"not_testable": "Nicht prüfbar",
 				"not_tested": "Nicht getestet",
 				"passed": "Bestanden",
 				"unknown": "Unbekannt",
@@ -1504,12 +1885,12 @@
 		"nested-report-charts": {
 			"A": "Durchschnitt",
 			"category": "Kategorie",
-			"G": ""
+			"G": "Durchschnitt"
 		},
 		"page": {
 			"intro": "Es ist möglich, einen oder mehrere Berichte auszuwählen. Wenn Sie einen einzelnen Bericht auswählen, werden alle Daten dieses Berichts angezeigt, einschließlich Grafiken und einer Tabelle mit detaillierten Ergebnissen. Bei Auswahl von zwei Berichten wird ein Vergleich zwischen diesen Berichten in den Diagrammen und den detaillierten Ergebnissen vorgenommen. Wenn Sie mehr als zwei Berichte auswählen, werden nur die Grafiken angezeigt.",
 			"patience": "Bei Berichten mit mehr als 1000 Domains kann es eine Minute dauern, bis der Download beginnt. Bitte haben Sie etwas Geduld.",
-			"tab_changes": "",
+			"tab_changes": "Änderungen",
 			"tab_graphs": "Schaubilder",
 			"tab_metrics": "Tabelle der Metriken",
 			"title": "Berichte"
@@ -1546,11 +1927,11 @@
 		"report-table-virtual-list": {
 			"domain": "Bereich",
 			"icon_legend": {
-				"category_error_in_test": "",
-				"subtest_error_in_test": "",
-				"subtest_not_applicable": "",
-				"subtest_not_tested": "",
-				"title": ""
+				"category_error_in_test": "Bei der Prüfung ist ein Fehler aufgetreten ⇒ null score",
+				"subtest_error_in_test": "Bei der Prüfung ist ein Fehler aufgetreten ⇒ null score",
+				"subtest_not_applicable": "Nicht anwendbar ⇒ keine Auswirkung auf das Ergebnis",
+				"subtest_not_tested": "Nicht getestet ⇒ keine Auswirkung auf das Ergebnis",
+				"title": "Legende der verwendeten Icons"
 			},
 			"icons": {
 				"remove_filter": "Filter entfernen"
@@ -1558,7 +1939,7 @@
 			"report": {
 				"empty_report": "Es sieht so aus, als ob dieser Bericht leer ist... haben Sie zu viel gefiltert?",
 				"intro": "Diese Tabelle zeigt detaillierte Ergebnisse pro Kategorie. Es ist möglich, diesen Bericht mit einem zweiten Bericht zu vergleichen. In diesem Fall werden die Fortschrittsindikatoren dem ersten Bericht hinzugefügt, sofern zutreffend. Die Bereiche des zweiten Berichts werden nur verglichen, nicht angezeigt.",
-				"title": "",
+				"title": "Tabelle der Metriken",
 				"url_filter": "Filter auf Domäne...",
 				"zoom": {
 					"buttons": {
@@ -1617,16 +1998,16 @@
 			"results": {
 				"category_error_in_test": "Testfehler",
 				"comparison": {
-					"improved": "",
-					"neutral": "",
-					"regressed": ""
+					"improved": "Verbessert im Vergleich zum zweiten ausgewählten Bericht.",
+					"neutral": "-",
+					"regressed": "Regression im Vergleich zum zweiten ausgewählten Bericht."
 				},
 				"error": "Testfehler",
 				"error_in_test": "Testfehler",
 				"failed": "Gescheitert",
 				"info": "Infos",
 				"not_applicable": "Nicht anwendbar",
-				"not_testable": "",
+				"not_testable": "Nicht prüfbar",
 				"not_tested": "Nicht getestet",
 				"passed": "Bestanden",
 				"unknown": "Unbekannt",
@@ -1665,7 +2046,7 @@
 				"configuration_error": "Konfigurationsfehler entdeckt, kontaktieren Sie internet.nl",
 				"created report": "Erstellter Bericht",
 				"creating report": "Bericht erstellen",
-				"credential_error": "",
+				"credential_error": "API-Anmeldungsfehler",
 				"discovered endpoints": "ermittelte Endpunkte",
 				"discovering endpoints": "Erkennung von Endpunkten",
 				"error": "Ein unbekannter Fehler ist aufgetreten, kontaktieren Sie internet.nl",
@@ -1702,53 +2083,53 @@
 			"scan history": "Durchgeführte Aufgaben",
 			"scan_support_id": "Support-ID scannen",
 			"started_on": "Gestartet",
-			"stop_scan": "",
+			"stop_scan": "Scan stoppen",
 			"type": "Typ"
 		},
 		"stop_form": {
 			"cancel": {
-				"are_you_sure": "",
-				"cancel": "",
+				"are_you_sure": "Möchten Sie diesen Scan abbrechen?",
+				"cancel": "Scannen fortsetzen",
 				"list": "Liste",
-				"ok": "",
+				"ok": "Scan stoppen",
 				"scan_id": "Scannen"
 			},
 			"id": " scan #",
-			"last_check": "",
-			"list": "",
+			"last_check": "Letzte Statusaktualisierung",
+			"list": "Liste",
 			"message": "Status",
 			"progress": {
-				"cancelled": "",
+				"cancelled": "Scan wurde abgebrochen",
 				"configuration_error": "Konfigurationsfehler festgestellt, wenden Sie sich an den Dashboard-Administrator",
-				"created report": "",
-				"creating report": "",
-				"discovered endpoints": "",
-				"discovering endpoints": "",
+				"created report": "Erstellter Bericht",
+				"creating report": "Bericht erstellen",
+				"discovered endpoints": "ermittelte Endpunkte",
+				"discovering endpoints": "Erkennung von Endpunkten",
 				"error": "Ein unbekannter Fehler ist aufgetreten, wenden Sie sich an die Dashboard-Administratoren",
 				"finished": "Fertig",
-				"imported scan results": "",
-				"importing scan results": "",
+				"imported scan results": "importierte Scanergebnisse",
+				"importing scan results": "Importieren von Scanergebnissen",
 				"network_error": "Netzwerkproblem festgestellt, wenden Sie sich an den Dashboard-Administrator",
-				"registered": "",
+				"registered": "registrierter Scan",
 				"registered scan at internet": {
-					"nl": ""
+					"nl": "registrierter Scan"
 				},
 				"registering scan at internet": {
-					"nl": ""
+					"nl": "registrierender Scan"
 				},
 				"requested": "Angefordert",
-				"retrieved scannable urls": "",
-				"retrieving scannable urls": "",
-				"running scan": "",
-				"scan results ready": "",
-				"sending mail": "",
-				"sent mail": "",
-				"skipped sending mail: no e-mail addresses associated with account": "",
-				"skipped sending mail: no mail server configured": "",
-				"storing scan results": "",
-				"timeout": ""
+				"retrieved scannable urls": "abrufbare abfragbare Domains",
+				"retrieving scannable urls": "Abrufen abfragbarer Domains",
+				"running scan": "laufender Scan",
+				"scan results ready": "Scanergebnisse liegen vor",
+				"sending mail": "Postversand",
+				"sent mail": "gesendete Post",
+				"skipped sending mail: no e-mail addresses associated with account": "E-Mail-Versand übersprungen: keine E-Mail-Adressen mit Konto verbunden",
+				"skipped sending mail: no mail server configured": "Mailversand übersprungen: kein Mailserver konfiguriert",
+				"storing scan results": "Speichern von Scanergebnissen",
+				"timeout": "Operation wurde abgebrochen, wird erneut versucht"
 			},
-			"runtime": "",
+			"runtime": "Laufzeit",
 			"started_on": "Gestartet"
 		}
 	},
@@ -1760,6 +2141,7 @@
 			"captcha_description": "Bitte beantworten Sie die obige Frage",
 			"captcha_title": "Um automatische Anmeldungen zu verhindern: Wie lautet die Antwort auf 23 * 2 - 4?",
 			"chamber_of_commerce_number": "Nummer der Handelskammer",
+			"chamber_of_commerce_number_description": "Nur erforderlich für in den Niederlanden registrierte Organisationen, sonst leer lassen.",
 			"chamber_of_commerce_number_placeholder": "",
 			"dashboard_access": "Dashboard",
 			"email": "E-Mail",
@@ -1784,7 +2166,7 @@
 				"vital_infrastructure": "Lebenswichtige Infrastruktur der Kategorie A (NIS2)"
 			},
 			"nature_of_organization": "Art der Organisation",
-			"nature_of_organization_description": "Die API und das Dashboard sind nur für Organisationen verfügbar, die <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/application_form/README.md\">bestimmte Anforderungen erfüllen</a>.",
+			"nature_of_organization_description": "Die API und das Dashboard sind nur für Organisationen verfügbar, die <a target=\"_blank\" rel=\"nofollow\" href=\"https://github.com/internetstandards/Internet.nl-API-docs/blob/main/API-dashboard-access-request.md\">bestimmte Anforderungen erfüllen</a>.",
 			"organization_name": "Name der Organisation",
 			"organization_name_placeholder": "",
 			"other_type_not_possible": "Das Dashboard ist nicht für andere Arten von Organisationen gedacht. Ihre Anfrage wird nicht angenommen.",
@@ -1875,7 +2257,7 @@
 		},
 		"title": "Funktionen des Internet.nl-Dashboards"
 	},
-	"undefined": "",
+	"undefined": "Unbestimmt",
 	"urllist": {
 		"automated_scan_frequency": {
 			"disabled": "Nicht periodisch wiederholen",
