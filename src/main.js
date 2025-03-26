@@ -20,9 +20,6 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(createBootstrap())
-app.use(router)
-app.use(i18n)
-matomoConfig.router = router  // Enables automatically registering pageviews on the router
 app.use(VueMatomo, matomoConfig)
 app.component('content-block', ContentBlock)
 app.component('loading', loading)
@@ -32,6 +29,7 @@ app.component('server-response', server_response)
 
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl, pt, de, fr, da, cs} from 'date-fns/locale'
+import http from "@/httpclient.js";
 
 
 // todo: mixins are not recommended in vue3, but composables are. But i don't want to include the same file everywhere.
@@ -88,4 +86,33 @@ app.mixin(
   }
 )
 
-app.mount('#app')
+http.get('/session/status/').then(data => {
+  // making sure the page can be accessed is a pretty complex pattern in pinia and such...
+  // this makes the app slightly slower as a get-request is needed. It does prevent some flashes while getting that data
+  let store = dashboardStore()
+  store.set_user(data.data);
+
+  router.beforeEach((to, from, next) => {
+    // redirect old style links to the cleaner links, from old e-mails and such...
+    if (to.fullPath.startsWith("/#")) {
+      window.location = to.fullPath.substring(2);
+    }
+
+    // dynamically set the page title based on the used route
+    const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+
+    // support authenticated and non-authenticated routes
+    if (nearestWithTitle.meta.access === 'public' || store.user.is_authenticated) {
+      next()
+    }
+
+    next({name: 'login'})
+  });
+
+  app.use(router)
+  app.use(i18n)
+  matomoConfig.router = router  // Enables automatically registering pageviews on the router
+
+  app.mount('#app')
+})
+

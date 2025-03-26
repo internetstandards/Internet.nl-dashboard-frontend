@@ -861,16 +861,6 @@ footer ul li:last-child {
     padding-right: 0
 }
 
-.twitterfollow {
-    background: url("/static_frontend/images/vendor/internet_nl/icon-twitterfollow.svg");
-    background: url("/static_frontend/images/vendor/internet_nl/icon-twitterfollow.png");
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: 5px center;
-    background-size: 1.25em 1.25em;
-    padding-left: 2em
-}
-
 @media (max-width: 540px) {
     .websitetest h1 {
         word-wrap: break-word;
