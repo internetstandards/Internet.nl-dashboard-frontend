@@ -170,7 +170,8 @@
 		},
 		"scan-type": {
 			"mail": "Mail",
-			"web": "Web"
+			"web": "Web",
+			"all": "Web en Mail"
 		},
 		"server-response": {
 			"at": "Op",
