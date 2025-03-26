@@ -170,7 +170,8 @@
 		},
 		"scan-type": {
 			"mail": "Correio",
-			"web": "Web"
+			"web": "Web",
+			"all": "Web e Correio"
 		},
 		"server-response": {
 			"at": "Em",

@@ -11,14 +11,14 @@
       <content-block v-if="reportset.reports.length">
         <h4>{{ reportset.list.name }}</h4>
         <p style="float: right">
-          <key-value-badge :k='$t("public-reports.per-account.scan_frequency")' :v="$t('app.frequency' + reportset.list.automated_scan_frequency)" v-if="reportset.list.automatically_share_new_reports" />
+          <key-value-badge :k='$t("public-reports.per-account.scan_frequency")' :v="$t('app.frequency.' + reportset.list.automated_scan_frequency)" v-if="reportset.list.automatically_share_new_reports" />
 
           <key-value-badge :k='$t("public-reports.per-account.scan_type")' :v="$t('app.scan-type.' + reportset.list.scan_type)" />
         </p>
         <template v-if="reportset.list.scan_type === 'all'">
           <b-button variant="warning" class="mb-2 mr-2 darklink">
             <router-link :to="`/latest/${reportset.list.id}/mail/`">{{ $t("public-reports.per-account.View latest mail report") }}</router-link>
-          </b-button>
+          </b-button>&nbsp;
           <b-button variant="warning" class="mb-2 darklink">
             <router-link :to="`/latest/${reportset.list.id}/web/`">{{ $t("public-reports.per-account.View latest web report") }}</router-link>
           </b-button>

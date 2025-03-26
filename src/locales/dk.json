@@ -169,8 +169,9 @@
 			"web_metrics": "Web-metrikker"
 		},
 		"scan-type": {
-			"mail": "Post",
-			"web": "Web"
+			"mail": "Mail",
+			"web": "Web",
+			"all": "Web og Mail"
 		},
 		"server-response": {
 			"at": "På",
@@ -307,7 +308,7 @@
 				"last_scan_started": "Sidste scanning",
 				"latest_report": "Seneste rapport",
 				"Listed on sharing page": ", også på delingsside",
-				"mail": "Post",
+				"mail": "Mail",
 				"next_scheduled_scan": "Næste planlagte scanning",
 				"Not automatically shared": "Ikke automatisk delt",
 				"not_scanned_before": "Ikke scannet før",
@@ -1768,7 +1769,7 @@
 			"test_warning": "Advarsel: dumpede mindst én ANBEFALET deltest ⇒ fuld score i testkategori"
 		},
 		"mail": {
-			"title": "Post"
+			"title": "Mail"
 		},
 		"rating": {
 			"pct_error_in_test": "Testfejl",
