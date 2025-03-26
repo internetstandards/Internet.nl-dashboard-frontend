@@ -143,7 +143,11 @@ export default {
       this.find_suggestions();
     },
     toggle_all(checked) {
-       this.selected_suggestions = checked ? this.suggestions.slice() : []
+       // only get the 'domain' field from this.suggestions:
+      this.selected_suggestions = checked ?  this.suggestions.map(suggestion => suggestion.domain) : []
+
+      // update the checkbox state:
+      this.select_all = checked;
     },
     add_suggestions(){
 
