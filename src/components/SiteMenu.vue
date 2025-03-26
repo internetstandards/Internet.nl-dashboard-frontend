@@ -194,9 +194,9 @@ export default {
       this.server_response = {};
       this.loading = true;
       http.get('/session/status/').then(data => {
-        this.store.commit("set_user", data.data);
+        this.store.set_user(data.data);
         this.loading = false;
-        if (!this.config.user.is_authenticated) {
+        if (!this.user.is_authenticated) {
           // todo: make toasts work:
           // this.$bvToast.toast(this.$i18n.t("app.menu.logged_out_successfully"), {
           //   title: `✅ ${this.$i18n.t("app.menu.logged_out_successfully")}`,
@@ -216,6 +216,6 @@ export default {
       this.supported_languages = this.config.app.supported_languages;
     }
   },
-  computed: mapState(dashboardStore, ['config']),
+  computed: mapState(dashboardStore, ['config', 'user']),
 }
 </script>

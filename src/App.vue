@@ -16,8 +16,17 @@
     <main id="content" tabindex="-1">
       <div class="wrap mt-3">
         <div class="w-100" style="min-height: 80vh">
-          <b-alert variant="danger" :model-value="error_loading_config">{{ $t("app.core.error_loading_config")}} <b-button style="float:right" size="sm" variant="success" v-on:click="reload">{{ $t("app.core.reload_application")}}</b-button></b-alert>
-          <b-alert variant="danger" :model-value="error_connecting_to_backend">{{ $t("app.core.error_connecting_to_backend")}} <b-button style="float:right" size="sm" variant="success" v-on:click="reload">{{ $t("app.core.reload_application")}}</b-button></b-alert>
+          <b-alert variant="danger" :model-value="error_loading_config">{{ $t("app.core.error_loading_config") }}
+            <b-button style="float:right" size="sm" variant="success" v-on:click="reload">
+              {{ $t("app.core.reload_application") }}
+            </b-button>
+          </b-alert>
+          <b-alert variant="danger" :model-value="error_connecting_to_backend">
+            {{ $t("app.core.error_connecting_to_backend") }}
+            <b-button style="float:right" size="sm" variant="success" v-on:click="reload">
+              {{ $t("app.core.reload_application") }}
+            </b-button>
+          </b-alert>
 
           <router-view v-slot="{ Component }">
             <keep-alive>
@@ -41,8 +50,6 @@
           <li><a class="footlink" href="https://www.internet.nl/disclosure/">{{ $t("app.footer.disclosure") }}</a></li>
           <li><a class="footlink" href="https://www.internet.nl/privacy/">{{ $t("app.footer.privacy") }}</a></li>
           <li><a class="footlink" href="https://www.internet.nl/copyright/">{{ $t("app.footer.copyright") }}</a></li>
-          <li class="follow-us"><a class="footlink twitterfollow"
-                                   href="https://x.com/internet_nl">{{ $t("app.footer.followtwitter") }}</a></li>
           <li class="follow-us"><a class="footlink linkedinfollow"
                                    href="https://www.linkedin.com/company/internet-nl/">{{
               $t("app.footer.followlinkedin")
@@ -67,45 +74,31 @@ import AITranslationMessage from "./components/AITranslationMessage.vue";
 
 export default {
 
+  beforeCreate() {
 
-  mounted() {
-
-     // perform some calls we need otherwise we cannot route logged in pages.
+    // perform some calls we need otherwise we cannot route logged in pages.
     http.get('/data/config/').then(data => {
+
       if (!(data && data.data && Object.keys(data.data).length !== 0)) {
         this.error_loading_config = true;
         throw new Error("Config is empty!");
       }
       this.store.set_config(data.data)
-      http.get('/session/status/').then(data => {
-        this.store.set_user(data.data);
 
-        // todo: is the navigation reactive to user? If the user is logged in / out: is that being taken into account?
-        // todo: get app name from config. / how is that translated?
 
-        const appName = "Internet.nl Dashboard"
-
-        this.$router.beforeEach((to, from, next) => {
-          // dynamically set the page title based on the used route
-          const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
-          if (!nearestWithTitle) {
-            next({name: 'login'})
-          }
-
-          document.title = `${this.$i18n.t('app.menu.' + nearestWithTitle.meta.title)} / ${appName}`;
-
-          // support authenticated and non authenticated routes
-          if (nearestWithTitle.meta.access === 'public' || this.user.is_authenticated) {
-            next()
-          } else {
-            next({name: 'login'})
-          }
-        });
-      });
     }).catch(error => {
       this.error_connecting_to_backend = true;
       console.error('Error loading config', error)
     })
+
+
+    const appName = "Internet.nl Dashboard"
+    this.$router.afterEach((to, from, next) => {
+      // dynamically set the page title based on the used route
+      const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+      document.title = `${this.$i18n.t('app.menu.' + nearestWithTitle.meta.title)} / ${appName}`;
+    });
+
 
     this.$nextTick(function () {
       let fixedHeader = new Headroom(document.querySelector("header"), {
@@ -144,12 +137,6 @@ export default {
 </script>
 
 <style>
-.twitterfollow {
-  background: transparent url("/static_frontend/images/vendor/internet_nl/icon-xfollow.svg") no-repeat 5px center !important;
-  background-size: 1.25em 1.25em !important;
-  padding-left: 2em !important;
-}
-
 .linkedinfollow {
   background: transparent url("/static_frontend/images/vendor/internet_nl/icon-linkedinfollow.png") no-repeat 5px center !important;
   background-size: 1.25em 1.25em !important;
