@@ -617,22 +617,13 @@ export default {
         let record = JSON.parse(stringed)
 
         // randomize scores, and one category and one field so you can test comparisons
-        record.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score = Math.floor(Math.random() * 100);
-        record.endpoints[0].ratings_by_type.internet_nl_web_tls.test_result = verdicts[Math.floor(Math.random() * verdicts.length)];
-        record.endpoints[0].ratings_by_type.internet_nl_web_dnssec_exist.test_result = verdicts[Math.floor(Math.random() * verdicts.length)];
+        record.endpoints[0].ratings.internet_nl_score.internet_nl_score = Math.floor(Math.random() * 100);
+        record.endpoints[0].ratings.internet_nl_web_tls.test_result = verdicts[Math.floor(Math.random() * verdicts.length)];
+        record.endpoints[0].ratings.internet_nl_web_dnssec_exist.test_result = verdicts[Math.floor(Math.random() * verdicts.length)];
         record.url = `${i}.nl`
         ridulously_large_report.push(record);
       }
       this.original_urls = ridulously_large_report;
-    },
-    make_tooltip(url, category_name) {
-      if (!url.endpoints[0])
-        return ''
-      if (!url.endpoints[0].ratings_by_type[category_name])
-        return ''
-      if (!url.endpoints[0].ratings_by_type[category_name]['since'])
-        return ''
-          return`${url.endpoints[0].ratings_by_type[category_name]['test_result']}, since: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
     },
     select_category: function (category_name) {
       if (Object.keys(this.categories).includes(category_name))
@@ -691,8 +682,13 @@ export default {
             return 1 * order;
           }
 
-          a = a.endpoints[0].ratings_by_type["internet_nl_score"].internet_nl_score;
-          b = b.endpoints[0].ratings_by_type["internet_nl_score"].internet_nl_score;
+          if (a.endpoints[0].ratings) {
+            a = a.endpoints[0].ratings["internet_nl_score"].internet_nl_score;
+            b = b.endpoints[0].ratings["internet_nl_score"].internet_nl_score;
+          } else {
+            a = a.endpoints[0].ratings_by_type["internet_nl_score"].internet_nl_score;
+            b = b.endpoints[0].ratings_by_type["internet_nl_score"].internet_nl_score;
+          }
           return (a === b ? 0 : a > b ? 1 : -1) * order;
         });
 
@@ -710,8 +706,14 @@ export default {
           return 1 * order;
         }
 
-        let aref = a.endpoints[0].ratings_by_type[sortKey];
-        let bref = b.endpoints[0].ratings_by_type[sortKey];
+        let aref, bref
+        if (a.endpoints[0].ratings) {
+          aref = a.endpoints[0].ratings[sortKey];
+          bref = b.endpoints[0].ratings[sortKey];
+        } else {
+          aref = a.endpoints[0].ratings_by_type[sortKey];
+          bref = b.endpoints[0].ratings_by_type[sortKey];
+        }
 
         // When switching reports (mail, web) some sort keys might not exist. In that case return 0 to not
         // influence sorting:

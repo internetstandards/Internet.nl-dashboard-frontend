@@ -4,40 +4,46 @@
       <td class="px-78" style="white-space: nowrap">
         -
       </td>
-      <td><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
+      <td>
+        <div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div>
+      </td>
       <td colspan="200">
         <small>{{ $t("report.virtual-list-record.not_eligeble_for_scanning") }}</small>
       </td>
     </template>
     <template v-else>
-      <!-- v-b-tooltip.hover :title="source.endpoints[0].ratings_by_type.internet_nl_score.since ? `since ${humanize_date_unix_timestamp(source.endpoints[0].ratings_by_type.internet_nl_score.since)}` : ``" -->
       <td class="px-78" style="white-space: nowrap">
         <a class='direct_link_to_report'
-           :href='source.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_url'
+           :href='report_url(source.endpoints[0])'
            target="_blank"
-           v-b-tooltip.hover :title="source.endpoints[0].ratings_by_type.internet_nl_score.since ? `since ${humanize_date_unix_timestamp(source.endpoints[0].ratings_by_type.internet_nl_score.since)}` : ``"
+           v-b-tooltip.hover :title="report_tooltip(source.endpoints[0])"
         >
           <span>
-            <div class="logo_image"></div> {{score(source)}}%
+            <div class="logo_image"></div> {{ score(source) }}%
             <img :src='`/static_frontend/images/report_comparison_${score_comparison(source)}.png`'
-                 v-if="score_comparison(source)" />
+                 v-if="score_comparison(source)"/>
           </span>
-          <span class="visually-hidden"> {{ $t("report.virtual-list-record.link_to_report", {'url': source.url}) }}</span>
+          <span class="visually-hidden"> {{
+              $t("report.virtual-list-record.link_to_report", {'url': source.url})
+            }}</span>
         </a>
       </td>
-      <td class="px-225"><div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div></td>
+      <td class="px-225">
+        <div style="width: 200px; overflow-x: auto; white-space: nowrap;">{{ source.url }}</div>
+      </td>
       <template v-if="['web', 'mail'].includes(selected_category)">
         <!-- do this only onhover, not prepared: v-b-tooltip.hover :title="make_tooltip(source, category_name)" -->
         <td class="testresultcell px-100"
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
 
-          >
-          <span v-b-tooltip :title="make_tooltip(source, category_name)" :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
+        >
+          <span v-b-tooltip :title="make_tooltip(source, category_name)"
+                :class="category_verdict_to_simple_value(category_name, source) + ' ' + (category_comparison(category_name, source) ? `compared_with_next_report_${category_comparison(category_name, source)}` : '')">
             <template v-if="category_comparison(category_name, source)">
-              {{$t("report.virtual-list-record.results.comparison." + category_comparison(category_name, source))}}
+              {{ $t("report.virtual-list-record.results.comparison." + category_comparison(category_name, source)) }}
             </template>
-            {{category_verdict_to_simple_value(category_name, source)}}
+            {{ category_verdict_to_simple_value(category_name, source) }}
           </span>
 
         </td>
@@ -48,10 +54,11 @@
             v-for="category_name in relevant_categories_based_on_settings"
             :key="category_name"
         >
-          <span  v-b-tooltip :title="make_tooltip(source, category_name)" :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
-            {{detail_value_simple_value(category_name, source)}}
+          <span v-b-tooltip :title="make_tooltip(source, category_name)"
+                :class="detail_value_simple_value(category_name, source) + ' ' + detail_comparison(category_name, source)">
+            {{ detail_value_simple_value(category_name, source) }}
             <template v-if="detail_comparison(category_name, source)">
-              {{$t("report.virtual-list-record.results.comparison." + detail_comparison(category_name, source))}}
+              {{ $t("report.virtual-list-record.results.comparison." + detail_comparison(category_name, source)) }}
             </template>
           </span>
         </td>
@@ -66,7 +73,7 @@
 <script>
 
 import report_mixin from "@/components/reports/report_mixin.vue";
-import { dashboardStore } from '@/dashboardStore'
+import {dashboardStore} from '@/dashboardStore'
 import {mapState} from 'pinia'
 
 
@@ -79,7 +86,7 @@ export default {
     },
     source: { // here is: {uid: 'unique_1', text: 'abc'}
       type: Object,
-      default () {
+      default() {
         return {}
       }
     },
@@ -93,8 +100,32 @@ export default {
   },
   methods: {
 
+    report_url(source_endpoints) {
+      // source.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_url
+      if (source_endpoints.ratings)
+        return source_endpoints.ratings.internet_nl_score.internet_nl_url
+      return source_endpoints.ratings_by_type.internet_nl_score.internet_nl_url
+    },
+    report_tooltip(source_endpoints) {
+      // source.endpoints[0].ratings_by_type.internet_nl_score.since ? `since ${humanize_date_unix_timestamp(source.endpoints[0].ratings_by_type.internet_nl_score.since)}` : ``
+      if (source_endpoints.ratings)
+        if (source_endpoints.ratings.internet_nl_score.since) {
+          return `since ${this.humanize_date_unix_timestamp(source_endpoints.ratings.internet_nl_score.since)}`
+        } else {
+          return ""
+        }
+
+      if (source_endpoints.ratings_by_type.internet_nl_score.since)
+        return `since ${this.humanize_date_unix_timestamp(source_endpoints.ratings_by_type.internet_nl_score.since)}`
+      return ""
+    },
     category_verdict_to_simple_value: function (category_name, url) {
-      let verdict = url.endpoints[0].ratings_by_type[category_name];
+      let verdict = ""
+      if (url.endpoints[0].ratings) {
+        verdict = url.endpoints[0].ratings[category_name];
+      } else {
+        verdict = url.endpoints[0].ratings_by_type[category_name];
+      }
       return this._category_verdict_to_simple_value(verdict, category_name)
     },
 
@@ -129,7 +160,13 @@ export default {
       if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined)
         return "";
 
-      let other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
+      let other_verdicts;
+      if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings) {
+        other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings[category_name];
+      } else {
+        other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
+      }
+
       let other_simple_value = this._category_verdict_to_simple_value(other_verdicts, category_name);
 
       let progression = {'passed': 4, 'warning': 3, 'info': 2, 'failed': 1};
@@ -147,26 +184,38 @@ export default {
     },
 
     score(url) {
-      return url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
+      if (url.endpoints[0].ratings) {
+        return url.endpoints[0].ratings.internet_nl_score.internet_nl_score;
+      } else {
+        return url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
+      }
     },
 
     score_comparison: function (url) {
       if (this.reports.length < 2) {
         return "";
       } else {
+        let current_score = 0;
+        let other_score = 0;
 
-        if (url === undefined ||
-            url.endpoints[0].ratings_by_type === undefined ||
-            url.endpoints[0].ratings_by_type.internet_nl_score === undefined ||
-            this.reports[1].calculation.urls_by_url[url.url] === undefined ||
-            this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined ||
-            this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score === undefined) {
-          return "";
+        // catch undefined:
+        try {
+          if (url.endpoints[0].ratings) {
+            current_score = url.endpoints[0].ratings.internet_nl_score.internet_nl_score;
+          } else {
+            current_score = url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
+          }
+
+          if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings) {
+            other_score = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings.internet_nl_score.internet_nl_score;
+          } else {
+            other_score = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
+          }
+        } catch (e) {
+          // any of the dozens levels is undefined, guarding for this is extremely convoluted
+          return ""
         }
 
-        let current_score = url.endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
-        let other_score = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type.internet_nl_score.internet_nl_score;
-        // console.log(`current score: ${current_score} other score: ${other_score}`)
         if (current_score === undefined || other_score === undefined)
           return "";
 
@@ -181,7 +230,12 @@ export default {
     },
 
     detail_value_simple_value(category_name, url) {
-      let verdicts = url.endpoints[0].ratings_by_type[category_name];
+      let verdicts = undefined;
+      if (url.endpoints[0].ratings) {
+        verdicts = url.endpoints[0].ratings[category_name];
+      } else {
+        verdicts = url.endpoints[0].ratings_by_type[category_name];
+      }
 
       if (verdicts === undefined) {
         return "unknown";
@@ -195,7 +249,12 @@ export default {
     },
 
     detail_value_simple_progression(category_name, url) {
-      let verdicts = url.endpoints[0].ratings_by_type[category_name];
+      let verdicts = undefined;
+      if (url.endpoints[0].ratings) {
+        verdicts = url.endpoints[0].ratings[category_name];
+      } else {
+        verdicts = url.endpoints[0].ratings_by_type[category_name];
+      }
       return verdicts ? verdicts.simple_progression : "unknown";
     },
 
@@ -233,7 +292,12 @@ export default {
       * */
 
       // older, previous...
-      let other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
+      let other_verdicts = undefined
+      if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings) {
+        other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings[category_name];
+      } else {
+        other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
+      }
       let other_simple_value = "";
       let other_simple_progression = "";
 
@@ -242,10 +306,10 @@ export default {
         other_simple_progression = "unknown";
       } else {
         if (other_verdicts.test_result !== undefined)
-            // API V2.0:
+          // API V2.0:
           other_simple_value = other_verdicts.test_result;  // error_in_test, not_testable, failed, warning, info, passed
         else
-            // API V1.0
+          // API V1.0
           other_simple_value = other_verdicts.simple_verdict;
         other_simple_progression = other_verdicts.simple_progression;
       }
@@ -270,15 +334,21 @@ export default {
     make_tooltip(url, category_name) {
       if (!url.endpoints[0])
         return ''
-      if (!url.endpoints[0].ratings_by_type[category_name])
+
+      if (url.endpoints[0].ratings_by_type)
+        return this.make_tooltip_ratings_by_type(url, category_name)
+
+      if (!url.endpoints[0].ratings)
+        return ""
+      if (!url.endpoints[0].ratings[category_name])
         return ''
-      if (!url.endpoints[0].ratings_by_type[category_name]['since'])
+      if (!url.endpoints[0].ratings[category_name]['since'])
         return ''
 
       // evidence is in new reports since sept 2023.
       let evidence = ''
-      if ('key' in url.endpoints[0].ratings_by_type[category_name]) {
-         evidence = url.endpoints[0].ratings_by_type[category_name]['evidence']
+      if ('key' in url.endpoints[0].ratings[category_name]) {
+        evidence = url.endpoints[0].ratings[category_name]['evidence']
       }
 
       let displayed_evidence = ''
@@ -287,9 +357,9 @@ export default {
       }
 
       let data = `${url.url}<br>
-          ${this.$t('metric.' + category_name + '.title')}:
-          ${this.$t("report.virtual-list-record.results." + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
-          ${this.$t("report.virtual-list-record.since")}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
+        ${this.$t('metric.' + category_name + '.title')}:
+        ${this.$t("report.virtual-list-record.results." + url.endpoints[0].ratings[category_name]['test_result'])}<br>
+        ${this.$t("report.virtual-list-record.since")}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings[category_name]['since'])}`
 
       if (displayed_evidence) {
         data += `<br>${this.$t("report.virtual-list-record.evidence")}:<br> <pre>${displayed_evidence}</pre>`
@@ -297,6 +367,33 @@ export default {
       return data;
     },
 
+    make_tooltip_ratings_by_type(url, category_name) {
+      if (!url.endpoints[0].ratings_by_type[category_name])
+        return ''
+      if (!url.endpoints[0].ratings_by_type[category_name]['since'])
+        return ''
+
+      // evidence is in new reports since sept 2023.
+      let evidence = ''
+      if ('key' in url.endpoints[0].ratings_by_type[category_name]) {
+        evidence = url.endpoints[0].ratings_by_type[category_name]['evidence']
+      }
+
+      let displayed_evidence = ''
+      if (evidence.charAt(0) === '{' && evidence !== '{}') {
+        displayed_evidence = JSON.stringify(JSON.parse(evidence), null, 2);
+      }
+
+      let data = `${url.url}<br>
+        ${this.$t('metric.' + category_name + '.title')}:
+        ${this.$t("report.virtual-list-record.results." + url.endpoints[0].ratings_by_type[category_name]['test_result'])}<br>
+        ${this.$t("report.virtual-list-record.since")}: ${this.humanize_date_unix_timestamp(url.endpoints[0].ratings_by_type[category_name]['since'])}`
+
+      if (displayed_evidence) {
+        data += `<br>${this.$t("report.virtual-list-record.evidence")}:<br> <pre>${displayed_evidence}</pre>`
+      }
+      return data;
+    },
 
 
   },
@@ -373,7 +470,7 @@ export default {
 }
 
 tr {
- min-width: 100%;
+  min-width: 100%;
 
 }
 
