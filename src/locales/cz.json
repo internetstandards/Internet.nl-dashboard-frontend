@@ -169,9 +169,9 @@
 			"web_metrics": "Webové metriky"
 		},
 		"scan-type": {
+			"all": "Web a Mail",
 			"mail": "Mail",
-			"web": "Web",
-			"all": "Web a Mail"
+			"web": "Web"
 		},
 		"server-response": {
 			"at": "Na adrese",
@@ -1089,6 +1089,9 @@
 			"technology": "Oportunistická TLS / STARTTLS",
 			"title": "Použití šifrování přijatých e-mailů"
 		},
+		"internet_nl_mail_starttls_tls_caa": {
+			"title": "CAA pro poštovní server"
+		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
 			"explanation": "Zkontrolujeme, zda vaše přijímací poštovní servery (MX) prosazují vlastní preference šifer (\"I\") a nabízejí šifry v souladu s předepsaným pořadím (\"II\"). </p><p>Pokud vaše poštovní servery podporují pouze šifry \"Good\", tento test se nepoužije, protože toto pořadí nemá žádnou významnou bezpečnostní výhodu. </p><p>I. <em>Předvolba šifry vynucená serverem</em>: Přijímající poštovní servery si při vyjednávání s odesílajícími poštovními servery vynucují vlastní předvolbu šifry a neakceptují žádnou předvolbu odesílajícího poštovního serveru;</p><p>II. <em>Předepsané pořadí</em>: Přijímající poštovní servery nabízejí šifry v souladu s předepsaným pořadím, kde \"Dobrá\" má přednost před \"Dostatečnou\" před \"Vyřazenou\" šifrou.</p><p>Ve výše uvedené tabulce s technickými údaji <strong>jsou uvedeny pouze první nalezené z předepsaného pořadí výběru algoritmů</strong> .</p><p>Viz <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> od NCSC-NL, pokyn B2-5.",
 			"rating": {
@@ -1451,6 +1454,9 @@
 				"web_server_ip_address": ""
 			},
 			"title": "0-RTT"
+		},
+		"internet_nl_web_https_tls_caa": {
+			"title": "CAA pro doménu"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
 			"explanation": "Zjišťujeme, zda váš webový server uplatňuje vlastní předvolbu šifry (\"I\") a zda nabízí šifry v souladu s předepsaným pořadím (\"II\"). </p><p>Pokud váš webový server podporuje pouze šifry \"Good\", tento subtest se nepoužije, protože toto pořadí nemá žádnou významnou bezpečnostní výhodu. </p><p>I. <em>Předvolba šifry vynucená serverem</em>: Webový server si při vyjednávání s webovým prohlížečem vynucuje vlastní předvolbu šifry a neakceptuje žádnou předvolbu webového prohlížeče;</p><p>II. <em>Předepsané pořadí</em>: Webový server nabízí šifry v souladu s předepsaným pořadím, kdy je \"Dobrá\" šifra upřednostněna před \"Dostatečnou\" šifrou před \"Vyřazenou\" šifrou.</p><p>Ve výše uvedené tabulce s technickými údaji <strong>jsou uvedeny pouze první nalezené z předepsaných výběrů pořadí algoritmů</strong> .</p><p>Viz <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> od NCSC-NL, pokyn B2-5.",

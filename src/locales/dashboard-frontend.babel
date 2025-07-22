@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<babeledit_project be_version="5.3.0" version="1.3">
+<babeledit_project be_version="5.4.1" version="1.3">
 	<!--
 
     BabelEdit project file
@@ -2571,41 +2571,6 @@
 										</translations>
 									</concept_node>
 									<concept_node>
-										<name>followtwitter</name>
-										<description/>
-										<comment/>
-										<translations>
-											<translation>
-												<language>cs-CZ</language>
-												<approved>false</approved>
-											</translation>
-											<translation>
-												<language>da-DK</language>
-												<approved>false</approved>
-											</translation>
-											<translation>
-												<language>de-DE</language>
-												<approved>false</approved>
-											</translation>
-											<translation>
-												<language>en-US</language>
-												<approved>false</approved>
-											</translation>
-											<translation>
-												<language>fr-FR</language>
-												<approved>false</approved>
-											</translation>
-											<translation>
-												<language>nl-NL</language>
-												<approved>false</approved>
-											</translation>
-											<translation>
-												<language>pt-PT</language>
-												<approved>false</approved>
-											</translation>
-										</translations>
-									</concept_node>
-									<concept_node>
 										<name>info</name>
 										<description/>
 										<comment/>
@@ -4705,6 +4670,41 @@
 							<folder_node>
 								<name>scan-type</name>
 								<children>
+									<concept_node>
+										<name>all</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
 									<concept_node>
 										<name>mail</name>
 										<description/>
@@ -25268,6 +25268,46 @@
 								</children>
 							</folder_node>
 							<folder_node>
+								<name>internet_nl_mail_starttls_tls_caa</name>
+								<children>
+									<concept_node>
+										<name>title</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+								</children>
+							</folder_node>
+							<folder_node>
 								<name>internet_nl_mail_starttls_tls_cipherorder</name>
 								<children>
 									<concept_node>
@@ -32475,6 +32515,46 @@
 											</concept_node>
 										</children>
 									</folder_node>
+									<concept_node>
+										<name>title</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>cs-CZ</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>da-DK</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-US</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>fr-FR</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>nl-NL</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>pt-PT</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+								</children>
+							</folder_node>
+							<folder_node>
+								<name>internet_nl_web_https_tls_caa</name>
+								<children>
 									<concept_node>
 										<name>title</name>
 										<description/>
@@ -52668,6 +52748,8 @@
 		</copy_templates>
 		<custom_languages/>
 		<id_extractor_ignores/>
+		<machine_translation_formality>default</machine_translation_formality>
+		<machine_translation_context/>
 	</editor_configuration>
 	<primary_language>en-US</primary_language>
 	<configuration>

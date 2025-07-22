@@ -89,6 +89,7 @@ export default {
         internet_nl_web_https_tls_keyexchange: {visible: true},
         internet_nl_web_https_tls_keyexchangehash: {visible: true},
         internet_nl_web_https_tls_ocsp: {visible: true},
+        internet_nl_web_https_tls_caa: {visible: true},
         internet_nl_web_https_tls_0rtt: {visible: true},
         internet_nl_web_https_tls_cipherorder: {visible: true},
         internet_nl_web_dnssec_valid: {visible: true},
@@ -158,6 +159,7 @@ export default {
         internet_nl_mail_starttls_tls_cipherorder: {visible: true},
         internet_nl_mail_starttls_tls_keyexchangehash: {visible: true},
         internet_nl_mail_starttls_tls_0rtt: {visible: true},
+        internet_nl_mail_starttls_tls_caa: {visible: true},
         internet_nl_web_legacy_tls_1_3: {visible: true},
         internet_nl_mail_legacy_mail_sending_domain: {visible: false},
         internet_nl_mail_legacy_mail_server_testable: {visible: false},
@@ -296,7 +298,8 @@ export default {
           "internet_nl_mail_ns_rpki_valid",
           "internet_nl_mail_mx_ns_rpki_exists",
           "internet_nl_mail_mx_ns_rpki_valid",
-
+          "internet_nl_web_https_tls_caa",
+          "internet_nl_mail_starttls_tls_caa",
         ].includes(field_name)) {
           issue_filters[field_name] = {
             visible: true,
@@ -434,6 +437,8 @@ export default {
                     {name: 'internet_nl_web_https_cert_pubkey'},
                     {name: 'internet_nl_web_https_cert_sig'},
                     {name: 'internet_nl_web_https_cert_domain'},
+                    // mimic the UI, where this is placed under certificate.
+                    {name: 'internet_nl_web_https_tls_caa'},
                   ],
 
                 },
@@ -722,6 +727,7 @@ export default {
                     {name: 'internet_nl_mail_starttls_cert_pubkey'},
                     {name: 'internet_nl_mail_starttls_cert_sig'},
                     {name: 'internet_nl_mail_starttls_cert_domain'},
+                    {name: 'internet_nl_mail_starttls_tls_caa'},
                   ],
 
                 },

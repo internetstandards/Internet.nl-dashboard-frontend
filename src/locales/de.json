@@ -169,9 +169,9 @@
 			"web_metrics": "Web-Metriken"
 		},
 		"scan-type": {
+			"all": "Web und E-Mail",
 			"mail": "E-Mail",
-			"web": "Web",
-			"all": "Web und E-Mail"
+			"web": "Web"
 		},
 		"server-response": {
 			"at": "Unter",
@@ -1089,6 +1089,9 @@
 			"technology": "Opportunistisches TLS / STARTTLS",
 			"title": "Anwendung der Verschlüsselung von empfangenen E-Mails"
 		},
+		"internet_nl_mail_starttls_tls_caa": {
+			"title": "CAA für Mail-Server"
+		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
 			"explanation": "Wir prüfen, ob Ihre empfangenden Mailserver (MX) ihre eigene Chiffrierpräferenz (\"I\") durchsetzen und Chiffrierungen gemäß der vorgeschriebenen Reihenfolge (\"II\") anbieten. </p><p>Wenn Ihre Mailserver nur \"gute\" Chiffren unterstützen, ist dieser Test nicht anwendbar, da die Reihenfolge keinen wesentlichen Sicherheitsvorteil bietet. </p><p>I. <em>Server erzwungene Chiffrierpräferenz</em>: Die empfangenden Mailserver setzen ihre eigene Chiffrierpräferenz durch, während sie mit den sendenden Mailservern verhandeln, und akzeptieren keine Präferenz der sendenden Mailserver;</p><p>II. <em>Vorgeschriebene Reihenfolge</em>: Die Chiffren werden von den empfangenden Mailservern in Übereinstimmung mit der vorgeschriebenen Reihenfolge angeboten, wobei \"gute\" Chiffren gegenüber \"ausreichenden\" gegenüber \"auslaufenden\" Chiffren bevorzugt werden.</p><p>In der obigen Tabelle mit technischen Details <strong>sind nur die zuerst gefundenen Algorithmen aus der vorgeschriebenen Reihenfolge</strong> aufgeführt.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT-Sicherheitsrichtlinien für Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitfaden B2-5.",
 			"rating": {
@@ -1451,6 +1454,9 @@
 				"web_server_ip_address": ""
 			},
 			"title": "0-RTT"
+		},
+		"internet_nl_web_https_tls_caa": {
+			"title": "CAA für den Bereich"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
 			"explanation": "Wir prüfen, ob Ihr Webserver seine eigene Verschlüsselungspräferenz ('I') durchsetzt und Verschlüsselungen in der vorgeschriebenen Reihenfolge ('II') anbietet. </p><p>Wenn Ihr Webserver nur \"gute\" Chiffren unterstützt, ist dieser Untertest nicht anwendbar, da die Reihenfolge keinen wesentlichen Sicherheitsvorteil bietet. </p><p>I. <em>Server-erzwungene Chiffrierpräferenz</em>: Der Webserver erzwingt seine eigene Chiffrierpräferenz, während er mit einem Webbrowser verhandelt, und akzeptiert keine Präferenz des Webbrowsers;</p><p>II. <em>Vorgeschriebene Reihenfolge</em>: Die Chiffren werden vom Webserver gemäß der vorgeschriebenen Reihenfolge angeboten, wobei \"Gute\" gegenüber \"Ausreichende\" gegenüber \"Auslaufende\" Chiffren bevorzugt werden.</p><p>In der obigen Tabelle mit technischen Details <strong>sind nur die zuerst gefundenen Algorithmen aus der vorgeschriebenen Reihenfolge</strong> aufgeführt.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT-Sicherheitsrichtlinien für Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Leitfaden B2-5.",

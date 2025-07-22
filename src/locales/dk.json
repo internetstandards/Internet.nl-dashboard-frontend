@@ -169,9 +169,9 @@
 			"web_metrics": "Web-metrikker"
 		},
 		"scan-type": {
+			"all": "Web og Mail",
 			"mail": "Mail",
-			"web": "Web",
-			"all": "Web og Mail"
+			"web": "Web"
 		},
 		"server-response": {
 			"at": "På",
@@ -1089,6 +1089,9 @@
 			"technology": "Opportunistisk TLS / STARTTLS",
 			"title": "Anvendelse af kryptering af modtaget e-mail"
 		},
+		"internet_nl_mail_starttls_tls_caa": {
+			"title": "CAA til mailserver"
+		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
 			"explanation": "Vi tjekker, om dine modtagende mailservere (MX) håndhæver deres egen cipher-præference ('I') og tilbyder ciphers i overensstemmelse med den foreskrevne rækkefølge ('II'). </p><p>Når dine mailservere kun understøtter 'gode' cifre, er denne test ikke relevant, da rækkefølgen ikke har nogen væsentlig sikkerhedsfordel. </p><p>I. <em>Serverhåndhævet cipher-præference</em>: De modtagende mailservere håndhæver deres egen cipher-præference, mens de forhandler med de afsendende mailservere, og accepterer ikke nogen præference fra de afsendende mailservere;</p><p>II. <em>Foreskrevet rækkefølge</em>: Cifre tilbydes af de modtagende mailservere i overensstemmelse med den foreskrevne rækkefølge, hvor 'God' foretrækkes frem for 'Tilstrækkelig' frem for 'Udfasning' af cifre.</p><p>I ovenstående tabel med tekniske detaljer <strong>er kun de først fundne algoritmevalg ud af den foreskrevne rækkefølge</strong> anført.</p><p>Se <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> fra NCSC-NL, retningslinje B2-5.",
 			"rating": {
@@ -1451,6 +1454,9 @@
 				"web_server_ip_address": ""
 			},
 			"title": "0-RTT"
+		},
+		"internet_nl_web_https_tls_caa": {
+			"title": "CAA for domæne"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
 			"explanation": "Vi kontrollerer, om din webserver håndhæver sin egen cipher-præference ('I') og tilbyder ciphers i overensstemmelse med den foreskrevne rækkefølge ('II'). </p><p>Hvis din webserver kun understøtter 'gode' cifre, er denne deltest ikke relevant, da rækkefølgen ikke har nogen væsentlig sikkerhedsfordel. </p><p>I. <em>Serverhåndhævet cipher-præference</em>: Webserveren håndhæver sin egen cipher-præference under forhandling med en webbrowser og accepterer ikke nogen præference fra webbrowseren;</p><p>II. <em>Foreskrevet rækkefølge</em>: Cifre tilbydes af webserveren i overensstemmelse med den foreskrevne rækkefølge, hvor 'God' foretrækkes frem for 'Tilstrækkelig' frem for 'Udfasning' af cifre.</p><p>I ovenstående tabel med tekniske detaljer <strong>er kun de først fundne algoritmevalg ud af den foreskrevne rækkefølge</strong> anført.</p><p>Se <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> fra NCSC-NL, retningslinje B2-5.",

@@ -169,9 +169,9 @@
 			"web_metrics": "Web metrics"
 		},
 		"scan-type": {
+			"all": "Web and Mail",
 			"mail": "Mail",
-			"web": "Web",
-			"all": "Web and Mail"
+			"web": "Web"
 		},
 		"server-response": {
 			"at": "At",
@@ -1089,6 +1089,9 @@
 			"technology": "Opportunistic TLS / STARTTLS",
 			"title": "STARTTLS available"
 		},
+		"internet_nl_mail_starttls_tls_caa": {
+			"title": "CAA for mail server"
+		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
 			"explanation": "We check if your receiving mail servers (MX) enforce their own cipher preference ('I'), and offer ciphers in accordance with the prescribed ordering ('II'). </p><p>When your mail servers support 'Good' ciphers only, this test is not applicable as the ordering has no significant security advantage. </p><p>I. <em>Server enforced cipher preference</em>: The receiving mail servers enforce their own cipher preference while negotiating with sending mail servers, and do not accept any preference of the the sending mail servers;</p><p>II. <em>Prescribed ordering</em>: Ciphers are offered by the receiving mail servers in accordance with the prescribed order where 'Good' is preferred over 'Sufficient' over 'Phase out' ciphers.</p><p>In the above table with technical details <strong>only the first found out of prescribed order algorithm selections</strong> are listed.</p><p>See <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> from NCSC-NL, guideline B2-5.",
 			"rating": {
@@ -1451,6 +1454,9 @@
 				"web_server_ip_address": "Web server IP address"
 			},
 			"title": "0-RTT"
+		},
+		"internet_nl_web_https_tls_caa": {
+			"title": "CAA for domain"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
 			"explanation": "We check if your web server enforces its own cipher preference ('I'), and offers ciphers in accordance with the prescribed ordering ('II'). </p><p>When your web server supports 'Good' ciphers only, this subtest is not applicable as the ordering has no significant security advantage. </p><p>I. <em>Server enforced cipher preference</em>: The web server enforces its own cipher preference while negotiating with a web browser, and does not accept any preference of the web browser;</p><p>II. <em>Prescribed ordering</em>: Ciphers are offered by the web server in accordance with the prescribed order where 'Good' is preferred over 'Sufficient' over 'Phase out' ciphers.</p><p>In the above table with technical details <strong>only the first found out of prescribed order algorithm selections</strong> are listed.</p><p>See <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> from NCSC-NL, guideline B2-5.",

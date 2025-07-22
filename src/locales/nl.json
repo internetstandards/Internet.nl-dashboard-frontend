@@ -169,9 +169,9 @@
 			"web_metrics": "Web meetwaarden"
 		},
 		"scan-type": {
+			"all": "Web en Mail",
 			"mail": "Mail",
-			"web": "Web",
-			"all": "Web en Mail"
+			"web": "Web"
 		},
 		"server-response": {
 			"at": "Op",
@@ -1089,6 +1089,9 @@
 			"technology": "Opportunistic TLS / STARTTLS",
 			"title": "STARTTLS beschikbaar"
 		},
+		"internet_nl_mail_starttls_tls_caa": {
+			"title": "CAA voor mailserver"
+		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
 			"explanation": "We testen of je ontvangende mailservers (MX) hun eigen cipher-voorkeur afdwingen ('I'), en ciphers aanbieden conform de voorgeschreven volgorde ('II').</p><p>Als je mailserver alleen 'Goede' ciphers ondersteunt, dan is deze test niet van toepassing omdat de volgorde dan geen significant beveiligingsvoordeel oplevert.</p><p>I. <em>Server afgedwongen cipher-voorkeur</em>: Ontvangende mailservers dwingen hun cipher-voorkeur af tijdens de onderhandeling met verzendende mailservers, en accepteren geen voorkeur van de verzendende mailservers;</p><p>II. <em>Voorgeschreven volgorde</em>: Ciphers worden aangeboden door de ontvangende mailservers in overeenstemming met de voorgeschreven volgorde waarbij <em>Goede</em> boven <em>Voldoende</em> boven <em>Uit te faseren</em> ciphers worden geprefereerd. </p><p>In de bovenstaande tabel met technische details staan <strong>alleen de eerst gevonden algoritmeselecties die niet voldoen aan de voorgeschreven volgorde</strong>.</p><p>Zie <a href=\"https://www.ncsc.nl/documenten/publicaties/2021/januari/19/ict-beveiligingsrichtlijnen-voor-transport-layer-security-2.1\">'ICT-beveiligingsrichtlijnen voor Transport Layer Security (TLS) v2.1'</a> van NCSC, richtlijn B2-5.",
 			"rating": {
@@ -1451,6 +1454,9 @@
 				"web_server_ip_address": "Webserver-IP-adres"
 			},
 			"title": "0-RTT"
+		},
+		"internet_nl_web_https_tls_caa": {
+			"title": "CAA voor domein"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
 			"explanation": "We testen of je webserver zijn eigen cipher-voorkeur afdwingt ('I'), en ciphers aanbiedt conform de voorgeschreven volgorde ('II').</p><p>Als je webserver alleen 'Goede' ciphers ondersteunt, dan is deze subtest niet van toepassing omdat de volgorde dan geen significant beveiligingsvoordeel oplevert.</p><p>I. <em>Server afgedwongen cipher-voorkeur</em>: De webserver dwingt zijn cipher-voorkeur af tijdens de onderhandeling met een webbrowser, en accepteert geen voorkeur van de webbrowser;</p><p>II. <em>Voorgeschreven volgorde</em>: Ciphers worden aangeboden door de webserver in overeenstemming met de voorgeschreven volgorde waarbij <em>Goede</em> boven <em>Voldoende</em> boven <em>Uit te faseren</em> ciphers worden geprefereerd. </p><p>In de bovenstaande tabel met technische details staan <strong>alleen de eerst gevonden algoritmeselecties die niet voldoen aan de voorgeschreven volgorde</strong>.</p><p>Zie <a href=\"https://www.ncsc.nl/documenten/publicaties/2021/januari/19/ict-beveiligingsrichtlijnen-voor-transport-layer-security-2.1\">'ICT-beveiligingsrichtlijnen voor Transport Layer Security (TLS) v2.1'</a> van NCSC, richtlijn B2-5.",
