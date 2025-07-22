@@ -169,9 +169,9 @@
 			"web_metrics": "Mesures sur le web"
 		},
 		"scan-type": {
+			"all": "Web et Courrier",
 			"mail": "Courrier",
-			"web": "Web",
-			"all": "Web et Courrier"
+			"web": "Web"
 		},
 		"server-response": {
 			"at": "À",
@@ -1089,6 +1089,9 @@
 			"technology": "TLS opportuniste / STARTTLS",
 			"title": "Application du cryptage du courrier électronique reçu"
 		},
+		"internet_nl_mail_starttls_tls_caa": {
+			"title": "CAA pour le serveur de messagerie"
+		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
 			"explanation": "Nous vérifions si vos serveurs de messagerie de réception (MX) appliquent leur propre préférence en matière de chiffrement (\"I\") et proposent des chiffrages conformément à l'ordre prescrit (\"II\"). </p><p>Si vos serveurs de messagerie ne prennent en charge que les bons algorithmes de chiffrement, ce test n'est pas applicable car l'ordre ne présente pas d'avantage significatif en termes de sécurité. </p><p>I. <em>Préférence de chiffrement imposée par le serveur</em>: Les serveurs de messagerie de réception imposent leur propre préférence de chiffrement lors des négociations avec les serveurs de messagerie d'envoi, et n'acceptent aucune préférence des serveurs de messagerie d'envoi ;</p><p>II. <em>Ordre prescrit</em>: Les serveurs de messagerie récepteurs proposent des codes conformément à l'ordre prescrit, dans lequel les codes \"bons\" sont préférés aux codes \"suffisants\" et aux codes \"éliminés progressivement\".</p><p>Dans le tableau ci-dessus avec les détails techniques <strong>, seules les premières sélections d'algorithmes dans l'ordre prescrit</strong> sont énumérées.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B2-5.",
 			"rating": {
@@ -1451,6 +1454,9 @@
 				"web_server_ip_address": ""
 			},
 			"title": "0-RTT"
+		},
+		"internet_nl_web_https_tls_caa": {
+			"title": "CAA pour le domaine"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
 			"explanation": "Nous vérifions si votre serveur web applique sa propre préférence en matière de chiffrement (\"I\") et propose des chiffrages conformément à l'ordre prescrit (\"II\"). </p><p>Si votre serveur Web ne prend en charge que les \"bons\" algorithmes de chiffrement, ce sous-test n'est pas applicable, car l'ordre ne présente aucun avantage significatif en termes de sécurité. </p><p>I. <em>Préférence de chiffrement appliquée par le serveur</em>: Le serveur web applique sa propre préférence de chiffrement lors de la négociation avec un navigateur web, et n'accepte aucune préférence du navigateur web ;</p><p>II. <em>Ordre prescrit</em>: Les codes sont proposés par le serveur web conformément à l'ordre prescrit, dans lequel \"bon\" est préféré à \"suffisant\" par rapport aux codes \"éliminés progressivement\".</p><p>Dans le tableau ci-dessus avec les détails techniques <strong>, seules les premières sélections d'algorithmes dans l'ordre prescrit</strong> sont énumérées.</p><p>Voir <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> du NCSC-NL, ligne directrice B2-5.",

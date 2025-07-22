@@ -169,9 +169,9 @@
 			"web_metrics": "Métricas Web"
 		},
 		"scan-type": {
+			"all": "Web e Correio",
 			"mail": "Correio",
-			"web": "Web",
-			"all": "Web e Correio"
+			"web": "Web"
 		},
 		"server-response": {
 			"at": "Em",
@@ -1089,6 +1089,9 @@
 			"technology": "TLS oportunista / STARTTLS",
 			"title": "Aplicação da encriptação das mensagens de correio eletrónico recebidas"
 		},
+		"internet_nl_mail_starttls_tls_caa": {
+			"title": "CAA para servidor de correio eletrónico"
+		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
 			"explanation": "Verificamos se os seus servidores de correio de receção (MX) aplicam a sua própria preferência de cifra (\"I\") e oferecem cifras de acordo com a ordem prescrita (\"II\"). </p><p>Quando os seus servidores de correio suportam apenas cifras \"Good\", este teste não é aplicável, uma vez que a ordenação não tem qualquer vantagem significativa em termos de segurança. </p><p>I. <em>Preferência de cifra imposta pelo servidor</em>: Os servidores de correio receptores impõem a sua própria preferência de cifra enquanto negoceiam com os servidores de correio emissores e não aceitam qualquer preferência dos servidores de correio emissores;</p><p>II. <em>Ordem prescrita</em>: As cifras são oferecidas pelos servidores de correio de receção de acordo com a ordem prescrita, em que \"Boa\" é preferida em relação a \"Suficiente\" em relação a cifras \"Phase out\".</p><p>No quadro acima, com os pormenores técnicos <strong>, só são enumeradas as primeiras selecções de algoritmos da ordem prescrita</strong> .</p><p>Ver <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">\"IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> do NCSC-NL, diretriz B2-5.",
 			"rating": {
@@ -1451,6 +1454,9 @@
 				"web_server_ip_address": ""
 			},
 			"title": "0-RTT"
+		},
+		"internet_nl_web_https_tls_caa": {
+			"title": "AAC para o domínio"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
 			"explanation": "Verificamos se o seu servidor Web aplica a sua própria preferência de cifra (\"I\") e oferece cifras de acordo com a ordem prescrita (\"II\"). </p><p>Quando o seu servidor Web suporta apenas cifras \"Boas\", este subteste não é aplicável, uma vez que a ordenação não tem qualquer vantagem significativa em termos de segurança. </p><p>I. <em>Preferência de cifra imposta pelo servidor</em>: O servidor Web impõe a sua própria preferência de cifra durante a negociação com um navegador Web e não aceita qualquer preferência do navegador Web;</p><p>II. <em>Ordenação prescrita</em>: As cifras são oferecidas pelo servidor Web de acordo com a ordem prescrita, em que \"Boa\" tem preferência sobre \"Suficiente\" em relação às cifras \"Eliminação progressiva\".</p><p>No quadro acima, com os pormenores técnicos <strong>, só são enumeradas as primeiras selecções de algoritmos da ordem prescrita</strong> .</p><p>Ver <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">\"IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> do NCSC-NL, diretriz B2-5.",
