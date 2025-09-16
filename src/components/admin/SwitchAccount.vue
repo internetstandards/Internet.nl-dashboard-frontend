@@ -123,7 +123,7 @@ export default {
         },
         get_accounts: function () {
             this.loading = true;
-            http.get('/data/powertools/get_accounts/').then(data => {
+            http.get('/data/powertools/get_accounts').then(data => {
                 this.accounts = data.data['accounts'];
                 this.current_account = data.data['current_account'];
                 this.selected = [data.data['current_account']];
@@ -138,7 +138,7 @@ export default {
             });
         },
         set_account: function (account_id) {
-            http.post('/data/powertools/set_account/', {'id': account_id}).then(server_response => {
+            http.post('/data/powertools/set_account', {'selected_account_id': account_id}).then(server_response => {
                 this.server_response = server_response.data;
                 // not the nicest solution, but it works and prevents mistakes by not reloading the page...
                 location.reload();
