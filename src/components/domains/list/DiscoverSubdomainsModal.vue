@@ -158,7 +158,7 @@ export default {
        // send a bulk add to the server, which is already existing logic etc...
        this.loading_add_suggestions = true;
 
-      http.post('/data/urllist/url/add/', {'urls': this.selected_suggestions.join(", "), 'list_id': this.list.id}).then(data => {
+      http.post('/data/urllist/url/add', {'urls': this.selected_suggestions.join(", "), 'list_id': this.list.id}).then(data => {
         // {'incorrect_urls': [], 'added_to_list': int, 'already_in_list': int}
         this.response = data.data;
         this.loading_add_suggestions = false;
@@ -171,7 +171,7 @@ export default {
     find_suggestions: function () {
 
       this.loading_suggestions = true;
-      http.get('data/urllist/suggest-subdomains/', { params: {domain: this.input_domain, period: this.period, urllist_id: this.list.id}}).then(server_response => {
+      http.get('data/urllist/suggest-subdomains', { params: {domain: this.input_domain, period: this.period, urllist_id: this.list.id}}).then(server_response => {
         if (server_response.data.length > 0) {
           this.suggestions = server_response.data;
         } else {

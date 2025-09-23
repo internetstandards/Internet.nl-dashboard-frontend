@@ -236,7 +236,7 @@ export default {
     },
     get_urls: function () {
       this.loading = true;
-      http.get(`/data/urllists/get_content/${this.list.id}`).then(data => {
+      http.get(`/data/urllist/get_content/${this.list.id}`).then(data => {
         this.urls = data.data.urls;
         this.loading = false;
         this.update_list_warnings();
@@ -268,8 +268,8 @@ export default {
 
     download_list(){
       let data = {
-        'list-id': this.list.id,
-        'file-type': 'xlsx'
+        'urllist_id': this.list.id,
+        'file_type': 'xlsx'
       }
 
       http.post(`/data/urllist/download/`, data, {responseType: 'blob'}).then(response => {

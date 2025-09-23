@@ -62,13 +62,13 @@ name: "NotificationSettings.vue",
     get: function () {
       this.server_response = {};
       this.loading = true;
-      http.get('/data/user/get/').then(data => {
+      http.get('/data/user/settings').then(data => {
         this.user = data.data;
         this.loading = false;
       });
     },
     save: function () {
-      http.post('/data/user/save/', {
+      http.post('/data/user/settings/save', {
         'first_name': this.user.first_name,
         'last_name': this.user.last_name,
         'mail_preferred_mail_address': this.user.mail_preferred_mail_address,

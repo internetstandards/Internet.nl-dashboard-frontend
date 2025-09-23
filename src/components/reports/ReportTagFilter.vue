@@ -123,7 +123,7 @@ export default {
     },
     load() {
       this.loading = true;
-      http.get(`data/urllist/tag/list/${this.urllist_id}/`).then(response => {
+      http.get(`data/urllist/tag/list/${this.urllist_id}`).then(response => {
         // convert to: {'code': label, 'label': label} -> otherwise deselection doesn't work.
         this.available_tags = response.data.map(item => ({code: item, label: item}))
         this.loading = false;
