@@ -45,7 +45,7 @@ export default {
 
             this.scan_now_confirmed = true;
 
-            http.post('/data/urllist/scan_now', data).then(server_response => {
+            http.post('/data/urllist/scan-now', data).then(server_response => {
                 this.response = server_response.data;
 
                 if (server_response.data.success) {

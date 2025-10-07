@@ -33,7 +33,7 @@ export default {
       this.load_reports_by_ids_at(link, report_ids, data)
     },
     load_shared_reports_by_ids(report_ids) {
-      this.load_reports_by_ids_at('/data/report/shared/', report_ids)
+      this.load_reports_by_ids_at('/data/report/shared', report_ids)
     },
 
     // this.reports.forEach((report) => this.add_comparison_urls_to_report(report))

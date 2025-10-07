@@ -50,7 +50,7 @@ export default {
       this.update_scan_data();
     },
     update_scan_data: function () {
-      http.get('/data/scan-monitor/').then(data => {
+      http.get('/data/scan/monitor').then(data => {
         this.scans = data.data;
         this.store.update_scan_monitor_data(data.data);
       });
