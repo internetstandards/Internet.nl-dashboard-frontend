@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     make_downloadlink: function (report_id, filetype) {
-      return `${import.meta.env.VITE_VUE_APP_DJANGO_PATH}/data/spreadsheet/${report_id}/${filetype}`
+      return `${import.meta.env.VITE_VUE_APP_DJANGO_PATH}/data/report/spreadsheet/${report_id}/${filetype}`
     },
   }
 }

@@ -56,7 +56,7 @@ export default {
   methods: {
     load() {
       this.loading = true;
-      http.get(`data/report/public/account/${this.$route.params.account}/lists/all`).then(data => {
+      http.get(`data/public/account/${this.$route.params.account}/lists/all`).then(data => {
         this.reportsets = data.data;
         this.loading = false;
       });
