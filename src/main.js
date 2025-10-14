@@ -65,7 +65,7 @@ app.mixin(
         return format(parseISO(date), 'PPP', {locale: this.dateLocales[this.$i18n.locale]});
       },
       humanize_relative_date: function (date) {
-        return formatDistanceToNow(parseISO(date), {addSuffix: true, locale: this.dateLocales[this.$i18n.locale]})
+        return formatDistanceToNow(parseISO(date), {addSuffix: true, locale: this.dateLocales[this.locale]})
       },
       humanize_duration: function (duration_in_milliseconds) {
         return formatDuration(
@@ -86,7 +86,7 @@ app.mixin(
   }
 )
 
-http.get('/session/status/').then(data => {
+http.get('/data/session/status').then(data => {
   // making sure the page can be accessed is a pretty complex pattern in pinia and such...
   // this makes the app slightly slower as a get-request is needed. It does prevent some flashes while getting that data
   let store = dashboardStore()

@@ -59,7 +59,7 @@ export default {
 
         // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
         console.log(`Getting report id: ${report_ids[i]}`)
-        http.post(`${link}${report_ids[i]}/`, post_data).then(response => {
+        http.post(`${link}${report_ids[i]}`, post_data).then(response => {
           // The report might be empty, because the wrong code has been sent:
 
           if (response.data !== undefined && response.data !== "") {

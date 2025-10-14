@@ -272,7 +272,7 @@ export default {
         'file_type': 'xlsx'
       }
 
-      http.post(`/data/urllist/download/`, data, {responseType: 'blob'}).then(response => {
+      http.post(`/data/urllist/download`, data, {responseType: 'blob'}).then(response => {
         // create file link in browser's memory
         const href = URL.createObjectURL(response.data);
 

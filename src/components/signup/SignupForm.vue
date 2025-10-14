@@ -231,7 +231,7 @@ export default {
       }
 
       this.loading = true;
-      http.post('/data/signup/', {
+      http.post('/data/signup', {
         'form_data': this.form
       }).then(data => {
         if (data.data) {

@@ -136,7 +136,7 @@ export default {
       this.$emit('tags_applied')
     },
     save_ad_hoc_report() {
-      http.post(`/data/report/ad_hoc_save/${this.store.report_ids[0]}/`,
+      http.post(`/data/report/ad_hoc_save/${this.store.report_ids[0]}`,
           {tags: this.selected_tags.map(item => item.label), custom_date: this.custom_date, custom_time: this.custom_time}).then(response => {
         // The report might be empty, because the wrong code has been sent:
         // if the report has been saved, then reload the list report list and give a success message

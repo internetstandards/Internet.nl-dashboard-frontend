@@ -114,7 +114,12 @@ ol {
                     </li>
                 </ol>
                 </b-alert>
-                <template v-if="!['finished', 'cancelled'].includes(scan.state)">
+
+            </template>
+        </collapse-panel>
+
+          <template v-if="!['finished', 'cancelled'].includes(scan.state)">
+            <br>
                     <b-button variant="danger" @click="visible.stop_scan = true">🛑 {{ $t("scanmonitor.scan.stop_scan") }}</b-button>
 
                     <StopScanModal
@@ -123,8 +128,6 @@ ol {
                     />
 
                 </template>
-            </template>
-        </collapse-panel>
 
         </b-card-text>
 

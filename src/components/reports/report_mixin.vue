@@ -184,7 +184,7 @@ export default {
         internet_nl_mail_mx_ns_rpki_valid: {visible: true},
       };
 
-      http.get(`/data/account/report_settings/get/`).then(settings => {
+      http.get(`/data/account/report_settings/get`).then(settings => {
         let data = settings.data;
         if (!this.isEmptyObject(data.data)) {
           // Get all possible issue fields before overwriting them with whatever is stored.

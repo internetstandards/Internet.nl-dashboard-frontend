@@ -30,7 +30,7 @@ export default {
 
     load() {
       this.loading = true;
-      http.get('data/report/public/').then(data => {
+      http.get('data/report/public').then(data => {
         this.reports = data.data;
         this.loading = false;
       });

@@ -71,7 +71,7 @@ export default {
     methods: {
         load: function () {
             this.loading = true;
-            http.get(`/data/usage/`).then(data => {
+            http.get(`/data/usage`).then(data => {
                 this.loading = false;
                 this.s = data.data;
             });
