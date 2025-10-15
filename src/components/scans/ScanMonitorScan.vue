@@ -23,7 +23,7 @@ ol {
             <span v-if="scan.state === 'cancelled'">🛑️</span>
             <span v-if="!['finished', 'cancelled'].includes(scan.state)">
             <probe /></span>
-            <b>&nbsp; {{ scan.type }} {{ $t("scanmonitor.scan.scan") }} "<span v-html="abbreviate(scan.list_name, 50)" />"</b> <scan-type-icon :type="scan.type" />
+            <b>&nbsp; {{ scan.type }} {{ $t("scanmonitor.scan.scan") }} "{{abbreviate(scan.list_name, 50)}}"</b> <scan-type-icon :type="scan.type" />
 
         </template>
 
