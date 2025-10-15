@@ -81,7 +81,7 @@ export default {
             this.loading = true;
             this.unsubscribed = false;
             this.error = false;
-            http.get(`/mail/unsubscribe/${this.feed}/${this.unsubscribe_code}/`).then(data => {
+            http.get(`/mail/unsubscribe/${this.feed}/${this.unsubscribe_code}`).then(data => {
                 if (data.data['unsubscribed']) {
                     this.unsubscribed = true;
                     this.error_occurred = false;

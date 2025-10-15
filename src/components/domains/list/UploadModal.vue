@@ -92,7 +92,7 @@ export default {
       let formData = new FormData();
       formData.append('file', this.file);
 
-      http.post(`/data/urllist/upload/${this.list.id}/`, formData, {
+      http.post(`/data/urllist/upload/${this.list.id}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }

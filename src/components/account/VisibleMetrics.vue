@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     reset_issue_filters: function () {
-      http.get(`/data/account/report_settings/get/`).then(data => {
+      http.get(`/data/account/report_settings/get`).then(data => {
         if (!this.isEmptyObject(data.data)) {
           this.issue_filters = data.data.data;
           this.issue_filters_response = data.data;
@@ -128,7 +128,7 @@ export default {
       * */
       this.automatically_set_category();
 
-      http.post(`/data/account/report_settings/save/`, {'filters': this.issue_filters}).then(server_response => {
+      http.post(`/data/account/report_settings/save`, {'filters': this.issue_filters}).then(server_response => {
         this.issue_filters_response = server_response.data;
         if (server_response.data.success) {
           // load the metrics into the application

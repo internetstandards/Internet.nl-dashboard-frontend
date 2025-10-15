@@ -123,7 +123,7 @@ export default {
     },
     load() {
       this.loading = true;
-      http.get(`data/urllist/tag/list/${this.urllist_id}/`).then(response => {
+      http.get(`data/urllist/tag/list/${this.urllist_id}`).then(response => {
         // convert to: {'code': label, 'label': label} -> otherwise deselection doesn't work.
         this.available_tags = response.data.map(item => ({code: item, label: item}))
         this.loading = false;
@@ -136,7 +136,7 @@ export default {
       this.$emit('tags_applied')
     },
     save_ad_hoc_report() {
-      http.post(`/data/report/ad_hoc_save/${this.store.report_ids[0]}/`,
+      http.post(`/data/report/ad_hoc_save/${this.store.report_ids[0]}`,
           {tags: this.selected_tags.map(item => item.label), custom_date: this.custom_date, custom_time: this.custom_time}).then(response => {
         // The report might be empty, because the wrong code has been sent:
         // if the report has been saved, then reload the list report list and give a success message

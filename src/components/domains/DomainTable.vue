@@ -267,7 +267,7 @@ export default {
           item.tags.push(this.selected_tag)
         }
       })
-      http.post('/data/urllist/tag/add/', {'urllist_id': this.urllist.id, 'url_ids': this.selectedItems.map(item => item.id), 'tag': this.selected_tag});
+      http.post('/data/urllist/tag/add', {'urllist_id': this.urllist.id, 'url_ids': this.selectedItems.map(item => item.id), 'tag': this.selected_tag});
     },
     remove_tags() {
       // support the scenario from issue #344
@@ -282,7 +282,7 @@ export default {
           ids.push(item.id)
         }
       })
-      http.post('/data/urllist/tag/remove/', {'urllist_id': this.urllist.id, 'url_ids': this.selectedItems.map(item => item.id), 'tag': this.selected_tag});
+      http.post('/data/urllist/tag/remove', {'urllist_id': this.urllist.id, 'url_ids': this.selectedItems.map(item => item.id), 'tag': this.selected_tag});
     },
     remove_urls() {
       // todo: make a list of url id's, add that with the list id and send it to the server
@@ -295,7 +295,7 @@ export default {
         return el.id === item.id;
       });
       if (url_object) {
-        http.post('/data/urllist/url/delete/', {'urllist_id': this.urllist.id, 'url_id': item.id});
+        http.delete('/data/urllist/url/delete', {'urllist_id': this.urllist.id, 'url_id': item.id});
 
         const index = this.urls.indexOf(url_object[0]);
         if (index > -1) {

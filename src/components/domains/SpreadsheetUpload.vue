@@ -246,7 +246,7 @@ export default {
     },
 
     get_recent_uploads: function () {
-      http.get(`/data/upload-history/`).then(data => {
+      http.get(`/data/upload-history`).then(data => {
         // don't create a very long list because updates can flash
         this.upload_history = data.data.splice(0, 10);
         this.store.set_uploads_performed(data.data.length);

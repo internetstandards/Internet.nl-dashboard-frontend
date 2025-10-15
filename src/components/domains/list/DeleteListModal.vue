@@ -57,7 +57,7 @@ export default {
             this.$emit('cancel')
         },
         confirm_deletion: function () {
-            http.post(`/data/urllist/delete/`, {'id': this.list.id}).then(server_response => {
+            http.post(`/data/urllist/delete`, {'id': this.list.id}).then(server_response => {
                 if (server_response.data.success) {
                     this.$emit('removelist', this.list.id);
                 } else {

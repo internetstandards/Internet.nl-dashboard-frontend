@@ -72,7 +72,7 @@ export default {
             this.$emit('cancel')
         },
         confirm_stop_scan: function () {
-            http.post('/data/scan/cancel/', {'id': this.scan.id}).then(response => {
+            http.post('/data/scan/cancel', {'id': this.scan.id}).then(response => {
                 if (response.data.success) {
                     this.$emit('scan-stopped', this.scan.id)
                 }

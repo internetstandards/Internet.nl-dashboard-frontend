@@ -185,7 +185,7 @@ export default {
 
     logout: function () {
       this.loading = true;
-      http.get('/session/logout/').then(() => {
+      http.get('/data/session/logout').then(() => {
         this.loading = false;
         this.status();
       });
@@ -193,7 +193,7 @@ export default {
     status: function () {
       this.server_response = {};
       this.loading = true;
-      http.get('/session/status/').then(data => {
+      http.get('/data/session/status').then(data => {
         this.store.set_user(data.data);
         this.loading = false;
         if (!this.user.is_authenticated) {

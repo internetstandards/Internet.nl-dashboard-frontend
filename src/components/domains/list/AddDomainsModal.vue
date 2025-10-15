@@ -113,7 +113,7 @@ export default {
     bulk_add_new: function () {
       this.loading = true;
 
-      http.post('/data/urllist/url/add/', {'urls': this.new_domains, 'list_id': this.list.id}).then(data => {
+      http.post('/data/urllist/url/add', {'urls': this.new_domains, 'list_id': this.list.id}).then(data => {
         // {'incorrect_urls': [], 'added_to_list': int, 'already_in_list': int}
         this.response = data.data;
         this.loading = false;

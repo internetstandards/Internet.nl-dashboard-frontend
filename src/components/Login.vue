@@ -86,7 +86,7 @@ export default {
     login_status: function () {
       this.loading = true;
       console.log("Checking if the user is logged in at the login page.")
-      http.get('/session/status/').then(data => {
+      http.get('/data/session/status').then(data => {
         this.store.set_user(data.data);
         this.loading = false;
         if (this.user.is_authenticated) {
@@ -102,7 +102,7 @@ export default {
     },
     login: function () {
       this.loading = true;
-      http.post('/session/login/', {'username': this.username, 'password': this.password}).then(data => {
+      http.post('/session/login', {'username': this.username, 'password': this.password}).then(data => {
         if (data.data) {
           this.server_response = data.data;
           this.login_status();

@@ -33,13 +33,13 @@ export default {
       this.load_reports_by_ids_at(link, report_ids, data)
     },
     load_shared_reports_by_ids(report_ids) {
-      this.load_reports_by_ids_at('/data/report/shared/', report_ids)
+      this.load_reports_by_ids_at('/data/public/shared/', report_ids)
     },
 
     // this.reports.forEach((report) => this.add_comparison_urls_to_report(report))
     add_comparison_urls_to_report(report) {
       console.log("adding comparison urls")
-      // The comparison report require direct data access to urls to be able to compare
+      // The comparison report requires direct data access to urls to be able to compare
       // by simply reading data directly without scanning the table.
       report.calculation.urls_by_url = {};
       report.calculation.urls.forEach((url) => {
@@ -59,7 +59,7 @@ export default {
 
         // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
         console.log(`Getting report id: ${report_ids[i]}`)
-        http.post(`${link}${report_ids[i]}/`, post_data).then(response => {
+        http.get(`${link}${report_ids[i]}`, post_data).then(response => {
           // The report might be empty, because the wrong code has been sent:
 
           if (response.data !== undefined && response.data !== "") {
@@ -71,7 +71,7 @@ export default {
 
             reports[i] = response.data;
             // use destructuring to avoid copying a large object to memory and then ditching the large value
-            // this is much faster and not as memory intensive.
+            // this is much faster and not as memory-intensive.
             // shallow_reports[i] = structuredClone(response.data);
             // shallow_reports[i]['calculation'] = [];
             shallow_reports[i] = this._objectWithoutProperties(response.data, ['calculation']);

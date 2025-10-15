@@ -77,7 +77,7 @@ export default {
   beforeCreate() {
 
     // perform some calls we need otherwise we cannot route logged in pages.
-    http.get('/data/config/').then(data => {
+    http.get('/data/config').then(data => {
 
       if (!(data && data.data && Object.keys(data.data).length !== 0)) {
         this.error_loading_config = true;

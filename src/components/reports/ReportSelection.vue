@@ -131,7 +131,7 @@ export default {
     get_recent_reports() {
       // reload the select
       this.loading = true;
-      http.get(`/data/report/recent/`).then(response => {
+      http.get(`/data/report/list`).then(response => {
         let data = response.data;
         data.forEach(o => {o.label = `#${o.id} - ${o.list_name} - type: ${o.type} - from: ${this.humanize_date(o.at_when)}`});
         this.available_recent_reports = this.filtered_recent_reports = data;

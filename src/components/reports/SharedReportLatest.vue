@@ -31,9 +31,9 @@ export default {
       // So you can specify web or mail to have more certainty.
       let urllist_id = this.$route.params.list_id;
 
-      let url = `/data/report/public/lists/${urllist_id}/latest/`
+      let url = `/data/public/lists/${urllist_id}/latest`
       if(this.get_report_type())
-        url += `${this.get_report_type()}/`
+        url += `/${this.get_report_type()}`
 
       this.loading = true;
       http.get(url).then(data => {

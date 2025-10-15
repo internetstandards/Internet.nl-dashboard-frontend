@@ -85,7 +85,7 @@ export default {
       * The save does not 'alter' the existing URL in the database. It will do some list operations.
       * */
       let data = {'list_id': this.list.id, 'url_id': this.url.id, 'new_url_string': this.edited_url_value}
-      http.post('/data/urllist/url/save/', data).then(server_response => {
+      http.post('/data/urllist/url/update', data).then(server_response => {
         if (server_response.data.success === true) {
           // now that saving was succesful, undo=ing should be to the newely saved url.
           this.original_url_value = this.edited_url_value;
