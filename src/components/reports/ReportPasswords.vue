@@ -21,6 +21,7 @@
                 id="share-code"
                 v-model="public_share_codes[report.public_report_code]"
                 maxlength="64"
+                @keyup.enter="$emit('retry')"
             ></b-form-input>
           </b-form-group>
         </template><template v-else>
