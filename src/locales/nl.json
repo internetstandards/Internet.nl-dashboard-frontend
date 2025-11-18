@@ -1907,6 +1907,7 @@
 				"not_tested": "Niet getest",
 				"passed": "Goed",
 				"unknown": "Onbekend",
+				"unreachable": "Onbereikbaar",
 				"warning": "Waarschuwing"
 			}
 		},
@@ -2039,6 +2040,7 @@
 				"not_tested": "Niet getest",
 				"passed": "Goed",
 				"unknown": "Onbekend",
+				"unreachable": "Onbereikbaar",
 				"warning": "Waarschuwing"
 			},
 			"since": "Sinds"

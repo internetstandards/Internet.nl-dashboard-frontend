@@ -1907,6 +1907,7 @@
 				"not_tested": "Netestováno",
 				"passed": "Prošel",
 				"unknown": "Neznámý",
+				"unreachable": "Nedostupné",
 				"warning": "Varování"
 			}
 		},
@@ -2039,6 +2040,7 @@
 				"not_tested": "Netestováno",
 				"passed": "Prošel",
 				"unknown": "Neznámý",
+				"unreachable": "Nedostupné",
 				"warning": "Varování"
 			},
 			"since": "Od"

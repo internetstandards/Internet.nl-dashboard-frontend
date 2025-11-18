@@ -1907,6 +1907,7 @@
 				"not_tested": "Ikke testet",
 				"passed": "Godkendt",
 				"unknown": "Ukendt",
+				"unreachable": "Kan ikke nås",
 				"warning": "Advarsel"
 			}
 		},
@@ -2039,6 +2040,7 @@
 				"not_tested": "Ikke testet",
 				"passed": "Godkendt",
 				"unknown": "Ukendt",
+				"unreachable": "Kan ikke nås",
 				"warning": "Advarsel"
 			},
 			"since": "Siden"
