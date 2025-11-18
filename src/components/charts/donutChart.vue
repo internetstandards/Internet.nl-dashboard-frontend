@@ -140,7 +140,7 @@ export default defineComponent({
         'pct_not_testable': "rgba(109,109,109,0.8)",
       };
 
-      let datasets = [];
+      const datasets = [];
 
       const newDataset = {
         backgroundColor: [],

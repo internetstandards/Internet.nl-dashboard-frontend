@@ -259,7 +259,7 @@ export default {
           this.list.list_warnings.push('WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED');
         }
       } else {
-        let index = this.list.list_warnings.indexOf("WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED");
+        const index = this.list.list_warnings.indexOf("WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED");
         if (index > -1) {
           this.list.list_warnings.splice("WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED", 1);
         }
@@ -267,7 +267,7 @@ export default {
     },
 
     download_list(){
-      let data = {
+      const data = {
         'urllist_id': this.list.id,
         'file_type': 'xlsx'
       }

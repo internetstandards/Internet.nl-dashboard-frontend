@@ -5,28 +5,28 @@ all: lint audit test
 setup: vue-cli
 
 lint:
-	npm run lint
+	pnpm run lint
 
 audit:
-	npm audit
+	pnpm audit
 
 test:
 	# TODO
 
 vue-cli=node_modules/.bin/vue-cli-service
 $(vue-cli):
-	npm install
+	pnpm install
 vue-cli: | $(vue-cli)
 
 run: vue-cli
-	npm run dev
+	pnpm run dev
 
 # This option takes the env.deploy file and applies it during build.
 build: vue-cli
-	npm run build -- --mode deploy
+	pnpm run build -- --mode deploy
 
 build-local: vue-cli
-	npm run build -- --mode development
+	pnpm run build -- --mode development
 
 pull_image:
 	# optimize build by caching previously build image

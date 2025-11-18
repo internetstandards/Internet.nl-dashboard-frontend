@@ -37,7 +37,7 @@ export default {
         if (this.chart_data[i] === undefined)
           return;
 
-        let data = this.chart_data[i].calculation.statistics_per_issue_type;
+        const data = this.chart_data[i].calculation.statistics_per_issue_type;
 
         if (data === undefined) {
           // nothing to show
@@ -50,9 +50,9 @@ export default {
         }
 
         this.shown_values.forEach((shown_value) => {
-          let axis_names = [];
-          let labels = [];
-          let chartdata = [];
+          const axis_names = [];
+          const labels = [];
+          const chartdata = [];
           let average = 0;
 
           this.axis.forEach((ax) => {

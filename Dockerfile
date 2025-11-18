@@ -1,5 +1,7 @@
 # Build container to serve static content
-FROM node AS build
+FROM node:20 AS build
+
+RUN corepack enable
 
 RUN mkdir /src
 WORKDIR /src

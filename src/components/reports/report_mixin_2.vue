@@ -50,12 +50,12 @@ export default {
 
     load_reports_by_ids_at(link, report_ids, data) {
       this.reports_to_load = report_ids.length;
-      let reports = [];
-      let shallow_reports = [];
+      const reports = [];
+      const shallow_reports = [];
 
       for (let i = 0; i < this.reports_to_load; i++) {
-        let stored_share_code = this.my_store.public_share_codes[report_ids[i]];
-        let post_data = {...{share_code: stored_share_code ? stored_share_code : ""}, ...data}
+        const stored_share_code = this.my_store.public_share_codes[report_ids[i]];
+        const post_data = {...{share_code: stored_share_code ? stored_share_code : ""}, ...data}
 
         // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
         console.log(`Getting report id: ${report_ids[i]}`)
@@ -91,8 +91,8 @@ export default {
     },
     // https://stackoverflow.com/questions/34698905/how-can-i-clone-a-javascript-object-except-for-one-key
     _objectWithoutProperties(obj, keys) {
-      var target = {};
-      for (var i in obj) {
+      const target = {};
+      for (const i in obj) {
         if (keys.indexOf(i) >= 0) continue;
         if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
         target[i] = obj[i];

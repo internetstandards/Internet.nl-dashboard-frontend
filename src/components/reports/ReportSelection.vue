@@ -132,7 +132,7 @@ export default {
       // reload the select
       this.loading = true;
       http.get(`/data/report/list`).then(response => {
-        let data = response.data;
+        const data = response.data;
         data.forEach(o => {o.label = `#${o.id} - ${o.list_name} - type: ${o.type} - from: ${this.humanize_date(o.at_when)}`});
         this.available_recent_reports = this.filtered_recent_reports = data;
         this.loading = false;
@@ -140,7 +140,7 @@ export default {
     },
 
       match_with_environment(to){
-        let request_parameters = []
+        const request_parameters = []
 
       if (to.params.report !== undefined)
           request_parameters.push(parseInt(to.params.report));

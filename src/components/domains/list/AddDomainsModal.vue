@@ -137,7 +137,7 @@ export default {
       // code is trying to protect against: too many domains. This would create a lot of lag and issues. So use
       // this simple heuristic to warn the user.
       // about 300 domains or 150 domains with subdomains are enough.
-      let dotcounter = new_value.match(/\./g)
+      const dotcounter = new_value.match(/\./g)
       this.too_many_new_domains = dotcounter && dotcounter.length > 300;
 
       // the user CAN ignore the message and still bypass the UI warning. This is not really an issue at all, but

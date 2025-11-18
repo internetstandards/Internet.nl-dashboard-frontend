@@ -27,7 +27,7 @@
               <b-tr v-for="(yAxis, yIndex) in rendered_chart_to_table['overall']['labels']"
                     :key="yAxis[0] + 'g'">
                 <b-td style="width: 20%">
-                  {{ $t(yAxis[0]) }}
+                  {{ Array.isArray(yAxis) ? yAxis[0] : yAxis }}
                 </b-td>
                 <b-td v-for="(value, index) in rendered_chart_to_table['overall']['datasets']"
                       :key="`${yIndex}${index}h`">
@@ -37,7 +37,7 @@
             </b-tbody>
           </b-table-simple>
 
-        </div>-
+        </div>
       </div>
       <div v-else class="not-on-new-page" :key="chart.axis.join('.') + 'b'">
         <!-- Do not show canvas chart element in accessibility, use the table below -->
@@ -64,7 +64,7 @@
               <b-tr v-for="(yAxis, yIndex) in rendered_chart_to_table[chart.label]['labels']"
                     :key="yAxis[0] + Math.floor(Math.random() * 100000000)">
                 <b-td style="width: 20%">
-                  {{ $t(yAxis[0]) }}
+                  {{ Array.isArray(yAxis) ? yAxis[0] : yAxis }}
                 </b-td>
                 <b-td v-for="(value, index) in rendered_chart_to_table[chart.label]['datasets']"
                       :key="`${yIndex}${index}e`">
@@ -117,12 +117,13 @@ export default {
       // Seperates nesting logic and other complexities from actual rending of the chart. Here it is specified what
       // charts need to be rendered, and the UI will just render all those charts according to specification in the
       // same order.
-      let charts = [];
+      const charts = [];
 
       this.scan_methods.forEach((scan_form) => {
         // make web axis-charts for web and mail axis charts for mail.
         if (scan_form.name !== this.reports[0].report_type)
           return
+
         charts.push({
           'average': this.show_average(scan_form.name),
           'only_average': false,

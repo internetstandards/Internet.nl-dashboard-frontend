@@ -108,7 +108,7 @@ export default {
     },
 
     all_field_names_from_categories(categories) {
-      let fields = [];
+      const fields = [];
       categories.categories.forEach((category) => {
         category.fields.forEach((field) => {
           fields.push(field.name);
@@ -151,7 +151,7 @@ export default {
       // if all fields in the category are deselected, deselect the category, otherwise, select it.
       // console.log(category_name);
 
-      let fields = this.all_subcategory_fields_from_category(category_name);
+      const fields = this.all_subcategory_fields_from_category(category_name);
 
       let should_be_visible = false;
       for (let i = 0; i < fields.length; i++) {
@@ -174,8 +174,8 @@ export default {
     all_subcategory_fields_from_category(category_name) {
       const mail = 1;
       const web = 0;
-      let fields = [];
-      let method = (this.report_type === 'mail') ? mail : web;
+      const fields = [];
+      const method = (this.report_type === 'mail') ? mail : web;
 
       this.scan_methods[method].categories.forEach((category) => {
         // console.log(`Comparing ${category.key} to ${category_name.key}.`)

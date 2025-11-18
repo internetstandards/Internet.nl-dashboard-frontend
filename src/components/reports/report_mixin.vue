@@ -185,13 +185,13 @@ export default {
       };
 
       http.get(`/data/account/report_settings/get`).then(settings => {
-        let data = settings.data;
+        const data = settings.data;
         if (!this.isEmptyObject(data.data)) {
           // Get all possible issue fields before overwriting them with whatever is stored.
           const all_possible_fields = Object.keys(default_metric_visibility);
 
           // now overwrite with the custom settings
-          let issue_filters = data.data;
+          const issue_filters = data.data;
 
           // upgrade the saved issue filters with all fields we know. In case of missing fields, those will
           // be added with a default value (invisible).
@@ -898,7 +898,7 @@ export default {
        * several chapter headings for a set of scans. This is useful for mail dnssec scans, as the
        * name of the dnssec tests is identical and very confusing to see what is what. */
 
-      let fields_mapping = {};
+      const fields_mapping = {};
 
       // 0 = web, 1 = mail, ugly.
       this.scan_methods[0].categories.forEach((category) => {

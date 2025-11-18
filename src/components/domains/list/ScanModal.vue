@@ -41,7 +41,7 @@ export default {
             this.$emit('cancel')
         },
         confirm_scan_now: function () {
-            let data = {'id': this.list.id};
+            const data = {'id': this.list.id};
 
             this.scan_now_confirmed = true;
 

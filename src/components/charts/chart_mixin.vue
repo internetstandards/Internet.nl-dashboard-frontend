@@ -32,7 +32,7 @@ import report_mixin from "@/components/reports/report_mixin.vue";
 //     this.height = this.height + 40;
 // };
 
-let tooltip_configuration = {
+const tooltip_configuration = {
   mode: 'index',
   intersect: false,
   callbacks: {
@@ -91,7 +91,7 @@ export default {
         data = this.chart.toBase64Image();
       if (file_type === "jpg")
         data = this.chart.toBase64Image('image/jpeg', 1)
-      let aDownloadLink = document.createElement('a');
+      const aDownloadLink = document.createElement('a');
       aDownloadLink.download = `graph.${file_type}`
       aDownloadLink.href = data;
       aDownloadLink.click();
@@ -122,7 +122,7 @@ export default {
         return;
       }
 
-      let context = this.$refs.canvas.getContext('2d');
+      const context = this.$refs.canvas.getContext('2d');
       this.chart = new Chart(context, {
         type: 'bar',
         data: {},
@@ -147,8 +147,8 @@ export default {
                 weight: 'bold'
               },
               display: function (context) {
-                let index = context.dataIndex;
-                let value = context.dataset.data[index];
+                const index = context.dataIndex;
+                const value = context.dataset.data[index];
                 return Math.round(value) > 1;
               },
               // format as a percentage
@@ -172,8 +172,8 @@ export default {
               filter: function (item, data) {
                 // Only shows legend labels for data types that are actually available
                 // dataset 0 = good, dataset 1 is info etc...
-                let dsIndex = item.datasetIndex;
-                let currentDataValue = data.datasets[dsIndex].data.reduce((a, b) => a + b, 0);
+                const dsIndex = item.datasetIndex;
+                const currentDataValue = data.datasets[dsIndex].data.reduce((a, b) => a + b, 0);
                 return currentDataValue > 0;
               },
             },

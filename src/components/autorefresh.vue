@@ -66,7 +66,7 @@ export default {
     mounted: function () {
         this.init_auto_refresh();
     },
-    beforeDestroy: function () {
+    beforeUnmount: function () {
         // Cleanup interval, see init_auto_refresh.
         clearInterval(this.refresh_interval);
     },

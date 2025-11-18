@@ -43,7 +43,7 @@ export default {
     crc32(r) {
       for (var a, o = [], c = 0; c < 256; c++) {
         a = c;
-        for (var f = 0; f < 8; f++) a = 1 & a ? 3988292384 ^ a >>> 1 : a >>> 1;
+        for (let f = 0; f < 8; f++) a = 1 & a ? 3988292384 ^ a >>> 1 : a >>> 1;
         o[c] = a
       }
       for (var n = -1, t = 0; t < r.length; t++) n = n >>> 8 ^ o[255 & (n ^ r.charCodeAt(t))];
@@ -83,7 +83,7 @@ export default {
     },
     darker(){
       // makes the tag darker so it complies to readability standards
-      let vc = this.pSBC(-0.62, "#" + this.value_color, false, true)
+      const vc = this.pSBC(-0.62, "#" + this.value_color, false, true)
       if (vc === null)
         return this.value_color;
       return vc

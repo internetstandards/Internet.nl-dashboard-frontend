@@ -95,7 +95,7 @@ export default {
   mounted() {
     this.load_visible_metrics();
     // only do this when there is no report selection component, otherwise let that component handle it...
-    let router_params = this.$route.params;
+    const router_params = this.$route.params;
     // the route to this component can determine what is shown
     this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
   },

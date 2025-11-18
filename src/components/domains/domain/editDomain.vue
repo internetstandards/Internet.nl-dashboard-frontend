@@ -84,7 +84,7 @@ export default {
       * This is not a real 'save' but an add to list and create if it doesn't exist operation.
       * The save does not 'alter' the existing URL in the database. It will do some list operations.
       * */
-      let data = {'list_id': this.list.id, 'url_id': this.url.id, 'new_url_string': this.edited_url_value}
+      const data = {'list_id': this.list.id, 'url_id': this.url.id, 'new_url_string': this.edited_url_value}
       http.post('/data/urllist/url/update', data).then(server_response => {
         if (server_response.data.success === true) {
           // now that saving was succesful, undo=ing should be to the newely saved url.

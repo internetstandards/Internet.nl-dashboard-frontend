@@ -133,7 +133,7 @@ export default {
 
   computed: {
     share_code() {
-      let baseUrl = import.meta.env.VITE_VUE_APP_DJANGO_PATH;
+      const baseUrl = import.meta.env.VITE_VUE_APP_DJANGO_PATH;
       return `${baseUrl}/report/${this.report['public_report_code']}`
     },
   },

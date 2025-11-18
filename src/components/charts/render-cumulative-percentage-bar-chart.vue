@@ -27,7 +27,7 @@ export default {
             this.chart.data.labels = [];
             this.chart.data.datasets = [];
 
-            let cumulative_axis_data = {};
+            const cumulative_axis_data = {};
 
             if (this.chart_data === undefined)
                 return;
@@ -45,7 +45,7 @@ export default {
                 if (this.chart_data[i].calculation === undefined)
                     return;
 
-                let data = this.chart_data[i].calculation.statistics_per_issue_type;
+                const data = this.chart_data[i].calculation.statistics_per_issue_type;
 
                 if (data === undefined) {
                     // nothing to show
@@ -75,10 +75,10 @@ export default {
                 });
             }
             this.shown_values.forEach((shown_value) => {
-                let data = this.chart_data[0].calculation.statistics_per_issue_type;
-                let axis_names = [];
-                let labels = [];
-                let chartdata = [];
+                const data = this.chart_data[0].calculation.statistics_per_issue_type;
+                const axis_names = [];
+                const labels = [];
+                const chartdata = [];
                 let average = 0;
 
                 this.axis.forEach((ax) => {

@@ -29,7 +29,7 @@ export default {
     load() {
         // a list can create both a web and mail report. Those are added to the system in random order.
       // So you can specify web or mail to have more certainty.
-      let urllist_id = this.$route.params.list_id;
+      const urllist_id = this.$route.params.list_id;
 
       let url = `/data/public/lists/${urllist_id}/latest`
       if(this.get_report_type())
