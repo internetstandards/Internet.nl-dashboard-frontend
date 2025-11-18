@@ -21,12 +21,12 @@
 
     <template #cell(average_internet_nl_score)="data">
       <donut class="float-start" :data="{'score': data.value, 'rest': 100-data.value}" :show_number_in_center="false" :axis="['score', 'rest']" :tooltip="false" :datalabels="false" :height='25' :width='25' :elements="['donut']" />
-      <div class="ml-2">{{data.value}}%</div>
+      <div class="ml-2 pl-4">&nbsp;{{data.value}}%</div>
     </template>
 
     <template #cell(urllist__name)="data">
       <a :href="`/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow">
-       <scan-type-icon :type="data.item.report_type" /> {{data.value}} ({{data.item.report_type}})<br />
+       <scan-type-icon :type="data.item.report_type" /> {{data.item.urllist_name}} ({{data.item.report_type}})<br />
         {{$t("public-reports.table.Contains")}} {{data.item.total_urls}} {{$t("public-reports.table.domains")}} <i-bi-box-arrow-in-up-right/>
       </a>
       <b-badge variant="danger" class="ml-2" v-if="data.has_public_share_code">
