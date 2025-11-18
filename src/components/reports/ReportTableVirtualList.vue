@@ -368,13 +368,13 @@ div.rotate > span {
         </b-alert>
       </template>
     </collapse-panel>
-
     <div class="start-on-new-page position-relative pt-3">
       <div id="report-table"></div>
 
 
         <div class="virtualList">
-          <virtual-list style="height: 125vh; overflow-y: auto; width: 100%"
+          <!-- Wider list on tls, to prevent scrolling. This is a not-so-nice workaround. -->
+          <virtual-list :style="selected_category === 'internet_nl_web_tls' ? 'height: 125vh; overflow-y: auto; width: 146%' : 'height: 125vh; overflow-y: auto; width: 100%'"
             :data-key="'url'"
             :data-sources="filtered_urls"
             :data-component="itemComponent"
