@@ -89,7 +89,7 @@ export default {
     },
     upload: function () {
 
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('file', this.file);
 
       http.post(`/data/urllist/upload/${this.list.id}`, formData, {

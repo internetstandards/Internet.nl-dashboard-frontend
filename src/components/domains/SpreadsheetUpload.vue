@@ -152,7 +152,7 @@ import { dashboardStore } from '@/dashboardStore'
 export default {
   mixins: [],
   data: function () {
-    let self = this;
+    const self = this;
     return {
       store: dashboardStore(),
       loading: false,
@@ -223,8 +223,8 @@ export default {
   methods: {
     get_cookie: function (name) {
       // isn't there a nicer vue alternative instead of the crude get_cookie parsing misery?
-      let value = "; " + document.cookie;
-      let parts = value.split("; " + name + "=");
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
       if (parts.length === 2) {
         return parts.pop().split(";").shift();
       }
@@ -233,7 +233,7 @@ export default {
         if (size_in_bytes === 0) {
           return '0 Bytes';
         }
-        let k = 1024,
+        const k = 1024,
           dm = decimals <= 0 ? 0 : decimals || 2,
           sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
           i = Math.floor(Math.log(size_in_bytes) / Math.log(k));

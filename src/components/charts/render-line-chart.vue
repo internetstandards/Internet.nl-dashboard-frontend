@@ -28,7 +28,7 @@ export default defineComponent({
     const chartRef = ref();
 
     const my_labels = computed(() => {
-        let data = [];
+        const data = [];
         props.timeline_data.forEach((item) => {
           for (let i = 0; i < item.data.length; i++) {
             data.push(item.data[i].date);
@@ -72,11 +72,11 @@ export default defineComponent({
           {background: 'rgb(0, 0, 0)', border: 'rgba(0, 0, 0, 1)'},
       ];
 
-      let datasets = [];
+      const datasets = [];
         let colorset = 0;
         props.timeline_data.forEach((item) => {
 
-          let line_data = [];
+          const line_data = [];
           item.data.forEach((item_data) => {
             line_data.push({
               x: item_data.date,
@@ -87,7 +87,7 @@ export default defineComponent({
             })
           });
 
-          let line_dataset =
+          const line_dataset =
               {
                 // Each report has their own set of dates and such, there will be many gaps.
                 spanGaps: true,

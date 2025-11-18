@@ -15,14 +15,14 @@ name: "DownloadData",
     download_data_as_csv(){
       let csv = "";
 
-      let labels = this.fields.map(field => field.label)
-      let keys = this.fields.map(field => field.key)
+      const labels = this.fields.map(field => field.label)
+      const keys = this.fields.map(field => field.key)
       csv += labels.join(',');
       csv += "\n";
 
       this.data.forEach((row) => {
         // todo: this is very slow, could be much faster, given there is little data it's ok for now...
-        let record = []
+        const record = []
         keys.forEach((key) => {
           record.push(row[key]);
         })
@@ -34,7 +34,7 @@ name: "DownloadData",
     },
 
     download(data, filename){
-      let aDownloadLink = document.createElement('a');
+      const aDownloadLink = document.createElement('a');
       aDownloadLink.download = filename;
       aDownloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(data);
       aDownloadLink.click();

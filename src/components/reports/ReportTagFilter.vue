@@ -106,7 +106,7 @@ export default {
       server_response: {},
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     // empty list of selected tags on reloads etc to make the UI more intuitive:
     this.store.set_tags([]);
   },

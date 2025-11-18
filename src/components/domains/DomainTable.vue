@@ -274,7 +274,7 @@ export default {
       if (this.last_searched)
           this.selected_tag = this.last_searched.toLowerCase()
 
-      let ids = []
+      const ids = []
       this.selectedItems.forEach((item) => {
         const index = item.tags.indexOf(this.selected_tag);
         if (index > -1) {
@@ -291,7 +291,7 @@ export default {
       });
     },
     remove_url(item) {
-      let url_object = this.urls.filter(function (el) {
+      const url_object = this.urls.filter(function (el) {
         return el.id === item.id;
       });
       if (url_object) {

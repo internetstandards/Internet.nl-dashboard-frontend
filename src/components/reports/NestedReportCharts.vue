@@ -117,7 +117,7 @@ export default {
       // Seperates nesting logic and other complexities from actual rending of the chart. Here it is specified what
       // charts need to be rendered, and the UI will just render all those charts according to specification in the
       // same order.
-      let charts = [];
+      const charts = [];
 
       this.scan_methods.forEach((scan_form) => {
         // make web axis-charts for web and mail axis charts for mail.

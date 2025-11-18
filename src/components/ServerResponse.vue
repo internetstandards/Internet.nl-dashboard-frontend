@@ -40,7 +40,7 @@ export default {
   mounted: function () {
     this.update();
   },
-  beforeDestroy() {
+  beforeUnmount() {
     clearInterval(this.timer)
   },
   methods: {

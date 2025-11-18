@@ -29,7 +29,7 @@ export default {
 
     visible_fields_from_scan_form: function (scan_form) {
       // see if any of the underlaying categories is visible. If so, include the category.
-      let fields = [];
+      const fields = [];
       scan_form.categories.forEach((category) => {
         // console.log(category.key);
         if (this.category_is_visible(category.key)) {
@@ -44,7 +44,7 @@ export default {
       return this.visible_fields(this.fields_from_self_and_do_not_filter(category))
     },
     visible_fields(fields) {
-      let returned_fields = [];
+      const returned_fields = [];
       for (let i = 0; i < fields.length; i++) {
           if (this.issue_filters[fields[i]] !== undefined && this.issue_filters[fields[i]].visible)
             returned_fields.push(fields[i])
@@ -57,7 +57,7 @@ export default {
     },
 
     visible_fields_from_categories(categories) {
-      let fields = [];
+      const fields = [];
       categories.categories.forEach((category) => {
         category.fields.forEach((field) => {
           fields.push(field.name);

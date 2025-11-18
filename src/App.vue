@@ -101,7 +101,7 @@ export default {
 
 
     this.$nextTick(function () {
-      let fixedHeader = new Headroom(document.querySelector("header"), {
+      const fixedHeader = new Headroom(document.querySelector("header"), {
         "offset": 205,
         "tolerance": 5,
         "classes": {"initial": "header-js-animated", "pinned": "header-pinned", "unpinned": "header-unpinned"}

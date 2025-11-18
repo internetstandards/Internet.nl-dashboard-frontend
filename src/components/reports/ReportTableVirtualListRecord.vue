@@ -151,7 +151,7 @@ export default {
     },
 
     category_comparison: function (category_name, url) {
-      let simple_value = this.category_verdict_to_simple_value(category_name, url);
+      const simple_value = this.category_verdict_to_simple_value(category_name, url);
 
       if (this.reports.length < 2 || this.reports[1].calculation.urls_by_url[url.url] === undefined)
         return "";
@@ -167,9 +167,9 @@ export default {
         other_verdicts = this.reports[1].calculation.urls_by_url[url.url].endpoints[0].ratings_by_type[category_name];
       }
 
-      let other_simple_value = this._category_verdict_to_simple_value(other_verdicts, category_name);
+      const other_simple_value = this._category_verdict_to_simple_value(other_verdicts, category_name);
 
-      let progression = {'passed': 4, 'warning': 3, 'info': 2, 'failed': 1};
+      const progression = {'passed': 4, 'warning': 3, 'info': 2, 'failed': 1};
 
       if (simple_value === other_simple_value || simple_value === "unknown" || other_simple_value === "unknown")
         return "neutral";
@@ -281,8 +281,8 @@ export default {
       if (this.reports[1].calculation.urls_by_url[url.url].endpoints[0] === undefined)
         return ""
 
-      let simple_value = this.detail_value_simple_value(category_name, url);
-      let simple_progression = this.detail_value_simple_progression(category_name, url);
+      const simple_value = this.detail_value_simple_value(category_name, url);
+      const simple_progression = this.detail_value_simple_progression(category_name, url);
       /*
       * This compares if the new value is progressive, neutral or regressive.
       * All to/from not_testable and not_applicable is neutral.
@@ -405,7 +405,7 @@ export default {
       return ""
     },
     relevant_categories_based_on_settings: function () {
-      let preferred_fields = [];  // this.categories[this.selected_category];
+      const preferred_fields = [];  // this.categories[this.selected_category];
       this.scan_methods.forEach((scan_method) => {
         // todo: also get relevant column for scan_methods, just like with graphs. But given large refactor,
         // we'll do that later.
@@ -431,7 +431,7 @@ export default {
         }
       });
       // console.log("Preferred fields:         " + preferred_fields)
-      let visible_preferred_fields = preferred_fields.filter(field => this.visible_metrics[field].visible)
+      const visible_preferred_fields = preferred_fields.filter(field => this.visible_metrics[field].visible)
       // console.log("Visible preferred fields: " + visible_preferred_fields)
       return visible_preferred_fields
     },

@@ -49,7 +49,7 @@ export default {
       modal_visible: false,
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     clearInterval(this.timer)
   },
   created: function () {
@@ -102,7 +102,7 @@ export default {
       });
     },
     handle_response(data) {
-      let response = data.data
+      const response = data.data
 
       // Any operation response that is not happy
       if (response.error) {

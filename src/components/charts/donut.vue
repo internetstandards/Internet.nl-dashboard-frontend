@@ -144,7 +144,7 @@ export default {
       if (!graph_data || graph_data.length === 0)
         return
 
-      let data = [];
+      const data = [];
       graph_data.forEach((series) => {
         let i = 0;
         series.data.forEach((row) => {

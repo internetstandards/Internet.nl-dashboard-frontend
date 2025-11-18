@@ -602,19 +602,19 @@ export default {
   },
   methods: {
     test_explode_report_size() {
-      let amount = 5000;
+      const amount = 5000;
       // testing method that creates a very, very large report to see how this renders.
       // a report of 5000 urls should not be any issue at all...
-      let backup = this.original_urls;
+      const backup = this.original_urls;
 
       // for testing purposes, increase the report to a 1000 records, to see
       // how it renders
-      let verdicts = ['passed', 'failed', 'warning', 'info', 'not-testable', 'error']
-      let stringed = JSON.stringify(backup[0]);
+      const verdicts = ['passed', 'failed', 'warning', 'info', 'not-testable', 'error']
+      const stringed = JSON.stringify(backup[0]);
 
-      let ridulously_large_report = [];
+      const ridulously_large_report = [];
       for (let i = 0; i < amount; i++) {
-        let record = JSON.parse(stringed)
+        const record = JSON.parse(stringed)
 
         // randomize scores, and one category and one field so you can test comparisons
         record.endpoints[0].ratings.internet_nl_score.internet_nl_score = Math.floor(Math.random() * 100);
@@ -639,9 +639,9 @@ export default {
         return
       }
 
-      let urls = [];
+      const urls = [];
       // keep the search order, use a correctly ordered set of original urls:
-      let tmp_urls = Object.freeze(this.order_urls(this.original_urls));
+      const tmp_urls = Object.freeze(this.order_urls(this.original_urls));
       tmp_urls.forEach(function (value) {
         if (value.url.includes(keyword))
           urls.push(value)
@@ -650,12 +650,12 @@ export default {
     },
     order_urls: function (data) {
       // todo: add sorting icons :)
-      let sortKey = this.sortKey;
+      const sortKey = this.sortKey;
       if (!sortKey) {
         return data;
       }
 
-      let order = this.sortOrders[sortKey] || 1;
+      const order = this.sortOrders[sortKey] || 1;
 
       // The ordering keys are in different places in the data. See websecmap for the structure of the data.
       // So filter based on this structure.
@@ -755,7 +755,7 @@ export default {
       return ""
     },
     relevant_categories_based_on_settings: function () {
-      let preferred_fields = [];  // this.categories[this.selected_category];
+      const preferred_fields = [];  // this.categories[this.selected_category];
       this.scan_methods.forEach((scan_method) => {
         // todo: also get relevant column for scan_methods, just like with graphs. But given large refactor,
         // we'll do that later.
@@ -781,7 +781,7 @@ export default {
         }
       });
       // console.log("Preferred fields:         " + preferred_fields)
-      let visible_preferred_fields = preferred_fields.filter(field => this.visible_metrics[field].visible)
+      const visible_preferred_fields = preferred_fields.filter(field => this.visible_metrics[field].visible)
       // console.log("Visible preferred fields: " + visible_preferred_fields)
       return visible_preferred_fields
     },
