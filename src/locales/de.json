@@ -1907,6 +1907,7 @@
 				"not_tested": "Nicht getestet",
 				"passed": "Bestanden",
 				"unknown": "Unbekannt",
+				"unreachable": "Unerreichbar",
 				"warning": "Warnung"
 			}
 		},
@@ -2039,6 +2040,7 @@
 				"not_tested": "Nicht getestet",
 				"passed": "Bestanden",
 				"unknown": "Unbekannt",
+				"unreachable": "Unerreichbar",
 				"warning": "Warnung"
 			},
 			"since": "Seit"

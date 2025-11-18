@@ -1907,6 +1907,7 @@
 				"not_tested": "Non testé",
 				"passed": "Adopté",
 				"unknown": "Inconnu",
+				"unreachable": "Inaccessible",
 				"warning": "Avertissement"
 			}
 		},
@@ -2039,6 +2040,7 @@
 				"not_tested": "Non testé",
 				"passed": "Adopté",
 				"unknown": "Inconnu",
+				"unreachable": "Inaccessible",
 				"warning": "Avertissement"
 			},
 			"since": "Depuis"
