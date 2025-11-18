@@ -23,10 +23,10 @@ run: vue-cli
 
 # This option takes the env.deploy file and applies it during build.
 build: vue-cli
-	pnpm run build -- --mode deploy
+	pnpm run build --mode deploy
 
 build-local: vue-cli
-	pnpm run build -- --mode development
+	pnpm run build --mode development
 
 pull_image:
 	# optimize build by caching previously build image
