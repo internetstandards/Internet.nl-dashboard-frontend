@@ -201,7 +201,7 @@ export default {
     //
     load() {
       this.loading = true;
-      http.get(`data/report/get_improvements_and_regressions/${this.report_id}`).then(data => {
+      http.get(`/api/v1/reports/${this.report_id}/improvements-and-regressions`).then(data => {
         this.comparison = data.data;
         this.loading = false;
       });

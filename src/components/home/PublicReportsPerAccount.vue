@@ -9,7 +9,7 @@
     </content-block>
     <div v-for="reportset in reportsets" :key="reportset.list.id">
       <content-block v-if="reportset.reports.length">
-        <h4>{{ reportset.list.name }}</h4>
+        <h2>{{ reportset.list.name }}</h2>
         <p style="float: right">
           <key-value-badge :k='$t("public-reports.per-account.scan_frequency")' :v="$t('app.frequency.' + reportset.list.automated_scan_frequency)" v-if="reportset.list.automatically_share_new_reports" />
 
@@ -56,7 +56,7 @@ export default {
   methods: {
     load() {
       this.loading = true;
-      http.get(`data/public/account/${this.$route.params.account}/lists/all`).then(data => {
+      http.get(`/api/v1/public-reports/accounts/${this.$route.params.account}`).then(data => {
         this.reportsets = data.data;
         this.loading = false;
       });

@@ -86,7 +86,7 @@ app.mixin(
   }
 )
 
-http.get('/data/session/status').then(data => {
+http.get('/api/v1/session/status').then(data => {
   // making sure the page can be accessed is a pretty complex pattern in pinia and such...
   // this makes the app slightly slower as a get-request is needed. It does prevent some flashes while getting that data
   let store = dashboardStore()

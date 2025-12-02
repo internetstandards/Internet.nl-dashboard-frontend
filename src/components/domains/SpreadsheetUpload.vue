@@ -96,7 +96,7 @@
         </div>
       </vue-dropzone>
 
-      <form :action="`${$baseUrl}/data/upload-spreadsheet/`" method="POST"
+      <form :action="`${$baseUrl}/upload/`" method="POST"
             enctype="multipart/form-data">
         <div class="fallback">
           <p>{{ $t("domain.spreadsheet-upload.upload.drag_and_drop_uploader.fallback_select_a_file") }}</p>
@@ -159,7 +159,7 @@ export default {
       csrf_token: "",
       upload_history: [],
       dropzoneOptions: {
-        url: `${this.$baseUrl}/data/upload-spreadsheet/`,
+        url: `${this.$baseUrl}/api/v1/urllists/import-spreadsheets`,
         thumbnailWidth: 150,
         // in megabytes, 25 k domains is 1.2 megabyte so it is barred from uploading on the client side
         maxFilesize: 2,
@@ -246,7 +246,7 @@ export default {
     },
 
     get_recent_uploads: function () {
-      http.get(`/data/upload-history`).then(data => {
+      http.get(`/api/v1/urllists/import-spreadsheets`).then(data => {
         // don't create a very long list because updates can flash
         this.upload_history = data.data.splice(0, 10);
         this.store.set_uploads_performed(data.data.length);

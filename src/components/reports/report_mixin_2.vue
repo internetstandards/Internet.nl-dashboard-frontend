@@ -26,14 +26,14 @@ export default {
 
   methods: {
     load_reports_by_ids(report_ids, data) {
-      let link = '/data/report/get/'
+      let link = '/api/v1/reports/'
       if (Object.keys(data).length > 0) {
-        link = '/data/report/ad_hoc/'
+        link = `/api/v1/reports/${report_ids[0]}/ad-hoc`
       }
       this.load_reports_by_ids_at(link, report_ids, data)
     },
     load_shared_reports_by_ids(report_ids) {
-      this.load_reports_by_ids_at('/data/public/shared/', report_ids)
+      this.load_reports_by_ids_at('/api/v1/public-reports/', report_ids)
     },
 
     // this.reports.forEach((report) => this.add_comparison_urls_to_report(report))

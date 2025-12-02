@@ -52,7 +52,7 @@ export default {
 
   methods: {
     load(){
-      http.get(`/data/report/differences_compared_to_current_list/${this.report_id}`).then(data => {
+      http.get(`/api/v1/reports/${this.report_id}/differences`).then(data => {
         this.differences = data.data;
       });
     }

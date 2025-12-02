@@ -41,11 +41,9 @@ export default {
             this.$emit('cancel')
         },
         confirm_scan_now: function () {
-            const data = {'id': this.list.id};
-
             this.scan_now_confirmed = true;
 
-            http.post('/data/urllist/scan-now', data).then(server_response => {
+            http.post(`/api/v1/urllists/${this.list.id}/scans`).then(server_response => {
                 this.response = server_response.data;
 
                 if (server_response.data.success) {
