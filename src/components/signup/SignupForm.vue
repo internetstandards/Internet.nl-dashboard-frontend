@@ -2,7 +2,7 @@
   <div>
 
     <loading :loading="loading"></loading>
-    <server-response :response="server_response" :message="$t(server_response.message)" v-if="server_response.message"></server-response>
+    <server-response :response="server_response" :message="$t(`signup.form.${server_response.message}`)"></server-response>
 
 
     <b-form @submit="onSubmit" v-if="!loading && !submitted_succesfully">
@@ -245,6 +245,8 @@ export default {
 
           this.loading = false;
         }
+      }).catch(error => {
+          this.server_response = error.response.data;
       });
     },
   }
