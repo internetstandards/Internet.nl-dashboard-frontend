@@ -77,7 +77,7 @@ export default {
 
   methods: {
     get_timeline() {
-      http.get(`/data/report/urllist_timeline_graph/${this.urllist_ids}/${this.report_type}`).then(data => {
+      http.get(`/api/v1/urllists/${this.urllist_ids}/timeline-graph/${this.report_type}`).then(data => {
         this.timeline_data = data.data;
       });
     },

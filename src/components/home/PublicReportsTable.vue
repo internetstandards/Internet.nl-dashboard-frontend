@@ -26,7 +26,7 @@
 
     <template #cell(urllist__name)="data">
       <a :href="`/shared/report/${data.item.public_report_code}`" target="_blank" rel="nofollow">
-       <scan-type-icon :type="data.item.report_type" /> {{data.item.urllist_name}} ({{data.item.report_type}})<br />
+       <scan-type-icon :type="data.item.report_type" /> {{data.item.urllist__name}} ({{data.item.report_type}})<br />
         {{$t("public-reports.table.Contains")}} {{data.item.total_urls}} {{$t("public-reports.table.domains")}} <i-bi-box-arrow-in-up-right/>
       </a>
       <b-badge variant="danger" class="ml-2" v-if="data.has_public_share_code">

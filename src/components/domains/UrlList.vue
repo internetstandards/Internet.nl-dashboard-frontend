@@ -236,7 +236,7 @@ export default {
     },
     get_urls: function () {
       this.loading = true;
-      http.get(`/data/urllist/get_content/${this.list.id}`).then(data => {
+      http.get(`/api/v1/urllists/${this.list.id}/urls`).then(data => {
         this.urls = data.data.urls;
         this.loading = false;
         this.update_list_warnings();
@@ -245,7 +245,7 @@ export default {
     // update the list with the most recent data regarding reports and scanning, not intruding on the UI experience
     // this can be autorefreshed to show the most current scanning and report information
     get_scan_status_of_list: function () {
-      http.get(`/data/urllist/scan_status/${this.list.id}`).then(data => {
+      http.get(`/api/v1/urllists/${this.list.id}/scans`).then(data => {
         this.list['last_report_id'] = data.data['last_report_id'];
         this.list['scan_now_available'] = data.data['scan_now_available'];
         this.list['last_report_date'] = data.data['last_report_date'];
@@ -267,12 +267,9 @@ export default {
     },
 
     download_list(){
-      const data = {
-        'urllist_id': this.list.id,
-        'file_type': 'xlsx'
-      }
-
-      http.post(`/data/urllist/download`, data, {responseType: 'blob'}).then(response => {
+      // doing this as a get operation does not work, the browser will not download the file and will throw
+      // TypeError: URL.createObjectURL: Argument 1 could not be converted to any of: Blob, MediaSource.
+      http.post(`/api/v1/urllists/${this.list.id}/spreadsheets/xlsx`, {}, {responseType: 'blob'}).then(response => {
         // create file link in browser's memory
         const href = URL.createObjectURL(response.data);
 

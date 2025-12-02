@@ -238,7 +238,7 @@ export default {
         },
         get_lists: function () {
             this.loading = true;
-            http.get('/data/urllist/get').then(data => {
+            http.get('/api/v1/urllists').then(data => {
                 this.lists = data.data['lists'];
                 this.maximum_domains_per_list = data.data['maximum_domains_per_list'];
                 this.loading = false;
@@ -260,7 +260,7 @@ export default {
             this.add_new_server_response = {};
         },
         create_list: function () {
-            http.post(`/data/urllist/create`, this.add_new_new_list).then(server_response => {
+            http.post(`/api/v1/urllists`, this.add_new_new_list).then(server_response => {
                 this.add_new_server_response = server_response.data;
                 // if we get data back, the addition was succesful.
                 if (!this.isEmptyObject(this.add_new_server_response.data)) {

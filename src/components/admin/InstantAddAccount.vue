@@ -9,7 +9,8 @@
     <p>{{ $t("admin.instant_add_account.intro") }}</p>
 
     <p>
-      <server-response :response="server_response" :message='$t("admin.instant_add_account." + server_response.message)'></server-response>
+      <server-response :response="server_response"
+                       :message='$t("admin.instant_add_account." + server_response.message)'></server-response>
 
       <h2>{{ $t("admin.instant_add_account.account_setup") }}</h2>
       {{ $t("admin.instant_add_account.to_which_account_should_the_user_be_added") }}<br>
@@ -17,7 +18,8 @@
       <br>
       <h3>{{ $t("admin.instant_add_account.an_existing_account") }}</h3>
       <br>{{ $t("admin.instant_add_account.select_an_existing_account") }}
-      <v-select :options="existing_accounts" :reduce="existing_account => existing_account.id" v-model="form.use_existing_account_id"></v-select>
+      <v-select :options="existing_accounts" :reduce="existing_account => existing_account.id"
+                v-model="form.use_existing_account_id"></v-select>
       <br>
       <h3>{{ $t("admin.instant_add_account.a_new_account") }}</h3>
       {{ $t("admin.instant_add_account.enter_new_account_details") }}<br/><br/>
@@ -35,12 +37,19 @@
                     :placeholder='$t("admin.instant_add_account.new_account_internet_nl_api_password")'></b-form-input>
       <br>
 
-      <b-button size="sm" @click="check_api_credentials">{{ $t("admin.instant_add_account.credential_check_title") }}</b-button>&nbsp;
+      <b-button size="sm" @click="check_api_credentials">{{
+          $t("admin.instant_add_account.credential_check_title")
+        }}
+      </b-button>&nbsp;
       <template v-if="api_credentials_valid === true">
-        {{ $t("admin.instant_add_account.credential_check_valid", {'name': form.new_account_internet_nl_api_username}) }}
+        {{
+          $t("admin.instant_add_account.credential_check_valid", {'name': form.new_account_internet_nl_api_username})
+        }}
       </template>
       <template v-if="api_credentials_valid === false">
-        {{ $t("admin.instant_add_account.credential_check_invalid", {'name': form.new_account_internet_nl_api_username}) }}
+        {{
+          $t("admin.instant_add_account.credential_check_invalid", {'name': form.new_account_internet_nl_api_username})
+        }}
       </template>
       <template v-if="api_credentials_valid === null">
         {{ $t("admin.instant_add_account.credential_check_unknown") }}
@@ -60,7 +69,8 @@
       <br/>
       <b-button variant="warning" @click="save_instant_account()">{{ $t("admin.instant_add_account.save") }}</b-button>
       <br><br>
-      <server-response :response="server_response" :message='$t("admin.instant_add_account." + server_response.message)'></server-response>
+      <server-response :response="server_response"
+                       :message='$t("admin.instant_add_account." + server_response.message)'></server-response>
     </p>
 
   </content-block>
@@ -97,7 +107,7 @@ export default {
   },
   methods: {
     check_api_credentials: function () {
-      http.post('/data/powertools/check_api_credentials', this.form)
+      http.post('/api/v1/admin/accounts/api-credential-check', this.form)
         .then(server_response => {
           if (server_response.data)
             this.api_credentials_valid = server_response.data.can_connect_to_internet_nl_api;
@@ -105,16 +115,19 @@ export default {
     },
     get_accounts: function () {
       this.accounts_loading = true;
-      http.get('/data/powertools/get_accounts').then(data => {
+      http.get('/api/v1/admin/accounts').then(data => {
         this.existing_accounts = data.data.accounts;
         this.accounts_loading = false;
       })
     },
     save_instant_account: function () {
-      http.post('/data/powertools/save_instant_account_and_user', this.form)
+      http.post('/api/v1/admin/accounts', this.form)
         .then(server_response => {
           if (server_response.data)
             this.server_response = server_response.data;
+        })
+        .catch(error => {
+          this.server_response = error.response.data;
         });
     },
   }

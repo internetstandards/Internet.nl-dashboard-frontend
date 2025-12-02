@@ -145,8 +145,7 @@ export default {
     },
     share() {
       this.loading = true;
-      http.post('/data/report/share/share', {
-        'report_id': this.report.id,
+      http.post(`/api/v1/reports/${this.report.id}/share`, {
         'public_share_code': this.report.public_share_code
       }).then(data => {
         this.response = data.data;
@@ -157,7 +156,7 @@ export default {
     },
     unshare() {
       this.loading = true;
-      http.post('/data/report/share/unshare', {'report_id': this.report.id}).then(data => {
+      http.delete(`/api/v1/reports/${this.report.id}/share`).then(data => {
         this.response = data.data;
         this.report.is_publicly_shared = data.data.data.is_publicly_shared;
         this.loading = false;
@@ -165,8 +164,7 @@ export default {
     },
     update_share_code() {
       this.loading = true;
-      http.post('/data/report/share/update_share_code', {
-        'report_id': this.report.id,
+      http.put(`/api/v1/reports/${this.report.id}/share/share-code`, {
         'public_share_code': this.report.public_share_code
       }).then(data => {
         this.response = data.data;
@@ -180,7 +178,7 @@ export default {
     },
     update_report_code() {
       this.loading = true;
-      http.post('/data/report/share/update_report_code', {'report_id': this.report.id}).then(data => {
+      http.put(`/api/v1/reports/${this.report.id}/share/report-code`, {'report_id': this.report.id}).then(data => {
         this.response = data.data;
         this.report.public_report_code = data.data.data.public_report_code;
         this.loading = false;

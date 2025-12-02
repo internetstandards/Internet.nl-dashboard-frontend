@@ -16,38 +16,6 @@
 
     <!-- https://github.com/internetstandards/Internet.nl-dashboard/issues/352 This page is a fallback for people
     that have the login page bookmarked. They are still pointed to the right place to log in. -->
-    <content-block v-if="false">
-      <h1>{{ $t("app.login.title") }}</h1>
-      <p>{{ $t("app.login.intro") }}</p>
-      <server-response :response="server_response" :message='$t("app.login." + server_response.message)'></server-response>
-
-      <div v-if="!user.is_authenticated">
-        <p>
-          {{ $t("app.login.not_logged_in") }}<br>
-          <span class="subtext">
-            {{ $t("app.login.secondfactor_message") }}: <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
-          </span>
-        </p>
-
-        <form v-on:submit.prevent="login">
-          <label class='username' for="username">{{ $t("app.login.username") }}</label>
-          <b-form-input id="username" type="text" maxlength="120" v-model="username"
-                        :placeholder='$t("app.login.username")'></b-form-input>
-          <br>
-
-          <label class='password' for="password">{{ $t("app.login.password") }}</label>
-          <b-form-input id="password" type="password" maxlength="120" v-model="password"
-                        :placeholder='$t("app.login.password")'></b-form-input>
-
-          <br>
-          <b-button variant="warning" id="login" type="submit">{{ $t("app.login.login") }}</b-button>
-        </form>
-
-      </div>
-      <div v-else>
-        {{ $t("app.login.logged_in") }}
-      </div>
-    </content-block>
 
   </div>
 </template>
@@ -86,7 +54,7 @@ export default {
     login_status: function () {
       this.loading = true;
       console.log("Checking if the user is logged in at the login page.")
-      http.get('/data/session/status').then(data => {
+      http.get('/api/v1/session/status').then(data => {
         this.store.set_user(data.data);
         this.loading = false;
         if (this.user.is_authenticated) {
@@ -99,15 +67,6 @@ export default {
           }
         }
       });
-    },
-    login: function () {
-      this.loading = true;
-      http.post('/session/login', {'username': this.username, 'password': this.password}).then(data => {
-        if (data.data) {
-          this.server_response = data.data;
-          this.login_status();
-        }
-      })
     },
   },
   computed: mapState(dashboardStore, ['user']),

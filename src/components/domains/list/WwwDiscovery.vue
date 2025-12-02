@@ -80,7 +80,7 @@ export default {
     },
     request() {
       this.loading = true;
-      http.post(`/data/urllist/discover-subdomains/${this.list_id}`).then(data => {
+      http.post(`/api/v1/urllists/${this.list_id}/www-subdomain-discovery`).then(data => {
         this.handle_response(data)
       });
     },
@@ -97,7 +97,7 @@ export default {
     },
     status() {
       this.loading = true;
-      http.get(`/data/urllist/discover-subdomains/status/${this.list_id}`).then(data => {
+      http.get(`/api/v1/urllists/${this.list_id}/www-subdomain-discovery`).then(data => {
         this.handle_response(data)
       });
     },
