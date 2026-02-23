@@ -100,12 +100,12 @@
             <b-nav-item-dropdown exact exact-active-class="active">
               <template #button-content><i-bi-person-circle />  {{ $t("app.menu.account") }}</template>
               <b-dropdown-item v-if="is_superuser">Logged in as: {{ account_name }}</b-dropdown-item>
-              <b-dropdown-item to="/account/notifications" accesskey="a"><span>📨 {{$t("app.menu.notifications") }}</span></b-dropdown-item>
-              <b-dropdown-item to="/account/authentication" >📱 {{$t("app.menu.authentication") }}</b-dropdown-item>
-              <b-dropdown-item to="/account/web_metrics" ><scan-type-icon type="web" /> {{$t("app.menu.web_metrics") }}</b-dropdown-item>
-              <b-dropdown-item to="/account/mail_metrics"><scan-type-icon type="mail" /> {{$t("app.menu.mail_metrics") }}</b-dropdown-item>
+              <b-dropdown-item to="/profile/notifications" accesskey="a"><span>📨 {{$t("app.menu.notifications") }}</span></b-dropdown-item>
+              <b-dropdown-item to="/account">📱 {{$t("app.menu.authentication") }}</b-dropdown-item>
+              <b-dropdown-item to="/profile/web_metrics"><scan-type-icon type="web" /> {{$t("app.menu.web_metrics") }}</b-dropdown-item>
+              <b-dropdown-item to="/profile/mail_metrics"><scan-type-icon type="mail" /> {{$t("app.menu.mail_metrics") }}</b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
-              <b-dropdown-item @click="logout" accesskey="l" ><i-bi-box-arrow-right /> {{
+              <b-dropdown-item to="/account/logout" accesskey="l"><i-bi-box-arrow-right /> {{
                   $t("app.menu.log_off")
                 }}</b-dropdown-item>
             </b-nav-item-dropdown>
@@ -115,7 +115,7 @@
           <template v-if="!is_authenticated">
             <b-nav-item to="/tour" accesskey="t" exact exact-active-class="active"><span><i-bi-info-circle /> {{ $t("app.menu.tour") }}</span></b-nav-item>
             <b-nav-item v-if="config.show.signup_form" to="/signup" accesskey="u" exact exact-active-class="active"><span><i-bi-person-check /> {{ $t("app.menu.request_access") }}</span></b-nav-item>
-            <b-nav-item :href="$baseUrl + '/account/login/'" accesskey="l" exact exact-active-class="active"><span><i-bi-box-arrow-in-right /> {{ $t("app.menu.log_in") }}</span></b-nav-item>
+            <b-nav-item to="/account/login" accesskey="l" exact exact-active-class="active"><span><i-bi-box-arrow-in-right /> {{ $t("app.menu.log_in") }}</span></b-nav-item>
           </template>
 
 
@@ -139,7 +139,6 @@
   </b-container>
 </template>
 <script>
-import http from "@/httpclient";
 import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
 import { dashboardStore } from '@/dashboardStore'
 import {mapState} from "pinia";
@@ -181,34 +180,6 @@ export default {
 
       this.store.set_locale(locale);
       this.$i18n.locale = locale;
-    },
-
-    logout: function () {
-      this.loading = true;
-      http.get('/api/v1/session/logout').then(() => {
-        this.loading = false;
-        this.status();
-      });
-    },
-    status: function () {
-      this.server_response = {};
-      this.loading = true;
-      http.get('/api/v1/session/status').then(data => {
-        this.store.set_user(data.data);
-        this.loading = false;
-        if (!this.user.is_authenticated) {
-          // todo: make toasts work:
-          // this.$bvToast.toast(this.$i18n.t("app.menu.logged_out_successfully"), {
-          //   title: `✅ ${this.$i18n.t("app.menu.logged_out_successfully")}`,
-          //   autoHideDelay: 5000,
-          //   variant: 'success',
-          //   solid: true,
-          //   isStatus: false,
-          //   appendToast: false,
-          // })
-          this.$router.push({'name': 'login'});
-        }
-      });
     },
   },
   watch: {

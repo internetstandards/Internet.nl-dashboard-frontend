@@ -37,9 +37,9 @@
 
           <ul class="ml-0">
             <li class="mb-2">
-              <a :href="`${$baseUrl}/accounts/password/change/`" target="_blank">🔑 {{ $t("account.page.change_password") }}</a>
+              <router-link to="/account/password/change">🔑 {{ $t("account.page.change_password") }}</router-link>
             </li>
-            <li><a :href="`${$baseUrl}/account/two_factor/`" target="_blank">📱 {{ $t("account.page.two_factor_options") }}</a></li>
+            <li><router-link to="/account/2fa">📱 {{ $t("account.page.two_factor_options") }}</router-link></li>
           </ul>
         </b-tab>
 

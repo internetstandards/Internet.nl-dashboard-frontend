@@ -11,7 +11,7 @@
 
       <div class="mt-4">
         <b-button variant="warning" to="tour"><i-bi-book/> {{$t("home.page.learn")}}</b-button> &nbsp;
-        <b-button variant="warning" class="ml-2" :href="$baseUrl + '/account/login/'" v-if="!user.is_authenticated" ><i-bi-box-arrow-in-right /> {{$t("home.page.log_in")}}</b-button><br>
+        <b-button variant="warning" class="ml-2" to="/account/login" v-if="!user.is_authenticated" ><i-bi-box-arrow-in-right /> {{$t("home.page.log_in")}}</b-button><br>
         <br>
         <b-button v-if="config.show.signup_form" variant="warning" to="signup" class="mb-2 mt-2">{{$t("home.page.request_access")}}</b-button>
       </div>
