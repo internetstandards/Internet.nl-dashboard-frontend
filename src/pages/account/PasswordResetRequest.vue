@@ -11,7 +11,7 @@
       <FormErrors :errors="response?.errors" param="email" />
       <FormErrors :errors="response?.errors" />
 
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="primary">Reset</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Reset</b-button>
     </form>
   </section>
 </template>

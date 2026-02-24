@@ -7,19 +7,23 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { deactivateTOTPAuthenticator } from '@/allauth/lib/allauth'
 
 const router = useRouter()
+const route = useRoute()
 const loading = ref(false)
+const mfaOverviewPath = computed(() =>
+  route.path.startsWith('/profile/authentication') ? '/profile/authentication/2fa' : '/account/2fa'
+)
 
 async function submit() {
   loading.value = true
   try {
     const response = await deactivateTOTPAuthenticator()
     if (response?.status === 200) {
-      await router.replace('/account/2fa')
+      await router.replace(mfaOverviewPath.value)
     }
   } finally {
     loading.value = false

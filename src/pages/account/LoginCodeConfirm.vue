@@ -10,7 +10,7 @@
       <FormErrors :errors="response?.errors" />
 
       <div class="d-flex gap-2 mt-3">
-        <b-button type="submit" :disabled="loading" variant="primary">Confirm</b-button>
+        <b-button type="submit" :disabled="loading" variant="warning">Confirm</b-button>
         <b-button type="button" to="/account/login" variant="outline-secondary">Back to login</b-button>
       </div>
     </form>

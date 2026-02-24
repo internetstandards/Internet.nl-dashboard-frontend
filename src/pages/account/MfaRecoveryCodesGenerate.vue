@@ -9,20 +9,32 @@
 
     <FormErrors :errors="response?.errors" />
 
-    <b-button variant="danger" :disabled="loading" @click="submit">Generate</b-button>
+    <div class="d-flex gap-2">
+      <b-button variant="danger" :disabled="loading" @click="submit">Generate</b-button>
+      <b-button variant="outline-secondary" :to="mfaOverviewPath">Back to 2FA</b-button>
+    </div>
   </section>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { getRecoveryCodes, generateRecoveryCodes } from '@/allauth/lib/allauth'
 
 const router = useRouter()
+const route = useRoute()
 const loading = ref(false)
 const response = ref(null)
 const recoveryCodes = ref(null)
+const recoveryCodesPath = computed(() =>
+  route.path.startsWith('/profile/authentication')
+    ? '/profile/authentication/2fa/recovery-codes'
+    : '/account/2fa/recovery-codes'
+)
+const mfaOverviewPath = computed(() =>
+  route.path.startsWith('/profile/authentication') ? '/profile/authentication/2fa' : '/account/2fa'
+)
 
 onMounted(async () => {
   recoveryCodes.value = await getRecoveryCodes()
@@ -37,7 +49,7 @@ async function submit() {
   try {
     response.value = await generateRecoveryCodes()
     if (response.value?.status === 200) {
-      await router.replace('/account/2fa/recovery-codes')
+      await router.replace(recoveryCodesPath.value)
     }
   } finally {
     loading.value = false

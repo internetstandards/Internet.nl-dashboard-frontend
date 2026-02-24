@@ -3,7 +3,7 @@
     <h2>Reset Password</h2>
     <p>Choose a new password.</p>
 
-    <FormErrors :errors="response?.errors" />
+    <FormErrors :errors="nonFieldErrors" />
 
     <template v-if="hasKeyError">
       <FormErrors :errors="keyErrors" param="key" />
@@ -18,13 +18,13 @@
       <input id="password-reset-new-2" v-model="password2" type="password" class="form-control" required>
       <FormErrors :errors="password2Errors" param="password2" />
 
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="primary">Reset</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Reset</b-button>
     </form>
   </section>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { getPasswordReset, resetPassword } from '@/allauth/lib/allauth'
@@ -40,6 +40,10 @@ const loading = ref(false)
 const password1 = ref('')
 const password2 = ref('')
 const password2Errors = ref([])
+const fieldErrorParams = new Set(['key', 'password', 'password2'])
+const nonFieldErrors = computed(() =>
+  (response.value?.errors || []).filter((error) => !fieldErrorParams.has(error?.param))
+)
 
 onMounted(async () => {
   if (!key.value) {

@@ -8,47 +8,49 @@
       </h1>
       <p>{{ $t("account.page.intro") }}</p>
       <!-- use lazy so that the visiblemetrics is updated when that's visited, instead of manually reloading. -->
-      <b-tabs content-class="mt-3" lazy>
-        <b-tab :active="active === 'notifications' || active === '' || active === undefined">
+      <b-tabs
+        v-model="profileTabIndex"
+        content-class="mt-3"
+        lazy
+        @update:model-value="onProfileTabChange"
+      >
+        <b-tab>
           <template #title>📨 {{ $t("account.page.notifications") }}</template>
           <notification-settings></notification-settings>
         </b-tab>
 
-        <b-tab :active="active === 'authentication'">
+        <b-tab>
           <template #title>📱 {{ $t("account.page.authentication_options") }}</template>
 
-          <span v-if="$route.query.password_change_success">
+          <b-tabs
+            v-model="authTabIndex"
+            content-class="mt-3"
+            lazy
+            @update:model-value="onAuthTabChange"
+          >
+            <b-tab>
+              <template #title>📧 Email</template>
+              <Email />
+            </b-tab>
 
-            <server-response
-                :response='{
-                success: true,
-                error: false,
-                timestamp: new Date().toISOString(),
-                message: $t("account.page.password_change_success")}
-                '
-                :force_show="true"
-            ></server-response>
-          </span>
+            <b-tab>
+              <template #title>🔑 {{ $t("account.page.change_password") }}</template>
+              <PasswordChange />
+            </b-tab>
 
-          <span v-if="$route.query.password_change_success === 'false'">"
-
-            />
-          </span>
-
-          <ul class="ml-0">
-            <li class="mb-2">
-              <router-link to="/account/password/change">🔑 {{ $t("account.page.change_password") }}</router-link>
-            </li>
-            <li><router-link to="/account/2fa">📱 {{ $t("account.page.two_factor_options") }}</router-link></li>
-          </ul>
+            <b-tab>
+              <template #title>📱 {{ $t("account.page.two_factor_options") }}</template>
+              <component :is="mfaComponent" />
+            </b-tab>
+          </b-tabs>
         </b-tab>
 
-        <b-tab :active="active === 'web_metrics'">
+        <b-tab>
           <template #title> <scan-type-icon type="web"></scan-type-icon> {{ $t("account.page.visible_metrics_web") }}</template>
           <VisibleMetrics report_type="web" :key="'a'"/>
         </b-tab>
 
-        <b-tab :active="active === 'mail_metrics'">
+        <b-tab>
           <template #title> <scan-type-icon type="mail"></scan-type-icon> {{ $t("account.page.visible_metrics_mail") }}</template>
           <VisibleMetrics report_type="mail" :key="'b'"/>
         </b-tab>
@@ -62,14 +64,131 @@
 import NotificationSettings from "@/components/account/NotificationSettings.vue"
 import VisibleMetrics from '@/components/account/VisibleMetrics.vue'
 import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
+import Email from '@/pages/account/Email.vue'
+import PasswordChange from '@/pages/account/PasswordChange.vue'
+import MfaOverview from '@/pages/account/MfaOverview.vue'
+import MfaActivateTotp from '@/pages/account/MfaActivateTotp.vue'
+import MfaDeactivateTotp from '@/pages/account/MfaDeactivateTotp.vue'
+import MfaRecoveryCodes from '@/pages/account/MfaRecoveryCodes.vue'
+import MfaRecoveryCodesGenerate from '@/pages/account/MfaRecoveryCodesGenerate.vue'
+import MfaWebauthnList from '@/pages/account/MfaWebauthnList.vue'
+import MfaWebauthnAdd from '@/pages/account/MfaWebauthnAdd.vue'
 
 export default {
-  components: {ScanTypeIcon, NotificationSettings, VisibleMetrics},
+  components: {
+    ScanTypeIcon,
+    NotificationSettings,
+    VisibleMetrics,
+    Email,
+    PasswordChange,
+    MfaOverview,
+    MfaActivateTotp,
+    MfaDeactivateTotp,
+    MfaRecoveryCodes,
+    MfaRecoveryCodesGenerate,
+    MfaWebauthnList,
+    MfaWebauthnAdd
+  },
 
   name: 'account',
+  data() {
+    return {
+      profileTabIndex: 0,
+      authTabIndex: 0
+    }
+  },
   computed: {
-    active() {
-      return this.$route.params.active_tab
+    isProfileAuthenticationRoute() {
+      return this.$route.path.startsWith('/profile/authentication')
+    },
+    profileTabIndexFromRoute() {
+      if (this.isProfileAuthenticationRoute || this.$route.params.active_tab === 'authentication') {
+        return 1
+      }
+      if (this.$route.params.active_tab === 'web_metrics') {
+        return 2
+      }
+      if (this.$route.params.active_tab === 'mail_metrics') {
+        return 3
+      }
+      return 0
+    },
+    authPathSegments() {
+      if (!this.isProfileAuthenticationRoute) {
+        return []
+      }
+      const remainder = this.$route.path.replace(/^\/profile\/authentication\/?/, '')
+      return remainder ? remainder.split('/').filter(Boolean) : []
+    },
+    authTabIndexFromRoute() {
+      const [firstSegment] = this.authPathSegments
+      if (firstSegment === 'password') {
+        return 1
+      }
+      if (firstSegment === '2fa') {
+        return 2
+      }
+      return 0
+    },
+    mfaSubPath() {
+      if (!this.isProfileAuthenticationRoute || this.authPathSegments[0] !== '2fa') {
+        return ''
+      }
+      return this.authPathSegments.slice(1).join('/')
+    },
+    mfaComponent() {
+      const componentsByPath = {
+        '': 'MfaOverview',
+        'totp/activate': 'MfaActivateTotp',
+        'totp/deactivate': 'MfaDeactivateTotp',
+        'webauthn': 'MfaWebauthnList',
+        'webauthn/add': 'MfaWebauthnAdd',
+        'recovery-codes': 'MfaRecoveryCodes',
+        'recovery-codes/generate': 'MfaRecoveryCodesGenerate'
+      }
+      return componentsByPath[this.mfaSubPath] || 'MfaOverview'
+    }
+  },
+  watch: {
+    '$route.path': {
+      immediate: true,
+      handler() {
+        this.profileTabIndex = this.profileTabIndexFromRoute
+        this.authTabIndex = this.authTabIndexFromRoute
+      }
+    }
+  },
+  methods: {
+    onProfileTabChange(nextIndex) {
+      if (nextIndex === 1 && this.isProfileAuthenticationRoute) {
+        return
+      }
+
+      const paths = [
+        '/profile/notifications',
+        '/profile/authentication',
+        '/profile/web_metrics',
+        '/profile/mail_metrics'
+      ]
+      const nextPath = paths[nextIndex] || '/profile/notifications'
+      if (this.$route.path !== nextPath) {
+        this.$router.replace(nextPath)
+      }
+    },
+    onAuthTabChange(nextIndex) {
+      if (!this.isProfileAuthenticationRoute) {
+        return
+      }
+
+      const paths = [
+        '/profile/authentication/email',
+        '/profile/authentication/password/change',
+        '/profile/authentication/2fa'
+      ]
+      const nextPath = paths[nextIndex] || '/profile/authentication/email'
+      if (this.$route.path !== nextPath) {
+        this.$router.replace(nextPath)
+      }
     }
   }
 }

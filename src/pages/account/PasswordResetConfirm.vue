@@ -9,7 +9,7 @@
       <FormErrors :errors="response?.errors" param="key" />
       <FormErrors :errors="response?.errors" />
 
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="primary">Confirm</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Confirm</b-button>
     </form>
   </section>
 </template>

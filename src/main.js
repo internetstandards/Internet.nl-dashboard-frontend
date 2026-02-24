@@ -121,6 +121,7 @@ Promise.allSettled([
     if (isAllauthRoute) {
       const requiresAuth = to.matched.some((route) => route.meta?.requiresAuth)
       const requiresAnon = to.matched.some((route) => route.meta?.requiresAnon)
+      const requiresSignupOpen = to.matched.some((route) => route.meta?.requiresSignupOpen)
 
       if (requiresAuth && !store.user.is_authenticated) {
         const nextParam = encodeURIComponent(to.fullPath)
@@ -130,6 +131,11 @@ Promise.allSettled([
 
       if (requiresAnon && store.user.is_authenticated) {
         next('/domains')
+        return
+      }
+
+      if (requiresSignupOpen && authStore.config?.data?.account?.is_open_for_signup === false) {
+        next('/account/login')
         return
       }
 

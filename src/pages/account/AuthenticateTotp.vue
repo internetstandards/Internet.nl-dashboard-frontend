@@ -8,7 +8,7 @@
       <input id="auth-totp-code" v-model="code" class="form-control" required>
       <FormErrors :errors="response?.errors" param="code" />
       <FormErrors :errors="response?.errors" />
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="primary">Sign in</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Sign in</b-button>
     </form>
   </section>
 </template>

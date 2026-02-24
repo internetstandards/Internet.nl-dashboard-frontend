@@ -9,7 +9,7 @@
         <input id="verify-email-code" v-model="code" class="form-control" required>
         <FormErrors :errors="response?.errors" param="key" />
         <FormErrors :errors="response?.errors" />
-        <b-button type="submit" class="mt-3" variant="primary" :disabled="loading">Confirm</b-button>
+        <b-button type="submit" class="mt-3" variant="warning" :disabled="loading">Confirm</b-button>
       </form>
     </template>
 

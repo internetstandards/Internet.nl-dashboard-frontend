@@ -1,6 +1,9 @@
 <template>
   <section>
     <h2>Security Keys</h2>
+    <p class="alert alert-info">
+      When using security keys, you can still sign in with your password, but only if you also provide a recovery code.
+    </p>
 
     <table class="table table-sm table-bordered" v-if="keys.length">
       <thead>
@@ -18,7 +21,7 @@
             <template v-if="editingId === key.id">
               <input v-model="editingName" class="form-control form-control-sm">
               <div class="d-flex gap-1 mt-1">
-                <b-button size="sm" variant="primary" @click="saveName(key)">Save</b-button>
+                <b-button size="sm" variant="warning" @click="saveName(key)">Save</b-button>
                 <b-button size="sm" variant="outline-secondary" @click="cancelEdit">Cancel</b-button>
               </div>
             </template>
@@ -39,21 +42,29 @@
 
     <p v-else>No security keys configured yet.</p>
 
-    <b-button variant="outline-secondary" to="/account/2fa/webauthn/add">Add</b-button>
+    <div class="d-flex gap-2">
+      <b-button variant="warning" :to="webauthnAddPath">Add</b-button>
+      <b-button variant="outline-secondary" :to="mfaOverviewPath">Back to 2FA</b-button>
+    </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, onMounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { AuthenticatorType, getAuthenticators, deleteWebAuthnCredential, updateWebAuthnCredential } from '@/allauth/lib/allauth'
 
 const router = useRouter()
+const route = useRoute()
 
 const keys = ref([])
 const loading = ref(false)
 const editingId = ref(null)
 const editingName = ref('')
+const mfaOverviewPath = computed(() =>
+  route.path.startsWith('/profile/authentication') ? '/profile/authentication/2fa' : '/account/2fa'
+)
+const webauthnAddPath = computed(() => `${mfaOverviewPath.value}/webauthn/add`)
 
 onMounted(async () => {
   await refreshKeys()
@@ -70,7 +81,7 @@ async function refreshKeys() {
     if (response.status === 200) {
       keys.value = response.data.filter((authenticator) => authenticator.type === AuthenticatorType.WEBAUTHN)
       if (!keys.value.length) {
-        await router.replace('/account/2fa')
+        await router.replace(mfaOverviewPath.value)
       }
     }
   } finally {
@@ -108,7 +119,7 @@ async function deleteKey(key) {
     if (response.status === 200) {
       keys.value = keys.value.filter((entry) => entry.id !== key.id)
       if (!keys.value.length) {
-        await router.replace('/account/2fa')
+        await router.replace(mfaOverviewPath.value)
       }
     }
   } finally {

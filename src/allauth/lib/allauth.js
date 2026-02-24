@@ -30,6 +30,7 @@ export const AuthProcess = Object.freeze({
 export const Flows = Object.freeze({
   LOGIN: 'login',
   LOGIN_BY_CODE: 'login_by_code',
+  MFA_WEBAUTHN_LOGIN: 'mfa_login_webauthn',
   MFA_AUTHENTICATE: 'mfa_authenticate',
   MFA_REAUTHENTICATE: 'mfa_reauthenticate',
   MFA_TRUST: 'mfa_trust',
@@ -39,7 +40,8 @@ export const Flows = Object.freeze({
   PROVIDER_SIGNUP: 'provider_signup',
   REAUTHENTICATE: 'reauthenticate',
   SIGNUP: 'signup',
-  VERIFY_EMAIL: 'verify_email'
+  VERIFY_EMAIL: 'verify_email',
+  VERIFY_PHONE: 'verify_phone'
 })
 
 export const URLs = Object.freeze({

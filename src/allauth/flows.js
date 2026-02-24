@@ -3,8 +3,10 @@ import { Flows, AuthenticatorType } from '@/allauth/lib/allauth'
 const flowToPath = {}
 flowToPath[Flows.LOGIN] = '/account/login'
 flowToPath[Flows.LOGIN_BY_CODE] = '/account/login/code/confirm'
+flowToPath[Flows.MFA_WEBAUTHN_LOGIN] = '/account/login'
 flowToPath[Flows.SIGNUP] = '/account/signup'
 flowToPath[Flows.VERIFY_EMAIL] = '/account/verify-email'
+flowToPath[Flows.VERIFY_PHONE] = '/account'
 flowToPath[Flows.PASSWORD_RESET_BY_CODE] = '/account/password/reset/confirm'
 flowToPath[Flows.PROVIDER_SIGNUP] = '/account/provider/signup'
 flowToPath[Flows.REAUTHENTICATE] = '/account/reauthenticate'
@@ -25,10 +27,7 @@ export function pathForFlow(flow, typ) {
   }
 
   const path = flowToPath[key] ?? flowToPath[flow.id]
-  if (!path) {
-    throw new Error(`Unknown path for flow: ${flow.id}`)
-  }
-  return path
+  return path || null
 }
 
 export function pathForPendingFlow(auth) {

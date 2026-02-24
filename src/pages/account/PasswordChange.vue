@@ -9,26 +9,28 @@
 
       <label class="form-label mt-2" for="password-change-new-1">New password</label>
       <input id="password-change-new-1" v-model="password1" type="password" autocomplete="new-password" class="form-control" required>
-      <FormErrors :errors="response?.errors" param="password" />
+      <FormErrors :errors="response?.errors" param="new_password" />
 
       <label class="form-label mt-2" for="password-change-new-2">New password (again)</label>
       <input id="password-change-new-2" v-model="password2" type="password" class="form-control" required>
       <FormErrors :errors="password2Errors" param="password2" />
 
-      <FormErrors :errors="response?.errors" />
+      <FormErrors :errors="nonFieldErrors" />
 
-      <b-button type="submit" class="mt-3" variant="primary" :disabled="loading">Save</b-button>
+      <b-button type="submit" class="mt-3" variant="warning" :disabled="loading">Save</b-button>
     </form>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { changePassword } from '@/allauth/lib/allauth'
+import { pathForPendingFlow } from '@/allauth/flows'
 
 const router = useRouter()
+const route = useRoute()
 
 const currentPassword = ref('')
 const password1 = ref('')
@@ -36,6 +38,11 @@ const password2 = ref('')
 const password2Errors = ref([])
 const response = ref(null)
 const loading = ref(false)
+const fieldErrorParams = new Set(['current_password', 'new_password', 'password2'])
+
+const nonFieldErrors = computed(() =>
+  (response.value?.errors || []).filter((error) => !fieldErrorParams.has(error?.param))
+)
 
 async function submit() {
   if (password1.value !== password2.value) {
@@ -46,13 +53,27 @@ async function submit() {
   password2Errors.value = []
   loading.value = true
   try {
-    response.value = await changePassword({
-      current_password: currentPassword.value || undefined,
-      password: password1.value
-    })
+    const payload = {
+      new_password: password1.value
+    }
+    if (currentPassword.value) {
+      payload.current_password = currentPassword.value
+    }
+
+    response.value = await changePassword(payload)
 
     if (response.value?.status === 200) {
-      await router.replace('/account')
+      const successPath = route.path.startsWith('/profile')
+        ? '/profile/authentication'
+        : '/account'
+      await router.replace(successPath)
+      return
+    }
+
+    const pendingPath = pathForPendingFlow(response.value)
+    if (pendingPath) {
+      const next = encodeURIComponent(route.fullPath)
+      await router.replace(`${pendingPath}?next=${next}`)
     }
   } finally {
     loading.value = false

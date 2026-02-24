@@ -33,7 +33,6 @@ const MfaRecoveryCodesGenerate = () => import('@/pages/account/MfaRecoveryCodesG
 const MfaWebauthnList = () => import('@/pages/account/MfaWebauthnList.vue');
 const MfaWebauthnAdd = () => import('@/pages/account/MfaWebauthnAdd.vue');
 const MfaTrust = () => import('@/pages/account/MfaTrust.vue');
-const Sessions = () => import('@/pages/account/Sessions.vue');
 
 export const accountRoutes = [
   {
@@ -45,10 +44,10 @@ export const accountRoutes = [
       { path: 'login', component: Login, meta: { requiresAnon: true } },
       { path: 'login/code', component: LoginCodeRequest, meta: { requiresAnon: true } },
       { path: 'login/code/confirm', component: LoginCodeConfirm, meta: { requiresAnon: true } },
-      { path: 'signup', component: Signup, meta: { requiresAnon: true } },
-      { path: 'signup/passkey', component: SignupPasskey, meta: { requiresAnon: true } },
-      { path: 'signup/passkey/create', component: SignupPasskeyCreate, meta: { requiresAnon: true } },
-      { path: 'provider/signup', component: ProviderSignup, meta: { requiresAnon: true } },
+      { path: 'signup', component: Signup, meta: { requiresAnon: true, requiresSignupOpen: true } },
+      { path: 'signup/passkey', component: SignupPasskey, meta: { requiresAnon: true, requiresSignupOpen: true } },
+      { path: 'signup/passkey/create', component: SignupPasskeyCreate, meta: { requiresAnon: true, requiresSignupOpen: true } },
+      { path: 'provider/signup', component: ProviderSignup, meta: { requiresAnon: true, requiresSignupOpen: true } },
       { path: 'provider/callback', component: ProviderCallback },
       { path: 'providers', component: Providers, meta: { requiresAuth: true } },
       { path: 'email', component: Email, meta: { requiresAuth: true } },
@@ -75,7 +74,7 @@ export const accountRoutes = [
       { path: '2fa/webauthn', component: MfaWebauthnList, meta: { requiresAuth: true } },
       { path: '2fa/webauthn/add', component: MfaWebauthnAdd, meta: { requiresAuth: true } },
       { path: '2fa/trust', component: MfaTrust, meta: { requiresAnon: true } },
-      { path: 'sessions', component: Sessions, meta: { requiresAuth: true } },
+      { path: 'sessions', redirect: '/account' },
     ],
   },
 ];

@@ -1,7 +1,7 @@
 <template>
   <section>
     <h2>Login</h2>
-    <p>No account yet? <router-link to="/account/signup">Create one</router-link>.</p>
+    <p v-if="isOpenForSignup">No account yet? <router-link to="/account/signup">Create one</router-link>.</p>
 
     <form @submit.prevent="submit" class="mb-3">
       <label class="form-label" for="login-identifier">{{ identifierLabel }}</label>
@@ -21,7 +21,7 @@
       <FormErrors :errors="response?.errors" />
 
       <div class="d-flex gap-2 mt-3">
-        <b-button type="submit" variant="primary" :disabled="loading">Login</b-button>
+        <b-button type="submit" variant="warning" :disabled="loading">Login</b-button>
         <b-button type="button" variant="outline-secondary" to="/account/password/reset">Forgot password</b-button>
         <b-button v-if="loginByCodeEnabled" type="button" variant="outline-secondary" to="/account/login/code">Send login code</b-button>
         <b-button type="button" variant="outline-secondary" :disabled="loadingPasskey" @click="submitPasskey">Sign in with a passkey</b-button>
@@ -41,6 +41,7 @@ import ProviderButtons from '@/components/allauth/ProviderButtons.vue'
 import { getWebAuthnRequestOptionsForLogin, login, loginUsingWebAuthn } from '@/allauth/lib/allauth'
 import { pathForPendingFlow } from '@/allauth/flows'
 import { allauthStore } from '@/allauthStore'
+import { getRequestOptionsJSON } from '@/allauth/webauthn'
 
 const router = useRouter()
 const route = useRoute()
@@ -87,6 +88,7 @@ const identifierInputType = computed(() => {
 })
 
 const loginByCodeEnabled = computed(() => Boolean(allauth.config?.data?.account?.login_by_code_enabled))
+const isOpenForSignup = computed(() => allauth.config?.data?.account?.is_open_for_signup !== false)
 
 function methodLabel(method) {
   if (method === 'username') {
@@ -134,7 +136,17 @@ async function submitPasskey() {
     }
 
     const optionsResponse = await getWebAuthnRequestOptionsForLogin()
-    const options = window.PublicKeyCredential.parseRequestOptionsFromJSON(optionsResponse.data.request_options)
+    if (optionsResponse?.status !== 200) {
+      const pendingPath = pathForPendingFlow(optionsResponse)
+      if (pendingPath) {
+        await router.replace(pendingPath)
+        return
+      }
+      passkeyError.value = 'Passkey login is currently not available for this session.'
+      return
+    }
+    const optionsJson = getRequestOptionsJSON(optionsResponse.data)
+    const options = window.PublicKeyCredential.parseRequestOptionsFromJSON(optionsJson)
     const rawCredential = await navigator.credentials.get({ publicKey: options })
     const credential = rawCredential?.toJSON ? rawCredential.toJSON() : rawCredential
 

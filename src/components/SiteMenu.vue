@@ -101,7 +101,7 @@
               <template #button-content><i-bi-person-circle />  {{ $t("app.menu.account") }}</template>
               <b-dropdown-item v-if="is_superuser">Logged in as: {{ account_name }}</b-dropdown-item>
               <b-dropdown-item to="/profile/notifications" accesskey="a"><span>📨 {{$t("app.menu.notifications") }}</span></b-dropdown-item>
-              <b-dropdown-item to="/account">📱 {{$t("app.menu.authentication") }}</b-dropdown-item>
+              <b-dropdown-item to="/profile/authentication">📱 {{$t("app.menu.authentication") }}</b-dropdown-item>
               <b-dropdown-item to="/profile/web_metrics"><scan-type-icon type="web" /> {{$t("app.menu.web_metrics") }}</b-dropdown-item>
               <b-dropdown-item to="/profile/mail_metrics"><scan-type-icon type="mail" /> {{$t("app.menu.mail_metrics") }}</b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>

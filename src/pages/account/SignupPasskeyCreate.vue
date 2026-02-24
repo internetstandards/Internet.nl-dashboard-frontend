@@ -8,7 +8,7 @@
       <input id="signup-passkey-name" v-model="name" class="form-control" required>
       <FormErrors :errors="response?.errors" param="name" />
       <FormErrors :errors="response?.errors" />
-      <b-button class="mt-3" type="submit" variant="primary" :disabled="loading">Create</b-button>
+      <b-button class="mt-3" type="submit" variant="warning" :disabled="loading">Create</b-button>
     </form>
   </section>
 </template>
@@ -19,6 +19,8 @@ import { useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { Flows, getWebAuthnCreateOptionsAtSignup, signupWebAuthnCredential } from '@/allauth/lib/allauth'
 import { allauthStore } from '@/allauthStore'
+import { pathForPendingFlow } from '@/allauth/flows'
+import { getCreationOptionsJSON } from '@/allauth/webauthn'
 
 const router = useRouter()
 const allauth = allauthStore()
@@ -40,6 +42,10 @@ async function submit() {
     const optionsResponse = await getWebAuthnCreateOptionsAtSignup(true)
     if (optionsResponse.status !== 200) {
       response.value = optionsResponse
+      const pendingPath = pathForPendingFlow(optionsResponse)
+      if (pendingPath) {
+        await router.replace(pendingPath)
+      }
       return
     }
 
@@ -47,10 +53,16 @@ async function submit() {
       response.value = { errors: [{ param: 'passkey', message: 'This browser does not support passkey setup.' }] }
       return
     }
-    const options = window.PublicKeyCredential.parseCreationOptionsFromJSON(optionsResponse.data.creation_options)
+    const optionsJson = getCreationOptionsJSON(optionsResponse.data)
+    const options = window.PublicKeyCredential.parseCreationOptionsFromJSON(optionsJson)
     const createdCredential = await navigator.credentials.create({ publicKey: options })
     const credential = createdCredential?.toJSON ? createdCredential.toJSON() : createdCredential
     response.value = await signupWebAuthnCredential(name.value, credential)
+    const pendingPath = pathForPendingFlow(response.value)
+    if (pendingPath) {
+      await router.replace(pendingPath)
+      return
+    }
 
     if (response.value?.status === 200) {
       await allauth.syncDashboardSession()
@@ -61,6 +73,8 @@ async function submit() {
     if (response.value?.status === 409) {
       await router.replace('/account/signup/passkey')
     }
+  } catch (error) {
+    response.value = { errors: [{ param: 'passkey', message: error?.message || 'Unable to create passkey.' }] }
   } finally {
     loading.value = false
   }

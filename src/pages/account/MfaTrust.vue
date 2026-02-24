@@ -5,7 +5,7 @@
 
     <div class="d-flex gap-2">
       <b-button variant="outline-secondary" :disabled="loading" @click="submit(false)">Don't Trust</b-button>
-      <b-button variant="primary" :disabled="loading" @click="submit(true)">Trust</b-button>
+      <b-button variant="warning" :disabled="loading" @click="submit(true)">Trust</b-button>
     </div>
   </section>
 </template>

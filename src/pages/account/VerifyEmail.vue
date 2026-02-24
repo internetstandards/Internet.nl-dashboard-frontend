@@ -7,7 +7,7 @@
         Confirm <a :href="`mailto:${verification.data.email}`">{{ verification.data.email }}</a> for
         {{ verification.data.user?.str || 'this account' }}.
       </p>
-      <b-button variant="primary" :disabled="loading" @click="submit">Confirm</b-button>
+      <b-button variant="warning" :disabled="loading" @click="submit">Confirm</b-button>
     </template>
 
     <template v-else-if="verification && verification.data?.email">

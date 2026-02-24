@@ -52,7 +52,7 @@
       <input id="new-email" v-model="email" type="email" class="form-control" required>
       <FormErrors :errors="response?.errors" param="email" />
       <FormErrors :errors="response?.errors" />
-      <b-button class="mt-3" type="submit" :disabled="loading" variant="primary">Add</b-button>
+      <b-button class="mt-3" type="submit" :disabled="loading" variant="warning">Add</b-button>
     </form>
   </section>
 </template>

@@ -123,6 +123,11 @@ const privateRoutes = [
   },
 
   {
+    path: '/profile/authentication/:auth_path(.*)*',
+    component: Account,
+    meta: {title: 'account', access: 'private'}
+  },
+  {
     path: '/profile/:active_tab?',
     component: Account,
     meta: {title: 'account', access: 'private'},

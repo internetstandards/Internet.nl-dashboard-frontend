@@ -8,7 +8,7 @@
       <input id="reauth-password" v-model="password" type="password" class="form-control" required>
       <FormErrors :errors="response?.errors" param="password" />
       <FormErrors :errors="response?.errors" />
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="primary">Confirm</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Confirm</b-button>
     </form>
   </section>
 </template>
