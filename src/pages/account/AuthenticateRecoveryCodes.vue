@@ -7,14 +7,14 @@
       <label class="form-label" for="auth-recovery-code">Recovery code</label>
       <input id="auth-recovery-code" v-model="code" class="form-control" required>
       <FormErrors :errors="response?.errors" param="code" />
-      <FormErrors :errors="response?.errors" />
+      <FormErrors :errors="nonFieldErrors" />
       <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Sign in</b-button>
     </form>
   </section>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { mfaAuthenticate, Flows } from '@/allauth/lib/allauth'
@@ -27,6 +27,9 @@ const router = useRouter()
 const code = ref('')
 const response = ref(null)
 const loading = ref(false)
+const nonFieldErrors = computed(() =>
+  (response.value?.errors || []).filter((error) => error?.param !== 'code')
+)
 
 onMounted(async () => {
   await allauth.refreshAuth()

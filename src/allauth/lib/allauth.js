@@ -10,7 +10,7 @@ function trimTrailingSlash(url) {
 }
 
 const baseRoot = trimTrailingSlash(import.meta.env.VITE_VUE_APP_DJANGO_PATH)
-const defaultBaseUrl = `${baseRoot}/_allauth/${Client.BROWSER}/v1`
+const defaultBaseUrl = `${baseRoot}/api/v1/allauth/${Client.BROWSER}/v1`
 
 export const settings = {
   client: Client.BROWSER,

@@ -40,7 +40,8 @@ async function submitByCode() {
   try {
     response.value = await verifyEmail(code.value)
     if ([200, 401].includes(response.value?.status)) {
-      await router.replace('/account/email')
+      await allauth.syncDashboardSession()
+      await router.replace('/domains')
     }
   } finally {
     loading.value = false

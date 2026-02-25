@@ -30,9 +30,11 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { getEmailVerification, verifyEmail } from '@/allauth/lib/allauth'
+import { allauthStore } from '@/allauthStore'
 
 const route = useRoute()
 const router = useRouter()
+const allauth = allauthStore()
 
 const loading = ref(false)
 const verification = ref(null)
@@ -47,7 +49,8 @@ async function submit() {
   try {
     response.value = await verifyEmail(route.params.key)
     if ([200, 401].includes(response.value?.status)) {
-      await router.replace('/account/email')
+      await allauth.syncDashboardSession()
+      await router.replace('/domains')
     }
   } finally {
     loading.value = false
