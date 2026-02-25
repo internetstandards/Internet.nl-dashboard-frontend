@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-    <content-block>
+    <component :is="inline ? 'div' : 'content-block'">
         <b-table-simple hover small caption-top striped responsive="true">
-            <caption>{{ total }} {{ title }}</caption>
+            <caption>{{ title }}: {{ total }}</caption>
             <b-tr>
                 <b-th>Year</b-th>
                 <b-th>Total</b-th>
@@ -36,7 +36,7 @@
                 <b-td>{{data.per_month[year][12]}}</b-td>
             </b-tr>
         </b-table-simple>
-    </content-block>
+    </component>
 </template>
 <script>
 export default {
@@ -49,6 +49,10 @@ export default {
         },
         title: {
             type: String
+        },
+        inline: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {

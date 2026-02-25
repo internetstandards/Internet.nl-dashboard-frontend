@@ -11,6 +11,8 @@ const SpreadsheetUpload = () => import('@/components/domains/SpreadsheetUpload.v
 const SwitchAccount = () => import('@/components/admin/SwitchAccount.vue');
 const InstantAddAccount = () => import('@/components/admin/InstantAddAccount.vue');
 const Usage = () => import('@/components/admin/usage.vue');
+const ActionStatistics = () => import('@/components/admin/ActionStatistics.vue');
+const UserStatistics = () => import('@/components/admin/UserStatistics.vue');
 const SignupPage = () => import('@/components/signup/SignupPage.vue');
 const Unsubscribe = () => import('@/components/mail/Unsubscribe.vue');
 
@@ -135,7 +137,21 @@ const privateRoutes = [
   },
   {
     path: '/usage',
+    redirect: '/usage-statistics'
+  },
+  {
+    path: '/usage-statistics',
     component: Usage,
+    meta: {title: 'usage_overview', access: 'private'}
+  },
+  {
+    path: '/action-statistics',
+    component: ActionStatistics,
+    meta: {title: 'usage_overview', access: 'private'}
+  },
+  {
+    path: '/user-statistics',
+    component: UserStatistics,
     meta: {title: 'usage_overview', access: 'private'}
   },
   {

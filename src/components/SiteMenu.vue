@@ -89,7 +89,9 @@
               <template #button-content><i-bi-person-badge/> {{ $t("app.menu.admin") }}</template>
               <b-dropdown-item to="/switch-account"><i-bi-person-bounding-box/> {{$t("app.menu.switch_user") }}</b-dropdown-item>
               <b-dropdown-item to="/add-user" ><i-bi-person-plus /> {{$t("app.menu.add_user") }}</b-dropdown-item>
-              <b-dropdown-item to="/usage" ><i-bi-graph-up /> {{$t("app.menu.usage_overview") }}</b-dropdown-item>
+              <b-dropdown-item to="/usage-statistics" ><i-bi-graph-up /> {{$t("app.menu.usage_overview") }}</b-dropdown-item>
+              <b-dropdown-item to="/action-statistics" ><i-bi-graph-up /> Action statistics</b-dropdown-item>
+              <b-dropdown-item to="/user-statistics" ><i-bi-graph-up /> User statistics</b-dropdown-item>
               </b-nav-item-dropdown>
             </template>
 

@@ -9,6 +9,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     AboutThisList: typeof import('./src/components/domains/list/AboutThisList.vue')['default']
     Account: typeof import('./src/components/account/Account.vue')['default']
+    ActionStatistics: typeof import('./src/components/admin/ActionStatistics.vue')['default']
+    ActionTrendChart: typeof import('./src/components/admin/ActionTrendChart.vue')['default']
     AddDomainsModal: typeof import('./src/components/domains/list/AddDomainsModal.vue')['default']
     AITranslationMessage: typeof import('./src/components/AITranslationMessage.vue')['default']
     AllauthLayout: typeof import('./src/components/allauth/AllauthLayout.vue')['default']
@@ -162,6 +164,7 @@ declare module 'vue' {
     UrlList: typeof import('./src/components/domains/UrlList.vue')['default']
     Usage: typeof import('./src/components/admin/usage.vue')['default']
     Usage_yearview: typeof import('./src/components/admin/usage_yearview.vue')['default']
+    UserStatistics: typeof import('./src/components/admin/UserStatistics.vue')['default']
     VisibleFields: typeof import('./src/components/reports/VisibleFields.vue')['default']
     VisibleMetrics: typeof import('./src/components/account/VisibleMetrics.vue')['default']
     WwwDiscovery: typeof import('./src/components/domains/list/WwwDiscovery.vue')['default']
