@@ -1,0 +1,4977 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Internet.nl Dashboard API",
+    "version": "1.0.0",
+    "description": "",
+    "contact": {
+      "name": "Internet.nl API Support",
+      "email": "vraag@internet.nl",
+      "url": "https://github.com/internetstandards/Internet.nl-dashboard/"
+    }
+  },
+  "paths": {
+    "/api/v1/config": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_app_config_api",
+        "summary": "Config Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigContentSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Application Configuration"
+        ]
+      }
+    },
+    "/api/v1/signup": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_signup_process_application",
+        "summary": "Process Application",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Signup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessApplicationInputSchema"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/session/status": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_session_session_status_api",
+        "summary": "Session Status Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionStatusSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Session Management"
+        ]
+      }
+    },
+    "/api/v1/session/logout": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_session_session_logout_api",
+        "summary": "Session Logout Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Session Management"
+        ]
+      }
+    },
+    "/api/v1/settings/user": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_settings_get_user_settings_api",
+        "summary": "Get User Settings Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSettingsSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Settings"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_settings_save_user_settings_api",
+        "summary": "Save User Settings Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Settings"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveUserSettingsInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/settings/account/report": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_settings_get_report_settings_api",
+        "summary": "Get Report Settings Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Settings"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_settings_save_report_settings_api",
+        "summary": "Save Report Settings Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Settings"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_get_lists_operation",
+        "summary": "Get Lists Operation",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UrlListsResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_create_list_operation",
+        "summary": "Create List Operation",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateListResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUrlListInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/import-spreadsheets": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_upload_history",
+        "summary": "Upload History",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/UploadHistoryItemSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_upload_spreadsheet",
+        "summary": "Upload Spreadsheet",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "file": {
+                    "format": "binary",
+                    "title": "File",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "file"
+                ],
+                "title": "FileParams",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}": {
+      "delete": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_delete_list_operation",
+        "summary": "Delete List Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_update_list_settings_operation",
+        "summary": "Update List Settings Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateListResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateListSettingsInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/scans": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_get_scan_status_of_list_operation",
+        "summary": "Get Scan Status Of List Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UrlListScanStatusResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_create_scan_operation",
+        "summary": "Create Scan Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/url-suggestions": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_suggest_subdomains_operation",
+        "summary": "Suggest Subdomains Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "domain",
+            "schema": {
+              "default": "",
+              "title": "Domain",
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "period",
+            "schema": {
+              "default": 370,
+              "title": "Period",
+              "type": "integer"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SuggestedDomainSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/www-subdomain-discovery": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_request_subdomain_discovery_scan_api",
+        "summary": "Request Subdomain Discovery Scan Api",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_subdomain_discovery_scan_status_api",
+        "summary": "Subdomain Discovery Scan Status Api",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/spreadsheets/{file_type}": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_download_list_operation",
+        "summary": "Download List Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "file_type",
+            "schema": {
+              "title": "File Type",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "format": "binary",
+                  "title": "Response",
+                  "type": "string"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/spreadsheets": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_upload_list_operation",
+        "summary": "Upload List Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "file": {
+                    "format": "binary",
+                    "title": "File",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "file"
+                ],
+                "title": "FileParams",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/tags": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_tags_in_urllist_operation",
+        "summary": "Tags In Urllist Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/urls": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_get_urllist_content_operation",
+        "summary": "Get Urllist Content Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UrlListContentResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_add_urls_to_urllist_operation",
+        "summary": "Add Urls To Urllist Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUrlsInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/urls/{url_id}": {
+      "put": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_alter_url_in_urllist_operation",
+        "summary": "Alter Url In Urllist Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "url_id",
+            "schema": {
+              "title": "Url Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlterUrlResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUrlInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_delete_url_from_urllist_operation",
+        "summary": "Delete Url From Urllist Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "url_id",
+            "schema": {
+              "title": "Url Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/urls/{url_id}/tags": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_add_tag_operation",
+        "summary": "Add Tag Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "url_id",
+            "schema": {
+              "title": "Url Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/urls/{url_id}/tags/{tag}": {
+      "delete": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_remove_tag_operation",
+        "summary": "Remove Tag Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "url_id",
+            "schema": {
+              "title": "Url Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "tag",
+            "schema": {
+              "title": "Tag",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_ids_csv}/timeline-graph/{report_type}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_get_urllist_timeline_graph_operation",
+        "summary": "Get Urllist Timeline Graph Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_ids_csv",
+            "schema": {
+              "title": "Urllist Ids Csv",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "report_type",
+            "schema": {
+              "title": "Report Type",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/UrlListTimelineSeriesSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/scans": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_scans_running_scans",
+        "summary": "Running Scans",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ScanMonitorItemSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Scans"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/scans/{scan_id}": {
+      "delete": {
+        "operationId": "dashboard_internet_nl_dashboard_views_scans_cancel_scan_api",
+        "summary": "Cancel Scan Api",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "scan_id",
+            "schema": {
+              "title": "Scan Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Scans"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_get_recent_reports_operation",
+        "summary": "Get Recent Reports Operation",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/RecentReportItemSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_get_report_operation",
+        "summary": "Get Report Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ReportSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}/differences": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_get_report_differences_compared_to_current_list_operation",
+        "summary": "Get Report Differences Compared To Current List Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportVsListDifferenceSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}/improvements-and-regressions": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_improvement_regressions_compared_to_previous_report_operation",
+        "summary": "Improvement Regressions Compared To Previous Report Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImprovementRegressionSummarySchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}/spreadsheets/{file_type}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_download_spreadsheet",
+        "summary": "Download Spreadsheet",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "file_type",
+            "schema": {
+              "title": "File Type",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}/share": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_share_operation",
+        "summary": "Share Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareCodeSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_unshare_operation",
+        "summary": "Unshare Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}/share/report-code": {
+      "put": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_update_report_code_operation",
+        "summary": "Update Report Code Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}/share/share-code": {
+      "put": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_update_share_code_operation",
+        "summary": "Update Share Code Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareCodeSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/{report_id}/ad-hoc": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_get_ad_hoc_tagged_report_operation",
+        "summary": "Get Ad Hoc Tagged Report Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ReportSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveAdHocTaggedReportInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_save_ad_hoc_tagged_report_operation",
+        "summary": "Save Ad Hoc Tagged Report Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_id",
+            "schema": {
+              "title": "Report Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveAdHocTaggedReportInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/public-reports": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_public_reports_get_public_reports_operation",
+        "summary": "List of publicly available reports",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PublicReportItemSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "description": "List of public reports which are published on the front page of the dashboard. Public reports have to be explicitly configured in the admin interface.",
+        "tags": [
+          "Public Reports"
+        ]
+      }
+    },
+    "/api/v1/public-reports/{report_code}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_public_reports_get_shared_report_api",
+        "summary": "Get Shared Report Api",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_code",
+            "schema": {
+              "title": "Report Code",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ReportSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedReportAuthRequiredSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Public Reports"
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_public_reports_get_shared_report_api_with_code",
+        "summary": "Get Shared Report Api With Code",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "report_code",
+            "schema": {
+              "title": "Report Code",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ReportSchema"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SharedReportAuthRequiredSchema"
+                    }
+                  ],
+                  "title": "Response"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedReportAuthRequiredSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Public Reports"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SharedReportInputSchema"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/v1/public-reports/accounts/{account_id}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_public_reports_get_publicly_shared_lists_per_account_operation",
+        "summary": "Get Publicly Shared Lists Per Account Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_id",
+            "schema": {
+              "title": "Account Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PubliclySharedListResponseSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Public Reports"
+        ]
+      }
+    },
+    "/api/v1/public-reports/accounts/{account_id}/urllists/{urllist_id}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_public_reports_get_publicly_shared_lists_per_account_and_list_id_operation",
+        "summary": "Get Publicly Shared Lists Per Account And List Id Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_id",
+            "schema": {
+              "title": "Account Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PubliclySharedListResponseSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Public Reports"
+        ]
+      }
+    },
+    "/api/v1/public-reports/urllists/{urllist_id}/latest": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_public_reports_get_latest_report_id_from_list_operation",
+        "summary": "Get Latest Report Id From List Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LatestReportCodeSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Public Reports"
+        ]
+      }
+    },
+    "/api/v1/public-reports/urllists/{urllist_id}/latest/{report_type}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_public_reports_get_latest_report_id_from_list_and_type_operation",
+        "summary": "Get Latest Report Id From List And Type Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "report_type",
+            "schema": {
+              "title": "Report Type",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LatestReportCodeSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Public Reports"
+        ]
+      }
+    },
+    "/api/v1/mail/unsubscribe/{feed}/{unsubscribe_code}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_mail_unsubscribe_api",
+        "summary": "Unsubscribe Api",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "feed",
+            "schema": {
+              "title": "Feed",
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "unsubscribe_code",
+            "schema": {
+              "title": "Unsubscribe Code",
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Mail"
+        ]
+      }
+    },
+    "/api/v1/admin/accounts": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_admin_get_accounts",
+        "summary": "Get Accounts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Administration"
+        ],
+        "security": [
+          {
+            "SessionAuthSuperUser": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_admin_save_instant_account_and_user",
+        "summary": "Save Instant Account And User",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "description": "More elaborate version of save_instant_account, where an admin can create an account and a user separately.\nIt becomes more common that multiple users share the same account.",
+        "tags": [
+          "Administration"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstantAccountAndUserCreationSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuthSuperUser": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/accounts/{account_id}/impersonation": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_admin_set_account",
+        "summary": "Set Account",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_id",
+            "schema": {
+              "title": "Account Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Administration"
+        ],
+        "security": [
+          {
+            "SessionAuthSuperUser": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/accounts/api-credential-check": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_admin_check_api_credentials",
+        "summary": "Check Api Credentials",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialCheckResponseSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Administration"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialCheckSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuthSuperUser": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/usage-statistics": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_admin_usage_api",
+        "summary": "Usage Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageMetricsSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Administration"
+        ],
+        "security": [
+          {
+            "SessionAuthSuperUser": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AppSchema": {
+        "properties": {
+          "subdomain_suggestion": {
+            "$ref": "#/components/schemas/SubdomainSuggestionSchema"
+          },
+          "signup": {
+            "$ref": "#/components/schemas/SignupSchema"
+          },
+          "layout": {
+            "title": "Layout",
+            "type": "string"
+          },
+          "supported_languages": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Supported Languages",
+            "type": "array"
+          }
+        },
+        "required": [
+          "subdomain_suggestion",
+          "signup",
+          "layout",
+          "supported_languages"
+        ],
+        "title": "AppSchema",
+        "type": "object"
+      },
+      "ConfigContentSchema": {
+        "properties": {
+          "show": {
+            "$ref": "#/components/schemas/ShowSchema"
+          },
+          "app": {
+            "$ref": "#/components/schemas/AppSchema"
+          },
+          "settings": {
+            "additionalProperties": true,
+            "title": "Settings",
+            "type": "object"
+          }
+        },
+        "required": [
+          "show",
+          "app",
+          "settings"
+        ],
+        "title": "ConfigContentSchema",
+        "type": "object"
+      },
+      "ShowSchema": {
+        "properties": {
+          "signup_form": {
+            "title": "Signup Form",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "signup_form"
+        ],
+        "title": "ShowSchema",
+        "type": "object"
+      },
+      "SignupSchema": {
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "enabled"
+        ],
+        "title": "SignupSchema",
+        "type": "object"
+      },
+      "SubdomainSuggestionSchema": {
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "default_period": {
+            "title": "Default Period",
+            "type": "integer"
+          },
+          "default_extend_period": {
+            "title": "Default Extend Period",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "enabled",
+          "default_period",
+          "default_extend_period"
+        ],
+        "title": "SubdomainSuggestionSchema",
+        "type": "object"
+      },
+      "OperationResponseSchema": {
+        "properties": {
+          "success": {
+            "default": false,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "error": {
+            "default": false,
+            "title": "Error",
+            "type": "boolean"
+          },
+          "message": {
+            "default": "",
+            "title": "Message",
+            "type": "string"
+          },
+          "state": {
+            "default": "",
+            "title": "State",
+            "type": "string"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data"
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          }
+        },
+        "title": "OperationResponseSchema",
+        "type": "object"
+      },
+      "ProcessApplicationInputSchema": {
+        "properties": {
+          "form_data": {
+            "$ref": "#/components/schemas/SignupFormDataSchema"
+          }
+        },
+        "required": [
+          "form_data"
+        ],
+        "title": "ProcessApplicationInputSchema",
+        "type": "object"
+      },
+      "SignupFormDataSchema": {
+        "properties": {
+          "access": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Access",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "mobile_phone_number": {
+            "title": "Mobile Phone Number",
+            "type": "string"
+          },
+          "organization_name": {
+            "title": "Organization Name",
+            "type": "string"
+          },
+          "nature_of_organization": {
+            "title": "Nature Of Organization",
+            "type": "string"
+          },
+          "chamber_of_commerce_number": {
+            "title": "Chamber Of Commerce Number",
+            "type": "string"
+          },
+          "reason_for_application": {
+            "title": "Reason For Application",
+            "type": "string"
+          },
+          "intended_usage_frequency": {
+            "title": "Intended Usage Frequency",
+            "type": "string"
+          },
+          "terms_of_use": {
+            "title": "Terms Of Use"
+          },
+          "captcha": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Captcha"
+          }
+        },
+        "required": [
+          "access",
+          "name",
+          "email",
+          "mobile_phone_number",
+          "organization_name",
+          "nature_of_organization",
+          "chamber_of_commerce_number",
+          "reason_for_application",
+          "intended_usage_frequency",
+          "terms_of_use",
+          "captcha"
+        ],
+        "title": "SignupFormDataSchema",
+        "type": "object"
+      },
+      "SessionStatusSchema": {
+        "properties": {
+          "is_authenticated": {
+            "title": "Is Authenticated",
+            "type": "boolean"
+          },
+          "is_superuser": {
+            "title": "Is Superuser",
+            "type": "boolean"
+          },
+          "second_factor_enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": false,
+            "title": "Second Factor Enabled"
+          },
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "account_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          }
+        },
+        "required": [
+          "is_authenticated",
+          "is_superuser",
+          "account_name"
+        ],
+        "title": "SessionStatusSchema",
+        "type": "object"
+      },
+      "UserSettingsSchema": {
+        "properties": {
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          },
+          "date_joined": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date Joined"
+          },
+          "last_login": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Login"
+          },
+          "account_id": {
+            "title": "Account Id",
+            "type": "integer"
+          },
+          "account_name": {
+            "title": "Account Name",
+            "type": "string"
+          },
+          "mail_preferred_mail_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mail Preferred Mail Address"
+          },
+          "mail_preferred_language": {
+            "title": "Mail Preferred Language",
+            "type": "string"
+          },
+          "mail_send_mail_after_scan_finished": {
+            "title": "Mail Send Mail After Scan Finished",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "account_id",
+          "account_name",
+          "mail_preferred_language",
+          "mail_send_mail_after_scan_finished"
+        ],
+        "title": "UserSettingsSchema",
+        "type": "object"
+      },
+      "SaveUserSettingsInputSchema": {
+        "properties": {
+          "first_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "last_name": {
+            "title": "Last Name",
+            "type": "string"
+          },
+          "mail_preferred_mail_address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mail Preferred Mail Address"
+          },
+          "mail_preferred_language": {
+            "title": "Mail Preferred Language",
+            "type": "string"
+          },
+          "mail_send_mail_after_scan_finished": {
+            "title": "Mail Send Mail After Scan Finished",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "mail_preferred_language",
+          "mail_send_mail_after_scan_finished"
+        ],
+        "title": "SaveUserSettingsInputSchema",
+        "type": "object"
+      },
+      "UrlListSummarySchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "enable_scans": {
+            "title": "Enable Scans",
+            "type": "boolean"
+          },
+          "scan_type": {
+            "title": "Scan Type",
+            "type": "string"
+          },
+          "automated_scan_frequency": {
+            "title": "Automated Scan Frequency",
+            "type": "string"
+          },
+          "scheduled_next_scan": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scheduled Next Scan"
+          },
+          "scan_now_available": {
+            "title": "Scan Now Available",
+            "type": "boolean"
+          },
+          "enable_report_sharing_page": {
+            "title": "Enable Report Sharing Page",
+            "type": "boolean"
+          },
+          "automatically_share_new_reports": {
+            "title": "Automatically Share New Reports",
+            "type": "boolean"
+          },
+          "default_public_share_code_for_new_reports": {
+            "default": "",
+            "title": "Default Public Share Code For New Reports",
+            "type": "string"
+          },
+          "last_scan_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Scan Id"
+          },
+          "last_scan_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Scan State"
+          },
+          "last_scan": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Scan"
+          },
+          "last_scan_finished": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Scan Finished"
+          },
+          "last_report_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Report Id"
+          },
+          "last_report_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Report Date"
+          },
+          "list_warnings": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "List Warnings",
+            "type": "array"
+          },
+          "num_urls": {
+            "title": "Num Urls",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "enable_scans",
+          "scan_type",
+          "automated_scan_frequency",
+          "scan_now_available",
+          "enable_report_sharing_page",
+          "automatically_share_new_reports",
+          "num_urls"
+        ],
+        "title": "UrlListSummarySchema",
+        "type": "object"
+      },
+      "UrlListsResponseSchema": {
+        "properties": {
+          "lists": {
+            "items": {
+              "$ref": "#/components/schemas/UrlListSummarySchema"
+            },
+            "title": "Lists",
+            "type": "array"
+          },
+          "maximum_domains_per_list": {
+            "title": "Maximum Domains Per List",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "lists",
+          "maximum_domains_per_list"
+        ],
+        "title": "UrlListsResponseSchema",
+        "type": "object"
+      },
+      "CreateListResponseSchema": {
+        "properties": {
+          "success": {
+            "default": false,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "error": {
+            "default": false,
+            "title": "Error",
+            "type": "boolean"
+          },
+          "message": {
+            "default": "",
+            "title": "Message",
+            "type": "string"
+          },
+          "state": {
+            "default": "",
+            "title": "State",
+            "type": "string"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UrlListSummarySchema"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          }
+        },
+        "title": "CreateListResponseSchema",
+        "type": "object"
+      },
+      "CreateUrlListInputSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "enable_scans": {
+            "title": "Enable Scans",
+            "type": "boolean"
+          },
+          "scan_type": {
+            "title": "Scan Type",
+            "type": "string"
+          },
+          "automated_scan_frequency": {
+            "title": "Automated Scan Frequency",
+            "type": "string"
+          },
+          "scheduled_next_scan": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scheduled Next Scan"
+          },
+          "automatically_share_new_reports": {
+            "title": "Automatically Share New Reports",
+            "type": "boolean"
+          },
+          "default_public_share_code_for_new_reports": {
+            "default": "",
+            "title": "Default Public Share Code For New Reports",
+            "type": "string"
+          },
+          "enable_report_sharing_page": {
+            "title": "Enable Report Sharing Page",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "enable_scans",
+          "scan_type",
+          "automated_scan_frequency",
+          "automatically_share_new_reports",
+          "enable_report_sharing_page"
+        ],
+        "title": "CreateUrlListInputSchema",
+        "type": "object"
+      },
+      "UploadHistoryItemSchema": {
+        "properties": {
+          "original_filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Filename"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "upload_date": {
+            "title": "Upload Date",
+            "type": "string"
+          },
+          "filesize": {
+            "title": "Filesize",
+            "type": "integer"
+          },
+          "percentage": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Percentage"
+          }
+        },
+        "required": [
+          "original_filename",
+          "message",
+          "upload_date",
+          "filesize",
+          "percentage"
+        ],
+        "title": "UploadHistoryItemSchema",
+        "type": "object"
+      },
+      "UpdateListSettingsInputSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "enable_scans": {
+            "title": "Enable Scans",
+            "type": "boolean"
+          },
+          "scan_type": {
+            "title": "Scan Type",
+            "type": "string"
+          },
+          "automated_scan_frequency": {
+            "title": "Automated Scan Frequency",
+            "type": "string"
+          },
+          "scheduled_next_scan": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scheduled Next Scan"
+          },
+          "enable_report_sharing_page": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Enable Report Sharing Page"
+          },
+          "automatically_share_new_reports": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Automatically Share New Reports"
+          },
+          "default_public_share_code_for_new_reports": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Public Share Code For New Reports"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "enable_scans",
+          "scan_type",
+          "automated_scan_frequency"
+        ],
+        "title": "UpdateListSettingsInputSchema",
+        "type": "object"
+      },
+      "UrlListScanStatusResponseSchema": {
+        "properties": {
+          "last_scan_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Scan Id"
+          },
+          "last_scan_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Scan State"
+          },
+          "last_scan_finished": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Scan Finished"
+          },
+          "last_report_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Report Id"
+          },
+          "last_report_date": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Report Date"
+          },
+          "scan_now_available": {
+            "default": false,
+            "title": "Scan Now Available",
+            "type": "boolean"
+          }
+        },
+        "title": "UrlListScanStatusResponseSchema",
+        "type": "object"
+      },
+      "SuggestedSubdomainsInputSchema": {
+        "properties": {
+          "domain": {
+            "default": "",
+            "title": "Domain",
+            "type": "string"
+          },
+          "period": {
+            "default": 370,
+            "title": "Period",
+            "type": "integer"
+          }
+        },
+        "title": "SuggestedSubdomainsInputSchema",
+        "type": "object"
+      },
+      "SuggestedDomainSchema": {
+        "properties": {
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "has_website": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Has Website"
+          },
+          "has_email": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Has Email"
+          }
+        },
+        "required": [
+          "domain",
+          "has_website",
+          "has_email"
+        ],
+        "title": "SuggestedDomainSchema",
+        "type": "object"
+      },
+      "UrlItemSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "subdomain": {
+            "title": "Subdomain",
+            "type": "string"
+          },
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "suffix": {
+            "title": "Suffix",
+            "type": "string"
+          },
+          "created_on": {
+            "format": "date-time",
+            "title": "Created On",
+            "type": "string"
+          },
+          "resolves": {
+            "title": "Resolves",
+            "type": "boolean"
+          },
+          "has_mail_endpoint": {
+            "title": "Has Mail Endpoint",
+            "type": "boolean"
+          },
+          "has_web_endpoint": {
+            "title": "Has Web Endpoint",
+            "type": "boolean"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "subdomain",
+          "domain",
+          "suffix",
+          "created_on",
+          "resolves",
+          "has_mail_endpoint",
+          "has_web_endpoint",
+          "tags"
+        ],
+        "title": "UrlItemSchema",
+        "type": "object"
+      },
+      "UrlListContentResponseSchema": {
+        "properties": {
+          "urllist_id": {
+            "title": "Urllist Id",
+            "type": "integer"
+          },
+          "urls": {
+            "items": {
+              "$ref": "#/components/schemas/UrlItemSchema"
+            },
+            "title": "Urls",
+            "type": "array"
+          }
+        },
+        "required": [
+          "urllist_id",
+          "urls"
+        ],
+        "title": "UrlListContentResponseSchema",
+        "type": "object"
+      },
+      "AddUrlsInputSchema": {
+        "properties": {
+          "urls": {
+            "items": {
+              "maxLength": 255,
+              "type": "string"
+            },
+            "title": "Urls",
+            "type": "array"
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "title": "AddUrlsInputSchema",
+        "type": "object"
+      },
+      "AlterUrlDataSchema": {
+        "properties": {
+          "created": {
+            "$ref": "#/components/schemas/UrlChangeItemSchema"
+          },
+          "removed": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UrlChangeItemSchema"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "created"
+        ],
+        "title": "AlterUrlDataSchema",
+        "type": "object"
+      },
+      "AlterUrlResponseSchema": {
+        "properties": {
+          "success": {
+            "default": false,
+            "title": "Success",
+            "type": "boolean"
+          },
+          "error": {
+            "default": false,
+            "title": "Error",
+            "type": "boolean"
+          },
+          "message": {
+            "default": "",
+            "title": "Message",
+            "type": "string"
+          },
+          "state": {
+            "default": "",
+            "title": "State",
+            "type": "string"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AlterUrlDataSchema"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "timestamp": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timestamp"
+          }
+        },
+        "title": "AlterUrlResponseSchema",
+        "type": "object"
+      },
+      "UrlChangeItemSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "created_on": {
+            "format": "date-time",
+            "title": "Created On",
+            "type": "string"
+          },
+          "has_mail_endpoint": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Has Mail Endpoint"
+          },
+          "has_web_endpoint": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Has Web Endpoint"
+          },
+          "subdomain": {
+            "title": "Subdomain",
+            "type": "string"
+          },
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "suffix": {
+            "title": "Suffix",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "created_on",
+          "has_mail_endpoint",
+          "has_web_endpoint",
+          "subdomain",
+          "domain",
+          "suffix"
+        ],
+        "title": "UrlChangeItemSchema",
+        "type": "object"
+      },
+      "UpdateUrlInputSchema": {
+        "properties": {
+          "new_url_string": {
+            "maxLength": 255,
+            "title": "New Url String",
+            "type": "string"
+          }
+        },
+        "required": [
+          "new_url_string"
+        ],
+        "title": "UpdateUrlInputSchema",
+        "type": "object"
+      },
+      "TagInputSchema": {
+        "properties": {
+          "tag": {
+            "maxLength": 40,
+            "title": "Tag",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tag"
+        ],
+        "title": "TagInputSchema",
+        "type": "object"
+      },
+      "UrlListTimelineDataPointSchema": {
+        "properties": {
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "urls": {
+            "title": "Urls",
+            "type": "integer"
+          },
+          "average_internet_nl_score": {
+            "title": "Average Internet Nl Score",
+            "type": "number"
+          },
+          "report": {
+            "title": "Report",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "date",
+          "urls",
+          "average_internet_nl_score",
+          "report"
+        ],
+        "title": "UrlListTimelineDataPointSchema",
+        "type": "object"
+      },
+      "UrlListTimelineSeriesSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/UrlListTimelineDataPointSchema"
+            },
+            "title": "Data",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "data"
+        ],
+        "title": "UrlListTimelineSeriesSchema",
+        "type": "object"
+      },
+      "ScanLogEntrySchema": {
+        "properties": {
+          "at_when": {
+            "format": "date-time",
+            "title": "At When",
+            "type": "string"
+          },
+          "state": {
+            "default": "",
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "title": "ScanLogEntrySchema",
+        "type": "object"
+      },
+      "ScanMonitorItemSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "state": {
+            "title": "State",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "last_check": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Check"
+          },
+          "started": {
+            "title": "Started",
+            "type": "boolean"
+          },
+          "started_on": {
+            "format": "date-time",
+            "title": "Started On",
+            "type": "string"
+          },
+          "finished": {
+            "title": "Finished",
+            "type": "boolean"
+          },
+          "finished_on": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished On"
+          },
+          "status_url": {
+            "title": "Status Url",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "list_name": {
+            "title": "List Name",
+            "type": "string"
+          },
+          "list_id": {
+            "title": "List Id",
+            "type": "integer"
+          },
+          "runtime": {
+            "title": "Runtime",
+            "type": "integer"
+          },
+          "last_report_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Report Id"
+          },
+          "log": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/ScanLogEntrySchema"
+            },
+            "title": "Log",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "type",
+          "last_check",
+          "started",
+          "started_on",
+          "finished",
+          "finished_on",
+          "status_url",
+          "message",
+          "success",
+          "list_name",
+          "list_id",
+          "runtime",
+          "last_report_id"
+        ],
+        "title": "ScanMonitorItemSchema",
+        "type": "object"
+      },
+      "RecentReportItemSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "report": {
+            "title": "Report",
+            "type": "integer"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "number_of_urls": {
+            "title": "Number Of Urls",
+            "type": "integer"
+          },
+          "list_name": {
+            "title": "List Name",
+            "type": "string"
+          },
+          "at_when": {
+            "title": "At When",
+            "type": "string"
+          },
+          "urllist_id": {
+            "title": "Urllist Id",
+            "type": "integer"
+          },
+          "urllist_scan_type": {
+            "title": "Urllist Scan Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "report",
+          "type",
+          "number_of_urls",
+          "list_name",
+          "at_when",
+          "urllist_id",
+          "urllist_scan_type"
+        ],
+        "title": "RecentReportItemSchema",
+        "type": "object"
+      },
+      "CalculationSchema": {
+        "properties": {
+          "urls": {
+            "items": {
+              "$ref": "#/components/schemas/UrlCalculationItemSchema"
+            },
+            "title": "Urls",
+            "type": "array"
+          },
+          "high": {
+            "title": "High",
+            "type": "integer"
+          },
+          "medium": {
+            "title": "Medium",
+            "type": "integer"
+          },
+          "low": {
+            "title": "Low",
+            "type": "integer"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "integer"
+          },
+          "total_urls": {
+            "title": "Total Urls",
+            "type": "integer"
+          },
+          "high_urls": {
+            "title": "High Urls",
+            "type": "integer"
+          },
+          "medium_urls": {
+            "title": "Medium Urls",
+            "type": "integer"
+          },
+          "low_urls": {
+            "title": "Low Urls",
+            "type": "integer"
+          },
+          "ok_urls": {
+            "title": "Ok Urls",
+            "type": "integer"
+          },
+          "total_endpoints": {
+            "title": "Total Endpoints",
+            "type": "integer"
+          },
+          "high_endpoints": {
+            "title": "High Endpoints",
+            "type": "integer"
+          },
+          "medium_endpoints": {
+            "title": "Medium Endpoints",
+            "type": "integer"
+          },
+          "low_endpoints": {
+            "title": "Low Endpoints",
+            "type": "integer"
+          },
+          "ok_endpoints": {
+            "title": "Ok Endpoints",
+            "type": "integer"
+          },
+          "total_url_issues": {
+            "title": "Total Url Issues",
+            "type": "integer"
+          },
+          "total_endpoint_issues": {
+            "title": "Total Endpoint Issues",
+            "type": "integer"
+          },
+          "url_issues_high": {
+            "title": "Url Issues High",
+            "type": "integer"
+          },
+          "url_issues_medium": {
+            "title": "Url Issues Medium",
+            "type": "integer"
+          },
+          "url_issues_low": {
+            "title": "Url Issues Low",
+            "type": "integer"
+          },
+          "url_ok": {
+            "title": "Url Ok",
+            "type": "integer"
+          },
+          "endpoint_issues_high": {
+            "title": "Endpoint Issues High",
+            "type": "integer"
+          },
+          "endpoint_issues_medium": {
+            "title": "Endpoint Issues Medium",
+            "type": "integer"
+          },
+          "endpoint_issues_low": {
+            "title": "Endpoint Issues Low",
+            "type": "integer"
+          },
+          "endpoint_ok": {
+            "title": "Endpoint Ok",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "statistics_per_issue_type": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/StatisticsCalculationSchema"
+            },
+            "title": "Statistics Per Issue Type",
+            "type": "object"
+          }
+        },
+        "required": [
+          "urls",
+          "high",
+          "medium",
+          "low",
+          "ok",
+          "total_urls",
+          "high_urls",
+          "medium_urls",
+          "low_urls",
+          "ok_urls",
+          "total_endpoints",
+          "high_endpoints",
+          "medium_endpoints",
+          "low_endpoints",
+          "ok_endpoints",
+          "total_url_issues",
+          "total_endpoint_issues",
+          "url_issues_high",
+          "url_issues_medium",
+          "url_issues_low",
+          "url_ok",
+          "endpoint_issues_high",
+          "endpoint_issues_medium",
+          "endpoint_issues_low",
+          "endpoint_ok",
+          "name",
+          "statistics_per_issue_type"
+        ],
+        "title": "CalculationSchema",
+        "type": "object"
+      },
+      "EndpointCalculationSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "concat": {
+            "title": "Concat",
+            "type": "string"
+          },
+          "ip": {
+            "title": "Ip",
+            "type": "integer"
+          },
+          "ip_version": {
+            "title": "Ip Version",
+            "type": "integer"
+          },
+          "port": {
+            "title": "Port",
+            "type": "integer"
+          },
+          "protocol": {
+            "title": "Protocol",
+            "type": "string"
+          },
+          "v4": {
+            "title": "V4",
+            "type": "boolean"
+          },
+          "high": {
+            "title": "High",
+            "type": "integer"
+          },
+          "medium": {
+            "title": "Medium",
+            "type": "integer"
+          },
+          "low": {
+            "title": "Low",
+            "type": "integer"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "integer"
+          },
+          "ratings_by_type": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/RatingCalculationSchema"
+            },
+            "title": "Ratings By Type",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "concat",
+          "ip",
+          "ip_version",
+          "port",
+          "protocol",
+          "v4",
+          "high",
+          "medium",
+          "low",
+          "ok",
+          "ratings_by_type"
+        ],
+        "title": "EndpointCalculationSchema",
+        "type": "object"
+      },
+      "RatingCalculationSchema": {
+        "properties": {
+          "evidence": {
+            "title": "Evidence",
+            "type": "string"
+          },
+          "meaning": {
+            "additionalProperties": true,
+            "title": "Meaning",
+            "type": "object"
+          },
+          "since": {
+            "title": "Since",
+            "type": "number"
+          },
+          "ok": {
+            "default": 0,
+            "title": "Ok",
+            "type": "integer"
+          },
+          "translation": {
+            "default": "",
+            "title": "Translation",
+            "type": "string"
+          },
+          "technical_details": {
+            "default": "",
+            "title": "Technical Details",
+            "type": "string"
+          },
+          "test_result": {
+            "default": "45",
+            "title": "Test Result",
+            "type": "string"
+          },
+          "scan": {
+            "title": "Scan",
+            "type": "integer"
+          },
+          "simple_progression": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Simple Progression"
+          },
+          "internet_nl_score": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Internet Nl Score"
+          },
+          "internet_nl_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Internet Nl Url"
+          }
+        },
+        "required": [
+          "evidence",
+          "meaning",
+          "since",
+          "scan"
+        ],
+        "title": "RatingCalculationSchema",
+        "type": "object"
+      },
+      "ReportSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "urllist_id": {
+            "title": "Urllist Id",
+            "type": "integer"
+          },
+          "urllist_name": {
+            "title": "Urllist Name",
+            "type": "string"
+          },
+          "average_internet_nl_score": {
+            "title": "Average Internet Nl Score",
+            "type": "number"
+          },
+          "total_urls": {
+            "title": "Total Urls",
+            "type": "integer"
+          },
+          "is_publicly_shared": {
+            "title": "Is Publicly Shared",
+            "type": "boolean"
+          },
+          "at_when": {
+            "format": "date-time",
+            "title": "At When",
+            "type": "string"
+          },
+          "calculation": {
+            "$ref": "#/components/schemas/CalculationSchema"
+          },
+          "report_type": {
+            "title": "Report Type",
+            "type": "string"
+          },
+          "public_report_code": {
+            "title": "Public Report Code",
+            "type": "string"
+          },
+          "public_share_code": {
+            "title": "Public Share Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "urllist_id",
+          "urllist_name",
+          "average_internet_nl_score",
+          "total_urls",
+          "is_publicly_shared",
+          "at_when",
+          "calculation",
+          "report_type",
+          "public_report_code",
+          "public_share_code"
+        ],
+        "title": "ReportSchema",
+        "type": "object"
+      },
+      "StatisticsCalculationSchema": {
+        "properties": {
+          "high": {
+            "title": "High",
+            "type": "integer"
+          },
+          "medium": {
+            "title": "Medium",
+            "type": "integer"
+          },
+          "low": {
+            "title": "Low",
+            "type": "integer"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "integer"
+          },
+          "not_ok": {
+            "title": "Not Ok",
+            "type": "integer"
+          },
+          "not_testable": {
+            "title": "Not Testable",
+            "type": "integer"
+          },
+          "not_applicable": {
+            "title": "Not Applicable",
+            "type": "integer"
+          },
+          "error_in_test": {
+            "title": "Error In Test",
+            "type": "integer"
+          },
+          "pct_high": {
+            "title": "Pct High",
+            "type": "number"
+          },
+          "pct_medium": {
+            "title": "Pct Medium",
+            "type": "number"
+          },
+          "pct_low": {
+            "title": "Pct Low",
+            "type": "number"
+          },
+          "pct_not_applicable": {
+            "title": "Pct Not Applicable",
+            "type": "number"
+          },
+          "pct_not_testable": {
+            "title": "Pct Not Testable",
+            "type": "number"
+          },
+          "pct_error_in_test": {
+            "title": "Pct Error In Test",
+            "type": "number"
+          },
+          "pct_ok": {
+            "title": "Pct Ok",
+            "type": "number"
+          },
+          "pct_not_ok": {
+            "title": "Pct Not Ok",
+            "type": "number"
+          }
+        },
+        "required": [
+          "high",
+          "medium",
+          "low",
+          "ok",
+          "not_ok",
+          "not_testable",
+          "not_applicable",
+          "error_in_test",
+          "pct_high",
+          "pct_medium",
+          "pct_low",
+          "pct_not_applicable",
+          "pct_not_testable",
+          "pct_error_in_test",
+          "pct_ok",
+          "pct_not_ok"
+        ],
+        "title": "StatisticsCalculationSchema",
+        "type": "object"
+      },
+      "UrlCalculationItemSchema": {
+        "properties": {
+          "url": {
+            "title": "Url",
+            "type": "string"
+          },
+          "ratings": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/RatingCalculationSchema"
+            },
+            "title": "Ratings",
+            "type": "object"
+          },
+          "endpoints": {
+            "items": {
+              "$ref": "#/components/schemas/EndpointCalculationSchema"
+            },
+            "title": "Endpoints",
+            "type": "array"
+          },
+          "total_issues": {
+            "title": "Total Issues",
+            "type": "integer"
+          },
+          "high": {
+            "title": "High",
+            "type": "integer"
+          },
+          "medium": {
+            "title": "Medium",
+            "type": "integer"
+          },
+          "low": {
+            "title": "Low",
+            "type": "integer"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "integer"
+          },
+          "endpoint_ok": {
+            "title": "Endpoint Ok",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "url",
+          "ratings",
+          "endpoints",
+          "total_issues",
+          "high",
+          "medium",
+          "low",
+          "ok",
+          "endpoint_ok"
+        ],
+        "title": "UrlCalculationItemSchema",
+        "type": "object"
+      },
+      "ReportVsListDifferenceSchema": {
+        "properties": {
+          "number_of_urls_in_urllist": {
+            "title": "Number Of Urls In Urllist",
+            "type": "integer"
+          },
+          "number_of_urls_in_report": {
+            "title": "Number Of Urls In Report",
+            "type": "integer"
+          },
+          "in_urllist_but_not_in_report": {
+            "title": "In Urllist But Not In Report",
+            "type": "string"
+          },
+          "in_report_but_not_in_urllist": {
+            "title": "In Report But Not In Urllist",
+            "type": "string"
+          },
+          "both_are_equal": {
+            "title": "Both Are Equal",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "number_of_urls_in_urllist",
+          "number_of_urls_in_report",
+          "in_urllist_but_not_in_report",
+          "in_report_but_not_in_urllist",
+          "both_are_equal"
+        ],
+        "title": "ReportVsListDifferenceSchema",
+        "type": "object"
+      },
+      "ImprovementRegressionSummarySchema": {
+        "properties": {
+          "previous_report_available": {
+            "title": "Previous Report Available",
+            "type": "boolean"
+          },
+          "previous_report_average_internet_nl_score": {
+            "title": "Previous Report Average Internet Nl Score",
+            "type": "number"
+          },
+          "current_report_average_internet_nl_score": {
+            "title": "Current Report Average Internet Nl Score",
+            "type": "number"
+          },
+          "compared_report_id": {
+            "title": "Compared Report Id",
+            "type": "integer"
+          },
+          "comparison_is_empty": {
+            "title": "Comparison Is Empty",
+            "type": "boolean"
+          },
+          "improvement": {
+            "title": "Improvement",
+            "type": "integer"
+          },
+          "regression": {
+            "title": "Regression",
+            "type": "integer"
+          },
+          "neutral": {
+            "title": "Neutral",
+            "type": "integer"
+          },
+          "comparison_report_available": {
+            "title": "Comparison Report Available",
+            "type": "boolean"
+          },
+          "comparison_report_contains_improvement": {
+            "title": "Comparison Report Contains Improvement",
+            "type": "boolean"
+          },
+          "comparison_report_contains_regression": {
+            "title": "Comparison Report Contains Regression",
+            "type": "boolean"
+          },
+          "days_between_current_and_previous_report": {
+            "title": "Days Between Current And Previous Report",
+            "type": "integer"
+          },
+          "comparison_table_improvement": {
+            "items": {},
+            "title": "Comparison Table Improvement",
+            "type": "array"
+          },
+          "comparison_table_regression": {
+            "items": {},
+            "title": "Comparison Table Regression",
+            "type": "array"
+          },
+          "domains_exclusive_in_current_report": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Domains Exclusive In Current Report",
+            "type": "array"
+          },
+          "domains_exclusive_in_other_report": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Domains Exclusive In Other Report",
+            "type": "array"
+          }
+        },
+        "required": [
+          "previous_report_available",
+          "previous_report_average_internet_nl_score",
+          "current_report_average_internet_nl_score",
+          "compared_report_id",
+          "comparison_is_empty",
+          "improvement",
+          "regression",
+          "neutral",
+          "comparison_report_available",
+          "comparison_report_contains_improvement",
+          "comparison_report_contains_regression",
+          "days_between_current_and_previous_report",
+          "comparison_table_improvement",
+          "comparison_table_regression",
+          "domains_exclusive_in_current_report",
+          "domains_exclusive_in_other_report"
+        ],
+        "title": "ImprovementRegressionSummarySchema",
+        "type": "object"
+      },
+      "ShareCodeSchema": {
+        "properties": {
+          "public_share_code": {
+            "title": "Public Share Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "public_share_code"
+        ],
+        "title": "ShareCodeSchema",
+        "type": "object"
+      },
+      "SaveAdHocTaggedReportInputSchema": {
+        "properties": {
+          "tags": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "custom_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Date"
+          },
+          "custom_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Time"
+          }
+        },
+        "title": "SaveAdHocTaggedReportInputSchema",
+        "type": "object"
+      },
+      "PublicReportItemSchema": {
+        "properties": {
+          "at_when": {
+            "title": "At When",
+            "type": "string"
+          },
+          "average_internet_nl_score": {
+            "title": "Average Internet Nl Score",
+            "type": "number"
+          },
+          "report_type": {
+            "title": "Report Type",
+            "type": "string"
+          },
+          "urllist_name": {
+            "title": "Urllist Name",
+            "type": "string"
+          },
+          "total_urls": {
+            "title": "Total Urls",
+            "type": "integer"
+          },
+          "public_report_code": {
+            "title": "Public Report Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "at_when",
+          "average_internet_nl_score",
+          "report_type",
+          "urllist_name",
+          "total_urls",
+          "public_report_code"
+        ],
+        "title": "PublicReportItemSchema",
+        "type": "object"
+      },
+      "SharedReportAuthRequiredSchema": {
+        "properties": {
+          "authentication_required": {
+            "default": true,
+            "title": "Authentication Required",
+            "type": "boolean"
+          },
+          "public_report_code": {
+            "title": "Public Report Code",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "urllist_name": {
+            "title": "Urllist Name",
+            "type": "string"
+          },
+          "at_when": {
+            "title": "At When",
+            "type": "string"
+          }
+        },
+        "required": [
+          "public_report_code",
+          "id",
+          "urllist_name",
+          "at_when"
+        ],
+        "title": "SharedReportAuthRequiredSchema",
+        "type": "object"
+      },
+      "SharedReportInputSchema": {
+        "properties": {
+          "share_code": {
+            "title": "Share Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "share_code"
+        ],
+        "title": "SharedReportInputSchema",
+        "type": "object"
+      },
+      "PubliclySharedListResponseSchema": {
+        "properties": {
+          "list": {
+            "$ref": "#/components/schemas/SharedListSchema"
+          },
+          "account": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Account",
+            "type": "object"
+          },
+          "number_of_reports": {
+            "title": "Number Of Reports",
+            "type": "integer"
+          },
+          "reports": {
+            "items": {
+              "$ref": "#/components/schemas/PubliclySharedReportSchema"
+            },
+            "title": "Reports",
+            "type": "array"
+          }
+        },
+        "required": [
+          "list",
+          "account",
+          "number_of_reports",
+          "reports"
+        ],
+        "title": "PubliclySharedListResponseSchema",
+        "type": "object"
+      },
+      "PubliclySharedReportSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "at_when": {
+            "title": "At When",
+            "type": "string"
+          },
+          "report_type": {
+            "title": "Report Type",
+            "type": "string"
+          },
+          "has_public_share_code": {
+            "title": "Has Public Share Code",
+            "type": "boolean"
+          },
+          "average_internet_nl_score": {
+            "title": "Average Internet Nl Score",
+            "type": "number"
+          },
+          "public_report_code": {
+            "title": "Public Report Code",
+            "type": "string"
+          },
+          "total_urls": {
+            "title": "Total Urls",
+            "type": "integer"
+          },
+          "urllist__name": {
+            "title": "Urllist  Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "at_when",
+          "report_type",
+          "has_public_share_code",
+          "average_internet_nl_score",
+          "public_report_code",
+          "total_urls",
+          "urllist__name"
+        ],
+        "title": "PubliclySharedReportSchema",
+        "type": "object"
+      },
+      "SharedListSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "scan_type": {
+            "title": "Scan Type",
+            "type": "string"
+          },
+          "automatically_share_new_reports": {
+            "title": "Automatically Share New Reports",
+            "type": "boolean"
+          },
+          "automated_scan_frequency": {
+            "title": "Automated Scan Frequency",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "scan_type",
+          "automatically_share_new_reports",
+          "automated_scan_frequency"
+        ],
+        "title": "SharedListSchema",
+        "type": "object"
+      },
+      "LatestReportCodeSchema": {
+        "properties": {
+          "latest_report_public_report_code": {
+            "title": "Latest Report Public Report Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "latest_report_public_report_code"
+        ],
+        "title": "LatestReportCodeSchema",
+        "type": "object"
+      },
+      "InstantAccountAndUserCreationSchema": {
+        "properties": {
+          "new_username": {
+            "default": "",
+            "title": "New Username",
+            "type": "string"
+          },
+          "new_password": {
+            "default": "",
+            "title": "New Password",
+            "type": "string"
+          },
+          "use_existing_account_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Use Existing Account Id"
+          },
+          "new_account_name": {
+            "default": "",
+            "title": "New Account Name",
+            "type": "string"
+          },
+          "new_account_internet_nl_api_username": {
+            "default": "",
+            "title": "New Account Internet Nl Api Username",
+            "type": "string"
+          },
+          "new_account_internet_nl_api_password": {
+            "default": "",
+            "title": "New Account Internet Nl Api Password",
+            "type": "string"
+          }
+        },
+        "title": "InstantAccountAndUserCreationSchema",
+        "type": "object"
+      },
+      "CredentialCheckResponseSchema": {
+        "properties": {
+          "can_connect_to_internet_nl_api": {
+            "default": false,
+            "title": "Can Connect To Internet Nl Api",
+            "type": "boolean"
+          }
+        },
+        "title": "CredentialCheckResponseSchema",
+        "type": "object"
+      },
+      "CredentialCheckSchema": {
+        "properties": {
+          "new_account_internet_nl_api_username": {
+            "default": "",
+            "title": "New Account Internet Nl Api Username",
+            "type": "string"
+          },
+          "new_account_internet_nl_api_password": {
+            "default": "",
+            "title": "New Account Internet Nl Api Password",
+            "type": "string"
+          }
+        },
+        "title": "CredentialCheckSchema",
+        "type": "object"
+      },
+      "UsageMetricsSchema": {
+        "properties": {
+          "users": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Users",
+            "type": "object"
+          },
+          "scans": {
+            "additionalProperties": true,
+            "title": "Scans",
+            "type": "object"
+          },
+          "lists": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Lists",
+            "type": "object"
+          },
+          "domains": {
+            "additionalProperties": true,
+            "title": "Domains",
+            "type": "object"
+          },
+          "metrics": {
+            "additionalProperties": true,
+            "title": "Metrics",
+            "type": "object"
+          },
+          "actions": {
+            "additionalProperties": true,
+            "title": "Actions",
+            "type": "object"
+          }
+        },
+        "required": [
+          "users",
+          "scans",
+          "lists",
+          "domains",
+          "metrics",
+          "actions"
+        ],
+        "title": "UsageMetricsSchema",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "SessionAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "sessionid"
+      },
+      "SessionAuthSuperUser": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "sessionid"
+      }
+    },
+    "headers": {
+      "API-Version": {
+        "description": "Semantic version of the Internet.nl Dashboard API",
+        "schema": {
+          "type": "string",
+          "example": "1.0.0"
+        }
+      }
+    }
+  },
+  "servers": []
+}

@@ -37,27 +37,33 @@
                     </b-tr>
                 </b-table-simple>
             </content-block>
-            <stats_yearview :data="s.scans" :total="s.scans.total" title="Scans"></stats_yearview>
-            <stats_yearview :data="s.domains" :total="s.domains.total" title="Domains"></stats_yearview>
-            <stats_yearview :data="s.actions['logged in']" :total="s.actions['logged in'].total"
-                            title="Log-ins"></stats_yearview>
-            <stats_yearview :data="s.actions['viewed report']" :total="s.actions['viewed report'].total"
-                            title="Reports viewed"></stats_yearview>
-            <stats_yearview :data="s.actions['created list']" :total="s.actions['created list'].total"
-                            title="Lists created"></stats_yearview>
-            <stats_yearview :data="s.actions['uploaded spreadsheet']" :total="s.actions['uploaded spreadsheet'].total"
-                            title="Spreadsheets uploaded"></stats_yearview>
+            <content-block v-for="section in chartSections" :key="section.key">
+                <h2 class="h4 mb-3">{{ section.title }}</h2>
+                <stats_yearview
+                    :data="section.data"
+                    :total="section.data.total"
+                    :title="`${section.title} total`"
+                    :inline="true"
+                />
+                <ActionTrendChart
+                    :labels="sectionTrends[section.key].labels"
+                    :values="sectionTrends[section.key].values"
+                    :title="`${section.title} over time`"
+                />
+            </content-block>
         </template>
     </div>
 </template>
 <script>
 
 import stats_yearview from './usage_yearview.vue'
+import ActionTrendChart from './ActionTrendChart.vue'
 import http from "@/httpclient";
 
 export default {
     components: {
-        stats_yearview
+        stats_yearview,
+        ActionTrendChart
     },
     data: function () {
         return {
@@ -65,10 +71,88 @@ export default {
             loading: false
         }
     },
+    computed: {
+        chartSections: function () {
+            if (!this.s) {
+                return []
+            }
+
+            return [
+                {key: 'scans', title: 'Scans', data: this.s.scans},
+                {key: 'domains', title: 'Domains', data: this.s.domains},
+                {key: 'logged-in', title: 'Log-ins', data: this.s.actions?.['logged in']},
+                {key: 'viewed-report', title: 'Reports viewed', data: this.s.actions?.['viewed report']},
+                {key: 'created-list', title: 'Lists created', data: this.s.actions?.['created list']},
+                {key: 'uploaded-spreadsheet', title: 'Spreadsheets uploaded', data: this.s.actions?.['uploaded spreadsheet']}
+            ].filter((section) => Boolean(section.data))
+        },
+        sectionTrends: function () {
+            const trends = {}
+            this.chartSections.forEach((section) => {
+                trends[section.key] = this.buildMonthlyTrend(section.data)
+            })
+            return trends
+        }
+    },
     mounted: function () {
         this.load()
     },
     methods: {
+        buildMonthlyTrend: function (rawData) {
+            const labels = []
+            const values = []
+            if (!rawData) {
+                return {labels, values}
+            }
+
+            const knownPoints = []
+            Object.entries(rawData.per_month || {}).forEach(([yearKey, months]) => {
+                const year = Number.parseInt(String(yearKey), 10)
+                if (!Number.isInteger(year)) {
+                    return
+                }
+
+                Object.keys(months || {}).forEach((monthKey) => {
+                    const month = Number.parseInt(String(monthKey), 10)
+                    if (Number.isInteger(month) && month >= 1 && month <= 12) {
+                        knownPoints.push({year, month})
+                    }
+                })
+            })
+
+            knownPoints.sort((a, b) => (a.year - b.year) || (a.month - b.month))
+
+            let start = knownPoints[0]
+            let end = knownPoints[knownPoints.length - 1]
+            if (!start || !end) {
+                const years = Object.keys(rawData.per_year || {})
+                    .map((yearKey) => Number.parseInt(String(yearKey), 10))
+                    .filter((year) => Number.isInteger(year))
+                    .sort((a, b) => a - b)
+                if (!years.length) {
+                    return {labels, values}
+                }
+                start = {year: years[0], month: 1}
+                end = {year: years[years.length - 1], month: 12}
+            }
+
+            let cursorYear = start.year
+            let cursorMonth = start.month
+            while (cursorYear < end.year || (cursorYear === end.year && cursorMonth <= end.month)) {
+                const yearKey = String(cursorYear)
+                const amount = Number(rawData?.per_month?.[yearKey]?.[cursorMonth] ?? 0)
+                labels.push(`${yearKey}-${String(cursorMonth).padStart(2, '0')}`)
+                values.push(Number.isFinite(amount) ? amount : 0)
+
+                cursorMonth += 1
+                if (cursorMonth > 12) {
+                    cursorMonth = 1
+                    cursorYear += 1
+                }
+            }
+
+            return {labels, values}
+        },
         load: function () {
             this.loading = true;
             http.get(`/api/v1/admin/usage-statistics`).then(data => {

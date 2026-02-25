@@ -7,12 +7,13 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import VueMatomo from 'vue-matomo'
 import matomoConfig from './matomoConfig.js'
 import i18n from './i18n'
-import router from './router.js'
+import router from './router/router.js'
 import {createBootstrap} from 'bootstrap-vue-next'
 import ContentBlock from '@/components/ContentBlock.vue'
 import loading from '@/components/loading.vue'
 import server_response from '@/components/ServerResponse.vue'
 import {dashboardStore} from '@/dashboardStore'
+import {allauthStore} from '@/allauthStore'
 
 const app = createApp(App)
 app.config.globalProperties.$baseUrl = import.meta.env.VITE_VUE_APP_DJANGO_PATH;
@@ -86,33 +87,74 @@ app.mixin(
   }
 )
 
-http.get('/api/v1/session/status').then(data => {
-  // making sure the page can be accessed is a pretty complex pattern in pinia and such...
-  // this makes the app slightly slower as a get-request is needed. It does prevent some flashes while getting that data
-  let store = dashboardStore()
-  store.set_user(data.data);
+const store = dashboardStore()
+const authStore = allauthStore()
+
+Promise.allSettled([
+  http.get('/api/v1/session/status'),
+  authStore.bootstrap()
+]).then(([sessionResult, allauthResult]) => {
+  if (sessionResult.status === 'fulfilled') {
+    store.set_user(sessionResult.value.data)
+  } else {
+    console.error('Unable to load dashboard session status.', sessionResult.reason)
+    store.set_user({
+      is_authenticated: false,
+      is_superuser: false,
+      account_name: '',
+      second_factor_enabled: false,
+      account_id: null
+    })
+  }
+
+  if (allauthResult.status === 'rejected') {
+    console.error('Unable to bootstrap allauth configuration/session.', allauthResult.reason)
+  }
 
   router.beforeEach((to, from, next) => {
-    // redirect old style links to the cleaner links, from old e-mails and such...
-    if (to.fullPath.startsWith("/#")) {
-      window.location = to.fullPath.substring(2);
+    if (to.fullPath.startsWith('/#')) {
+      window.location = to.fullPath.substring(2)
+      return
     }
 
-    // dynamically set the page title based on the used route
-    const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+    const isAllauthRoute = to.matched.some((route) => route.meta?.allauth)
+    if (isAllauthRoute) {
+      const requiresAuth = to.matched.some((route) => route.meta?.requiresAuth)
+      const requiresAnon = to.matched.some((route) => route.meta?.requiresAnon)
+      const requiresSignupOpen = to.matched.some((route) => route.meta?.requiresSignupOpen)
 
-    // support authenticated and non-authenticated routes
-    if (nearestWithTitle.meta.access === 'public' || store.user.is_authenticated) {
+      if (requiresAuth && !store.user.is_authenticated) {
+        const nextParam = encodeURIComponent(to.fullPath)
+        next(`/account/login?next=${nextParam}`)
+        return
+      }
+
+      if (requiresAnon && store.user.is_authenticated) {
+        next('/domains')
+        return
+      }
+
+      if (requiresSignupOpen && authStore.config?.data?.account?.is_open_for_signup === false) {
+        next('/account/login')
+        return
+      }
+
       next()
+      return
+    }
+
+    const nearestWithAccess = to.matched.slice().reverse().find((route) => route.meta && route.meta.access)
+    if (!nearestWithAccess || nearestWithAccess.meta.access === 'public' || store.user.is_authenticated) {
+      next()
+      return
     }
 
     next({name: 'login'})
-  });
+  })
 
   app.use(router)
   app.use(i18n)
-  matomoConfig.router = router  // Enables automatically registering pageviews on the router
+  matomoConfig.router = router
 
   app.mount('#app')
 })
-

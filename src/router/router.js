@@ -1,4 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import { accountRoutes } from './account'
 
 const Account = () => import('@/components/account/Account.vue');
 const Demo = () => import('@/components/tour/Demo.vue');
@@ -10,13 +11,14 @@ const SpreadsheetUpload = () => import('@/components/domains/SpreadsheetUpload.v
 const SwitchAccount = () => import('@/components/admin/SwitchAccount.vue');
 const InstantAddAccount = () => import('@/components/admin/InstantAddAccount.vue');
 const Usage = () => import('@/components/admin/usage.vue');
+const ActionStatistics = () => import('@/components/admin/ActionStatistics.vue');
+const UserStatistics = () => import('@/components/admin/UserStatistics.vue');
 const SignupPage = () => import('@/components/signup/SignupPage.vue');
 const Unsubscribe = () => import('@/components/mail/Unsubscribe.vue');
 
 const SharedReportViaNumbersInUrl = () => import('@/components/reports/SharedReportViaNumbersInUrl.vue');
 const SharedReportLatest = () => import('@/components/reports/SharedReportLatest.vue');
 const PublicReportsPerAccount = () => import('@/components/home/PublicReportsPerAccount.vue');
-const Login = () => import('@/components/Login.vue')
 const Beta = () => import('@/components/beta.vue');
 
 
@@ -30,7 +32,7 @@ const publicRoutes = [
   },
   {
     path: '/login',
-    component: Login,
+    redirect: '/account/login',
     name: "login",
     meta: {title: 'login', access: 'public'}
   },
@@ -123,14 +125,33 @@ const privateRoutes = [
   },
 
   {
-    path: '/account',
+    path: '/profile/authentication/:auth_path(.*)*',
+    component: Account,
+    meta: {title: 'account', access: 'private'}
+  },
+  {
+    path: '/profile/:active_tab?',
     component: Account,
     meta: {title: 'account', access: 'private'},
-    alias: ["/profile", '/account/:active_tab']
+    alias: ["/profile"]
   },
   {
     path: '/usage',
+    redirect: '/usage-statistics'
+  },
+  {
+    path: '/usage-statistics',
     component: Usage,
+    meta: {title: 'usage_overview', access: 'private'}
+  },
+  {
+    path: '/action-statistics',
+    component: ActionStatistics,
+    meta: {title: 'usage_overview', access: 'private'}
+  },
+  {
+    path: '/user-statistics',
+    component: UserStatistics,
     meta: {title: 'usage_overview', access: 'private'}
   },
   {
@@ -143,7 +164,7 @@ const privateRoutes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...publicRoutes, ...privateRoutes]
+  routes: [...publicRoutes, ...accountRoutes, ...privateRoutes]
 })
 
 export default router

@@ -96,6 +96,10 @@ export default {
     this.$router.afterEach((to, from, next) => {
       // dynamically set the page title based on the used route
       const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+      if (!nearestWithTitle) {
+        document.title = appName;
+        return;
+      }
       document.title = `${this.$i18n.t('app.menu.' + nearestWithTitle.meta.title)} / ${appName}`;
     });
 
