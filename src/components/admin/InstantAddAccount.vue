@@ -19,7 +19,7 @@
       <h3>{{ $t("admin.instant_add_account.an_existing_account") }}</h3>
       <br>{{ $t("admin.instant_add_account.select_an_existing_account") }}
       <v-select :options="existing_accounts" :reduce="existing_account => existing_account.id"
-                v-model="form.use_existing_account_id"></v-select>
+                v-model="form.use_existing_account_id" :disabled="form.new_account_name.length > 0"></v-select>
       <br>
       <h3>{{ $t("admin.instant_add_account.a_new_account") }}</h3>
       {{ $t("admin.instant_add_account.enter_new_account_details") }}<br/><br/>
@@ -63,6 +63,11 @@
                     :placeholder='$t("admin.instant_add_account.username")'></b-form-input>
       <br>
 
+      {{ $t("admin.instant_add_account.new_email_address") }}:<br>
+      <b-form-input id="new_email_address" type="email" maxlength="254" v-model="form.new_email_address"
+                    :placeholder='$t("admin.instant_add_account.new_email_address")'></b-form-input>
+      <br>
+
       {{ $t("admin.instant_add_account.password") }}:<br>
       <b-form-input id="password" type="password" maxlength="120" v-model="form.new_password"
                     :placeholder='$t("admin.instant_add_account.password")'></b-form-input>
@@ -85,6 +90,7 @@ export default {
     return {
       form: {
         new_username: "",
+        new_email_address: "",
         new_password: "",
         use_existing_account_id: null,
 
