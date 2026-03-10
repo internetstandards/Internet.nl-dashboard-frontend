@@ -465,7 +465,7 @@
 			"email": "E-mail",
 			"remember_password": "Pamatujete si své heslo?",
 			"submit": "Obnovení",
-			"success": "Byly zaslány pokyny k obnovení hesla.",
+			"success": "Pokyny k obnovení hesla byly zaslány, pokud účet existuje.",
 			"title": "Obnovení hesla"
 		},
 		"provider_buttons": {

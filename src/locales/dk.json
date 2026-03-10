@@ -465,7 +465,7 @@
 			"email": "E-mail",
 			"remember_password": "Kan du huske din adgangskode?",
 			"submit": "Nulstilling",
-			"success": "Instruktioner til nulstilling af adgangskode blev sendt.",
+			"success": "Instruktioner til nulstilling af adgangskode blev sendt, hvis din konto findes.",
 			"title": "Nulstil adgangskode"
 		},
 		"provider_buttons": {

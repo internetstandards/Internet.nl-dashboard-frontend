@@ -465,7 +465,7 @@
 			"email": "Email",
 			"remember_password": "Remember your password?",
 			"submit": "Reset",
-			"success": "Password reset instructions were sent.",
+			"success": "Password reset instructions were sent if your account exists.",
 			"title": "Reset Password"
 		},
 		"provider_buttons": {
