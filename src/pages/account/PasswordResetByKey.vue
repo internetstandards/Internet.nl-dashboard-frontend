@@ -1,7 +1,7 @@
 <template>
   <section>
-    <h2>Reset Password</h2>
-    <p>Validating reset link...</p>
+    <h2>{{ $t('authentication.password_reset_by_key.title') }}</h2>
+    <p>{{ $t('authentication.password_reset_by_key.validating') }}</p>
   </section>
 </template>
 

@@ -211,6 +211,360 @@
 			"gotomainmenu": "Aller au menu principal"
 		}
 	},
+	"authentication": {
+		"authenticate_recovery_codes": {
+			"code": "Code de récupération",
+			"intro": "Saisissez l'un de vos codes de récupération.",
+			"submit": "S'identifier",
+			"title": "Authentification à deux facteurs"
+		},
+		"authenticate_totp": {
+			"code": "Code",
+			"intro": "Votre compte nécessite 2FA. Saisissez votre code d'authentification.",
+			"submit": "S'identifier",
+			"title": "Authentification à deux facteurs"
+		},
+		"authenticate_webauthn": {
+			"browser_not_supported": "Ce navigateur ne prend pas en charge l'authentification par clé.",
+			"failed": "Impossible de terminer l'authentification par clé.",
+			"intro": "Utilisez votre clé de sécurité.",
+			"submit": "Utiliser la clé de sécurité",
+			"title": "Authentification à deux facteurs",
+			"unavailable": "L'authentification par clé n'est actuellement pas disponible."
+		},
+		"email": {
+			"add": "Ajouter",
+			"add_title": "Ajouter un courriel",
+			"email_label": "Courriel",
+			"no": "Non",
+			"remove": "SUPPRIMER",
+			"resend_verification": "Vérification du renvoi",
+			"table": {
+				"actions": "Actions",
+				"email": "Courriel",
+				"primary": "Primaire",
+				"verified": "Vérifié"
+			},
+			"title": "Adresses électroniques",
+			"verification_failed": "Impossible d'envoyer un courriel de vérification.",
+			"verification_not_pending": "La vérification du courrier électronique n'est pas en cours pour ce compte.",
+			"verification_recently_sent": "Un courriel de vérification a déjà été envoyé récemment. Veuillez patienter avant de réessayer.",
+			"verification_sent": "Envoi d'un courriel de vérification.",
+			"yes": "Oui"
+		},
+		"error": {
+			"account_inactive": "Ce compte est actuellement inactif.",
+			"account_not_found": "Compte inconnu.",
+			"add_email_blocked": "Il n'est pas possible d'ajouter une adresse électronique à un compte protégé par une authentification à deux facteurs.",
+			"cannot_delete_authenticator": "Il n'est pas possible de désactiver l'authentification à deux facteurs.",
+			"cannot_generate_recovery_codes": "Il n'est pas possible de générer des codes de récupération si l'authentification à deux facteurs n'est pas activée.",
+			"cannot_remove_primary_email": "Vous ne pouvez pas supprimer votre adresse électronique principale.",
+			"client_id_required": "`client_id` requis.",
+			"connected_other": "Le compte tiers est déjà connecté à un autre compte.",
+			"disconnect_last": "Vous ne pouvez pas déconnecter votre dernier compte tiers restant.",
+			"duplicate_email": "Cette adresse électronique est déjà associée à ce compte.",
+			"email_password_mismatch": "L'adresse électronique et/ou le mot de passe que vous avez indiqués ne sont pas corrects.",
+			"email_taken": "Un utilisateur est déjà enregistré avec cette adresse électronique.",
+			"enter_current_password": "Veuillez saisir votre mot de passe actuel.",
+			"incorrect_code": "Code incorrect.",
+			"incorrect_password": "Mot de passe incorrect.",
+			"invalid": "Le jeton n'est pas valide.",
+			"invalid_login": "Connexion non valide.",
+			"invalid_or_expired_key": "Clé invalide ou expirée.",
+			"invalid_password_reset": "Le jeton de réinitialisation du mot de passe n'était pas valide.",
+			"invalid_phone": "Saisissez un numéro de téléphone avec l'indicatif du pays (par exemple, +1 pour les États-Unis).",
+			"invalid_token": "Jeton non valide.",
+			"invalid_url": "URL non valide.",
+			"max_email_addresses": "Il n'est pas possible d'ajouter plus d'adresses électroniques que le nombre autorisé.",
+			"no_password": "Aucun mot de passe n'a été défini pour votre compte.",
+			"no_verified_email": "Votre compte n'a pas d'adresse électronique vérifiée.",
+			"password_entirely_numeric": "Ce mot de passe est entièrement numérique.",
+			"password_too_common": "Ce mot de passe est trop courant.",
+			"password_too_short": "Ce mot de passe est trop court. Il doit contenir au moins 16 caractères.",
+			"password_too_similar": "Ce mot de passe est trop similaire à vos autres informations personnelles.",
+			"phone_password_mismatch": "Le numéro de téléphone et/ou le mot de passe que vous avez indiqué ne sont pas corrects.",
+			"phone_taken": "Un utilisateur est déjà enregistré avec ce numéro de téléphone.",
+			"rate_limited": "Soyez patient, vous envoyez trop de demandes.",
+			"required": "Ce champ est obligatoire.",
+			"same_as_current": "La nouvelle valeur doit être différente de la valeur actuelle.",
+			"select_only_one": "Veuillez n'en sélectionner qu'un.",
+			"token_authentication_not_supported": "Le fournisseur ne prend pas en charge l'authentification par jeton.",
+			"token_invalid": "Le jeton de réinitialisation du mot de passe n'était pas valide.",
+			"token_required": "`id_token` et/ou `access_token` requis.",
+			"too_many_login_attempts": "Trop de tentatives de connexion échouées. Réessayez plus tard.",
+			"unknown_email": "Adresse électronique inconnue.",
+			"unknown_phone": "Le numéro de téléphone n'est attribué à aucun compte utilisateur.",
+			"unknown_provider": "Fournisseur inconnu.",
+			"unverified_email": "Vous ne pouvez pas activer l'authentification à deux facteurs tant que vous n'avez pas vérifié votre adresse électronique.",
+			"unverified_primary_email": "Votre adresse électronique principale doit être vérifiée.",
+			"username_blacklisted": "Le nom d'utilisateur ne peut pas être utilisé. Veuillez utiliser un autre nom d'utilisateur.",
+			"username_password_mismatch": "Le nom d'utilisateur et/ou le mot de passe que vous avez spécifié ne sont pas corrects.",
+			"username_taken": "Un utilisateur avec ce nom d'utilisateur existe déjà."
+		},
+		"home": {
+			"logged_out": "Vous n'êtes pas connecté.",
+			"signed_in_as": "Connecté en tant que",
+			"title": "Sécurité du compte"
+		},
+		"layout": {
+			"loading_settings": "Chargement des paramètres d'authentification..."
+		},
+		"login": {
+			"browser_not_supported": "Ce navigateur ne prend pas en charge le login passkey.",
+			"create_one": "Créer un",
+			"forgot_password": "Mot de passe oublié",
+			"login_method": "Méthode de connexion",
+			"methods": {
+				"email": "Courriel",
+				"phone": "Téléphone",
+				"username": "Nom d'utilisateur"
+			},
+			"no_account_yet": "Pas encore de compte ?",
+			"passkey_failed": "Échec de la connexion Passkey.",
+			"passkey_unavailable": "Le login Passkey n'est actuellement pas disponible pour cette session.",
+			"password": "Mot de passe",
+			"send_login_code": "Envoyer le code de connexion",
+			"sign_in_with_passkey": "S'identifier avec un mot de passe",
+			"submit": "Se connecter",
+			"title": "Se connecter"
+		},
+		"login_code_confirm": {
+			"back_to_login": "Retour à la page de connexion",
+			"code": "Code",
+			"intro": "Saisissez le code envoyé à votre adresse électronique.",
+			"submit": "Confirmer",
+			"title": "Confirmer le code de connexion"
+		},
+		"login_code_request": {
+			"back_to_login": "Retour à la page de connexion",
+			"email": "Courriel",
+			"intro": "Saisissez votre adresse électronique et nous vous enverrons un code de connexion.",
+			"submit": "Envoyer le code",
+			"title": "Demander le code de connexion"
+		},
+		"logout": {
+			"intro": "Êtes-vous sûr de vouloir vous déconnecter ?",
+			"submit": "Déconnexion",
+			"title": "Déconnexion"
+		},
+		"mfa_activate_totp": {
+			"already_active": "TOTP est déjà actif.",
+			"back": "Retour à 2FA",
+			"code": "Code de l'authentificateur",
+			"scan_qr": "Scannez ce code QR avec votre application d'authentification :",
+			"secret": "Secret de l'authentificateur",
+			"secret_help": "Conservez ce secret pour reconfigurer votre authentificateur ultérieurement.",
+			"submit": "Activer",
+			"title": "Activer TOTP"
+		},
+		"mfa_deactivate_totp": {
+			"intro": "Vous êtes sur le point de désactiver l'authentification basée sur l'application Authenticator.",
+			"submit": "Désactiver",
+			"title": "Désactiver l'application Authenticator"
+		},
+		"mfa_overview": {
+			"activate": "Activer",
+			"add": "Ajouter",
+			"authenticator_active": "L'application Authenticator est active.",
+			"authenticator_app": "Application Authenticator",
+			"authenticator_inactive": "L'application Authenticator n'est pas active.",
+			"deactivate": "Désactiver",
+			"generate": "Générer",
+			"manage": "Gérer",
+			"recovery_codes": "Codes de récupération",
+			"recovery_codes_available": "{unused} de {total} codes disponibles.",
+			"recovery_codes_none": "Aucun code de récupération n'est configuré.",
+			"security_keys": "Clés de sécurité",
+			"security_keys_configured": "{count} clés de sécurité configurées.",
+			"security_keys_none": "Aucune clé de sécurité n'est configurée.",
+			"title": "Authentification à deux facteurs",
+			"view": "Voir"
+		},
+		"mfa_recovery_codes": {
+			"alert": "Lorsque vous utilisez des clés de sécurité, vous pouvez toujours vous connecter avec votre mot de passe, mais seulement si vous fournissez également un code de récupération.",
+			"available": "{unused} de {total} codes de récupération disponibles.",
+			"back": "Retour à 2FA",
+			"intro": "Les codes de récupération vous permettent de vous connecter lorsque votre application d'authentification ou votre clé de passe n'est pas disponible, par exemple lorsque vous utilisez un autre appareil ou lorsque vous avez perdu l'accès à votre appareil habituel.",
+			"none": "Aucun code de récupération n'est configuré.",
+			"title": "Codes de récupération",
+			"warning": "Conservez ces codes en lieu sûr. Chaque code ne peut être utilisé qu'une seule fois."
+		},
+		"mfa_recovery_codes_generate": {
+			"back": "Retour à 2FA",
+			"intro": "Vous êtes sur le point de générer une nouvelle série de codes de récupération.",
+			"invalidates_current": "Cela invalide vos codes de récupération actuels.",
+			"submit": "Générer",
+			"title": "Générer des codes de récupération"
+		},
+		"mfa_trust": {
+			"dont_trust": "Ne pas faire confiance",
+			"intro": "Si vous avez confiance, ce navigateur ne vous demandera pas de deuxième facteur lors de votre prochaine connexion.",
+			"title": "Faire confiance à ce navigateur ?",
+			"trust": "Confiance"
+		},
+		"mfa_webauthn_add": {
+			"back": "Retour à 2FA",
+			"browser_not_supported": "Ce navigateur ne prend pas en charge la configuration de la clé de sécurité.",
+			"failed": "Impossible d'ajouter une clé de sécurité.",
+			"name": "Nom de l'application",
+			"passwordless": "Sans mot de passe (passkey)",
+			"submit": "Ajouter une clé",
+			"title": "Ajouter une clé de sécurité"
+		},
+		"mfa_webauthn_list": {
+			"add": "Ajouter",
+			"alert": "Lorsque vous utilisez des clés de sécurité, vous pouvez toujours vous connecter avec votre mot de passe, mais seulement si vous fournissez également un code de récupération.",
+			"back": "Retour à 2FA",
+			"cancel": "Annuler",
+			"delete": "SUPPRIMER",
+			"edit": "Editer",
+			"none": "Aucune clé de sécurité n'a encore été configurée.",
+			"save": "Sauvegarde",
+			"table": {
+				"actions": "Actions",
+				"created_at": "Créé à",
+				"last_used_at": "Dernière utilisation",
+				"name": "Nom de l'application",
+				"type": "Type d'application"
+			},
+			"title": "Clés de sécurité",
+			"type_passkey": "Clé d'accès",
+			"type_security_key": "Clé de sécurité",
+			"unused": "Non utilisé"
+		},
+		"password_change": {
+			"current_password": "Mot de passe actuel",
+			"new_password": "Nouveau mot de passe",
+			"new_password_again": "Nouveau mot de passe (encore)",
+			"password_mismatch": "Le mot de passe ne correspond pas.",
+			"save": "Sauvegarde",
+			"title": "Changer le mot de passe"
+		},
+		"password_reset_by_key": {
+			"title": "Réinitialiser le mot de passe",
+			"validating": "Valider un lien de réinitialisation..."
+		},
+		"password_reset_complete": {
+			"intro": "Choisir un nouveau mot de passe.",
+			"invalid_key": "Clé de réinitialisation invalide ou expirée.",
+			"missing_key": "Clé de réinitialisation du mot de passe manquante.",
+			"password": "Mot de passe",
+			"password_again": "Mot de passe (encore)",
+			"password_mismatch": "Le mot de passe ne correspond pas.",
+			"submit": "Réinitialiser",
+			"title": "Réinitialiser le mot de passe"
+		},
+		"password_reset_confirm": {
+			"code": "Code",
+			"intro": "Le code expire bientôt, veuillez donc le saisir rapidement.",
+			"submit": "Confirmer",
+			"title": "Saisir le code de réinitialisation du mot de passe"
+		},
+		"password_reset_request": {
+			"back_to_login": "Retour à la page de connexion",
+			"email": "Courriel",
+			"remember_password": "Vous vous souvenez de votre mot de passe ?",
+			"submit": "Réinitialiser",
+			"success": "Des instructions de réinitialisation du mot de passe ont été envoyées.",
+			"title": "Réinitialiser le mot de passe"
+		},
+		"provider_buttons": {
+			"title": "Utiliser un fournisseur tiers"
+		},
+		"provider_callback": {
+			"continue": "Poursuivre",
+			"intro": "Un problème s'est produit à l'étape du rappel du fournisseur d'identité.",
+			"title": "Échec de la connexion d'un tiers"
+		},
+		"provider_signup": {
+			"back_to_login": "Retour à la page de connexion",
+			"email": "Courriel",
+			"intro": "Complétez votre inscription avec une adresse électronique.",
+			"submit": "S'inscrire",
+			"title": "Inscription du fournisseur"
+		},
+		"providers": {
+			"disconnect": "Déconnexion",
+			"none": "Aucun compte de fournisseur n'est encore connecté.",
+			"table": {
+				"account": "Compte",
+				"actions": "Actions",
+				"provider": "Fournisseur",
+				"uid": "UID"
+			},
+			"title": "Fournisseurs connectés"
+		},
+		"reauthenticate": {
+			"intro": "Veuillez vous réauthentifier pour continuer.",
+			"password": "Mot de passe",
+			"submit": "Confirmer",
+			"title": "Confirmer l'accès"
+		},
+		"reauthenticate_recovery_codes": {
+			"code": "Code de récupération",
+			"intro": "Utiliser un code de récupération.",
+			"submit": "Confirmer",
+			"title": "Confirmer l'accès"
+		},
+		"reauthenticate_totp": {
+			"code": "Code",
+			"intro": "Utilisez le code de votre application d'authentification.",
+			"submit": "Confirmer",
+			"title": "Confirmer l'accès"
+		},
+		"reauthenticate_webauthn": {
+			"browser_not_supported": "Ce navigateur ne prend pas en charge la réauthentification par passkey.",
+			"failed": "Impossible d'effectuer la réauthentification par clé de passe.",
+			"intro": "Utilisez votre clé de sécurité.",
+			"submit": "Utiliser la clé de sécurité",
+			"title": "Confirmer l'accès",
+			"unavailable": "La réauthentification par clé n'est actuellement pas disponible."
+		},
+		"signup": {
+			"already_have_account": "Vous avez déjà un compte ?",
+			"email": "Courriel",
+			"login": "Se connecter",
+			"passkey_signup": "S'inscrire à passkey",
+			"password": "Mot de passe",
+			"password_again": "Mot de passe (encore)",
+			"password_mismatch": "Le mot de passe ne correspond pas.",
+			"submit": "S'inscrire",
+			"title": "S'inscrire",
+			"username": "Nom d'utilisateur"
+		},
+		"signup_passkey": {
+			"already_have_account": "Vous avez déjà un compte ?",
+			"email": "Courriel",
+			"login": "Se connecter",
+			"submit": "S'inscrire",
+			"title": "S'inscrire à passkey",
+			"use_password_signup": "Utiliser l'inscription par mot de passe",
+			"username": "Nom d'utilisateur"
+		},
+		"signup_passkey_create": {
+			"browser_not_supported": "Ce navigateur ne prend pas en charge la configuration de la clé de sécurité.",
+			"failed": "Impossible de créer une clé d'accès.",
+			"intro": "Créez un mot de passe pour votre compte.",
+			"name": "Nom de l'application",
+			"submit": "Créer",
+			"title": "Créer une clé d'accès"
+		},
+		"verify_email": {
+			"already_confirmed": "Impossible de confirmer {email} car il est déjà confirmé.",
+			"confirm_for": "Confirmer {email} pour {user}.",
+			"invalid_link": "Lien de vérification invalide.",
+			"submit": "Confirmer",
+			"this_account": "ce compte",
+			"title": "Confirmer l'adresse électronique"
+		},
+		"verify_email_gate": {
+			"code": "Code",
+			"intro": "Saisissez le code de vérification envoyé à votre adresse électronique.",
+			"mailbox_intro": "Veuillez confirmer votre adresse électronique à partir du lien envoyé dans votre boîte aux lettres.",
+			"submit": "Confirmer",
+			"title": "Confirmer l'adresse électronique"
+		}
+	},
 	"chart": {
 		"cumulative-percentage-bar-chart": {
 			"accessibility_text": "Un tableau reprenant le contenu de ce graphique est présenté ci-dessous.",

@@ -1,8 +1,8 @@
 <template>
   <section>
-    <h2>Deactivate Authenticator App</h2>
-    <p>You are about to deactivate authenticator app based authentication.</p>
-    <b-button variant="danger" :disabled="loading" @click="submit">Deactivate</b-button>
+    <h2>{{ $t('authentication.mfa_deactivate_totp.title') }}</h2>
+    <p>{{ $t('authentication.mfa_deactivate_totp.intro') }}</p>
+    <b-button variant="danger" :disabled="loading" @click="submit">{{ $t('authentication.mfa_deactivate_totp.submit') }}</b-button>
   </section>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <content-block>
-    <p v-if="allauth.config?.status !== 200">Loading authentication settings...</p>
+    <p v-if="allauth.config?.status !== 200">{{ $t('authentication.layout.loading_settings') }}</p>
 
     <!--<div class="mb-3">
       <b-button size="sm" variant="secondary" to="/account" class="me-2">Overview</b-button>

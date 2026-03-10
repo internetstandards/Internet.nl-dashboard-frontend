@@ -1,25 +1,25 @@
 <template>
   <section>
-    <h2>Two-Factor Authentication</h2>
+    <h2>{{ $t('authentication.mfa_overview.title') }}</h2>
 
-    <h3 class="h5">Authenticator App</h3>
-    <p v-if="totp">Authenticator app is active.</p>
-    <p v-else>Authenticator app is not active.</p>
-    <b-button v-if="totp" size="sm" variant="outline-secondary" :to="`${mfaBasePath}/totp/deactivate`">Deactivate</b-button>
-    <b-button v-else size="sm" variant="outline-secondary" :to="`${mfaBasePath}/totp/activate`">Activate</b-button>
+    <h3 class="h5">{{ $t('authentication.mfa_overview.authenticator_app') }}</h3>
+    <p v-if="totp">{{ $t('authentication.mfa_overview.authenticator_active') }}</p>
+    <p v-else>{{ $t('authentication.mfa_overview.authenticator_inactive') }}</p>
+    <b-button v-if="totp" size="sm" variant="outline-secondary" :to="`${mfaBasePath}/totp/deactivate`">{{ $t('authentication.mfa_overview.deactivate') }}</b-button>
+    <b-button v-else size="sm" variant="outline-secondary" :to="`${mfaBasePath}/totp/activate`">{{ $t('authentication.mfa_overview.activate') }}</b-button>
 
-    <h3 class="h5 mt-3">Security Keys</h3>
-    <p v-if="webauthnCount">{{ webauthnCount }} security keys configured.</p>
-    <p v-else>No security keys configured.</p>
-    <b-button v-if="webauthnCount" size="sm" variant="outline-secondary" :to="`${mfaBasePath}/webauthn`">Manage</b-button>
-    <b-button v-else size="sm" variant="outline-secondary" :to="`${mfaBasePath}/webauthn/add`">Add</b-button>
+    <h3 class="h5 mt-3">{{ $t('authentication.mfa_overview.security_keys') }}</h3>
+    <p v-if="webauthnCount">{{ $t('authentication.mfa_overview.security_keys_configured', { count: webauthnCount }) }}</p>
+    <p v-else>{{ $t('authentication.mfa_overview.security_keys_none') }}</p>
+    <b-button v-if="webauthnCount" size="sm" variant="outline-secondary" :to="`${mfaBasePath}/webauthn`">{{ $t('authentication.mfa_overview.manage') }}</b-button>
+    <b-button v-else size="sm" variant="outline-secondary" :to="`${mfaBasePath}/webauthn/add`">{{ $t('authentication.mfa_overview.add') }}</b-button>
 
-    <h3 class="h5 mt-3">Recovery Codes</h3>
-    <p v-if="recoveryCodes">{{ recoveryCodes.unused_code_count }} of {{ recoveryCodes.total_code_count }} codes available.</p>
-    <p v-else>No recovery codes configured.</p>
+    <h3 class="h5 mt-3">{{ $t('authentication.mfa_overview.recovery_codes') }}</h3>
+    <p v-if="recoveryCodes">{{ $t('authentication.mfa_overview.recovery_codes_available', { unused: recoveryCodes.unused_code_count, total: recoveryCodes.total_code_count }) }}</p>
+    <p v-else>{{ $t('authentication.mfa_overview.recovery_codes_none') }}</p>
     <div class="d-flex gap-2">
-      <b-button size="sm" variant="outline-secondary" :to="`${mfaBasePath}/recovery-codes`">View</b-button>
-      <b-button size="sm" variant="outline-secondary" :to="`${mfaBasePath}/recovery-codes/generate`">Generate</b-button>
+      <b-button size="sm" variant="outline-secondary" :to="`${mfaBasePath}/recovery-codes`">{{ $t('authentication.mfa_overview.view') }}</b-button>
+      <b-button size="sm" variant="outline-secondary" :to="`${mfaBasePath}/recovery-codes/generate`">{{ $t('authentication.mfa_overview.generate') }}</b-button>
     </div>
   </section>
 </template>

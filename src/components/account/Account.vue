@@ -29,7 +29,7 @@
             @update:model-value="onAuthTabChange"
           >
             <b-tab>
-              <template #title>📧 Email</template>
+              <template #title>📧 {{ $t('authentication.email.title') }}</template>
               <Email />
             </b-tab>
 
@@ -44,7 +44,7 @@
             </b-tab>
 
             <b-tab v-if="shouldShowVerifyEmailTab">
-              <template #title>✉️ Verify email</template>
+              <template #title>✉️ {{ $t('authentication.verify_email.title') }}</template>
               <VerifyEmailGate />
             </b-tab>
           </b-tabs>

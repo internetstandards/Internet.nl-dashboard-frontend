@@ -1,7 +1,7 @@
 <template>
   <section>
-    <h2>Reset Password</h2>
-    <p>Choose a new password.</p>
+    <h2>{{ $t('authentication.password_reset_complete.title') }}</h2>
+    <p>{{ $t('authentication.password_reset_complete.intro') }}</p>
 
     <FormErrors :errors="nonFieldErrors" />
 
@@ -10,15 +10,15 @@
     </template>
 
     <form v-else @submit.prevent="submit">
-      <label class="form-label" for="password-reset-new-1">Password</label>
+      <label class="form-label" for="password-reset-new-1">{{ $t('authentication.password_reset_complete.password') }}</label>
       <input id="password-reset-new-1" v-model="password1" type="password" autocomplete="new-password" class="form-control" required>
       <FormErrors :errors="response?.errors" param="password" />
 
-      <label class="form-label mt-2" for="password-reset-new-2">Password (again)</label>
+      <label class="form-label mt-2" for="password-reset-new-2">{{ $t('authentication.password_reset_complete.password_again') }}</label>
       <input id="password-reset-new-2" v-model="password2" type="password" class="form-control" required>
       <FormErrors :errors="password2Errors" param="password2" />
 
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Reset</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.password_reset_complete.submit') }}</b-button>
     </form>
   </section>
 </template>
@@ -26,11 +26,13 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { getPasswordReset, resetPassword } from '@/allauth/lib/allauth'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const key = ref(String(route.query.key || ''))
 const keyErrors = ref([])
@@ -48,20 +50,20 @@ const nonFieldErrors = computed(() =>
 onMounted(async () => {
   if (!key.value) {
     hasKeyError.value = true
-    keyErrors.value = [{ param: 'key', message: 'Missing password reset key.' }]
+    keyErrors.value = [{ param: 'key', message: t('authentication.password_reset_complete.missing_key') }]
     return
   }
 
   const resetInfo = await getPasswordReset(key.value)
   if (resetInfo.status !== 200) {
     hasKeyError.value = true
-    keyErrors.value = resetInfo.errors || [{ param: 'key', message: 'Invalid or expired reset key.' }]
+    keyErrors.value = resetInfo.errors || [{ param: 'key', message: t('authentication.password_reset_complete.invalid_key') }]
   }
 })
 
 async function submit() {
   if (password1.value !== password2.value) {
-    password2Errors.value = [{ param: 'password2', message: 'Password does not match.' }]
+    password2Errors.value = [{ param: 'password2', message: t('authentication.password_reset_complete.password_mismatch') }]
     return
   }
 

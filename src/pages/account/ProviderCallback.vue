@@ -1,8 +1,8 @@
 <template>
   <section v-if="error">
-    <h2>Third-party Login Failure</h2>
-    <p>Something went wrong at the identity provider callback stage.</p>
-    <b-button variant="outline-secondary" :to="targetPath">Continue</b-button>
+    <h2>{{ $t('authentication.provider_callback.title') }}</h2>
+    <p>{{ $t('authentication.provider_callback.intro') }}</p>
+    <b-button variant="outline-secondary" :to="targetPath">{{ $t('authentication.provider_callback.continue') }}</b-button>
   </section>
 </template>
 

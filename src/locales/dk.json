@@ -211,6 +211,360 @@
 			"gotomainmenu": "Spring til hovedmenu"
 		}
 	},
+	"authentication": {
+		"authenticate_recovery_codes": {
+			"code": "Genoprettelseskode",
+			"intro": "Indtast en af dine gendannelseskoder.",
+			"submit": "Log ind",
+			"title": "To-faktor-autentificering"
+		},
+		"authenticate_totp": {
+			"code": "Kode",
+			"intro": "Din konto kræver 2FA. Indtast din godkendelseskode.",
+			"submit": "Log ind",
+			"title": "To-faktor-autentificering"
+		},
+		"authenticate_webauthn": {
+			"browser_not_supported": "Denne browser understøtter ikke passkey-godkendelse.",
+			"failed": "Kan ikke gennemføre passkey-godkendelse.",
+			"intro": "Brug din sikkerhedsnøgle.",
+			"submit": "Brug sikkerhedsnøgle",
+			"title": "To-faktor-autentificering",
+			"unavailable": "Passkey-godkendelse er i øjeblikket ikke tilgængelig."
+		},
+		"email": {
+			"add": "Tilføj",
+			"add_title": "Tilføj e-mail",
+			"email_label": "E-mail",
+			"no": "Nej",
+			"remove": "Fjernelse",
+			"resend_verification": "Bekræftelse af gensendelse",
+			"table": {
+				"actions": "Handlinger",
+				"email": "E-mail",
+				"primary": "Primær",
+				"verified": "Bekræftet"
+			},
+			"title": "E-mail-adresser",
+			"verification_failed": "Kan ikke sende en bekræftelsesmail.",
+			"verification_not_pending": "E-mailbekræftelse er i øjeblikket ikke påkrævet for denne konto.",
+			"verification_recently_sent": "Der blev allerede sendt en bekræftelsesmail for nylig. Vent venligst, før du prøver igen.",
+			"verification_sent": "Bekræftelses-e-mail sendes.",
+			"yes": "Ja"
+		},
+		"error": {
+			"account_inactive": "Denne konto er i øjeblikket inaktiv.",
+			"account_not_found": "Ukendt konto.",
+			"add_email_blocked": "Du kan ikke tilføje en e-mailadresse til en konto, der er beskyttet af to-faktor-godkendelse.",
+			"cannot_delete_authenticator": "Du kan ikke deaktivere to-faktor-godkendelse.",
+			"cannot_generate_recovery_codes": "Du kan ikke generere gendannelseskoder uden at have aktiveret to-faktor-godkendelse.",
+			"cannot_remove_primary_email": "Du kan ikke fjerne din primære e-mailadresse.",
+			"client_id_required": "`client_id` påkrævet.",
+			"connected_other": "Tredjepartskontoen er allerede forbundet med en anden konto.",
+			"disconnect_last": "Du kan ikke afbryde forbindelsen til din sidste tilbageværende tredjepartskonto.",
+			"duplicate_email": "Denne e-mailadresse er allerede tilknyttet denne konto.",
+			"email_password_mismatch": "Den e-mailadresse og/eller adgangskode, du har angivet, er ikke korrekt.",
+			"email_taken": "En bruger er allerede registreret med denne e-mailadresse.",
+			"enter_current_password": "Skriv venligst din nuværende adgangskode.",
+			"incorrect_code": "Forkert kode.",
+			"incorrect_password": "Forkert adgangskode.",
+			"invalid": "Tokenet var ugyldigt.",
+			"invalid_login": "Ugyldigt login.",
+			"invalid_or_expired_key": "Ugyldig eller udløbet nøgle.",
+			"invalid_password_reset": "Tokenet til nulstilling af adgangskode var ugyldigt.",
+			"invalid_phone": "Indtast et telefonnummer inklusive landekode (f.eks. +1 for USA).",
+			"invalid_token": "Ugyldigt token.",
+			"invalid_url": "Ugyldig URL.",
+			"max_email_addresses": "Du kan ikke tilføje flere end det tilladte antal e-mailadresser.",
+			"no_password": "Din konto har ingen adgangskode.",
+			"no_verified_email": "Din konto har ingen verificeret e-mailadresse.",
+			"password_entirely_numeric": "Denne adgangskode er udelukkende numerisk.",
+			"password_too_common": "Denne adgangskode er for almindelig.",
+			"password_too_short": "Denne adgangskode er for kort. Den skal indeholde mindst 16 tegn.",
+			"password_too_similar": "Denne adgangskode ligner for meget dine andre personlige oplysninger.",
+			"phone_password_mismatch": "Det telefonnummer og/eller den adgangskode, du har angivet, er ikke korrekt.",
+			"phone_taken": "En bruger er allerede registreret med dette telefonnummer.",
+			"rate_limited": "Vær tålmodig, du sender for mange anmodninger.",
+			"required": "Dette felt er påkrævet.",
+			"same_as_current": "Den nye værdi skal være forskellig fra den nuværende.",
+			"select_only_one": "Vælg venligst kun én.",
+			"token_authentication_not_supported": "Udbyderen understøtter ikke token-godkendelse.",
+			"token_invalid": "Tokenet til nulstilling af adgangskode var ugyldigt.",
+			"token_required": "Id_token og/eller access_token er påkrævet.",
+			"too_many_login_attempts": "For mange mislykkede login-forsøg. Prøv igen senere.",
+			"unknown_email": "Ukendt e-mailadresse.",
+			"unknown_phone": "Telefonnummeret er ikke knyttet til nogen brugerkonto.",
+			"unknown_provider": "Ukendt udbyder.",
+			"unverified_email": "Du kan ikke aktivere to-faktor-godkendelse, før du har bekræftet din e-mailadresse.",
+			"unverified_primary_email": "Din primære e-mailadresse skal bekræftes.",
+			"username_blacklisted": "Brugernavn kan ikke bruges. Brug venligst et andet brugernavn.",
+			"username_password_mismatch": "Det brugernavn og/eller den adgangskode, du har angivet, er ikke korrekt.",
+			"username_taken": "Der findes allerede en bruger med dette brugernavn."
+		},
+		"home": {
+			"logged_out": "Du er ikke logget ind.",
+			"signed_in_as": "Logget ind som",
+			"title": "Kontosikkerhed"
+		},
+		"layout": {
+			"loading_settings": "Indlæsning af godkendelsesindstillinger..."
+		},
+		"login": {
+			"browser_not_supported": "Denne browser understøtter ikke passkey-login.",
+			"create_one": "Opret en",
+			"forgot_password": "Glemt adgangskode",
+			"login_method": "Login-metode",
+			"methods": {
+				"email": "E-mail",
+				"phone": "Telefon",
+				"username": "Brugernavn"
+			},
+			"no_account_yet": "Ingen konto endnu?",
+			"passkey_failed": "Passkey-login mislykkedes.",
+			"passkey_unavailable": "Passkey-login er i øjeblikket ikke tilgængeligt for denne session.",
+			"password": "Adgangskode",
+			"send_login_code": "Send login-kode",
+			"sign_in_with_passkey": "Log ind med en adgangskode",
+			"submit": "Login",
+			"title": "Login"
+		},
+		"login_code_confirm": {
+			"back_to_login": "Tilbage til login",
+			"code": "Kode",
+			"intro": "Indtast koden, der er sendt til din e-mailadresse.",
+			"submit": "Bekræft",
+			"title": "Bekræft login-kode"
+		},
+		"login_code_request": {
+			"back_to_login": "Tilbage til login",
+			"email": "E-mail",
+			"intro": "Indtast din e-mail, så sender vi en login-kode.",
+			"submit": "Send kode",
+			"title": "Anmod om login-kode"
+		},
+		"logout": {
+			"intro": "Er du sikker på, at du vil logge ud?",
+			"submit": "Log ud",
+			"title": "Log ud"
+		},
+		"mfa_activate_totp": {
+			"already_active": "TOTP er allerede aktiv.",
+			"back": "Tilbage til 2FA",
+			"code": "Kode til autentificering",
+			"scan_qr": "Scan denne QR-kode med din authenticator-app:",
+			"secret": "Autentificeringshemmelighed",
+			"secret_help": "Gem denne hemmelighed, så du kan omkonfigurere din authenticator senere.",
+			"submit": "Aktiver",
+			"title": "Aktiver TOTP"
+		},
+		"mfa_deactivate_totp": {
+			"intro": "Du er ved at deaktivere authenticator-appbaseret godkendelse.",
+			"submit": "Deaktiver",
+			"title": "Deaktiver Authenticator-appen"
+		},
+		"mfa_overview": {
+			"activate": "Aktiver",
+			"add": "Tilføj",
+			"authenticator_active": "Authenticator-appen er aktiv.",
+			"authenticator_app": "Godkendelses-app",
+			"authenticator_inactive": "Authenticator-appen er ikke aktiv.",
+			"deactivate": "Deaktiver",
+			"generate": "Generer",
+			"manage": "Administrer",
+			"recovery_codes": "Genoprettelseskoder",
+			"recovery_codes_available": "{unused} af {total} tilgængelige koder.",
+			"recovery_codes_none": "Ingen gendannelseskoder konfigureret.",
+			"security_keys": "Sikkerhedsnøgler",
+			"security_keys_configured": "{count} Sikkerhedsnøgler konfigureret.",
+			"security_keys_none": "Ingen sikkerhedsnøgler konfigureret.",
+			"title": "To-faktor-autentificering",
+			"view": "Vis"
+		},
+		"mfa_recovery_codes": {
+			"alert": "Når du bruger sikkerhedsnøgler, kan du stadig logge ind med din adgangskode, men kun hvis du også angiver en gendannelseskode.",
+			"available": "{unused} af {total} tilgængelige gendannelseskoder.",
+			"back": "Tilbage til 2FA",
+			"intro": "Med gendannelseskoder kan du logge på, når din authenticator-app eller adgangskode ikke er tilgængelig, f.eks. når du bruger en anden enhed eller har mistet adgangen til din sædvanlige enhed.",
+			"none": "Ingen gendannelseskoder konfigureret.",
+			"title": "Genoprettelseskoder",
+			"warning": "Opbevar disse koder et sikkert sted. Hver kode kan bruges én gang."
+		},
+		"mfa_recovery_codes_generate": {
+			"back": "Tilbage til 2FA",
+			"intro": "Du er ved at generere et nyt sæt gendannelseskoder.",
+			"invalidates_current": "Dette gør dine nuværende gendannelseskoder ugyldige.",
+			"submit": "Generer",
+			"title": "Genererer gendannelseskoder"
+		},
+		"mfa_trust": {
+			"dont_trust": "Stol ikke på",
+			"intro": "Hvis du har tillid til den, vil du ikke blive bedt om en anden faktor ved næste login i denne browser.",
+			"title": "Har du tillid til denne browser?",
+			"trust": "Tillid"
+		},
+		"mfa_webauthn_add": {
+			"back": "Tilbage til 2FA",
+			"browser_not_supported": "Denne browser understøtter ikke opsætning af nøgler.",
+			"failed": "Kan ikke tilføje sikkerhedsnøgle.",
+			"name": "Navn",
+			"passwordless": "Uden adgangskode (passkey)",
+			"submit": "Tilføj nøgle",
+			"title": "Tilføj sikkerhedsnøgle"
+		},
+		"mfa_webauthn_list": {
+			"add": "Tilføj",
+			"alert": "Når du bruger sikkerhedsnøgler, kan du stadig logge ind med din adgangskode, men kun hvis du også angiver en gendannelseskode.",
+			"back": "Tilbage til 2FA",
+			"cancel": "Annuller",
+			"delete": "Sletning",
+			"edit": "Rediger",
+			"none": "Ingen sikkerhedsnøgler konfigureret endnu.",
+			"save": "Gem",
+			"table": {
+				"actions": "Handlinger",
+				"created_at": "Oprettet på",
+				"last_used_at": "Sidst brugt på",
+				"name": "Navn",
+				"type": "Type"
+			},
+			"title": "Sikkerhedsnøgler",
+			"type_passkey": "Passkey",
+			"type_security_key": "Sikkerhedsnøgle",
+			"unused": "Ubrugt"
+		},
+		"password_change": {
+			"current_password": "Nuværende adgangskode",
+			"new_password": "Ny adgangskode",
+			"new_password_again": "Ny adgangskode (igen)",
+			"password_mismatch": "Adgangskoden matcher ikke.",
+			"save": "Gem",
+			"title": "Skift adgangskode"
+		},
+		"password_reset_by_key": {
+			"title": "Nulstil adgangskode",
+			"validating": "Validering af nulstillet link..."
+		},
+		"password_reset_complete": {
+			"intro": "Vælg en ny adgangskode.",
+			"invalid_key": "Ugyldig eller udløbet nulstillingsnøgle.",
+			"missing_key": "Mangler nøgle til nulstilling af adgangskode.",
+			"password": "Adgangskode",
+			"password_again": "Adgangskode (igen)",
+			"password_mismatch": "Adgangskoden matcher ikke.",
+			"submit": "Nulstilling",
+			"title": "Nulstil adgangskode"
+		},
+		"password_reset_confirm": {
+			"code": "Kode",
+			"intro": "Koden udløber om kort tid, så indtast den hurtigt.",
+			"submit": "Bekræft",
+			"title": "Indtast kode til nulstilling af adgangskode"
+		},
+		"password_reset_request": {
+			"back_to_login": "Tilbage til login",
+			"email": "E-mail",
+			"remember_password": "Kan du huske din adgangskode?",
+			"submit": "Nulstilling",
+			"success": "Instruktioner til nulstilling af adgangskode blev sendt.",
+			"title": "Nulstil adgangskode"
+		},
+		"provider_buttons": {
+			"title": "Brug en tredjepartsudbyder"
+		},
+		"provider_callback": {
+			"continue": "Fortsæt med",
+			"intro": "Noget gik galt i forbindelse med identitetsudbyderens tilbagekaldelse.",
+			"title": "Fejl i tredjeparts login"
+		},
+		"provider_signup": {
+			"back_to_login": "Tilbage til login",
+			"email": "E-mail",
+			"intro": "Fuldfør din tilmelding med en e-mailadresse.",
+			"submit": "Tilmelding",
+			"title": "Tilmelding til udbyder"
+		},
+		"providers": {
+			"disconnect": "Afbryd forbindelsen",
+			"none": "Ingen udbyderkonti tilsluttet endnu.",
+			"table": {
+				"account": "Konto",
+				"actions": "Handlinger",
+				"provider": "Udbyder",
+				"uid": "UID"
+			},
+			"title": "Forbundne udbydere"
+		},
+		"reauthenticate": {
+			"intro": "Godkend venligst igen for at fortsætte.",
+			"password": "Adgangskode",
+			"submit": "Bekræft",
+			"title": "Bekræft adgang"
+		},
+		"reauthenticate_recovery_codes": {
+			"code": "Genoprettelseskode",
+			"intro": "Brug en gendannelseskode.",
+			"submit": "Bekræft",
+			"title": "Bekræft adgang"
+		},
+		"reauthenticate_totp": {
+			"code": "Kode",
+			"intro": "Brug din authenticator-appkode.",
+			"submit": "Bekræft",
+			"title": "Bekræft adgang"
+		},
+		"reauthenticate_webauthn": {
+			"browser_not_supported": "Denne browser understøtter ikke passkey-godkendelse.",
+			"failed": "Kan ikke gennemføre genautentificering med adgangskode.",
+			"intro": "Brug din sikkerhedsnøgle.",
+			"submit": "Brug sikkerhedsnøgle",
+			"title": "Bekræft adgang",
+			"unavailable": "Genautentificering med Passkey er i øjeblikket ikke tilgængelig."
+		},
+		"signup": {
+			"already_have_account": "Har du allerede en konto?",
+			"email": "E-mail",
+			"login": "Login",
+			"passkey_signup": "Tilmeld dig med passkey",
+			"password": "Adgangskode",
+			"password_again": "Adgangskode (igen)",
+			"password_mismatch": "Adgangskoden matcher ikke.",
+			"submit": "Tilmelding",
+			"title": "Tilmelding",
+			"username": "Brugernavn"
+		},
+		"signup_passkey": {
+			"already_have_account": "Har du allerede en konto?",
+			"email": "E-mail",
+			"login": "Login",
+			"submit": "Tilmelding",
+			"title": "Tilmelding til Passkey",
+			"use_password_signup": "Brug tilmelding med adgangskode",
+			"username": "Brugernavn"
+		},
+		"signup_passkey_create": {
+			"browser_not_supported": "Denne browser understøtter ikke opsætning af nøgler.",
+			"failed": "Kan ikke oprette en adgangskode.",
+			"intro": "Opret en adgangskode til din konto.",
+			"name": "Navn",
+			"submit": "Opret",
+			"title": "Opret adgangskode"
+		},
+		"verify_email": {
+			"already_confirmed": "Kan ikke bekræfte {email} , fordi det allerede er bekræftet.",
+			"confirm_for": "Bekræft {email} for {user}.",
+			"invalid_link": "Ugyldigt bekræftelseslink.",
+			"submit": "Bekræft",
+			"this_account": "Denne konto",
+			"title": "Bekræft e-mailadresse"
+		},
+		"verify_email_gate": {
+			"code": "Kode",
+			"intro": "Indtast bekræftelseskoden, der er sendt til din e-mail.",
+			"mailbox_intro": "Bekræft venligst din e-mailadresse via det link, der er sendt til din postkasse.",
+			"submit": "Bekræft",
+			"title": "Bekræft e-mailadresse"
+		}
+	},
 	"chart": {
 		"cumulative-percentage-bar-chart": {
 			"accessibility_text": "En tabel med indholdet af denne graf er vist nedenfor.",

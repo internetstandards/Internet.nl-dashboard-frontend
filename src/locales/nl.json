@@ -211,6 +211,360 @@
 			"gotomainmenu": "Skip naar menu"
 		}
 	},
+	"authentication": {
+		"authenticate_recovery_codes": {
+			"code": "Herstelcode",
+			"intro": "Voer een van uw herstelcodes in.",
+			"submit": "Aanmelden",
+			"title": "Authenticatie met twee factoren"
+		},
+		"authenticate_totp": {
+			"code": "Code",
+			"intro": "Uw account vereist 2FA. Voer uw authenticatiecode in.",
+			"submit": "Aanmelden",
+			"title": "Authenticatie met twee factoren"
+		},
+		"authenticate_webauthn": {
+			"browser_not_supported": "Deze browser ondersteunt geen passkey-authenticatie.",
+			"failed": "Kan passkey-authenticatie niet voltooien.",
+			"intro": "Gebruik uw beveiligingssleutel.",
+			"submit": "Gebruik beveiligingssleutel",
+			"title": "Authenticatie met twee factoren",
+			"unavailable": "Passkey-authenticatie is momenteel niet beschikbaar."
+		},
+		"email": {
+			"add": "Toevoegen",
+			"add_title": "E-mail toevoegen",
+			"email_label": "E-mail",
+			"no": "Geen",
+			"remove": "Verwijder",
+			"resend_verification": "Verificatie opnieuw verzenden",
+			"table": {
+				"actions": "Acties",
+				"email": "E-mail",
+				"primary": "Primair",
+				"verified": "Geverifieerd"
+			},
+			"title": "E-mailadressen",
+			"verification_failed": "Kan geen verificatiemail verzenden.",
+			"verification_not_pending": "E-mailverificatie is momenteel niet mogelijk voor deze account.",
+			"verification_recently_sent": "Er is onlangs al een verificatiemail verzonden. Wacht even voordat u het opnieuw probeert.",
+			"verification_sent": "Verificatie-e-mail verzonden.",
+			"yes": "Ja"
+		},
+		"error": {
+			"account_inactive": "Dit account is momenteel niet actief.",
+			"account_not_found": "Onbekend account.",
+			"add_email_blocked": "Je kunt geen e-mailadres toevoegen aan een account die wordt beschermd door twee-factor authenticatie.",
+			"cannot_delete_authenticator": "Je kunt de authenticatie met twee factoren niet uitschakelen.",
+			"cannot_generate_recovery_codes": "Je kunt geen herstelcodes genereren zonder dat tweefactorauthenticatie is ingeschakeld.",
+			"cannot_remove_primary_email": "Je kunt je primaire e-mailadres niet verwijderen.",
+			"client_id_required": "`client_id` vereist.",
+			"connected_other": "De account van derden is al verbonden met een andere account.",
+			"disconnect_last": "U kunt uw laatst overgebleven account bij derden niet loskoppelen.",
+			"duplicate_email": "Dit e-mailadres is al gekoppeld aan deze account.",
+			"email_password_mismatch": "Het opgegeven e-mailadres en/of wachtwoord zijn niet correct.",
+			"email_taken": "Met dit e-mailadres is al een gebruiker geregistreerd.",
+			"enter_current_password": "Typ uw huidige wachtwoord.",
+			"incorrect_code": "Onjuiste code.",
+			"incorrect_password": "Onjuist wachtwoord.",
+			"invalid": "Het token was ongeldig.",
+			"invalid_login": "Ongeldige aanmelding.",
+			"invalid_or_expired_key": "Ongeldige of verlopen sleutel.",
+			"invalid_password_reset": "Het wachtwoordreset-token was ongeldig.",
+			"invalid_phone": "Voer een telefoonnummer in inclusief landcode (bijvoorbeeld +1 voor de VS).",
+			"invalid_token": "Ongeldig token.",
+			"invalid_url": "Ongeldige URL.",
+			"max_email_addresses": "Je kunt niet meer dan het toegestane aantal e-mailadressen toevoegen.",
+			"no_password": "Voor je account is geen wachtwoord ingesteld.",
+			"no_verified_email": "Uw account heeft geen geverifieerd e-mailadres.",
+			"password_entirely_numeric": "Dit wachtwoord is volledig numeriek.",
+			"password_too_common": "Dit wachtwoord is te algemeen.",
+			"password_too_short": "Dit wachtwoord is te kort. Het moet minstens 16 tekens bevatten.",
+			"password_too_similar": "Dit wachtwoord lijkt te veel op je andere persoonlijke gegevens.",
+			"phone_password_mismatch": "Het opgegeven telefoonnummer en/of wachtwoord zijn niet correct.",
+			"phone_taken": "Er is al een gebruiker geregistreerd met dit telefoonnummer.",
+			"rate_limited": "Wees geduldig, u stuurt te veel aanvragen.",
+			"required": "Dit veld is vereist.",
+			"same_as_current": "De nieuwe waarde moet anders zijn dan de huidige.",
+			"select_only_one": "Selecteer er slechts één.",
+			"token_authentication_not_supported": "Provider ondersteunt geen tokenauthenticatie.",
+			"token_invalid": "Het wachtwoordreset-token was ongeldig.",
+			"token_required": "`id_token` en/of `access_token` vereist.",
+			"too_many_login_attempts": "Te veel mislukte aanmeldingspogingen. Probeer het later nog eens.",
+			"unknown_email": "Onbekend e-mailadres. ",
+			"unknown_phone": "Het telefoonnummer is niet toegewezen aan een gebruikersaccount.",
+			"unknown_provider": "Onbekende provider.",
+			"unverified_email": "Je kunt twee-factor authenticatie niet activeren totdat je je e-mailadres hebt geverifieerd.",
+			"unverified_primary_email": "Je primaire e-mailadres moet worden geverifieerd.",
+			"username_blacklisted": "Gebruikersnaam kan niet worden gebruikt. Gebruik een andere gebruikersnaam.",
+			"username_password_mismatch": "De opgegeven gebruikersnaam en/of het opgegeven wachtwoord zijn niet correct.",
+			"username_taken": "Er bestaat al een gebruiker met die gebruikersnaam."
+		},
+		"home": {
+			"logged_out": "U bent niet aangemeld.",
+			"signed_in_as": "Aangemeld als",
+			"title": "Accountbeveiliging"
+		},
+		"layout": {
+			"loading_settings": "Verificatie-instellingen laden..."
+		},
+		"login": {
+			"browser_not_supported": "Deze browser ondersteunt aanmelding met een passkey niet.",
+			"create_one": "Maak een",
+			"forgot_password": "Wachtwoord vergeten",
+			"login_method": "Aanmeldmethode",
+			"methods": {
+				"email": "E-mail",
+				"phone": "Telefoon",
+				"username": "Gebruikersnaam"
+			},
+			"no_account_yet": "Nog geen account?",
+			"passkey_failed": "Inloggen met Passkey mislukt.",
+			"passkey_unavailable": "Passkey login is momenteel niet beschikbaar voor deze sessie.",
+			"password": "Wachtwoord",
+			"send_login_code": "Inlogcode verzenden",
+			"sign_in_with_passkey": "Aanmelden met een wachtwoord",
+			"submit": "Inloggen",
+			"title": "Inloggen"
+		},
+		"login_code_confirm": {
+			"back_to_login": "Terug naar Aanmelden",
+			"code": "Code",
+			"intro": "Voer de code in die naar uw e-mailadres is verzonden.",
+			"submit": "Bevestig",
+			"title": "Inlogcode bevestigen"
+		},
+		"login_code_request": {
+			"back_to_login": "Terug naar Aanmelden",
+			"email": "E-mail",
+			"intro": "Voer uw e-mailadres in en wij sturen u een aanmeldcode.",
+			"submit": "Code verzenden",
+			"title": "Aanmeldcode aanvragen"
+		},
+		"logout": {
+			"intro": "Weet je zeker dat je wilt uitloggen?",
+			"submit": "Afmelden",
+			"title": "Afmelden"
+		},
+		"mfa_activate_totp": {
+			"already_active": "TOTP is al actief.",
+			"back": "Terug naar 2FA",
+			"code": "Authenticatiecode",
+			"scan_qr": "Scan deze QR-code met uw authenticator-app:",
+			"secret": "Authenticatie geheim",
+			"secret_help": "Bewaar dit geheim om je authenticator later opnieuw te configureren.",
+			"submit": "Activeer",
+			"title": "TOTP activeren"
+		},
+		"mfa_deactivate_totp": {
+			"intro": "U staat op het punt authenticator app-gebaseerde authenticatie te deactiveren.",
+			"submit": "Deactiveren",
+			"title": "Authenticator-app deactiveren"
+		},
+		"mfa_overview": {
+			"activate": "Activeer",
+			"add": "Toevoegen",
+			"authenticator_active": "Authenticator-app is actief.",
+			"authenticator_app": "Authenticator-app",
+			"authenticator_inactive": "Authenticator-app is niet actief.",
+			"deactivate": "Deactiveren",
+			"generate": "Genereren",
+			"manage": "Beheer",
+			"recovery_codes": "Herstelcodes",
+			"recovery_codes_available": "{unused} van {total} codes beschikbaar.",
+			"recovery_codes_none": "Geen herstelcodes geconfigureerd.",
+			"security_keys": "Beveiligingssleutels",
+			"security_keys_configured": "{count} beveiligingssleutels geconfigureerd.",
+			"security_keys_none": "Geen beveiligingssleutels geconfigureerd.",
+			"title": "Authenticatie met twee factoren",
+			"view": "Bekijk"
+		},
+		"mfa_recovery_codes": {
+			"alert": "Als je beveiligingssleutels gebruikt, kun je je nog steeds aanmelden met je wachtwoord, maar alleen als je ook een herstelcode opgeeft.",
+			"available": "{unused} van {total} herstelcodes beschikbaar.",
+			"back": "Terug naar 2FA",
+			"intro": "Met herstelcodes kunt u zich aanmelden wanneer uw authenticatie-app of wachtwoord niet beschikbaar is, bijvoorbeeld bij gebruik van een ander apparaat of nadat u de toegang tot uw gebruikelijke apparaat bent kwijtgeraakt.",
+			"none": "Geen herstelcodes geconfigureerd.",
+			"title": "Herstelcodes",
+			"warning": "Bewaar deze codes op een veilige plaats. Elke code kan één keer worden gebruikt."
+		},
+		"mfa_recovery_codes_generate": {
+			"back": "Terug naar 2FA",
+			"intro": "U staat op het punt een nieuwe set herstelcodes te genereren.",
+			"invalidates_current": "Dit maakt je huidige herstelcodes ongeldig.",
+			"submit": "Genereren",
+			"title": "Herstelcodes genereren"
+		},
+		"mfa_trust": {
+			"dont_trust": "Vertrouw niet",
+			"intro": "Als u vertrouwd wordt, wordt u de volgende keer dat u inlogt op deze browser niet om een tweede factor gevraagd.",
+			"title": "Vertrouwt u deze browser?",
+			"trust": "Vertrouwen"
+		},
+		"mfa_webauthn_add": {
+			"back": "Terug naar 2FA",
+			"browser_not_supported": "Deze browser ondersteunt het instellen van een passkey niet.",
+			"failed": "Kan geen beveiligingssleutel toevoegen.",
+			"name": "Naam",
+			"passwordless": "Wachtwoordloos (passkey)",
+			"submit": "Sleutel toevoegen",
+			"title": "Beveiligingssleutel toevoegen"
+		},
+		"mfa_webauthn_list": {
+			"add": "Toevoegen",
+			"alert": "Als je beveiligingssleutels gebruikt, kun je je nog steeds aanmelden met je wachtwoord, maar alleen als je ook een herstelcode opgeeft.",
+			"back": "Terug naar 2FA",
+			"cancel": "Annuleren",
+			"delete": "Verwijderen",
+			"edit": "Bewerk",
+			"none": "Nog geen beveiligingssleutels geconfigureerd.",
+			"save": "Opslaan",
+			"table": {
+				"actions": "Acties",
+				"created_at": "Gemaakt op",
+				"last_used_at": "Laatst gebruikt op",
+				"name": "Naam",
+				"type": "Type"
+			},
+			"title": "Beveiligingssleutels",
+			"type_passkey": "Passkey",
+			"type_security_key": "Beveiligingssleutel",
+			"unused": "Ongebruikt"
+		},
+		"password_change": {
+			"current_password": "Huidig ​​wachtwoord",
+			"new_password": "Nieuw wachtwoord",
+			"new_password_again": "Nieuw wachtwoord (opnieuw)",
+			"password_mismatch": "Wachtwoord komt niet overeen.",
+			"save": "Opslaan",
+			"title": "Wachtwoord wijzigen"
+		},
+		"password_reset_by_key": {
+			"title": "Wachtwoord opnieuw instellen",
+			"validating": "Resetlink valideren..."
+		},
+		"password_reset_complete": {
+			"intro": "Een nieuw wachtwoord kiezen.",
+			"invalid_key": "Ongeldige of verlopen resetsleutel.",
+			"missing_key": "Ontbrekende wachtwoord reset sleutel.",
+			"password": "Wachtwoord",
+			"password_again": "Wachtwoord (opnieuw)",
+			"password_mismatch": "Wachtwoord komt niet overeen.",
+			"submit": "Reset",
+			"title": "Wachtwoord opnieuw instellen"
+		},
+		"password_reset_confirm": {
+			"code": "Code",
+			"intro": "De code verloopt binnenkort, dus voer hem snel in.",
+			"submit": "Bevestig",
+			"title": "Code voor opnieuw instellen wachtwoord invoeren"
+		},
+		"password_reset_request": {
+			"back_to_login": "Terug naar Aanmelden",
+			"email": "E-mail",
+			"remember_password": "Weet u uw wachtwoord nog?",
+			"submit": "Reset",
+			"success": "Er zijn instructies voor het opnieuw instellen van het wachtwoord verzonden.",
+			"title": "Wachtwoord opnieuw instellen"
+		},
+		"provider_buttons": {
+			"title": "Gebruik een externe provider"
+		},
+		"provider_callback": {
+			"continue": "Ga verder",
+			"intro": "Er is iets misgegaan bij het terugbellen van de identiteitsprovider.",
+			"title": "Login van derden mislukt"
+		},
+		"provider_signup": {
+			"back_to_login": "Terug naar Aanmelden",
+			"email": "E-mail",
+			"intro": "Voltooi uw aanmelding met een e-mailadres.",
+			"submit": "Aanmelden",
+			"title": "Aanbieder aanmelden"
+		},
+		"providers": {
+			"disconnect": "Verbinding verbreken",
+			"none": "Er zijn nog geen provideraccounts aangesloten.",
+			"table": {
+				"account": "Account",
+				"actions": "Acties",
+				"provider": "Aanbieder",
+				"uid": "UID"
+			},
+			"title": "Aangesloten providers"
+		},
+		"reauthenticate": {
+			"intro": "Authenticeer opnieuw om verder te gaan.",
+			"password": "Wachtwoord",
+			"submit": "Bevestig",
+			"title": "Toegang bevestigen"
+		},
+		"reauthenticate_recovery_codes": {
+			"code": "Herstelcode",
+			"intro": "Gebruik een herstelcode.",
+			"submit": "Bevestig",
+			"title": "Toegang bevestigen"
+		},
+		"reauthenticate_totp": {
+			"code": "Code",
+			"intro": "Gebruik je authenticator app code.",
+			"submit": "Bevestig",
+			"title": "Toegang bevestigen"
+		},
+		"reauthenticate_webauthn": {
+			"browser_not_supported": "Deze browser ondersteunt geen passkey herauthenticatie.",
+			"failed": "Kan herauthenticatie met passkey niet voltooien.",
+			"intro": "Gebruik uw beveiligingssleutel.",
+			"submit": "Gebruik beveiligingssleutel",
+			"title": "Toegang bevestigen",
+			"unavailable": "Passkey herauthenticatie is momenteel niet beschikbaar."
+		},
+		"signup": {
+			"already_have_account": "Hebt u al een account?",
+			"email": "E-mail",
+			"login": "Inloggen",
+			"passkey_signup": "Aanmelden met passkey",
+			"password": "Wachtwoord",
+			"password_again": "Wachtwoord (opnieuw)",
+			"password_mismatch": "Wachtwoord komt niet overeen.",
+			"submit": "Aanmelden",
+			"title": "Aanmelden",
+			"username": "Gebruikersnaam"
+		},
+		"signup_passkey": {
+			"already_have_account": "Hebt u al een account?",
+			"email": "E-mail",
+			"login": "Inloggen",
+			"submit": "Aanmelden",
+			"title": "Aanmelden Passkey",
+			"use_password_signup": "Gebruik wachtwoord aanmelden",
+			"username": "Gebruikersnaam"
+		},
+		"signup_passkey_create": {
+			"browser_not_supported": "Deze browser ondersteunt het instellen van een passkey niet.",
+			"failed": "Kan geen wachtwoord aanmaken.",
+			"intro": "Maak een wachtwoord voor uw account.",
+			"name": "Naam",
+			"submit": "Aanmaken",
+			"title": "Passkey aanmaken"
+		},
+		"verify_email": {
+			"already_confirmed": "Kan {email} niet bevestigen omdat het al bevestigd is.",
+			"confirm_for": "Bevestig {email} voor {user}.",
+			"invalid_link": "Ongeldige verificatielink.",
+			"submit": "Bevestig",
+			"this_account": "dit account",
+			"title": "E-mailadres bevestigen"
+		},
+		"verify_email_gate": {
+			"code": "Code",
+			"intro": "Voer de verificatiecode in die naar uw e-mail is verzonden.",
+			"mailbox_intro": "Bevestig uw e-mailadres via de link die naar uw mailbox is verzonden.",
+			"submit": "Bevestig",
+			"title": "E-mailadres bevestigen"
+		}
+	},
 	"chart": {
 		"cumulative-percentage-bar-chart": {
 			"accessibility_text": "Een tabel met de inhoud van deze grafiek wordt hieronder getoond.",

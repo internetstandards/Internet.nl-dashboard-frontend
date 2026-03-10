@@ -1,11 +1,11 @@
 <template>
   <section>
-    <h2>Trust This Browser?</h2>
-    <p>If trusted, you will not be asked for a second factor next login on this browser.</p>
+    <h2>{{ $t('authentication.mfa_trust.title') }}</h2>
+    <p>{{ $t('authentication.mfa_trust.intro') }}</p>
 
     <div class="d-flex gap-2">
-      <b-button variant="outline-secondary" :disabled="loading" @click="submit(false)">Don't Trust</b-button>
-      <b-button variant="warning" :disabled="loading" @click="submit(true)">Trust</b-button>
+      <b-button variant="outline-secondary" :disabled="loading" @click="submit(false)">{{ $t('authentication.mfa_trust.dont_trust') }}</b-button>
+      <b-button variant="warning" :disabled="loading" @click="submit(true)">{{ $t('authentication.mfa_trust.trust') }}</b-button>
     </div>
   </section>
 </template>

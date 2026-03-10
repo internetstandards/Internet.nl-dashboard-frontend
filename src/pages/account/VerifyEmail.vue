@@ -1,24 +1,22 @@
 <template>
   <section>
-    <h2>Confirm Email Address</h2>
+    <h2>{{ $t('authentication.verify_email.title') }}</h2>
 
     <template v-if="verification && verification.status === 200">
       <p>
-        Confirm <a :href="`mailto:${verification.data.email}`">{{ verification.data.email }}</a> for
-        {{ verification.data.user?.str || 'this account' }}.
+        {{ $t('authentication.verify_email.confirm_for', { email: verification.data.email, user: verification.data.user?.str || $t('authentication.verify_email.this_account') }) }}
       </p>
-      <b-button variant="warning" :disabled="loading" @click="submit">Confirm</b-button>
+      <b-button variant="warning" :disabled="loading" @click="submit">{{ $t('authentication.verify_email.submit') }}</b-button>
     </template>
 
     <template v-else-if="verification && verification.data?.email">
       <p>
-        Unable to confirm <a :href="`mailto:${verification.data.email}`">{{ verification.data.email }}</a>
-        because it is already confirmed.
+        {{ $t('authentication.verify_email.already_confirmed', { email: verification.data.email }) }}
       </p>
     </template>
 
     <template v-else>
-      <p>Invalid verification link.</p>
+      <p>{{ $t('authentication.verify_email.invalid_link') }}</p>
     </template>
 
     <FormErrors :errors="response?.errors" />

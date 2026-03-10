@@ -1,15 +1,15 @@
 <template>
   <section>
-    <h2>Enter Password Reset Code</h2>
-    <p>The code expires shortly, so please enter it soon.</p>
+    <h2>{{ $t('authentication.password_reset_confirm.title') }}</h2>
+    <p>{{ $t('authentication.password_reset_confirm.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="password-reset-code">Code</label>
+      <label class="form-label" for="password-reset-code">{{ $t('authentication.password_reset_confirm.code') }}</label>
       <input id="password-reset-code" v-model="code" class="form-control" required>
       <FormErrors :errors="response?.errors" param="key" />
       <FormErrors :errors="response?.errors" />
 
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Confirm</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.password_reset_confirm.submit') }}</b-button>
     </form>
   </section>
 </template>

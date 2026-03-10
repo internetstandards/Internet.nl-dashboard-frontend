@@ -1,14 +1,14 @@
 <template>
   <section>
-    <h2>Two-Factor Authentication</h2>
-    <p>Your account requires 2FA. Enter your authenticator code.</p>
+    <h2>{{ $t('authentication.authenticate_totp.title') }}</h2>
+    <p>{{ $t('authentication.authenticate_totp.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="auth-totp-code">Code</label>
+      <label class="form-label" for="auth-totp-code">{{ $t('authentication.authenticate_totp.code') }}</label>
       <input id="auth-totp-code" v-model="code" class="form-control" required>
       <FormErrors :errors="response?.errors" param="code" />
       <FormErrors :errors="response?.errors" />
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Sign in</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.authenticate_totp.submit') }}</b-button>
     </form>
   </section>
 </template>

@@ -1,14 +1,14 @@
 <template>
   <section>
-    <h2>Confirm Access</h2>
-    <p>Please reauthenticate to continue.</p>
+    <h2>{{ $t('authentication.reauthenticate.title') }}</h2>
+    <p>{{ $t('authentication.reauthenticate.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="reauth-password">Password</label>
+      <label class="form-label" for="reauth-password">{{ $t('authentication.reauthenticate.password') }}</label>
       <input id="reauth-password" v-model="password" type="password" class="form-control" required>
       <FormErrors :errors="response?.errors" param="password" />
       <FormErrors :errors="response?.errors" />
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Confirm</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.reauthenticate.submit') }}</b-button>
     </form>
   </section>
 </template>
