@@ -465,7 +465,7 @@
 			"email": "Correio eletrónico",
 			"remember_password": "Lembra-se da sua palavra-passe?",
 			"submit": "Repor",
-			"success": "Foram enviadas instruções de reposição da palavra-passe.",
+			"success": "Foram enviadas instruções de reposição da palavra-passe se a sua conta existir.",
 			"title": "Repor a palavra-passe"
 		},
 		"provider_buttons": {

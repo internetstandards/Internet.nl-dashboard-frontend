@@ -465,7 +465,7 @@
 			"email": "E-mail",
 			"remember_password": "Weet u uw wachtwoord nog?",
 			"submit": "Reset",
-			"success": "Er zijn instructies voor het opnieuw instellen van het wachtwoord verzonden.",
+			"success": "Er zijn instructies voor het opnieuw instellen van het wachtwoord verzonden als uw account bestaat.",
 			"title": "Wachtwoord opnieuw instellen"
 		},
 		"provider_buttons": {

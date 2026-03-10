@@ -465,7 +465,7 @@
 			"email": "E-Mail",
 			"remember_password": "Haben Sie Ihr Passwort vergessen?",
 			"submit": "Zurücksetzen",
-			"success": "Anweisungen zum Zurücksetzen des Passworts wurden gesendet.",
+			"success": "Anweisungen zum Zurücksetzen des Passworts wurden gesendet, wenn Ihr Konto existiert.",
 			"title": "Passwort zurücksetzen"
 		},
 		"provider_buttons": {

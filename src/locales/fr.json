@@ -465,7 +465,7 @@
 			"email": "Courriel",
 			"remember_password": "Vous vous souvenez de votre mot de passe ?",
 			"submit": "Réinitialiser",
-			"success": "Des instructions de réinitialisation du mot de passe ont été envoyées.",
+			"success": "Les instructions de réinitialisation du mot de passe ont été envoyées si votre compte existe.",
 			"title": "Réinitialiser le mot de passe"
 		},
 		"provider_buttons": {
