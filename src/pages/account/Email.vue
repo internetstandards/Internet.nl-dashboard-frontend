@@ -46,6 +46,17 @@
       </tbody>
     </table>
 
+    <b-alert
+      v-if="verificationNotice"
+      :variant="verificationNoticeVariant"
+      :model-value="true"
+      class="mt-3"
+    >
+      {{ verificationNotice }}
+    </b-alert>
+    <FormErrors :errors="verificationResponse?.errors" param="email" />
+    <FormErrors :errors="verificationResponse?.errors" />
+
     <h3 class="h5 mt-4">Add Email</h3>
     <form @submit.prevent="addNewEmail">
       <label class="form-label" for="new-email">Email</label>
@@ -66,8 +77,7 @@ import {
   addEmail,
   deleteEmail,
   markEmailAsPrimary,
-  requestEmailVerification,
-  resendEmailVerification
+  requestEmailVerification
 } from '@/allauth/lib/allauth'
 import { allauthStore } from '@/allauthStore'
 
@@ -78,6 +88,9 @@ const allauth = allauthStore()
 const emailAddresses = ref([])
 const email = ref('')
 const response = ref(null)
+const verificationResponse = ref(null)
+const verificationNotice = ref('')
+const verificationNoticeVariant = ref('danger')
 const loading = ref(false)
 
 onMounted(async () => {
@@ -148,17 +161,26 @@ async function markAsPrimary(value) {
 async function requestVerification(value) {
   loading.value = true
   try {
-    if (allauth.config?.data?.account?.email_verification_by_code_enabled) {
-      response.value = await resendEmailVerification()
-      if (response.value?.status === 200) {
-        maybeRedirectToVerification()
-        return
-      }
+    verificationResponse.value = null
+    verificationNotice.value = ''
+
+    verificationResponse.value = await requestEmailVerification(value)
+    if (verificationResponse.value?.status === 200) {
+      verificationNoticeVariant.value = 'success'
+      verificationNotice.value = 'Verification email sent.'
+      maybeRedirectToVerification()
+      return
     }
 
-    response.value = await requestEmailVerification(value)
-    if (response.value?.status === 200) {
-      maybeRedirectToVerification()
+    verificationNoticeVariant.value = 'danger'
+    if (verificationResponse.value?.status === 403) {
+      verificationNotice.value = 'A verification email was already sent recently. Please wait before trying again.'
+    } else if (verificationResponse.value?.status === 409) {
+      verificationNotice.value = 'Email verification is not currently pending for this account.'
+    } else if (verificationResponse.value?.errors?.length) {
+      verificationNotice.value = ''
+    } else {
+      verificationNotice.value = 'Unable to send a verification email.'
     }
   } finally {
     loading.value = false
