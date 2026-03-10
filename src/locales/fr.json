@@ -324,7 +324,7 @@
 			"passkey_unavailable": "Le login Passkey n'est actuellement pas disponible pour cette session.",
 			"password": "Mot de passe",
 			"send_login_code": "Envoyer le code de connexion",
-			"sign_in_with_passkey": "S'identifier avec un mot de passe",
+			"sign_in_with_passkey": "S'identifier à l'aide de Passkey",
 			"submit": "Se connecter",
 			"title": "Se connecter"
 		},

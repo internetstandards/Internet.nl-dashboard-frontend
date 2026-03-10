@@ -324,7 +324,7 @@
 			"passkey_unavailable": "Přihlášení pomocí klíče Passkey není v současné době pro tuto relaci k dispozici.",
 			"password": "Heslo",
 			"send_login_code": "Odeslání přihlašovacího kódu",
-			"sign_in_with_passkey": "Přihlášení pomocí přístupového klíče",
+			"sign_in_with_passkey": "Přihlášení pomocí klíče Passkey",
 			"submit": "Přihlášení",
 			"title": "Přihlášení"
 		},
