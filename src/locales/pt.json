@@ -324,7 +324,7 @@
 			"passkey_unavailable": "O início de sessão Passkey não está atualmente disponível para esta sessão.",
 			"password": "Palavra-passe",
 			"send_login_code": "Enviar código de início de sessão",
-			"sign_in_with_passkey": "Iniciar sessão com uma chave de acesso",
+			"sign_in_with_passkey": "Iniciar sessão utilizando a Passkey",
 			"submit": "Iniciar sessão",
 			"title": "Iniciar sessão"
 		},

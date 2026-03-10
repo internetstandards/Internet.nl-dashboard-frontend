@@ -324,7 +324,7 @@
 			"passkey_unavailable": "Die Passkey-Anmeldung ist derzeit für diese Sitzung nicht verfügbar.",
 			"password": "Passwort",
 			"send_login_code": "Anmeldecode senden",
-			"sign_in_with_passkey": "Anmeldung mit einem Hauptschlüssel",
+			"sign_in_with_passkey": "Anmeldung mit passkey",
 			"submit": "Anmeldung",
 			"title": "Anmeldung"
 		},

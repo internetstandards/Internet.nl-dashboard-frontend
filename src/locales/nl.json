@@ -324,7 +324,7 @@
 			"passkey_unavailable": "Passkey login is momenteel niet beschikbaar voor deze sessie.",
 			"password": "Wachtwoord",
 			"send_login_code": "Inlogcode verzenden",
-			"sign_in_with_passkey": "Aanmelden met een wachtwoord",
+			"sign_in_with_passkey": "Aanmelden met passkey",
 			"submit": "Inloggen",
 			"title": "Inloggen"
 		},

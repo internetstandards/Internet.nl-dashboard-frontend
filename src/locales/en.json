@@ -225,8 +225,8 @@
 			"title": "Two-Factor Authentication"
 		},
 		"authenticate_webauthn": {
-			"browser_not_supported": "This browser does not support passkey authentication.",
-			"failed": "Unable to complete passkey authentication.",
+			"browser_not_supported": "This browser does not support Passkey authentication.",
+			"failed": "Unable to complete Passkey authentication.",
 			"intro": "Use your security key.",
 			"submit": "Use security key",
 			"title": "Two-Factor Authentication",
@@ -324,7 +324,7 @@
 			"passkey_unavailable": "Passkey login is currently not available for this session.",
 			"password": "Password",
 			"send_login_code": "Send login code",
-			"sign_in_with_passkey": "Sign in with a passkey",
+			"sign_in_with_passkey": "Sign in using Passkey",
 			"submit": "Login",
 			"title": "Login"
 		},
@@ -384,7 +384,7 @@
 			"alert": "When using security keys, you can still sign in with your password, but only if you also provide a recovery code.",
 			"available": "{unused} of {total} recovery codes available.",
 			"back": "Back to 2FA",
-			"intro": "Recovery codes let you sign in when your authenticator app or passkey is unavailable, for example when using another device or after losing access to your usual device.",
+			"intro": "Recovery codes let you sign in when your authenticator app or Passkey is unavailable, for example when using another device or after losing access to your usual device.",
 			"none": "No recovery codes configured.",
 			"title": "Recovery Codes",
 			"warning": "Store these codes in a secure place. Each code can be used once."
@@ -404,7 +404,7 @@
 		},
 		"mfa_webauthn_add": {
 			"back": "Back to 2FA",
-			"browser_not_supported": "This browser does not support passkey setup.",
+			"browser_not_supported": "This browser does not support Passkey setup.",
 			"failed": "Unable to add security key.",
 			"name": "Name",
 			"passwordless": "Passwordless (passkey)",
@@ -544,7 +544,7 @@
 		"signup_passkey_create": {
 			"browser_not_supported": "This browser does not support passkey setup.",
 			"failed": "Unable to create passkey.",
-			"intro": "Create a passkey for your account.",
+			"intro": "Create a Passkey for your account.",
 			"name": "Name",
 			"submit": "Create",
 			"title": "Create Passkey"

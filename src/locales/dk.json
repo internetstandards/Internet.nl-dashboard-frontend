@@ -324,7 +324,7 @@
 			"passkey_unavailable": "Passkey-login er i øjeblikket ikke tilgængeligt for denne session.",
 			"password": "Adgangskode",
 			"send_login_code": "Send login-kode",
-			"sign_in_with_passkey": "Log ind med en adgangskode",
+			"sign_in_with_passkey": "Log ind med Passkey",
 			"submit": "Login",
 			"title": "Login"
 		},
