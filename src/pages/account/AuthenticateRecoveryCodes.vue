@@ -1,14 +1,14 @@
 <template>
   <section>
-    <h2>Two-Factor Authentication</h2>
-    <p>Enter one of your recovery codes.</p>
+    <h2>{{ $t('authentication.authenticate_recovery_codes.title') }}</h2>
+    <p>{{ $t('authentication.authenticate_recovery_codes.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="auth-recovery-code">Recovery code</label>
+      <label class="form-label" for="auth-recovery-code">{{ $t('authentication.authenticate_recovery_codes.code') }}</label>
       <input id="auth-recovery-code" v-model="code" class="form-control" required>
       <FormErrors :errors="response?.errors" param="code" />
       <FormErrors :errors="nonFieldErrors" />
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Sign in</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.authenticate_recovery_codes.submit') }}</b-button>
     </form>
   </section>
 </template>

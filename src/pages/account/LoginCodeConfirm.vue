@@ -1,17 +1,17 @@
 <template>
   <section>
-    <h2>Confirm Login Code</h2>
-    <p>Enter the code sent to your email address.</p>
+    <h2>{{ $t('authentication.login_code_confirm.title') }}</h2>
+    <p>{{ $t('authentication.login_code_confirm.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="confirm-login-code">Code</label>
+      <label class="form-label" for="confirm-login-code">{{ $t('authentication.login_code_confirm.code') }}</label>
       <input id="confirm-login-code" v-model="code" class="form-control" required>
       <FormErrors :errors="response?.errors" param="code" />
       <FormErrors :errors="response?.errors" />
 
       <div class="d-flex gap-2 mt-3">
-        <b-button type="submit" :disabled="loading" variant="warning">Confirm</b-button>
-        <b-button type="button" to="/account/login" variant="outline-secondary">Back to login</b-button>
+        <b-button type="submit" :disabled="loading" variant="warning">{{ $t('authentication.login_code_confirm.submit') }}</b-button>
+        <b-button type="button" to="/account/login" variant="outline-secondary">{{ $t('authentication.login_code_confirm.back_to_login') }}</b-button>
       </div>
     </form>
   </section>

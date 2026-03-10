@@ -1,8 +1,8 @@
 <template>
   <section>
-    <h2>Logout</h2>
-    <p>Are you sure you want to log out?</p>
-    <b-button variant="danger" :disabled="loading" @click="submit">Logout</b-button>
+    <h2>{{ $t('authentication.logout.title') }}</h2>
+    <p>{{ $t('authentication.logout.intro') }}</p>
+    <b-button variant="danger" :disabled="loading" @click="submit">{{ $t('authentication.logout.submit') }}</b-button>
   </section>
 </template>
 

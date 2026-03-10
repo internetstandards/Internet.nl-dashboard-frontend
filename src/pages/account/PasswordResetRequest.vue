@@ -1,17 +1,17 @@
 <template>
   <section>
-    <h2>Reset Password</h2>
-    <p>Remember your password? <router-link to="/account/login">Back to login</router-link>.</p>
+    <h2>{{ $t('authentication.password_reset_request.title') }}</h2>
+    <p>{{ $t('authentication.password_reset_request.remember_password') }} <router-link to="/account/login">{{ $t('authentication.password_reset_request.back_to_login') }}</router-link>.</p>
 
-    <div v-if="response?.status === 200" class="alert alert-success">Password reset instructions were sent.</div>
+    <div v-if="response?.status === 200" class="alert alert-success">{{ $t('authentication.password_reset_request.success') }}</div>
 
     <form v-else @submit.prevent="submit">
-      <label class="form-label" for="password-reset-email">Email</label>
+      <label class="form-label" for="password-reset-email">{{ $t('authentication.password_reset_request.email') }}</label>
       <input id="password-reset-email" v-model="email" type="email" class="form-control" required>
       <FormErrors :errors="response?.errors" param="email" />
       <FormErrors :errors="response?.errors" />
 
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Reset</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.password_reset_request.submit') }}</b-button>
     </form>
   </section>
 </template>
@@ -23,7 +23,6 @@ import FormErrors from '@/components/allauth/FormErrors.vue'
 import { requestPasswordReset } from '@/allauth/lib/allauth'
 
 const router = useRouter()
-
 const email = ref('')
 const response = ref(null)
 const loading = ref(false)

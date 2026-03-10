@@ -69,7 +69,11 @@
 			"enter_new_account_details": "Introduza os dados da nova conta.",
 			"error_account_name_already_exists": "Já existe uma conta com este nome.",
 			"error_account_not_found": "A conta fornecida não foi encontrada.",
+			"error_invalid_email": "O endereço de e-mail é inválido.",
+			"error_invalid_email_address": "O endereço de e-mail é inválido.",
 			"error_no_account_name_supplied": "Não foi fornecido nenhum nome de conta.",
+			"error_no_email_address_supplied": "Não foi fornecido nenhum endereço de e-mail.",
+			"error_no_email_supplied": "Não foi fornecido nenhum endereço de e-mail.",
 			"error_no_username_supplied": "Não foi fornecido nenhum nome de utilizador.",
 			"error_password_too_short": "A palavra-passe é demasiado curta.",
 			"error_username_already_exists": "Já existe um utilizador com este nome.",
@@ -77,6 +81,7 @@
 			"new_account_internet_nl_api_password": "Palavra-passe da API",
 			"new_account_internet_nl_api_username": "Nome de utilizador da API",
 			"new_account_name": "Nome da conta",
+			"new_email_address": "Endereço de e-mail",
 			"password": "Palavra-passe",
 			"save": "Adicionar utilizador",
 			"select_an_existing_account": "Selecionar uma conta existente:",
@@ -204,6 +209,360 @@
 			"gotocontents": "Saltar para o conteúdo",
 			"gotofooter": "Saltar para o rodapé",
 			"gotomainmenu": "Saltar para o menu principal"
+		}
+	},
+	"authentication": {
+		"authenticate_recovery_codes": {
+			"code": "Código de recuperação",
+			"intro": "Introduza um dos seus códigos de recuperação.",
+			"submit": "Iniciar sessão",
+			"title": "Autenticação de dois factores"
+		},
+		"authenticate_totp": {
+			"code": "Código",
+			"intro": "A sua conta requer 2FA. Introduza o seu código de autenticação.",
+			"submit": "Iniciar sessão",
+			"title": "Autenticação de dois factores"
+		},
+		"authenticate_webauthn": {
+			"browser_not_supported": "Este browser não suporta a autenticação por passkey.",
+			"failed": "Não é possível concluir a autenticação por chave de acesso.",
+			"intro": "Utilize a sua chave de segurança.",
+			"submit": "Utilizar chave de segurança",
+			"title": "Autenticação de dois factores",
+			"unavailable": "Atualmente, não está disponível a autenticação por chave de acesso."
+		},
+		"email": {
+			"add": "Adicionar",
+			"add_title": "Adicionar e-mail",
+			"email_label": "Correio eletrónico",
+			"no": "Não",
+			"remove": "Remover",
+			"resend_verification": "Verificação de reenvio",
+			"table": {
+				"actions": "Acções",
+				"email": "Correio eletrónico",
+				"primary": "Principal",
+				"verified": "Verificado"
+			},
+			"title": "Endereços de correio eletrónico",
+			"verification_failed": "Não é possível enviar um e-mail de verificação.",
+			"verification_not_pending": "A verificação de correio eletrónico não está atualmente pendente para esta conta.",
+			"verification_recently_sent": "Um e-mail de verificação já foi enviado recentemente. Aguarde antes de tentar novamente.",
+			"verification_sent": "Envio de correio eletrónico de verificação.",
+			"yes": "Sim"
+		},
+		"error": {
+			"account_inactive": "Esta conta está atualmente inativa.",
+			"account_not_found": "Conta desconhecida.",
+			"add_email_blocked": "Não é possível adicionar um endereço de correio eletrónico a uma conta protegida por autenticação de dois factores.",
+			"cannot_delete_authenticator": "Não é possível desativar a autenticação de dois factores.",
+			"cannot_generate_recovery_codes": "Não é possível gerar códigos de recuperação sem ter a autenticação de dois factores activada.",
+			"cannot_remove_primary_email": "Não é possível remover o endereço de correio eletrónico principal.",
+			"client_id_required": "`client_id` necessário.",
+			"connected_other": "A conta de terceiros já está ligada a uma conta diferente.",
+			"disconnect_last": "Não é possível desligar a última conta de terceiros existente.",
+			"duplicate_email": "Este endereço de correio eletrónico já está associado a esta conta.",
+			"email_password_mismatch": "O endereço de correio eletrónico e/ou a palavra-passe que especificou não estão corretos.",
+			"email_taken": "Já existe um utilizador registado com este endereço de e-mail.",
+			"enter_current_password": "Introduza a sua palavra-passe atual.",
+			"incorrect_code": "Código incorreto.",
+			"incorrect_password": "Palavra-passe incorrecta.",
+			"invalid": "O token era inválido.",
+			"invalid_login": "Início de sessão inválido.",
+			"invalid_or_expired_key": "Chave inválida ou expirada.",
+			"invalid_password_reset": "O token de reposição da palavra-passe era inválido.",
+			"invalid_phone": "Introduza um número de telefone, incluindo o código do país (por exemplo, +1 para os EUA).",
+			"invalid_token": "Token inválido.",
+			"invalid_url": "URL inválido.",
+			"max_email_addresses": "Não é possível adicionar mais do que o número permitido de endereços de correio eletrónico.",
+			"no_password": "A sua conta não tem uma palavra-passe definida.",
+			"no_verified_email": "A sua conta não tem um endereço de correio eletrónico verificado.",
+			"password_entirely_numeric": "Esta palavra-passe é totalmente numérica.",
+			"password_too_common": "Esta palavra-passe é demasiado comum.",
+			"password_too_short": "Esta palavra-passe é demasiado curta. Deve conter pelo menos 16 caracteres.",
+			"password_too_similar": "Esta palavra-passe é demasiado semelhante às suas outras informações pessoais.",
+			"phone_password_mismatch": "O número de telefone e/ou a palavra-passe que especificou não estão corretos.",
+			"phone_taken": "Um utilizador já está registado com este número de telefone.",
+			"rate_limited": "Seja paciente, está a enviar demasiados pedidos.",
+			"required": "Este campo é obrigatório.",
+			"same_as_current": "O novo valor tem de ser diferente do atual.",
+			"select_only_one": "Selecione apenas uma.",
+			"token_authentication_not_supported": "O fornecedor não suporta a autenticação por token.",
+			"token_invalid": "O token de reposição da palavra-passe era inválido.",
+			"token_required": "Necessário `id_token` e/ou `access_token`.",
+			"too_many_login_attempts": "Demasiadas tentativas de início de sessão falhadas. Tente novamente mais tarde.",
+			"unknown_email": "Endereço de correio eletrónico desconhecido.",
+			"unknown_phone": "O número de telefone não é atribuído a nenhuma conta de utilizador.",
+			"unknown_provider": "Fornecedor desconhecido.",
+			"unverified_email": "Não é possível ativar a autenticação de dois factores enquanto não tiver verificado o seu endereço de correio eletrónico.",
+			"unverified_primary_email": "O seu endereço de correio eletrónico principal tem de ser verificado.",
+			"username_blacklisted": "O nome de utilizador não pode ser utilizado. Utilize outro nome de utilizador.",
+			"username_password_mismatch": "O nome de utilizador e/ou a palavra-passe que especificou não estão corretos.",
+			"username_taken": "Já existe um utilizador com esse nome de utilizador."
+		},
+		"home": {
+			"logged_out": "Não tem sessão iniciada.",
+			"signed_in_as": "Iniciou sessão como",
+			"title": "Segurança da conta"
+		},
+		"layout": {
+			"loading_settings": "Carregamento das definições de autenticação..."
+		},
+		"login": {
+			"browser_not_supported": "Este browser não suporta o início de sessão com chave de acesso.",
+			"create_one": "Criar um",
+			"forgot_password": "Esqueci-me da palavra-passe",
+			"login_method": "Método de início de sessão",
+			"methods": {
+				"email": "Correio eletrónico",
+				"phone": "Telefone",
+				"username": "Nome de utilizador"
+			},
+			"no_account_yet": "Ainda não tem conta?",
+			"passkey_failed": "O início de sessão com a chave de acesso falhou.",
+			"passkey_unavailable": "O início de sessão Passkey não está atualmente disponível para esta sessão.",
+			"password": "Palavra-passe",
+			"send_login_code": "Enviar código de início de sessão",
+			"sign_in_with_passkey": "Iniciar sessão com uma chave de acesso",
+			"submit": "Iniciar sessão",
+			"title": "Iniciar sessão"
+		},
+		"login_code_confirm": {
+			"back_to_login": "Voltar ao início de sessão",
+			"code": "Código",
+			"intro": "Introduza o código enviado para o seu endereço de correio eletrónico.",
+			"submit": "Confirmar",
+			"title": "Confirmar código de início de sessão"
+		},
+		"login_code_request": {
+			"back_to_login": "Voltar ao início de sessão",
+			"email": "Correio eletrónico",
+			"intro": "Introduza o seu e-mail e enviaremos um código de início de sessão.",
+			"submit": "Enviar código",
+			"title": "Pedir código de acesso"
+		},
+		"logout": {
+			"intro": "Tem a certeza de que pretende terminar a sessão?",
+			"submit": "Terminar sessão",
+			"title": "Terminar sessão"
+		},
+		"mfa_activate_totp": {
+			"already_active": "O TOTP já está ativo.",
+			"back": "Voltar para 2FA",
+			"code": "Código do autenticador",
+			"scan_qr": "Digitalize este código QR com a sua aplicação de autenticação:",
+			"secret": "Segredo do autenticador",
+			"secret_help": "Guarde este segredo para reconfigurar o seu autenticador mais tarde.",
+			"submit": "Ativar",
+			"title": "Ativar TOTP"
+		},
+		"mfa_deactivate_totp": {
+			"intro": "Está prestes a desativar a autenticação baseada na aplicação do autenticador.",
+			"submit": "Desativar",
+			"title": "Desativar a aplicação Authenticator"
+		},
+		"mfa_overview": {
+			"activate": "Ativar",
+			"add": "Adicionar",
+			"authenticator_active": "A aplicação Authenticator está ativa.",
+			"authenticator_app": "Aplicação Authenticator",
+			"authenticator_inactive": "A aplicação Authenticator não está ativa.",
+			"deactivate": "Desativar",
+			"generate": "Gerar",
+			"manage": "Gerir",
+			"recovery_codes": "Códigos de recuperação",
+			"recovery_codes_available": "{unused} de {total} códigos disponíveis.",
+			"recovery_codes_none": "Não são configurados códigos de recuperação.",
+			"security_keys": "Chaves de segurança",
+			"security_keys_configured": "{count} chaves de segurança configuradas.",
+			"security_keys_none": "Não são configuradas chaves de segurança.",
+			"title": "Autenticação de dois factores",
+			"view": "Ver"
+		},
+		"mfa_recovery_codes": {
+			"alert": "Ao utilizar chaves de segurança, o utilizador continua a poder iniciar sessão com a sua palavra-passe, mas apenas se também fornecer um código de recuperação.",
+			"available": "{unused} de {total} códigos de recuperação disponíveis.",
+			"back": "Voltar para 2FA",
+			"intro": "Os códigos de recuperação permitem-lhe iniciar sessão quando a sua aplicação de autenticação ou chave-mestra não está disponível, por exemplo, quando utiliza outro dispositivo ou depois de perder o acesso ao seu dispositivo habitual.",
+			"none": "Não são configurados códigos de recuperação.",
+			"title": "Códigos de recuperação",
+			"warning": "Guarde estes códigos num local seguro. Cada código pode ser utilizado uma vez."
+		},
+		"mfa_recovery_codes_generate": {
+			"back": "Voltar para 2FA",
+			"intro": "Está prestes a gerar um novo conjunto de códigos de recuperação.",
+			"invalidates_current": "Isto invalida os seus códigos de recuperação actuais.",
+			"submit": "Gerar",
+			"title": "Gerar códigos de recuperação"
+		},
+		"mfa_trust": {
+			"dont_trust": "Não confie",
+			"intro": "Se for de confiança, não lhe será pedido um segundo fator no próximo início de sessão neste browser.",
+			"title": "Confiar neste navegador?",
+			"trust": "Confiança"
+		},
+		"mfa_webauthn_add": {
+			"back": "Voltar para 2FA",
+			"browser_not_supported": "Este browser não suporta a configuração de chaves de acesso.",
+			"failed": "Não é possível adicionar a chave de segurança.",
+			"name": "Nome do domínio",
+			"passwordless": "Sem palavra-passe (passkey)",
+			"submit": "Adicionar chave",
+			"title": "Adicionar chave de segurança"
+		},
+		"mfa_webauthn_list": {
+			"add": "Adicionar",
+			"alert": "Ao utilizar chaves de segurança, o utilizador continua a poder iniciar sessão com a sua palavra-passe, mas apenas se também fornecer um código de recuperação.",
+			"back": "Voltar para 2FA",
+			"cancel": "Cancelar",
+			"delete": "Eliminar",
+			"edit": "Editar",
+			"none": "Ainda não existem chaves de segurança configuradas.",
+			"save": "Guardar",
+			"table": {
+				"actions": "Acções",
+				"created_at": "Criado em",
+				"last_used_at": "Utilizado pela última vez em",
+				"name": "Nome do domínio",
+				"type": "Tipo de ficheiro"
+			},
+			"title": "Chaves de segurança",
+			"type_passkey": "Chave de acesso",
+			"type_security_key": "Chave de segurança",
+			"unused": "Não utilizado"
+		},
+		"password_change": {
+			"current_password": "Palavra-passe atual",
+			"new_password": "Nova Palavra-passe",
+			"new_password_again": "Nova palavra-passe (novamente)",
+			"password_mismatch": "A palavra-passe não corresponde.",
+			"save": "Guardar",
+			"title": "Alterar palavra-passe"
+		},
+		"password_reset_by_key": {
+			"title": "Repor a palavra-passe",
+			"validating": "Validação da ligação de reposição..."
+		},
+		"password_reset_complete": {
+			"intro": "Escolher uma nova palavra-passe.",
+			"invalid_key": "Chave de reinicialização inválida ou expirada.",
+			"missing_key": "Chave de reposição da palavra-passe em falta.",
+			"password": "Palavra-passe",
+			"password_again": "Palavra-passe (novamente)",
+			"password_mismatch": "A palavra-passe não corresponde.",
+			"submit": "Repor",
+			"title": "Repor a palavra-passe"
+		},
+		"password_reset_confirm": {
+			"code": "Código",
+			"intro": "O código expira em breve, por isso, introduza-o rapidamente.",
+			"submit": "Confirmar",
+			"title": "Introduzir o código de reposição da palavra-passe"
+		},
+		"password_reset_request": {
+			"back_to_login": "Voltar ao início de sessão",
+			"email": "Correio eletrónico",
+			"remember_password": "Lembra-se da sua palavra-passe?",
+			"submit": "Repor",
+			"success": "Foram enviadas instruções de reposição da palavra-passe.",
+			"title": "Repor a palavra-passe"
+		},
+		"provider_buttons": {
+			"title": "Utilizar um fornecedor externo"
+		},
+		"provider_callback": {
+			"continue": "Continuar",
+			"intro": "Algo correu mal na fase de chamada de retorno do fornecedor de identidade.",
+			"title": "Falha no início de sessão de terceiros"
+		},
+		"provider_signup": {
+			"back_to_login": "Voltar ao início de sessão",
+			"email": "Correio eletrónico",
+			"intro": "Complete o seu registo com um endereço de correio eletrónico.",
+			"submit": "Registar",
+			"title": "Registo de fornecedor"
+		},
+		"providers": {
+			"disconnect": "Desconectar",
+			"none": "Ainda não existem contas de fornecedores ligadas.",
+			"table": {
+				"account": "Conta",
+				"actions": "Acções",
+				"provider": "Fornecedor",
+				"uid": "UID"
+			},
+			"title": "Fornecedores ligados"
+		},
+		"reauthenticate": {
+			"intro": "Reautentique-se para continuar.",
+			"password": "Palavra-passe",
+			"submit": "Confirmar",
+			"title": "Confirmar o acesso"
+		},
+		"reauthenticate_recovery_codes": {
+			"code": "Código de recuperação",
+			"intro": "Utilizar um código de recuperação.",
+			"submit": "Confirmar",
+			"title": "Confirmar o acesso"
+		},
+		"reauthenticate_totp": {
+			"code": "Código",
+			"intro": "Utilize o código da sua aplicação de autenticação.",
+			"submit": "Confirmar",
+			"title": "Confirmar o acesso"
+		},
+		"reauthenticate_webauthn": {
+			"browser_not_supported": "Este browser não suporta a reautenticação por chave de acesso.",
+			"failed": "Não é possível concluir a reautenticação da chave de acesso.",
+			"intro": "Utilize a sua chave de segurança.",
+			"submit": "Utilizar chave de segurança",
+			"title": "Confirmar o acesso",
+			"unavailable": "Atualmente, a reautenticação por chave de acesso não está disponível."
+		},
+		"signup": {
+			"already_have_account": "Já tem uma conta?",
+			"email": "Correio eletrónico",
+			"login": "Iniciar sessão",
+			"passkey_signup": "Inscrever-se com a passkey",
+			"password": "Palavra-passe",
+			"password_again": "Palavra-passe (novamente)",
+			"password_mismatch": "A palavra-passe não corresponde.",
+			"submit": "Registar",
+			"title": "Registar",
+			"username": "Nome de utilizador"
+		},
+		"signup_passkey": {
+			"already_have_account": "Já tem uma conta?",
+			"email": "Correio eletrónico",
+			"login": "Iniciar sessão",
+			"submit": "Registar",
+			"title": "Registo de Passkey",
+			"use_password_signup": "Utilizar registo de palavra-passe",
+			"username": "Nome de utilizador"
+		},
+		"signup_passkey_create": {
+			"browser_not_supported": "Este browser não suporta a configuração de chaves de acesso.",
+			"failed": "Não é possível criar a chave de acesso.",
+			"intro": "Crie uma chave de acesso para a sua conta.",
+			"name": "Nome do domínio",
+			"submit": "Criar",
+			"title": "Criar chave de acesso"
+		},
+		"verify_email": {
+			"already_confirmed": "Não é possível confirmar {email} porque já está confirmado.",
+			"confirm_for": "Confirmar {email} para {user}.",
+			"invalid_link": "Ligação de verificação inválida.",
+			"submit": "Confirmar",
+			"this_account": "esta conta",
+			"title": "Confirmar endereço de correio eletrónico"
+		},
+		"verify_email_gate": {
+			"code": "Código",
+			"intro": "Introduza o código de verificação enviado para o seu correio eletrónico.",
+			"mailbox_intro": "Confirme o seu endereço de correio eletrónico a partir da ligação enviada para a sua caixa de correio.",
+			"submit": "Confirmar",
+			"title": "Confirmar endereço de correio eletrónico"
 		}
 	},
 	"chart": {

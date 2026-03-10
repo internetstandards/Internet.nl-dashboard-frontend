@@ -1,17 +1,17 @@
 <template>
   <section>
-    <h2>Request Login Code</h2>
-    <p>Enter your email and we will send a sign-in code.</p>
+    <h2>{{ $t('authentication.login_code_request.title') }}</h2>
+    <p>{{ $t('authentication.login_code_request.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="request-login-code-email">Email</label>
+      <label class="form-label" for="request-login-code-email">{{ $t('authentication.login_code_request.email') }}</label>
       <input id="request-login-code-email" v-model="email" type="email" class="form-control" required>
       <FormErrors :errors="response?.errors" param="email" />
       <FormErrors :errors="response?.errors" />
 
       <div class="d-flex gap-2 mt-3">
-        <b-button type="submit" :disabled="loading" variant="warning">Send code</b-button>
-        <b-button type="button" to="/account/login" variant="outline-secondary">Back to login</b-button>
+        <b-button type="submit" :disabled="loading" variant="warning">{{ $t('authentication.login_code_request.submit') }}</b-button>
+        <b-button type="button" to="/account/login" variant="outline-secondary">{{ $t('authentication.login_code_request.back_to_login') }}</b-button>
       </div>
     </form>
   </section>

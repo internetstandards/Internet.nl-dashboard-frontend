@@ -1,22 +1,22 @@
 <template>
   <section>
-    <h2>Add Security Key</h2>
+    <h2>{{ $t('authentication.mfa_webauthn_add.title') }}</h2>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="webauthn-name">Name</label>
+      <label class="form-label" for="webauthn-name">{{ $t('authentication.mfa_webauthn_add.name') }}</label>
       <input id="webauthn-name" v-model="name" class="form-control" required>
 
       <div class="form-check mt-2">
         <input id="webauthn-passwordless" v-model="passwordless" type="checkbox" class="form-check-input">
-        <label class="form-check-label" for="webauthn-passwordless">Passwordless (passkey)</label>
+        <label class="form-check-label" for="webauthn-passwordless">{{ $t('authentication.mfa_webauthn_add.passwordless') }}</label>
       </div>
 
       <FormErrors :errors="response?.errors" param="name" />
       <FormErrors :errors="response?.errors" />
 
       <div class="d-flex gap-2 mt-3">
-        <b-button type="submit" variant="warning" :disabled="loading">Add key</b-button>
-        <b-button type="button" variant="outline-secondary" :to="mfaBasePath">Back to 2FA</b-button>
+        <b-button type="submit" variant="warning" :disabled="loading">{{ $t('authentication.mfa_webauthn_add.submit') }}</b-button>
+        <b-button type="button" variant="outline-secondary" :to="mfaBasePath">{{ $t('authentication.mfa_webauthn_add.back') }}</b-button>
       </div>
     </form>
   </section>
@@ -25,6 +25,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { getWebAuthnCreateOptions, addWebAuthnCredential } from '@/allauth/lib/allauth'
 import { pathForPendingFlow } from '@/allauth/flows'
@@ -32,6 +33,7 @@ import { getCreationOptionsJSON } from '@/allauth/webauthn'
 
 const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
 
 const name = ref('')
 const passwordless = ref(false)
@@ -66,7 +68,7 @@ async function submit() {
     }
 
     if (!window.PublicKeyCredential?.parseCreationOptionsFromJSON) {
-      response.value = { errors: [{ param: 'passkey', message: 'This browser does not support passkey setup.' }] }
+      response.value = { errors: [{ param: 'passkey', message: t('authentication.mfa_webauthn_add.browser_not_supported') }] }
       return
     }
     const optionsJson = getCreationOptionsJSON(optionsResponse.data)
@@ -86,7 +88,7 @@ async function submit() {
       await router.replace(destination)
     }
   } catch (error) {
-    response.value = { errors: [{ param: 'passkey', message: error?.message || 'Unable to add security key.' }] }
+    response.value = { errors: [{ param: 'passkey', message: error?.message || t('authentication.mfa_webauthn_add.failed') }] }
   } finally {
     loading.value = false
   }

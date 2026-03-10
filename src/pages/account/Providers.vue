@@ -1,14 +1,14 @@
 <template>
   <section>
-    <h2>Connected Providers</h2>
+    <h2>{{ $t('authentication.providers.title') }}</h2>
 
     <table class="table table-sm table-bordered" v-if="accounts.length">
       <thead>
         <tr>
-          <th>UID</th>
-          <th>Account</th>
-          <th>Provider</th>
-          <th>Actions</th>
+          <th>{{ $t('authentication.providers.table.uid') }}</th>
+          <th>{{ $t('authentication.providers.table.account') }}</th>
+          <th>{{ $t('authentication.providers.table.provider') }}</th>
+          <th>{{ $t('authentication.providers.table.actions') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -17,13 +17,13 @@
           <td>{{ account.display }}</td>
           <td>{{ account.provider.name }}</td>
           <td>
-            <b-button size="sm" variant="outline-danger" :disabled="loading" @click="disconnect(account)">Disconnect</b-button>
+            <b-button size="sm" variant="outline-danger" :disabled="loading" @click="disconnect(account)">{{ $t('authentication.providers.disconnect') }}</b-button>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <p v-else>No provider accounts connected yet.</p>
+    <p v-else>{{ $t('authentication.providers.none') }}</p>
 
     <FormErrors :errors="response?.errors" />
 

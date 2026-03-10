@@ -1,18 +1,18 @@
 <template>
   <section>
-    <h2>Security Keys</h2>
+    <h2>{{ $t('authentication.mfa_webauthn_list.title') }}</h2>
     <p class="alert alert-info">
-      When using security keys, you can still sign in with your password, but only if you also provide a recovery code.
+      {{ $t('authentication.mfa_webauthn_list.alert') }}
     </p>
 
     <table class="table table-sm table-bordered" v-if="keys.length">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Created at</th>
-          <th>Last used at</th>
-          <th>Actions</th>
+          <th>{{ $t('authentication.mfa_webauthn_list.table.name') }}</th>
+          <th>{{ $t('authentication.mfa_webauthn_list.table.type') }}</th>
+          <th>{{ $t('authentication.mfa_webauthn_list.table.created_at') }}</th>
+          <th>{{ $t('authentication.mfa_webauthn_list.table.last_used_at') }}</th>
+          <th>{{ $t('authentication.mfa_webauthn_list.table.actions') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -21,30 +21,30 @@
             <template v-if="editingId === key.id">
               <input v-model="editingName" class="form-control form-control-sm">
               <div class="d-flex gap-1 mt-1">
-                <b-button size="sm" variant="warning" @click="saveName(key)">Save</b-button>
-                <b-button size="sm" variant="outline-secondary" @click="cancelEdit">Cancel</b-button>
+                <b-button size="sm" variant="warning" @click="saveName(key)">{{ $t('authentication.mfa_webauthn_list.save') }}</b-button>
+                <b-button size="sm" variant="outline-secondary" @click="cancelEdit">{{ $t('authentication.mfa_webauthn_list.cancel') }}</b-button>
               </div>
             </template>
             <template v-else>
               {{ key.name }}
-              <b-button size="sm" class="ms-2" variant="outline-secondary" @click="startEdit(key)">Edit</b-button>
+              <b-button size="sm" class="ms-2" variant="outline-secondary" @click="startEdit(key)">{{ $t('authentication.mfa_webauthn_list.edit') }}</b-button>
             </template>
           </td>
-          <td>{{ key.is_passwordless ? 'Passkey' : 'Security key' }}</td>
+          <td>{{ key.is_passwordless ? $t('authentication.mfa_webauthn_list.type_passkey') : $t('authentication.mfa_webauthn_list.type_security_key') }}</td>
           <td>{{ humanize(key.created_at) }}</td>
-          <td>{{ key.last_used_at ? humanize(key.last_used_at) : 'Unused' }}</td>
+          <td>{{ key.last_used_at ? humanize(key.last_used_at) : $t('authentication.mfa_webauthn_list.unused') }}</td>
           <td>
-            <b-button size="sm" variant="outline-danger" :disabled="loading" @click="deleteKey(key)">Delete</b-button>
+            <b-button size="sm" variant="outline-danger" :disabled="loading" @click="deleteKey(key)">{{ $t('authentication.mfa_webauthn_list.delete') }}</b-button>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <p v-else>No security keys configured yet.</p>
+    <p v-else>{{ $t('authentication.mfa_webauthn_list.none') }}</p>
 
     <div class="d-flex gap-2">
-      <b-button variant="warning" :to="webauthnAddPath">Add</b-button>
-      <b-button variant="outline-secondary" :to="mfaOverviewPath">Back to 2FA</b-button>
+      <b-button variant="warning" :to="webauthnAddPath">{{ $t('authentication.mfa_webauthn_list.add') }}</b-button>
+      <b-button variant="outline-secondary" :to="mfaOverviewPath">{{ $t('authentication.mfa_webauthn_list.back') }}</b-button>
     </div>
   </section>
 </template>

@@ -1,30 +1,30 @@
 <template>
   <section>
-    <h2>Login</h2>
-    <p v-if="isOpenForSignup">No account yet? <router-link to="/account/signup">Create one</router-link>.</p>
+    <h2>{{ $t('authentication.login.title') }}</h2>
+    <p v-if="isOpenForSignup">{{ $t('authentication.login.no_account_yet') }} <router-link to="/account/signup">{{ $t('authentication.login.create_one') }}</router-link>.</p>
 
     <form @submit.prevent="submit" class="mb-3">
       <label class="form-label" for="login-identifier">{{ identifierLabel }}</label>
       <input id="login-identifier" v-model="identifier" :type="identifierInputType" class="form-control" required>
       <FormErrors :errors="response?.errors" :param="selectedLoginMethod" />
       <div v-if="loginMethods.length > 1" class="mt-2">
-        <label class="form-label" for="login-method">Login method</label>
+        <label class="form-label" for="login-method">{{ $t('authentication.login.login_method') }}</label>
         <select id="login-method" v-model="selectedLoginMethod" class="form-select">
           <option v-for="method in loginMethods" :key="method" :value="method">{{ methodLabel(method) }}</option>
         </select>
       </div>
 
-      <label class="form-label mt-2" for="login-password">Password</label>
+      <label class="form-label mt-2" for="login-password">{{ $t('authentication.login.password') }}</label>
       <input id="login-password" v-model="password" type="password" class="form-control" required>
       <FormErrors :errors="response?.errors" param="password" />
 
       <FormErrors :errors="response?.errors" />
 
       <div class="d-flex gap-2 mt-3">
-        <b-button type="submit" variant="warning" :disabled="loading">Login</b-button>
-        <b-button type="button" variant="outline-secondary" to="/account/password/reset">Forgot password</b-button>
-        <b-button v-if="loginByCodeEnabled" type="button" variant="outline-secondary" to="/account/login/code">Send login code</b-button>
-        <b-button type="button" variant="outline-secondary" :disabled="loadingPasskey" @click="submitPasskey">Sign in with a passkey</b-button>
+        <b-button type="submit" variant="warning" :disabled="loading">{{ $t('authentication.login.submit') }}</b-button>
+        <b-button type="button" variant="outline-secondary" to="/account/password/reset">{{ $t('authentication.login.forgot_password') }}</b-button>
+        <b-button v-if="loginByCodeEnabled" type="button" variant="outline-secondary" to="/account/login/code">{{ $t('authentication.login.send_login_code') }}</b-button>
+        <b-button type="button" variant="outline-secondary" :disabled="loadingPasskey" @click="submitPasskey">{{ $t('authentication.login.sign_in_with_passkey') }}</b-button>
       </div>
       <b-alert variant="danger" :model-value="Boolean(passkeyError)" class="mt-3">{{ passkeyError }}</b-alert>
     </form>
@@ -36,6 +36,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import ProviderButtons from '@/components/allauth/ProviderButtons.vue'
 import { getWebAuthnRequestOptionsForLogin, login, loginUsingWebAuthn } from '@/allauth/lib/allauth'
@@ -46,6 +47,7 @@ import { getRequestOptionsJSON } from '@/allauth/webauthn'
 const router = useRouter()
 const route = useRoute()
 const allauth = allauthStore()
+const { t } = useI18n()
 
 const identifier = ref('')
 const password = ref('')
@@ -92,12 +94,12 @@ const isOpenForSignup = computed(() => allauth.config?.data?.account?.is_open_fo
 
 function methodLabel(method) {
   if (method === 'username') {
-    return 'Username'
+    return t('authentication.login.methods.username')
   }
   if (method === 'phone') {
-    return 'Phone'
+    return t('authentication.login.methods.phone')
   }
-  return 'Email'
+  return t('authentication.login.methods.email')
 }
 
 async function submit() {
@@ -131,7 +133,7 @@ async function submitPasskey() {
 
   try {
     if (!window.PublicKeyCredential?.parseRequestOptionsFromJSON || !navigator.credentials?.get) {
-      passkeyError.value = 'This browser does not support passkey login.'
+      passkeyError.value = t('authentication.login.browser_not_supported')
       return
     }
 
@@ -142,7 +144,7 @@ async function submitPasskey() {
         await router.replace(pendingPath)
         return
       }
-      passkeyError.value = 'Passkey login is currently not available for this session.'
+      passkeyError.value = t('authentication.login.passkey_unavailable')
       return
     }
     const optionsJson = getRequestOptionsJSON(optionsResponse.data)
@@ -164,7 +166,7 @@ async function submitPasskey() {
       await router.replace(pendingPath)
     }
   } catch (error) {
-    passkeyError.value = error?.message || 'Passkey login failed.'
+    passkeyError.value = error?.message || t('authentication.login.passkey_failed')
   } finally {
     loadingPasskey.value = false
   }

@@ -1,30 +1,30 @@
 <template>
   <section>
-    <h2>Activate TOTP</h2>
+    <h2>{{ $t('authentication.mfa_activate_totp.title') }}</h2>
 
     <template v-if="totp?.status === 200">
-      <p>TOTP is already active.</p>
-      <b-button variant="outline-secondary" :to="mfaOverviewPath">Back to 2FA</b-button>
+      <p>{{ $t('authentication.mfa_activate_totp.already_active') }}</p>
+      <b-button variant="outline-secondary" :to="mfaOverviewPath">{{ $t('authentication.mfa_activate_totp.back') }}</b-button>
     </template>
 
     <template v-else>
       <div v-if="totpUrl" class="mb-3 text-center">
-        <p class="mb-2">Scan this QR code with your authenticator app:</p>
+        <p class="mb-2">{{ $t('authentication.mfa_activate_totp.scan_qr') }}</p>
         <qrcode-vue :value="totpUrl" :size="220" level="M" render-as="svg" />
       </div>
 
-      <label class="form-label" for="totp-secret">Authenticator secret</label>
+      <label class="form-label" for="totp-secret">{{ $t('authentication.mfa_activate_totp.secret') }}</label>
       <input id="totp-secret" :value="totpSecret" class="form-control" disabled>
-      <small class="text-muted">Store this secret to reconfigure your authenticator later.</small>
+      <small class="text-muted">{{ $t('authentication.mfa_activate_totp.secret_help') }}</small>
 
       <form class="mt-3" @submit.prevent="submit">
-        <label class="form-label" for="totp-code">Authenticator code</label>
+        <label class="form-label" for="totp-code">{{ $t('authentication.mfa_activate_totp.code') }}</label>
         <input id="totp-code" v-model="code" class="form-control" required>
         <FormErrors :errors="response?.errors" param="code" />
         <FormErrors :errors="totp?.errors || response?.errors" />
-        <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Activate</b-button>
+        <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.mfa_activate_totp.submit') }}</b-button>
       </form>
-      <b-button class="mt-2" variant="outline-secondary" :to="mfaOverviewPath">Back to 2FA</b-button>
+      <b-button class="mt-2" variant="outline-secondary" :to="mfaOverviewPath">{{ $t('authentication.mfa_activate_totp.back') }}</b-button>
     </template>
   </section>
 </template>

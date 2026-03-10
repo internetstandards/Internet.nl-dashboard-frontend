@@ -69,7 +69,11 @@
 			"enter_new_account_details": "Please enter the new account details.",
 			"error_account_name_already_exists": "Account with this name already exists.",
 			"error_account_not_found": "Supplied account not found.",
+			"error_invalid_email": "Email address is invalid.",
+			"error_invalid_email_address": "Email address is invalid.",
 			"error_no_account_name_supplied": "No account name supplied.",
+			"error_no_email_address_supplied": "No email address supplied.",
+			"error_no_email_supplied": "No email address supplied.",
 			"error_no_username_supplied": "No username supplied.",
 			"error_password_too_short": "Password is too short.",
 			"error_username_already_exists": "User with this name already exists.",
@@ -77,6 +81,7 @@
 			"new_account_internet_nl_api_password": "API password",
 			"new_account_internet_nl_api_username": "API username",
 			"new_account_name": "Account name",
+			"new_email_address": "Email address",
 			"password": "Password",
 			"save": "Add user",
 			"select_an_existing_account": "Select an existing account:",
@@ -204,6 +209,360 @@
 			"gotocontents": "Skip to contents",
 			"gotofooter": "Skip to footer",
 			"gotomainmenu": "Skip to main menu"
+		}
+	},
+	"authentication": {
+		"authenticate_recovery_codes": {
+			"code": "Recovery code",
+			"intro": "Enter one of your recovery codes.",
+			"submit": "Sign in",
+			"title": "Two-Factor Authentication"
+		},
+		"authenticate_totp": {
+			"code": "Code",
+			"intro": "Your account requires 2FA. Enter your authenticator code.",
+			"submit": "Sign in",
+			"title": "Two-Factor Authentication"
+		},
+		"authenticate_webauthn": {
+			"browser_not_supported": "This browser does not support passkey authentication.",
+			"failed": "Unable to complete passkey authentication.",
+			"intro": "Use your security key.",
+			"submit": "Use security key",
+			"title": "Two-Factor Authentication",
+			"unavailable": "Passkey authentication is currently not available."
+		},
+		"email": {
+			"add": "Add",
+			"add_title": "Add Email",
+			"email_label": "Email",
+			"no": "No",
+			"remove": "Remove",
+			"resend_verification": "Resend verification",
+			"table": {
+				"actions": "Actions",
+				"email": "Email",
+				"primary": "Primary",
+				"verified": "Verified"
+			},
+			"title": "Email Addresses",
+			"verification_failed": "Unable to send a verification email.",
+			"verification_not_pending": "Email verification is not currently pending for this account.",
+			"verification_recently_sent": "A verification email was already sent recently. Please wait before trying again.",
+			"verification_sent": "Verification email sent.",
+			"yes": "Yes"
+		},
+		"error": {
+			"account_inactive": "This account is currently inactive.",
+			"account_not_found": "Unknown account.",
+			"add_email_blocked": "You cannot add an email address to an account protected by two-factor authentication.",
+			"cannot_delete_authenticator": "You cannot deactivate two-factor authentication.",
+			"cannot_generate_recovery_codes": "You cannot generate recovery codes without having two-factor authentication enabled.",
+			"cannot_remove_primary_email": "You cannot remove your primary email address.",
+			"client_id_required": "`client_id` required.",
+			"connected_other": "The third-party account is already connected to a different account.",
+			"disconnect_last": "You cannot disconnect your last remaining third-party account.",
+			"duplicate_email": "This email address is already associated with this account.",
+			"email_password_mismatch": "The email address and/or password you specified are not correct.",
+			"email_taken": "A user is already registered with this email address.",
+			"enter_current_password": "Please type your current password.",
+			"incorrect_code": "Incorrect code.",
+			"incorrect_password": "Incorrect password.",
+			"invalid": "The token was invalid.",
+			"invalid_login": "Invalid login.",
+			"invalid_or_expired_key": "Invalid or expired key.",
+			"invalid_password_reset": "The password reset token was invalid.",
+			"invalid_phone": "Enter a phone number including country code (e.g. +1 for the US).",
+			"invalid_token": "Invalid token.",
+			"invalid_url": "Invalid URL.",
+			"max_email_addresses": "You cannot add more than the allowed number of email addresses.",
+			"no_password": "Your account has no password set up.",
+			"no_verified_email": "Your account has no verified email address.",
+			"password_entirely_numeric": "This password is entirely numeric.",
+			"password_too_common": "This password is too common.",
+			"password_too_short": "This password is too short. It must contain at least 16 characters.",
+			"password_too_similar": "This password is too similar to your other personal information.",
+			"phone_password_mismatch": "The phone number and/or password you specified are not correct.",
+			"phone_taken": "A user is already registered with this phone number.",
+			"rate_limited": "Be patient, you are sending too many requests.",
+			"required": "This field is required.",
+			"same_as_current": "The new value must be different from the current one.",
+			"select_only_one": "Please select only one.",
+			"token_authentication_not_supported": "Provider does not support token authentication.",
+			"token_invalid": "The password reset token was invalid.",
+			"token_required": "`id_token` and/or `access_token` required.",
+			"too_many_login_attempts": "Too many failed login attempts. Try again later.",
+			"unknown_email": "Unknown email address.",
+			"unknown_phone": "The phone number is not assigned to any user account.",
+			"unknown_provider": "Unknown provider.",
+			"unverified_email": "You cannot activate two-factor authentication until you have verified your email address.",
+			"unverified_primary_email": "Your primary email address must be verified.",
+			"username_blacklisted": "Username can not be used. Please use other username.",
+			"username_password_mismatch": "The username and/or password you specified are not correct.",
+			"username_taken": "A user with that username already exists."
+		},
+		"home": {
+			"logged_out": "You are not logged in.",
+			"signed_in_as": "Signed in as",
+			"title": "Account Security"
+		},
+		"layout": {
+			"loading_settings": "Loading authentication settings..."
+		},
+		"login": {
+			"browser_not_supported": "This browser does not support passkey login.",
+			"create_one": "Create one",
+			"forgot_password": "Forgot password",
+			"login_method": "Login method",
+			"methods": {
+				"email": "Email",
+				"phone": "Phone",
+				"username": "Username"
+			},
+			"no_account_yet": "No account yet?",
+			"passkey_failed": "Passkey login failed.",
+			"passkey_unavailable": "Passkey login is currently not available for this session.",
+			"password": "Password",
+			"send_login_code": "Send login code",
+			"sign_in_with_passkey": "Sign in with a passkey",
+			"submit": "Login",
+			"title": "Login"
+		},
+		"login_code_confirm": {
+			"back_to_login": "Back to login",
+			"code": "Code",
+			"intro": "Enter the code sent to your email address.",
+			"submit": "Confirm",
+			"title": "Confirm Login Code"
+		},
+		"login_code_request": {
+			"back_to_login": "Back to login",
+			"email": "Email",
+			"intro": "Enter your email and we will send a sign-in code.",
+			"submit": "Send code",
+			"title": "Request Login Code"
+		},
+		"logout": {
+			"intro": "Are you sure you want to log out?",
+			"submit": "Logout",
+			"title": "Logout"
+		},
+		"mfa_activate_totp": {
+			"already_active": "TOTP is already active.",
+			"back": "Back to 2FA",
+			"code": "Authenticator code",
+			"scan_qr": "Scan this QR code with your authenticator app:",
+			"secret": "Authenticator secret",
+			"secret_help": "Store this secret to reconfigure your authenticator later.",
+			"submit": "Activate",
+			"title": "Activate TOTP"
+		},
+		"mfa_deactivate_totp": {
+			"intro": "You are about to deactivate authenticator app based authentication.",
+			"submit": "Deactivate",
+			"title": "Deactivate Authenticator App"
+		},
+		"mfa_overview": {
+			"activate": "Activate",
+			"add": "Add",
+			"authenticator_active": "Authenticator app is active.",
+			"authenticator_app": "Authenticator App",
+			"authenticator_inactive": "Authenticator app is not active.",
+			"deactivate": "Deactivate",
+			"generate": "Generate",
+			"manage": "Manage",
+			"recovery_codes": "Recovery Codes",
+			"recovery_codes_available": "{unused} of {total} codes available.",
+			"recovery_codes_none": "No recovery codes configured.",
+			"security_keys": "Security Keys",
+			"security_keys_configured": "{count} security keys configured.",
+			"security_keys_none": "No security keys configured.",
+			"title": "Two-Factor Authentication",
+			"view": "View"
+		},
+		"mfa_recovery_codes": {
+			"alert": "When using security keys, you can still sign in with your password, but only if you also provide a recovery code.",
+			"available": "{unused} of {total} recovery codes available.",
+			"back": "Back to 2FA",
+			"intro": "Recovery codes let you sign in when your authenticator app or passkey is unavailable, for example when using another device or after losing access to your usual device.",
+			"none": "No recovery codes configured.",
+			"title": "Recovery Codes",
+			"warning": "Store these codes in a secure place. Each code can be used once."
+		},
+		"mfa_recovery_codes_generate": {
+			"back": "Back to 2FA",
+			"intro": "You are about to generate a new set of recovery codes.",
+			"invalidates_current": "This invalidates your current recovery codes.",
+			"submit": "Generate",
+			"title": "Generate Recovery Codes"
+		},
+		"mfa_trust": {
+			"dont_trust": "Don't Trust",
+			"intro": "If trusted, you will not be asked for a second factor next login on this browser.",
+			"title": "Trust This Browser?",
+			"trust": "Trust"
+		},
+		"mfa_webauthn_add": {
+			"back": "Back to 2FA",
+			"browser_not_supported": "This browser does not support passkey setup.",
+			"failed": "Unable to add security key.",
+			"name": "Name",
+			"passwordless": "Passwordless (passkey)",
+			"submit": "Add key",
+			"title": "Add Security Key"
+		},
+		"mfa_webauthn_list": {
+			"add": "Add",
+			"alert": "When using security keys, you can still sign in with your password, but only if you also provide a recovery code.",
+			"back": "Back to 2FA",
+			"cancel": "Cancel",
+			"delete": "Delete",
+			"edit": "Edit",
+			"none": "No security keys configured yet.",
+			"save": "Save",
+			"table": {
+				"actions": "Actions",
+				"created_at": "Created at",
+				"last_used_at": "Last used at",
+				"name": "Name",
+				"type": "Type"
+			},
+			"title": "Security Keys",
+			"type_passkey": "Passkey",
+			"type_security_key": "Security key",
+			"unused": "Unused"
+		},
+		"password_change": {
+			"current_password": "Current password",
+			"new_password": "New password",
+			"new_password_again": "New password (again)",
+			"password_mismatch": "Password does not match.",
+			"save": "Save",
+			"title": "Change Password"
+		},
+		"password_reset_by_key": {
+			"title": "Reset Password",
+			"validating": "Validating reset link..."
+		},
+		"password_reset_complete": {
+			"intro": "Choose a new password.",
+			"invalid_key": "Invalid or expired reset key.",
+			"missing_key": "Missing password reset key.",
+			"password": "Password",
+			"password_again": "Password (again)",
+			"password_mismatch": "Password does not match.",
+			"submit": "Reset",
+			"title": "Reset Password"
+		},
+		"password_reset_confirm": {
+			"code": "Code",
+			"intro": "The code expires shortly, so please enter it soon.",
+			"submit": "Confirm",
+			"title": "Enter Password Reset Code"
+		},
+		"password_reset_request": {
+			"back_to_login": "Back to login",
+			"email": "Email",
+			"remember_password": "Remember your password?",
+			"submit": "Reset",
+			"success": "Password reset instructions were sent.",
+			"title": "Reset Password"
+		},
+		"provider_buttons": {
+			"title": "Use a third-party provider"
+		},
+		"provider_callback": {
+			"continue": "Continue",
+			"intro": "Something went wrong at the identity provider callback stage.",
+			"title": "Third-party Login Failure"
+		},
+		"provider_signup": {
+			"back_to_login": "Back to login",
+			"email": "Email",
+			"intro": "Complete your signup with an email address.",
+			"submit": "Sign up",
+			"title": "Provider Signup"
+		},
+		"providers": {
+			"disconnect": "Disconnect",
+			"none": "No provider accounts connected yet.",
+			"table": {
+				"account": "Account",
+				"actions": "Actions",
+				"provider": "Provider",
+				"uid": "UID"
+			},
+			"title": "Connected Providers"
+		},
+		"reauthenticate": {
+			"intro": "Please reauthenticate to continue.",
+			"password": "Password",
+			"submit": "Confirm",
+			"title": "Confirm Access"
+		},
+		"reauthenticate_recovery_codes": {
+			"code": "Recovery code",
+			"intro": "Use a recovery code.",
+			"submit": "Confirm",
+			"title": "Confirm Access"
+		},
+		"reauthenticate_totp": {
+			"code": "Code",
+			"intro": "Use your authenticator app code.",
+			"submit": "Confirm",
+			"title": "Confirm Access"
+		},
+		"reauthenticate_webauthn": {
+			"browser_not_supported": "This browser does not support passkey reauthentication.",
+			"failed": "Unable to complete passkey reauthentication.",
+			"intro": "Use your security key.",
+			"submit": "Use security key",
+			"title": "Confirm Access",
+			"unavailable": "Passkey reauthentication is currently not available."
+		},
+		"signup": {
+			"already_have_account": "Already have an account?",
+			"email": "Email",
+			"login": "Login",
+			"passkey_signup": "Sign up with passkey",
+			"password": "Password",
+			"password_again": "Password (again)",
+			"password_mismatch": "Password does not match.",
+			"submit": "Sign up",
+			"title": "Sign up",
+			"username": "Username"
+		},
+		"signup_passkey": {
+			"already_have_account": "Already have an account?",
+			"email": "Email",
+			"login": "Login",
+			"submit": "Sign up",
+			"title": "Passkey Sign Up",
+			"use_password_signup": "Use password signup",
+			"username": "Username"
+		},
+		"signup_passkey_create": {
+			"browser_not_supported": "This browser does not support passkey setup.",
+			"failed": "Unable to create passkey.",
+			"intro": "Create a passkey for your account.",
+			"name": "Name",
+			"submit": "Create",
+			"title": "Create Passkey"
+		},
+		"verify_email": {
+			"already_confirmed": "Unable to confirm {email} because it is already confirmed.",
+			"confirm_for": "Confirm {email} for {user}.",
+			"invalid_link": "Invalid verification link.",
+			"submit": "Confirm",
+			"this_account": "this account",
+			"title": "Confirm Email Address"
+		},
+		"verify_email_gate": {
+			"code": "Code",
+			"intro": "Enter the verification code sent to your email.",
+			"mailbox_intro": "Please confirm your email address from the link sent to your mailbox.",
+			"submit": "Confirm",
+			"title": "Confirm Email Address"
 		}
 	},
 	"chart": {

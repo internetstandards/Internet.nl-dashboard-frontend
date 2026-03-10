@@ -1,17 +1,17 @@
 <template>
   <section>
-    <h2>Provider Signup</h2>
-    <p>Complete your signup with an email address.</p>
+    <h2>{{ $t('authentication.provider_signup.title') }}</h2>
+    <p>{{ $t('authentication.provider_signup.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="provider-signup-email">Email</label>
+      <label class="form-label" for="provider-signup-email">{{ $t('authentication.provider_signup.email') }}</label>
       <input id="provider-signup-email" v-model="email" type="email" class="form-control" required>
       <FormErrors :errors="response?.errors" param="email" />
       <FormErrors :errors="response?.errors" />
 
       <div class="d-flex gap-2 mt-3">
-        <b-button type="submit" :disabled="loading" variant="warning">Sign up</b-button>
-        <b-button type="button" to="/account/login" variant="outline-secondary">Back to login</b-button>
+        <b-button type="submit" :disabled="loading" variant="warning">{{ $t('authentication.provider_signup.submit') }}</b-button>
+        <b-button type="button" to="/account/login" variant="outline-secondary">{{ $t('authentication.provider_signup.back_to_login') }}</b-button>
       </div>
     </form>
   </section>

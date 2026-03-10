@@ -69,7 +69,11 @@
 			"enter_new_account_details": "Bitte geben Sie die neuen Kontodaten ein.",
 			"error_account_name_already_exists": "Ein Konto mit diesem Namen existiert bereits.",
 			"error_account_not_found": "Angegebenes Konto nicht gefunden.",
+			"error_invalid_email": "Die E-Mail-Adresse ist ungültig.",
+			"error_invalid_email_address": "Die E-Mail-Adresse ist ungültig.",
 			"error_no_account_name_supplied": "Kein Kontoname angegeben.",
+			"error_no_email_address_supplied": "Keine E-Mail-Adresse angegeben.",
+			"error_no_email_supplied": "Keine E-Mail-Adresse angegeben.",
 			"error_no_username_supplied": "Kein Benutzername angegeben.",
 			"error_password_too_short": "Das Passwort ist zu kurz.",
 			"error_username_already_exists": "Der Benutzer mit diesem Namen existiert bereits.",
@@ -77,6 +81,7 @@
 			"new_account_internet_nl_api_password": "API-Passwort",
 			"new_account_internet_nl_api_username": "API-Benutzername",
 			"new_account_name": "Kontoname",
+			"new_email_address": "E-Mail-Adresse",
 			"password": "Passwort",
 			"save": "Benutzer hinzufügen",
 			"select_an_existing_account": "Wählen Sie ein bestehendes Konto aus:",
@@ -204,6 +209,360 @@
 			"gotocontents": "Zum Inhalt springen",
 			"gotofooter": "Zur Fußzeile springen",
 			"gotomainmenu": "Zum Hauptmenü springen"
+		}
+	},
+	"authentication": {
+		"authenticate_recovery_codes": {
+			"code": "Wiederherstellungscode",
+			"intro": "Geben Sie einen Ihrer Wiederherstellungscodes ein.",
+			"submit": "Anmelden",
+			"title": "Zwei-Faktoren-Authentifizierung"
+		},
+		"authenticate_totp": {
+			"code": "Code",
+			"intro": "Ihr Konto erfordert 2FA. Geben Sie Ihren Authentifizierungscode ein.",
+			"submit": "Anmelden",
+			"title": "Zwei-Faktoren-Authentifizierung"
+		},
+		"authenticate_webauthn": {
+			"browser_not_supported": "Dieser Browser unterstützt keine Passkey-Authentifizierung.",
+			"failed": "Die Passkey-Authentifizierung kann nicht abgeschlossen werden.",
+			"intro": "Verwenden Sie Ihren Sicherheitsschlüssel.",
+			"submit": "Sicherheitsschlüssel verwenden",
+			"title": "Zwei-Faktoren-Authentifizierung",
+			"unavailable": "Die Passkey-Authentifizierung ist derzeit nicht verfügbar."
+		},
+		"email": {
+			"add": "Hinzufügen",
+			"add_title": "E-Mail hinzufügen",
+			"email_label": "E-Mail",
+			"no": "Nein",
+			"remove": "Entfernen",
+			"resend_verification": "Überprüfung erneut senden",
+			"table": {
+				"actions": "Aktionen",
+				"email": "E-Mail",
+				"primary": "Primär",
+				"verified": "Geprüft"
+			},
+			"title": "E-Mail-Adressen",
+			"verification_failed": "Sie können keine Verifizierungs-E-Mail senden.",
+			"verification_not_pending": "Eine E-Mail-Verifizierung ist für dieses Konto derzeit nicht vorgesehen.",
+			"verification_recently_sent": "Eine Verifizierungs-E-Mail wurde bereits vor kurzem versandt. Bitte warten Sie, bevor Sie es erneut versuchen.",
+			"verification_sent": "Verifizierungs-E-Mail gesendet.",
+			"yes": "Ja"
+		},
+		"error": {
+			"account_inactive": "Dieses Konto ist derzeit inaktiv.",
+			"account_not_found": "Unbekanntes Konto.",
+			"add_email_blocked": "Sie können keine E-Mail-Adresse zu einem Konto hinzufügen, das durch die Zwei-Faktor-Authentifizierung geschützt ist.",
+			"cannot_delete_authenticator": "Sie können die Zwei-Faktor-Authentifizierung nicht deaktivieren.",
+			"cannot_generate_recovery_codes": "Sie können keine Wiederherstellungscodes generieren, ohne die Zwei-Faktor-Authentifizierung aktiviert zu haben.",
+			"cannot_remove_primary_email": "Sie können Ihre primäre E-Mail-Adresse nicht entfernen.",
+			"client_id_required": "`client_id` erforderlich.",
+			"connected_other": "Das Drittanbieterkonto ist bereits mit einem anderen Konto verbunden.",
+			"disconnect_last": "Sie können Ihr letztes verbleibendes Drittanbieter-Konto nicht abmelden.",
+			"duplicate_email": "Diese E-Mail-Adresse ist bereits mit diesem Konto verknüpft.",
+			"email_password_mismatch": "Die von Ihnen angegebene E-Mail-Adresse und/oder das Passwort sind nicht korrekt.",
+			"email_taken": "Ein Benutzer ist bereits mit dieser E-Mail-Adresse registriert.",
+			"enter_current_password": "Bitte geben Sie Ihr aktuelles Passwort ein.",
+			"incorrect_code": "Falscher Code.",
+			"incorrect_password": "Falsches Passwort.",
+			"invalid": "Das Token war ungültig.",
+			"invalid_login": "Ungültige Anmeldung.",
+			"invalid_or_expired_key": "Ungültiger oder abgelaufener Schlüssel.",
+			"invalid_password_reset": "Der Token zum Zurücksetzen des Passworts war ungültig.",
+			"invalid_phone": "Geben Sie eine Telefonnummer mit Landesvorwahl ein (z. B. +1 für die USA).",
+			"invalid_token": "Ungültiges Token.",
+			"invalid_url": "Ungültige URL.",
+			"max_email_addresses": "Sie können nicht mehr als die zulässige Anzahl von E-Mail-Adressen hinzufügen.",
+			"no_password": "Für Ihr Konto ist kein Passwort eingerichtet.",
+			"no_verified_email": "Ihr Konto hat keine verifizierte E-Mail-Adresse.",
+			"password_entirely_numeric": "Dieses Passwort ist vollständig numerisch.",
+			"password_too_common": "Dieses Passwort ist zu gebräuchlich.",
+			"password_too_short": "Dieses Passwort ist zu kurz. Es muss mindestens 16 Zeichen enthalten.",
+			"password_too_similar": "Dieses Passwort ist Ihren anderen persönlichen Daten zu ähnlich.",
+			"phone_password_mismatch": "Die von Ihnen angegebene Telefonnummer und/oder das Passwort sind nicht korrekt.",
+			"phone_taken": "Ein Benutzer ist bereits mit dieser Telefonnummer registriert.",
+			"rate_limited": "Haben Sie Geduld, Sie senden zu viele Anfragen.",
+			"required": "Dieses Feld ist erforderlich.",
+			"same_as_current": "Der neue Wert muss sich vom aktuellen Wert unterscheiden.",
+			"select_only_one": "Bitte wählen Sie nur einen aus.",
+			"token_authentication_not_supported": "Der Anbieter unterstützt keine Token-Authentifizierung.",
+			"token_invalid": "Der Token zum Zurücksetzen des Passworts war ungültig.",
+			"token_required": "`id_token` und/oder `access_token` erforderlich.",
+			"too_many_login_attempts": "Zu viele fehlgeschlagene Anmeldeversuche. Versuchen Sie es später noch einmal.",
+			"unknown_email": "Unbekannte E-Mail Adresse.",
+			"unknown_phone": "Die Telefonnummer wird keinem Benutzerkonto zugewiesen.",
+			"unknown_provider": "Unbekannter Anbieter.",
+			"unverified_email": "Sie können die Zwei-Faktor-Authentifizierung erst aktivieren, wenn Sie Ihre E-Mail-Adresse verifiziert haben.",
+			"unverified_primary_email": "Ihre primäre E-Mail-Adresse muss verifiziert werden.",
+			"username_blacklisted": "Der Benutzername kann nicht verwendet werden. Bitte verwenden Sie einen anderen Benutzernamen.",
+			"username_password_mismatch": "Der von Ihnen angegebene Benutzername und/oder das Passwort sind nicht korrekt.",
+			"username_taken": "Ein Benutzer mit diesem Benutzernamen existiert bereits."
+		},
+		"home": {
+			"logged_out": "Sie sind nicht eingeloggt.",
+			"signed_in_as": "Angemeldet als",
+			"title": "Konto Sicherheit"
+		},
+		"layout": {
+			"loading_settings": "Laden der Authentifizierungseinstellungen..."
+		},
+		"login": {
+			"browser_not_supported": "Dieser Browser unterstützt keine Passkey-Anmeldung.",
+			"create_one": "Eine erstellen",
+			"forgot_password": "Passwort vergessen",
+			"login_method": "Login-Methode",
+			"methods": {
+				"email": "E-Mail",
+				"phone": "Telefon",
+				"username": "Benutzername"
+			},
+			"no_account_yet": "Noch kein Konto?",
+			"passkey_failed": "Passkey-Anmeldung fehlgeschlagen.",
+			"passkey_unavailable": "Die Passkey-Anmeldung ist derzeit für diese Sitzung nicht verfügbar.",
+			"password": "Passwort",
+			"send_login_code": "Anmeldecode senden",
+			"sign_in_with_passkey": "Anmeldung mit einem Hauptschlüssel",
+			"submit": "Anmeldung",
+			"title": "Anmeldung"
+		},
+		"login_code_confirm": {
+			"back_to_login": "Zurück zu Anmeldung",
+			"code": "Code",
+			"intro": "Geben Sie den an Ihre E-Mail-Adresse gesendeten Code ein.",
+			"submit": "Bestätigen Sie",
+			"title": "Bestätigen Sie den Login-Code"
+		},
+		"login_code_request": {
+			"back_to_login": "Zurück zu Anmeldung",
+			"email": "E-Mail",
+			"intro": "Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Anmeldecode.",
+			"submit": "Code senden",
+			"title": "Login-Code anfordern"
+		},
+		"logout": {
+			"intro": "Sind Sie sicher, dass Sie sich abmelden möchten?",
+			"submit": "Abmeldung",
+			"title": "Abmeldung"
+		},
+		"mfa_activate_totp": {
+			"already_active": "TOTP ist bereits aktiv.",
+			"back": "Zurück zu 2FA",
+			"code": "Authenticator-Code",
+			"scan_qr": "Scannen Sie diesen QR-Code mit Ihrer Authenticator-App:",
+			"secret": "Authenticator Geheimnis",
+			"secret_help": "Speichern Sie dieses Geheimnis, um Ihren Authentifikator später neu zu konfigurieren.",
+			"submit": "Aktivieren Sie",
+			"title": "TOTP aktivieren"
+		},
+		"mfa_deactivate_totp": {
+			"intro": "Sie sind dabei, die Authenticator-App-basierte Authentifizierung zu deaktivieren.",
+			"submit": "Deaktivieren Sie",
+			"title": "Deaktivieren der Authenticator App"
+		},
+		"mfa_overview": {
+			"activate": "Aktivieren Sie",
+			"add": "Hinzufügen",
+			"authenticator_active": "Die Authenticator-App ist aktiv.",
+			"authenticator_app": "Authenticator App",
+			"authenticator_inactive": "Die Authenticator-App ist nicht aktiv.",
+			"deactivate": "Deaktivieren Sie",
+			"generate": "Erzeugen Sie",
+			"manage": "Verwalten",
+			"recovery_codes": "Wiederherstellungs-Codes",
+			"recovery_codes_available": "{unused} von {total} verfügbaren Codes.",
+			"recovery_codes_none": "Keine Wiederherstellungscodes konfiguriert.",
+			"security_keys": "Sicherheitsschlüssel",
+			"security_keys_configured": "{count} Sicherheitsschlüssel konfiguriert.",
+			"security_keys_none": "Keine Sicherheitsschlüssel konfiguriert.",
+			"title": "Zwei-Faktoren-Authentifizierung",
+			"view": "Siehe"
+		},
+		"mfa_recovery_codes": {
+			"alert": "Bei der Verwendung von Sicherheitsschlüsseln können Sie sich weiterhin mit Ihrem Passwort anmelden, aber nur, wenn Sie auch einen Wiederherstellungscode angeben.",
+			"available": "{unused} von {total} verfügbaren Wiederherstellungscodes.",
+			"back": "Zurück zu 2FA",
+			"intro": "Mit Wiederherstellungscodes können Sie sich anmelden, wenn Ihre Authenticator-App oder Ihr Passkey nicht verfügbar ist, z. B. wenn Sie ein anderes Gerät verwenden oder den Zugang zu Ihrem üblichen Gerät verloren haben.",
+			"none": "Keine Wiederherstellungscodes konfiguriert.",
+			"title": "Wiederherstellungs-Codes",
+			"warning": "Bewahren Sie diese Codes an einem sicheren Ort auf. Jeder Code kann nur einmal verwendet werden."
+		},
+		"mfa_recovery_codes_generate": {
+			"back": "Zurück zu 2FA",
+			"intro": "Sie sind dabei, einen neuen Satz von Wiederherstellungscodes zu erstellen.",
+			"invalidates_current": "Dadurch werden Ihre aktuellen Wiederherstellungscodes ungültig.",
+			"submit": "Erzeugen Sie",
+			"title": "Wiederherstellungs-Codes generieren"
+		},
+		"mfa_trust": {
+			"dont_trust": "Nicht vertrauen",
+			"intro": "Wenn Sie vertrauenswürdig sind, werden Sie bei der nächsten Anmeldung in diesem Browser nicht nach einem zweiten Faktor gefragt.",
+			"title": "Vertrauen Sie diesem Browser?",
+			"trust": "Vertrauen"
+		},
+		"mfa_webauthn_add": {
+			"back": "Zurück zu 2FA",
+			"browser_not_supported": "Dieser Browser unterstützt die Einrichtung von Passkeys nicht.",
+			"failed": "Es ist nicht möglich, einen Sicherheitsschlüssel hinzuzufügen.",
+			"name": "Name",
+			"passwordless": "Passwortlos (passkey)",
+			"submit": "Schlüssel hinzufügen",
+			"title": "Sicherheitsschlüssel hinzufügen"
+		},
+		"mfa_webauthn_list": {
+			"add": "Hinzufügen",
+			"alert": "Bei der Verwendung von Sicherheitsschlüsseln können Sie sich weiterhin mit Ihrem Passwort anmelden, aber nur, wenn Sie auch einen Wiederherstellungscode angeben.",
+			"back": "Zurück zu 2FA",
+			"cancel": "Abbrechen",
+			"delete": "Löschen",
+			"edit": "Bearbeiten",
+			"none": "Noch keine Sicherheitsschlüssel konfiguriert.",
+			"save": "Speichern",
+			"table": {
+				"actions": "Aktionen",
+				"created_at": "Erstellt bei",
+				"last_used_at": "Zuletzt verwendet bei",
+				"name": "Name",
+				"type": "Typ"
+			},
+			"title": "Sicherheitsschlüssel",
+			"type_passkey": "Passkey",
+			"type_security_key": "Sicherheitsschlüssel",
+			"unused": "Unbenutzt"
+		},
+		"password_change": {
+			"current_password": "Aktuelles Passwort",
+			"new_password": "Neues Passwort",
+			"new_password_again": "Neues Passwort (wieder)",
+			"password_mismatch": "Das Passwort stimmt nicht überein.",
+			"save": "Speichern",
+			"title": "Passwort ändern"
+		},
+		"password_reset_by_key": {
+			"title": "Passwort zurücksetzen",
+			"validating": "Validierung zurückgesetzter Links..."
+		},
+		"password_reset_complete": {
+			"intro": "Wählen Sie ein neues Passwort.",
+			"invalid_key": "Ungültiger oder abgelaufener Reset-Schlüssel.",
+			"missing_key": "Fehlender Schlüssel zum Zurücksetzen des Passworts.",
+			"password": "Passwort",
+			"password_again": "Passwort (erneut)",
+			"password_mismatch": "Das Passwort stimmt nicht überein.",
+			"submit": "Zurücksetzen",
+			"title": "Passwort zurücksetzen"
+		},
+		"password_reset_confirm": {
+			"code": "Code",
+			"intro": "Der Code läuft in Kürze ab, also geben Sie ihn bitte bald ein.",
+			"submit": "Bestätigen Sie",
+			"title": "Code zum Zurücksetzen des Passworts eingeben"
+		},
+		"password_reset_request": {
+			"back_to_login": "Zurück zu Anmeldung",
+			"email": "E-Mail",
+			"remember_password": "Haben Sie Ihr Passwort vergessen?",
+			"submit": "Zurücksetzen",
+			"success": "Anweisungen zum Zurücksetzen des Passworts wurden gesendet.",
+			"title": "Passwort zurücksetzen"
+		},
+		"provider_buttons": {
+			"title": "Verwenden Sie einen Drittanbieter"
+		},
+		"provider_callback": {
+			"continue": "Weiter",
+			"intro": "Bei der Rückrufphase des Identitätsanbieters ist etwas schief gelaufen.",
+			"title": "Fehlgeschlagene Anmeldung durch Dritte"
+		},
+		"provider_signup": {
+			"back_to_login": "Zurück zu Anmeldung",
+			"email": "E-Mail",
+			"intro": "Geben Sie bei der Anmeldung eine E-Mail-Adresse an.",
+			"submit": "Anmelden",
+			"title": "Anbieter-Anmeldung"
+		},
+		"providers": {
+			"disconnect": "Trennen Sie die Verbindung",
+			"none": "Es sind noch keine Providerkonten angeschlossen.",
+			"table": {
+				"account": "Konto",
+				"actions": "Aktionen",
+				"provider": "Anbieter",
+				"uid": "UID"
+			},
+			"title": "Angeschlossene Anbieter"
+		},
+		"reauthenticate": {
+			"intro": "Bitte authentifizieren Sie sich erneut, um fortzufahren.",
+			"password": "Passwort",
+			"submit": "Bestätigen Sie",
+			"title": "Zugang bestätigen"
+		},
+		"reauthenticate_recovery_codes": {
+			"code": "Wiederherstellungscode",
+			"intro": "Verwenden Sie einen Wiederherstellungscode.",
+			"submit": "Bestätigen Sie",
+			"title": "Zugang bestätigen"
+		},
+		"reauthenticate_totp": {
+			"code": "Code",
+			"intro": "Verwenden Sie den Code Ihrer Authenticator-App.",
+			"submit": "Bestätigen Sie",
+			"title": "Zugang bestätigen"
+		},
+		"reauthenticate_webauthn": {
+			"browser_not_supported": "Dieser Browser unterstützt keine Passkey-Reauthentifizierung.",
+			"failed": "Die Neuauthentifizierung mit dem Hauptschlüssel kann nicht abgeschlossen werden.",
+			"intro": "Verwenden Sie Ihren Sicherheitsschlüssel.",
+			"submit": "Sicherheitsschlüssel verwenden",
+			"title": "Zugang bestätigen",
+			"unavailable": "Eine erneute Passkey-Authentifizierung ist derzeit nicht verfügbar."
+		},
+		"signup": {
+			"already_have_account": "Sie haben bereits ein Konto?",
+			"email": "E-Mail",
+			"login": "Anmeldung",
+			"passkey_signup": "Anmeldung mit passkey",
+			"password": "Passwort",
+			"password_again": "Passwort (erneut)",
+			"password_mismatch": "Das Passwort stimmt nicht überein.",
+			"submit": "Anmelden",
+			"title": "Anmelden",
+			"username": "Benutzername"
+		},
+		"signup_passkey": {
+			"already_have_account": "Sie haben bereits ein Konto?",
+			"email": "E-Mail",
+			"login": "Anmeldung",
+			"submit": "Anmelden",
+			"title": "Passkey Anmeldung",
+			"use_password_signup": "Kennwortanmeldung verwenden",
+			"username": "Benutzername"
+		},
+		"signup_passkey_create": {
+			"browser_not_supported": "Dieser Browser unterstützt die Einrichtung von Passkeys nicht.",
+			"failed": "Es ist nicht möglich, einen Hauptschlüssel zu erstellen.",
+			"intro": "Erstellen Sie einen Hauptschlüssel für Ihr Konto.",
+			"name": "Name",
+			"submit": "Erstellen",
+			"title": "Passkey erstellen"
+		},
+		"verify_email": {
+			"already_confirmed": " {email} kann nicht bestätigt werden, da es bereits bestätigt ist.",
+			"confirm_for": "Bestätigen Sie {email} für {user}.",
+			"invalid_link": "Ungültiger Verifizierungslink.",
+			"submit": "Bestätigen Sie",
+			"this_account": "dieses Konto",
+			"title": "E-Mail Adresse bestätigen"
+		},
+		"verify_email_gate": {
+			"code": "Code",
+			"intro": "Geben Sie den an Ihre E-Mail gesendeten Verifizierungscode ein.",
+			"mailbox_intro": "Bitte bestätigen Sie Ihre E-Mail-Adresse über den an Ihre Mailbox gesendeten Link.",
+			"submit": "Bestätigen Sie",
+			"title": "E-Mail Adresse bestätigen"
 		}
 	},
 	"chart": {

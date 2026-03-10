@@ -1,27 +1,26 @@
 <template>
   <section>
-    <h2>Recovery Codes</h2>
+    <h2>{{ $t('authentication.mfa_recovery_codes.title') }}</h2>
     <p class="alert alert-info">
-      When using security keys, you can still sign in with your password, but only if you also provide a recovery code.
+      {{ $t('authentication.mfa_recovery_codes.alert') }}
     </p>
 
     <template v-if="recoveryCodes?.status === 200">
       <p>
-        Recovery codes let you sign in when your authenticator app or passkey is unavailable,
-        for example when using another device or after losing access to your usual device.
+        {{ $t('authentication.mfa_recovery_codes.intro') }}
       </p>
       <p class="text-danger">
-        Store these codes in a secure place. Each code can be used once.
+        {{ $t('authentication.mfa_recovery_codes.warning') }}
       </p>
-      <p>{{ recoveryCodes.data.unused_code_count }} of {{ recoveryCodes.data.total_code_count }} recovery codes available.</p>
+      <p>{{ $t('authentication.mfa_recovery_codes.available', { unused: recoveryCodes.data.unused_code_count, total: recoveryCodes.data.total_code_count }) }}</p>
       <pre>{{ (recoveryCodes.data.unused_codes || []).join('\n') }}</pre>
     </template>
 
     <template v-else>
-      <p>No recovery codes configured.</p>
+      <p>{{ $t('authentication.mfa_recovery_codes.none') }}</p>
     </template>
 
-    <b-button variant="outline-secondary" :to="mfaOverviewPath">Back to 2FA</b-button>
+    <b-button variant="outline-secondary" :to="mfaOverviewPath">{{ $t('authentication.mfa_recovery_codes.back') }}</b-button>
   </section>
 </template>
 

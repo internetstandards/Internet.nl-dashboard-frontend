@@ -1,17 +1,17 @@
 <template>
   <section>
-    <h2>Generate Recovery Codes</h2>
+    <h2>{{ $t('authentication.mfa_recovery_codes_generate.title') }}</h2>
 
     <p>
-      You are about to generate a new set of recovery codes.
-      <span v-if="hasCodes"> This invalidates your current recovery codes.</span>
+      {{ $t('authentication.mfa_recovery_codes_generate.intro') }}
+      <span v-if="hasCodes"> {{ $t('authentication.mfa_recovery_codes_generate.invalidates_current') }}</span>
     </p>
 
     <FormErrors :errors="response?.errors" />
 
     <div class="d-flex gap-2">
-      <b-button variant="danger" :disabled="loading" @click="submit">Generate</b-button>
-      <b-button variant="outline-secondary" :to="mfaOverviewPath">Back to 2FA</b-button>
+      <b-button variant="danger" :disabled="loading" @click="submit">{{ $t('authentication.mfa_recovery_codes_generate.submit') }}</b-button>
+      <b-button variant="outline-secondary" :to="mfaOverviewPath">{{ $t('authentication.mfa_recovery_codes_generate.back') }}</b-button>
     </div>
   </section>
 </template>

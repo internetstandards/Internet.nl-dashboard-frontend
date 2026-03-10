@@ -69,7 +69,11 @@
 			"enter_new_account_details": "Zadejte prosím údaje o novém účtu.",
 			"error_account_name_already_exists": "Účet s tímto názvem již existuje.",
 			"error_account_not_found": "Zadaný účet nebyl nalezen.",
+			"error_invalid_email": "E-mailová adresa je neplatná.",
+			"error_invalid_email_address": "E-mailová adresa je neplatná.",
 			"error_no_account_name_supplied": "Nebyl zadán žádný název účtu.",
+			"error_no_email_address_supplied": "Nebyla zadána žádná e-mailová adresa.",
+			"error_no_email_supplied": "Nebyla zadána žádná e-mailová adresa.",
 			"error_no_username_supplied": "Uživatelské jméno nebylo zadáno.",
 			"error_password_too_short": "Heslo je příliš krátké.",
 			"error_username_already_exists": "Uživatel s tímto jménem již existuje.",
@@ -77,6 +81,7 @@
 			"new_account_internet_nl_api_password": "Heslo API",
 			"new_account_internet_nl_api_username": "Uživatelské jméno API",
 			"new_account_name": "Název účtu",
+			"new_email_address": "E-mailová adresa",
 			"password": "Heslo",
 			"save": "Přidat uživatele",
 			"select_an_existing_account": "Vyberte existující účet:",
@@ -204,6 +209,360 @@
 			"gotocontents": "Přeskočit na obsah",
 			"gotofooter": "Přeskočit na zápatí",
 			"gotomainmenu": "Přeskočit na hlavní nabídku"
+		}
+	},
+	"authentication": {
+		"authenticate_recovery_codes": {
+			"code": "Obnovovací kód",
+			"intro": "Zadejte jeden z kódů pro obnovení.",
+			"submit": "Přihlášení",
+			"title": "Dvoufaktorové ověřování"
+		},
+		"authenticate_totp": {
+			"code": "Kód",
+			"intro": "Účet vyžaduje 2FA. Zadejte svůj ověřovací kód.",
+			"submit": "Přihlášení",
+			"title": "Dvoufaktorové ověřování"
+		},
+		"authenticate_webauthn": {
+			"browser_not_supported": "Tento prohlížeč nepodporuje ověřování pomocí pasového klíče.",
+			"failed": "Nelze dokončit ověřování pomocí klíče passkey.",
+			"intro": "Použijte svůj bezpečnostní klíč.",
+			"submit": "Použití bezpečnostního klíče",
+			"title": "Dvoufaktorové ověřování",
+			"unavailable": "Ověřování pomocí klíče Passkey není v současné době k dispozici."
+		},
+		"email": {
+			"add": "Přidat stránku",
+			"add_title": "Přidání e-mailu",
+			"email_label": "E-mail",
+			"no": "Ne",
+			"remove": "Odstranit",
+			"resend_verification": "Opětovné ověření odeslání",
+			"table": {
+				"actions": "Akce",
+				"email": "E-mail",
+				"primary": "Primární",
+				"verified": "Ověřeno"
+			},
+			"title": "E-mailové adresy",
+			"verification_failed": "Nelze odeslat ověřovací e-mail.",
+			"verification_not_pending": "U tohoto účtu se v současné době nečeká na ověření e-mailu.",
+			"verification_recently_sent": "Nedávno již byl odeslán ověřovací e-mail. Před dalším pokusem vyčkejte.",
+			"verification_sent": "Odeslání ověřovacího e-mailu.",
+			"yes": "Ano"
+		},
+		"error": {
+			"account_inactive": "Tento účet je v současné době neaktivní.",
+			"account_not_found": "Neznámý účet.",
+			"add_email_blocked": "K účtu chráněnému dvoufaktorovým ověřováním nelze přidat e-mailovou adresu.",
+			"cannot_delete_authenticator": "Dvoufaktorové ověřování nelze deaktivovat.",
+			"cannot_generate_recovery_codes": "Bez zapnutého dvoufaktorového ověřování nelze generovat kódy pro obnovení.",
+			"cannot_remove_primary_email": "Primární e-mailovou adresu nelze odebrat.",
+			"client_id_required": "Vyžaduje se `client_id`.",
+			"connected_other": "Účet třetí strany je již připojen k jinému účtu.",
+			"disconnect_last": "Nelze odpojit poslední zbývající účet třetí strany.",
+			"duplicate_email": "Tato e-mailová adresa je již přiřazena k tomuto účtu.",
+			"email_password_mismatch": "Zadaná e-mailová adresa a/nebo heslo nejsou správné.",
+			"email_taken": "Uživatel je již registrován pod touto e-mailovou adresou.",
+			"enter_current_password": "Zadejte své aktuální heslo.",
+			"incorrect_code": "Nesprávný kód.",
+			"incorrect_password": "Nesprávné heslo.",
+			"invalid": "Token byl neplatný.",
+			"invalid_login": "Neplatné přihlášení.",
+			"invalid_or_expired_key": "Neplatný nebo neplatný klíč.",
+			"invalid_password_reset": "Token pro obnovení hesla byl neplatný.",
+			"invalid_phone": "Zadejte telefonní číslo včetně kódu země (např. +1 pro USA).",
+			"invalid_token": "Neplatný token.",
+			"invalid_url": "Neplatná adresa URL.",
+			"max_email_addresses": "Nelze přidat více než povolený počet e-mailových adres.",
+			"no_password": "Účet nemá nastavené žádné heslo.",
+			"no_verified_email": "Účet nemá ověřenou e-mailovou adresu.",
+			"password_entirely_numeric": "Toto heslo je výhradně číselné.",
+			"password_too_common": "Toto heslo je příliš časté.",
+			"password_too_short": "Toto heslo je příliš krátké. Musí obsahovat alespoň 16 znaků.",
+			"password_too_similar": "Toto heslo je příliš podobné ostatním osobním údajům.",
+			"phone_password_mismatch": "Zadané telefonní číslo a/nebo heslo není správné.",
+			"phone_taken": "Uživatel je již zaregistrován pod tímto telefonním číslem.",
+			"rate_limited": "Buďte trpěliví, odesíláte příliš mnoho požadavků.",
+			"required": "Toto pole je povinné.",
+			"same_as_current": "Nová hodnota se musí lišit od aktuální.",
+			"select_only_one": "Vyberte pouze jednu z nich.",
+			"token_authentication_not_supported": "Poskytovatel nepodporuje ověřování pomocí tokenu.",
+			"token_invalid": "Token pro obnovení hesla byl neplatný.",
+			"token_required": "Vyžaduje se `id_token` a/nebo `access_token`.",
+			"too_many_login_attempts": "Příliš mnoho neúspěšných pokusů o přihlášení. Zkuste to později.",
+			"unknown_email": "Neznámá e-mailová adresa.",
+			"unknown_phone": "Telefonní číslo není přiřazeno k žádnému uživatelskému účtu.",
+			"unknown_provider": "Neznámý poskytovatel.",
+			"unverified_email": "Dvoufaktorové ověřování nelze aktivovat, dokud není ověřena e-mailová adresa.",
+			"unverified_primary_email": "Musí být ověřena vaše primární e-mailová adresa.",
+			"username_blacklisted": "Uživatelské jméno nelze použít. Použijte jiné uživatelské jméno.",
+			"username_password_mismatch": "Zadané uživatelské jméno a/nebo heslo není správné.",
+			"username_taken": "Uživatel s tímto uživatelským jménem již existuje."
+		},
+		"home": {
+			"logged_out": "Nejste přihlášeni.",
+			"signed_in_as": "Přihlášení jako",
+			"title": "Zabezpečení účtu"
+		},
+		"layout": {
+			"loading_settings": "Načítání nastavení ověřování..."
+		},
+		"login": {
+			"browser_not_supported": "Tento prohlížeč nepodporuje přihlašování pomocí pasového klíče.",
+			"create_one": "Vytvořit jeden",
+			"forgot_password": "Zapomenuté heslo",
+			"login_method": "Způsob přihlášení",
+			"methods": {
+				"email": "E-mail",
+				"phone": "Telefon",
+				"username": "Uživatelské jméno"
+			},
+			"no_account_yet": "Ještě nemáte účet?",
+			"passkey_failed": "Přihlášení pomocí klíče Passkey se nezdařilo.",
+			"passkey_unavailable": "Přihlášení pomocí klíče Passkey není v současné době pro tuto relaci k dispozici.",
+			"password": "Heslo",
+			"send_login_code": "Odeslání přihlašovacího kódu",
+			"sign_in_with_passkey": "Přihlášení pomocí přístupového klíče",
+			"submit": "Přihlášení",
+			"title": "Přihlášení"
+		},
+		"login_code_confirm": {
+			"back_to_login": "Zpět na přihlášení",
+			"code": "Kód",
+			"intro": "Zadejte kód zaslaný na vaši e-mailovou adresu.",
+			"submit": "Potvrzení",
+			"title": "Potvrzení přihlašovacího kódu"
+		},
+		"login_code_request": {
+			"back_to_login": "Zpět na přihlášení",
+			"email": "E-mail",
+			"intro": "Zadejte svůj e-mail a my vám zašleme přihlašovací kód.",
+			"submit": "Odeslat kód",
+			"title": "Žádost o přihlašovací kód"
+		},
+		"logout": {
+			"intro": "Jste si jisti, že se chcete odhlásit?",
+			"submit": "Odhlášení",
+			"title": "Odhlášení"
+		},
+		"mfa_activate_totp": {
+			"already_active": "TOTP je již aktivní.",
+			"back": "Zpět na 2FA",
+			"code": "Kód autentizátoru",
+			"scan_qr": "Naskenujte tento QR kód pomocí aplikace authenticator:",
+			"secret": "Tajemství autentizátoru",
+			"secret_help": "Uložte si toto tajemství, abyste mohli ověřovací zařízení později znovu nakonfigurovat.",
+			"submit": "Aktivace stránky",
+			"title": "Aktivace TOTP"
+		},
+		"mfa_deactivate_totp": {
+			"intro": "Chystáte se deaktivovat ověřování založené na aplikaci authenticator.",
+			"submit": "Deaktivace",
+			"title": "Deaktivace aplikace Authenticator"
+		},
+		"mfa_overview": {
+			"activate": "Aktivace stránky",
+			"add": "Přidat stránku",
+			"authenticator_active": "Aplikace Authenticator je aktivní.",
+			"authenticator_app": "Aplikace Authenticator",
+			"authenticator_inactive": "Aplikace Authenticator není aktivní.",
+			"deactivate": "Deaktivace",
+			"generate": "Generování stránek",
+			"manage": "Správa stránek",
+			"recovery_codes": "Kódy pro obnovu",
+			"recovery_codes_available": " K dispozici je{unused} z {total} kódů.",
+			"recovery_codes_none": "Nejsou nakonfigurovány žádné kódy pro obnovení.",
+			"security_keys": "Bezpečnostní klíče",
+			"security_keys_configured": "{count} nakonfigurované bezpečnostní klíče.",
+			"security_keys_none": "Nejsou konfigurovány žádné bezpečnostní klíče.",
+			"title": "Dvoufaktorové ověřování",
+			"view": "Zobrazit"
+		},
+		"mfa_recovery_codes": {
+			"alert": "Při použití bezpečnostních klíčů se lze stále přihlásit pomocí hesla, ale pouze v případě, že zadáte také kód pro obnovení.",
+			"available": " K dispozici je{unused} z {total} kódů pro obnovení.",
+			"back": "Zpět na 2FA",
+			"intro": "Kódy pro obnovení umožňují přihlášení v případě, že aplikace autentizačního nástroje nebo přístupový klíč nejsou k dispozici, například při použití jiného zařízení nebo po ztrátě přístupu k obvyklému zařízení.",
+			"none": "Nejsou nakonfigurovány žádné kódy pro obnovení.",
+			"title": "Kódy pro obnovu",
+			"warning": "Tyto kódy uloží na bezpečném místě. Každý kód lze použít pouze jednou."
+		},
+		"mfa_recovery_codes_generate": {
+			"back": "Zpět na 2FA",
+			"intro": "Chystáte se vygenerovat novou sadu kódů pro obnovení.",
+			"invalidates_current": "Tím zneplatní své aktuální kódy pro obnovení.",
+			"submit": "Generování stránek",
+			"title": "Generování kódů pro obnovu"
+		},
+		"mfa_trust": {
+			"dont_trust": "Nedůvěřujte",
+			"intro": "Pokud je důvěryhodný, nebude při dalším přihlášení v tomto prohlížeči požadován druhý faktor.",
+			"title": "Důvěřujete tomuto prohlížeči?",
+			"trust": "Trust"
+		},
+		"mfa_webauthn_add": {
+			"back": "Zpět na 2FA",
+			"browser_not_supported": "Tento prohlížeč nepodporuje nastavení přístupových klíčů.",
+			"failed": "Nelze přidat bezpečnostní klíč.",
+			"name": "Název",
+			"passwordless": "Bez hesla (passkey)",
+			"submit": "Přidání klíče",
+			"title": "Přidání bezpečnostního klíče"
+		},
+		"mfa_webauthn_list": {
+			"add": "Přidat stránku",
+			"alert": "Při použití bezpečnostních klíčů se lze stále přihlásit pomocí hesla, ale pouze v případě, že zadáte také kód pro obnovení.",
+			"back": "Zpět na 2FA",
+			"cancel": "Zrušit",
+			"delete": "Odstranit",
+			"edit": "Upravit",
+			"none": "Zatím nejsou nakonfigurovány žádné bezpečnostní klíče.",
+			"save": "Uložit",
+			"table": {
+				"actions": "Akce",
+				"created_at": "Vytvořeno na",
+				"last_used_at": "Naposledy použito na",
+				"name": "Název",
+				"type": "Typ"
+			},
+			"title": "Bezpečnostní klíče",
+			"type_passkey": "Passkey",
+			"type_security_key": "Bezpečnostní klíč",
+			"unused": "Nepoužívané stránky"
+		},
+		"password_change": {
+			"current_password": "Aktuální heslo",
+			"new_password": "Nové heslo",
+			"new_password_again": "Nové heslo (znovu)",
+			"password_mismatch": "Heslo neodpovídá.",
+			"save": "Uložit",
+			"title": "Změna hesla"
+		},
+		"password_reset_by_key": {
+			"title": "Obnovení hesla",
+			"validating": "Ověřování obnovení odkazu..."
+		},
+		"password_reset_complete": {
+			"intro": "Zvolit nové heslo.",
+			"invalid_key": "Neplatný nebo prošlý klíč pro resetování.",
+			"missing_key": "Chybějící klíč pro obnovení hesla.",
+			"password": "Heslo",
+			"password_again": "Heslo (opět)",
+			"password_mismatch": "Heslo neodpovídá.",
+			"submit": "Obnovení",
+			"title": "Obnovení hesla"
+		},
+		"password_reset_confirm": {
+			"code": "Kód",
+			"intro": "Platnost kódu brzy vyprší, proto jej zadejte co nejdříve.",
+			"submit": "Potvrzení",
+			"title": "Zadejte kód pro obnovení hesla"
+		},
+		"password_reset_request": {
+			"back_to_login": "Zpět na přihlášení",
+			"email": "E-mail",
+			"remember_password": "Pamatujete si své heslo?",
+			"submit": "Obnovení",
+			"success": "Byly zaslány pokyny k obnovení hesla.",
+			"title": "Obnovení hesla"
+		},
+		"provider_buttons": {
+			"title": "Použití poskytovatele třetí strany"
+		},
+		"provider_callback": {
+			"continue": "Pokračovat",
+			"intro": "Ve fázi zpětného volání poskytovatele identity se něco pokazilo.",
+			"title": "Selhání přihlášení třetí stranou"
+		},
+		"provider_signup": {
+			"back_to_login": "Zpět na přihlášení",
+			"email": "E-mail",
+			"intro": "Dokončete registraci pomocí e-mailové adresy.",
+			"submit": "Zaregistrujte se",
+			"title": "Registrace poskytovatele"
+		},
+		"providers": {
+			"disconnect": "Odpojení",
+			"none": "Zatím nejsou připojeny žádné účty poskytovatelů.",
+			"table": {
+				"account": "Účet",
+				"actions": "Akce",
+				"provider": "Poskytovatel",
+				"uid": "UID"
+			},
+			"title": "Připojení poskytovatele"
+		},
+		"reauthenticate": {
+			"intro": "Pro pokračování se znovu ověřte.",
+			"password": "Heslo",
+			"submit": "Potvrzení",
+			"title": "Potvrzení přístupu"
+		},
+		"reauthenticate_recovery_codes": {
+			"code": "Obnovovací kód",
+			"intro": "Použijte kód pro obnovení.",
+			"submit": "Potvrzení",
+			"title": "Potvrzení přístupu"
+		},
+		"reauthenticate_totp": {
+			"code": "Kód",
+			"intro": "Použijte kód aplikace autentizátor.",
+			"submit": "Potvrzení",
+			"title": "Potvrzení přístupu"
+		},
+		"reauthenticate_webauthn": {
+			"browser_not_supported": "Tento prohlížeč nepodporuje opakované ověřování pomocí pasového klíče.",
+			"failed": "Nelze dokončit opětovné ověření přístupového klíče.",
+			"intro": "Použijte svůj bezpečnostní klíč.",
+			"submit": "Použití bezpečnostního klíče",
+			"title": "Potvrzení přístupu",
+			"unavailable": "Opakované ověřování pomocí klíče Passkey není v současné době k dispozici."
+		},
+		"signup": {
+			"already_have_account": "Máte již účet?",
+			"email": "E-mail",
+			"login": "Přihlášení",
+			"passkey_signup": "Zaregistrujte se pomocí passkey",
+			"password": "Heslo",
+			"password_again": "Heslo (opět)",
+			"password_mismatch": "Heslo neodpovídá.",
+			"submit": "Zaregistrujte se",
+			"title": "Zaregistrujte se",
+			"username": "Uživatelské jméno"
+		},
+		"signup_passkey": {
+			"already_have_account": "Máte již účet?",
+			"email": "E-mail",
+			"login": "Přihlášení",
+			"submit": "Zaregistrujte se",
+			"title": "Přihlášení ke službě Passkey",
+			"use_password_signup": "Přihlášení pomocí hesla",
+			"username": "Uživatelské jméno"
+		},
+		"signup_passkey_create": {
+			"browser_not_supported": "Tento prohlížeč nepodporuje nastavení přístupových klíčů.",
+			"failed": "Nelze vytvořit přístupový klíč.",
+			"intro": "Vytvoření přístupového klíče pro svůj účet.",
+			"name": "Název",
+			"submit": "Vytvoření stránky",
+			"title": "Vytvoření přístupového klíče"
+		},
+		"verify_email": {
+			"already_confirmed": "Nelze potvrdit {email} , protože je již potvrzeno.",
+			"confirm_for": "Potvrďte {email} pro {user}.",
+			"invalid_link": "Neplatný ověřovací odkaz.",
+			"submit": "Potvrzení",
+			"this_account": "tento účet",
+			"title": "Potvrzení e-mailové adresy"
+		},
+		"verify_email_gate": {
+			"code": "Kód",
+			"intro": "Zadejte ověřovací kód zaslaný na váš e-mail.",
+			"mailbox_intro": "Potvrďte svou e-mailovou adresu z odkazu zaslaného do vaší e-mailové schránky.",
+			"submit": "Potvrzení",
+			"title": "Potvrzení e-mailové adresy"
 		}
 	},
 	"chart": {

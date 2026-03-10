@@ -1,14 +1,14 @@
 <template>
   <section>
-    <h2>Confirm Access</h2>
-    <p>Use your authenticator app code.</p>
+    <h2>{{ $t('authentication.reauthenticate_totp.title') }}</h2>
+    <p>{{ $t('authentication.reauthenticate_totp.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="reauth-totp-code">Code</label>
+      <label class="form-label" for="reauth-totp-code">{{ $t('authentication.reauthenticate_totp.code') }}</label>
       <input id="reauth-totp-code" v-model="code" class="form-control" required>
       <FormErrors :errors="response?.errors" param="code" />
       <FormErrors :errors="response?.errors" />
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Confirm</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.reauthenticate_totp.submit') }}</b-button>
     </form>
   </section>
 </template>

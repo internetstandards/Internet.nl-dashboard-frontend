@@ -1,14 +1,14 @@
 <template>
   <section>
-    <h2>Confirm Access</h2>
-    <p>Use a recovery code.</p>
+    <h2>{{ $t('authentication.reauthenticate_recovery_codes.title') }}</h2>
+    <p>{{ $t('authentication.reauthenticate_recovery_codes.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="reauth-recovery-code">Recovery code</label>
+      <label class="form-label" for="reauth-recovery-code">{{ $t('authentication.reauthenticate_recovery_codes.code') }}</label>
       <input id="reauth-recovery-code" v-model="code" class="form-control" required>
       <FormErrors :errors="response?.errors" param="code" />
       <FormErrors :errors="response?.errors" />
-      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">Confirm</b-button>
+      <b-button type="submit" class="mt-3" :disabled="loading" variant="warning">{{ $t('authentication.reauthenticate_recovery_codes.submit') }}</b-button>
     </form>
   </section>
 </template>

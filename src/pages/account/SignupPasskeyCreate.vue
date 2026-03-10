@@ -1,14 +1,14 @@
 <template>
   <section>
-    <h2>Create Passkey</h2>
-    <p>Create a passkey for your account.</p>
+    <h2>{{ $t('authentication.signup_passkey_create.title') }}</h2>
+    <p>{{ $t('authentication.signup_passkey_create.intro') }}</p>
 
     <form @submit.prevent="submit">
-      <label class="form-label" for="signup-passkey-name">Name</label>
+      <label class="form-label" for="signup-passkey-name">{{ $t('authentication.signup_passkey_create.name') }}</label>
       <input id="signup-passkey-name" v-model="name" class="form-control" required>
       <FormErrors :errors="response?.errors" param="name" />
       <FormErrors :errors="response?.errors" />
-      <b-button class="mt-3" type="submit" variant="warning" :disabled="loading">Create</b-button>
+      <b-button class="mt-3" type="submit" variant="warning" :disabled="loading">{{ $t('authentication.signup_passkey_create.submit') }}</b-button>
     </form>
   </section>
 </template>
@@ -16,6 +16,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { Flows, getWebAuthnCreateOptionsAtSignup, signupWebAuthnCredential } from '@/allauth/lib/allauth'
 import { allauthStore } from '@/allauthStore'
@@ -24,6 +25,7 @@ import { getCreationOptionsJSON } from '@/allauth/webauthn'
 
 const router = useRouter()
 const allauth = allauthStore()
+const { t } = useI18n()
 
 const name = ref('')
 const response = ref(null)
@@ -50,7 +52,7 @@ async function submit() {
     }
 
     if (!window.PublicKeyCredential?.parseCreationOptionsFromJSON) {
-      response.value = { errors: [{ param: 'passkey', message: 'This browser does not support passkey setup.' }] }
+      response.value = { errors: [{ param: 'passkey', message: t('authentication.signup_passkey_create.browser_not_supported') }] }
       return
     }
     const optionsJson = getCreationOptionsJSON(optionsResponse.data)
@@ -74,7 +76,7 @@ async function submit() {
       await router.replace('/account/signup/passkey')
     }
   } catch (error) {
-    response.value = { errors: [{ param: 'passkey', message: error?.message || 'Unable to create passkey.' }] }
+    response.value = { errors: [{ param: 'passkey', message: error?.message || t('authentication.signup_passkey_create.failed') }] }
   } finally {
     loading.value = false
   }

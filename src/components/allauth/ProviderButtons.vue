@@ -1,6 +1,6 @@
 <template>
   <div v-if="providers.length">
-    <h2 class="h5 mt-3">Use a third-party provider</h2>
+    <h2 class="h5 mt-3">{{ $t('authentication.provider_buttons.title') }}</h2>
     <div class="d-flex flex-wrap gap-2">
       <b-button
         v-for="provider in providers"
