@@ -22,7 +22,7 @@ const props = defineProps({
 
 const filteredErrors = computed(() => {
   if (!props.param) {
-    return props.errors || []
+    return (props.errors || []).filter((error) => !error.param)
   }
   return (props.errors || []).filter((error) => error.param === props.param)
 })

@@ -21,11 +21,12 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { verifyEmail } from '@/allauth/lib/allauth'
 import { allauthStore } from '@/allauthStore'
 
+const route = useRoute()
 const router = useRouter()
 const allauth = allauthStore()
 
@@ -34,6 +35,11 @@ const code = ref('')
 const response = ref(null)
 
 const emailVerificationByCodeEnabled = computed(() => Boolean(allauth.config?.data?.account?.email_verification_by_code_enabled))
+const successPath = computed(() =>
+  route.path.startsWith('/profile/authentication')
+    ? '/profile/authentication/email'
+    : '/account/email'
+)
 
 async function submitByCode() {
   loading.value = true
@@ -41,7 +47,7 @@ async function submitByCode() {
     response.value = await verifyEmail(code.value)
     if ([200, 401].includes(response.value?.status)) {
       await allauth.syncDashboardSession()
-      await router.replace('/domains')
+      await router.replace(successPath.value)
     }
   } finally {
     loading.value = false

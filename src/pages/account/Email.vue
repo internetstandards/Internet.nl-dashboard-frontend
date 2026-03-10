@@ -59,17 +59,19 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import {
   getEmailAddresses,
   addEmail,
   deleteEmail,
   markEmailAsPrimary,
-  requestEmailVerification
+  requestEmailVerification,
+  resendEmailVerification
 } from '@/allauth/lib/allauth'
 import { allauthStore } from '@/allauthStore'
 
+const route = useRoute()
 const router = useRouter()
 const allauth = allauthStore()
 
@@ -95,9 +97,14 @@ async function refreshEmails() {
 }
 
 function maybeRedirectToVerification() {
-  if (allauth.config?.data?.account?.email_verification_by_code_enabled) {
-    router.push('/account/verify-email')
+  if (!allauth.config?.data?.account?.email_verification_by_code_enabled) {
+    return
   }
+
+  const targetPath = route.path.startsWith('/profile/authentication')
+    ? '/profile/authentication/verify-email'
+    : '/account/verify-email'
+  router.push(targetPath)
 }
 
 async function addNewEmail() {
@@ -141,8 +148,16 @@ async function markAsPrimary(value) {
 async function requestVerification(value) {
   loading.value = true
   try {
-    const verificationResponse = await requestEmailVerification(value)
-    if (verificationResponse?.status === 200) {
+    if (allauth.config?.data?.account?.email_verification_by_code_enabled) {
+      response.value = await resendEmailVerification()
+      if (response.value?.status === 200) {
+        maybeRedirectToVerification()
+        return
+      }
+    }
+
+    response.value = await requestEmailVerification(value)
+    if (response.value?.status === 200) {
       maybeRedirectToVerification()
     }
   } finally {

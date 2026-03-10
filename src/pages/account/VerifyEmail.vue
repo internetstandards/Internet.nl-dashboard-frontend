@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { getEmailVerification, verifyEmail } from '@/allauth/lib/allauth'
@@ -39,6 +39,11 @@ const allauth = allauthStore()
 const loading = ref(false)
 const verification = ref(null)
 const response = ref(null)
+const successPath = computed(() =>
+  route.path.startsWith('/profile/authentication')
+    ? '/profile/authentication/email'
+    : '/account/email'
+)
 
 onMounted(async () => {
   verification.value = await getEmailVerification(route.params.key)
@@ -50,7 +55,7 @@ async function submit() {
     response.value = await verifyEmail(route.params.key)
     if ([200, 401].includes(response.value?.status)) {
       await allauth.syncDashboardSession()
-      await router.replace('/domains')
+      await router.replace(successPath.value)
     }
   } finally {
     loading.value = false
