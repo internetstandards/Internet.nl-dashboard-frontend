@@ -32,3 +32,4 @@ coverage
 # development
 .env.development
 template_app
+.direnv/
