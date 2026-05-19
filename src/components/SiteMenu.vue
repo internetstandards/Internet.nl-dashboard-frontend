@@ -67,7 +67,7 @@
   <b-container class="max_container_width">
     <b-navbar toggleable="lg" id="sitenav">
 
-      <b-navbar-brand to="domains">
+      <b-navbar-brand to="/domains">
         <template v-if="config.app.layout === 'internet_nl'">
           <p id="site-title"><a><span class="visually-hidden">{{ $t("app.menu.sitetitle") }}</span></a></p>
           <p id="site-description"><span class="visually-hidden">{{ $t("app.menu.sitedescription") }}</span></p>
