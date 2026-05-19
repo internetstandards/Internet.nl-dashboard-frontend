@@ -6,7 +6,7 @@
 }
 </style>
 <template>
-  <b-modal @hidden="close()" header-bg-variant="info" header-text-variant="light" no-fade scrollable size="lg">
+  <b-modal @hidden="close()" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable size="lg">
     <template #header><h4>📝 {{ $t("domain.discover-subdomains.title") }}</h4></template>
     <template #default>
       <div style="min-height: 50vh;">

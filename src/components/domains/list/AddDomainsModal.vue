@@ -15,7 +15,7 @@
 </style>
 
 <template>
-  <b-modal @hidden="stop()" header-bg-variant="info" header-text-variant="light" no-fade scrollable size="lg">
+  <b-modal @hidden="stop()" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable size="lg">
     <template #header><h4>🌐 {{ $t("domain.list.add-domains.title") }}</h4></template>
     <template #default>
       <div style="min-height: 50vh;">

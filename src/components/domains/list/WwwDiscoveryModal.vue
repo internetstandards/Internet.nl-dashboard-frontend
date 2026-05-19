@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <b-modal :id="id" @ok="$emit('ok')" @close="$emit('close')"  header-bg-variant="info" header-text-variant="light" no-fade scrollable size="lg">
+  <b-modal :id="id" @ok="$emit('ok')" @close="$emit('close')"  header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable size="lg">
 
     <template #header><h4>{{ $t("domain.www-discovery-modal.title") }}</h4></template>
     <template #default>
