@@ -67,7 +67,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                 </template>
             </collapse-panel>
 
-            <b-modal id="show_add_new" v-model="show_add_new" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+            <b-modal id="show_add_new" v-model="show_add_new" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
               <template #header><h4>📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</h4></template>
 
                 <div slot="default">

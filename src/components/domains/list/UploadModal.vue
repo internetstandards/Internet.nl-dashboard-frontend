@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <b-modal size="lg" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+  <b-modal size="lg" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
     <template #header><h4>📝 {{ $t("domain.list.upload.title") }}</h4></template>
     <template #default>
       <div style="min-height: 50vh;">

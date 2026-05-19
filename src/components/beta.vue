@@ -95,7 +95,7 @@
     <content-block>
       <h2>Modal</h2>
       <b-button v-b-modal="'my-modal'">Launch demo modal</b-button>
-      <b-modal id="my-modal">Hello From My Modal!</b-modal>
+      <b-modal id="my-modal" no-close-on-backdrop>Hello From My Modal!</b-modal>
 
       <!-- Button trigger modal -->
       <b-button variant="warning" type="button" data-toggle="modal" data-target="#exampleModal">

@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <b-modal @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+  <b-modal @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
     <template #header><h4>📝 {{ $t("domain.list.configure.title") }}</h4></template>
     <template #default>
 
