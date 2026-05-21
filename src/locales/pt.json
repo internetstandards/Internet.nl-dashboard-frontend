@@ -2670,6 +2670,6 @@
 		"scan_type_all": "Tanto o sítio Web como o correio eletrónico (resulta em dois relatórios)",
 		"scan_type_mail": "E-Mail / Servidor de correio eletrónico e domínio",
 		"scan_type_web": "Sítio Web / Endereços Web",
-		"to_overview_page": "Abrir a página de síntese."
+		"to_overview_page": "Os novos relatórios serão publicados nesta página após a sua publicação."
 	}
 }

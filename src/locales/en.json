@@ -2670,6 +2670,6 @@
 		"scan_type_all": "Both Website and E-mail (results in two reports)",
 		"scan_type_mail": "E-Mail / Mail server and domain",
 		"scan_type_web": "Website / Web addresses",
-		"to_overview_page": "Open the overview page."
+		"to_overview_page": "New reports will then appear on this page after publication."
 	}
 }

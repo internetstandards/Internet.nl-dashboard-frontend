@@ -2670,6 +2670,6 @@
 		"scan_type_all": "Webové stránky i e-mail (výsledkem jsou dvě zprávy)",
 		"scan_type_mail": "E-mail / Poštovní server a doména",
 		"scan_type_web": "Webové stránky / webové adresy",
-		"to_overview_page": "Otevřete stránku s přehledem."
+		"to_overview_page": "Nové zprávy se pak po zveřejnění objeví na této stránce."
 	}
 }

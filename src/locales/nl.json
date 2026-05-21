@@ -2670,6 +2670,6 @@
 		"scan_type_all": "Zowel Website als E-Mail (in afzonderlijke rapporten)",
 		"scan_type_mail": "E-Mail, mailserver en domein",
 		"scan_type_web": "Website en webadres",
-		"to_overview_page": "Bekijk de overzichtspagina."
+		"to_overview_page": "Nieuwe rapporten verschijnen na publicatie op deze pagina."
 	}
 }
