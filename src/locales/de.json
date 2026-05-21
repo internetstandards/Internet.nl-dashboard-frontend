@@ -2670,6 +2670,6 @@
 		"scan_type_all": "Sowohl Website als auch E-Mail (führt zu zwei Berichten)",
 		"scan_type_mail": "E-Mail / Mailserver und Domäne",
 		"scan_type_web": "Website / Webadressen",
-		"to_overview_page": "Öffnen Sie die Übersichtsseite."
+		"to_overview_page": "Neue Berichte erscheinen dann nach ihrer Veröffentlichung auf dieser Seite."
 	}
 }

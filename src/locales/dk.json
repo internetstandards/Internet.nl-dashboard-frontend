@@ -2670,6 +2670,6 @@
 		"scan_type_all": "Både hjemmeside og e-mail (resulterer i to rapporter)",
 		"scan_type_mail": "E-mail / Mailserver og domæne",
 		"scan_type_web": "Hjemmeside / webadresser",
-		"to_overview_page": "Åbn oversigtssiden."
+		"to_overview_page": "Nye rapporter vil derefter blive vist på denne side efter offentliggørelsen."
 	}
 }

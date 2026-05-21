@@ -2670,6 +2670,6 @@
 		"scan_type_all": "Site web et courrier électronique (deux rapports)",
 		"scan_type_mail": "Courrier électronique / Serveur de messagerie et domaine",
 		"scan_type_web": "Site web / Adresses web",
-		"to_overview_page": "Ouvrez la page d'aperçu."
+		"to_overview_page": "Les nouveaux rapports apparaîtront ensuite sur cette page après leur publication."
 	}
 }
