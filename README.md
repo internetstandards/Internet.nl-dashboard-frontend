@@ -39,7 +39,11 @@ Translations are maintained by babeledit in the locales directory. A mapping.md 
 that helps mapping from the merged-to-js internet.nl repository values to dashboard metrics.
 
 Use the conversion tool `python3 tools/convert_translations/main.py` to convert the .po stuff from the dashboard
-backend to the frontend. This will overwrite the keys as needed.
+backend to the frontend. This will overwrite the keys as needed and add new fields.
+
+The new files are stored with a _updated postfix for further inspection. The files can be used to overwrite the 
+original en.json file. Doing so will also add the files to babeledit for auto-translation. So open the files with
+babeledit afterwards and pre-translate them.
 
 
 # Deployment

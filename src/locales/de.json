@@ -1380,6 +1380,8 @@
 			"tech_table": {
 				"affected_signature_parameters": "Betroffene Signaturparameter",
 				"mail_server_mx": "",
+				"outdated_signature_parameter": "",
+				"security_level": "",
 				"status": "Status"
 			},
 			"title": "Öffentlicher Schlüssel des Zertifikats"
@@ -1388,11 +1390,14 @@
 			"explanation": "<p>Wir prüfen, ob der signierte Fingerabdruck jedes Ihrer Mailserver-Zertifikate mit einem sicheren Hash-Algorithmus erstellt wurde. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-2 und Tabelle 3 (in Englisch).</p><hr /><p><strong>Hash-Funktionen für die Zertifikatsüberprüfung</strong></p><ul><li>gut: SHA-512, SHA-384, SHA-256</li><li>Unzureichend: SHA-1, MD5</li></ul>",
 			"rating": {
 				"bad": "Mindestens eines Ihrer Mailserver-Zertifikate ist mit einem Hash-Algorithmus signiert, der <em>unzureichend</em> sicher ist.",
-				"good": "Alle Ihre Mailserver-Zertifikate werden mit einem sicheren Hash-Algorithmus signiert."
+				"good": "Alle Ihre Mailserver-Zertifikate werden mit einem sicheren Hash-Algorithmus signiert.",
+				"phase_out": ""
 			},
 			"tech_table": {
 				"affected_hash_algorithm": "Betroffener Hash-Algorithmus",
 				"mail_server_mx": "",
+				"outdated_hash_function": "",
+				"security_level": "",
 				"status": "Status"
 			},
 			"title": "Unterschrift des Zertifikats"
@@ -1471,6 +1476,17 @@
 			"title": "Anwendung der Verschlüsselung von empfangenen E-Mails"
 		},
 		"internet_nl_mail_starttls_tls_caa": {
+			"explanation": "",
+			"rating": {
+				"bad": "",
+				"good": "",
+				"insufficient": "",
+				"syntax_error": ""
+			},
+			"tech_table": {
+				"findings": "",
+				"mail_server": ""
+			},
 			"title": "CAA für Mail-Server"
 		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
@@ -1480,9 +1496,12 @@
 				"good": "Alle Ihre Mailserver setzen ihre eigene Verschlüsselungspräferenz durch (\"I\") und bieten Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge an (\"II\").",
 				"na": "Dieser Untertest ist nicht anwendbar, da Ihr Mailserver nur \"gute\" Verschlüsselungen unterstützt.",
 				"seclevel_bad": "Mindestens einer Ihrer Mailserver bevorzugt <em>nicht</em> \"Gut\" gegenüber \"Ausreichend\" gegenüber \"Auslauf\"-Chiffren (\"II\").",
+				"sufficient_above_good": "",
 				"warning": "VERALTETER TEXT; URTEIL NICHT VERWENDET</p><p>Mindestens einer Ihrer Mailserver bietet <em>keine</em> Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge innerhalb einer bestimmten Sicherheitsstufe ('II-B') an."
 			},
 			"tech_table": {
+				"cipher_suite_preferred_by_server": "",
+				"expected_preferred_cipher_suite": "",
 				"first_found_affected_cipher_pair": "Erstes betroffenes Chiffrierpaar gefunden",
 				"mail_server_mx": "",
 				"violated_rule_ii_b": "Verstoß gegen Regel # ('II-B')"
@@ -1499,6 +1518,8 @@
 			"tech_table": {
 				"first_found_affected_cipher": "Erste betroffene Chiffre gefunden",
 				"mail_server_mx": "",
+				"outdated_cipher_suite": "",
+				"security_level": "",
 				"status": "Status"
 			},
 			"title": "Chiffren (Auswahl der Algorithmen)"
@@ -1506,8 +1527,11 @@
 		"internet_nl_mail_starttls_tls_clientreneg": {
 			"explanation": "<p>Wir prüfen, ob ein sendender Mailserver eine Neuverhandlung mit Ihren empfangenden Mailservern (MX) einleiten kann. </p><p>Es ist in der Regel nicht notwendig, sendenden Mail-Servern zu erlauben, eine Neuverhandlung zu initiieren und öffnet einen empfangenden Mail-Server für DoS-Angriffe innerhalb einer TLS-Verbindung. Ein Angreifer kann ähnliche DoS-Angriffe ohne client-initiierte Neuverhandlung durchführen, indem er viele parallele TLS-Verbindungen öffnet, aber diese sind leichter zu erkennen und mit Hilfe von Standardabwehrmaßnahmen abzuwehren. Beachten Sie, dass die vom Kunden initiierte Neuverhandlung die Verfügbarkeit und nicht die Vertraulichkeit beeinträchtigt. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B8-1 und Tabelle 13 (in Englisch).</p><p><em>Anforderungsstufe: Fakultativ</em></p><hr /><p><strong>Vom Kunden initiierte Neuaushandlung</strong></p><ul><li>Gut: Aus (oder N/A für TLS 1.3)</li><li>Ausreichend: Ein</li></ul>",
 			"rating": {
+				"allowed_with_low_limit": "",
+				"allowed_with_too_high_limit": "",
 				"bad": "Mindestens einer Ihrer Mailserver lässt eine vom Kunden initiierte Neuverhandlung zu, was sich negativ auf die Verfügbarkeit Ihres Mailservers auswirken könnte.",
-				"good": "Alle Ihre Mailserver erlauben keine vom Kunden initiierte Neuaushandlung."
+				"good": "Alle Ihre Mailserver erlauben keine vom Kunden initiierte Neuaushandlung.",
+				"not_allowed": ""
 			},
 			"tech_table": {
 				"client_initiated_renegotiation": "Neuverhandlung auf Veranlassung des Kunden",
@@ -1527,6 +1551,20 @@
 			},
 			"title": "TLS-Komprimierung"
 		},
+		"internet_nl_mail_starttls_tls_extendedmastersecret": {
+			"explanation": "Wir prüfen, ob Ihre empfangenden Mailserver (MX) Extended Master Secret unterstützen.</p><p>Extended Master Secret (EMS), das in <a href=\"https://www.rfc-editor.org/rfc/rfc7627\">RFC 7627</a>spezifiziert ist, ist eine Erweiterung für TLS 1.2, die Triple Handshakes und Machine-in-the-Middle-Angriffe verhindert. </p><p>TLS-Bibliotheken erzwingen zunehmend standardmäßig EMS, auch weil Sicherheitsvorschriften wie FIPS dies vorschreiben. Wenn Ihr Mailserver EMS nicht unterstützt, können sendende Mailserver, die EMS erzwingen, keine TLS 1.2-Verbindung mit Ihrem Mailserver herstellen.</p><p>Siehe <a href=\"https://www.ncsc.nl/en/transport-layer-security/ICT-beveiligingsrichtlijnen-voor-TLS\">'Transport Layer Security (TLS), Sicherheitsrichtlinien Version 2025-05'</a> von NCSC-NL, Absatz 4.1.",
+			"rating": {
+				"bad": "Mindestens einer Ihrer Mailserver unterstützt <em>nicht</em> EMS.",
+				"good": "Alle Ihre Mailserver unterstützen EMS.",
+				"na_no_tls_1_2": "Dieser Untertest ist nicht anwendbar, da EMS nur in TLS 1.2 verfügbar ist, das auf Ihren Mailservern nicht aktiviert ist.",
+				"unknown": "Kein Ergebnis verfügbar. Zum Zeitpunkt der Durchführung des Tests war dieser Untertest noch nicht Teil des Tests."
+			},
+			"tech_table": {
+				"ems": "EMS",
+				"mail_server_mx": "Mail-Server (MX)"
+			},
+			"title": "Erweitertes Hauptgeheimnis (EMS)"
+		},
 		"internet_nl_mail_starttls_tls_keyexchange": {
 			"explanation": "Wir prüfen, ob die öffentlichen Parameter, die beim Diffie-Hellman-Schlüsselaustausch von Ihren empfangenden Mailservern (MX) verwendet werden, sicher sind.</p><p><strong>ECDHE</strong>: Die Sicherheit des ephemeren Diffie-Hellman-Schlüsselaustauschs mit elliptischer Kurve (ECDHE) hängt von der verwendeten elliptischen Kurve ab. Wir prüfen, ob die Bit-Länge der verwendeten elliptischen Kurven mindestens 224 Bit beträgt. Zurzeit sind wir nicht in der Lage, den Namen der elliptischen Kurve zu überprüfen.</p><p><strong>DHE</strong>: Die Sicherheit des Diffie-Hellman Ephemeral (DHE)-Schlüsselaustauschs hängt von der Länge des öffentlichen und des geheimen Schlüssels ab, die innerhalb der gewählten endlichen Feldgruppe verwendet werden. Wir testen, ob Ihr öffentliches DHE-Schlüsselmaterial eine der vordefinierten endlichen Feldgruppen verwendet, die in <a href=\"https://www.rfc-editor.org/rfc/rfc7919\">RFC 7919</a>AUFGEFÜHRT SIND. Selbst erzeugte Gruppen sind 'Unzureichend'.</p><p>Die größeren Schlüsselgrößen, die für die Verwendung von DHE erforderlich sind, sind mit Leistungseinbußen verbunden. Prüfen Sie sorgfältig und verwenden Sie ECDHE anstelle von DHE, wenn Sie können.</p><p><strong>RSA als Alternative</strong>: Neben ECDHE und DHE kann auch RSA für den Schlüsselaustausch verwendet werden. Es besteht jedoch die Gefahr, dass es nicht mehr ausreichend sicher ist (derzeitiger Status \"phase out\"). Die öffentlichen RSA-Parameter werden im Untertest \"Öffentlicher Schlüssel des Zertifikats\" geprüft. Beachten Sie, dass RSA als \"gut\" für die Zertifikatsüberprüfung angesehen wird.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B5-1 und Tabelle 9 für ECDHE, und Richtlinie B6-1 und Tabelle 10 für DHE (in Englisch).</p><hr /><p><strong>Elliptische Kurve für ECDHE</strong></p><ul><li>Gut: <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>, und <code>x25519</code></li><li>Auslaufen: <code>secp224r1</code></li><li>Unzureichend: Andere Kurven</li></ul><p><strong>Endliche Feldgruppe für DHE</strong></p><ul><li><p>Ausreichend:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem\">ffdhe4096</a> (RFC 7919)<br /> sha256 Prüfsumme: <code>64852d6890ff9e62eecd1ee89c72af9af244dfef5b853bcedea3dfd7aade22b3</code></li><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe3072.pem\">ffdhe3072</a> (RFC 7919)<br /> sha256 checksum: <code>c410cc9c4fd85d2c109f7ebe5930ca5304a52927c0ebcb1a11c5cf6b2386bbab</code>  </li><li>Beachten Sie, dass wir auch auf ffdhe8192 und ffdhe6144 testen. Ihr begrenzter Gewinn an Sicherheit wiegt den Leistungsverlust jedoch kaum auf.</li></ul></li><li><p>Auslaufen:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe2048.pem\">ffdhe2048</a> (RFC 7919)<br /> sha256 Prüfsumme: <code>9ba6429597aeed2d8617a7705b56e96d044f64b07971659382e426675105654b</code></li></ul></li><li><p>Unzureichend: Andere Gruppen</p></li></ul><hr /><p>Anmerkung: Die oben genannten Namen basieren auf den <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml\">IANA-Namenskonventionen</a>. Manchmal werden alternative Namen verwendet, um auf dieselben Kurven zu verweisen, wie <code>prime256v1</code> (ANSI) und <code>NIST P-256</code> für <code>secp256r1</code>.",
 			"rating": {
@@ -1545,12 +1583,14 @@
 		"internet_nl_mail_starttls_tls_keyexchangehash": {
 			"explanation": "<p>Wir prüfen, ob Ihre empfangenden Mailserver (MX) sichere Hash-Funktionen zur Erstellung der digitalen Signatur beim Schlüsselaustausch unterstützen.</p><p>Ein empfangender Mailserver verwendet während des Schlüsselaustauschs eine digitale Signatur, um den Besitz des geheimen Schlüssels, der dem Zertifikat entspricht, nachzuweisen. Der Mailserver erstellt diese digitale Signatur, indem er die Ausgabe einer Hash-Funktion signiert. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Tabelle 5.</p><p><em>Anforderungsstufe: Empfohlen</em></p><hr /><p><strong>SHA2-Unterstützung für Signaturen</strong></p><ul><li>Gut: Ja (SHA-256, SHA-384 oder SHA-512 unterstützt)</li><li>Auslaufend: Nein (SHA-256, SHA-384 oder SHA-512 <em>werden nicht</em> unterstützt)</li></ul>",
 			"rating": {
+				"bad": "",
 				"good": "Alle Ihre Mailserver unterstützen sichere Hash-Funktionen für den Schlüsselaustausch.",
 				"other": "Wir waren nicht in der Lage, die von mindestens einem Ihrer Mailserver verwendete Hash-Funktion zu ermitteln. Dies könnte daran liegen, dass die verwendete Chiffrierkombination keine Signatur für die Zertifikatsüberprüfung hat (z. B. verwendet sie RSA-Schlüsselaustausch oder ist anonym, d. h. <code>anon</code>).",
 				"phase_out": "Mindestens einer Ihrer Mailserver unterstützt <em>keine</em> sichere Hashfunktion für den Schlüsselaustausch. Sie sollten <em>diese Einstellung bewusst</em> auslaufen lassen, da die Gefahr besteht, dass sie in Zukunft <em>nicht mehr ausreichend</em> sicher ist."
 			},
 			"tech_table": {
 				"mail_server_mx": "",
+				"outdated_hash_function": "",
 				"sha2_support_for_signatures": "SHA2-Unterstützung für Signaturen"
 			},
 			"title": "Hash-Funktion für den Schlüsselaustausch"
@@ -1576,7 +1616,9 @@
 			},
 			"tech_table": {
 				"mail_server_mx": "",
+				"security_level": "",
 				"status": "Status",
+				"tls_version": "",
 				"tls_versions": "TLS-Versionen"
 			},
 			"title": "TLS-Version"
@@ -1728,6 +1770,8 @@
 			},
 			"tech_table": {
 				"affected_signature_parameters": "",
+				"outdated_signature_parameter": "",
+				"security_level": "",
 				"status": "Status",
 				"web_server_ip_address": "IP-Adresse des Webservers"
 			},
@@ -1737,10 +1781,13 @@
 			"explanation": "<p>Wir prüfen, ob der signierte Fingerabdruck des Website-Zertifikats mit einem sicheren Hashing-Algorithmus erstellt wurde. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B3-2 und Tabelle 3 (in Englisch).</p><hr /><p><strong>Hash-Funktionen für die Zertifikatsüberprüfung</strong></p><ul><li>gut: SHA-512, SHA-384, SHA-256</li><li>Unzureichend: SHA-1, MD5</li></ul>",
 			"rating": {
 				"bad": "Ihr Website-Zertifikat ist mit einem Hash-Algorithmus signiert, der <em>unzureichend</em> sicher ist.",
-				"good": "Das Zertifikat Ihrer Website wird mit einem sicheren Hash-Algorithmus signiert."
+				"good": "Das Zertifikat Ihrer Website wird mit einem sicheren Hash-Algorithmus signiert.",
+				"phase_out": ""
 			},
 			"tech_table": {
 				"affected_hash_algorithm": "",
+				"outdated_hash_function": "",
+				"security_level": "",
 				"status": "Status",
 				"web_server_ip_address": "IP-Adresse des Webservers"
 			},
@@ -1837,6 +1884,16 @@
 			"title": "0-RTT"
 		},
 		"internet_nl_web_https_tls_caa": {
+			"explanation": "",
+			"rating": {
+				"bad": "",
+				"good": "",
+				"insufficient": "",
+				"syntax_error": ""
+			},
+			"tech_table": {
+				"findings": ""
+			},
 			"title": "CAA für den Bereich"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
@@ -1846,11 +1903,15 @@
 				"good": "Ihr Webserver setzt seine eigene Verschlüsselungspräferenz durch (\"I\") und bietet Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge an (\"II\").",
 				"na": "Dieser Untertest ist nicht anwendbar, da Ihr Webserver nur \"gute\" Chiffren unterstützt.",
 				"seclevel_bad": "Ihr Webserver bevorzugt <em>nicht</em> \"Gut\" gegenüber \"Ausreichend\" gegenüber \"Auslauf\"-Chiffren (\"II\").",
+				"sufficient_above_good": "",
 				"warning": "VERALTETER TEXT; URTEIL NICHT VERWENDET</p><p>Ihr Webserver bietet <em>keine</em> Verschlüsselungen gemäß der vorgeschriebenen Reihenfolge innerhalb einer bestimmten Sicherheitsstufe ('II-B') an."
 			},
 			"tech_table": {
+				"cipher_suite_preferred_by_server": "",
+				"expected_preferred_cipher_suite": "",
 				"first_found_affected_cipher_pair": "",
 				"violated_rule_ii_b": "",
+				"web_server_ip": "",
 				"web_server_ip_address": ""
 			},
 			"title": "Chiffrierauftrag"
@@ -1864,6 +1925,8 @@
 			},
 			"tech_table": {
 				"affected_ciphers": "Betroffene Chiffren",
+				"outdated_cipher_suite": "",
+				"security_level": "",
 				"status": "Status",
 				"web_server_ip_address": ""
 			},
@@ -1872,8 +1935,11 @@
 		"internet_nl_web_https_tls_clientreneg": {
 			"explanation": "<p>Wir prüfen, ob ein Client (in der Regel ein Webbrowser) eine Neuverhandlung mit Ihrem Webserver einleiten kann. </p><p>Es ist in der Regel nicht notwendig, Clients die Neuverhandlung zu gestatten, da sie einen Webserver für DoS-Angriffe innerhalb einer TLS-Verbindung öffnen. Ein Angreifer kann ähnliche DoS-Angriffe ohne eine vom Client initiierte Neuaushandlung durchführen, indem er viele parallele TLS-Verbindungen öffnet, aber diese sind leichter zu erkennen und mit Hilfe von Standardabwehrmaßnahmen abzuwehren. Beachten Sie, dass die vom Kunden initiierte Neuverhandlung die Verfügbarkeit und nicht die Vertraulichkeit beeinträchtigt. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B8-1 und Tabelle 13 (in Englisch).</p><p><em>Anforderungsstufe: Fakultativ</em></p><hr /><p><strong>Vom Kunden initiierte Neuaushandlung</strong></p><ul><li>Gut: Aus (oder N/A für TLS 1.3)</li><li>Ausreichend: Ein</li></ul>",
 			"rating": {
+				"allowed_with_low_limit": "",
+				"allowed_with_too_high_limit": "",
 				"bad": "Ihr Webserver erlaubt eine vom Kunden veranlasste Neuverhandlung, die sich negativ auf die Verfügbarkeit Ihrer Website auswirken kann.",
-				"good": "Ihr Webserver lässt keine vom Client initiierte Neuverhandlung zu."
+				"good": "Ihr Webserver lässt keine vom Client initiierte Neuverhandlung zu.",
+				"not_allowed": ""
 			},
 			"tech_table": {
 				"client_initiated_renegotiation": "Neuverhandlung auf Veranlassung des Kunden",
@@ -1893,6 +1959,20 @@
 			},
 			"title": "TLS-Komprimierung"
 		},
+		"internet_nl_web_https_tls_extendedmastersecret": {
+			"explanation": "Wir prüfen, ob Ihr Webserver Extended Master Secret unterstützt.</p><p>Extended Master Secret (EMS), das in <a href=\"https://www.rfc-editor.org/rfc/rfc7627\">RFC 7627</a>spezifiziert ist, ist eine Erweiterung für TLS 1.2, die Triple Handshakes und Machine-in-the-Middle-Angriffe verhindert. </p><p>TLS-Bibliotheken erzwingen zunehmend standardmäßig EMS, auch weil Sicherheitsvorschriften wie FIPS dies vorschreiben. Wenn Ihr Server EMS nicht unterstützt, sind Clients, die EMS erzwingen, nicht in der Lage, eine TLS 1.2-Verbindung mit Ihrem Server herzustellen.</p><p>Siehe <a href=\"https://www.ncsc.nl/en/transport-layer-security/ICT-beveiligingsrichtlijnen-voor-TLS\">'Transport Layer Security (TLS), Sicherheitsrichtlinien Version 2025-05'</a> von NCSC-NL, Absatz 4.1.",
+			"rating": {
+				"bad": "Ihr Webserver unterstützt <em>nicht</em> EMS.",
+				"good": "Ihr Webserver unterstützt EMS.",
+				"na_no_tls_1_2": "Dieser Untertest ist nicht anwendbar, da EMS nur in TLS 1.2 verfügbar ist, das auf Ihrem Webserver nicht aktiviert ist.",
+				"unknown": "Kein Ergebnis verfügbar. Zum Zeitpunkt der Durchführung des Tests war dieser Untertest noch nicht Teil des Tests."
+			},
+			"tech_table": {
+				"ems": "EMS",
+				"web_server_ip_address": "Webserver IP-Adresse"
+			},
+			"title": "Erweitertes Hauptgeheimnis (EMS)"
+		},
 		"internet_nl_web_https_tls_keyexchange": {
 			"explanation": "Wir prüfen, ob die öffentlichen Parameter, die Ihr Webserver beim Diffie-Hellman-Schlüsselaustausch verwendet, sicher sind.</p><p><strong>ECDHE</strong>: Die Sicherheit des ephemeren Diffie-Hellman-Schlüsselaustauschs mit elliptischer Kurve (ECDHE) hängt von der verwendeten elliptischen Kurve ab. Wir prüfen, ob die Bit-Länge der verwendeten elliptischen Kurven mindestens 224 Bit beträgt. Zurzeit sind wir nicht in der Lage, den Namen der elliptischen Kurve zu überprüfen.</p><p><strong>DHE</strong>: Die Sicherheit des Diffie-Hellman Ephemeral (DHE)-Schlüsselaustauschs hängt von der Länge des öffentlichen und des geheimen Schlüssels ab, die innerhalb der gewählten endlichen Feldgruppe verwendet werden. Wir testen, ob Ihr öffentliches DHE-Schlüsselmaterial eine der vordefinierten endlichen Feldgruppen verwendet, die in <a href=\"https://www.rfc-editor.org/rfc/rfc7919\">RFC 7919</a>AUFGEFÜHRT SIND. Selbst erzeugte Gruppen sind 'Unzureichend'. </p><p>Die größeren Schlüsselgrößen, die für die Verwendung von DHE erforderlich sind, sind mit Leistungseinbußen verbunden. Prüfen Sie sorgfältig und verwenden Sie ECDHE anstelle von DHE, wenn Sie können.</p><p><strong>RSA als Alternative</strong>: Neben ECDHE und DHE kann auch RSA für den Schlüsselaustausch verwendet werden. Es besteht jedoch die Gefahr, dass es nicht mehr ausreichend sicher ist (derzeitiger Status \"phase out\"). Die öffentlichen RSA-Parameter werden im Untertest \"Öffentlicher Schlüssel des Zertifikats\" geprüft. Beachten Sie, dass RSA als \"gut\" für die Zertifikatsüberprüfung angesehen wird.</p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Richtlinie B5-1 und Tabelle 9 für ECDHE, und Richtlinie B6-1 und Tabelle 10 für DHE (in Englisch).</p><hr /><p><strong>Elliptische Kurve für ECDHE</strong></p><ul><li>Gut: <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>, und <code>x25519</code></li><li>Auslaufen: <code>secp224r1</code></li><li>Unzureichend: Andere Kurven</li></ul><p><strong>Endliche Feldgruppe für DHE</strong></p><ul><li><p>Ausreichend:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem\">ffdhe4096</a> (RFC 7919)<br /> sha256 Prüfsumme: <code>64852d6890ff9e62eecd1ee89c72af9af244dfef5b853bcedea3dfd7aade22b3</code></li><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe3072.pem\">ffdhe3072</a> (RFC 7919)<br /> sha256 checksum: <code>c410cc9c4fd85d2c109f7ebe5930ca5304a52927c0ebcb1a11c5cf6b2386bbab</code>  </li><li>Beachten Sie, dass wir auch auf ffdhe8192 und ffdhe6144 testen. Ihr begrenzter Gewinn an Sicherheit wiegt den Leistungsverlust jedoch kaum auf.</li></ul></li><li><p>Auslaufen:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe2048.pem\">ffdhe2048</a> (RFC 7919)<br /> sha256 Prüfsumme: <code>9ba6429597aeed2d8617a7705b56e96d044f64b07971659382e426675105654b</code></li></ul></li><li><p>Unzureichend: Andere Gruppen</p></li></ul><hr /><p>Anmerkung: Die oben genannten Namen basieren auf den <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml\">IANA-Namenskonventionen</a>. Manchmal werden alternative Namen verwendet, um auf dieselben Kurven zu verweisen, wie <code>prime256v1</code> (ANSI) und <code>NIST P-256</code> für <code>secp256r1</code>.",
 			"rating": {
@@ -1903,6 +1983,8 @@
 			},
 			"tech_table": {
 				"affected_parameters": "",
+				"outdated_parameter": "",
+				"security_level": "",
 				"status": "Status",
 				"web_server_ip_address": ""
 			},
@@ -1911,11 +1993,13 @@
 		"internet_nl_web_https_tls_keyexchangehash": {
 			"explanation": "<p>Wir prüfen, ob Ihr Webserver sichere Hash-Funktionen zur Erstellung der digitalen Signatur beim Schlüsselaustausch unterstützt.</p><p>Der Webserver verwendet während des Schlüsselaustauschs eine digitale Signatur, um den Besitz des geheimen Schlüssels, der dem Zertifikat entspricht, nachzuweisen. Der Webserver erstellt diese digitale Signatur, indem er die Ausgabe einer Hash-Funktion signiert. </p><p>Siehe <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">'IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> von NCSC-NL, Tabelle 5.</p><p><em>Anforderungsstufe: Empfohlen</em></p><hr /><p><strong>SHA2-Unterstützung für Signaturen</strong></p><ul><li>Gut: Ja (SHA-256, SHA-384 oder SHA-512 unterstützt)</li><li>Auslaufen: Nein (SHA-256, SHA-384 oder SHA-512 <em>werden nicht</em> unterstützt)</li></ul>",
 			"rating": {
+				"bad": "",
 				"good": "Ihr Webserver unterstützt eine sichere Hash-Funktion für den Schlüsselaustausch.",
 				"other": "Wir waren nicht in der Lage, die von Ihrem Webserver verwendete Hash-Funktion zu ermitteln. Dies könnte daran liegen, dass die verwendete Chiffrierkombination keine Signatur für die Zertifikatsüberprüfung hat (z. B. verwendet sie RSA-Schlüsselaustausch oder ist anonym, d. h. <code>anon</code>).",
 				"phase_out": "Ihr Webserver unterstützt <em>keine</em> sichere Hash-Funktion für den Schlüsselaustausch. Sie sollten <em>diese Einstellung bewusst</em> auslaufen lassen, da die Gefahr besteht, dass sie in Zukunft <em>nicht mehr ausreichend</em> sicher ist."
 			},
 			"tech_table": {
+				"outdated_hash_function": "",
 				"sha2_support_for_signatures": "",
 				"web_server_ip_address": ""
 			},
@@ -1926,6 +2010,7 @@
 			"rating": {
 				"bad": "Ihr Webserver unterstützt OCSP Stapling, aber die Daten in der Antwort sind <em>nicht</em> gültig.",
 				"good": "Ihr Webserver unterstützt OCSP Stapling und die Daten in der Antwort sind gültig.",
+				"not_in_cert": "",
 				"ok": "Ihr Webserver unterstützt <em>nicht</em> OCSP Stapling."
 			},
 			"tech_table": {
@@ -1954,6 +2039,7 @@
 				"phase_out": "Ihr Webserver unterstützt TLS-Versionen, die <em>absichtlich eingestellt werden sollten</em> , weil sie bekanntermaßen anfällig sind und Gefahr laufen, <em>nicht mehr ausreichend</em> sicher zu sein."
 			},
 			"tech_table": {
+				"security_level": "",
 				"status": "Status",
 				"tls_version": "TLS-Version",
 				"web_server_ip_address": ""
@@ -2670,6 +2756,6 @@
 		"scan_type_all": "Sowohl Website als auch E-Mail (führt zu zwei Berichten)",
 		"scan_type_mail": "E-Mail / Mailserver und Domäne",
 		"scan_type_web": "Website / Webadressen",
-		"to_overview_page": "Öffnen Sie die Übersichtsseite."
+		"to_overview_page": "Neue Berichte erscheinen dann nach ihrer Veröffentlichung auf dieser Seite."
 	}
 }

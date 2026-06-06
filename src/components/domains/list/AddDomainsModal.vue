@@ -15,7 +15,7 @@
 </style>
 
 <template>
-  <b-modal @hidden="stop()" header-bg-variant="info" header-text-variant="light" no-fade scrollable size="lg">
+  <b-modal @hidden="stop()" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable size="lg">
     <template #header><h4>🌐 {{ $t("domain.list.add-domains.title") }}</h4></template>
     <template #default>
       <div style="min-height: 50vh;">
@@ -113,7 +113,7 @@ export default {
     bulk_add_new: function () {
       this.loading = true;
 
-      http.post(`/api/v1/urllists/${this.list.id}/urls`, {'urls': [this.new_domains]}).then(data => {
+      http.post(`/api/v1/urllists/${this.list.id}/urls`, {'raw_urls': this.new_domains}).then(data => {
         // {'incorrect_urls': [], 'added_to_list': int, 'already_in_list': int}
         this.response = data.data;
         this.loading = false;

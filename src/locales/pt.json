@@ -1380,6 +1380,8 @@
 			"tech_table": {
 				"affected_signature_parameters": "Parâmetros de assinatura afectados",
 				"mail_server_mx": "",
+				"outdated_signature_parameter": "",
+				"security_level": "",
 				"status": "Estado"
 			},
 			"title": "Chave pública do certificado"
@@ -1388,11 +1390,14 @@
 			"explanation": "",
 			"rating": {
 				"bad": "Pelo menos um dos certificados do seu servidor de correio eletrónico está assinado com um algoritmo de hash que é <em>insuficientemente</em> seguro.",
-				"good": "Todos os certificados do seu servidor de correio eletrónico são assinados utilizando um algoritmo de hash seguro."
+				"good": "Todos os certificados do seu servidor de correio eletrónico são assinados utilizando um algoritmo de hash seguro.",
+				"phase_out": ""
 			},
 			"tech_table": {
 				"affected_hash_algorithm": "Algoritmo de hash afetado",
 				"mail_server_mx": "",
+				"outdated_hash_function": "",
+				"security_level": "",
 				"status": "Estado"
 			},
 			"title": "Assinatura do certificado"
@@ -1471,6 +1476,17 @@
 			"title": "Aplicação da encriptação das mensagens de correio eletrónico recebidas"
 		},
 		"internet_nl_mail_starttls_tls_caa": {
+			"explanation": "",
+			"rating": {
+				"bad": "",
+				"good": "",
+				"insufficient": "",
+				"syntax_error": ""
+			},
+			"tech_table": {
+				"findings": "",
+				"mail_server": ""
+			},
 			"title": "CAA para servidor de correio eletrónico"
 		},
 		"internet_nl_mail_starttls_tls_cipherorder": {
@@ -1480,9 +1496,12 @@
 				"good": "Todos os seus servidores de correio aplicam a sua própria preferência de cifra (\"I\") e oferecem cifras de acordo com a ordem prescrita (\"II\").",
 				"na": "Este subteste não é aplicável porque o seu servidor de correio eletrónico suporta apenas cifras \"Boas\".",
 				"seclevel_bad": "Pelo menos um dos seus servidores de correio eletrónico <em>não</em> prefere cifras 'Good' a 'Sufficient' a 'Phase out' ('II').",
+				"sufficient_above_good": "",
 				"warning": "TEXTO DESACTUALIZADO; VEREDICTO NÃO UTILIZADO</p><p>Pelo menos um dos seus servidores de correio eletrónico <em>não</em> oferece cifras de acordo com a ordenação prescrita num determinado nível de segurança (\"II-B\")."
 			},
 			"tech_table": {
+				"cipher_suite_preferred_by_server": "",
+				"expected_preferred_cipher_suite": "",
 				"first_found_affected_cipher_pair": "Primeiro par de cifras afetado encontrado",
 				"mail_server_mx": "",
 				"violated_rule_ii_b": "Violação da regra n.º (\"II-B\")"
@@ -1499,6 +1518,8 @@
 			"tech_table": {
 				"first_found_affected_cipher": "Primeira cifra afetada encontrada",
 				"mail_server_mx": "",
+				"outdated_cipher_suite": "",
+				"security_level": "",
 				"status": "Estado"
 			},
 			"title": "Cifras (Seleção de algoritmos)"
@@ -1506,8 +1527,11 @@
 		"internet_nl_mail_starttls_tls_clientreneg": {
 			"explanation": "<p>Verificamos se um servidor de correio de envio pode iniciar uma renegociação com os seus servidores de correio de receção (MX). </p><p>Permitir que os servidores de correio de envio iniciem a renegociação não é geralmente necessário e abre um servidor de correio de receção a ataques DoS dentro de uma ligação TLS. Um atacante pode efetuar ataques DoS semelhantes sem renegociação iniciada pelo cliente, abrindo muitas ligações TLS paralelas, mas estas são mais fáceis de detetar e defender utilizando atenuações padrão. Note-se que a renegociação iniciada pelo cliente afecta a disponibilidade e não a confidencialidade. </p><p>Ver <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">IT Security Guidelines for Transport Layer Security (TLS) v2.1'</a> do NCSC-NL, diretriz B8-1 e tabela 13 (em inglês).</p><p><em>Nível do requisito: Opcional</em></p><hr /><p><strong>Renegociação iniciada pelo cliente</strong></p><ul><li>Bom: Desligado (ou N/A para TLS 1.3)</li><li>Suficiente: Ligado</li></ul>",
 			"rating": {
+				"allowed_with_low_limit": "",
+				"allowed_with_too_high_limit": "",
 				"bad": "Pelo menos um dos seus servidores de correio eletrónico permite a renegociação iniciada pelo cliente, o que pode ter um impacto negativo na disponibilidade do seu servidor de correio eletrónico.",
-				"good": "Todos os seus servidores de correio eletrónico não permitem a renegociação iniciada pelo cliente."
+				"good": "Todos os seus servidores de correio eletrónico não permitem a renegociação iniciada pelo cliente.",
+				"not_allowed": ""
 			},
 			"tech_table": {
 				"client_initiated_renegotiation": "Renegociação iniciada pelo cliente",
@@ -1527,6 +1551,20 @@
 			},
 			"title": "Compressão TLS"
 		},
+		"internet_nl_mail_starttls_tls_extendedmastersecret": {
+			"explanation": "Verificamos se os seus servidores de correio de receção (MX) suportam Extended Master Secret.</p><p>Extended Master Secret (EMS), que é especificado em <a href=\"https://www.rfc-editor.org/rfc/rfc7627\">RFC 7627</a>é uma extensão do TLS 1.2 que evita ataques do tipo \"Triple Handshakes machine-in-the-middle\". </p><p>Cada vez mais, as bibliotecas TLS estão a aplicar o EMS por predefinição, também porque os regulamentos de segurança, como o FIPS, o exigem. Se o seu servidor de correio não suportar o EMS, os servidores de correio de envio que aplicam o EMS não poderão estabelecer uma ligação TLS 1.2 com o seu servidor de correio.</p><p>Ver <a href=\"https://www.ncsc.nl/en/transport-layer-security/ICT-beveiligingsrichtlijnen-voor-TLS\">'Transport Layer Security (TLS), Security guidelines version 2025-05'</a> do NCSC-NL, parágrafo 4.1.",
+			"rating": {
+				"bad": "Pelo menos um dos seus servidores de correio eletrónico <em>não</em> suporta EMS.",
+				"good": "Todos os seus servidores de correio eletrónico suportam o EMS.",
+				"na_no_tls_1_2": "Este subteste não é aplicável, uma vez que o EMS só está disponível em TLS 1.2, que não está ativado nos seus servidores de correio.",
+				"unknown": "Não há resultados disponíveis. Na altura em que o teste foi realizado, este subteste ainda não fazia parte do teste."
+			},
+			"tech_table": {
+				"ems": "EMS",
+				"mail_server_mx": "Servidor de correio eletrónico (MX)"
+			},
+			"title": "Segredo mestre alargado (EMS)"
+		},
 		"internet_nl_mail_starttls_tls_keyexchange": {
 			"explanation": "Verificamos se os parâmetros públicos utilizados na troca de chaves Diffie-Hellman pelos seus servidores de correio recetor (MX) são seguros.</p><p><strong>ECDHE</strong>: A segurança da troca de chaves efémeras Diffie-Hellman de curva elíptica (ECDHE) depende da curva elíptica utilizada. Verificamos se o comprimento de bits das curvas elípticas utilizadas é de pelo menos 224 bits. Atualmente, não é possível verificar o nome da curva elíptica.</p><p><strong>DHE</strong>: A segurança da troca de chaves Diffie-Hellman Ephemeral (DHE) depende dos comprimentos das chaves públicas e secretas utilizadas no grupo de campos finitos escolhido. Testamos se o material da chave pública DHE utiliza um dos grupos de campos finitos predefinidos que são especificados em <a href=\"https://www.rfc-editor.org/rfc/rfc7919\">RFC 7919</a>. Os grupos auto-gerados são 'Insuficientes'.</p><p>Os tamanhos de chave maiores necessários para a utilização do DHE implicam uma penalização do desempenho. Avalie cuidadosamente e utilize ECDHE em vez de DHE, se possível.</p><p><strong>RSA como alternativa</strong>: Para além do ECDHE e do DHE, o RSA pode ser utilizado para troca de chaves. No entanto, corre o risco de se tornar insuficientemente seguro (estado atual \"phase out\"). Os parâmetros públicos do RSA são testados no subteste \"Chave pública do certificado\". Note-se que o RSA é considerado \"bom\" para a verificação de certificados.</p><p>Ver <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">\"IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> do NCSC-NL, diretriz B5-1 e quadro 9 para ECDHE, e diretriz B6-1 e quadro 10 para DHE (em inglês).</p><hr /><p><strong>Curva elíptica para ECDHE</strong></p><ul><li>Bom: <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>, e <code>x25519</code></li><li>Phase out: <code>secp224r1</code></li><li>Insuficiente: Outras curvas</li></ul><p><strong>Grupo de campos finitos para DHE</strong></p><ul><li><p>Suficiente:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem\">ffdhe4096</a> (RFC 7919)<br /> sha256 checksum: <code>64852d6890ff9e62eecd1ee89c72af9af244dfef5b853bcedea3dfd7aade22b3</code></li><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe3072.pem\">ffdhe3072</a> (RFC 7919)<br /> sha256 checksum: <code>c410cc9c4fd85d2c109f7ebe5930ca5304a52927c0ebcb1a11c5cf6b2386bbab</code>  </li><li>Note que também testámos o ffdhe8192 e o ffdhe6144. No entanto, o seu ganho limitado em termos de segurança raramente compensa a perda de desempenho.</li></ul></li><li><p>Fase de saída:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe2048.pem\">ffdhe2048</a> (RFC 7919)<br /> sha256 checksum: <code>9ba6429597aeed2d8617a7705b56e96d044f64b07971659382e426675105654b</code></li></ul></li><li><p>Insuficiente: Outros grupos</p></li></ul><hr /><p>Nota: os nomes acima baseiam-se nas convenções de nomenclatura da IANA <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml\">convenções de nomenclatura da IANA</a>. Por vezes, são utilizados nomes alternativos para designar as mesmas curvas, como <code>prime256v1</code> (ANSI) e <code>NIST P-256</code> para <code>secp256r1</code>.",
 			"rating": {
@@ -1545,12 +1583,14 @@
 		"internet_nl_mail_starttls_tls_keyexchangehash": {
 			"explanation": "<p>Verificamos se os seus servidores de correio eletrónico de receção (MX) suportam funções de hash seguras para criar a assinatura digital durante a troca de chaves.</p><p>Um servidor de correio recetor utiliza uma assinatura digital durante a troca de chaves para provar a propriedade da chave secreta correspondente ao certificado. O servidor de correio cria esta assinatura digital assinando a saída de uma função de hash. </p><p>Ver <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">\"IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> do NCSC-NL, quadro 5.</p><p><em>Nível de exigência: Recomendado</em></p><hr /><p><strong>Suporte SHA2 para assinaturas</strong></p><ul><li>Bom: Sim (SHA-256, SHA-384 ou SHA-512 suportados)</li><li>Eliminação progressiva: Não (SHA-256, SHA-384 ou SHA-512 <em>não</em> suportados)</li></ul>",
 			"rating": {
+				"bad": "",
 				"good": "Todos os seus servidores de correio eletrónico suportam funções de hash seguras para troca de chaves.",
 				"other": "Não foi possível determinar a função de hash utilizada por pelo menos um dos seus servidores de correio eletrónico. Tal pode dever-se ao facto de a combinação de cifras utilizada não ter assinatura para verificação do certificado (por exemplo, utiliza troca de chaves RSA ou é anónima, ou seja, <code>anon</code>).",
 				"phase_out": ""
 			},
 			"tech_table": {
 				"mail_server_mx": "",
+				"outdated_hash_function": "",
 				"sha2_support_for_signatures": "Suporte SHA2 para assinaturas"
 			},
 			"title": "Função de hash para troca de chaves"
@@ -1576,7 +1616,9 @@
 			},
 			"tech_table": {
 				"mail_server_mx": "",
+				"security_level": "",
 				"status": "Estado",
+				"tls_version": "",
 				"tls_versions": "Versões TLS"
 			},
 			"title": "Versão TLS"
@@ -1728,6 +1770,8 @@
 			},
 			"tech_table": {
 				"affected_signature_parameters": "",
+				"outdated_signature_parameter": "",
+				"security_level": "",
 				"status": "Estado",
 				"web_server_ip_address": ""
 			},
@@ -1737,10 +1781,13 @@
 			"explanation": "",
 			"rating": {
 				"bad": "O certificado do seu sítio Web é assinado utilizando um algoritmo de hash que é <em>insuficientemente</em> seguro.",
-				"good": "O certificado do seu sítio Web é assinado utilizando um algoritmo de hash seguro."
+				"good": "O certificado do seu sítio Web é assinado utilizando um algoritmo de hash seguro.",
+				"phase_out": ""
 			},
 			"tech_table": {
 				"affected_hash_algorithm": "",
+				"outdated_hash_function": "",
+				"security_level": "",
 				"status": "Estado",
 				"web_server_ip_address": ""
 			},
@@ -1837,6 +1884,16 @@
 			"title": "0-RTT"
 		},
 		"internet_nl_web_https_tls_caa": {
+			"explanation": "",
+			"rating": {
+				"bad": "",
+				"good": "",
+				"insufficient": "",
+				"syntax_error": ""
+			},
+			"tech_table": {
+				"findings": ""
+			},
 			"title": "AAC para o domínio"
 		},
 		"internet_nl_web_https_tls_cipherorder": {
@@ -1846,11 +1903,15 @@
 				"good": "O seu servidor Web aplica a sua própria preferência de cifra (\"I\") e oferece cifras de acordo com a ordem prescrita (\"II\").",
 				"na": "Este subteste não é aplicável se o seu servidor Web suportar apenas cifras \"Boas\".",
 				"seclevel_bad": "O seu servidor Web <em>não</em> prefere cifras 'Boas' em vez de 'Suficientes' em vez de cifras 'Phase out' ('II').",
+				"sufficient_above_good": "",
 				"warning": "TEXTO DESACTUALIZADO; VEREDICTO NÃO UTILIZADO</p><p>O seu servidor Web <em>não</em> oferece cifras de acordo com a ordenação prescrita num determinado nível de segurança (\"II-B\")."
 			},
 			"tech_table": {
+				"cipher_suite_preferred_by_server": "",
+				"expected_preferred_cipher_suite": "",
 				"first_found_affected_cipher_pair": "",
 				"violated_rule_ii_b": "",
+				"web_server_ip": "",
 				"web_server_ip_address": ""
 			},
 			"title": "Ordem de cifra"
@@ -1864,6 +1925,8 @@
 			},
 			"tech_table": {
 				"affected_ciphers": "Cifras afectadas",
+				"outdated_cipher_suite": "",
+				"security_level": "",
 				"status": "Estado",
 				"web_server_ip_address": ""
 			},
@@ -1872,8 +1935,11 @@
 		"internet_nl_web_https_tls_clientreneg": {
 			"explanation": "",
 			"rating": {
+				"allowed_with_low_limit": "",
+				"allowed_with_too_high_limit": "",
 				"bad": "O seu servidor Web permite a renegociação iniciada pelo cliente, o que pode ter um impacto negativo na disponibilidade do seu sítio Web.",
-				"good": "O seu servidor Web não permite a renegociação iniciada pelo cliente."
+				"good": "O seu servidor Web não permite a renegociação iniciada pelo cliente.",
+				"not_allowed": ""
 			},
 			"tech_table": {
 				"client_initiated_renegotiation": "Renegociação iniciada pelo cliente",
@@ -1893,6 +1959,20 @@
 			},
 			"title": "Compressão TLS"
 		},
+		"internet_nl_web_https_tls_extendedmastersecret": {
+			"explanation": "Verificamos se o seu servidor Web suporta Extended Master Secret.</p><p>Extended Master Secret (EMS), que é especificado em <a href=\"https://www.rfc-editor.org/rfc/rfc7627\">RFC 7627</a>é uma extensão do TLS 1.2 que evita ataques do tipo \"machine-in-the-middle\" com Triple Handshakes. </p><p>Cada vez mais, as bibliotecas TLS estão a aplicar o EMS por defeito, também porque os regulamentos de segurança, como o FIPS, o exigem. Se o seu servidor não suportar o EMS, os clientes que o aplicam não conseguirão estabelecer uma ligação TLS 1.2 com o seu servidor.</p><p>Ver <a href=\"https://www.ncsc.nl/en/transport-layer-security/ICT-beveiligingsrichtlijnen-voor-TLS\">'Transport Layer Security (TLS), Security guidelines version 2025-05'</a> do NCSC-NL, parágrafo 4.1.",
+			"rating": {
+				"bad": "",
+				"good": "O seu servidor Web suporta o EMS.",
+				"na_no_tls_1_2": "Este subteste não é aplicável porque o EMS só está disponível em TLS 1.2, que não está ativado no seu servidor Web.",
+				"unknown": "Não há resultados disponíveis. Na altura em que o teste foi realizado, este subteste ainda não fazia parte do teste."
+			},
+			"tech_table": {
+				"ems": "EMS",
+				"web_server_ip_address": "Endereço IP do servidor Web"
+			},
+			"title": "Segredo mestre alargado (EMS)"
+		},
 		"internet_nl_web_https_tls_keyexchange": {
 			"explanation": "Verificamos se os parâmetros públicos utilizados na troca de chaves Diffie-Hellman pelo seu servidor Web são seguros.</p><p><strong>ECDHE</strong>: A segurança da troca de chaves efémera de Diffie-Hellman de curva elíptica (ECDHE) depende da curva elíptica utilizada. Verificamos se o comprimento de bits das curvas elípticas utilizadas é de pelo menos 224 bits. Atualmente, não é possível verificar o nome da curva elíptica.</p><p><strong>DHE</strong>: A segurança da troca de chaves Diffie-Hellman Ephemeral (DHE) depende dos comprimentos das chaves públicas e secretas utilizadas no grupo de campos finitos escolhido. Testamos se o material da chave pública DHE utiliza um dos grupos de campos finitos predefinidos que são especificados em <a href=\"https://www.rfc-editor.org/rfc/rfc7919\">RFC 7919</a>. Os grupos auto-gerados são 'Insuficientes'. </p><p>Os tamanhos de chave maiores necessários para a utilização do DHE implicam uma penalização do desempenho. Avalie cuidadosamente e utilize ECDHE em vez de DHE, se possível.</p><p><strong>RSA como alternativa</strong>: Para além do ECDHE e do DHE, o RSA pode ser utilizado para troca de chaves. No entanto, corre o risco de se tornar insuficientemente seguro (estado atual \"phase out\"). Os parâmetros públicos do RSA são testados no subteste \"Chave pública do certificado\". Note-se que o RSA é considerado \"bom\" para a verificação de certificados.</p><p>Ver <a href=\"https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1\">\"IT Security Guidelines for Transport Layer Security (TLS) v2.1\"</a> do NCSC-NL, diretriz B5-1 e quadro 9 para ECDHE, e diretriz B6-1 e quadro 10 para DHE (em inglês).</p><hr /><p><strong>Curva elíptica para ECDHE</strong></p><ul><li>Bom: <code>secp384r1</code>, <code>secp256r1</code>, <code>x448</code>, e <code>x25519</code></li><li>Phase out: <code>secp224r1</code></li><li>Insuficiente: Outras curvas</li></ul><p><strong>Grupo de campos finitos para DHE</strong></p><ul><li><p>Suficiente:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem\">ffdhe4096</a> (RFC 7919)<br /> sha256 checksum: <code>64852d6890ff9e62eecd1ee89c72af9af244dfef5b853bcedea3dfd7aade22b3</code></li><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe3072.pem\">ffdhe3072</a> (RFC 7919)<br /> sha256 checksum: <code>c410cc9c4fd85d2c109f7ebe5930ca5304a52927c0ebcb1a11c5cf6b2386bbab</code>  </li><li>Note que também testámos o ffdhe8192 e o ffdhe6144. No entanto, o seu ganho limitado em termos de segurança raramente compensa a perda de desempenho.</li></ul></li><li><p>Fase de saída:</p><ul><li><a href=\"https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe2048.pem\">ffdhe2048</a> (RFC 7919)<br /> sha256 checksum: <code>9ba6429597aeed2d8617a7705b56e96d044f64b07971659382e426675105654b</code></li></ul></li><li><p>Insuficiente: Outros grupos</p></li></ul><hr /><p>Nota: os nomes acima baseiam-se nas convenções de nomenclatura da IANA <a href=\"https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml\">convenções de nomenclatura da IANA</a>. Por vezes, são utilizados nomes alternativos para designar as mesmas curvas, como <code>prime256v1</code> (ANSI) e <code>NIST P-256</code> para <code>secp256r1</code>.",
 			"rating": {
@@ -1903,6 +1983,8 @@
 			},
 			"tech_table": {
 				"affected_parameters": "",
+				"outdated_parameter": "",
+				"security_level": "",
 				"status": "Estado",
 				"web_server_ip_address": ""
 			},
@@ -1911,11 +1993,13 @@
 		"internet_nl_web_https_tls_keyexchangehash": {
 			"explanation": "",
 			"rating": {
+				"bad": "",
 				"good": "O seu servidor Web suporta uma função de hash segura para a troca de chaves.",
 				"other": "Não foi possível determinar a função de hash utilizada pelo seu servidor Web. Isto pode dever-se ao facto de a combinação de cifras utilizada não ter assinatura para verificação do certificado (por exemplo, utiliza troca de chaves RSA ou é anónima, ou seja, <code>anon</code>).",
 				"phase_out": ""
 			},
 			"tech_table": {
+				"outdated_hash_function": "",
 				"sha2_support_for_signatures": "",
 				"web_server_ip_address": ""
 			},
@@ -1926,6 +2010,7 @@
 			"rating": {
 				"bad": "O seu servidor Web suporta o agrafamento OCSP, mas os dados na resposta são <em>e não</em> válidos.",
 				"good": "O seu servidor Web suporta o agrafamento OCSP e os dados na resposta são válidos.",
+				"not_in_cert": "",
 				"ok": "O seu servidor Web <em>não</em> suporta o agrafamento OCSP."
 			},
 			"tech_table": {
@@ -1954,6 +2039,7 @@
 				"phase_out": "O seu servidor Web suporta versões de TLS que devem ser <em>eliminadas</em> deliberadamente, porque se sabe que são frágeis e correm o risco de se tornarem <em>insuficientemente</em> seguras."
 			},
 			"tech_table": {
+				"security_level": "",
 				"status": "Estado",
 				"tls_version": "Versão TLS",
 				"web_server_ip_address": ""
@@ -2670,6 +2756,6 @@
 		"scan_type_all": "Tanto o sítio Web como o correio eletrónico (resulta em dois relatórios)",
 		"scan_type_mail": "E-Mail / Servidor de correio eletrónico e domínio",
 		"scan_type_web": "Sítio Web / Endereços Web",
-		"to_overview_page": "Abrir a página de síntese."
+		"to_overview_page": "Os novos relatórios serão publicados nesta página após a sua publicação."
 	}
 }

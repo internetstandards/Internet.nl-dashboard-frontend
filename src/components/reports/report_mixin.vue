@@ -89,6 +89,7 @@ export default {
         internet_nl_web_https_tls_keyexchange: {visible: true},
         internet_nl_web_https_tls_keyexchangehash: {visible: true},
         internet_nl_web_https_tls_ocsp: {visible: true},
+        internet_nl_web_https_tls_extendedmastersecret: {visible: true},
         internet_nl_web_https_tls_caa: {visible: true},
         internet_nl_web_https_tls_0rtt: {visible: true},
         internet_nl_web_https_tls_cipherorder: {visible: true},
@@ -159,6 +160,7 @@ export default {
         internet_nl_mail_starttls_tls_cipherorder: {visible: true},
         internet_nl_mail_starttls_tls_keyexchangehash: {visible: true},
         internet_nl_mail_starttls_tls_0rtt: {visible: true},
+        internet_nl_mail_starttls_tls_extendedmastersecret: {visible: true},
         internet_nl_mail_starttls_tls_caa: {visible: true},
         internet_nl_web_legacy_tls_1_3: {visible: true},
         internet_nl_mail_legacy_mail_sending_domain: {visible: false},
@@ -425,6 +427,7 @@ export default {
                     {name: 'internet_nl_web_https_tls_clientreneg'},
                     {name: 'internet_nl_web_https_tls_0rtt'},
                     {name: 'internet_nl_web_https_tls_ocsp'},
+                    {name: 'internet_nl_web_https_tls_extendedmastersecret'},
                   ],
                 },
                 {
@@ -715,6 +718,7 @@ export default {
                     {name: 'internet_nl_mail_starttls_tls_secreneg'},
                     {name: 'internet_nl_mail_starttls_tls_clientreneg'},
                     {name: 'internet_nl_mail_starttls_tls_0rtt'},
+                    {name: 'internet_nl_mail_starttls_tls_extendedmastersecret'},
                   ],
 
                 },

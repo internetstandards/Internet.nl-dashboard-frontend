@@ -2,7 +2,7 @@ docker_image_name = internetstandards/dashboard-static
 
 all: lint audit test
 
-setup: vue-cli
+setup: node_modules/.modules.yaml
 
 lint:
 	pnpm run lint
@@ -13,19 +13,17 @@ audit:
 test:
 	# TODO
 
-vue-cli=node_modules/.bin/vue-cli-service
-$(vue-cli):
-	pnpm install
-vue-cli: | $(vue-cli)
+node_modules/.modules.yaml: package.json pnpm-lock.yaml
+	pnpm install --frozen-lockfile
 
-run: vue-cli
+run: setup
 	pnpm run dev
 
 # This option takes the env.deploy file and applies it during build.
-build: vue-cli
+build: setup
 	pnpm run build --mode deploy
 
-build-local: vue-cli
+build-local: setup
 	pnpm run build --mode development
 
 pull_image:

@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-    <b-modal @hidden="stop()" header-bg-variant="info" header-text-variant="light" no-fade scrollable>
+    <b-modal @hidden="stop()" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
         <template #header><h4>🛑 {{ $t("scanmonitor.stop_form.cancel.are_you_sure") }}</h4></template>
         <template #default>
 
