@@ -143,6 +143,9 @@ def translate_language(language):
             if not key.startswith(in_key):
                 continue
 
+            if out_key not in translations_output['metric']:
+                translations_output['metric'][out_key] = {}
+
             if key.endswith('_exp'):
                 # wsm
                 # translations_output['metric'][out_key]['extended-explanation'] = value
