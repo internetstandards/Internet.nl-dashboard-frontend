@@ -114,8 +114,6 @@ declare module 'vue' {
     IMdiEmail: typeof import('~icons/mdi/email')['default']
     IMdiEmailCheckOutline: typeof import('~icons/mdi/email-check-outline')['default']
     IMdiEmailRemove: typeof import('~icons/mdi/email-remove')['default']
-    IMdiPen: typeof import('~icons/mdi/pen')['default']
-    IMdiPencil: typeof import('~icons/mdi/pencil')['default']
     IMdiWeb: typeof import('~icons/mdi/web')['default']
     IMdiWebCheck: typeof import('~icons/mdi/web-check')['default']
     IMdiWebRemove: typeof import('~icons/mdi/web-remove')['default']
