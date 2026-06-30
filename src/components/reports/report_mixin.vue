@@ -302,6 +302,8 @@ export default {
           "internet_nl_mail_mx_ns_rpki_valid",
           "internet_nl_web_https_tls_caa",
           "internet_nl_mail_starttls_tls_caa",
+          "internet_nl_mail_starttls_tls_extendedmastersecret",
+          "internet_nl_web_https_tls_extendedmastersecret"
         ].includes(field_name)) {
           issue_filters[field_name] = {
             visible: true,
