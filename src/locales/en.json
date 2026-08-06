@@ -852,9 +852,9 @@
 	"home": {
 		"page": {
 			"introduction": "Bulk scan modern internet standards on thousands of domains in one go, including reports.",
-			"learn": "Learn what the dashboard can do for you, here...",
+			"learn": "Take the dashboard-tour",
 			"log_in": "Log in",
-			"request_access": "To request access to the dashboard, please visit this page.",
+			"request_access": "Request access to the dashboard",
 			"title": "Welcome to the internet.nl Dashboard"
 		},
 		"short-feature-overview": {

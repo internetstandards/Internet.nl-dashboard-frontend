@@ -852,9 +852,9 @@
 	"home": {
 		"page": {
 			"introduction": "Análise em massa das normas modernas da Internet em milhares de domínios de uma só vez, incluindo relatórios.",
-			"learn": "Saiba o que o painel de controlo pode fazer por si, aqui...",
+			"learn": "Faça a visita guiada ao painel de controlo",
 			"log_in": "Iniciar sessão",
-			"request_access": "Para solicitar o acesso ao painel de controlo, visite esta página.",
+			"request_access": "Solicitar acesso ao painel de controlo",
 			"title": "Bem-vindo ao painel de controlo do internet.nl"
 		},
 		"short-feature-overview": {

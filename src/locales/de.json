@@ -852,9 +852,9 @@
 	"home": {
 		"page": {
 			"introduction": "Scannen Sie moderne Internetstandards auf Tausenden von Domains in einem Durchgang, einschließlich Berichten.",
-			"learn": "Hier erfahren Sie, was das Dashboard für Sie tun kann...",
+			"learn": "Machen Sie eine Tour durch das Dashboard",
 			"log_in": "Einloggen",
-			"request_access": "Um Zugang zum Dashboard zu erhalten, besuchen Sie bitte diese Seite.",
+			"request_access": "Zugriff auf das Dashboard beantragen",
 			"title": "Willkommen auf dem Dashboard von internet.nl"
 		},
 		"short-feature-overview": {
