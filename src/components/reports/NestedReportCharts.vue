@@ -1,83 +1,45 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
-.fixed_ratio {
-  min-width: 950px;
+.report-chart__canvas {
+  height: clamp(320px, 75vw, 480px);
+  min-width: 0;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .report-chart__canvas {
+    height: 480px;
+  }
 }
 </style>
 <template>
   <div>
     <template v-for="chart in charts_to_render">
-      <div v-if="chart.level === 1" :key="chart.axis.join('.') + 'a'" style="overflow: scroll" class="mb-3">
+      <div v-if="chart.level === 1" :key="chart.axis.join('.') + 'a'" class="mb-3">
         <!-- Do not show canvas chart element in accessibility, use the table below -->
-        <div class="chart-container w-100 position-relative fixed_ratio">
-          <component :is="my_component" :chart_data="reports" :show_average="chart.average" :axis="chart.axis"
-                     chart-name="overall" aria-hidden="true"/>
-
-          <b-table-simple striped hover small responsive v-if="rendered_chart_to_table['overall'] !== undefined">
-            <b-thead>
-              <b-tr>
-                <b-th>{{ $t("report.nested-report-charts.category") }}</b-th>
-                <b-th v-for="xAxis in rendered_chart_to_table['overall']['datasets']" :key="xAxis.label + 'f'">
-                  {{ $t(xAxis.label) }}
-                </b-th>
-              </b-tr>
-            </b-thead>
-            <b-tbody>
-
-              <b-tr v-for="(yAxis, yIndex) in rendered_chart_to_table['overall']['labels']"
-                    :key="yAxis[0] + 'g'">
-                <b-td style="width: 20%">
-                  {{ Array.isArray(yAxis) ? yAxis[0] : yAxis }}
-                </b-td>
-                <b-td v-for="(value, index) in rendered_chart_to_table['overall']['datasets']"
-                      :key="`${yIndex}${index}h`">
-                  {{ value["data"][yIndex] }}%
-                </b-td>
-              </b-tr>
-            </b-tbody>
-          </b-table-simple>
-
+        <div class="report-chart">
+          <div class="report-chart__canvas">
+            <component :is="my_component" class="h-100" :chart_data="reports" :show_average="chart.average"
+                       :axis="chart.axis" chart-name="overall" aria-hidden="true"/>
+          </div>
+          <chart-data-table :chart-data="rendered_chart_to_table['overall']"/>
         </div>
       </div>
       <div v-else class="not-on-new-page" :key="chart.axis.join('.') + 'b'">
         <!-- Do not show canvas chart element in accessibility, use the table below -->
-        <!-- There is a slight challenge making unique keys for ths row. Some axis might be the same per category or so. Fix this with a random number -->
-
         <chart-collapse-panel :title="chart.label" :level="chart.level" >
-
           <template #chart_content>
-            <div class="chart-container w-100 position-relative fixed_ratio">
-          <component :is="my_component"  :chart_data="reports" :show_average="chart.average"
-                     :only_show_dynamic_average="chart.only_average" :axis="chart.axis" :chart-name="chart.label"
-                     aria-hidden="true"/>
-          <b-table-simple striped hover small responsive v-if="rendered_chart_to_table[chart.label] !== undefined">
-            <b-thead>
-              <b-tr>
-                <b-th></b-th>
-                <b-th v-for="xAxis in rendered_chart_to_table[chart.label]['datasets']" :key="xAxis.label + 'c'">
-                  {{ $t(xAxis.label) }}
-                </b-th>
-              </b-tr>
-            </b-thead>
-            <b-tbody>
-
-              <b-tr v-for="(yAxis, yIndex) in rendered_chart_to_table[chart.label]['labels']"
-                    :key="yAxis[0] + Math.floor(Math.random() * 100000000)">
-                <b-td style="width: 20%">
-                  {{ Array.isArray(yAxis) ? yAxis[0] : yAxis }}
-                </b-td>
-                <b-td v-for="(value, index) in rendered_chart_to_table[chart.label]['datasets']"
-                      :key="`${yIndex}${index}e`">
-                  {{ value["data"][yIndex] }}%
-                </b-td>
-              </b-tr>
-            </b-tbody>
-          </b-table-simple>
-          </div>
+            <div class="report-chart">
+              <div class="report-chart__canvas">
+                <component :is="my_component" class="h-100" :chart_data="reports" :show_average="chart.average"
+                           :only_show_dynamic_average="chart.only_average" :axis="chart.axis"
+                           :chart-name="chart.label" aria-hidden="true"/>
+              </div>
+              <chart-data-table :chart-data="rendered_chart_to_table[chart.label]"/>
+            </div>
           </template>
-
         </chart-collapse-panel>
-
       </div>
     </template>
   </div>
@@ -87,6 +49,7 @@
 import CumulativePercentageBarChart from './../charts/render-cumulative-percentage-bar-chart.vue'
 import PercentageBarChart from './../charts/render-percentage-bar-chart.vue'
 import ChartCollapsePanel from '@/components/charts/ChartCollapsePanel.vue'
+import ChartDataTable from '@/components/charts/ChartDataTable.vue'
 import report_mixin from "@/components/reports/report_mixin.vue";
 import VisibleFields from "@/components/reports/VisibleFields.vue";
 import CollapsePanel from '@/components/CollapsePanel.vue'
@@ -101,6 +64,7 @@ export default {
     CumulativePercentageBarChart,
     PercentageBarChart,
     ChartCollapsePanel,
+    ChartDataTable,
   },
 
   props: {

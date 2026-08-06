@@ -68,6 +68,7 @@ declare module 'vue' {
     BTr: typeof import('bootstrap-vue-next/components/BTable')['BTr']
     Chart_mixin: typeof import('./src/components/charts/chart_mixin.vue')['default']
     ChartCollapsePanel: typeof import('./src/components/charts/ChartCollapsePanel.vue')['default']
+    ChartDataTable: typeof import('./src/components/charts/ChartDataTable.vue')['default']
     CollapsePanel: typeof import('./src/components/CollapsePanel.vue')['default']
     ConfigurationModal: typeof import('./src/components/domains/list/ConfigurationModal.vue')['default']
     ContentBlock: typeof import('./src/components/ContentBlock.vue')['default']
