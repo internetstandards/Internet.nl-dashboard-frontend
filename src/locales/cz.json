@@ -595,9 +595,9 @@
 			"report": "Nahlásit",
 			"series": "Série",
 			"table": "Tabulka",
-			"title": "Průměrné skóre internet.nl v čase.",
+			"title": "Uplatňování internetových standardů v průběhu času",
 			"x_axis_label": "Měsíc",
-			"y_axis_label": "Průměrné skóre na internet.nl"
+			"y_axis_label": "Průměrné skóre"
 		}
 	},
 	"domain": {
@@ -2273,10 +2273,13 @@
 		},
 		"table": {
 			"Contains": "Obsahuje",
-			"domains": "Domény",
+			"Coverage": "Rozsah",
+			"domains": "{0} doména | {0} domény",
 			"Name": "Nahlásit",
+			"open": "",
 			"Published": "Datum vydání",
-			"Score": "Skóre Internet.nl"
+			"Score": "Průměrné skóre",
+			"view report": "Zobrazit zprávu"
 		}
 	},
 	"report": {

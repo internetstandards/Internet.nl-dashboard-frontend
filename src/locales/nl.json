@@ -595,9 +595,9 @@
 			"report": "Rapport",
 			"series": "Reeks",
 			"table": "Tabel",
-			"title": "Adoptie van standaarden over tijd.",
+			"title": "Toepassing van internetstandaarden in de loop der tijd",
 			"x_axis_label": "Maand",
-			"y_axis_label": "Gemiddelde internet.nl score"
+			"y_axis_label": "Gemiddelde score"
 		}
 	},
 	"domain": {
@@ -2273,10 +2273,13 @@
 		},
 		"table": {
 			"Contains": "Bevat",
-			"domains": "domeinen",
+			"Coverage": "Dekking",
+			"domains": "{0} domein | {0} domeinen",
 			"Name": "Rapport",
+			"open": "",
 			"Published": "Gepubliceerd op",
-			"Score": "Internet.nl score"
+			"Score": "Gemiddelde score",
+			"view report": "Bekijk rapport"
 		}
 	},
 	"report": {

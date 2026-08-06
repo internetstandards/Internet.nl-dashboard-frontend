@@ -595,9 +595,9 @@
 			"report": "Bericht",
 			"series": "Serie",
 			"table": "Tabelle",
-			"title": "Durchschnittliche Punktzahl von internet.nl im Laufe der Zeit.",
+			"title": "Anwendung von Internetstandards im Zeitverlauf",
 			"x_axis_label": "Monat",
-			"y_axis_label": "Durchschnittliche internet.nl-Punktzahl"
+			"y_axis_label": "Durchschnittliche Punktzahl"
 		}
 	},
 	"domain": {
@@ -2273,10 +2273,13 @@
 		},
 		"table": {
 			"Contains": "Enthält",
-			"domains": "Domains",
+			"Coverage": "Umfang",
+			"domains": "{0} Domain | {0} Domains",
 			"Name": "Bericht",
+			"open": "",
 			"Published": "Datum der Veröffentlichung",
-			"Score": "Internet.nl Ergebnis"
+			"Score": "Durchschnittliche Punktzahl",
+			"view report": "Bericht anzeigen"
 		}
 	},
 	"report": {

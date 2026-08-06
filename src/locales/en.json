@@ -595,9 +595,9 @@
 			"report": "Report",
 			"series": "Series",
 			"table": "Table",
-			"title": "Average internet.nl score over time.",
+			"title": "Application of internet standards over time",
 			"x_axis_label": "Month",
-			"y_axis_label": "Average internet.nl score"
+			"y_axis_label": "Average score"
 		}
 	},
 	"domain": {
@@ -2273,10 +2273,13 @@
 		},
 		"table": {
 			"Contains": "Contains",
-			"domains": "domains",
+			"Coverage": "Coverage",
+			"domains": "{0} domain | {0} domains",
 			"Name": "Report",
+			"open": "Report",
 			"Published": "Publication date",
-			"Score": "Internet.nl score"
+			"Score": "Average score",
+			"view report": "View report"
 		}
 	},
 	"report": {

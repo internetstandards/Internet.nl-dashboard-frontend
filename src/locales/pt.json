@@ -595,9 +595,9 @@
 			"report": "Relatório",
 			"series": "Série",
 			"table": "Tabela",
-			"title": "Pontuação média do internet.nl ao longo do tempo.",
+			"title": "Aplicação das normas da Internet ao longo do tempo",
 			"x_axis_label": "Mês",
-			"y_axis_label": "Pontuação média do internet.nl"
+			"y_axis_label": "Pontuação média"
 		}
 	},
 	"domain": {
@@ -2273,10 +2273,13 @@
 		},
 		"table": {
 			"Contains": "Contém",
-			"domains": "Domínios",
+			"Coverage": "Cobertura",
+			"domains": "{0} domínio | {0} domínios",
 			"Name": "Relatório",
+			"open": "",
 			"Published": "Data de publicação",
-			"Score": "Pontuação do Internet.nl"
+			"Score": "Pontuação média",
+			"view report": "Ver Relatório"
 		}
 	},
 	"report": {

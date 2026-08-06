@@ -7,18 +7,21 @@
     <content-block>
       <h3>{{ $t("public-reports.page.Public reports") }}</h3>
       <p>{{ $t("public-reports.page.introduction") }}</p>
-      <PublicReportsTable :reports="reports"/>
     </content-block>
+
+    <PublicReportsByList :reports="reports"/>
+
   </div>
 </template>
 
 <script>
 
 import http from "@/httpclient";
+import PublicReportsByList from "@/components/home/PublicReportsByList.vue";
 import PublicReportsTable from "@/components/home/PublicReportsTable.vue";
 
 export default {
-  components: {PublicReportsTable},
+  components: {PublicReportsByList, PublicReportsTable},
   data() {
     return {
       reports: [],

@@ -595,9 +595,9 @@
 			"report": "Rapport",
 			"series": "Série",
 			"table": "Tableau",
-			"title": "Score moyen de internet.nl au fil du temps.",
+			"title": "Évolution de l'application des normes Internet au fil du temps",
 			"x_axis_label": "Mois",
-			"y_axis_label": "Score moyen sur internet.nl"
+			"y_axis_label": "Note moyenne"
 		}
 	},
 	"domain": {
@@ -2273,10 +2273,13 @@
 		},
 		"table": {
 			"Contains": "Contient",
-			"domains": "Domaines",
+			"Coverage": "Couverture",
+			"domains": "{0} domaine | {0} domaines",
 			"Name": "Rapport",
+			"open": "",
 			"Published": "Date de publication",
-			"Score": "Score Internet.nl"
+			"Score": "Note moyenne",
+			"view report": "Consulter le rapport"
 		}
 	},
 	"report": {

@@ -595,9 +595,9 @@
 			"report": "Rapport",
 			"series": "Serie",
 			"table": "Bord",
-			"title": "Gennemsnitlig internet.nl-score over tid.",
+			"title": "Anvendelse af internetstandarder over tid",
 			"x_axis_label": "Måned",
-			"y_axis_label": "Gennemsnitlig internet.nl-score"
+			"y_axis_label": "Gennemsnitsscore"
 		}
 	},
 	"domain": {
@@ -2273,10 +2273,13 @@
 		},
 		"table": {
 			"Contains": "Indeholder",
-			"domains": "Domæner",
+			"Coverage": "Dækning",
+			"domains": "{0} domæne | {0} domæner",
 			"Name": "Rapport",
+			"open": "",
 			"Published": "Udgivelsesdato",
-			"Score": "Internet.nl score"
+			"Score": "Gennemsnitsscore",
+			"view report": "Se rapport"
 		}
 	},
 	"report": {
