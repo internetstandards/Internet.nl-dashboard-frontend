@@ -96,9 +96,8 @@ export default {
       if (this.rendered_chart_to_table === undefined) {
         this.rendered_chart_to_table = {}
       }
+      this.chart.update('none');
       this.rendered_chart_to_table[this.chartName] = this.chart.data;
-      // causes too much recursion
-      // this.chart.update();
     },
     renderTitle: function () {
       this.chart.options.plugins.title.text = this.title;

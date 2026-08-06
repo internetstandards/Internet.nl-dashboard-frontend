@@ -2,6 +2,7 @@
 <script>
 import debounce from "debounce";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import {markRaw} from 'vue';
 
 import {
   Chart,
@@ -123,7 +124,7 @@ export default {
       }
 
       const context = this.$refs.canvas.getContext('2d');
-      this.chart = new Chart(context, {
+      this.chart = markRaw(new Chart(context, {
         type: 'bar',
         data: {},
         options: {
@@ -209,7 +210,7 @@ export default {
             }
           },
         }
-      });
+      }));
     },
     change_on_difference(new_value, old_value) {
       if (!this.arraysEqual(old_value, new_value)) {
