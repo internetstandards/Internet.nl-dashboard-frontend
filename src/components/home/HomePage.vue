@@ -19,7 +19,7 @@
           {{ $t("home.page.learn") }}
         </b-button>
         <b-button
-          v-if="config.show.signup_form"
+          v-if="config.show.signup_form && !user.is_authenticated"
           variant="warning"
           to="signup"
           class="home-action d-inline-flex align-items-center justify-content-center gap-2 px-4 shadow-sm"

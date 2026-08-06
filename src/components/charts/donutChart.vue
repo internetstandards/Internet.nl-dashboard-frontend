@@ -162,6 +162,7 @@ export default defineComponent({
     const options = computed(() => ({
       // there are no interactions on a donut, so remove the links / animation as it confuses screen readers
       events: null,
+      animation: false,
       plugins: {
 
         datalabels: {
