@@ -4,7 +4,7 @@
     <content-block
       v-for="group in report_groups"
       :key="group.key"
-      class="public-report-group mb-5"
+      class="public-report-group"
     >
       <h4>{{ group.name }}</h4>
 
@@ -71,7 +71,7 @@
               target="_blank"
               rel="nofollow"
             >
-              {{$t("public-reports.table.domains", [data.item.total_urls])}}
+              {{$t("public-reports.table.domains", data.item.total_urls)}}
             </a>
           </template>
 
