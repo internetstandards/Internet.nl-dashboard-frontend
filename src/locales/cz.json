@@ -852,9 +852,9 @@
 	"home": {
 		"page": {
 			"introduction": "Hromadné skenování moderních internetových standardů na tisících domén najednou, včetně zpráv.",
-			"learn": "Zde se dozvíte, co pro vás může přístrojová deska udělat...",
+			"learn": "Prohlédněte si přehledovou stránku",
 			"log_in": "Přihlášení",
-			"request_access": "Chcete-li požádat o přístup k ovládacímu panelu, navštivte tuto stránku.",
+			"request_access": "Požádejte o přístup k ovládacímu panelu",
 			"title": "Vítejte na ovládacím panelu internet.nl"
 		},
 		"short-feature-overview": {

@@ -852,9 +852,9 @@
 	"home": {
 		"page": {
 			"introduction": "Massescanning af moderne internetstandarder på tusindvis af domæner på én gang, inklusive rapporter.",
-			"learn": "Find ud af, hvad instrumentbrættet kan gøre for dig, her...",
+			"learn": "Tag en rundtur i kontrolpanelet",
 			"log_in": "Log ind",
-			"request_access": "Besøg denne side for at anmode om adgang til dashboardet.",
+			"request_access": "Anmod om adgang til kontrolpanelet",
 			"title": "Velkommen til internet.nl's dashboard"
 		},
 		"short-feature-overview": {

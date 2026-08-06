@@ -3,7 +3,7 @@ import { accountRoutes } from './account'
 
 const Account = () => import('@/components/account/Account.vue');
 const Demo = () => import('@/components/tour/Demo.vue');
-const Home = () => import('@/components/home/Home.vue');
+const Home = () => import('@/components/home/HomePage.vue');
 const Report = () => import('@/components/reports/Report.vue');
 const ScanMonitor = () => import('@/components/scans/ScanMonitor.vue');
 const DomainListManager = () => import('@/components/domains/DomainListManager.vue');

@@ -852,9 +852,9 @@
 	"home": {
 		"page": {
 			"introduction": "Analyse en masse des normes internet modernes sur des milliers de domaines en une seule fois, y compris les rapports.",
-			"learn": "Découvrez ce que le tableau de bord peut faire pour vous, ici...",
+			"learn": "Découvrez le tableau de bord",
 			"log_in": "Se connecter",
-			"request_access": "Pour demander l'accès au tableau de bord, veuillez consulter cette page.",
+			"request_access": "Demander l'accès au tableau de bord",
 			"title": "Bienvenue sur le tableau de bord d'internet.nl"
 		},
 		"short-feature-overview": {

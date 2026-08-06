@@ -852,9 +852,9 @@
 	"home": {
 		"page": {
 			"introduction": "Meet duizenden domeinen tegelijk op moderne internetstandaarden, inclusief rapportage.",
-			"learn": "Bekijk hier wat het dashboard mogelijk maakt",
+			"learn": "Neem de tour door het dashboard",
 			"log_in": "Inloggen",
-			"request_access": "Toegang nodig tot het dashboard? Bezoek deze pagina.",
+			"request_access": "Toegang tot het dashboard aanvragen",
 			"title": "Welkom op het internet.nl Dashboard"
 		},
 		"short-feature-overview": {

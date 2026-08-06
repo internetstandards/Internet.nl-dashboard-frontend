@@ -1,37 +1,97 @@
 <template>
-  <b-row cols="1" cols-md="3">
-    <b-col class="text-center p-4">
-      <span style="display: inline-block; font-size: 3.7em; background-color: var(--bs-info); border-radius: 200px; height: 150px; width: 150px; padding-top:0.4em;" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-list")'>
-        <i-bi-card-list style="color: white" />
-      </span>
-      <h2>{{ $t("home.short-feature-overview.domains") }}</h2>
-      <p>{{ $t("home.short-feature-overview.domains_text_1") }}</p>
-      <p>{{ $t("home.short-feature-overview.domains_text_2") }}</p>
+  <b-row cols="1" cols-lg="3" class="g-4 text-start">
+    <b-col>
+      <b-card no-body class="feature-card h-100 border-0 shadow-sm">
+        <b-card-header class="d-flex align-items-center gap-3 border-0 bg-info-subtle p-4">
+          <span
+            class="feature-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-circle bg-info text-white"
+            role="img"
+            :aria-label="$t('home.short-feature-overview.icon-list')"
+          >
+            <i-bi-card-list aria-hidden="true" />
+          </span>
+          <b-card-title tag="h2" class="h4 mb-0">
+            {{ $t("home.short-feature-overview.domains") }}
+          </b-card-title>
+        </b-card-header>
+        <b-card-body class="p-4">
+          <b-card-text class="fw-semibold">
+            {{ $t("home.short-feature-overview.domains_text_1") }}
+          </b-card-text>
+          <b-card-text class="mb-0 text-body-secondary">
+            {{ $t("home.short-feature-overview.domains_text_2") }}
+          </b-card-text>
+        </b-card-body>
+      </b-card>
+    </b-col>
 
+    <b-col>
+      <b-card no-body class="feature-card h-100 border-0 shadow-sm">
+        <b-card-header class="d-flex align-items-center gap-3 border-0 bg-info-subtle p-4">
+          <span
+            class="feature-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-circle bg-info text-white"
+            role="img"
+            :aria-label="$t('home.short-feature-overview.icon-search')"
+          >
+            <i-bi-search aria-hidden="true" />
+          </span>
+          <b-card-title tag="h2" class="h4 mb-0">
+            {{ $t("home.short-feature-overview.scan") }}
+          </b-card-title>
+        </b-card-header>
+        <b-card-body class="p-4">
+          <b-card-text class="fw-semibold">
+            {{ $t("home.short-feature-overview.scan_text_1") }}
+          </b-card-text>
+          <b-card-text class="mb-0 text-body-secondary">
+            {{ $t("home.short-feature-overview.scan_text_2") }}
+          </b-card-text>
+        </b-card-body>
+      </b-card>
     </b-col>
-    <b-col class="text-center p-4">
-      <span style="display: inline-block; font-size: 3.7em; background-color: var(--bs-info); border-radius: 200px; height: 150px; width: 150px; padding-top:0.4em;" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-search")'>
-        <i-bi-search style="color: white"/>
-      </span>
-      <br>
-      <h2>{{ $t("home.short-feature-overview.scan") }}</h2>
-      <p>{{ $t("home.short-feature-overview.scan_text_1") }}</p>
-      <p>{{ $t("home.short-feature-overview.scan_text_2") }}</p>
-    </b-col>
-    <b-col class="text-center p-4">
-      <span style="display: inline-block; font-size: 3.7em; background-color: var(--bs-info); border-radius: 200px; height: 150px; width: 150px; padding-top:0.4em;" class="mb-2" :aria-label='$t("home.short-feature-overview.icon-bar-chart")'>
-        <i-bi-file-bar-graph style="color: white"/>
-      </span>
-      <br>
-      <h2>{{ $t("home.short-feature-overview.report") }}</h2>
-      <p>{{ $t("home.short-feature-overview.report_text_1") }}</p>
-      <p>{{ $t("home.short-feature-overview.report_text_2") }}</p>
+
+    <b-col>
+      <b-card no-body class="feature-card h-100 border-0 shadow-sm">
+        <b-card-header class="d-flex align-items-center gap-3 border-0 bg-info-subtle p-4">
+          <span
+            class="feature-icon d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-circle bg-info text-white"
+            role="img"
+            :aria-label="$t('home.short-feature-overview.icon-bar-chart')"
+          >
+            <i-bi-file-bar-graph aria-hidden="true" />
+          </span>
+          <b-card-title tag="h2" class="h4 mb-0">
+            {{ $t("home.short-feature-overview.report") }}
+          </b-card-title>
+        </b-card-header>
+        <b-card-body class="p-4">
+          <b-card-text class="fw-semibold">
+            {{ $t("home.short-feature-overview.report_text_1") }}
+          </b-card-text>
+          <b-card-text class="mb-0 text-body-secondary">
+            {{ $t("home.short-feature-overview.report_text_2") }}
+          </b-card-text>
+        </b-card-body>
+      </b-card>
     </b-col>
   </b-row>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "ShortFeatureOverview",
 }
 </script>
+
+<style scoped>
+.feature-card {
+  overflow: hidden;
+  border-radius: var(--bs-border-radius-lg);
+}
+
+.feature-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.65rem;
+}
+</style>
