@@ -14,6 +14,7 @@ import loading from '@/components/loading.vue'
 import server_response from '@/components/ServerResponse.vue'
 import {dashboardStore} from '@/dashboardStore'
 import {allauthStore} from '@/allauthStore'
+import {installAuthChangeRedirector} from '@/allauth/redirects'
 
 const app = createApp(App)
 app.config.globalProperties.$baseUrl = import.meta.env.VITE_VUE_APP_DJANGO_PATH;
@@ -153,6 +154,7 @@ Promise.allSettled([
   })
 
   app.use(router)
+  installAuthChangeRedirector(router)
   app.use(i18n)
   matomoConfig.router = router
 

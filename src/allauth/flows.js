@@ -37,3 +37,14 @@ export function pathForPendingFlow(auth) {
   }
   return null
 }
+
+export function pathForReauthentication(auth) {
+  if (auth?.status !== 401 || auth?.meta?.is_authenticated !== true) {
+    return null
+  }
+
+  const flow = auth?.data?.flows?.find((candidate) =>
+    [Flows.REAUTHENTICATE, Flows.MFA_REAUTHENTICATE].includes(candidate.id)
+  )
+  return flow ? pathForFlow(flow) : null
+}
