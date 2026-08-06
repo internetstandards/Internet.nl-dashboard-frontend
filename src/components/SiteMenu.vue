@@ -44,12 +44,18 @@
 
     font-size: 100%;
     width: 13em;
+    max-width: 100%;
     background: url("/static_frontend/images/vendor/internet_nl/logo_en.png");
     background: url("/static_frontend/images/vendor/internet_nl/logo_en.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left center;
 
+}
+
+.navbar-brand {
+  min-width: 0;
+  max-width: calc(100% - 4.5rem);
 }
 
 .navbar{
@@ -140,7 +146,7 @@
   </b-navbar>
   </b-container>
 </template>
-<script>
+<script lang="ts">
 import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
 import { dashboardStore } from '@/dashboardStore'
 import {mapState} from "pinia";
