@@ -89,6 +89,7 @@ declare module 'vue' {
     GithubMessage: typeof import('./src/components/GithubMessage.vue')['default']
     HomePage: typeof import('./src/components/home/HomePage.vue')['default']
     IBiArrowRepeat: typeof import('~icons/bi/arrow-repeat')['default']
+    IBiArrowsFullscreen: typeof import('~icons/bi/arrows-fullscreen')['default']
     IBiBook: typeof import('~icons/bi/book')['default']
     IBiBoxArrowInRight: typeof import('~icons/bi/box-arrow-in-right')['default']
     IBiBoxArrowInUpRight: typeof import('~icons/bi/box-arrow-in-up-right')['default']
