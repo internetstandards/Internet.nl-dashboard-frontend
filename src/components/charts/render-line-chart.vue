@@ -1,40 +1,133 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <Line :data="testData" :height="300" :options="options"><p>{{ accessibility_text }}</p></Line>
+  <div class="timeline-chart" :style="{height: chart_height}">
+    <line-chart :data="testData" :height="canvas_height" :options="options">
+      <p>{{ accessibility_text }}</p>
+    </line-chart>
+  </div>
 </template>
 
-<script>
+<script lang="ts">
 
 
 import {computed, defineComponent, ref} from 'vue';
-import {Line} from 'vue-chartjs';
-// todo: add date fns again
-// import 'chartjs-adapter-date-fns';
-import {nl} from 'date-fns/locale';
+import {Line as LineChart} from 'vue-chartjs';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import {
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  ChartDataLabels,
+);
 
 export default defineComponent({
-  components: {Line},
+  components: {LineChart},
+  emits: ['graph-data-updated', 'report-clicked'],
 
   props: {
     timeline_data: {type: Array, required: true},
-    highlight_report_ids: {type: Array, required: false},
+    highlight_report_ids: {type: Array, required: false, default: () => []},
     title: {type: String, required: false, default: ""},
     x_axis_label: {type: String, required: false, default: ""},
     y_axis_label: {type: String, required: false, default: ""},
     accessibility_text: {type: String, required: false, default: ""},
+    show_legend: {type: Boolean, required: false, default: true},
+    clickable_reports: {type: Boolean, required: false, default: false},
+    height: {
+      type: [Number, String],
+      required: false,
+      default: "300px",
+      validator: (value) => {
+        if (typeof value === "number") {
+          return Number.isFinite(value) && value > 0;
+        }
+
+        return /^\d+(\.\d+)?px$/.test(value) && Number.parseFloat(value) > 0;
+      },
+    },
   },
 
   setup(props, {emit}) {
     const chartRef = ref();
+    const chart_height = computed(() => {
+      return typeof props.height === "number" ? `${props.height}px` : props.height;
+    });
+    const canvas_height = computed(() => {
+      return typeof props.height === "number" ? props.height : Number.parseFloat(props.height);
+    });
+
+    const point_at_event = (event, chart) => {
+      const native_event = event.native ?? event;
+      return chart.getElementsAtEventForMode(
+        native_event,
+        'nearest',
+        {intersect: true},
+        true,
+      )[0];
+    };
+
+    const tooltip_at_event = (event, chart) => {
+      const tooltip = chart.tooltip;
+      if (!tooltip || tooltip.opacity === 0) {
+        return undefined;
+      }
+
+      const is_inside_tooltip = event.x >= tooltip.x
+        && event.x <= tooltip.x + tooltip.width
+        && event.y >= tooltip.y
+        && event.y <= tooltip.y + tooltip.height;
+
+      if (!is_inside_tooltip) {
+        return undefined;
+      }
+
+      return tooltip.getActiveElements()[0];
+    };
+
+    const report_at_event = (event, chart) => {
+      const active_element = point_at_event(event, chart) ?? tooltip_at_event(event, chart);
+      if (!active_element) {
+        return undefined;
+      }
+
+      return chart.data.datasets[active_element.datasetIndex]
+        ?.data[active_element.index]
+        ?.report;
+    };
 
     const my_labels = computed(() => {
-        const data = [];
+        const dates = new Set();
         props.timeline_data.forEach((item) => {
           for (let i = 0; i < item.data.length; i++) {
-            data.push(item.data[i].date);
+            dates.add(item.data[i].date);
           }
         });
-        return data;
+
+        return Array.from(dates).sort((left, right) => {
+          const left_timestamp = Date.parse(left);
+          const right_timestamp = Date.parse(right);
+
+          if (Number.isNaN(left_timestamp) || Number.isNaN(right_timestamp)) {
+            return left.localeCompare(right);
+          }
+
+          return left_timestamp - right_timestamp;
+        });
     })
 
     const my_datasets = computed(() => {
@@ -112,6 +205,9 @@ export default defineComponent({
     const options = computed(() => ({
 
       plugins: {
+        legend: {
+          display: props.show_legend,
+        },
         datalabels: {
           color: '#262626',
           // setting this to true will look very ugly on the long run. See
@@ -148,12 +244,26 @@ export default defineComponent({
           // add the Z axis to the data, is harder, so (n) is unclear...
         },
         title: {
-          display: true,
+          display: props.title.length > 0,
           text: props.title
         },
       },
       responsive: true,
       maintainAspectRatio: false,
+      onHover: (event, _active_elements, chart) => {
+        const report = props.clickable_reports ? report_at_event(event, chart) : undefined;
+        chart.canvas.style.cursor = report ? 'pointer' : 'default';
+      },
+      onClick: (event, _active_elements, chart) => {
+        if (!props.clickable_reports) {
+          return;
+        }
+
+        const report = report_at_event(event, chart);
+        if (report) {
+          emit('report-clicked', report);
+        }
+      },
       hover: {
         mode: 'index',
         intersect: false
@@ -170,7 +280,7 @@ export default defineComponent({
           //   tooltipFormat: 'dd'
           // },
           title: {
-            display: true,
+            display: props.x_axis_label.length > 0 ,
             text: props.x_axis_label,
           }
         },
@@ -186,12 +296,11 @@ export default defineComponent({
             }
           },
           title: {
-            display: true,
+            display: props.y_axis_label.length > 0,
             text: props.y_axis_label,
           },
         }
       }
-
     }))
 
     const testData = computed(() => ({
@@ -200,7 +309,14 @@ export default defineComponent({
       options
     }));
 
-    return {testData, chartRef, options};
+    return {testData, chartRef, options, chart_height, canvas_height};
   },
 })
 </script>
+
+<style scoped>
+.timeline-chart {
+  position: relative;
+  width: 100%;
+}
+</style>

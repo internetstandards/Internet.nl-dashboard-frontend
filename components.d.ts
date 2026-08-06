@@ -126,6 +126,7 @@ declare module 'vue' {
     Probe: typeof import('./src/components/probe.vue')['default']
     ProviderButtons: typeof import('./src/components/allauth/ProviderButtons.vue')['default']
     PublicReports: typeof import('./src/components/home/PublicReports.vue')['default']
+    PublicReportsByList: typeof import('./src/components/home/PublicReportsByList.vue')['default']
     PublicReportsPerAccount: typeof import('./src/components/home/PublicReportsPerAccount.vue')['default']
     PublicReportsTable: typeof import('./src/components/home/PublicReportsTable.vue')['default']
     RenderCumulativePercentageBarChart: typeof import('./src/components/charts/render-cumulative-percentage-bar-chart.vue')['default']
