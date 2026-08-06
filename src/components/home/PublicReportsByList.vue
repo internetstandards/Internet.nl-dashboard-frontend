@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <content-block v-if="report_groups.length > 0" class="public-reports-by-list">
-    <section
+  <div v-if="report_groups.length > 0" class="public-reports-by-list">
+    <content-block
       v-for="group in report_groups"
       :key="group.key"
       class="public-report-group mb-5"
@@ -25,7 +25,7 @@
           :accessibility_text="$t('chart.timeline.accessibility_text')"
           :show_legend="false"
           :clickable_reports="true"
-          height="140px"
+          height="200px"
           @report-clicked="open_report"
         />
 
@@ -100,8 +100,8 @@
         />
 
       </section>
-    </section>
-  </content-block>
+    </content-block>
+  </div>
 </template>
 
 <script lang="ts">
@@ -259,6 +259,11 @@ export default {
 </script>
 
 <style scoped>
+
+h4 {
+  font-size: 1.3em;
+}
+
 .public-report-group:last-child {
   margin-bottom: 0 !important;
 }
