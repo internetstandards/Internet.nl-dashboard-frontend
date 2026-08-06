@@ -127,6 +127,7 @@ export default {
         type: 'bar',
         data: {},
         options: {
+          animation: false,
 
           // can prevent data falling off the chart.
           layout: {
