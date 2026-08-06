@@ -2274,7 +2274,7 @@
 		"table": {
 			"Contains": "Contains",
 			"Coverage": "Coverage",
-			"domains": "{0} domain | {0} domains",
+			"domains": "{count} domain | {count} domains",
 			"Name": "Report",
 			"open": "Report",
 			"Published": "Publication date",

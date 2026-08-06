@@ -2274,9 +2274,9 @@
 		"table": {
 			"Contains": "Contém",
 			"Coverage": "Cobertura",
-			"domains": "{0} domínio | {0} domínios",
+			"domains": "{count} domínio | {count} domínios",
 			"Name": "Relatório",
-			"open": "",
+			"open": "Relatório",
 			"Published": "Data de publicação",
 			"Score": "Pontuação média",
 			"view report": "Ver Relatório"

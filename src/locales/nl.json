@@ -2274,9 +2274,9 @@
 		"table": {
 			"Contains": "Bevat",
 			"Coverage": "Dekking",
-			"domains": "{0} domein | {0} domeinen",
+			"domains": "{count} domein | {count} domeinen",
 			"Name": "Rapport",
-			"open": "",
+			"open": "Rapport",
 			"Published": "Gepubliceerd op",
 			"Score": "Gemiddelde score",
 			"view report": "Bekijk rapport"
