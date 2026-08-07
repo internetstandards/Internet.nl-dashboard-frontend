@@ -623,10 +623,14 @@
 		},
 		"edit-domain": {
 			"cancel": "Cancel",
+			"delete": "Delete",
+			"delete-confirmation-message": "Are you sure you want to delete {domain} from the list {list}?",
+			"delete-confirmation-title": "Delete domain?",
 			"domain": "Domain",
 			"edit": "Edit",
 			"remove": "Remove",
 			"save": "Save",
+			"skip-delete-confirmation": "Do not ask again for this list for one hour.",
 			"undo": "Undo"
 		},
 		"list": {
@@ -665,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Clear",
+				"delete-confirmation-message": "Are you sure you want to delete {count} selected domains from the list {list}?",
+				"delete-confirmation-title": "Delete selected domains?",
 				"Domain": "Domain",
 				"filtered pagination": "Page {0}/{1} of {2} filtered from {3} domains.",
 				"No filtered results": "The filter yielded no results. You can only search for complete tags.",

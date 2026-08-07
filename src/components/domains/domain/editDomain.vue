@@ -72,16 +72,51 @@
         <i-bi-arrow-counterclockwise class="domain-action-icon" aria-hidden="true" />
         {{ $t("domain.edit-domain.undo") }}
       </b-button>
-      <b-button size="sm" variant="danger" type="button" @click="delete_url">
+      <b-button size="sm" variant="danger" type="button" @click="request_delete">
         <i-bi-trash class="domain-action-icon" aria-hidden="true" />
-        {{ $t("domain.edit-domain.remove") }}
+        {{ $t("domain.edit-domain.delete") }}
       </b-button>
     </div>
   </form>
+
+  <b-modal
+      v-if="deleteConfirmationVisible"
+      v-model="deleteConfirmationVisible"
+      :id="deleteModalId"
+      :title="$t('domain.edit-domain.delete-confirmation-title')"
+      header-bg-variant="danger"
+      header-text-variant="light"
+      no-fade
+  >
+    <p>
+      {{ $t("domain.edit-domain.delete-confirmation-message", {
+        domain: url.url,
+        list: list.name,
+      }) }}
+    </p>
+
+    <b-form-checkbox :id="deleteSuppressionId" v-model="suppressDeleteConfirmation">
+      {{ $t("domain.edit-domain.skip-delete-confirmation") }}
+    </b-form-checkbox>
+
+    <template #footer>
+      <b-button variant="secondary" type="button" @click="cancel_delete">
+        {{ $t("domain.edit-domain.cancel") }}
+      </b-button>
+      <b-button variant="danger" type="button" @click="confirm_delete">
+        <i-bi-trash class="domain-action-icon" aria-hidden="true" />
+        {{ $t("domain.edit-domain.delete") }}
+      </b-button>
+    </template>
+  </b-modal>
 </template>
 
 <script lang="ts">
 import http from "@/httpclient";
+import {
+  isDomainDeleteConfirmationSuppressed,
+  suppressDomainDeleteConfirmationForOneHour,
+} from '@/components/domains/domain/deleteConfirmation'
 
 export default {
   name: "editDomain",
@@ -92,10 +127,18 @@ export default {
     inputId() {
       return `domain-url-${this.list.id}-${this.url.id}`
     },
+    deleteModalId() {
+      return `delete-domain-modal-${this.list.id}-${this.url.id}`
+    },
+    deleteSuppressionId() {
+      return `skip-delete-domain-confirmation-${this.list.id}-${this.url.id}`
+    },
   },
   data: function () {
     return {
       editing: false,
+      deleteConfirmationVisible: false,
+      suppressDeleteConfirmation: false,
 
 
       url_edit: '',
@@ -135,6 +178,33 @@ export default {
     },
     delete_url: function () {
       this.$emit('domain_deleted');
+    },
+    request_delete: function () {
+      if (this.is_delete_confirmation_suppressed()) {
+        this.delete_url()
+        return
+      }
+
+      this.suppressDeleteConfirmation = false
+      this.deleteConfirmationVisible = true
+    },
+    cancel_delete: function () {
+      this.deleteConfirmationVisible = false
+      this.suppressDeleteConfirmation = false
+    },
+    confirm_delete: function () {
+      if (this.suppressDeleteConfirmation) {
+        this.suppress_delete_confirmation_for_one_hour()
+      }
+
+      this.deleteConfirmationVisible = false
+      this.delete_url()
+    },
+    is_delete_confirmation_suppressed: function () {
+      return isDomainDeleteConfirmationSuppressed(this.list.id)
+    },
+    suppress_delete_confirmation_for_one_hour: function () {
+      suppressDomainDeleteConfirmationForOneHour(this.list.id)
     },
     save: function () {
       /*

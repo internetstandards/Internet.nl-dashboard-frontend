@@ -623,10 +623,14 @@
 		},
 		"edit-domain": {
 			"cancel": "Annuleren",
+			"delete": "Verwijderen",
+			"delete-confirmation-message": "Weet u zeker dat u {domain} uit de lijst {list} wilt verwijderen?",
+			"delete-confirmation-title": "Domein verwijderen?",
 			"domain": "Domein",
 			"edit": "Bewerken",
 			"remove": "Verwijderen",
 			"save": "Opslaan",
+			"skip-delete-confirmation": "Voor deze lijst een uur lang niet opnieuw vragen.",
 			"undo": "Ongedaan maken"
 		},
 		"list": {
@@ -665,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Wis",
+				"delete-confirmation-message": "Weet u zeker dat u {count} geselecteerde domeinen uit de lijst {list} wilt verwijderen?",
+				"delete-confirmation-title": "Geselecteerde domeinen verwijderen?",
 				"Domain": "Domein",
 				"filtered pagination": "Pagina {0}/{1} van {2} zoekresultaten uit {3} domeinen.",
 				"No filtered results": "De zoekopdracht had geen resultaat. Let op: tags moeten volledig worden ingevoerd.",

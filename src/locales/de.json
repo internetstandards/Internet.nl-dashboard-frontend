@@ -623,10 +623,14 @@
 		},
 		"edit-domain": {
 			"cancel": "Abbrechen",
+			"delete": "Löschen",
+			"delete-confirmation-message": "Möchten Sie {domain} wirklich aus der Liste {list} löschen?",
+			"delete-confirmation-title": "Domain löschen?",
 			"domain": "Domain",
 			"edit": "Bearbeiten",
 			"remove": "Entfernen",
 			"save": "Speichern Sie",
+			"skip-delete-confirmation": "Für diese Liste eine Stunde lang nicht erneut fragen.",
 			"undo": "Rückgängig"
 		},
 		"list": {
@@ -665,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Klar",
+				"delete-confirmation-message": "Möchten Sie wirklich {count} ausgewählte Domains aus der Liste {list} löschen?",
+				"delete-confirmation-title": "Ausgewählte Domains löschen?",
 				"Domain": "Bereich",
 				"filtered pagination": "Seite {0}/{1} von {2} gefiltert aus {3} Domänen.",
 				"No filtered results": "Der Filter hat keine Ergebnisse geliefert. Sie können nur nach vollständigen Tags suchen.",

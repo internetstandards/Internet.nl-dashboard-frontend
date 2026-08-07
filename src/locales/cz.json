@@ -623,10 +623,14 @@
 		},
 		"edit-domain": {
 			"cancel": "Zrušit",
+			"delete": "Odstranit",
+			"delete-confirmation-message": "Opravdu chcete odstranit doménu {domain} ze seznamu {list}?",
+			"delete-confirmation-title": "Odstranit doménu?",
 			"domain": "Doména",
 			"edit": "Upravit",
 			"remove": "Odstranění adresy",
 			"save": "Uložit",
+			"skip-delete-confirmation": "U tohoto seznamu se po dobu jedné hodiny znovu neptat.",
 			"undo": "Vrátit zpět"
 		},
 		"list": {
@@ -665,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Přehledně",
+				"delete-confirmation-message": "Opravdu chcete odstranit {count} vybraných domén ze seznamu {list}?",
+				"delete-confirmation-title": "Odstranit vybrané domény?",
 				"Domain": "Doména",
 				"filtered pagination": "Stránka {0}/{1} z {2} filtrovaná z {3} domén.",
 				"No filtered results": "Filtr nepřinesl žádné výsledky. Můžete vyhledávat pouze kompletní značky.",

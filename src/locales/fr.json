@@ -623,10 +623,14 @@
 		},
 		"edit-domain": {
 			"cancel": "Annuler",
+			"delete": "Supprimer",
+			"delete-confirmation-message": "Voulez-vous vraiment supprimer {domain} de la liste {list} ?",
+			"delete-confirmation-title": "Supprimer le domaine ?",
 			"domain": "Domaine",
 			"edit": "Modifier",
 			"remove": "Retirer",
 			"save": "Économiser",
+			"skip-delete-confirmation": "Ne plus demander pour cette liste pendant une heure.",
 			"undo": "Annuler"
 		},
 		"list": {
@@ -665,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Clair",
+				"delete-confirmation-message": "Voulez-vous vraiment supprimer les {count} domaines sélectionnés de la liste {list} ?",
+				"delete-confirmation-title": "Supprimer les domaines sélectionnés ?",
 				"Domain": "Domaine",
 				"filtered pagination": "Page {0}/{1} de {2} filtrée à partir de {3} domaines.",
 				"No filtered results": "Le filtre n'a donné aucun résultat. Vous ne pouvez rechercher que des balises complètes.",

@@ -623,10 +623,14 @@
 		},
 		"edit-domain": {
 			"cancel": "Annuller",
+			"delete": "Slet",
+			"delete-confirmation-message": "Er du sikker på, at du vil slette {domain} fra listen {list}?",
+			"delete-confirmation-title": "Slet domæne?",
 			"domain": "Domæne",
 			"edit": "Rediger",
 			"remove": "Fjerne",
 			"save": "Gem",
+			"skip-delete-confirmation": "Spørg ikke igen for denne liste i en time.",
 			"undo": "Fortryd"
 		},
 		"list": {
@@ -665,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Klar",
+				"delete-confirmation-message": "Er du sikker på, at du vil slette {count} valgte domæner fra listen {list}?",
+				"delete-confirmation-title": "Slet valgte domæner?",
 				"Domain": "Domæne",
 				"filtered pagination": "Side {0}/{1} af {2} filtreret fra {3} domæner.",
 				"No filtered results": "Filteret gav ingen resultater. Du kan kun søge efter komplette tags.",

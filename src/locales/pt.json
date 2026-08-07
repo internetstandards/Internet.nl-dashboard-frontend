@@ -623,10 +623,14 @@
 		},
 		"edit-domain": {
 			"cancel": "Cancelar",
+			"delete": "Eliminar",
+			"delete-confirmation-message": "Tem a certeza de que pretende eliminar {domain} da lista {list}?",
+			"delete-confirmation-title": "Eliminar domínio?",
 			"domain": "Domínio",
 			"edit": "Editar",
 			"remove": "Remover",
 			"save": "Guardar",
+			"skip-delete-confirmation": "Não perguntar novamente para esta lista durante uma hora.",
 			"undo": "Desfazer"
 		},
 		"list": {
@@ -665,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Limpo",
+				"delete-confirmation-message": "Tem a certeza de que pretende eliminar {count} domínios selecionados da lista {list}?",
+				"delete-confirmation-title": "Eliminar domínios selecionados?",
 				"Domain": "Domínio",
 				"filtered pagination": "Página {0}/{1} de {2} filtrada de {3} domínios.",
 				"No filtered results": "O filtro não produziu resultados. Só é possível pesquisar etiquetas completas.",

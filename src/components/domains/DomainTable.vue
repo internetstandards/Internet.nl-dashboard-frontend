@@ -206,7 +206,10 @@
 
         <div class="domain-table-actions">
           <b-button class="normalbutton" variant="warning" @click="$emit('update')">🔁<span class="visually-hidden">{{ $t("domain.list.domain-table.update domain list") }}</span></b-button>
-          <b-button variant="danger" @click="remove_urls" v-if="selectedItems.length > 0">🗑️</b-button>
+          <b-button variant="danger" @click="remove_urls" v-if="selectedItems.length > 0">
+            <i-bi-trash aria-hidden="true" />
+            {{ $t("domain.edit-domain.delete") }}
+          </b-button>
         </div>
 
         <div class="domain-table-mobile-selection">
@@ -289,6 +292,38 @@
         </span>
       </template>
     </b-table>
+
+    <b-modal
+        v-if="deleteConfirmationVisible"
+        v-model="deleteConfirmationVisible"
+        :id="bulkDeleteModalId"
+        :title="$t('domain.list.domain-table.delete-confirmation-title')"
+        header-bg-variant="danger"
+        header-text-variant="light"
+        no-fade
+        @hidden="suppressDeleteConfirmation = false"
+    >
+      <p>
+        {{ $t("domain.list.domain-table.delete-confirmation-message", {
+          count: selectedItems.length,
+          list: urllist.name,
+        }) }}
+      </p>
+
+      <b-form-checkbox :id="bulkDeleteSuppressionId" v-model="suppressDeleteConfirmation">
+        {{ $t("domain.edit-domain.skip-delete-confirmation") }}
+      </b-form-checkbox>
+
+      <template #footer>
+        <b-button variant="secondary" type="button" @click="cancel_remove_urls">
+          {{ $t("domain.edit-domain.cancel") }}
+        </b-button>
+        <b-button variant="danger" type="button" @click="confirm_remove_urls">
+          <i-bi-trash aria-hidden="true" />
+          {{ $t("domain.edit-domain.delete") }}
+        </b-button>
+      </template>
+    </b-modal>
   </div>
 </template>
 
@@ -298,6 +333,10 @@ import EditDomain from "@/components/domains/domain/editDomain.vue";
 import http from "@/httpclient";
 import FormatScanEligibility from "@/components/domains/FormatScanEligibility.vue";
 import vSelect from 'vue-select';
+import {
+  isDomainDeleteConfirmationSuppressed,
+  suppressDomainDeleteConfirmationForOneHour,
+} from '@/components/domains/domain/deleteConfirmation'
 
 export default {
   name: "DomainTable",
@@ -314,6 +353,12 @@ export default {
     }
   },
   computed: {
+    bulkDeleteModalId() {
+      return `delete-selected-domains-modal-${this.urllist.id}`
+    },
+    bulkDeleteSuppressionId() {
+      return `skip-delete-selected-domains-confirmation-${this.urllist.id}`
+    },
     // can also do this in a request. but that will require updating every time something happens.
     tags() {
       let tags = []
@@ -335,6 +380,8 @@ export default {
       allSelected: false,
       allSelectedIndeterminate: false,
       selectedItems: [],
+      deleteConfirmationVisible: false,
+      suppressDeleteConfirmation: false,
       currentPage: 1,
       perPage: 100,
       table_fields: [
@@ -450,10 +497,37 @@ export default {
       http.delete(`/api/v1/urllists/${this.urllist.id}/urls/${this.selectedItems.map(item => item.id)}/tags/${this.selected_tag}`);
     },
     remove_urls() {
+      if (this.selectedItems.length === 0) {
+        return
+      }
+
+      if (isDomainDeleteConfirmationSuppressed(this.urllist.id)) {
+        this.delete_selected_urls()
+        return
+      }
+
+      this.suppressDeleteConfirmation = false
+      this.deleteConfirmationVisible = true
+    },
+    cancel_remove_urls() {
+      this.deleteConfirmationVisible = false
+      this.suppressDeleteConfirmation = false
+    },
+    confirm_remove_urls() {
+      if (this.suppressDeleteConfirmation) {
+        suppressDomainDeleteConfirmationForOneHour(this.urllist.id)
+      }
+
+      this.deleteConfirmationVisible = false
+      this.delete_selected_urls()
+    },
+    delete_selected_urls() {
       // todo: make a list of url id's, add that with the list id and send it to the server
-      this.selectedItems.forEach((item) => {
+      const selectedItems = [...this.selectedItems]
+      selectedItems.forEach((item) => {
         this.remove_url(item)
       });
+      this.clearSelected()
     },
     remove_url(item) {
       const url_object = this.urls.filter(function (el) {
