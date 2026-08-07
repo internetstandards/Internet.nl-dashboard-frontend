@@ -852,7 +852,7 @@
 			"scanning-done-click-reload": "Klaar met zoeken, klik om de domeinlijst te herladen"
 		},
 		"www-discovery-modal": {
-			"cancel": "Back to the list",
+			"cancel": "Terug naar de lijst",
 			"message": "Voeg automatisch subdomeinen toe voor alle hoofddomeinen in de huidige lijst. Ieder subdomein wordt getest voor mail, web of beide afhankelijk van de instellingen van de lijst. Wanneer een geldig en bereikbaar subdomein is gevonden wordt deze toegevoegd. Deze actie kan even duren voor grote lijsten en kan erg veel subdomeinen opleveren.",
 			"ok": "Zoek www. subdomeinen",
 			"title": "Zoek 'www' subdomeinen"
