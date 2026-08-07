@@ -114,7 +114,7 @@
             <b-nav-item to="/domains" accesskey="d" exact exact-active-class="active"><span><i-bi-card-list /> {{$t("app.menu.domains") }}</span></b-nav-item>
             <b-nav-item to="/scans" accesskey="s" exact exact-active-class="active">
               <span class="position-relative">
-                <i-bi-search v-if="active_scan_count" /> {{ $t("app.menu.scans") }}
+                <i-bi-search /> {{ $t("app.menu.scans") }}
                 <b-badge
                   v-if="active_scan_count"
                   variant="warning"
