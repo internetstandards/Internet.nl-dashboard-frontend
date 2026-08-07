@@ -729,21 +729,19 @@
 		"list-manager": {
 			"bulk_upload_link": "Nahrání tabulky s doménami",
 			"icon_legend": {
-				"can_connect": "Lze se připojit k této službě, bude (pravděpodobně) skenována.",
-				"cannot_connect": "Služba není k dispozici, nebude (pravděpodobně) skenována.",
-				"intro": "Domény uvedené v níže uvedených seznamech budou zahrnuty do každého skenování. Před provedením kontroly je zkontrolována způsobilost služby. Tato kontrola se provádí vždy pro kontrolu. Aby bylo možné získat představu o tom, jak jsou tyto služby propojené, je jako první ikona uveden poslední známý stav.",
+				"intro": "Tyto ikony zobrazují poslední známou způsobilost jednotlivých služeb ke skenování. Způsobilost se kontroluje znovu před každým skenováním.",
+				"mail_eligible": "Skenování e-mailu je dostupné.",
+				"mail_ineligible": "Skenování e-mailu není dostupné.",
 				"title": "Legenda použitých ikon",
-				"unknown_connectivity": "Není známo, zda je tato služba k dispozici, bude naskenována, pokud je k dispozici."
+				"web_eligible": "Skenování webu je dostupné.",
+				"web_ineligible": "Skenování webu není dostupné."
 			},
 			"icons": {
-				"can_connect": "Ikona lze připojit",
-				"cannot_connect": "Nelze se připojit",
 				"list_closed": "Seznam uzavřen",
 				"list_opened": "Otevřený seznam",
 				"list_warning": "Varování",
 				"scan": "Skenování",
-				"settings": "Nastavení",
-				"unknown_connectivity": "Ikona neznámého připojení"
+				"settings": "Nastavení"
 			},
 			"inital_list": {
 				"alternative_start": "nebo nahrajte tabulku s doménami sem...",
@@ -762,9 +760,7 @@
 			"eligeble_mail": "{0} je způsobilý pro skenování e-mailem",
 			"eligeble_web": "{0} je způsobilý pro skenování webu",
 			"not_eligeble_mail": "{0} není způsobilý pro skenování e-mailem. Bude znovu zkontrolováno při spuštění skenování.",
-			"not_eligeble_web": "{0} není způsobilý pro skenování webu. Bude znovu zkontrolováno při spuštění skenování.",
-			"unknown_eligeble_mail": "Zatím není známo, zda lze {0} skenovat poštou.",
-			"unknown_eligeble_web": "Zatím není známo, zda lze {0} skenovat na webu."
+			"not_eligeble_web": "{0} není způsobilý pro skenování webu. Bude znovu zkontrolováno při spuštění skenování."
 		},
 		"spreadsheet-upload": {
 			"back_to_domains": "Zpět na domény",

@@ -729,21 +729,19 @@
 		"list-manager": {
 			"bulk_upload_link": "Carregar folha de cálculo com domínios",
 			"icon_legend": {
-				"can_connect": "Pode ligar-se a este serviço, será (provavelmente) analisado.",
-				"cannot_connect": "Serviço não disponível, (provavelmente) não será digitalizado.",
-				"intro": "Os domínios constantes das listas abaixo serão incluídos em cada rastreio. Antes de uma verificação ser efectuada, a elegibilidade do serviço é verificada. Esta verificação é sempre efectuada para a análise. Para dar uma ideia de como estes serviços estão ligados, o último estado conhecido é apresentado como o primeiro ícone.",
+				"intro": "Estes ícones mostram a última elegibilidade conhecida para cada serviço. A elegibilidade é verificada novamente antes de cada análise.",
+				"mail_eligible": "A análise de correio eletrónico está disponível.",
+				"mail_ineligible": "A análise de correio eletrónico não está disponível.",
 				"title": "Legenda dos ícones utilizados",
-				"unknown_connectivity": "Não se sabe se este serviço está disponível, mas será digitalizado se estiver disponível."
+				"web_eligible": "A análise da Web está disponível.",
+				"web_ineligible": "A análise da Web não está disponível."
 			},
 			"icons": {
-				"can_connect": "Pode ligar o ícone",
-				"cannot_connect": "Não é possível ligar",
 				"list_closed": "Lista encerrada",
 				"list_opened": "Lista aberta",
 				"list_warning": "Aviso",
 				"scan": "Digitalização",
-				"settings": "Definições",
-				"unknown_connectivity": "Ícone de conetividade desconhecida"
+				"settings": "Definições"
 			},
 			"inital_list": {
 				"alternative_start": "ou carregar uma folha de cálculo com os domínios aqui...",
@@ -762,9 +760,7 @@
 			"eligeble_mail": "{0} é elegível para verificações por correio eletrónico",
 			"eligeble_web": "{0} é elegível para exames da Web",
 			"not_eligeble_mail": "{0} não é elegível para verificações por correio eletrónico. Será verificado novamente ao iniciar uma digitalização.",
-			"not_eligeble_web": "{0} não é elegível para verificações na Web. Será verificado novamente quando iniciar uma verificação.",
-			"unknown_eligeble_mail": "Ainda não se sabe se {0} pode ser digitalizado por correio eletrónico.",
-			"unknown_eligeble_web": "Ainda não se sabe se {0} pode ser digitalizado na Web."
+			"not_eligeble_web": "{0} não é elegível para verificações na Web. Será verificado novamente quando iniciar uma verificação."
 		},
 		"spreadsheet-upload": {
 			"back_to_domains": "Voltar aos domínios",

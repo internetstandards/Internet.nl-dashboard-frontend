@@ -9,11 +9,6 @@
       >
         <i-mdi-email-check-outline class="scan-eligibility-icon is-eligible" aria-hidden="true" />
       </span>
-      <span v-if="url.has_mail_endpoint === 'unknown'" :title='$t("domain.scan-eligibility.unknown_eligeble_mail", [url.url])'>
-        <span role="img" :aria-label='$t("domain.scan-eligibility.unknown_eligeble_mail", [url.url])'>
-          <i-mdi-email class="scan-eligibility-icon is-unknown" aria-hidden="true" />
-        </span>
-      </span>
       <span
         v-if="url.has_mail_endpoint === false"
         :title='$t("domain.scan-eligibility.not_eligeble_mail", [url.url])'
@@ -32,11 +27,6 @@
         :aria-label='$t("domain.scan-eligibility.eligeble_web", [url.url])'
       >
         <i-mdi-web-check class="scan-eligibility-icon is-eligible" aria-hidden="true" />
-      </span>
-      <span v-if="url.has_web_endpoint === 'unknown'" :title='$t("domain.scan-eligibility.unknown_eligeble_web", [url.url])'>
-        <span role="img" :aria-label='$t("domain.scan-eligibility.unknown_eligeble_web", [url.url])'>
-          <i-mdi-web class="scan-eligibility-icon is-unknown" aria-hidden="true" />
-        </span>
       </span>
       <span
         v-if="url.has_web_endpoint === false"
@@ -77,10 +67,6 @@ export default {
 
 .is-eligible {
   color: #198754;
-}
-
-.is-unknown {
-  color: #6c757d;
 }
 
 .is-ineligible {

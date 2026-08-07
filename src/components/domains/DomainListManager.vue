@@ -29,6 +29,18 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
     font-size: 1.2em;
     font-weight: bold;
 }
+
+.scan-eligibility-legend {
+    display: grid;
+    gap: 0.5rem 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.scan-eligibility-legend-icon {
+    flex: 0 0 auto;
+    width: 1.3em;
+    height: 1.3em;
+}
 </style>
 <template>
     <div>
@@ -53,17 +65,24 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                 <template #content>
                   <b-alert variant="info" :model-value="true" >
                     <p>{{ $t("domain.list-manager.icon_legend.intro") }}</p>
-                    <ul>
-                        <li>
-                            <span role="img" :aria-label='$t("domain.list-manager.icons.can_connect")'>🌍️</span>
-                            {{ $t("domain.list-manager.icon_legend.can_connect") }}
+                    <ul class="scan-eligibility-legend list-unstyled mb-0">
+                        <li class="d-flex align-items-center gap-2">
+                            <i-mdi-web-check class="scan-eligibility-legend-icon text-success" aria-hidden="true" />
+                            {{ $t("domain.list-manager.icon_legend.web_eligible") }}
                         </li>
-                        <li>
-                            <span role="img" :aria-label='$t("domain.list-manager.icons.unknown_connectivity")'>❓</span>
-                            {{ $t("domain.list-manager.icon_legend.unknown_connectivity") }}
+                        <li class="d-flex align-items-center gap-2">
+                            <i-mdi-web-remove class="scan-eligibility-legend-icon text-danger" aria-hidden="true" />
+                            {{ $t("domain.list-manager.icon_legend.web_ineligible") }}
                         </li>
-                        <li><span role="img" :aria-label='$t("domain.list-manager.icons.cannot_connect")'>🚫</span>
-                            {{ $t("domain.list-manager.icon_legend.cannot_connect") }}
+                      </ul>
+                    <ul class="scan-eligibility-legend list-unstyled mb-0">
+                        <li class="d-flex align-items-center gap-2">
+                            <i-mdi-email-check-outline class="scan-eligibility-legend-icon text-success" aria-hidden="true" />
+                            {{ $t("domain.list-manager.icon_legend.mail_eligible") }}
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i-mdi-email-remove class="scan-eligibility-legend-icon text-danger" aria-hidden="true" />
+                            {{ $t("domain.list-manager.icon_legend.mail_ineligible") }}
                         </li>
                     </ul>
 
