@@ -1,14 +1,223 @@
-<style>
-.vs__dropdown-toggle {
+<style scoped>
+.domain-table-toolbar {
+  align-items: end;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-areas: "filter tags actions";
+  grid-template-columns: minmax(14rem, 1fr) minmax(14rem, 1fr) auto;
+  margin: 1rem 0 0.75rem;
+}
+
+.domain-table-filter {
+  grid-area: filter;
+  min-width: 0;
+}
+
+.domain-table-filter .input-group {
+  flex-wrap: nowrap;
+}
+
+.domain-table-filter :deep(.form-control) {
+  min-width: 0;
+}
+
+.domain-table-tag-editor {
+  display: grid;
+  gap: 0.25rem;
+  grid-area: tags;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  min-width: 0;
+}
+
+.domain-tag-select {
+  min-width: 0;
+}
+
+.domain-tag-select :deep(.vs__dropdown-toggle) {
+  border-radius: 4px;
   min-height: 38px;
-  border-radius: 4px 0 0 4px !important;
+}
+
+.domain-tag-select :deep(.vs__selected-options) {
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.domain-tag-select :deep(.vs__selected) {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.domain-tag-select :deep(.vs__search) {
+  min-width: 0;
+}
+
+.domain-table-actions {
+  display: flex;
+  gap: 0.25rem;
+  grid-area: actions;
+}
+
+.domain-table-mobile-selection {
+  display: none;
+  grid-area: selection;
+}
+
+.domain-table-pagination {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.domain-table-pagination :deep(.pagination) {
+  flex-wrap: nowrap;
+  max-width: 100%;
+}
+
+.domain-table :deep(.domain-url-cell) {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 768px) {
+  .domain-table :deep(.domain-url-column) {
+    min-width: 300px;
+  }
+
+  .domain-table :deep(.domain-url-cell) {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .domain-table-toolbar {
+    align-items: center;
+    grid-template-areas:
+      "filter actions"
+      "tags tags"
+      "selection selection";
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .domain-table-mobile-selection {
+    display: block;
+  }
+
+  .domain-table :deep(.table.b-table > tbody > tr) {
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.375rem;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+
+  .domain-table :deep(.table.b-table > tbody > tr:nth-of-type(odd)) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .domain-table :deep(.table.b-table > tbody > tr.selected) {
+    background-color: var(--bs-primary-bg-subtle);
+  }
+
+  .domain-table :deep(.table.b-table > tbody > tr > td) {
+    --bs-table-bg: transparent;
+    --bs-table-bg-state: transparent;
+    --bs-table-bg-type: transparent;
+    background-color: transparent;
+    border-top-width: 0;
+    box-shadow: none;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .domain-table :deep(.table.b-table > tbody > tr > .domain-selection-cell),
+  .domain-table :deep(.table.b-table > tbody > tr > .domain-scannable-cell) {
+    display: inline-block !important;
+    width: auto;
+  }
+
+  .domain-table :deep(.domain-selection-cell > div),
+  .domain-table :deep(.domain-scannable-cell > div) {
+    padding: 0 !important;
+    width: auto !important;
+  }
+
+  .domain-table :deep(.domain-url-cell > .b-table-stacked-label),
+  .domain-table :deep(.domain-tags-cell > .b-table-stacked-label) {
+    display: block;
+    padding: 0 0 0.25rem;
+    text-align: left;
+    width: 100%;
+  }
+
+  .domain-table :deep(.domain-url-cell > div) {
+    display: block;
+    padding: 0;
+    width: 100%;
+  }
+
+  .domain-table :deep(.domain-url-cell input) {
+    max-width: 100%;
+  }
 }
 </style>
 
 <template>
-  <div>
+  <div class="domain-table">
+    <div class="domain-table-toolbar">
+      <div class="domain-table-filter">
+        <b-input-group>
+          <b-form-input
+              debounce="200"
+              id="filter-input"
+              v-model="filter"
+              type="search"
+              :placeholder='$t("domain.list.domain-table.type to filter")'
+          ></b-form-input>
+          <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t("domain.list.domain-table.Clear") }}</b-button>
+        </b-input-group>
+      </div>
 
-    <b-table :busy="loading" striped hover small selectable responsive select-mode="multi"
+      <div class="domain-table-tag-editor" v-if="selectedItems.length > 0">
+        <v-select :options="tags" :inputId='"tagselect"' @search:blur="searched_with_no_result" v-model="selected_tag" class="domain-tag-select" taggable :placeholder='$t("domain.list.domain-table.select label")'>
+          <template v-slot:option="option">
+            <tag :value="option.label" style="pointer-events: none; "/>
+          </template>
+        </v-select>
+
+        <b-button variant="warning" @click="add_tags" class="intermediatebutton">+</b-button>
+        <b-button variant="danger" @click="remove_tags" class="lastbutton">-</b-button>
+      </div>
+
+      <div class="domain-table-actions">
+        <b-button class="normalbutton" variant="warning" @click="$emit('update')">🔁<span class="visually-hidden">{{ $t("domain.list.domain-table.update domain list") }}</span></b-button>
+        <b-button variant="danger" @click="remove_urls" v-if="selectedItems.length > 0">🗑️</b-button>
+      </div>
+
+      <div class="domain-table-mobile-selection">
+        <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected">
+          {{ $t("domain.list.domain-table.Selected") }}: {{ selectedItems.length }} / {{ visibleRows }}
+        </b-form-checkbox>
+      </div>
+    </div>
+
+    <div class="domain-table-pagination" v-if="urls.length > perPage">
+      <b-pagination
+          v-model="currentPage"
+          :total-rows="visibleRows"
+          :per-page="perPage"
+          class="my-0"
+          first-number
+          hide-ellipsis
+          :limit="3"
+          last-number
+          size="sm"
+      ></b-pagination>
+    </div>
+
+    <b-table :busy="loading" striped hover small selectable stacked="md" label-stacked select-mode="multi"
              :items="urls"
              :fields="table_fields"
              :filter="filter"
@@ -23,65 +232,6 @@
              @filtered="onFiltered"
              @row-selected="onRowSelected"
     >
-
-      <template #thead-top="">
-
-        <b-tr>
-          <b-th colspan='3' class="col-6 pt-4">
-
-              <b-input-group>
-                <b-form-input
-                    debounce="200"
-                    id="filter-input"
-                    v-model="filter"
-                    type="search"
-                    :placeholder='$t("domain.list.domain-table.type to filter")'
-                ></b-form-input>
-                <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t("domain.list.domain-table.Clear") }}</b-button>
-              </b-input-group>
-
-
-          </b-th>
-          <b-th class="col-6" style="vertical-align: bottom;">
-
-            <div class="float-start w-75" v-if="selectedItems.length > 0">
-              <b-input-group>
-                <v-select :options="tags" :inputId='"tagselect"' @search:blur="searched_with_no_result" v-model="selected_tag" class="w-75" taggable :placeholder='$t("domain.list.domain-table.select label")'>
-                  <template v-slot:option="option">
-                    <!-- Allow clicking on the tag to select it... -->
-                    <tag :value="option.label" style="pointer-events: none; "/>
-                  </template>
-                </v-select>
-
-                  <b-button variant="warning" @click="add_tags" class="intermediatebutton">+</b-button>
-                  <b-button variant="danger" @click="remove_tags" class="lastbutton">-</b-button>
-
-              </b-input-group>
-            </div>
-
-            <b-button class="float-end normalbutton" variant="warning" @click="$emit('update')">🔁<span class="visually-hidden">{{ $t("domain.list.domain-table.update domain list") }}</span></b-button>
-            <b-button variant="danger" @click="remove_urls" v-if="selected.length > 0">🗑️</b-button>
-
-          </b-th>
-        </b-tr>
-
-        <b-tr v-if="urls.length > perPage">
-          <b-th colspan='4' class="col-12">
-            <b-pagination
-                v-model="currentPage"
-                :total-rows="visibleRows"
-                :per-page="perPage"
-                class="my-0"
-                first-number
-                hide-ellipsis
-                :limit="8"
-                last-number
-            ></b-pagination>
-          </b-th>
-        </b-tr>
-
-      </template>
-
       <template #head(selected)="">
         <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected"></b-form-checkbox>
       </template>
@@ -117,16 +267,13 @@
       </template>
 
       <template #table-caption v-if="urls.length>0">
-
         <span v-if="filter">
           {{$t("domain.list.domain-table.filtered pagination", [currentPage, Math.ceil(urls.length / perPage), visibleRows, urls.length])}}
         </span>
         <span v-else>
           {{$t("domain.list.domain-table.pagination", [currentPage, Math.ceil(urls.length / perPage), urls.length])}}
         </span>
-
       </template>
-
     </b-table>
   </div>
 </template>
@@ -173,7 +320,6 @@ export default {
       selected_tag: null,
       allSelected: false,
       allSelectedIndeterminate: false,
-      selected: [],
       selectedItems: [],
       currentPage: 1,
       perPage: 100,
@@ -181,24 +327,27 @@ export default {
         {
           key: 'selected',
           sortable: false,
-          label: ""
+          label: "",
+          tdClass: 'domain-selection-cell'
         },
         {
           key: 'scannable',
           sortable: false,
-          label: ""
+          label: "",
+          tdClass: 'domain-scannable-cell'
         },
         {
           key: 'url',
           sortable: true,
           label: this.$t("domain.table.domain"),
-          thStyle: 'min-width: 300px',
-          tdClass: 'nowrap'
+          thClass: 'domain-url-column',
+          tdClass: 'domain-url-cell'
         },
         {
           key: 'tags',
           sortable: true,
-          label: this.$t("domain.table.tags")
+          label: this.$t("domain.table.tags"),
+          tdClass: 'domain-tags-cell'
         },
       ],
     }
@@ -211,8 +360,7 @@ export default {
       this.visibleRows = filteredItems.length;
       this.currentPage = 1;
     },
-    onRowSelected(items) {
-      this.selected = items;
+    onRowSelected() {
       this.updateCheckBox();
     },
     selectAllRows() {
