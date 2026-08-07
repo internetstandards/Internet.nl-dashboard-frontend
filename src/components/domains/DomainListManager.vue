@@ -165,6 +165,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
         -->
         <url-list
             :initial_list="list"
+            :open_requested="requested_open_list_ids.includes(String(list.id))"
             :start_opened="!!list.start_opened"
             :maximum_domains="maximum_domains_per_list"
             :key="list.id"
@@ -190,6 +191,7 @@ import http from "@/httpclient";
 import CollapsePanel from '@/components/CollapsePanel.vue'
 import { dashboardStore } from '@/dashboardStore'
 import {mapState} from 'pinia'
+import {parseOpenListIds} from '@/components/domains/openListQuery'
 
 
 export default {
@@ -292,6 +294,9 @@ export default {
         }
     },
     computed: {
+        requested_open_list_ids: function () {
+            return this.$route.name === 'domains' ? parseOpenListIds(this.$route.query) : []
+        },
         one_of_the_lists_contains_warnings: function () {
             let contains_warnings = false;
             this.lists.forEach((list) => {

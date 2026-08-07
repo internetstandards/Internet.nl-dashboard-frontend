@@ -54,7 +54,7 @@ ol {
             </template>
         </template>
         📘
-        <router-link :to="{ name: 'numbered_lists', params: { list: scan.list_id }}">
+        <router-link :to="{ name: 'domains', query: {open: String(scan.list_id)}, hash: `#${scan.list_id}` }">
             {{ $t("scanmonitor.scan.open_list") }}
         </router-link>
         <br><br>

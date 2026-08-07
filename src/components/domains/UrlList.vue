@@ -213,8 +213,12 @@ export default {
     // To emulate and fix warnings that happen server side:
     maximum_domains: {type: Number, required: true, default: 10000},
 
-    // given via router, when there is a url parameter given
-    initial_list_id: {type: Number},
+    // The URL can request that this list opens, but never requests that it closes.
+    open_requested: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
 
     start_opened: {
       type: Boolean, required: false, default: false
@@ -225,16 +229,9 @@ export default {
       this.list = new_value;
     },
 
-    // support keep alive routing
-    $route: function (to) {
-      // https://router.vuejs.org/guide/essentials/dynamic-matching.html
-      // If this param is set, and this list is the one requested, open this list.
-      // todo: how to anchor-navigate to the part of the page where this list is?
-      if (this.list.id === to.params.list) {
-        this.open_list();
-
-        // a little lesson in trickery
-        location.hash = "#" + this.list.id;
+    open_requested: function (requested) {
+      if (requested) {
+        this.apply_open_request()
       }
     },
 
@@ -255,22 +252,30 @@ export default {
     }
   },
   mounted: function () {
-    if (this.$route.params.list) {
-      if (this.list.id === parseInt(this.$route.params.list)) {
-        this.open_list();
-      }
-    }
-    if (this.start_opened) {
-      this.is_opened = true;
+    if (this.open_requested) {
+      this.apply_open_request()
+    } else if (this.start_opened) {
+      this.open_list()
     }
   },
   methods: {
     open_list: function () {
-      this.get_urls();
-      this.is_opened = true;
+      if (this.is_opened) {
+        return
+      }
+
+      this.is_opened = true
+      this.get_urls()
     },
     close_list: function () {
-      this.is_opened = false;
+      this.is_opened = false
+    },
+    apply_open_request: function () {
+      this.open_list()
+
+      if (this.$route.hash === `#${this.list.id}`) {
+        this.$nextTick(() => this.$el?.scrollIntoView({block: 'start'}))
+      }
     },
     get_urls: function () {
       this.loading = true;
