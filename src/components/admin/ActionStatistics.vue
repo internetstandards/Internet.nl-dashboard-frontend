@@ -1,9 +1,16 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
-    <content-block>
-      <h1><i-bi-graph-up /> Action statistics</h1>
-      <p>Overview of action usage by verb, year and month.</p>
+    <page-header
+      title="Action statistics"
+      subtitle="Overview of action usage by verb, year and month."
+    >
+      <template #icon>
+        <i-bi-graph-up />
+      </template>
+    </page-header>
+
+    <content-block v-if="loading || errorMessage">
       <loading :loading="loading" />
       <b-alert v-if="errorMessage" variant="danger" :model-value="true">{{ errorMessage }}</b-alert>
     </content-block>

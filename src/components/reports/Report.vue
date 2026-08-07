@@ -1,16 +1,17 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div id="report-template">
-    <content-block class="do-not-print">
-      <h1>
-        <i-bi-file-bar-graph/>
-        {{ $t("report.page.title") }}
-      </h1>
-      <p>{{ $t("report.page.intro") }}</p>
+    <page-header
+      class="do-not-print"
+      :title="$t('report.page.title')"
+      :subtitle="$t('report.page.intro')"
+    >
+      <template #icon>
+        <i-bi-file-bar-graph />
+      </template>
 
       <report-selection @tags_applied="apply_tags"/>
-
-    </content-block>
+    </page-header>
 
     <loading :loading="reports_to_load > 0"></loading>
 

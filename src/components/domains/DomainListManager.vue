@@ -32,19 +32,24 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 </style>
 <template>
     <div>
-        <content-block>
-            <h1><i-bi-card-list /> {{ $t("domain.list-manager.title") }}</h1>
-            <p class="mb-4">{{ $t("domain.list-manager.intro") }}</p>
-            <div class="d-flex flex-wrap gap-2 mb-3">
+        <page-header
+            :title="$t('domain.list-manager.title')"
+            :subtitle="$t('domain.list-manager.intro')"
+        >
+            <template #icon>
+              <i-bi-card-list />
+            </template>
+
+            <template #actions>
                 <b-button variant="warning" @click="show_add_new = true" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</b-button>
                 <router-link to="/domains/upload" custom v-slot="{ navigate }">
                   <b-button variant="warning" @click="navigate" @keypress.enter="navigate">
                   📓 {{ $t("domain.list-manager.bulk_upload_link") }}
                   </b-button>
                 </router-link>
-            </div>
+            </template>
 
-            <collapse-panel :title='$t("domain.list-manager.icon_legend.title")' class="mt-2">
+            <collapse-panel :title='$t("domain.list-manager.icon_legend.title")'>
                 <template #content>
                   <b-alert variant="info" :model-value="true" >
                     <p>{{ $t("domain.list-manager.icon_legend.intro") }}</p>
@@ -65,8 +70,9 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                     </b-alert>
                 </template>
             </collapse-panel>
+        </page-header>
 
-            <b-modal id="show_add_new" v-model="show_add_new" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
+        <b-modal id="show_add_new" v-model="show_add_new" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
               <template #header><h4>📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</h4></template>
 
                 <div slot="default">
@@ -142,9 +148,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                         {{ $t("domain.list-manager.new_list.button_create_list_label") }}
                     </b-button>
                 </template>
-            </b-modal>
-
-        </content-block>
+        </b-modal>
 
         <loading :loading="loading"></loading>
 

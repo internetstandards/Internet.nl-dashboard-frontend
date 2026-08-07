@@ -4,9 +4,11 @@
 </style>
 <template>
   <div v-if="reportsets.length > 0">
-    <content-block>
-      <h1>{{ $t("public-reports.per-account.Recently published reports") }}</h1>
-    </content-block>
+    <page-header :title="$t('public-reports.per-account.Recently published reports')">
+      <template #icon>
+        <i-bi-file-bar-graph />
+      </template>
+    </page-header>
     <div v-for="reportset in reportsets" :key="reportset.list.id">
       <content-block v-if="reportset.reports.length">
         <h2>{{ reportset.list.name }}</h2>

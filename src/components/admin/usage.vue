@@ -1,17 +1,21 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
     <div>
-        <content-block>
+        <page-header
+            :title="$t('admin.usage.title')"
+            :subtitle="$t('admin.usage.intro')"
+        >
+          <template #icon>
+            <i-bi-graph-up />
+          </template>
 
-            <h1><i-bi-graph-up /> {{ $t("admin.usage.title") }}</h1>
-            <p>{{ $t("admin.usage.intro") }}</p>
             <p>{{ $t("admin.usage.annotations") }}:</p>
             <ol>
                 <li>{{ $t("admin.usage.annotation_metrics") }}
                 </li>
             </ol>
             <loading :loading="loading"/>
-        </content-block>
+        </page-header>
 
         <template v-if="s">
             <content-block>

@@ -1,13 +1,16 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div id="demo-template">
-    <content-block>
-      <h1>
+    <page-header
+      :title="$t('tour.title')"
+    >
+      <template #icon>
         <i-bi-info-circle />
-        {{ $t("tour.title") }}
-      </h1>
-      <p class="lead" v-html="$t('tour.introduction')"></p>
-    </content-block>
+      </template>
+      <template #subtitle>
+        <span v-html="$t('tour.introduction')" />
+      </template>
+    </page-header>
 
 
       <div class="d-grid">

@@ -21,15 +21,21 @@
 </style>
 <template>
   <div>
-    <content-block>
-      <h1><i-bi-search /> {{ $t("scanmonitor.page.title") }}</h1>
-      <p>{{ $t("scanmonitor.page.intro") }}</p>
-      <b-button variant="warning" :disabled="refreshing" :aria-busy="refreshing" @click="load">
-        <b-spinner v-if="refreshing" small class="me-1" aria-hidden="true" />
-        <span v-else aria-hidden="true">🔁</span>
-        {{ $t("app.autorefresh.refresh_now") }}
-      </b-button>
-    </content-block>
+    <page-header
+      :title="$t('scanmonitor.page.title')"
+      :subtitle="$t('scanmonitor.page.intro')"
+    >
+      <template #icon>
+        <i-bi-search />
+      </template>
+      <template #actions>
+        <b-button variant="warning" :disabled="refreshing" :aria-busy="refreshing" @click="load">
+          <b-spinner v-if="refreshing" small class="me-1" aria-hidden="true" />
+          <span v-else aria-hidden="true">🔁</span>
+          {{ $t("app.autorefresh.refresh_now") }}
+        </b-button>
+      </template>
+    </page-header>
 
     <div class="scan-monitor-grid">
       <ScanMonitorScan

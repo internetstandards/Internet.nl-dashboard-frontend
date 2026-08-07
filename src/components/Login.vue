@@ -7,10 +7,16 @@
 </style>
 <template>
   <div class="account">
+    <page-header
+      :title="$t('app.login.title')"
+      :subtitle="$t('app.login.new_login_info')"
+    >
+      <template #icon>
+        <i-bi-box-arrow-in-right />
+      </template>
+    </page-header>
 
     <content-block>
-      <h1>{{ $t("app.login.title") }}</h1>
-      <p>{{ $t("app.login.new_login_info") }}</p>
       <a :href="$baseUrl + '/account/login/'">{{ $baseUrl }}/account/login/</a>
     </content-block>
 

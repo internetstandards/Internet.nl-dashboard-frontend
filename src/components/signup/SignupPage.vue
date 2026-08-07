@@ -1,9 +1,15 @@
 <template>
   <div>
-    <content-block>
-    <h2>{{ $t("signup.page.application_title") }}</h2>
-    <p>{{ $t("signup.page.application_description") }} {{ $t("signup.page.access_restrictions")}}</p>
+    <page-header
+      :title="$t('signup.page.application_title')"
+      :subtitle="`${$t('signup.page.application_description')} ${$t('signup.page.access_restrictions')}`"
+    >
+      <template #icon>
+        <i-bi-person-plus />
+      </template>
+    </page-header>
 
+    <content-block>
     <ol>
       <li><b>{{ $t("signup.page.dashboard_title") }}</b>: {{ $t("signup.page.dashboard_description") }} <router-link :to="'demo'">{{ $t("signup.page.dashboard_link") }}</router-link></li>
       <li><b>{{ $t("signup.page.api_title") }}</b>: {{ $t("signup.page.api_description") }} <a href="https://github.com/internetstandards/Internet.nl-API-docs" target="_blank">{{ $t("signup.page.api_link") }}</a></li>

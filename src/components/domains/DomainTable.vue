@@ -170,6 +170,10 @@
     width: 100%;
   }
 
+  .domain-table :deep(.domain-url-cell > .domain-display) {
+    display: flex;
+  }
+
   .domain-table :deep(.domain-url-cell input) {
     max-width: 100%;
   }
