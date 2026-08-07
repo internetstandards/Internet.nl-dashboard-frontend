@@ -415,7 +415,10 @@ export default {
           item.tags.push(this.selected_tag)
         }
       })
-      http.post(`/api/v1/urllists/${this.urllist.id}/urls/${this.selectedItems.map(item => item.id)}/tags`, {'tag': this.selected_tag});
+      http.post(`/api/v1/urllists/${this.urllist.id}/urls/tags`, {
+        url_ids: this.selectedItems.map(item => item.id),
+        tag: this.selected_tag,
+      });
     },
     remove_tags() {
       // support the scenario from issue #344
