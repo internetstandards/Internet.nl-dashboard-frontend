@@ -17,7 +17,7 @@ node_modules/.modules.yaml: package.json pnpm-lock.yaml
 	pnpm install --frozen-lockfile
 
 run: setup
-	pnpm run dev
+	pnpm run dev --host 0.0.0.0
 
 # This option takes the env.deploy file and applies it during build.
 build: setup

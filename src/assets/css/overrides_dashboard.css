@@ -66,6 +66,13 @@ a.anchor {
     }
 }
 
+/* Unlike overflow: hidden, overflow: clip does not prevent sticky descendants. */
+@media (min-width: 740px) {
+    .body-with-semifixed-header main {
+        overflow: clip;
+    }
+}
+
 .testresult_without_icon {
     padding-left: 1em;
     margin-bottom: 1em;

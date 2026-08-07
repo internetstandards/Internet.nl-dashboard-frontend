@@ -1,11 +1,19 @@
 <style scoped>
+.domain-table-sticky-controls {
+  background-color: var(--bs-body-bg);
+  padding: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+
 .domain-table-toolbar {
   align-items: end;
   display: grid;
   gap: 0.5rem;
   grid-template-areas: "filter tags actions";
   grid-template-columns: minmax(14rem, 1fr) minmax(14rem, 1fr) auto;
-  margin: 1rem 0 0.75rem;
+  margin: 0;
 }
 
 .domain-table-filter {
@@ -71,6 +79,10 @@
   justify-content: center;
   max-width: 100%;
   overflow: hidden;
+}
+
+.domain-table-toolbar + .domain-table-pagination {
+  margin-top: 0.5rem;
 }
 
 .domain-table-pagination :deep(.pagination) {
@@ -166,55 +178,57 @@
 
 <template>
   <div class="domain-table">
-    <div class="domain-table-toolbar">
-      <div class="domain-table-filter">
-        <b-input-group>
-          <b-form-input
-              debounce="200"
-              id="filter-input"
-              v-model="filter"
-              type="search"
-              :placeholder='$t("domain.list.domain-table.type to filter")'
-          ></b-form-input>
-          <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t("domain.list.domain-table.Clear") }}</b-button>
-        </b-input-group>
+    <div class="domain-table-sticky-controls">
+      <div class="domain-table-toolbar">
+        <div class="domain-table-filter">
+          <b-input-group>
+            <b-form-input
+                debounce="200"
+                id="filter-input"
+                v-model="filter"
+                type="search"
+                :placeholder='$t("domain.list.domain-table.type to filter")'
+            ></b-form-input>
+            <b-button :disabled="!filter" @click="filter = ''" class="lastbutton">{{ $t("domain.list.domain-table.Clear") }}</b-button>
+          </b-input-group>
+        </div>
+
+        <div class="domain-table-tag-editor" v-if="selectedItems.length > 0">
+          <v-select :options="tags" :inputId='"tagselect"' @search:blur="searched_with_no_result" v-model="selected_tag" class="domain-tag-select" taggable :placeholder='$t("domain.list.domain-table.select label")'>
+            <template v-slot:option="option">
+              <tag :value="option.label" style="pointer-events: none; "/>
+            </template>
+          </v-select>
+
+          <b-button variant="warning" @click="add_tags" class="intermediatebutton">+</b-button>
+          <b-button variant="danger" @click="remove_tags" class="lastbutton">-</b-button>
+        </div>
+
+        <div class="domain-table-actions">
+          <b-button class="normalbutton" variant="warning" @click="$emit('update')">🔁<span class="visually-hidden">{{ $t("domain.list.domain-table.update domain list") }}</span></b-button>
+          <b-button variant="danger" @click="remove_urls" v-if="selectedItems.length > 0">🗑️</b-button>
+        </div>
+
+        <div class="domain-table-mobile-selection">
+          <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected">
+            {{ $t("domain.list.domain-table.Selected") }}: {{ selectedItems.length }} / {{ visibleRows }}
+          </b-form-checkbox>
+        </div>
       </div>
 
-      <div class="domain-table-tag-editor" v-if="selectedItems.length > 0">
-        <v-select :options="tags" :inputId='"tagselect"' @search:blur="searched_with_no_result" v-model="selected_tag" class="domain-tag-select" taggable :placeholder='$t("domain.list.domain-table.select label")'>
-          <template v-slot:option="option">
-            <tag :value="option.label" style="pointer-events: none; "/>
-          </template>
-        </v-select>
-
-        <b-button variant="warning" @click="add_tags" class="intermediatebutton">+</b-button>
-        <b-button variant="danger" @click="remove_tags" class="lastbutton">-</b-button>
+      <div class="domain-table-pagination" v-if="urls.length > perPage">
+        <b-pagination
+            v-model="currentPage"
+            :total-rows="visibleRows"
+            :per-page="perPage"
+            class="my-0"
+            first-number
+            hide-ellipsis
+            :limit="3"
+            last-number
+            size="sm"
+        ></b-pagination>
       </div>
-
-      <div class="domain-table-actions">
-        <b-button class="normalbutton" variant="warning" @click="$emit('update')">🔁<span class="visually-hidden">{{ $t("domain.list.domain-table.update domain list") }}</span></b-button>
-        <b-button variant="danger" @click="remove_urls" v-if="selectedItems.length > 0">🗑️</b-button>
-      </div>
-
-      <div class="domain-table-mobile-selection">
-        <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected">
-          {{ $t("domain.list.domain-table.Selected") }}: {{ selectedItems.length }} / {{ visibleRows }}
-        </b-form-checkbox>
-      </div>
-    </div>
-
-    <div class="domain-table-pagination" v-if="urls.length > perPage">
-      <b-pagination
-          v-model="currentPage"
-          :total-rows="visibleRows"
-          :per-page="perPage"
-          class="my-0"
-          first-number
-          hide-ellipsis
-          :limit="3"
-          last-number
-          size="sm"
-      ></b-pagination>
     </div>
 
     <b-table :busy="loading" striped hover small selectable stacked="md" label-stacked select-mode="multi"
