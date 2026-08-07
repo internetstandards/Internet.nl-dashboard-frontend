@@ -13,7 +13,7 @@ ol {
 }
 </style>
 <template>
-    <b-card class="h-100 shadow scan-monitor-card"
+    <b-card class="h-100 shadow-sm scan-monitor-card"
         :header-bg-variant="header_color"
         header-text-variant="light"
         footer-bg-variant="info-outline"

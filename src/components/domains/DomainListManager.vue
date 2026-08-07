@@ -35,15 +35,14 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
         <content-block>
             <h1><i-bi-card-list /> {{ $t("domain.list-manager.title") }}</h1>
             <p class="mb-4">{{ $t("domain.list-manager.intro") }}</p>
-            <p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
                 <b-button variant="warning" @click="show_add_new = true" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</b-button>
-                &nbsp;
                 <router-link to="/domains/upload" custom v-slot="{ navigate }">
                   <b-button variant="warning" @click="navigate" @keypress.enter="navigate">
                   📓 {{ $t("domain.list-manager.bulk_upload_link") }}
                   </b-button>
                 </router-link>
-            </p>
+            </div>
 
             <collapse-panel :title='$t("domain.list-manager.icon_legend.title")' class="mt-2">
                 <template #content>
