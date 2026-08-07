@@ -1,16 +1,52 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
 h2 {
-  display: inline;
   font-size: 1.2em;
+  margin: 0;
+}
+
+.url-list-header {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: space-between;
+}
+
+.url-list-title {
+  min-width: 0;
+}
+
+.url-list-title .btn {
+  max-width: 100%;
+  text-align: left;
+  white-space: normal;
+}
+
+.url-list-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 575.98px) {
+  .url-list-title,
+  .url-list-actions {
+    width: 100%;
+  }
+
+  .url-list-actions {
+    justify-content: flex-start;
+  }
 }
 </style>
 
 <template>
   <content-block v-if="!is_deleted" :id="list.id">
-      <span>
-            <a :name="list.id"></a>
-            <h2>
+      <a :name="list.id"></a>
+      <div class="url-list-header">
+            <h2 class="url-list-title">
                 <b-button variant="warning" v-if="!is_opened" aria-expanded="false" @click="open_list()">
                     <span v-if="list_contains_warnings" :aria-label='$t("domain.urllist.icon.list_warning")' role="img">⚠️</span>
                     <span :aria-label='$t("domain.urllist.icon.list_closed")' role="img">📘</span> <probe
@@ -26,12 +62,12 @@ h2 {
                 </b-button>
             </h2>
 
-            <div v-if="is_opened" class="float-end">
+            <div v-if="is_opened" class="url-list-actions">
                 <template v-if="urls.length">
                     <template v-if="list.enable_scans">
                         <b-button variant="warning" v-if="list.scan_now_available" @click="visible.scan = true">
                             <span :aria-label='$t("domain.urllist.icon.scan")' role="img">🔬</span> {{ $t("domain.urllist.button.scan_now") }}
-                        </b-button> &nbsp;
+                        </b-button>
                         <b-button variant="warning" v-if="!list.scan_now_available" :title='$t("domain.urllist.button.scan_now_scanning")'
                                 disabled="disabled">
                             <probe/> {{ $t("domain.urllist.button.scan_now_scanning") }}
@@ -39,18 +75,18 @@ h2 {
                     </template>
                     <b-button variant="warning" v-else :title='$t("domain.urllist.button.scanning_disabled")' disabled="disabled">
                         <span :aria-label='$t("domain.urllist.icon.scan")' role="img">🔬</span> {{ $t("domain.urllist.button.scanning_disabled") }}
-                    </b-button> &nbsp;
+                    </b-button>
                 </template>
 
                 <b-button variant="warning" @click="visible.configure = true">
                     <span :aria-label='$t("domain.urllist.icon.settings")' role="img">📝</span> {{ $t("domain.urllist.button.configure") }}
-                </b-button> &nbsp;
+                </b-button>
 
-              <b-button variant="warning" @click="download_list" v-if="urls.length">⬇️ {{ $t("domain.urllist.button.download") }}</b-button> &nbsp;
+              <b-button variant="warning" @click="download_list" v-if="urls.length">⬇️ {{ $t("domain.urllist.button.download") }}</b-button>
 
               <b-button variant="danger" @click="visible.delete = true">🗑️ {{ $t("domain.urllist.button.delete") }}</b-button>
             </div>
-        </span>
+        </div>
 
 
     <div v-if="is_opened">
@@ -67,13 +103,15 @@ h2 {
         </div>
       </template>
 
-      <div  style="width: 100%; text-align: right" class="mb-2">
-        {{$t('domain.urllist.add domains using')}}:<br>
-        <b-button variant="success" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}</b-button> &nbsp;
-        <b-button variant="success" @click="visible.discover_subdomains = true" v-if="store.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button> &nbsp;
-        <b-button variant="success" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button> &nbsp;
-        <!-- <button class="border-success" @click="get_urls()">⬆️ {{ $t("button.reload") }}</button> -->
-        <WwwDiscovery v-if="urls.length" :list_id="list.id" @finished="get_urls"/>
+      <div class="mb-2">
+        <div class="mb-1 text-start text-sm-end">{{$t('domain.urllist.add domains using')}}:</div>
+        <div class="url-list-actions">
+          <b-button variant="success" @click="visible.add_domains = true" size="sm"><span :aria-label='$t("domain.urllist.icon.bulk_add_new")' role="img">🌐</span> {{ $t("domain.urllist.button.add_domains") }}</b-button>
+          <b-button variant="success" @click="visible.discover_subdomains = true" v-if="store.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button>
+          <b-button variant="success" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button>
+          <!-- <button class="border-success" @click="get_urls()">⬆️ {{ $t("button.reload") }}</button> -->
+          <WwwDiscovery v-if="urls.length" :list_id="list.id" @finished="get_urls"/>
+        </div>
       </div>
 
       <template v-if="urls.length">
