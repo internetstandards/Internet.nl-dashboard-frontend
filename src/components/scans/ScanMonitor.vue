@@ -1,5 +1,23 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
+.scan-monitor-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .scan-monitor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .scan-monitor-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 </style>
 <template>
   <div>
@@ -9,11 +27,14 @@
       <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60" v-if="user.is_authenticated" />
     </content-block>
 
-    <b-row class="p-2 pl-2 pr-2" cols="1" cols-sm="1" cols-lg="3">
-      <b-col class="p-1 pb-3" v-bind:key="scan.id" v-for="scan in scans">
-        <ScanMonitorScan :scan="scan" @scan-stopped="load"></ScanMonitorScan>
-      </b-col>
-    </b-row>
+    <div class="scan-monitor-grid">
+      <ScanMonitorScan
+        v-for="scan in scans"
+        :key="scan.id"
+        :scan="scan"
+        @scan-stopped="load"
+      />
+    </div>
 
     <content-block v-if="!scans.length">{{ $t("scanmonitor.page.no_scans") }}</content-block>
 

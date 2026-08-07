@@ -7,9 +7,13 @@ ol {
 .card-header {
     min-height: 5em;
 }
+.scan-monitor-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 </style>
 <template>
-    <b-card class="shadow ml-1 mr-1"
+    <b-card class="h-100 shadow scan-monitor-card"
         :header-bg-variant="header_color"
         header-text-variant="light"
         footer-bg-variant="info-outline"
