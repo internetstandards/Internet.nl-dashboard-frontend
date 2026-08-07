@@ -24,7 +24,11 @@
     <content-block>
       <h1><i-bi-search /> {{ $t("scanmonitor.page.title") }}</h1>
       <p>{{ $t("scanmonitor.page.intro") }}</p>
-      <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60" v-if="user.is_authenticated" />
+      <b-button variant="warning" :disabled="refreshing" :aria-busy="refreshing" @click="load">
+        <b-spinner v-if="refreshing" small class="me-1" aria-hidden="true" />
+        <span v-else aria-hidden="true">🔁</span>
+        {{ $t("app.autorefresh.refresh_now") }}
+      </b-button>
     </content-block>
 
     <div class="scan-monitor-grid">
@@ -45,38 +49,42 @@
 <script>
 
 import ScanMonitorScan from './ScanMonitorScan.vue'
-import http from "@/httpclient";
-import autorefresh from '@/components/autorefresh.vue'
 import { dashboardStore } from '@/dashboardStore'
 import {mapState} from "pinia";
 
 export default {
   components: {
-    ScanMonitorScan,
-    autorefresh
+    ScanMonitorScan
   },
   name: 'scan_monitor',
 
   data: function () {
     return {
-      scans: [],
+      store: dashboardStore(),
+      refreshing: false,
     }
   },
-  mounted: function () {
-    this.store = dashboardStore();
-    this.load();
-  },
   methods: {
-    load: function () {
-      this.update_scan_data();
-    },
-    update_scan_data: function () {
-      http.get('/api/v1/scans').then(data => {
-        this.scans = data.data;
-        this.store.update_scan_monitor_data(data.data);
-      });
+    load: async function () {
+      if (this.refreshing) {
+        return
+      }
+
+      this.refreshing = true
+      try {
+        await this.store.load_scan_monitor_data()
+      } catch (error) {
+        console.error('Unable to refresh scan monitor data.', error)
+      } finally {
+        this.refreshing = false
+      }
     },
   },
-  computed: mapState(dashboardStore, ['user']),
+  computed: {
+    ...mapState(dashboardStore, ['user', 'scan_monitor_data']),
+    scans() {
+      return this.scan_monitor_data
+    }
+  },
 }
 </script>
