@@ -623,8 +623,11 @@
 		},
 		"edit-domain": {
 			"cancel": "Annuleren",
+			"domain": "Domein",
+			"edit": "Bewerken",
 			"remove": "Verwijderen",
-			"save": "Opslaan"
+			"save": "Opslaan",
+			"undo": "Ongedaan maken"
 		},
 		"list": {
 			"add-domains": {

@@ -623,8 +623,11 @@
 		},
 		"edit-domain": {
 			"cancel": "Cancel",
+			"domain": "Domain",
+			"edit": "Edit",
 			"remove": "Remove",
-			"save": "Save"
+			"save": "Save",
+			"undo": "Undo"
 		},
 		"list": {
 			"add-domains": {
