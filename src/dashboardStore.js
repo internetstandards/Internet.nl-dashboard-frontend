@@ -1,4 +1,12 @@
 import {defineStore} from 'pinia'
+import http from '@/httpclient'
+
+function isActiveScan(scan) {
+  const state = String(scan?.state || '').toLowerCase()
+  const hasErrorState = state.startsWith('error') || state.endsWith('_error')
+
+  return scan?.finished !== true && !['finished', 'cancelled'].includes(state) && !hasErrorState
+}
 
 // main is the name of the store. It is unique across your application
 // and will appear in devtools
@@ -69,6 +77,9 @@ export const dashboardStore = defineStore('vuex', {
   getters: {
     get_user(){
       return this.user
+    },
+    active_scan_count(state) {
+      return state.scan_monitor_data.filter(isActiveScan).length
     }
   },
 
@@ -79,6 +90,24 @@ export const dashboardStore = defineStore('vuex', {
     update_scan_monitor_data
       (value) {
       this.scan_monitor_data = value;
+    },
+    async load_scan_monitor_data() {
+      if (!this.user.is_authenticated) {
+        this.update_scan_monitor_data([])
+        return []
+      }
+
+      const accountId = this.user.account_id
+      const response = await http.get('/api/v1/scans')
+
+      // Do not apply a response from a session that was logged out or switched
+      // while the request was in progress.
+      if (!this.user.is_authenticated || this.user.account_id !== accountId) {
+        return []
+      }
+
+      this.update_scan_monitor_data(response.data)
+      return response.data
     },
     set_locale(value) {
       this.locale = value;

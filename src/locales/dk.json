@@ -623,8 +623,15 @@
 		},
 		"edit-domain": {
 			"cancel": "Annuller",
+			"delete": "Slet",
+			"delete-confirmation-message": "Er du sikker på, at du vil slette {domain} fra listen {list}?",
+			"delete-confirmation-title": "Slet domæne?",
+			"domain": "Domæne",
+			"edit": "Rediger",
 			"remove": "Fjerne",
-			"save": "Gem"
+			"save": "Gem",
+			"skip-delete-confirmation": "Spørg ikke igen for denne liste i en time.",
+			"undo": "Fortryd"
 		},
 		"list": {
 			"add-domains": {
@@ -662,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Klar",
+				"delete-confirmation-message": "Er du sikker på, at du vil slette {count} valgte domæner fra listen {list}?",
+				"delete-confirmation-title": "Slet valgte domæner?",
 				"Domain": "Domæne",
 				"filtered pagination": "Side {0}/{1} af {2} filtreret fra {3} domæner.",
 				"No filtered results": "Filteret gav ingen resultater. Du kan kun søge efter komplette tags.",
@@ -720,21 +729,19 @@
 		"list-manager": {
 			"bulk_upload_link": "Upload regneark med domæner",
 			"icon_legend": {
-				"can_connect": "Kan oprette forbindelse til denne tjeneste, vil (sandsynligvis) blive scannet.",
-				"cannot_connect": "Tjeneste ikke tilgængelig, vil (sandsynligvis) ikke blive scannet.",
-				"intro": "Domænerne på listerne nedenfor vil blive inkluderet i hver scanning. Før en scanning udføres, kontrolleres tjenestens berettigelse. Denne kontrol udføres altid i forbindelse med scanningen. For at give et indblik i, hvor forbundne disse tjenester er, vises den sidst kendte tilstand som det første ikon.",
+				"intro": "Disse ikoner viser den senest kendte scanningsegnethed for hver tjeneste. Egnetheden kontrolleres igen før hver scanning.",
+				"mail_eligible": "E-mail-scanning er tilgængelig.",
+				"mail_ineligible": "E-mail-scanning er ikke tilgængelig.",
 				"title": "Forklaring på brugte ikoner",
-				"unknown_connectivity": "Det vides ikke, om denne tjeneste er tilgængelig, men den vil blive scannet, hvis den er tilgængelig."
+				"web_eligible": "Webscanning er tilgængelig.",
+				"web_ineligible": "Webscanning er ikke tilgængelig."
 			},
 			"icons": {
-				"can_connect": "Kan forbinde-ikon",
-				"cannot_connect": "Kan ikke oprette forbindelse",
 				"list_closed": "Liste lukket",
 				"list_opened": "Liste åbnet",
 				"list_warning": "Advarsel",
 				"scan": "Scanning",
-				"settings": "Indstillinger",
-				"unknown_connectivity": "Ikon for ukendt forbindelse"
+				"settings": "Indstillinger"
 			},
 			"inital_list": {
 				"alternative_start": "eller upload et regneark med domæner her...",
@@ -753,9 +760,7 @@
 			"eligeble_mail": "{0} er kvalificeret til e-mail-scanninger",
 			"eligeble_web": "{0} er kvalificeret til webscanninger",
 			"not_eligeble_mail": "{0} er ikke berettiget til e-mail-scanninger. Vil blive kontrolleret igen, når du starter en scanning.",
-			"not_eligeble_web": "{0} er ikke berettiget til webscanninger. Vil blive kontrolleret igen, når du starter en scanning.",
-			"unknown_eligeble_mail": "Det vides endnu ikke, om {0} kan mail-scannes.",
-			"unknown_eligeble_web": "Det vides endnu ikke, om {0} kan webscannes."
+			"not_eligeble_web": "{0} er ikke berettiget til webscanninger. Vil blive kontrolleret igen, når du starter en scanning."
 		},
 		"spreadsheet-upload": {
 			"back_to_domains": "Tilbage til domæner",

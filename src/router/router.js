@@ -79,11 +79,20 @@ const publicRoutes = [
 
 const privateRoutes = [
   {
-    path: '/domains/list/:list',
+    path: '/domains',
     component: DomainListManager,
+    name: 'domains',
+    meta: {title: 'domains', access: 'private'}
+  },
+  {
+    path: '/domains/list/:list',
     name: 'numbered_lists',
-    meta: {title: 'domains', access: 'private'},
-    alias: ['/domains']
+    redirect: to => ({
+      name: 'domains',
+      query: {...to.query, open: String(to.params.list)},
+      hash: to.hash || `#${to.params.list}`,
+    }),
+    meta: {title: 'domains', access: 'private'}
   },
   {
     path: '/domains/upload',

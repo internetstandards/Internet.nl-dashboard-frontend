@@ -29,45 +29,69 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
     font-size: 1.2em;
     font-weight: bold;
 }
+
+.scan-eligibility-legend {
+    display: grid;
+    gap: 0.5rem 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.scan-eligibility-legend-icon {
+    flex: 0 0 auto;
+    width: 1.3em;
+    height: 1.3em;
+}
 </style>
 <template>
     <div>
-        <content-block>
-            <h1><i-bi-card-list /> {{ $t("domain.list-manager.title") }}</h1>
-            <p class="mb-4">{{ $t("domain.list-manager.intro") }}</p>
-            <p>
+        <page-header
+            :title="$t('domain.list-manager.title')"
+            :subtitle="$t('domain.list-manager.intro')"
+        >
+            <template #icon>
+              <i-bi-card-list />
+            </template>
+
+            <template #actions>
                 <b-button variant="warning" @click="show_add_new = true" accesskey="n">📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</b-button>
-                &nbsp;
                 <router-link to="/domains/upload" custom v-slot="{ navigate }">
                   <b-button variant="warning" @click="navigate" @keypress.enter="navigate">
                   📓 {{ $t("domain.list-manager.bulk_upload_link") }}
                   </b-button>
                 </router-link>
-            </p>
+            </template>
 
-            <collapse-panel :title='$t("domain.list-manager.icon_legend.title")' class="mt-2">
+            <collapse-panel :title='$t("domain.list-manager.icon_legend.title")'>
                 <template #content>
                   <b-alert variant="info" :model-value="true" >
                     <p>{{ $t("domain.list-manager.icon_legend.intro") }}</p>
-                    <ul>
-                        <li>
-                            <span role="img" :aria-label='$t("domain.list-manager.icons.can_connect")'>🌍️</span>
-                            {{ $t("domain.list-manager.icon_legend.can_connect") }}
+                    <ul class="scan-eligibility-legend list-unstyled mb-0">
+                        <li class="d-flex align-items-center gap-2">
+                            <i-mdi-web-check class="scan-eligibility-legend-icon text-success" aria-hidden="true" />
+                            {{ $t("domain.list-manager.icon_legend.web_eligible") }}
                         </li>
-                        <li>
-                            <span role="img" :aria-label='$t("domain.list-manager.icons.unknown_connectivity")'>❓</span>
-                            {{ $t("domain.list-manager.icon_legend.unknown_connectivity") }}
+                        <li class="d-flex align-items-center gap-2">
+                            <i-mdi-web-remove class="scan-eligibility-legend-icon text-danger" aria-hidden="true" />
+                            {{ $t("domain.list-manager.icon_legend.web_ineligible") }}
                         </li>
-                        <li><span role="img" :aria-label='$t("domain.list-manager.icons.cannot_connect")'>🚫</span>
-                            {{ $t("domain.list-manager.icon_legend.cannot_connect") }}
+                      </ul>
+                    <ul class="scan-eligibility-legend list-unstyled mb-0">
+                        <li class="d-flex align-items-center gap-2">
+                            <i-mdi-email-check-outline class="scan-eligibility-legend-icon text-success" aria-hidden="true" />
+                            {{ $t("domain.list-manager.icon_legend.mail_eligible") }}
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i-mdi-email-remove class="scan-eligibility-legend-icon text-danger" aria-hidden="true" />
+                            {{ $t("domain.list-manager.icon_legend.mail_ineligible") }}
                         </li>
                     </ul>
 
                     </b-alert>
                 </template>
             </collapse-panel>
+        </page-header>
 
-            <b-modal id="show_add_new" v-model="show_add_new" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
+        <b-modal id="show_add_new" v-model="show_add_new" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
               <template #header><h4>📚 {{ $t("domain.list-manager.new_list.add_new_list") }}</h4></template>
 
                 <div slot="default">
@@ -143,9 +167,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
                         {{ $t("domain.list-manager.new_list.button_create_list_label") }}
                     </b-button>
                 </template>
-            </b-modal>
-
-        </content-block>
+        </b-modal>
 
         <loading :loading="loading"></loading>
 
@@ -166,6 +188,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
         -->
         <url-list
             :initial_list="list"
+            :open_requested="requested_open_list_ids.includes(String(list.id))"
             :start_opened="!!list.start_opened"
             :maximum_domains="maximum_domains_per_list"
             :key="list.id"
@@ -191,6 +214,7 @@ import http from "@/httpclient";
 import CollapsePanel from '@/components/CollapsePanel.vue'
 import { dashboardStore } from '@/dashboardStore'
 import {mapState} from 'pinia'
+import {parseOpenListIds} from '@/components/domains/openListQuery'
 
 
 export default {
@@ -293,6 +317,9 @@ export default {
         }
     },
     computed: {
+        requested_open_list_ids: function () {
+            return this.$route.name === 'domains' ? parseOpenListIds(this.$route.query) : []
+        },
         one_of_the_lists_contains_warnings: function () {
             let contains_warnings = false;
             this.lists.forEach((list) => {

@@ -1,12 +1,16 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
+    <page-header
+      :title="$t('account.page.title')"
+      :subtitle="$t('account.page.intro')"
+    >
+      <template #icon>
+        <i-bi-person-circle />
+      </template>
+    </page-header>
+
     <content-block>
-      <h1>
-        <i-bi-person-circle/>
-        {{ $t("account.page.title") }}
-      </h1>
-      <p>{{ $t("account.page.intro") }}</p>
       <!-- use lazy so that the visiblemetrics is updated when that's visited, instead of manually reloading. -->
       <b-tabs
         v-model="profileTabIndex"

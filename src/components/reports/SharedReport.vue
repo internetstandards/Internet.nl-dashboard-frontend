@@ -1,11 +1,15 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div id="report-template">
-
-    <!-- <content-block class="do-not-print">
-        <h1>{{ $t("report.shared-report.title") }}</h1>
-        <p>{{ $t("report.shared-report.intro") }}</p>
-    </content-block> -->
+    <page-header
+      class="do-not-print"
+      :title="$t('report.shared-report.title')"
+      :subtitle="$t('report.shared-report.intro')"
+    >
+      <template #icon>
+        <i-bi-file-bar-graph />
+      </template>
+    </page-header>
 
     <content-block v-if="reports_to_load > 0">
         <loading :loading="reports_to_load > 0"></loading>

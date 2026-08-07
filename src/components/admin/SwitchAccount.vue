@@ -1,9 +1,16 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-    <content-block>
-        <h1><i-bi-person-bounding-box /> {{ $t("admin.switch_account.title") }}</h1>
-        <p> {{ $t("admin.switch_account.intro") }}</p>
+  <div>
+    <page-header
+        :title="$t('admin.switch_account.title')"
+        :subtitle="$t('admin.switch_account.intro')"
+    >
+      <template #icon>
+        <i-bi-person-bounding-box />
+      </template>
+    </page-header>
 
+    <content-block>
       {{this.current_account.id}}: {{this.current_account.name}}
 
         <template v-if="server_response.success">
@@ -76,6 +83,7 @@
             </b-table>
         </p>
     </content-block>
+  </div>
 </template>
 
 <script>

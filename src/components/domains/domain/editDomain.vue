@@ -1,44 +1,144 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
-input {
-  margin-bottom: 0 !important;
+.domain-display,
+.domain-editor,
+.domain-editor-actions {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
 }
 
-button {
-  font-size: 0.7em !important;
-  margin: 0 !important;
-  height: 23px;
+.domain-display,
+.domain-editor {
+  flex-wrap: wrap;
+  min-width: 0;
+  white-space: normal;
+}
+
+.domain-value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.domain-editor-input {
+  flex: 1 1 18rem;
+  min-width: min(12rem, 100%);
+}
+
+.domain-editor-actions {
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.domain-action-icon {
+  flex: 0 0 auto;
 }
 </style>
 
 <template>
-  <div>
-
-    <b-button variant="warning" @click="start_url_editing()" aria-expanded="false"> 🖊 </b-button> &nbsp;
-
-    <a v-if="!editing" @click="start_url_editing()">
+  <div v-if="!editing" class="domain-display">
+    <span class="domain-value">
       <template v-if="displayed_url.subdomain">
         {{ displayed_url.subdomain }}.</template><b>{{ displayed_url.domain }}.{{ displayed_url.suffix }}</b>
-    </a>
-
-    <span v-if="editing">
-      <input autofocus :placeholder="edited_url_value" v-model="edited_url_value">&nbsp;
-      <a @click="save()"><span class="visually-hidden">{{ $t("domain.edit-domain.save") }}</span>✅</a>&nbsp;
-      <a @click="cancel()"><span class="visually-hidden">{{ $t("domain.edit-domain.cancel") }}</span>⏪</a>&nbsp;
-      <a @click="delete_url(list.id, url.id)"><span class="visually-hidden">{{ $t("domain.edit-domain.remove") }}</span>🗑️</a>
     </span>
 
+    <b-button
+        size="sm"
+        variant="outline-primary"
+        type="button"
+        @click="start_url_editing"
+    >
+      <i-bi-pencil class="domain-action-icon" aria-hidden="true" />
+      {{ $t("domain.edit-domain.edit") }}
+    </b-button>
   </div>
+
+  <form v-else :id="editorId" class="domain-editor" @submit.prevent="save" @keydown.esc="cancel">
+    <label class="visually-hidden" :for="inputId">{{ $t("domain.edit-domain.domain") }}</label>
+    <b-form-input
+        :id="inputId"
+        ref="urlInput"
+        v-model="edited_url_value"
+        class="domain-editor-input"
+        type="text"
+    />
+
+    <div class="domain-editor-actions">
+      <b-button size="sm" variant="success" type="submit">
+        <i-bi-floppy class="domain-action-icon" aria-hidden="true" />
+        {{ $t("domain.edit-domain.save") }}
+      </b-button>
+      <b-button size="sm" variant="outline-secondary" type="button" @click="cancel">
+        <i-bi-arrow-counterclockwise class="domain-action-icon" aria-hidden="true" />
+        {{ $t("domain.edit-domain.undo") }}
+      </b-button>
+      <b-button size="sm" variant="danger" type="button" @click="request_delete">
+        <i-bi-trash class="domain-action-icon" aria-hidden="true" />
+        {{ $t("domain.edit-domain.delete") }}
+      </b-button>
+    </div>
+  </form>
+
+  <b-modal
+      v-if="deleteConfirmationVisible"
+      v-model="deleteConfirmationVisible"
+      :id="deleteModalId"
+      :title="$t('domain.edit-domain.delete-confirmation-title')"
+      header-bg-variant="danger"
+      header-text-variant="light"
+      no-fade
+  >
+    <p>
+      {{ $t("domain.edit-domain.delete-confirmation-message", {
+        domain: url.url,
+        list: list.name,
+      }) }}
+    </p>
+
+    <b-form-checkbox :id="deleteSuppressionId" v-model="suppressDeleteConfirmation">
+      {{ $t("domain.edit-domain.skip-delete-confirmation") }}
+    </b-form-checkbox>
+
+    <template #footer>
+      <b-button variant="secondary" type="button" @click="cancel_delete">
+        {{ $t("domain.edit-domain.cancel") }}
+      </b-button>
+      <b-button variant="danger" type="button" @click="confirm_delete">
+        <i-bi-trash class="domain-action-icon" aria-hidden="true" />
+        {{ $t("domain.edit-domain.delete") }}
+      </b-button>
+    </template>
+  </b-modal>
 </template>
 
-<script>
+<script lang="ts">
 import http from "@/httpclient";
+import {
+  isDomainDeleteConfirmationSuppressed,
+  suppressDomainDeleteConfirmationForOneHour,
+} from '@/components/domains/domain/deleteConfirmation'
 
 export default {
   name: "editDomain",
+  computed: {
+    editorId() {
+      return `domain-editor-${this.list.id}-${this.url.id}`
+    },
+    inputId() {
+      return `domain-url-${this.list.id}-${this.url.id}`
+    },
+    deleteModalId() {
+      return `delete-domain-modal-${this.list.id}-${this.url.id}`
+    },
+    deleteSuppressionId() {
+      return `skip-delete-domain-confirmation-${this.list.id}-${this.url.id}`
+    },
+  },
   data: function () {
     return {
       editing: false,
+      deleteConfirmationVisible: false,
+      suppressDeleteConfirmation: false,
 
 
       url_edit: '',
@@ -70,7 +170,7 @@ export default {
   methods: {
     start_url_editing: function () {
       this.editing = true;
-
+      this.$nextTick(() => this.$refs.urlInput?.$el?.focus())
     },
     cancel: function () {
       this.edited_url_value = this.original_url_value;
@@ -78,6 +178,33 @@ export default {
     },
     delete_url: function () {
       this.$emit('domain_deleted');
+    },
+    request_delete: function () {
+      if (this.is_delete_confirmation_suppressed()) {
+        this.delete_url()
+        return
+      }
+
+      this.suppressDeleteConfirmation = false
+      this.deleteConfirmationVisible = true
+    },
+    cancel_delete: function () {
+      this.deleteConfirmationVisible = false
+      this.suppressDeleteConfirmation = false
+    },
+    confirm_delete: function () {
+      if (this.suppressDeleteConfirmation) {
+        this.suppress_delete_confirmation_for_one_hour()
+      }
+
+      this.deleteConfirmationVisible = false
+      this.delete_url()
+    },
+    is_delete_confirmation_suppressed: function () {
+      return isDomainDeleteConfirmationSuppressed(this.list.id)
+    },
+    suppress_delete_confirmation_for_one_hour: function () {
+      suppressDomainDeleteConfirmationForOneHour(this.list.id)
     },
     save: function () {
       /*

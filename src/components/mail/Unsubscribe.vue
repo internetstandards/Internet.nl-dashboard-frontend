@@ -1,9 +1,13 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template type="text/x-template" id="unsubscribe_template">
     <div>
-        <content-block>
-            <h1>{{ $t("mail.unsubscribe.title") }}</h1>
+        <page-header :title="$t('mail.unsubscribe.title')">
+            <template #icon>
+                <i-bi-envelope-x />
+            </template>
+        </page-header>
 
+        <content-block>
             <loading :loading="loading"></loading>
 
             <div v-if="unsubscribed">

@@ -1,6 +1,14 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
   <div>
+    <page-header
+      title="Component laboratory"
+      subtitle="This page is used to test components."
+    >
+      <template #icon>
+        <i-bi-tools />
+      </template>
+    </page-header>
 
     <content-block>
       collapse test:
@@ -26,11 +34,6 @@
   <div class="mt-2">This is data that is being collapsed</div>
 </BCollapse>
     </content-block>
-
-    <content-block>
-      <h1>This page is used to test components.</h1>
-    </content-block>
-
 
     <content-block>
 

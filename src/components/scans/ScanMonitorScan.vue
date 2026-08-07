@@ -7,9 +7,13 @@ ol {
 .card-header {
     min-height: 5em;
 }
+.scan-monitor-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 </style>
 <template>
-    <b-card class="shadow ml-1 mr-1"
+    <b-card class="h-100 shadow-sm scan-monitor-card"
         :header-bg-variant="header_color"
         header-text-variant="light"
         footer-bg-variant="info-outline"
@@ -50,7 +54,7 @@ ol {
             </template>
         </template>
         📘
-        <router-link :to="{ name: 'numbered_lists', params: { list: scan.list_id }}">
+        <router-link :to="{ name: 'domains', query: {open: String(scan.list_id)}, hash: `#${scan.list_id}` }">
             {{ $t("scanmonitor.scan.open_list") }}
         </router-link>
         <br><br>

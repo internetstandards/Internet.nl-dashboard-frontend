@@ -623,8 +623,15 @@
 		},
 		"edit-domain": {
 			"cancel": "Annuleren",
+			"delete": "Verwijderen",
+			"delete-confirmation-message": "Weet u zeker dat u {domain} uit de lijst {list} wilt verwijderen?",
+			"delete-confirmation-title": "Domein verwijderen?",
+			"domain": "Domein",
+			"edit": "Bewerken",
 			"remove": "Verwijderen",
-			"save": "Opslaan"
+			"save": "Opslaan",
+			"skip-delete-confirmation": "Voor deze lijst een uur lang niet opnieuw vragen.",
+			"undo": "Ongedaan maken"
 		},
 		"list": {
 			"add-domains": {
@@ -662,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Wis",
+				"delete-confirmation-message": "Weet u zeker dat u {count} geselecteerde domeinen uit de lijst {list} wilt verwijderen?",
+				"delete-confirmation-title": "Geselecteerde domeinen verwijderen?",
 				"Domain": "Domein",
 				"filtered pagination": "Pagina {0}/{1} van {2} zoekresultaten uit {3} domeinen.",
 				"No filtered results": "De zoekopdracht had geen resultaat. Let op: tags moeten volledig worden ingevoerd.",
@@ -720,21 +729,19 @@
 		"list-manager": {
 			"bulk_upload_link": "Spreadsheet met domeinen uploaden",
 			"icon_legend": {
-				"can_connect": "Deze dienst is bereikbaar en wordt (waarschijnlijk) gescanned.",
-				"cannot_connect": "Deze dienst is niet beschikbaar, en wordt (waarschijnlijk) niet gescand.",
-				"intro": "De domeinen in de lijsten hieronder worden gebruikt bij iedere scan. Voordat een scan is uitgevoerd wordt per domein gekeken of het domein aan de voorwaarden voldoet om gescand te worden. In de lijst hieronder wordt daarvan een beeld gegeven, echter kan dat beeld verouderd zijn: dit wordt ververst voor iedere scan.",
+				"intro": "Deze pictogrammen tonen de laatst bekende geschiktheid voor elk type scan. Dit wordt voor iedere scan opnieuw gecontroleerd.",
+				"mail_eligible": "E-mailscan is mogelijk.",
+				"mail_ineligible": "E-mailscan is niet mogelijk.",
 				"title": "Legenda van gebruikte pictogrammen",
-				"unknown_connectivity": "Niet bekend of deze dienst beschikbaar is, dit wordt later gecontroleerd."
+				"web_eligible": "Webscan is mogelijk.",
+				"web_ineligible": "Webscan is niet mogelijk."
 			},
 			"icons": {
-				"can_connect": "",
-				"cannot_connect": "",
 				"list_closed": "",
 				"list_opened": "",
 				"list_warning": "",
 				"scan": "",
-				"settings": "",
-				"unknown_connectivity": ""
+				"settings": ""
 			},
 			"inital_list": {
 				"alternative_start": "of upload hier een spreadsheet met domeinen...",
@@ -753,9 +760,7 @@
 			"eligeble_mail": "E-mail scannen is mogelijk",
 			"eligeble_web": "Web scan is mogelijk",
 			"not_eligeble_mail": "Kan geen E-mail scan uitvoeren (wordt opnieuw gecheckt bij het starten van de scan)",
-			"not_eligeble_web": "Web scan kan niet worden uitgevoerd. Dit wordt opnieuw gecheckt bij het starten van de scan.",
-			"unknown_eligeble_mail": "Onbekend of E-mail scannen mogelijk is",
-			"unknown_eligeble_web": "Niet bekend of het mogelijk is een web scan uit te voeren"
+			"not_eligeble_web": "Web scan kan niet worden uitgevoerd. Dit wordt opnieuw gecheckt bij het starten van de scan."
 		},
 		"spreadsheet-upload": {
 			"back_to_domains": "Terug naar domeinen",
@@ -843,7 +848,7 @@
 			"scanning-done-click-reload": "Klaar met zoeken, klik om de domeinlijst te herladen"
 		},
 		"www-discovery-modal": {
-			"cancel": "Back to the list",
+			"cancel": "Terug naar de lijst",
 			"message": "Voeg automatisch subdomeinen toe voor alle hoofddomeinen in de huidige lijst. Ieder subdomein wordt getest voor mail, web of beide afhankelijk van de instellingen van de lijst. Wanneer een geldig en bereikbaar subdomein is gevonden wordt deze toegevoegd. Deze actie kan even duren voor grote lijsten en kan erg veel subdomeinen opleveren.",
 			"ok": "Zoek www. subdomeinen",
 			"title": "Zoek 'www' subdomeinen"

@@ -640,10 +640,11 @@ export default {
       }
 
       const urls = [];
+      const normalized_keyword = String(keyword).toLowerCase();
       // keep the search order, use a correctly ordered set of original urls:
       const tmp_urls = Object.freeze(this.order_urls(this.original_urls));
       tmp_urls.forEach(function (value) {
-        if (value.url.includes(keyword))
+        if (value.url.includes(normalized_keyword))
           urls.push(value)
       });
       this.filtered_urls = Object.freeze(this.order_urls(urls));

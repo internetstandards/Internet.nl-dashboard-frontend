@@ -1,19 +1,50 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <style scoped>
+.scan-monitor-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .scan-monitor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .scan-monitor-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 </style>
 <template>
   <div>
-    <content-block>
-      <h1><i-bi-search /> {{ $t("scanmonitor.page.title") }}</h1>
-      <p>{{ $t("scanmonitor.page.intro") }}</p>
-      <autorefresh :visible="true" :callback="load" :refresh_per_seconds="60" v-if="user.is_authenticated" />
-    </content-block>
+    <page-header
+      :title="$t('scanmonitor.page.title')"
+      :subtitle="$t('scanmonitor.page.intro')"
+    >
+      <template #icon>
+        <i-bi-search />
+      </template>
+      <template #actions>
+        <b-button variant="warning" :disabled="refreshing" :aria-busy="refreshing" @click="load">
+          <b-spinner v-if="refreshing" small class="me-1" aria-hidden="true" />
+          <span v-else aria-hidden="true">🔁</span>
+          {{ $t("app.autorefresh.refresh_now") }}
+        </b-button>
+      </template>
+    </page-header>
 
-    <b-row class="p-2 pl-2 pr-2" cols="1" cols-sm="1" cols-lg="3">
-      <b-col class="p-1 pb-3" v-bind:key="scan.id" v-for="scan in scans">
-        <ScanMonitorScan :scan="scan" @scan-stopped="load"></ScanMonitorScan>
-      </b-col>
-    </b-row>
+    <div class="scan-monitor-grid">
+      <ScanMonitorScan
+        v-for="scan in scans"
+        :key="scan.id"
+        :scan="scan"
+        @scan-stopped="load"
+      />
+    </div>
 
     <content-block v-if="!scans.length">{{ $t("scanmonitor.page.no_scans") }}</content-block>
 
@@ -24,38 +55,42 @@
 <script>
 
 import ScanMonitorScan from './ScanMonitorScan.vue'
-import http from "@/httpclient";
-import autorefresh from '@/components/autorefresh.vue'
 import { dashboardStore } from '@/dashboardStore'
 import {mapState} from "pinia";
 
 export default {
   components: {
-    ScanMonitorScan,
-    autorefresh
+    ScanMonitorScan
   },
   name: 'scan_monitor',
 
   data: function () {
     return {
-      scans: [],
+      store: dashboardStore(),
+      refreshing: false,
     }
   },
-  mounted: function () {
-    this.store = dashboardStore();
-    this.load();
-  },
   methods: {
-    load: function () {
-      this.update_scan_data();
-    },
-    update_scan_data: function () {
-      http.get('/api/v1/scans').then(data => {
-        this.scans = data.data;
-        this.store.update_scan_monitor_data(data.data);
-      });
+    load: async function () {
+      if (this.refreshing) {
+        return
+      }
+
+      this.refreshing = true
+      try {
+        await this.store.load_scan_monitor_data()
+      } catch (error) {
+        console.error('Unable to refresh scan monitor data.', error)
+      } finally {
+        this.refreshing = false
+      }
     },
   },
-  computed: mapState(dashboardStore, ['user']),
+  computed: {
+    ...mapState(dashboardStore, ['user', 'scan_monitor_data']),
+    scans() {
+      return this.scan_monitor_data
+    }
+  },
 }
 </script>

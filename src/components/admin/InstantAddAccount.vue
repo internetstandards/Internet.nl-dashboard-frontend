@@ -1,14 +1,18 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <content-block>
+  <div>
+    <page-header
+      :title="$t('admin.instant_add_account.title')"
+      :subtitle="$t('admin.instant_add_account.intro')"
+    >
+      <template #icon>
+        <i-bi-person-plus />
+      </template>
+    </page-header>
 
-    <h1>
-      <i-bi-person-plus/>
-      {{ $t("admin.instant_add_account.title") }}
-    </h1>
-    <p>{{ $t("admin.instant_add_account.intro") }}</p>
+    <content-block>
 
-    <p>
+    <div>
       <server-response :response="server_response"
                        :message='$t("admin.instant_add_account." + server_response.message)'></server-response>
 
@@ -76,9 +80,10 @@
       <br><br>
       <server-response :response="server_response"
                        :message='$t("admin.instant_add_account." + server_response.message)'></server-response>
-    </p>
+    </div>
 
-  </content-block>
+    </content-block>
+  </div>
 </template>
 <script>
 import http from "@/httpclient";

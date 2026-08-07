@@ -12,6 +12,16 @@
   white-space: nowrap;
 }
 
+.scan-count-badge {
+  border-bottom: 0 !important;
+  font-size: 0.65em;
+  left: calc(0% - 0.15rem);
+  min-width: 1.0rem;
+  position: absolute;
+  top: 0.1rem;
+  z-index: 1;
+}
+
 
 @media (max-width: 499px) {
   #site-title a {
@@ -102,7 +112,18 @@
             </template>
 
             <b-nav-item to="/domains" accesskey="d" exact exact-active-class="active"><span><i-bi-card-list /> {{$t("app.menu.domains") }}</span></b-nav-item>
-            <b-nav-item to="/scans" accesskey="s" exact exact-active-class="active"><span><i-bi-search /> {{ $t("app.menu.scans") }}</span></b-nav-item>
+            <b-nav-item to="/scans" accesskey="s" exact exact-active-class="active">
+              <span class="position-relative">
+                <i-bi-search /> {{ $t("app.menu.scans") }}
+                <b-badge
+                  v-if="active_scan_count"
+                  variant="warning"
+                  pill
+                  class="scan-count-badge"
+                  aria-live="polite"
+                >{{ active_scan_count }}</b-badge>
+              </span>
+            </b-nav-item>
             <b-nav-item to="/report" accesskey="r" exact exact-active-class="active"><span><i-bi-file-bar-graph /> {{$t("app.menu.reports") }}</span></b-nav-item>
 
             <b-nav-item-dropdown exact exact-active-class="active">
@@ -195,6 +216,6 @@ export default {
       this.supported_languages = this.config.app.supported_languages;
     }
   },
-  computed: mapState(dashboardStore, ['config', 'user']),
+  computed: mapState(dashboardStore, ['config', 'user', 'active_scan_count']),
 }
 </script>

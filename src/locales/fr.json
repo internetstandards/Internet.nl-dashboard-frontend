@@ -623,8 +623,15 @@
 		},
 		"edit-domain": {
 			"cancel": "Annuler",
+			"delete": "Supprimer",
+			"delete-confirmation-message": "Voulez-vous vraiment supprimer {domain} de la liste {list} ?",
+			"delete-confirmation-title": "Supprimer le domaine ?",
+			"domain": "Domaine",
+			"edit": "Modifier",
 			"remove": "Retirer",
-			"save": "Économiser"
+			"save": "Économiser",
+			"skip-delete-confirmation": "Ne plus demander pour cette liste pendant une heure.",
+			"undo": "Annuler"
 		},
 		"list": {
 			"add-domains": {
@@ -662,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Clair",
+				"delete-confirmation-message": "Voulez-vous vraiment supprimer les {count} domaines sélectionnés de la liste {list} ?",
+				"delete-confirmation-title": "Supprimer les domaines sélectionnés ?",
 				"Domain": "Domaine",
 				"filtered pagination": "Page {0}/{1} de {2} filtrée à partir de {3} domaines.",
 				"No filtered results": "Le filtre n'a donné aucun résultat. Vous ne pouvez rechercher que des balises complètes.",
@@ -720,21 +729,19 @@
 		"list-manager": {
 			"bulk_upload_link": "Télécharger la feuille de calcul avec les domaines",
 			"icon_legend": {
-				"can_connect": "Si vous pouvez vous connecter à ce service, vous serez (probablement) scanné.",
-				"cannot_connect": "Service non disponible, ne sera (probablement) pas scanné.",
-				"intro": "Les domaines figurant dans les listes ci-dessous seront inclus dans chaque analyse. Avant qu'une analyse ne soit effectuée, l'éligibilité du service est vérifiée. Cette vérification est toujours effectuée pour l'analyse. Pour donner un aperçu du degré de connexion de ces services, le dernier état connu est présenté sous la forme de la première icône.",
+				"intro": "Ces icônes indiquent la dernière éligibilité connue de chaque service. L'éligibilité est vérifiée à nouveau avant chaque analyse.",
+				"mail_eligible": "L'analyse du courrier électronique est disponible.",
+				"mail_ineligible": "L'analyse du courrier électronique n'est pas disponible.",
 				"title": "Légende des icônes utilisées",
-				"unknown_connectivity": "On ne sait pas si ce service est disponible, il sera scanné s'il est disponible."
+				"web_eligible": "L'analyse web est disponible.",
+				"web_ineligible": "L'analyse web n'est pas disponible."
 			},
 			"icons": {
-				"can_connect": "Icône de connexion possible",
-				"cannot_connect": "Impossible de se connecter",
 				"list_closed": "Liste clôturée",
 				"list_opened": "Liste ouverte",
 				"list_warning": "Avertissement",
 				"scan": "Scanner",
-				"settings": "Paramètres",
-				"unknown_connectivity": "Icône de connectivité inconnue"
+				"settings": "Paramètres"
 			},
 			"inital_list": {
 				"alternative_start": "ou téléchargez une feuille de calcul avec les domaines ici...",
@@ -753,9 +760,7 @@
 			"eligeble_mail": "{0} est éligible pour les balayages par courrier électronique",
 			"eligeble_web": "{0} est éligible pour les balayages web",
 			"not_eligeble_mail": "{0} n'est pas éligible pour les analyses de courrier électronique. Sera vérifié à nouveau lors du lancement d'une analyse.",
-			"not_eligeble_web": "{0} n'est pas éligible pour les analyses web. Il sera à nouveau vérifié lors du lancement d'un balayage.",
-			"unknown_eligeble_mail": "On ne sait pas encore si {0} peut être scanné par courrier.",
-			"unknown_eligeble_web": "On ne sait pas encore si {0} peut être scanné sur le web."
+			"not_eligeble_web": "{0} n'est pas éligible pour les analyses web. Il sera à nouveau vérifié lors du lancement d'un balayage."
 		},
 		"spreadsheet-upload": {
 			"back_to_domains": "Retour aux domaines",

@@ -623,8 +623,15 @@
 		},
 		"edit-domain": {
 			"cancel": "Cancel",
+			"delete": "Delete",
+			"delete-confirmation-message": "Are you sure you want to delete {domain} from the list {list}?",
+			"delete-confirmation-title": "Delete domain?",
+			"domain": "Domain",
+			"edit": "Edit",
 			"remove": "Remove",
-			"save": "Save"
+			"save": "Save",
+			"skip-delete-confirmation": "Do not ask again for this list for one hour.",
+			"undo": "Undo"
 		},
 		"list": {
 			"add-domains": {
@@ -662,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Clear",
+				"delete-confirmation-message": "Are you sure you want to delete {count} selected domains from the list {list}?",
+				"delete-confirmation-title": "Delete selected domains?",
 				"Domain": "Domain",
 				"filtered pagination": "Page {0}/{1} of {2} filtered from {3} domains.",
 				"No filtered results": "The filter yielded no results. You can only search for complete tags.",
@@ -720,21 +729,19 @@
 		"list-manager": {
 			"bulk_upload_link": "Upload spreadsheet with domains",
 			"icon_legend": {
-				"can_connect": "Can connect to this service, will (probably) be scanned.",
-				"cannot_connect": "Service not available, will (probably) not be scanned.",
-				"intro": "The domains in the lists below will be included in each scan. Before a scan is performed, the eligibility of the service is checked. This check is always performed for the scan. To give an insight in how connected these services are, the last known state is presented as the first icon.",
+				"intro": "These icons show the last known scan eligibility for each service. Eligibility is checked again before every scan.",
+				"mail_eligible": "Mail scanning is available.",
+				"mail_ineligible": "Mail scanning is not available.",
 				"title": "Legend of used icons",
-				"unknown_connectivity": "Unknown if this service is available, will be scanned if available."
+				"web_eligible": "Web scanning is available.",
+				"web_ineligible": "Web scanning is not available."
 			},
 			"icons": {
-				"can_connect": "Can connect icon",
-				"cannot_connect": "Can not connect",
 				"list_closed": "List closed",
 				"list_opened": "List opened",
 				"list_warning": "Warning",
 				"scan": "scan",
-				"settings": "settings",
-				"unknown_connectivity": "Unknown connectivity icon"
+				"settings": "settings"
 			},
 			"inital_list": {
 				"alternative_start": "or upload a spreadsheet with domains here...",
@@ -753,9 +760,7 @@
 			"eligeble_mail": "{0} is eligible for e-mail scans",
 			"eligeble_web": "{0} is eligible for web scans",
 			"not_eligeble_mail": "{0} is not eligible for e-mail scans. Will be checked again when starting a scan.",
-			"not_eligeble_web": "{0} is not eligible for web scans. Will be checked again when starting a scan.",
-			"unknown_eligeble_mail": "Not yet known if {0} can be mail scanned.",
-			"unknown_eligeble_web": "Not yet known if {0} can be web scanned."
+			"not_eligeble_web": "{0} is not eligible for web scans. Will be checked again when starting a scan."
 		},
 		"spreadsheet-upload": {
 			"back_to_domains": "Back to domains",

@@ -623,8 +623,15 @@
 		},
 		"edit-domain": {
 			"cancel": "Abbrechen",
+			"delete": "Löschen",
+			"delete-confirmation-message": "Möchten Sie {domain} wirklich aus der Liste {list} löschen?",
+			"delete-confirmation-title": "Domain löschen?",
+			"domain": "Domain",
+			"edit": "Bearbeiten",
 			"remove": "Entfernen",
-			"save": "Speichern Sie"
+			"save": "Speichern Sie",
+			"skip-delete-confirmation": "Für diese Liste eine Stunde lang nicht erneut fragen.",
+			"undo": "Rückgängig"
 		},
 		"list": {
 			"add-domains": {
@@ -662,6 +669,8 @@
 			},
 			"domain-table": {
 				"Clear": "Klar",
+				"delete-confirmation-message": "Möchten Sie wirklich {count} ausgewählte Domains aus der Liste {list} löschen?",
+				"delete-confirmation-title": "Ausgewählte Domains löschen?",
 				"Domain": "Bereich",
 				"filtered pagination": "Seite {0}/{1} von {2} gefiltert aus {3} Domänen.",
 				"No filtered results": "Der Filter hat keine Ergebnisse geliefert. Sie können nur nach vollständigen Tags suchen.",
@@ -720,21 +729,19 @@
 		"list-manager": {
 			"bulk_upload_link": "Tabellenkalkulation mit Domänen hochladen",
 			"icon_legend": {
-				"can_connect": "Kann eine Verbindung zu diesem Dienst herstellen, wird (wahrscheinlich) gescannt.",
-				"cannot_connect": "Dienst nicht verfügbar, wird (wahrscheinlich) nicht gescannt.",
-				"intro": "Die Domänen in den nachstehenden Listen werden bei jeder Überprüfung berücksichtigt. Bevor ein Scan durchgeführt wird, wird die Berechtigung des Dienstes geprüft. Diese Prüfung wird immer für den Scan durchgeführt. Um einen Einblick zu geben, wie verbunden diese Dienste sind, wird der letzte bekannte Status als erstes Symbol angezeigt.",
+				"intro": "Diese Symbole zeigen die zuletzt bekannte Scan-Eignung für jeden Dienst. Die Eignung wird vor jedem Scan erneut geprüft.",
+				"mail_eligible": "E-Mail-Scans sind möglich.",
+				"mail_ineligible": "E-Mail-Scans sind nicht möglich.",
 				"title": "Legende der verwendeten Icons",
-				"unknown_connectivity": "Unbekannt, ob dieser Dienst verfügbar ist, wird gescannt, wenn verfügbar."
+				"web_eligible": "Web-Scans sind möglich.",
+				"web_ineligible": "Web-Scans sind nicht möglich."
 			},
 			"icons": {
-				"can_connect": "Symbol \"Kann verbinden",
-				"cannot_connect": "Kann keine Verbindung herstellen",
 				"list_closed": "Liste geschlossen",
 				"list_opened": "Liste geöffnet",
 				"list_warning": "Warnung",
 				"scan": "Scannen",
-				"settings": "Einstellungen",
-				"unknown_connectivity": "Symbol für unbekannte Konnektivität"
+				"settings": "Einstellungen"
 			},
 			"inital_list": {
 				"alternative_start": "oder laden Sie hier eine Tabelle mit Domänen hoch...",
@@ -753,9 +760,7 @@
 			"eligeble_mail": "{0} ist für E-Mail-Scans geeignet",
 			"eligeble_web": "{0} ist für Web-Scans geeignet",
 			"not_eligeble_mail": "{0} ist für E-Mail-Scans nicht geeignet. Wird beim Starten eines Scans erneut geprüft.",
-			"not_eligeble_web": "{0} ist für Web-Scans nicht geeignet. Wird beim Starten eines Scans erneut geprüft.",
-			"unknown_eligeble_mail": "Es ist noch nicht bekannt, ob {0} per Post gescannt werden kann.",
-			"unknown_eligeble_web": "Es ist noch nicht bekannt, ob {0} im Internet gescannt werden kann."
+			"not_eligeble_web": "{0} ist für Web-Scans nicht geeignet. Wird beim Starten eines Scans erneut geprüft."
 		},
 		"spreadsheet-upload": {
 			"back_to_domains": "Zurück zu Domains",

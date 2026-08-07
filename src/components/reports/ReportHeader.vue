@@ -13,7 +13,7 @@
       {{ $t("report.header.number_of_domains") }}: {{reports[0].total_urls }}<br>
       {{ $t("report.header.data_from") }} {{ humanize_date(reports[0].at_when) }}<br>
         <template v-if="show_application_links">
-      📘 <router-link :to="{ name: 'numbered_lists', params: { list: reports[0].urllist_id }}">
+      📘 <router-link :to="{ name: 'domains', query: {open: String(reports[0].urllist_id)}, hash: `#${reports[0].urllist_id}` }">
         {{reports[0].urllist_name }}
         </router-link><br>
              </template>
@@ -28,7 +28,7 @@
             {{ $t("report.header.number_of_domains") }}: {{ report.total_urls }}<br>
             {{ $t("report.header.data_from") }}: {{ humanize_date(report.at_when) }}<br>
               <template v-if="show_application_links">
-            📘 <router-link :to="{ name: 'numbered_lists', params: { list: report.urllist_id }}">
+            📘 <router-link :to="{ name: 'domains', query: {open: String(report.urllist_id)}, hash: `#${report.urllist_id}` }">
             {{report.urllist_name }}</router-link><br>
                   </template>
           </span>

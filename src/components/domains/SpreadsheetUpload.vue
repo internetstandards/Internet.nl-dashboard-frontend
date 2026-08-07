@@ -38,16 +38,23 @@
 </style>
 <template>
   <div id="my-spreadsheet-upload-template">
-    <content-block>
-      <p>&nbsp;
+    <page-header
+      :title="$t('domain.spreadsheet-upload.upload.bulk_data_uploader.title')"
+      :subtitle="$t('domain.spreadsheet-upload.upload.bulk_data_uploader.introduction')"
+    >
+      <template #icon>
+        <i-bi-file-earmark-spreadsheet />
+      </template>
+      <template #actions>
         <router-link to="/domains" custom v-slot="{ navigate }">
           <b-button variant="warning" @click="navigate" @keypress.enter="navigate">
             📚 {{ $t("domain.spreadsheet-upload.back_to_domains") }}
           </b-button>
         </router-link>
-      </p>
-      <h1>{{ $t("domain.spreadsheet-upload.upload.bulk_data_uploader.title") }}</h1>
-      <p>{{ $t("domain.spreadsheet-upload.upload.bulk_data_uploader.introduction") }}</p>
+      </template>
+    </page-header>
+
+    <content-block>
       <table>
         <tbody>
         <tr>

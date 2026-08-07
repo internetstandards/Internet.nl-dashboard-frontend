@@ -117,8 +117,32 @@ export default {
   methods: {
     reload() {
       window.location.reload();
+    },
+    refresh_scan_monitor_data() {
+      this.store.load_scan_monitor_data().catch(error => {
+        console.error('Unable to refresh scan monitor data.', error)
+      })
+    },
+    start_scan_monitor_polling() {
+      if (this.scan_monitor_refresh_interval !== null) {
+        return
+      }
+
+      this.refresh_scan_monitor_data()
+      this.scan_monitor_refresh_interval = window.setInterval(this.refresh_scan_monitor_data, 60 * 1000)
+    },
+    stop_scan_monitor_polling() {
+      if (this.scan_monitor_refresh_interval !== null) {
+        window.clearInterval(this.scan_monitor_refresh_interval)
+        this.scan_monitor_refresh_interval = null
+      }
+      this.store.update_scan_monitor_data([])
     }
 
+  },
+
+  beforeUnmount() {
+    this.stop_scan_monitor_polling()
   },
 
   name: 'App',
@@ -127,7 +151,21 @@ export default {
       html_page_reading_direction: "ltr",
       error_loading_config: false,
       error_connecting_to_backend: false,
+      scan_monitor_refresh_interval: null,
       store: dashboardStore(),
+    }
+  },
+
+  watch: {
+    'user.is_authenticated': {
+      immediate: true,
+      handler(isAuthenticated) {
+        if (isAuthenticated) {
+          this.start_scan_monitor_polling()
+        } else {
+          this.stop_scan_monitor_polling()
+        }
+      }
     }
   },
 
