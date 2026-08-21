@@ -114,14 +114,14 @@
             <b-nav-item to="/domains" accesskey="d" exact exact-active-class="active"><span><i-bi-card-list /> {{$t("app.menu.domains") }}</span></b-nav-item>
             <b-nav-item to="/scans" accesskey="s" exact exact-active-class="active">
               <span class="position-relative">
-                <i-bi-search /> {{ $t("app.menu.scans") }}
+                <i-bi-search v-if="!active_scan_count" />
                 <b-badge
                   v-if="active_scan_count"
                   variant="warning"
                   pill
-                  class="scan-count-badge"
                   aria-live="polite"
                 >{{ active_scan_count }}</b-badge>
+              {{ $t("app.menu.scans") }}
               </span>
             </b-nav-item>
             <b-nav-item to="/report" accesskey="r" exact exact-active-class="active"><span><i-bi-file-bar-graph /> {{$t("app.menu.reports") }}</span></b-nav-item>
