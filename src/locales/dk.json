@@ -2375,7 +2375,9 @@
 			"tab_changes": "Ændringer",
 			"tab_graphs": "Grafer",
 			"tab_metrics": "Tabel med målinger",
-			"title": "Rapporter"
+			"title": "Rapporter",
+			"use_full_width": "Brug fuld sidebredde",
+			"use_standard_width": "Brug standardbredde"
 		},
 		"password-protection": {
 			"Authentication required": "Godkendelse påkrævet",

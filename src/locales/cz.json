@@ -2375,7 +2375,9 @@
 			"tab_changes": "Změny",
 			"tab_graphs": "Grafy",
 			"tab_metrics": "Tabulka metrik",
-			"title": "Zprávy"
+			"title": "Zprávy",
+			"use_full_width": "Použít celou šířku stránky",
+			"use_standard_width": "Použít standardní šířku"
 		},
 		"password-protection": {
 			"Authentication required": "Vyžaduje se ověření pravosti",

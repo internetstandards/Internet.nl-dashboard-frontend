@@ -2375,7 +2375,9 @@
 			"tab_changes": "Changes",
 			"tab_graphs": "Graphs",
 			"tab_metrics": "Metrics table",
-			"title": "Reports"
+			"title": "Reports",
+			"use_full_width": "Use full page width",
+			"use_standard_width": "Use standard width"
 		},
 		"password-protection": {
 			"Authentication required": "Authentication required",

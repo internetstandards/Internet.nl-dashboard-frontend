@@ -2375,7 +2375,9 @@
 			"tab_changes": "Veranderingen",
 			"tab_graphs": "Grafieken",
 			"tab_metrics": "Meetwaardentabel",
-			"title": "Rapporten"
+			"title": "Rapporten",
+			"use_full_width": "Volledige paginabreedte gebruiken",
+			"use_standard_width": "Standaardbreedte gebruiken"
 		},
 		"password-protection": {
 			"Authentication required": "Wachtwoord vereist",
