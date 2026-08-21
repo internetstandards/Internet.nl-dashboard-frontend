@@ -2432,6 +2432,7 @@
 						"zoom_in_on": "View details of {0}"
 					},
 					"explanation": "Using the details buttons, it is possible to see the individual metrics for each category.",
+					"overview": "Overview",
 					"zoomed_in_on": "Details from"
 				}
 			},

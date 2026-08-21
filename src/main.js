@@ -1,3 +1,4 @@
+import 'vuetify/styles'
 import '@/assets/css/styles.scss';
 
 import App from './App.vue'
@@ -15,6 +16,7 @@ import server_response from '@/components/ServerResponse.vue'
 import {dashboardStore} from '@/dashboardStore'
 import {allauthStore} from '@/allauthStore'
 import {installAuthChangeRedirector} from '@/allauth/redirects'
+import vuetify from '@/vuetify'
 
 const app = createApp(App)
 app.config.globalProperties.$baseUrl = import.meta.env.VITE_VUE_APP_DJANGO_PATH;
@@ -22,6 +24,7 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(createBootstrap())
+app.use(vuetify)
 app.use(VueMatomo, matomoConfig)
 app.component('content-block', ContentBlock)
 app.component('loading', loading)

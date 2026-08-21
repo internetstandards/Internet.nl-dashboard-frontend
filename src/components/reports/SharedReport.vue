@@ -41,7 +41,7 @@
           :full-width="metrics_full_width"
         >
           <ReportTableWidthToggle v-model="metrics_full_width" />
-          <ReportTableVirtualList :reports="reports" :load_comparison_with_current="false"/>
+          <ReportTableVirtualListV2 :reports="reports" :load_comparison_with_current="false"/>
         </content-block>
       </template>
     </div>
@@ -55,14 +55,14 @@ import ReportPasswords from './ReportPasswords.vue'
 import report_mixin from './report_mixin.vue'
 import report_mixin_2 from './report_mixin_2.vue'
 import ReportHeader from './ReportHeader.vue'
-import ReportTableVirtualList from "@/components/reports/ReportTableVirtualList.vue";
+import ReportTableVirtualListV2 from '@/components/reports/ReportTableVirtualListV2.vue'
 import ReportTableWidthToggle from '@/components/reports/ReportTableWidthToggle.vue'
 
 
 export default {
   components: {
     ReportTableWidthToggle,
-    ReportTableVirtualList,
+    ReportTableVirtualListV2,
     ReportCharts,
     ReportPasswords,
     ReportHeader,

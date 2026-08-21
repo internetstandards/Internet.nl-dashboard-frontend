@@ -2432,6 +2432,7 @@
 						"zoom_in_on": "Ver pormenores de {0}"
 					},
 					"explanation": "Utilizando os botões de detalhes, é possível ver as métricas individuais de cada categoria.",
+					"overview": "Visão geral",
 					"zoomed_in_on": "Detalhes de"
 				}
 			},

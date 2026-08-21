@@ -2432,6 +2432,7 @@
 						"zoom_in_on": "Details von {0}anzeigen"
 					},
 					"explanation": "Über die Schaltflächen \"Details\" können Sie die einzelnen Metriken für jede Kategorie einsehen.",
+					"overview": "Übersicht",
 					"zoomed_in_on": "Einzelheiten aus"
 				}
 			},

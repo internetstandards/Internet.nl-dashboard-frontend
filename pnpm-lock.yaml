@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@mdi/js':
+        specifier: ^7.4.47
+        version: 7.4.47
       axios:
         specifier: ^1.17.0
         version: 1.17.0
@@ -71,6 +74,9 @@ importers:
       vue3-virtual-scroll-list:
         specifier: ^0.2.1
         version: 0.2.1(vue@3.5.35(typescript@5.6.3))
+      vuetify:
+        specifier: ^4.1.11
+        version: 4.1.11(typescript@5.6.3)(vue@3.5.35(typescript@5.6.3))
     devDependencies:
       '@iconify-json/bi':
         specifier: ^1.2.7
@@ -575,6 +581,9 @@ packages:
 
   '@kurkle/color@0.3.4':
     resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
+
+  '@mdi/js@7.4.47':
+    resolution: {integrity: sha512-KPnNOtm5i2pMabqZxpUz7iQf+mfrYZyKCZ8QNz85czgEt7cuHcGorWfdzUMWYA0SD+a6Hn4FmJ+YhzzzjkTZrQ==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2721,6 +2730,21 @@ packages:
       typescript:
         optional: true
 
+  vuetify@4.1.11:
+    resolution: {integrity: sha512-pMzGsjha58Lbg9n/icMXCxcQN9rTczcOdMq3wMU1Qe+cfufl28eX4VUUzLwSsDgmLjTtUGsgZIkyYZFQy+SmIw==}
+    peerDependencies:
+      typescript: '>=4.7'
+      vite-plugin-vuetify: '>=2.1.0'
+      vue: ^3.5.0 || ^3.6.0-0
+      webpack-plugin-vuetify: '>=3.1.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      vite-plugin-vuetify:
+        optional: true
+      webpack-plugin-vuetify:
+        optional: true
+
   w3c-xmlserializer@5.0.0:
     resolution: {integrity: sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==}
     engines: {node: '>=18'}
@@ -3242,6 +3266,8 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.5
 
   '@kurkle/color@0.3.4': {}
+
+  '@mdi/js@7.4.47': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -5351,6 +5377,12 @@ snapshots:
       '@vue/runtime-dom': 3.5.35
       '@vue/server-renderer': 3.5.35(vue@3.5.35(typescript@5.6.3))
       '@vue/shared': 3.5.35
+    optionalDependencies:
+      typescript: 5.6.3
+
+  vuetify@4.1.11(typescript@5.6.3)(vue@3.5.35(typescript@5.6.3)):
+    dependencies:
+      vue: 3.5.35(typescript@5.6.3)
     optionalDependencies:
       typescript: 5.6.3
 

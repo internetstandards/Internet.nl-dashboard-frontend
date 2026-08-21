@@ -2432,6 +2432,7 @@
 						"zoom_in_on": "Bekijk de details van {0}"
 					},
 					"explanation": "Met de detail buttons is het mogelijk om details van ieder categorie naar voren te halen.",
+					"overview": "Overzicht",
 					"zoomed_in_on": "Details van "
 				}
 			},

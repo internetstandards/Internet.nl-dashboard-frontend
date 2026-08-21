@@ -2432,6 +2432,7 @@
 						"zoom_in_on": "Zobrazit podrobnosti o {0}"
 					},
 					"explanation": "Pomocí tlačítek podrobností je možné zobrazit jednotlivé metriky pro každou kategorii.",
+					"overview": "Přehled",
 					"zoomed_in_on": "Podrobnosti z"
 				}
 			},

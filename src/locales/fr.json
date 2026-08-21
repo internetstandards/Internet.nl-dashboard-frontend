@@ -2432,6 +2432,7 @@
 						"zoom_in_on": "Voir les détails de {0}"
 					},
 					"explanation": "Les boutons de détail permettent d'afficher les mesures individuelles pour chaque catégorie.",
+					"overview": "Vue d’ensemble",
 					"zoomed_in_on": "Détails de"
 				}
 			},

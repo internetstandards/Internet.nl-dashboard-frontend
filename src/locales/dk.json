@@ -2432,6 +2432,7 @@
 						"zoom_in_on": "Se detaljer om {0}"
 					},
 					"explanation": "Ved hjælp af detaljeknapperne er det muligt at se de individuelle målinger for hver kategori.",
+					"overview": "Oversigt",
 					"zoomed_in_on": "Detaljer fra"
 				}
 			},

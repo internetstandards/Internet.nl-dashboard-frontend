@@ -44,7 +44,7 @@
             :full-width="metrics_full_width"
           >
             <ReportTableWidthToggle v-model="metrics_full_width" />
-            <ReportTableVirtualList :reports="reports" :load_comparison_with_current="!tags_applied"/>
+            <ReportTableVirtualListV2 :reports="reports" :load_comparison_with_current="!tags_applied"/>
           </content-block>
         </b-tab>
 
@@ -65,7 +65,7 @@
 <script>
 import ReportCharts from '@/components/reports/ReportCharts.vue'
 
-import ReportTableVirtualList from '@/components/reports/ReportTableVirtualList.vue'
+import ReportTableVirtualListV2 from '@/components/reports/ReportTableVirtualListV2.vue'
 import report_mixin from '@/components/reports/report_mixin.vue'
 import report_mixin_2 from '@/components/reports/report_mixin_2.vue'
 import ReportHeader from '@/components/reports/ReportHeader.vue'
@@ -88,7 +88,7 @@ export default {
     ReportHeader,
     ReportDownload,
     SharingConfiguration,
-    ReportTableVirtualList
+    ReportTableVirtualListV2
   },
   mixins: [report_mixin, report_mixin_2],
   name: 'report',
