@@ -250,6 +250,7 @@ export default defineComponent({
       },
       responsive: true,
       maintainAspectRatio: false,
+      animation: false,
       onHover: (event, _active_elements, chart) => {
         const report = props.clickable_reports ? report_at_event(event, chart) : undefined;
         chart.canvas.style.cursor = report ? 'pointer' : 'default';
