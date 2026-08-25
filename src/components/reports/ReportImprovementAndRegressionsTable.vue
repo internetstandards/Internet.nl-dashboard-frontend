@@ -12,13 +12,13 @@
 
     </template>
 
-    <template #cell(changes.improvement)="data">
+    <template #cell(improvement)="data">
       <ul>
         <li v-for="metric in data.item.changes.improved_metrics" :key="metric">{{ $t("metric." + metric + ".title") }}</li>
       </ul>
     </template>
 
-    <template #cell(changes.regression)="data">
+    <template #cell(regression)="data">
       <ul>
         <li v-for="metric in data.item.changes.regressed_metrics" :key="metric">{{ $t("metric." + metric + ".title") }}</li>
       </ul>
@@ -40,8 +40,8 @@ export default {
     return {
       fields: [
         {key: 'url', label: this.$i18n.t("report.improvement-regressions-table.url"), sortable: true},
-        {key: 'changes.improvement', label: this.$i18n.t("report.improvement-regressions-table.improvement"), sortable: true},
-        {key: 'changes.regression', label: this.$i18n.t("report.improvement-regressions-table.regression"), sortable: true},
+        {key: 'improvement', accessor: (item) => item.changes.improvement, label: this.$i18n.t("report.improvement-regressions-table.improvement"), sortable: true},
+        {key: 'regression', accessor: (item) => item.changes.regression, label: this.$i18n.t("report.improvement-regressions-table.regression"), sortable: true},
       ]
     }
   }

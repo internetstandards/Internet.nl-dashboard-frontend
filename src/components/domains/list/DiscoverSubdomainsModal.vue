@@ -26,7 +26,7 @@
 
       <server-response :response="response" v-if="response" :message='$t("domain.discover-subdomains." + response.message)'/>
 
-      <b-alert variant="info" :model-value="true" v-if="response.success === true" dismissible>
+      <b-alert variant="info" v-model="statusReportVisible" v-if="response.success === true" dismissible>
         <h4>{{ $t("domain.discover-subdomains.status_report") }}</h4>
         <li v-if="response.data.duplicates_removed">
           {{ $t("domain.discover-subdomains.removed_n_duplicates", [response.data.duplicates_removed]) }}
@@ -108,6 +108,7 @@ export default {
 
       loading_suggestions: false,
       loading_add_suggestions: false,
+      statusReportVisible: false,
 
       store: dashboardStore(),
     }
@@ -133,6 +134,7 @@ export default {
 
       this.loading_suggestions = false;
       this.loading_add_suggestions = false;
+      this.statusReportVisible = false;
     },
     clear_selection() {
       this.selected_suggestions = [];
@@ -164,6 +166,7 @@ export default {
         this.loading_add_suggestions = false;
 
         if (data.data.success) {
+          this.statusReportVisible = true;
           this.$emit('added')
         }
       });

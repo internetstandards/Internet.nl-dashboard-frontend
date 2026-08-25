@@ -217,7 +217,7 @@
         </div>
 
         <div class="domain-table-mobile-selection">
-          <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected">
+          <b-form-checkbox v-model="allSelected" :unchecked-value="false" :indeterminate="allSelectedIndeterminate" @change="toggleSelected">
             {{ $t("domain.list.domain-table.Selected") }}: {{ selectedItems.length }} / {{ visibleRows }}
           </b-form-checkbox>
         </div>
@@ -248,13 +248,13 @@
              primary-key="url"
              :filter-function="myFilterFunction"
              :filter-included-fields="['tags', 'url']"
-             selected-variant="info"
+             selection-variant="info"
              v-model:selected-items="selectedItems"
              @filtered="onFiltered"
              @row-selected="onRowSelected"
     >
       <template #head(selected)="">
-        <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected"></b-form-checkbox>
+        <b-form-checkbox v-model="allSelected" :unchecked-value="false" :indeterminate="allSelectedIndeterminate" @change="toggleSelected"></b-form-checkbox>
       </template>
 
       <template #cell(selected)="{ rowSelected }">
@@ -314,7 +314,7 @@
         }) }}
       </p>
 
-      <b-form-checkbox :id="bulkDeleteSuppressionId" v-model="suppressDeleteConfirmation">
+      <b-form-checkbox :id="bulkDeleteSuppressionId" v-model="suppressDeleteConfirmation" :unchecked-value="false">
         {{ $t("domain.edit-domain.skip-delete-confirmation") }}
       </b-form-checkbox>
 

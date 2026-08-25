@@ -16,7 +16,7 @@
                 <h4>{{ category.label }}</h4>
 
                 <span v-for="field in category.fields" :key="field.id">
-                  <b-form-checkbox v-model="issue_filters[field.name].show_dynamic_average"
+                  <b-form-checkbox v-model="issue_filters[field.name].show_dynamic_average" :unchecked-value="false"
                                    @change="visible_metrics_see_if_category_is_relevant(category)" switch>
                       {{ $t("account.visible-metrics.show_dynamic_average") }}
                   </b-form-checkbox>
@@ -40,7 +40,7 @@
                 <div v-for="field in subcategory.fields" :key="field.name"
                      class="testresult_without_icon">
 
-                  <b-form-checkbox v-model="issue_filters[field.name].visible"
+                  <b-form-checkbox v-model="issue_filters[field.name].visible" :unchecked-value="false"
                                    :id="field.name + '_visible'" switch>
                     {{ $t("metric." + field.name + ".title") }}
                   </b-form-checkbox>
@@ -55,7 +55,7 @@
           <b-tab :title='$t("account.visible-metrics.main_category")' class="p-3">
             <h4>{{ $t("account.visible-metrics.main_category") }}</h4>
 
-            <b-form-checkbox v-model="issue_filters[scan_form.name].show_dynamic_average" switch>
+            <b-form-checkbox v-model="issue_filters[scan_form.name].show_dynamic_average" :unchecked-value="false" switch>
               {{ $t("account.visible-metrics.show_dynamic_average") }}
             </b-form-checkbox>
           </b-tab>

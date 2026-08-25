@@ -10,7 +10,7 @@ p {
 </style>
 <template>
   <div>
-    <b-alert :model-value="show || force_show" variant="danger" v-if="response.error" dismissible fade>
+    <b-alert :model-value="show || force_show" @update:model-value="show = $event" variant="danger" v-if="response.error" dismissible>
       <h2>❌ {{ $t("app.server-response.error") }}</h2>
       <p role="alert">
         <span v-if="!message">{{ response.message }}</span>
@@ -19,7 +19,7 @@ p {
       <span><small>{{ $t("app.server-response.at") }} {{ humanize_date(response.timestamp) }}<span
         v-if="time_ago">  ({{ time_ago }})</span>.</small></span>
     </b-alert>
-    <b-alert :model-value="show || force_show" variant="success" v-if="response.success" dismissible fade>
+    <b-alert :model-value="show || force_show" @update:model-value="show = $event" variant="success" v-if="response.success" dismissible>
       <h2>✅ {{ $t("app.server-response.success") }}</h2>
       <p role="alert">
         <span v-if="!message">{{ response.message }}</span>

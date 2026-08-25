@@ -15,8 +15,8 @@ importers:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
       bootstrap-vue-next:
-        specifier: ^0.25.15
-        version: 0.25.15(vue@3.5.35(typescript@5.6.3))
+        specifier: ^1.0.1
+        version: 1.0.1(bootstrap@5.3.8(@popperjs/core@2.11.8))(vue-router@4.6.4(vue@3.5.35(typescript@5.6.3)))(vue@3.5.35(typescript@5.6.3))
       chart.js:
         specifier: ^4.5.1
         version: 4.5.1
@@ -508,6 +508,12 @@ packages:
   '@eslint/plugin-kit@0.4.1':
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@floating-ui/core@1.8.0':
+    resolution: {integrity: sha512-0CIZ5itps/8x7BG8dEIhs53BvCUH2PCoogtakwRTut+Arm58sJooJ0AuZhLw2HJYIR5cMLNPBSS728sPho2khQ==}
+
+  '@floating-ui/utils@0.2.12':
+    resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -1152,10 +1158,33 @@ packages:
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  bootstrap-vue-next@0.25.15:
-    resolution: {integrity: sha512-9ZI2+Qkeg2wM2BgtpEfay6Hl2Ak70GbOgFTNXCpccyqa1L0HMGyYHV6bHeOzKWKhBvn9Ku4Wp88zHkqWq2Gagg==}
+  bootstrap-vue-next@1.0.1:
+    resolution: {integrity: sha512-3qIPlwy1T4nWwWTk1a9jHC7k60N94N1ZvF8sLqH6oIGWKsWa5wrDNxUiHRgApoF/aUjhXu3bjZqo/W7Fn0xi4w==}
     peerDependencies:
-      vue: ^3.5.3
+      '@floating-ui/vue': '*'
+      '@internationalized/date': '*'
+      '@vueuse/core': '*'
+      '@vueuse/integrations': '*'
+      bootstrap: ^5.3.0
+      focus-trap: '*'
+      reka-ui: '*'
+      vue: ^3.5.13
+      vue-router: '*'
+    peerDependenciesMeta:
+      '@floating-ui/vue':
+        optional: true
+      '@internationalized/date':
+        optional: true
+      '@vueuse/core':
+        optional: true
+      '@vueuse/integrations':
+        optional: true
+      focus-trap:
+        optional: true
+      reka-ui:
+        optional: true
+      vue-router:
+        optional: true
 
   bootstrap@5.3.8:
     resolution: {integrity: sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==}
@@ -3162,6 +3191,12 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
+  '@floating-ui/core@1.8.0':
+    dependencies:
+      '@floating-ui/utils': 0.2.12
+
+  '@floating-ui/utils@0.2.12': {}
+
   '@humanfs/core@0.19.2':
     dependencies:
       '@humanfs/types': 0.15.0
@@ -3822,9 +3857,13 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  bootstrap-vue-next@0.25.15(vue@3.5.35(typescript@5.6.3)):
+  bootstrap-vue-next@1.0.1(bootstrap@5.3.8(@popperjs/core@2.11.8))(vue-router@4.6.4(vue@3.5.35(typescript@5.6.3)))(vue@3.5.35(typescript@5.6.3)):
     dependencies:
+      '@floating-ui/core': 1.8.0
+      bootstrap: 5.3.8(@popperjs/core@2.11.8)
       vue: 3.5.35(typescript@5.6.3)
+    optionalDependencies:
+      vue-router: 4.6.4(vue@3.5.35(typescript@5.6.3))
 
   bootstrap@5.3.8(@popperjs/core@2.11.8):
     dependencies:
