@@ -58,27 +58,29 @@ export default {
     }
   },
   watch: {
-    response: function () {
+    response: {
+      immediate: true,
+      handler() {
+        // Don't show an alert when there is nothing to say.
+        if (!this.response || Object.keys(this.response).length === 0)
+          return;
 
-      // don't toast when there is nothing to say
-      if (Object.keys(this.response).length === 0)
-        return;
+        // A new response, including the initial response, should be visible.
+        this.show = true;
 
-      // a new response, means this should be visible again:
-      this.show = true;
+        // a new response is made. Let's add a toast message.
+        // todo: make toasts work.
 
-      // a new response is made. Let's add a toast message.
-      // todo: make toasts work.
-
-      //this.$bvToast.toast(this.message ? this.message : this.response.message, {
-      //    title: this.response.error ? `❌ ${this.$i18n.t("error")}` : `✅ ${this.$i18n.t("success")}`,
-      //    autoHideDelay: 5000,
-      //    variant: this.response.error ? 'danger' : 'success',
-      //    solid: true,
-      //    isStatus: true,  // message is also displayed on the page using more accessible methods
-      //  toaster: 'b-toaster-bottom-right',
-      //    appendToast: false,
-      //})
+        //this.$bvToast.toast(this.message ? this.message : this.response.message, {
+        //    title: this.response.error ? `❌ ${this.$i18n.t("error")}` : `✅ ${this.$i18n.t("success")}`,
+        //    autoHideDelay: 5000,
+        //    variant: this.response.error ? 'danger' : 'success',
+        //    solid: true,
+        //    isStatus: true,  // message is also displayed on the page using more accessible methods
+        //  toaster: 'b-toaster-bottom-right',
+        //    appendToast: false,
+        //})
+      }
     }
   },
   props: {
