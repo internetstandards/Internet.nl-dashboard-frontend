@@ -20,13 +20,13 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
-import { getRecoveryCodes, generateRecoveryCodes } from '@/allauth/lib/allauth'
+import { AuthenticatorType, generateRecoveryCodes, getAuthenticators } from '@/allauth/lib/allauth'
 
 const router = useRouter()
 const route = useRoute()
 const loading = ref(false)
 const response = ref(null)
-const recoveryCodes = ref(null)
+const authenticators = ref([])
 const recoveryCodesPath = computed(() =>
   route.path.startsWith('/profile/authentication')
     ? '/profile/authentication/2fa/recovery-codes'
@@ -37,11 +37,15 @@ const mfaOverviewPath = computed(() =>
 )
 
 onMounted(async () => {
-  recoveryCodes.value = await getRecoveryCodes()
+  const authenticatorsResponse = await getAuthenticators()
+  if (authenticatorsResponse.status === 200) {
+    authenticators.value = authenticatorsResponse.data
+  }
 })
 
 const hasCodes = computed(() => {
-  return recoveryCodes.value?.status === 200 && recoveryCodes.value?.data?.unused_code_count > 0
+  const recoveryCodes = authenticators.value.find((entry) => entry.type === AuthenticatorType.RECOVERY_CODES)
+  return recoveryCodes?.unused_code_count > 0
 })
 
 async function submit() {

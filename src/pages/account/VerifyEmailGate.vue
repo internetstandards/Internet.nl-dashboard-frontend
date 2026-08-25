@@ -7,8 +7,8 @@
       <form @submit.prevent="submitByCode">
         <label class="form-label" for="verify-email-code">{{ $t('authentication.verify_email_gate.code') }}</label>
         <input id="verify-email-code" v-model="code" class="form-control" required>
-        <FormErrors :errors="response?.errors" param="key" />
-        <FormErrors :errors="response?.errors" />
+        <FormErrors :errors="verificationErrors" param="key" />
+        <FormErrors :errors="verificationErrors" />
         <b-button type="submit" class="mt-3" variant="warning" :disabled="loading">{{ $t('authentication.verify_email_gate.submit') }}</b-button>
       </form>
     </template>
@@ -19,12 +19,23 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import FormErrors from '@/components/allauth/FormErrors.vue'
 import { verifyEmail } from '@/allauth/lib/allauth'
 import { allauthStore } from '@/allauthStore'
+
+type AllauthError = {
+  code?: string
+  message?: string
+  param?: string
+}
+
+type VerificationResponse = {
+  errors?: AllauthError[]
+  status?: number
+}
 
 const route = useRoute()
 const router = useRouter()
@@ -32,7 +43,19 @@ const allauth = allauthStore()
 
 const loading = ref(false)
 const code = ref('')
-const response = ref(null)
+const response = ref<VerificationResponse | null>(null)
+
+const verificationErrors = computed(() => {
+  if (response.value?.errors?.length) {
+    return response.value.errors
+  }
+
+  if (response.value?.status === 409) {
+    return [{code: 'incorrect_code', param: 'key'}]
+  }
+
+  return []
+})
 
 const emailVerificationByCodeEnabled = computed(() => Boolean(allauth.config?.data?.account?.email_verification_by_code_enabled))
 const successPath = computed(() =>

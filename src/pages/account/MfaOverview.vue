@@ -17,8 +17,8 @@
     <h3 class="h5 mt-3">{{ $t('authentication.mfa_overview.recovery_codes') }}</h3>
     <p v-if="recoveryCodes">{{ $t('authentication.mfa_overview.recovery_codes_available', { unused: recoveryCodes.unused_code_count, total: recoveryCodes.total_code_count }) }}</p>
     <p v-else>{{ $t('authentication.mfa_overview.recovery_codes_none') }}</p>
-    <div class="d-flex gap-2">
-      <b-button size="sm" variant="outline-secondary" :to="`${mfaBasePath}/recovery-codes`">{{ $t('authentication.mfa_overview.view') }}</b-button>
+    <div v-if="hasSecondFactor" class="d-flex gap-2">
+      <b-button v-if="recoveryCodes" size="sm" variant="outline-secondary" :to="`${mfaBasePath}/recovery-codes`">{{ $t('authentication.mfa_overview.view') }}</b-button>
       <b-button size="sm" variant="outline-secondary" :to="`${mfaBasePath}/recovery-codes/generate`">{{ $t('authentication.mfa_overview.generate') }}</b-button>
     </div>
   </section>
@@ -42,6 +42,7 @@ onMounted(async () => {
 const totp = computed(() => authenticators.value.find((entry) => entry.type === AuthenticatorType.TOTP))
 const webauthnCount = computed(() => authenticators.value.filter((entry) => entry.type === AuthenticatorType.WEBAUTHN).length)
 const recoveryCodes = computed(() => authenticators.value.find((entry) => entry.type === AuthenticatorType.RECOVERY_CODES))
+const hasSecondFactor = computed(() => Boolean(totp.value || webauthnCount.value))
 const mfaBasePath = computed(() =>
   route.path.startsWith('/profile/authentication') ? '/profile/authentication/2fa' : '/account/2fa'
 )

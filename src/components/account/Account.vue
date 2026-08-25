@@ -13,10 +13,10 @@
     <content-block>
       <!-- use lazy so that the visiblemetrics is updated when that's visited, instead of manually reloading. -->
       <b-tabs
-        v-model="profileTabIndex"
+        v-model:index="profileTabIndex"
         content-class="mt-3"
         lazy
-        @update:model-value="onProfileTabChange"
+        @update:index="onProfileTabChange"
       >
         <b-tab>
           <template #title>📨 {{ $t("account.page.notifications") }}</template>
@@ -27,10 +27,10 @@
           <template #title>📱 {{ $t("account.page.authentication_options") }}</template>
 
           <b-tabs
-            v-model="authTabIndex"
+            v-model:index="authTabIndex"
             content-class="mt-3"
             lazy
-            @update:model-value="onAuthTabChange"
+            @update:index="onAuthTabChange"
           >
             <b-tab>
               <template #title>📧 {{ $t('authentication.email.title') }}</template>
@@ -183,6 +183,10 @@ export default {
   },
   methods: {
     onProfileTabChange(nextIndex) {
+      if (!Number.isInteger(nextIndex)) {
+        return
+      }
+
       if (nextIndex === 1 && this.isProfileAuthenticationRoute) {
         return
       }
@@ -199,7 +203,12 @@ export default {
       }
     },
     onAuthTabChange(nextIndex) {
-      if (!this.isProfileAuthenticationRoute) {
+      if (!Number.isInteger(nextIndex) || !this.isProfileAuthenticationRoute) {
+        return
+      }
+
+      const sections = ['email', 'password', '2fa', 'verify-email']
+      if (this.authPathSegments[0] === sections[nextIndex]) {
         return
       }
 
