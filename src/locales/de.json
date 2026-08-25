@@ -9,6 +9,8 @@
 			"first_name": "Adressat, Vorname",
 			"last_name": "Adressat, Nachname",
 			"mail_preferred_language": "E-Mail-Sprache",
+			"mail_preferred_language_required": "Wählen Sie vor dem Speichern eine E-Mail-Sprache aus.",
+			"mail_preferred_language_select": "Wählen Sie eine Sprache aus",
 			"mail_preferred_mail_address": "E-Mail Adresse",
 			"mail_send_mail_after_scan_finished": "Benachrichtigung nach Abschluss des Scans senden",
 			"nl": "Niederländisch",
