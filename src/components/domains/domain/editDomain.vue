@@ -95,7 +95,7 @@
       }) }}
     </p>
 
-    <b-form-checkbox :id="deleteSuppressionId" v-model="suppressDeleteConfirmation">
+    <b-form-checkbox :id="deleteSuppressionId" v-model="suppressDeleteConfirmation" :unchecked-value="false">
       {{ $t("domain.edit-domain.skip-delete-confirmation") }}
     </b-form-checkbox>
 

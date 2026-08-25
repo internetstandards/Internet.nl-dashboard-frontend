@@ -9,6 +9,8 @@
 			"first_name": "Aanhef: voornaam",
 			"last_name": "Aanhef: achternaam",
 			"mail_preferred_language": "E-mail taal",
+			"mail_preferred_language_required": "Selecteer een e-mailtaal voordat u opslaat.",
+			"mail_preferred_language_select": "Selecteer een taal",
 			"mail_preferred_mail_address": "E-mail adres",
 			"mail_send_mail_after_scan_finished": "Stuur een melding als een scan klaar is",
 			"nl": "Nederlands",

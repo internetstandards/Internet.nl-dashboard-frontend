@@ -8,7 +8,6 @@ import VueMatomo from 'vue-matomo'
 import matomoConfig from './matomoConfig.js'
 import i18n from './i18n'
 import router from './router/router.js'
-import {createBootstrap} from 'bootstrap-vue-next'
 import ContentBlock from '@/components/ContentBlock.vue'
 import loading from '@/components/loading.vue'
 import server_response from '@/components/ServerResponse.vue'
@@ -21,7 +20,6 @@ app.config.globalProperties.$baseUrl = import.meta.env.VITE_VUE_APP_DJANGO_PATH;
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
-app.use(createBootstrap())
 app.use(VueMatomo, matomoConfig)
 app.component('content-block', ContentBlock)
 app.component('loading', loading)

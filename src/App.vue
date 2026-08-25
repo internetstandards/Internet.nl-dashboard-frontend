@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
+  <b-app>
   <div id="app" :dir="html_page_reading_direction">
     <div class="skiplink"><a href="#content">{{ $t("app.skiplink.gotocontents") }}</a></div>
     <div class="skiplink" id="skiplink-sitenav"><a href="#sitenav">{{ $t("app.skiplink.gotomainmenu") }}</a></div>
@@ -61,6 +62,7 @@
       </div>
     </footer>
   </div>
+  </b-app>
 </template>
 
 <script>

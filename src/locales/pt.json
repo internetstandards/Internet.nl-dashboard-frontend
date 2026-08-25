@@ -9,6 +9,8 @@
 			"first_name": "Destinatário, nome próprio",
 			"last_name": "Destinatário, apelido",
 			"mail_preferred_language": "Língua do correio eletrónico",
+			"mail_preferred_language_required": "Selecione uma língua de correio eletrónico antes de guardar.",
+			"mail_preferred_language_select": "Selecione uma língua",
 			"mail_preferred_mail_address": "Endereço eletrónico",
 			"mail_send_mail_after_scan_finished": "Enviar notificação após a conclusão da digitalização",
 			"nl": "Holandês",

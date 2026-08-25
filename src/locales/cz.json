@@ -9,6 +9,8 @@
 			"first_name": "Adresát, křestní jméno",
 			"last_name": "Adresát, příjmení",
 			"mail_preferred_language": "Jazyk e-mailu",
+			"mail_preferred_language_required": "Před uložením vyberte jazyk e-mailu.",
+			"mail_preferred_language_select": "Vyberte jazyk",
 			"mail_preferred_mail_address": "E-mailová adresa",
 			"mail_send_mail_after_scan_finished": "Odeslání oznámení po dokončení skenování",
 			"nl": "Holandský",

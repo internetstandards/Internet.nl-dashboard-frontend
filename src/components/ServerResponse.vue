@@ -10,7 +10,7 @@ p {
 </style>
 <template>
   <div>
-    <b-alert :model-value="show || force_show" variant="danger" v-if="response.error" dismissible fade>
+    <b-alert :model-value="show || force_show" @update:model-value="show = $event" variant="danger" v-if="response.error" dismissible>
       <h2>❌ {{ $t("app.server-response.error") }}</h2>
       <p role="alert">
         <span v-if="!message">{{ response.message }}</span>
@@ -19,7 +19,7 @@ p {
       <span><small>{{ $t("app.server-response.at") }} {{ humanize_date(response.timestamp) }}<span
         v-if="time_ago">  ({{ time_ago }})</span>.</small></span>
     </b-alert>
-    <b-alert :model-value="show || force_show" variant="success" v-if="response.success" dismissible fade>
+    <b-alert :model-value="show || force_show" @update:model-value="show = $event" variant="success" v-if="response.success" dismissible>
       <h2>✅ {{ $t("app.server-response.success") }}</h2>
       <p role="alert">
         <span v-if="!message">{{ response.message }}</span>
@@ -58,27 +58,29 @@ export default {
     }
   },
   watch: {
-    response: function () {
+    response: {
+      immediate: true,
+      handler() {
+        // Don't show an alert when there is nothing to say.
+        if (!this.response || Object.keys(this.response).length === 0)
+          return;
 
-      // don't toast when there is nothing to say
-      if (Object.keys(this.response).length === 0)
-        return;
+        // A new response, including the initial response, should be visible.
+        this.show = true;
 
-      // a new response, means this should be visible again:
-      this.show = true;
+        // a new response is made. Let's add a toast message.
+        // todo: make toasts work.
 
-      // a new response is made. Let's add a toast message.
-      // todo: make toasts work.
-
-      //this.$bvToast.toast(this.message ? this.message : this.response.message, {
-      //    title: this.response.error ? `❌ ${this.$i18n.t("error")}` : `✅ ${this.$i18n.t("success")}`,
-      //    autoHideDelay: 5000,
-      //    variant: this.response.error ? 'danger' : 'success',
-      //    solid: true,
-      //    isStatus: true,  // message is also displayed on the page using more accessible methods
-      //  toaster: 'b-toaster-bottom-right',
-      //    appendToast: false,
-      //})
+        //this.$bvToast.toast(this.message ? this.message : this.response.message, {
+        //    title: this.response.error ? `❌ ${this.$i18n.t("error")}` : `✅ ${this.$i18n.t("success")}`,
+        //    autoHideDelay: 5000,
+        //    variant: this.response.error ? 'danger' : 'success',
+        //    solid: true,
+        //    isStatus: true,  // message is also displayed on the page using more accessible methods
+        //  toaster: 'b-toaster-bottom-right',
+        //    appendToast: false,
+        //})
+      }
     }
   },
   props: {

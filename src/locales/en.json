@@ -9,6 +9,8 @@
 			"first_name": "Addressee, first name",
 			"last_name": "Addressee, last name",
 			"mail_preferred_language": "E-mail language",
+			"mail_preferred_language_required": "Select an e-mail language before saving.",
+			"mail_preferred_language_select": "Select a language",
 			"mail_preferred_mail_address": "E-mail address",
 			"mail_send_mail_after_scan_finished": "Send notification after scan is finished",
 			"nl": "Dutch",

@@ -9,6 +9,8 @@
 			"first_name": "Adressat, fornavn",
 			"last_name": "Adressat, efternavn",
 			"mail_preferred_language": "E-mail-sprog",
+			"mail_preferred_language_required": "Vælg et e-mailsprog, før du gemmer.",
+			"mail_preferred_language_select": "Vælg et sprog",
 			"mail_preferred_mail_address": "E-mail-adresse",
 			"mail_send_mail_after_scan_finished": "Send besked, når scanningen er færdig",
 			"nl": "Hollandsk",

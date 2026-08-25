@@ -217,7 +217,7 @@
         </div>
 
         <div class="domain-table-mobile-selection">
-          <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected">
+          <b-form-checkbox v-model="allSelected" :unchecked-value="false" :indeterminate="allSelectedIndeterminate" @change="toggleSelected">
             {{ $t("domain.list.domain-table.Selected") }}: {{ selectedItems.length }} / {{ visibleRows }}
           </b-form-checkbox>
         </div>
@@ -248,13 +248,13 @@
              primary-key="url"
              :filter-function="myFilterFunction"
              :filter-included-fields="['tags', 'url']"
-             selected-variant="info"
+             selection-variant="info"
              v-model:selected-items="selectedItems"
              @filtered="onFiltered"
              @row-selected="onRowSelected"
     >
       <template #head(selected)="">
-        <b-form-checkbox v-model="allSelected" :indeterminate="allSelectedIndeterminate" @change="toggleSelected"></b-form-checkbox>
+        <b-form-checkbox v-model="allSelected" :unchecked-value="false" :indeterminate="allSelectedIndeterminate" @change="toggleSelected"></b-form-checkbox>
       </template>
 
       <template #cell(selected)="{ rowSelected }">
@@ -314,7 +314,7 @@
         }) }}
       </p>
 
-      <b-form-checkbox :id="bulkDeleteSuppressionId" v-model="suppressDeleteConfirmation">
+      <b-form-checkbox :id="bulkDeleteSuppressionId" v-model="suppressDeleteConfirmation" :unchecked-value="false">
         {{ $t("domain.edit-domain.skip-delete-confirmation") }}
       </b-form-checkbox>
 
@@ -371,6 +371,12 @@ export default {
       })
       // uniques and alphabetical sorting
       return tags.filter((x, i, a) => a.indexOf(x) === i).sort()
+    },
+    selectedDomainItems() {
+      const selectedUrls = new Set(
+        this.selectedItems.map(item => typeof item === 'object' ? item.url : item)
+      )
+      return this.urls.filter(item => selectedUrls.has(item.url))
     }
   },
   mounted() {
@@ -429,7 +435,7 @@ export default {
       this.updateCheckBox();
     },
     selectAllRows() {
-      this.selectedItems = this.urls;
+      this.selectedItems = this.urls.map(item => item.url);
       this.allSelected = true;
       this.allSelectedIndeterminate = false;
     },
@@ -475,30 +481,30 @@ export default {
       if (!this.selected_tag)
         return
 
-      this.selectedItems.forEach((item) => {
+      this.selectedDomainItems.forEach((item) => {
         if (!item.tags.includes(this.selected_tag)) {
           item.tags.push(this.selected_tag)
+          http.post(`/api/v1/urllists/${this.urllist.id}/urls/${item.id}/tags`, {
+            tag: this.selected_tag,
+          });
         }
       })
-      http.post(`/api/v1/urllists/${this.urllist.id}/urls/tags`, {
-        url_ids: this.selectedItems.map(item => item.id),
-        tag: this.selected_tag,
-      });
     },
     remove_tags() {
       // support the scenario from issue #344
       if (this.last_searched)
           this.selected_tag = this.last_searched.toLowerCase()
 
-      const ids = []
-      this.selectedItems.forEach((item) => {
+      if (!this.selected_tag)
+        return
+
+      this.selectedDomainItems.forEach((item) => {
         const index = item.tags.indexOf(this.selected_tag);
         if (index > -1) {
           item.tags.splice(index, 1);
-          ids.push(item.id)
+          http.delete(`/api/v1/urllists/${this.urllist.id}/urls/${item.id}/tags/${encodeURIComponent(this.selected_tag)}`);
         }
       })
-      http.delete(`/api/v1/urllists/${this.urllist.id}/urls/${this.selectedItems.map(item => item.id)}/tags/${this.selected_tag}`);
     },
     remove_urls() {
       if (this.selectedItems.length === 0) {
@@ -526,8 +532,7 @@ export default {
       this.delete_selected_urls()
     },
     delete_selected_urls() {
-      // todo: make a list of url id's, add that with the list id and send it to the server
-      const selectedItems = [...this.selectedItems]
+      const selectedItems = [...this.selectedDomainItems]
       selectedItems.forEach((item) => {
         this.remove_url(item)
       });

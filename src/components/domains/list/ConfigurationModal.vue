@@ -39,7 +39,7 @@
       </b-form-select>
       <br><br>
 
-      <b-form-checkbox id="automatically_share_new_reports" v-model="list.automatically_share_new_reports">
+      <b-form-checkbox id="automatically_share_new_reports" v-model="list.automatically_share_new_reports" :unchecked-value="false">
         {{ $t("urllist.automatically_share_new_reports") }}
       </b-form-checkbox>
       <br>
@@ -60,7 +60,7 @@
       </b-input-group>
       <br>
 
-      <b-form-checkbox id="enable_report_sharing_page" v-model="list.enable_report_sharing_page">
+      <b-form-checkbox id="enable_report_sharing_page" v-model="list.enable_report_sharing_page" :unchecked-value="false">
         {{ $t("urllist.enable_report_sharing_page") }}.
         <a :href="`/published/${user.account_id}/`" target="_blank">{{$t("urllist.to_overview_page")}}</a>
       </b-form-checkbox>

@@ -25,12 +25,10 @@ export default {
   },
 
   methods: {
-    load_reports_by_ids(report_ids, data) {
-      let link = '/api/v1/reports/'
-      if (Object.keys(data).length > 0) {
-        link = `/api/v1/reports/${report_ids[0]}/ad-hoc`
-      }
-      this.load_reports_by_ids_at(link, report_ids, data)
+    load_reports_by_ids(report_ids, data = {}) {
+      const is_ad_hoc_preview = Object.keys(data).length > 0
+      const path_suffix = is_ad_hoc_preview ? '/ad-hoc/preview' : ''
+      this.load_reports_by_ids_at('/api/v1/reports/', report_ids, data, path_suffix, is_ad_hoc_preview)
     },
     load_shared_reports_by_ids(report_ids) {
       this.load_reports_by_ids_at('/api/v1/public-reports/', report_ids)
@@ -48,22 +46,24 @@ export default {
       // return report;
     },
 
-    load_reports_by_ids_at(link, report_ids, data) {
+    load_reports_by_ids_at(link, report_ids, data = {}, path_suffix = '', use_post = false) {
       this.reports_to_load = report_ids.length;
       const reports = [];
       const shallow_reports = [];
 
       for (let i = 0; i < this.reports_to_load; i++) {
         const stored_share_code = this.my_store.public_share_codes[report_ids[i]];
-        const post_data = {...{share_code: stored_share_code ? stored_share_code : ""}, ...data}
+        const post_data = {...data}
+        if (stored_share_code)
+          post_data.share_code = stored_share_code
+        const request_url = `${link}${report_ids[i]}${path_suffix}`
 
         // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
         console.log(`Getting report id: ${report_ids[i]}`)
 
-        if (stored_share_code) {
-          // todo: make this nicer, it does the same on post and get... But the report code needs to be posted as we
-          //  cannot have that parameter in a url for security reasons.
-           http.post(`${link}${report_ids[i]}`, post_data).then(response => {
+        if (stored_share_code || use_post) {
+          // Shared report codes and ad-hoc filters belong in the request body, not in the URL.
+           http.post(request_url, post_data).then(response => {
              // The report might be empty, because the wrong code has been sent:
 
              if (response.data !== undefined && response.data !== "") {
@@ -92,7 +92,7 @@ export default {
              }
            });
         } else {
-          http.get(`${link}${report_ids[i]}`, post_data).then(response => {
+          http.get(request_url).then(response => {
             // The report might be empty, because the wrong code has been sent:
 
             if (response.data !== undefined && response.data !== "") {

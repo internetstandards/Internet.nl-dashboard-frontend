@@ -9,6 +9,8 @@
 			"first_name": "Destinataire, prénom",
 			"last_name": "Destinataire, nom de famille",
 			"mail_preferred_language": "Langue du courrier électronique",
+			"mail_preferred_language_required": "Sélectionnez une langue de courrier électronique avant d'enregistrer.",
+			"mail_preferred_language_select": "Sélectionnez une langue",
 			"mail_preferred_mail_address": "Adresse électronique",
 			"mail_send_mail_after_scan_finished": "Envoi d'une notification une fois l'analyse terminée",
 			"nl": "Néerlandais",
