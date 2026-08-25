@@ -77,6 +77,7 @@ import ReportImprovementAndRegressions from "@/components/reports/ReportImprovem
 import ReportTableWidthToggle from '@/components/reports/ReportTableWidthToggle.vue'
 
 import {dashboardStore} from '@/dashboardStore'
+import {reportIdsFromRoute, sameReportIds} from '@/components/reports/reportRoutes'
 
 export default {
   components: {
@@ -103,12 +104,28 @@ export default {
 
   mounted() {
     this.load_visible_metrics();
-    // only do this when there is no report selection component, otherwise let that component handle it...
-    const router_params = this.$route.params;
-    // the route to this component can determine what is shown
-    this.requested_report_ids = [parseInt(router_params.report), parseInt(router_params.compare_with)].filter(Boolean);
+    this.sync_reports_with_route(this.$route);
   },
   methods: {
+    sync_reports_with_route(route) {
+      const reportIds = reportIdsFromRoute(route)
+
+      if (!sameReportIds(reportIds, this.report_ids)) {
+        this.my_store.set_report_ids(reportIds)
+      }
+
+      if (reportIds.length === 0) {
+        this.requested_report_ids = []
+        this.reports = []
+        this.shallow_reports = []
+        this.reports_to_load = 0
+        return
+      }
+
+      if (!sameReportIds(reportIds, this.requested_report_ids)) {
+        this.requested_report_ids = reportIds
+      }
+    },
     apply_tags() {
       this.tags_applied = this.tags.length > 0;
       this.load_reports_by_ids(this.report_ids, {
@@ -120,10 +137,8 @@ export default {
   },
 
   watch: {
-
-    // Report selection control can select a number of reports
-    report_ids(report_ids) {
-      this.requested_report_ids = report_ids;
+    $route(to) {
+      this.sync_reports_with_route(to)
     },
 
     requested_report_ids(report_ids) {

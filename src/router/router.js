@@ -106,6 +106,12 @@ const privateRoutes = [
     meta: {title: 'scan_monitor', access: 'private'}
   },
   {
+    path: '/report/:report/:compare_with/:compare_with_2',
+    component: Report,
+    name: 'three_numbered_reports',
+    meta: {title: 'reports', access: 'private'}
+  },
+  {
     path: '/report/:report/:compare_with',
     component: Report,
     name: 'compared_numbered_report',

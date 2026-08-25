@@ -51,7 +51,7 @@
         :spinner="loading"
         class="w-87"
         :multiple="true"
-        :selectable="() => selected_reports.length < 6"
+        :selectable="() => selected_reports.length < 3"
     >
       <slot name="no-options">{{ $t("report.report-selection.no_options") }}</slot>
       <template v-slot:option="option">
@@ -89,6 +89,7 @@ import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
 import vSelect from 'vue-select';
 import autorefresh from '@/components/autorefresh.vue'
 import { dashboardStore } from '@/dashboardStore'
+import {reportIdsFromRoute, routeForReportIds, sameReportIds} from '@/components/reports/reportRoutes'
 
 export default {
   components: {ScanTypeIcon, ReportTagFilter, vSelect, autorefresh},
@@ -119,12 +120,14 @@ export default {
 
       // list of integers, shared in global state
       selected_report_ids: [],
+
+      // Prevent route-driven dropdown updates from navigating to the same route again.
+      syncing_from_route: false,
     }
   },
 
   mounted() {
     this.get_recent_reports();
-    this.match_with_environment(this.$route);
   },
 
   methods: {
@@ -135,26 +138,35 @@ export default {
         const data = response.data;
         data.forEach(o => {o.label = `#${o.id} - ${o.list_name} - type: ${o.type} - from: ${this.humanize_date(o.at_when)}`});
         this.available_recent_reports = this.filtered_recent_reports = data;
+        this.match_with_environment(this.$route);
         this.loading = false;
       });
     },
 
-      match_with_environment(to){
-        const request_parameters = []
+    match_with_environment(to) {
+      const requestedReportIds = reportIdsFromRoute(to)
+      const selectedReports = requestedReportIds
+        .map(reportId => this.available_recent_reports.find(item => item.id === reportId))
+        .filter(Boolean)
 
-      if (to.params.report !== undefined)
-          request_parameters.push(parseInt(to.params.report));
+      this.syncing_from_route = true
+      this.selected_report_ids = requestedReportIds
+      this.selected_reports = selectedReports
+      this.filtered_recent_reports = selectedReports.length > 0
+        ? this.available_recent_reports.filter(item => item.type === selectedReports[0].type)
+        : this.available_recent_reports
 
-      if (to.params.compare_with !== undefined)
-          request_parameters.push(parseInt(to.params.compare_with));
-
-      // do not update anything if there is nothing to update, otherwise selection gets lost with navigation on the site
-          if (request_parameters.length === 0) {
-              return
-          }
-
-       this.selected_reports = this.available_recent_reports.filter(item => request_parameters.includes(item.id))
+      this.$nextTick(() => {
+        this.syncing_from_route = false
+      })
+    },
+    navigate_to_reports(reportIds) {
+      if (sameReportIds(reportIds, reportIdsFromRoute(this.$route))) {
+        return
       }
+
+      this.$router.push(routeForReportIds(reportIds))
+    },
   },
 
   watch: {
@@ -172,9 +184,14 @@ export default {
       if (dropdown_items === old_value)
         return;
 
-      // Nothing in the list, for example when the cross hair was used or all items where deleted: reset this object
+      if (this.syncing_from_route)
+        return;
+
+      // Nothing in the list, for example when the cross hair was used or all items were deleted.
       if (dropdown_items[0] === undefined) {
         this.filtered_recent_reports = this.available_recent_reports;
+        this.selected_report_ids = [];
+        this.navigate_to_reports([]);
         return;
       }
 
@@ -188,15 +205,8 @@ export default {
       this.filtered_recent_reports = this.available_recent_reports.filter(item => item.type === dropdown_items[0].type);
 
       // create a list of id's, these id's are shared in the app for other controls.
-      this.selected_report_ids = dropdown_items.map(item => item.id);
-      this.store.set_report_ids(this.selected_report_ids);
-
-      // Always update the URL to reflect the latest report, so it can be easily shared and the page reloaded
-
-      if (dropdown_items[1] !== undefined)
-        history.pushState({}, null, `/report/${dropdown_items[0].id}/${dropdown_items[1].id}`);
-      else
-        history.pushState({}, null, `/report/${dropdown_items[0].id}`);
+      this.selected_report_ids = dropdown_items.slice(0, 3).map(item => item.id);
+      this.navigate_to_reports(this.selected_report_ids);
 
     },
 
@@ -231,4 +241,3 @@ export default {
   }
 }
 </script>
-
