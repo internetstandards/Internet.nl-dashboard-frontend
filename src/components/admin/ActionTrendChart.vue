@@ -58,6 +58,7 @@ export default {
     }))
 
     const chartOptions = computed(() => ({
+      animation: false,
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
