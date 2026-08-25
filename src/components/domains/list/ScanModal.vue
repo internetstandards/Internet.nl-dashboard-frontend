@@ -21,6 +21,7 @@
 
 <script>
 import http from "@/httpclient";
+import {dashboardStore} from '@/dashboardStore'
 
 export default {
     name: "scan-list.vue",
@@ -33,6 +34,13 @@ export default {
         return {
             response: {},
             scan_now_confirmed: false,
+            scan_monitor_refresh_timeout: null,
+            store: dashboardStore(),
+        }
+    },
+    beforeUnmount() {
+        if (this.scan_monitor_refresh_timeout !== null) {
+            window.clearTimeout(this.scan_monitor_refresh_timeout)
         }
     },
     methods: {
@@ -50,6 +58,7 @@ export default {
                     this.list.scan_now_available = false;
                     this.response = {};
                     this.scan_now_confirmed = false;
+                    this.schedule_scan_monitor_refresh();
                     this.$emit('started')
                 }
 
@@ -57,6 +66,18 @@ export default {
                     this.scan_now_confirmed = false;
                 }
             });
+        },
+        schedule_scan_monitor_refresh: function () {
+            if (this.scan_monitor_refresh_timeout !== null) {
+                window.clearTimeout(this.scan_monitor_refresh_timeout)
+            }
+
+            this.scan_monitor_refresh_timeout = window.setTimeout(() => {
+                this.scan_monitor_refresh_timeout = null;
+                this.store.load_scan_monitor_data().catch(error => {
+                    console.error('Unable to refresh scan monitor data after starting a scan.', error)
+                });
+            }, 5000);
         },
     }
 }

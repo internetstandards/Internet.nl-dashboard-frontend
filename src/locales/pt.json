@@ -2375,7 +2375,9 @@
 			"tab_changes": "Alterações",
 			"tab_graphs": "Gráficos",
 			"tab_metrics": "Tabela de métricas",
-			"title": "Relatórios"
+			"title": "Relatórios",
+			"use_full_width": "Usar a largura total da página",
+			"use_standard_width": "Usar a largura padrão"
 		},
 		"password-protection": {
 			"Authentication required": "Autenticação necessária",

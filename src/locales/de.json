@@ -2375,7 +2375,9 @@
 			"tab_changes": "Änderungen",
 			"tab_graphs": "Schaubilder",
 			"tab_metrics": "Tabelle der Metriken",
-			"title": "Berichte"
+			"title": "Berichte",
+			"use_full_width": "Volle Seitenbreite verwenden",
+			"use_standard_width": "Standardbreite verwenden"
 		},
 		"password-protection": {
 			"Authentication required": "Authentifizierung erforderlich",

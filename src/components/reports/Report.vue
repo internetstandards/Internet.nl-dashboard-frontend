@@ -38,7 +38,12 @@
 
       <b-tabs variant="info" nav-class="">
         <b-tab :title='$t("report.page.tab_metrics")' lazy>
-          <content-block v-if="reports.length < 3" class="start-on-new-page ultra-wide">
+          <content-block
+            v-if="reports.length < 3"
+            class="start-on-new-page"
+            :full-width="metrics_full_width"
+          >
+            <ReportTableWidthToggle v-model="metrics_full_width" />
             <ReportTableVirtualList :reports="reports" :load_comparison_with_current="!tags_applied"/>
           </content-block>
         </b-tab>
@@ -69,11 +74,13 @@ import ReportSelection from "@/components/reports/ReportSelection.vue";
 import {mapState} from 'pinia'
 import SharingConfiguration from '@/components/reports/SharingConfiguration.vue'
 import ReportImprovementAndRegressions from "@/components/reports/ReportImprovementAndRegressions.vue";
+import ReportTableWidthToggle from '@/components/reports/ReportTableWidthToggle.vue'
 
 import {dashboardStore} from '@/dashboardStore'
 
 export default {
   components: {
+    ReportTableWidthToggle,
     ReportImprovementAndRegressions,
     ReportSelection,
     ReportCharts,
@@ -90,6 +97,7 @@ export default {
       // list of report ids that should be shown as a report
       requested_report_ids: [],
       tags_applied: false,
+      metrics_full_width: false,
     }
   },
 

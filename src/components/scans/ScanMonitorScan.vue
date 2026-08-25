@@ -60,18 +60,18 @@ ol {
         <br><br>
 
         <b>{{ $t("scanmonitor.scan.progress_bar") }}</b><br>
-        <template v-if="progress_bar_data(scan.log[0]['state']).state === 'error'">
+        <template v-if="progress_bar.state === 'error'">
             <b-progress :value="100" variant="danger">
                 <b-progress-bar :value="100">
-                    <span>{{ $t("scanmonitor.scan.progress." + scan.log[0]['state']) }}</span>
+                    <span>{{ $t("scanmonitor.scan.progress." + current_scan_state) }}</span>
                 </b-progress-bar>
             </b-progress>
         </template>
         <template v-else>
             <b-progress show-progress variant="info"
-                        :animated="progress_bar_data(scan.log[0]['state']).percentage!==100">
-                <b-progress-bar :value="progress_bar_data(scan.log[0]['state']).percentage">
-                    <span>{{ progress_bar_data(scan.log[0]['state']).percentage }}%</span>
+                        :animated="progress_bar.percentage !== 100">
+                <b-progress-bar :value="progress_bar.percentage">
+                    <span>{{ progress_bar.percentage }}%</span>
                 </b-progress-bar>
             </b-progress>
         </template>
@@ -243,6 +243,12 @@ export default {
         },
     },
   computed: {
+      current_scan_state() {
+        return this.scan.log?.[0]?.state ?? this.scan.state
+      },
+      progress_bar() {
+        return this.progress_bar_data(this.current_scan_state)
+      },
       header_color() {
         if (['cancelled'].includes(this.scan.state))
           return 'danger'

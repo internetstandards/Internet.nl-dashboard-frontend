@@ -35,7 +35,12 @@
         <ReportCharts :show_timeline="false" :reports="reports"/>
 
         <!-- The table can show up to two reports (the first as the source, the second as a comparison). -->
-        <content-block v-if="reports.length < 3" class="start-on-new-page">
+        <content-block
+          v-if="reports.length < 3"
+          class="start-on-new-page"
+          :full-width="metrics_full_width"
+        >
+          <ReportTableWidthToggle v-model="metrics_full_width" />
           <ReportTableVirtualList :reports="reports" :load_comparison_with_current="false"/>
         </content-block>
       </template>
@@ -51,10 +56,12 @@ import report_mixin from './report_mixin.vue'
 import report_mixin_2 from './report_mixin_2.vue'
 import ReportHeader from './ReportHeader.vue'
 import ReportTableVirtualList from "@/components/reports/ReportTableVirtualList.vue";
+import ReportTableWidthToggle from '@/components/reports/ReportTableWidthToggle.vue'
 
 
 export default {
   components: {
+    ReportTableWidthToggle,
     ReportTableVirtualList,
     ReportCharts,
     ReportPasswords,
@@ -62,6 +69,12 @@ export default {
   },
   mixins: [report_mixin, report_mixin_2],
   name: 'SharedReport',
+
+  data() {
+    return {
+      metrics_full_width: false,
+    }
+  },
 
   props: {
     // list of report ids that should be shown as a report
