@@ -115,7 +115,13 @@ h2 {
       </div>
 
       <template v-if="urls.length">
-        <DomainTable :loading="loading" :urllist="list" :urls="urls" @update="get_urls()"/>
+        <DomainTable
+            :loading="loading"
+            :urllist="list"
+            :urls="urls"
+            @update="get_urls()"
+            @urls-changed="update_list_warnings()"
+        />
         <p><small><i v-html='$t("domain.urllist.domains.intro")'></i></small></p>
       </template>
 
@@ -304,7 +310,7 @@ export default {
       } else {
         const index = this.list.list_warnings.indexOf("WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED");
         if (index > -1) {
-          this.list.list_warnings.splice("WARNING_DOMAINS_IN_LIST_EXCEED_MAXIMUM_ALLOWED", 1);
+          this.list.list_warnings.splice(index, 1);
         }
       }
     },
