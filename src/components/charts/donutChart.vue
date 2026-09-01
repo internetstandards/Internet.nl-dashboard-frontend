@@ -1,84 +1,16 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
-<style scoped>
-/* https://stackoverflow.com/questions/20966817/how-to-add-text-inside-the-doughnut-chart-using-chart-js */
-.relative {
-  position: relative;
-}
-
-.absolute-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.text-center {
-  text-align: center;
-}
-
-.nice-label-0\.5 {
-  font-size: 0.0em;
-}
-
-.nice-label-1 {
-  font-size: 1em;
-}
-.nice-label-2 {
-  font-size: 2em;
-}
-.nice-label-3 {
-  font-size: 2.5em;
-}
-.nice-label-4 {
-  font-size: 2em;
-}
-
-.pct_ok {
-  color: #009E46;
-}
-
-.pct_high {
-  color: #A71810;
-}
-
-.pct_medium {
-  color: #FFAA56;
-}
-
-.pct_low {
-  color: #08236B;
-}
-
-.internetnlscore {
-  color: #05BFD6;
-}
-
-.score{
-  color: black;
-  font-weight: bold;
-}
-
-.internetnlscore_rest, .rest{
-  color: #FFAC40;
-}
-
-.clear{
-  color: #FFFFFF00;
-}
-
-</style>
 <template>
-  <div class="relative">
+  <div>
     <Doughnut aria-hidden="true"
-        :data="testData" :height="height" :width="width" :options="options"
-        :aria-label="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
-        :aria-text="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
-        :aria-description="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
-        :aria-value="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
-        :alt="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
-        :title="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
+        ref="chartRef"
+        :data="testData" :height="height" :width="width" :options="options" :plugins="[canvasTextPlugin]"
+        :aria-label="accessibleLabel"
+        :aria-text="accessibleLabel"
+        :aria-description="accessibleLabel"
+        :aria-value="accessibleLabel"
+        :alt="accessibleLabel"
+        :title="accessibleLabel"
     ></Doughnut>
-    <div class="absolute-center text-center" v-if="show_number_in_center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{round_one_decimal(donut_data[axis[0]])}}%</span></div>
   </div>
 </template>
 
@@ -90,6 +22,52 @@ import {Doughnut} from 'vue-chartjs';
 // todo: add date fns again
 // import 'chartjs-adapter-date-fns';
 
+const backgroundColors = {
+  'pct_ok': "#009E46",
+  'pct_low': "#08236B",
+  'pct_medium': "#FFAA56",
+  'pct_high': "#A71810",
+  'internetnlscore': "#05BFD6",
+  'score': "#05BFD6",
+  'internetnlscore_rest': "#FFAC40",
+  'rest': "#FFAC40",
+  'clear': "#FFFFFF00",
+  'pct_not_applicable': "rgba(41,41,41,0.73)",
+  'pct_error_in_test': "rgba(41,41,41,0.73)",
+  'pct_not_testable': "rgba(109,109,109,0.8)",
+};
+
+function wrapCanvasText(context, text, maxWidth, maxLines = 4) {
+  const words = String(text).split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = '';
+
+  words.forEach((word) => {
+    const candidate = line ? `${line} ${word}` : word;
+    if (line && context.measureText(candidate).width > maxWidth) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = candidate;
+    }
+  });
+  if (line) {
+    lines.push(line);
+  }
+
+  if (lines.length > maxLines) {
+    const visibleLines = lines.slice(0, maxLines);
+    let lastLine = visibleLines[maxLines - 1];
+    while (lastLine && context.measureText(`${lastLine}…`).width > maxWidth) {
+      lastLine = lastLine.slice(0, -1);
+    }
+    visibleLines[maxLines - 1] = `${lastLine}…`;
+    return visibleLines;
+  }
+
+  return lines;
+}
+
 
 export default defineComponent({
   components: {Doughnut},
@@ -98,12 +76,21 @@ export default defineComponent({
     donut_data: {type: Object, required: true},
     height: {type: Number, required: false, default: 300},
     width: {type: Number, required: false, default: 300},
-    datalabels: {type: Boolean, required: false, default: true},
+    datalabels: {type: Boolean, required: false, default: false},
     tooltip: {type: Boolean, required: false, default: true},
     show_number_in_center: {type: Boolean, required: false, default: true},
+    description: {type: String, required: false, default: ''},
     axis: {
       type: Array, required: false, default: () => {
-        return ['pct_ok', 'pct_high', 'pct_medium', 'pct_low']
+        return [
+          'pct_ok',
+          'pct_low',
+          'pct_medium',
+          'pct_high',
+          'pct_not_testable',
+          'pct_not_applicable',
+          'pct_error_in_test',
+        ]
       }
     },
     i18n: {type: Object, required: false},
@@ -123,34 +110,20 @@ export default defineComponent({
     })
 
     const my_datasets = computed(() => {
-
-      const background_colors = {
-        'pct_ok': "#009E46",
-        'pct_low': "#08236B",
-        'pct_medium': "#FFAA56",
-        'pct_high': "#A71810",
-        'internetnlscore': "#05BFD6",
-        'score': "#05BFD6",
-        'internetnlscore_rest': "#FFAC40",
-        'rest': "#FFAC40",
-        'clear': "#FFFFFF00",
-
-        'pct_not_applicable': "rgba(41,41,41,0.73)",
-        'pct_error_in_test': "rgba(41,41,41,0.73)",
-        'pct_not_testable': "rgba(109,109,109,0.8)",
-      };
-
       const datasets = [];
 
       const newDataset = {
         backgroundColor: [],
+        borderColor: 'transparent',
+        borderWidth: 0,
         data: [],
+        hoverBorderWidth: 0,
       };
 
       props.axis.forEach(ax => {
 
         newDataset.data.push(props.donut_data[ax])
-        newDataset.backgroundColor.push(background_colors[ax])
+        newDataset.backgroundColor.push(backgroundColors[ax])
 
       })
       datasets.push(newDataset);
@@ -163,6 +136,12 @@ export default defineComponent({
       // there are no interactions on a donut, so remove the links / animation as it confuses screen readers
       events: null,
       animation: false,
+      devicePixelRatio: Math.max(window.devicePixelRatio || 1, 2),
+      layout: {
+        padding: {
+          bottom: props.description ? 72 : 0,
+        },
+      },
       plugins: {
 
         datalabels: {
@@ -211,7 +190,62 @@ export default defineComponent({
       options
     }));
 
-    return {testData, chartRef, options};
+    const accessibleLabel = computed(() => {
+      const score = `${Math.round(Number(props.donut_data[props.axis[0]]) * 10) / 10}%`;
+      return props.description
+        ? `${props.description}: ${score} positive score.`
+        : `Doughnut chart indicating ${score} positive score.`;
+    });
+
+    const canvasTextPlugin = {
+      id: 'donutCanvasText',
+      afterDraw(chart) {
+        const {ctx, chartArea} = chart;
+        if (!chartArea) {
+          return;
+        }
+
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        if (props.show_number_in_center) {
+          const score = Math.round(Number(props.donut_data[props.axis[0]]) * 10) / 10;
+          const fontSize = Math.max(12, Math.min(40, chartArea.width * 0.14));
+          ctx.fillStyle = backgroundColors[props.axis[0]] || '#000000';
+          ctx.font = `700 ${fontSize}px sans-serif`;
+          ctx.fillText(`${score}%`, chartArea.left + chartArea.width / 2, chartArea.top + chartArea.height / 2);
+        }
+
+        if (props.description) {
+          ctx.fillStyle = '#212529';
+          ctx.font = '600 12px sans-serif';
+          const lines = wrapCanvasText(ctx, props.description, Math.max(80, chart.width - 16));
+          const startY = chartArea.bottom + 18;
+          lines.forEach((line, index) => {
+            ctx.fillText(line, chart.width / 2, startY + index * 14);
+          });
+        }
+
+        ctx.restore();
+      },
+    };
+
+    const download = (filename) => {
+      const chart = chartRef.value?.chart;
+      if (!chart) {
+        return;
+      }
+
+      const downloadLink = document.createElement('a');
+      downloadLink.download = filename || 'donut.png';
+      downloadLink.href = chart.toBase64Image('image/png', 1);
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+    };
+
+    return {accessibleLabel, canvasTextPlugin, testData, chartRef, options, download};
   },
 })
 </script>

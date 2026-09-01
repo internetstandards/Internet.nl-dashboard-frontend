@@ -2369,7 +2369,10 @@
 		"nested-report-charts": {
 			"A": "Moyenne",
 			"category": "Catégorie",
-			"G": "Moyenne"
+			"download_graph": "Télécharger le graphique",
+			"G": "Moyenne",
+			"show_as_donuts": "Afficher sous forme d’anneaux",
+			"show_averages": "Afficher les moyennes"
 		},
 		"page": {
 			"intro": "Il est possible de sélectionner un ou plusieurs rapports. La sélection d'un seul rapport permet d'afficher toutes les données de ce rapport, y compris les graphiques et un tableau avec les résultats détaillés. Si l'on sélectionne deux rapports, une comparaison est effectuée entre ces rapports dans les graphiques et les résultats détaillés. Si vous sélectionnez plus de deux rapports, seuls les graphiques sont affichés.",

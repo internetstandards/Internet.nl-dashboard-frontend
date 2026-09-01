@@ -2369,7 +2369,10 @@
 		"nested-report-charts": {
 			"A": "Gennemsnit",
 			"category": "Kategori",
-			"G": "Gennemsnit"
+			"download_graph": "Download graf",
+			"G": "Gennemsnit",
+			"show_as_donuts": "Vis som donutdiagrammer",
+			"show_averages": "Vis gennemsnit"
 		},
 		"page": {
 			"intro": "Det er muligt at vælge en eller flere rapporter. Hvis du vælger en enkelt rapport, vises alle data i den pågældende rapport, inklusive grafer og en tabel med detaljerede resultater. Hvis du vælger to rapporter, vises en sammenligning mellem disse rapporter i graferne og det detaljerede resultat. Hvis du vælger mere end to rapporter, vises kun grafer.",

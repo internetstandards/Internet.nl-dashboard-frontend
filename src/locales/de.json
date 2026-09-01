@@ -2369,7 +2369,10 @@
 		"nested-report-charts": {
 			"A": "Durchschnitt",
 			"category": "Kategorie",
-			"G": "Durchschnitt"
+			"download_graph": "Diagramm herunterladen",
+			"G": "Durchschnitt",
+			"show_as_donuts": "Als Donut-Diagramme anzeigen",
+			"show_averages": "Durchschnittswerte anzeigen"
 		},
 		"page": {
 			"intro": "Es ist möglich, einen oder mehrere Berichte auszuwählen. Wenn Sie einen einzelnen Bericht auswählen, werden alle Daten dieses Berichts angezeigt, einschließlich Grafiken und einer Tabelle mit detaillierten Ergebnissen. Bei Auswahl von zwei Berichten wird ein Vergleich zwischen diesen Berichten in den Diagrammen und den detaillierten Ergebnissen vorgenommen. Wenn Sie mehr als zwei Berichte auswählen, werden nur die Grafiken angezeigt.",

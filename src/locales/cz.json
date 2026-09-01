@@ -2369,7 +2369,10 @@
 		"nested-report-charts": {
 			"A": "Průměr",
 			"category": "Kategorie",
-			"G": "Průměr"
+			"download_graph": "Stáhnout graf",
+			"G": "Průměr",
+			"show_as_donuts": "Zobrazit jako prstencové grafy",
+			"show_averages": "Zobrazit průměry"
 		},
 		"page": {
 			"intro": "Je možné vybrat jednu nebo více zpráv. Výběrem jedné sestavy se zobrazí všechna data této sestavy včetně grafů a tabulky s podrobnými výsledky. Výběrem dvou sestav se provede porovnání těchto sestav v grafech a podrobném výsledku. Při výběru více než dvou sestav se zobrazí pouze grafy.",

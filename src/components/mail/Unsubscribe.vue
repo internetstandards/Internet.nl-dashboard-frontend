@@ -84,14 +84,27 @@ export default {
             // this will always take about a second to deter brute force / account guessing.
             this.loading = true;
             this.unsubscribed = false;
-            this.error = false;
-            http.get(`/mail/unsubscribe/${this.feed}/${this.unsubscribe_code}`).then(data => {
-                if (data.data['unsubscribed']) {
-                    this.unsubscribed = true;
-                    this.error_occurred = false;
-                }
-                this.loading = false;
-            });
+            this.error_occurred = false;
+
+            const feed = encodeURIComponent(this.feed);
+            const unsubscribeCode = encodeURIComponent(this.unsubscribe_code);
+
+            return http.get(`/api/v1/mail/unsubscribe/${feed}/${unsubscribeCode}`)
+                .then(response => {
+                    this.unsubscribed = response.data?.success === true;
+                    this.error_occurred = !this.unsubscribed;
+
+                    if (this.error_occurred) {
+                        this.show_unsubscribe_form = true;
+                    }
+                })
+                .catch(() => {
+                    this.error_occurred = true;
+                    this.show_unsubscribe_form = true;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         },
     },
     name: 'unsubscribe',

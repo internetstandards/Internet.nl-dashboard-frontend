@@ -97,7 +97,7 @@ export default {
         this.rendered_chart_to_table = {}
       }
       this.chart.update('none');
-      this.rendered_chart_to_table[this.chartName] = this.chart.data;
+      this.sync_chart_data_table();
     },
     renderTitle: function () {
       this.chart.options.plugins.title.text = this.title;

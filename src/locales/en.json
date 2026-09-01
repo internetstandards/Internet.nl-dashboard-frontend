@@ -2369,7 +2369,10 @@
 		"nested-report-charts": {
 			"A": "Average",
 			"category": "Category",
-			"G": "Average"
+			"download_graph": "Download graph",
+			"G": "Average",
+			"show_as_donuts": "Show as donuts",
+			"show_averages": "Show averages"
 		},
 		"page": {
 			"intro": "It is possible to select one or multiple reports. Selecting a single report shows all data of that report, including graphs and a table with detailed results. Selecting two reports, a comparison is made between these reports in the graphs and detailed result. Selecting more than two reports, only graphs are shown.",

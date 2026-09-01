@@ -1,5 +1,6 @@
 import {describe, expect, it, vi} from "vitest";
 
+import ChartMixin from "@/components/charts/chart_mixin.vue";
 import PercentageBarChart from "@/components/charts/render-percentage-bar-chart.vue";
 
 describe("render-percentage-bar-chart", () => {
@@ -28,6 +29,7 @@ describe("render-percentage-bar-chart", () => {
       rendered_chart_to_table: {},
       chartName: "overall",
       configure_barchart: vi.fn(),
+      sync_chart_data_table: ChartMixin.methods.sync_chart_data_table,
       $i18n: {t: (key) => key},
     };
 
@@ -39,6 +41,8 @@ describe("render-percentage-bar-chart", () => {
       "chart.percentage-bar-chart.average",
     ]);
     expect(chart.data.datasets[0].data).toEqual([80, 60, 70]);
+    expect(context.rendered_chart_to_table.overall.labels).toEqual(chart.data.labels);
+    expect(context.rendered_chart_to_table.overall).not.toBe(chart.data);
     expect(chart.update).toHaveBeenCalledOnce();
     expect(chart.update).toHaveBeenCalledWith("none");
   });

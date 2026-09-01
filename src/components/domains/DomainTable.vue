@@ -345,6 +345,7 @@ import {
 export default {
   name: "DomainTable",
   components: {FormatScanEligibility, EditDomain, Tag, vSelect},
+  emits: ['update', 'urls-changed'],
   props: {
     urls: {
       type: Array, required: true,
@@ -548,6 +549,7 @@ export default {
         const index = this.urls.indexOf(url_object[0]);
         if (index > -1) {
           this.urls.splice(index, 1);
+          this.$emit('urls-changed');
         }
       }
     },
