@@ -1,4 +1,44 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
+<style scoped>
+.switch-account-current,
+.switch-account-users {
+    overflow-wrap: anywhere;
+}
+
+.switch-account-table :deep(thead th) {
+    overflow-wrap: normal;
+    white-space: nowrap;
+    word-break: normal;
+}
+
+.switch-account-table :deep(.b-table-stacked-label) {
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.switch-account-table-container {
+    position: relative;
+}
+
+.switch-account-reload {
+    position: absolute;
+    right: 0.25rem;
+    top: 0.25rem;
+    z-index: 2;
+}
+
+.switch-account-table :deep(caption) {
+    min-height: 2.75rem;
+    padding-right: 3.25rem;
+}
+
+@media (max-width: 767.98px) {
+    .switch-account-table :deep(td) {
+        white-space: normal;
+    }
+}
+</style>
+
 <template>
   <div>
     <page-header
@@ -11,7 +51,6 @@
     </page-header>
 
     <content-block>
-      {{this.current_account.id}}: {{this.current_account.name}}
 
         <template v-if="server_response.success">
             <server-response :response="server_response"
@@ -21,46 +60,54 @@
             <server-response :response="server_response"></server-response>
         </template>
 
-        <p>
-            <b-button variant="warning" role="link" @click="get_accounts">🔁 {{ $t("admin.switch_account.reload_list") }}</b-button>
-            <br><br>
-            <label for="account_selection">{{ $t("admin.switch_account.select") }}:</label>
-
-            <!--
-            We want to see everything, :sticky-header="true" disabled.
-            -->
+        <div>
             <b-form-input
                 v-model="filter"
                 type="search"
-                id="filterInput"
+                id="account_selection"
                 placeholder="Type to Search"
-            ></b-form-input>
-            <br />
-            <b-pagination
-                v-model="currentPage"
-                :total-rows="totalRows"
-                :per-page="perPage"
-                v-if="totalRows > perPage"
-                size="sm"
-                class="my-0"
-            ></b-pagination>
-            <br />
+                debounce="200"
+                class="mb-3"
+            />
 
-            <b-table striped hover selectable
+            <div class="switch-account-table-container">
+                <b-button
+                    class="switch-account-reload"
+                    variant="warning"
+                    size="sm"
+                    :disabled="loading || switching"
+                    :aria-label="$t('admin.switch_account.reload_list')"
+                    :title="$t('admin.switch_account.reload_list')"
+                    @click="get_accounts"
+                >
+                    <i-bi-arrow-repeat aria-hidden="true" />
+                </b-button>
+
+                <b-table
                      v-model:selected-items="selected_items"
-                     :responsive="'sm'"
-                     :select-mode="'single'"
-                     :no-border-collapse="true"
+                     v-model:current-page="currentPage"
                      :items="accounts"
                      :fields="fields"
-                     :primary-key="'id'"
-                     :busy="loading"
-                     :filter-included-fields="filterOn"
-                     :current-page="currentPage"
+                     :busy="loading || switching"
+                     :caption="$t('admin.switch_account.select')"
+                     :filterable="filterOn"
                      :per-page="perPage"
                      :filter="filter"
-
-                     @row-selected="onRowSelected"
+                     primary-key="id"
+                     select-mode="single"
+                     stacked="md"
+                     caption-top
+                     selection-variant="warning"
+                     class="switch-account-table"
+                     label-stacked
+                     responsive
+                     no-border-collapse
+                     selectable
+                     show-empty
+                     small
+                     striped
+                     hover
+                     @filtered="onFiltered"
             >
                 <template #cell(selected)="{ rowSelected }">
                     <template v-if="rowSelected">
@@ -74,14 +121,28 @@
                 </template>
 
                 <template #cell(users)="data">
-                   {{ data.value.join(", ") }}
+                   <span class="switch-account-users">{{ data.value.join(", ") }}</span>
                 </template>
 
                 <template #table-busy>
-                    <loading :loading="loading"/>
+                    <loading :loading="loading || switching"/>
                 </template>
-            </b-table>
-        </p>
+                </b-table>
+            </div>
+
+            <b-pagination
+                v-if="totalRows > perPage"
+                v-model="currentPage"
+                :total-rows="totalRows"
+                :per-page="perPage"
+                :limit="3"
+                size="sm"
+                class="justify-content-center flex-wrap mt-3 mb-0"
+                first-number
+                last-number
+                hide-ellipsis
+            />
+        </div>
     </content-block>
   </div>
 </template>
@@ -94,7 +155,7 @@ export default {
         return {
             fields: [
                 {key: "selected", sortable: false, label: 'Activated'},
-                {key: "id", sortable: true, label: 'Id'},
+                {key: "id", sortable: true, label: 'ID'},
                 {key: "name", sortable: true, label: 'Name'},
                 {key: "scans", sortable: true, label: 'Scans'},
                 {key: "lists", sortable: true, label: 'Lists'},
@@ -105,52 +166,120 @@ export default {
 
             filter: "",
             filterOn: ['name', 'id', 'users'],
-            perPage: 10,
-            totalRows: 1,
+            perPage: 50,
+            totalRows: 0,
             currentPage: 1,
 
             accounts: [],
             current_account: {},
             server_response: {},
             loading: false,
-            selected: [],
-            initial_selected: {}
+            switching: false
         }
     },
     beforeMount: function () {
         this.get_accounts();
     },
-    methods: {
-        onRowSelected(x) {
-          if (x.id !== this.current_account.id) {
-            this.set_account(x.id)
-          }
+    watch: {
+        selected_items(selectedRows) {
+            this.onSelectedItemsChanged(selectedRows);
         },
-        selectAccountRow(x) {
-          this.selected_items = [this.current_account];
+    },
+    methods: {
+        onFiltered(filteredItems) {
+          this.totalRows = filteredItems.length
+          this.currentPage = 1
+        },
+        onSelectedItemsChanged(selectedRows) {
+          const selectedValue = Array.isArray(selectedRows) ? selectedRows[0] : selectedRows
+          const selectedAccountId = typeof selectedValue === 'object' && selectedValue !== null
+            ? selectedValue.id
+            : selectedValue
+          const accountId = Number(selectedAccountId)
+
+          if (!Number.isInteger(accountId) || this.switching || accountId === Number(this.current_account.id)) {
+            return
+          }
+
+          this.set_account(accountId)
+        },
+        selectAccountRow() {
+          const accountId = Number(this.current_account.id);
+          this.selected_items = Number.isInteger(accountId) ? [accountId] : [];
         },
         get_accounts: function () {
             this.loading = true;
-            http.get('/api/v1/admin/accounts').then(data => {
+            this.server_response = {};
+            return http.get('/api/v1/admin/accounts').then(data => {
                 this.accounts = data.data['accounts'];
                 this.current_account = data.data['current_account'];
-                this.selected = [data.data['current_account']];
-                this.initial_selected = data.data['current_account'];
                 this.totalRows = this.accounts.length;
-                this.loading = false;
                 // set the initial value.
                 this.$nextTick(() => {
                     this.selectAccountRow();
                 })
-
+            }).catch(error => {
+                this.server_response = this.errorResponse(error, 'Unable to load accounts.');
+            }).finally(() => {
+                this.loading = false;
             });
         },
         set_account: function (account_id) {
-            http.post(`/api/v1/admin/accounts/${account_id}/impersonation`).then(server_response => {
+            const accountId = Number(account_id);
+            if (!Number.isInteger(accountId)) {
+                this.server_response = {
+                    error: true,
+                    success: false,
+                    message: 'Unable to switch accounts: invalid account ID.',
+                    timestamp: new Date().toISOString(),
+                };
+                this.restoreCurrentAccountSelection();
+                return Promise.resolve();
+            }
+
+            this.switching = true;
+            this.server_response = {};
+
+            return http.post(`/api/v1/admin/accounts/${accountId}/impersonation`).then(server_response => {
                 this.server_response = server_response.data;
-                // not the nicest solution, but it works and prevents mistakes by not reloading the page...
-                location.reload();
+
+                if (server_response.data.success) {
+                    this.reloadApplication();
+                    return;
+                }
+
+                this.restoreCurrentAccountSelection();
+            }).catch(error => {
+                this.server_response = this.errorResponse(error, 'Unable to switch accounts.');
+                this.restoreCurrentAccountSelection();
+            }).finally(() => {
+                this.switching = false;
             });
+        },
+        restoreCurrentAccountSelection: function () {
+            this.$nextTick(() => {
+                this.selectAccountRow();
+            });
+        },
+        reloadApplication: function () {
+            window.location.reload();
+        },
+        errorResponse: function (error, fallbackMessage) {
+            const response = error.response?.data;
+            if (response && typeof response === 'object') {
+                return {
+                    ...response,
+                    error: true,
+                    success: false,
+                };
+            }
+
+            return {
+                error: true,
+                success: false,
+                message: error.message || fallbackMessage,
+                timestamp: new Date().toISOString(),
+            };
         }
     },
 }

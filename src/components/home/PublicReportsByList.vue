@@ -56,31 +56,25 @@
           </template>
 
           <template #cell(at_when)="data">
-            <a
-              :href="`/shared/report/${data.item.public_report_code}`"
-              target="_blank"
-              rel="nofollow"
+            <router-link
+              :to="{name: 'shared_report', params: {report: data.item.public_report_code}}"
             >
               {{ humanize_date(data.value) }}
-            </a>
+            </router-link>
           </template>
 
           <template #cell(coverage)="data">
-            <a
-              :href="`/shared/report/${data.item.public_report_code}`"
-              target="_blank"
-              rel="nofollow"
+            <router-link
+              :to="{name: 'shared_report', params: {report: data.item.public_report_code}}"
             >
               {{$t("public-reports.table.domains", data.item.total_urls)}}
-            </a>
+            </router-link>
           </template>
 
           <template #cell(open)="data">
             <b-button
-              :href="`/shared/report/${data.item.public_report_code}`"
-              target="_blank"
+              :to="{name: 'shared_report', params: {report: data.item.public_report_code}}"
               variant="warning"
-              rel="nofollow"
               size="sm"
             >
               {{$t("public-reports.table.view report")}}
@@ -108,10 +102,11 @@
 import Donut from "@/components/charts/donut.vue";
 import TimeLineChart from "@/components/charts/render-line-chart.vue";
 import ScanTypeIcon from "@/components/ScanTypeIcon.vue";
+import {RouterLink} from "vue-router";
 
 export default {
   name: "PublicReportsByList",
-  components: {Donut, ScanTypeIcon, TimeLineChart},
+  components: {Donut, RouterLink, ScanTypeIcon, TimeLineChart},
 
   props: {
     reports: {type: Array, required: true},
