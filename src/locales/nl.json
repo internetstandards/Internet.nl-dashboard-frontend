@@ -2369,7 +2369,10 @@
 		"nested-report-charts": {
 			"A": "Gemiddeld",
 			"category": "Categorie",
-			"G": "Gemiddelde"
+			"download_graph": "Grafiek downloaden",
+			"G": "Gemiddelde",
+			"show_as_donuts": "Weergeven als donuts",
+			"show_averages": "Gemiddelden tonen"
 		},
 		"page": {
 			"intro": "Het is mogelijk om meerdere rapporten te selecteren. Bij het selecteren van een enkel rapport wordt alle relevante informatie hierover getoond. Bij het selecteren van twee rapporten wordt een vergelijking gemaakt: zowel in de grafieken als in de detail tabel. Bij het selecteren van meer dan twee rapporten zijn alleen de grafieken zichtbaar.",

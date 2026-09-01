@@ -35,10 +35,12 @@ h3 {
 
     <template v-if="elements.includes('donut') && !elements.includes('table')">
       <donutChart
+          ref="standalone_chart"
           :donut_data="data"
           :i18n="$i18n"
           :axis="axis"
           :datalabels="datalabels"
+          :description="elements.includes('subtitle') ? $t('metric.' + title + '.title') : ''"
           :tooltip="tooltip"
           :height="height"
           :width="width"
@@ -51,10 +53,12 @@ h3 {
       <b-tabs content-class="mt-3" end>
         <b-tab :title='$t("chart.donut.graph")' active v-if="elements.includes('donut')">
           <donutChart
+              ref="tabbed_chart"
               :donut_data="data"
               :i18n="$i18n"
               :axis="axis"
               :datalabels="datalabels"
+              :description="elements.includes('subtitle') ? $t('metric.' + title + '.title') : ''"
               :tooltip="tooltip"
               :height="height"
               :width="width"
@@ -74,7 +78,6 @@ h3 {
 
       </b-tabs>
     </template>
-    <p class="text-center mt-2 font-weight-bolder" v-if="elements.includes('subtitle')">{{ $t("metric." + title + ".title") }}</p>
   </div>
 </template>
 
@@ -111,7 +114,15 @@ export default {
     },
     axis: {
       type: Array, required: false, default: () => {
-        return ['pct_ok', 'pct_low', 'pct_medium', 'pct_high']
+        return [
+          'pct_ok',
+          'pct_low',
+          'pct_medium',
+          'pct_high',
+          'pct_not_testable',
+          'pct_not_applicable',
+          'pct_error_in_test',
+        ]
       }
     },
   },
@@ -138,6 +149,10 @@ export default {
   },
 
   methods: {
+    download(filename) {
+      const chart = this.$refs.standalone_chart ?? this.$refs.tabbed_chart
+      chart?.download(filename)
+    },
     graph_data_to_table(graph_data) {
       // Prints the table from the chart, this is done to have any rules from the chart incorporated in the table.
       // perhaps this is logically wrong and the data should be rendered here, but is the chart still reactive then?

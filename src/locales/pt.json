@@ -2369,7 +2369,10 @@
 		"nested-report-charts": {
 			"A": "MÉDIA",
 			"category": "Categoria",
-			"G": "MÉDIA"
+			"download_graph": "Descarregar gráfico",
+			"G": "MÉDIA",
+			"show_as_donuts": "Mostrar como gráficos em anel",
+			"show_averages": "Mostrar médias"
 		},
 		"page": {
 			"intro": "É possível selecionar um ou vários relatórios. A seleção de um único relatório mostra todos os dados desse relatório, incluindo gráficos e uma tabela com resultados detalhados. Selecionando dois relatórios, é feita uma comparação entre estes relatórios nos gráficos e no resultado detalhado. Se selecionar mais de dois relatórios, apenas são apresentados os gráficos.",

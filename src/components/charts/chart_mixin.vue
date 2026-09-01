@@ -86,16 +86,18 @@ export default {
   },
   methods: {
 
-    download(file_type){
+    download(file_type, filename){
       let data = ""
       if (file_type === "png")
-        data = this.chart.toBase64Image();
+        data = this.chart.toBase64Image('image/png', 1);
       if (file_type === "jpg")
         data = this.chart.toBase64Image('image/jpeg', 1)
       const aDownloadLink = document.createElement('a');
-      aDownloadLink.download = `graph.${file_type}`
+      aDownloadLink.download = filename || `graph.${file_type}`
       aDownloadLink.href = data;
+      document.body.appendChild(aDownloadLink);
       aDownloadLink.click();
+      aDownloadLink.remove();
     },
 
     arraysEqual(a, b) {
@@ -117,6 +119,27 @@ export default {
       return true;
     },
 
+    legend_dataset_has_values(dataset) {
+      return dataset?.data?.some((value) => Number(value) > 0) ?? false;
+    },
+
+    sync_chart_data_table() {
+      const chartData = this.chart?.data;
+      if (!chartData) {
+        return;
+      }
+
+      // Chart.js mutates its data object in place. Publish a fresh, minimal
+      // snapshot so Vue can reactively update the accompanying table.
+      this.rendered_chart_to_table[this.chartName] = {
+        labels: (chartData.labels ?? []).map((label) => Array.isArray(label) ? [...label] : label),
+        datasets: (chartData.datasets ?? []).map((dataset) => ({
+          label: dataset.label,
+          data: Array.from(dataset.data ?? []),
+        })),
+      };
+    },
+
     configure_barchart: function () {
 
       if (this.chart !== undefined) {
@@ -129,6 +152,8 @@ export default {
         data: {},
         options: {
           animation: false,
+          // Keep the displayed size unchanged while exporting at least twice as many pixels.
+          devicePixelRatio: Math.max(window.devicePixelRatio || 1, 2),
 
           // can prevent data falling off the chart.
           layout: {
@@ -165,21 +190,17 @@ export default {
               display: true,
               text: this.title,
             },
-          },
-          legend: {
-            display: true,
-            position: 'top',
-            labels: {
-              padding: 15,
-              filter: function (item, data) {
-                // Only shows legend labels for data types that are actually available
-                // dataset 0 = good, dataset 1 is info etc...
-                const dsIndex = item.datasetIndex;
-                const currentDataValue = data.datasets[dsIndex].data.reduce((a, b) => a + b, 0);
-                return currentDataValue > 0;
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                padding: 15,
+                filter: (item, data) => {
+                  // Only show a legend entry when at least one metric has that result.
+                  return this.legend_dataset_has_values(data.datasets[item.datasetIndex]);
+                },
               },
             },
-
           },
           responsive: true,
           maintainAspectRatio: false,
