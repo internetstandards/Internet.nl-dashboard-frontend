@@ -2,6 +2,7 @@
 <style scoped>
 /* https://stackoverflow.com/questions/20966817/how-to-add-text-inside-the-doughnut-chart-using-chart-js */
 .relative {
+  container-type: inline-size;
   position: relative;
 }
 
@@ -16,21 +17,10 @@
   text-align: center;
 }
 
-.nice-label-0\.5 {
-  font-size: 0.0em;
-}
-
-.nice-label-1 {
-  font-size: 1em;
-}
-.nice-label-2 {
-  font-size: 2em;
-}
-.nice-label-3 {
-  font-size: 2.5em;
-}
-.nice-label-4 {
-  font-size: 2em;
+.center-label {
+  font-size: clamp(0.75rem, 12cqi, 2.5rem);
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .pct_ok {
@@ -78,7 +68,9 @@
         :alt="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
         :title="`Doughnut chart indicating ${donut_data[axis[0]]}% positive score.`"
     ></Doughnut>
-    <div class="absolute-center text-center" v-if="show_number_in_center"><span :class="`nice-label-${height/100} ${axis[0]}`">{{round_one_decimal(donut_data[axis[0]])}}%</span></div>
+    <div class="absolute-center text-center" v-if="show_number_in_center">
+      <span :class="['center-label', axis[0]]">{{round_one_decimal(donut_data[axis[0]])}}%</span>
+    </div>
   </div>
 </template>
 
@@ -98,7 +90,7 @@ export default defineComponent({
     donut_data: {type: Object, required: true},
     height: {type: Number, required: false, default: 300},
     width: {type: Number, required: false, default: 300},
-    datalabels: {type: Boolean, required: false, default: true},
+    datalabels: {type: Boolean, required: false, default: false},
     tooltip: {type: Boolean, required: false, default: true},
     show_number_in_center: {type: Boolean, required: false, default: true},
     axis: {

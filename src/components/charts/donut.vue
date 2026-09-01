@@ -99,7 +99,7 @@ export default {
   props: {
     data: {type: Object, required: true},
     title: {type: String, required: false},
-    datalabels: {type: Boolean, required: false, default: true},
+    datalabels: {type: Boolean, required: false, default: false},
     tooltip: {type: Boolean, required: false, default: true},
     height: {type: Number, required: false, default: 100},
     width: {type: Number, required: false, default: 100},
