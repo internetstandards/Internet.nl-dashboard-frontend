@@ -2,7 +2,7 @@
   <div>
 
     <loading :loading="loading"></loading>
-    <server-response :response="server_response" :message="$t(`signup.form.${server_response.message}`)"></server-response>
+    <server-response :message="$t('signup.form.access_requested')" :response="server_response"></server-response>
 
 
     <b-form @submit="onSubmit" v-if="!loading && !submitted_succesfully">
@@ -188,6 +188,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 
 export default {
@@ -233,20 +234,13 @@ export default {
       this.loading = true;
       http.post('/api/v1/signup', {
         'form_data': this.form
-      }).then(data => {
-        if (data.data) {
-          this.server_response = data.data;
-
-
-          // you have to re-init the app to resubmit.
-          if (data.data.success) {
-            this.submitted_succesfully = true;
-          }
-
-          this.loading = false;
-        }
+      }).then(response => {
+        this.server_response = response;
+        this.submitted_succesfully = true;
       }).catch(error => {
-          this.server_response = error.response.data;
+        this.server_response = requestError(error);
+      }).finally(() => {
+        this.loading = false;
       });
     },
   }

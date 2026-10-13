@@ -2,7 +2,7 @@
 <template>
       <div>
         <loading :loading="loading"></loading>
-        <server-response :response="server_response" :message='$t("account.notifications." + server_response.message)'></server-response>
+        <server-response :message="$t('account.notifications.save_user_settings_success')" :response="server_response"></server-response>
 
         <form novalidate @submit.prevent="save">
         <label class='ad_hoc_label' for="mail_send_mail_after_scan_finished">
@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import {problemTypes} from "@/apiProblems";
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 
 export default {
@@ -124,20 +126,16 @@ name: "NotificationSettings.vue",
         'mail_preferred_mail_address': this.user.mail_preferred_mail_address,
         'mail_preferred_language': this.user.mail_preferred_language,
         'mail_send_mail_after_scan_finished': this.user.mail_send_mail_after_scan_finished
-      }).then(data => {
-        if (data.data)
-          this.server_response = data.data;
+      }).then(response => {
+        this.server_response = response;
       }).catch(error => {
         const response = error.response;
-        const details = response?.data?.detail || response?.data?.errors || [];
-        this.languageServerInvalid = response?.status === 422 && Array.isArray(details) && details.some(detail =>
-          detail?.loc?.includes('mail_preferred_language') || detail?.param === 'mail_preferred_language'
+        const errors = response?.data?.errors || [];
+        this.languageServerInvalid = response?.status === 400 && (
+          response.data.type === problemTypes.UNSUPPORTED_LANGUAGE ||
+          errors.some(error => error?.loc?.includes('mail_preferred_language'))
         );
-        this.server_response = {
-          error: true,
-          message: 'save_user_settings_error_incomplete_data',
-          timestamp: new Date().toISOString(),
-        };
+        this.server_response = requestError(error);
       }).finally(() => {
         this.loading = false;
       });

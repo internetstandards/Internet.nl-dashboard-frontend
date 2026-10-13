@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 
 export default {
@@ -58,12 +59,12 @@ export default {
         },
         confirm_deletion: function () {
             http.delete(`/api/v1/urllists/${this.list.id}`).then(server_response => {
-                if (server_response.data.success) {
+                if (server_response.status >= 200 && server_response.status < 300) {
                     this.$emit('removelist', this.list.id);
                 } else {
-                    this.delete_response = server_response.data;
+                    this.delete_response = server_response;
                 }
-            });
+            }).catch(error => { this.delete_response = requestError(error); });
         },
     },
     mounted: function () {

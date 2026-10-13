@@ -52,9 +52,8 @@
 
     <content-block>
 
-        <template v-if="server_response.success">
-            <server-response :response="server_response"
-                             :message='$t("admin.switch_account.switched_account", [server_response.data.account_name])'></server-response>
+        <template v-if="server_response.status >= 200 && server_response.status < 300">
+            <server-response :response="server_response"></server-response>
         </template>
         <template v-else>
             <server-response :response="server_response"></server-response>
@@ -148,6 +147,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 
 export default {
@@ -219,7 +219,7 @@ export default {
                     this.selectAccountRow();
                 })
             }).catch(error => {
-                this.server_response = this.errorResponse(error, 'Unable to load accounts.');
+                this.server_response = this.errorResponse(error);
             }).finally(() => {
                 this.loading = false;
             });
@@ -227,12 +227,7 @@ export default {
         set_account: function (account_id) {
             const accountId = Number(account_id);
             if (!Number.isInteger(accountId)) {
-                this.server_response = {
-                    error: true,
-                    success: false,
-                    message: 'Unable to switch accounts: invalid account ID.',
-                    timestamp: new Date().toISOString(),
-                };
+                this.server_response = {status: 0, data: {detail: 'Unable to switch accounts: invalid account ID.'}};
                 this.restoreCurrentAccountSelection();
                 return Promise.resolve();
             }
@@ -241,16 +236,16 @@ export default {
             this.server_response = {};
 
             return http.post(`/api/v1/admin/accounts/${accountId}/impersonation`).then(server_response => {
-                this.server_response = server_response.data;
+                this.server_response = server_response;
 
-                if (server_response.data.success) {
+                if (server_response.status >= 200 && server_response.status < 300) {
                     this.reloadApplication();
                     return;
                 }
 
                 this.restoreCurrentAccountSelection();
             }).catch(error => {
-                this.server_response = this.errorResponse(error, 'Unable to switch accounts.');
+                this.server_response = this.errorResponse(error);
                 this.restoreCurrentAccountSelection();
             }).finally(() => {
                 this.switching = false;
@@ -264,22 +259,8 @@ export default {
         reloadApplication: function () {
             window.location.reload();
         },
-        errorResponse: function (error, fallbackMessage) {
-            const response = error.response?.data;
-            if (response && typeof response === 'object') {
-                return {
-                    ...response,
-                    error: true,
-                    success: false,
-                };
-            }
-
-            return {
-                error: true,
-                success: false,
-                message: error.message || fallbackMessage,
-                timestamp: new Date().toISOString(),
-            };
+        errorResponse: function (error) {
+            return requestError(error);
         }
     },
 }

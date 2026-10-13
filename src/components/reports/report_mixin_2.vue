@@ -1,6 +1,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <script>
 import http from "@/httpclient"
+import {problemTypes} from "@/apiProblems"
+import {requestError} from "@/requestError"
 // import structuredClone from '@ungap/structured-clone';
 import { dashboardStore } from '@/dashboardStore'
 import { shallowRef } from 'vue'
@@ -20,6 +22,8 @@ export default {
       // number of reports that still need to be retrieved. If this is 0 all reports are in. Up to 6 reports
       // can be loaded and compared with graphs in a somewhat meaningful way.
       reports_to_load: 0,
+      report_errors: [],
+      report_load_id: 0,
       my_store: dashboardStore(),
     }
   },
@@ -28,10 +32,10 @@ export default {
     load_reports_by_ids(report_ids, data = {}) {
       const is_ad_hoc_preview = Object.keys(data).length > 0
       const path_suffix = is_ad_hoc_preview ? '/ad-hoc/preview' : ''
-      this.load_reports_by_ids_at('/api/v1/reports/', report_ids, data, path_suffix, is_ad_hoc_preview)
+      return this.load_reports_by_ids_at('/api/v1/reports/', report_ids, data, path_suffix, is_ad_hoc_preview)
     },
     load_shared_reports_by_ids(report_ids) {
-      this.load_reports_by_ids_at('/api/v1/public-reports/', report_ids)
+      return this.load_reports_by_ids_at('/api/v1/public-reports/', report_ids)
     },
 
     // this.reports.forEach((report) => this.add_comparison_urls_to_report(report))
@@ -47,81 +51,47 @@ export default {
     },
 
     load_reports_by_ids_at(link, report_ids, data = {}, path_suffix = '', use_post = false) {
+      const load_id = ++this.report_load_id;
       this.reports_to_load = report_ids.length;
-      const reports = [];
-      const shallow_reports = [];
+      this.report_errors = [];
+      const errors = [];
+      const shared = link === '/api/v1/public-reports/';
 
-      for (let i = 0; i < this.reports_to_load; i++) {
-        const stored_share_code = this.my_store.public_share_codes[report_ids[i]];
-        const post_data = {...data}
-        if (stored_share_code)
-          post_data.share_code = stored_share_code
-        const request_url = `${link}${report_ids[i]}${path_suffix}`
-
-        // A smaller response means faster load times, loading the reports is noticible in vue while the download is fast
-        console.log(`Getting report id: ${report_ids[i]}`)
-
-        if (stored_share_code || use_post) {
-          // Shared report codes and ad-hoc filters belong in the request body, not in the URL.
-           http.post(request_url, post_data).then(response => {
-             // The report might be empty, because the wrong code has been sent:
-
-             if (response.data !== undefined && response.data !== "") {
-               console.log(`Retrieved report data: ${report_ids[i]}`)
-
-               // only add comparison data to the second report, because we want to quickly access urls of that one.
-               if (i > 0)
-                 this.add_comparison_urls_to_report(response.data)
-
-               reports[i] = response.data;
-               // use destructuring to avoid copying a large object to memory and then ditching the large value
-               // this is much faster and not as memory-intensive.
-               // shallow_reports[i] = structuredClone(response.data);
-               // shallow_reports[i]['calculation'] = [];
-               shallow_reports[i] = this._objectWithoutProperties(response.data, ['calculation']);
-
-               // this.$forceUpdate()
-               console.log(`Set report data: ${report_ids[i]}`)
-             }
-             this.reports_to_load--;
-
-             if (this.reports_to_load === 0 && reports.length > 0) {
-               this.reports = shallowRef(reports);
-               // these can be changed by the user
-               this.shallow_reports = shallow_reports;
-             }
-           });
-        } else {
-          http.get(request_url).then(response => {
-            // The report might be empty, because the wrong code has been sent:
-
-            if (response.data !== undefined && response.data !== "") {
-              console.log(`Retrieved report data: ${report_ids[i]}`)
-
-              // only add comparison data to the second report, because we want to quickly access urls of that one.
-              if (i > 0)
-                this.add_comparison_urls_to_report(response.data)
-
-              reports[i] = response.data;
-              // use destructuring to avoid copying a large object to memory and then ditching the large value
-              // this is much faster and not as memory-intensive.
-              // shallow_reports[i] = structuredClone(response.data);
-              // shallow_reports[i]['calculation'] = [];
-              shallow_reports[i] = this._objectWithoutProperties(response.data, ['calculation']);
-
-              // this.$forceUpdate()
-              console.log(`Set report data: ${report_ids[i]}`)
-            }
-            this.reports_to_load--;
-
-            if (this.reports_to_load === 0 && reports.length > 0) {
-              this.reports = shallowRef(reports);
-              // these can be changed by the user
-              this.shallow_reports = shallow_reports;
-            }
-          });
+      return Promise.all(report_ids.map(async (report_id, index) => {
+        const share_code = shared && this.my_store.public_share_codes[report_id];
+        const post_data = {...data};
+        for (const field of ['custom_date', 'custom_time']) {
+          if (post_data[field] === '') post_data[field] = null;
         }
-      }
+        if (share_code) post_data.share_code = share_code;
+        const request_url = `${link}${report_id}${path_suffix}`;
+        try {
+          const response = share_code || use_post
+            ? await http.post(request_url, post_data)
+            : await http.get(request_url);
+          const report = response.data;
+          if (!report || typeof report !== 'object' || Array.isArray(report)) return null;
+          if (index > 0 && report.calculation?.urls) this.add_comparison_urls_to_report(report);
+          return report;
+        } catch (error) {
+          const response = requestError(error);
+          const problem = response.data;
+          if (shared && response.status === 403 && problem?.type === problemTypes.REPORT_ACCESS_DENIED && problem.report) {
+            return {...problem.report, authentication_required: true};
+          }
+          errors.push(response);
+          return null;
+        }
+      })).then(results => {
+        // A retry can finish before an older request; only publish the current batch.
+        if (load_id !== this.report_load_id) return;
+        const reports = results.filter(report => report !== null);
+        this.reports = shallowRef(reports);
+        this.shallow_reports = reports.map(report => this._objectWithoutProperties(report, ['calculation']));
+        this.report_errors = errors;
+      }).finally(() => {
+        if (load_id === this.report_load_id) this.reports_to_load = 0;
+      });
     },
     // https://stackoverflow.com/questions/34698905/how-can-i-clone-a-javascript-object-except-for-one-key
     _objectWithoutProperties(obj, keys) {

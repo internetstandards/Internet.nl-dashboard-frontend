@@ -3,7 +3,7 @@
   "info": {
     "title": "Internet.nl Dashboard API",
     "version": "1.0.0",
-    "description": "",
+    "description": "## Introduction\n\nThis is the dashboard API specification.\n\n ## Authentication\n\nFor authentication you can login via allauth. The allauth swagger file can be found here: `/api/v1/allauth/openapi.html` .\n\nThe internet.nl API, which is used inside the dashboard, can be found here: `https://batch.internet.nl/api/batch/openapi.yaml` and can be live-rendered via the following:url `https://redocly.github.io/redoc/?url=https://batch.internet.nl/api/batch/openapi.yaml`.\n\n## Using Swagger\n\nAuthenticated `POST`, `PUT`, `PATCH` and `DELETE` calls in `/api/v1/docs` use the current browser session and CSRF token. First log in in the same browser via `/api/v1/allauth/openapi.html`, then return to `/api/v1/docs` and use `Try it out`.",
     "contact": {
       "name": "Internet.nl API Support",
       "email": "vraag@internet.nl",
@@ -31,6 +31,9 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -44,12 +47,20 @@
         "summary": "Process Application",
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "description": "The application data is invalid or the captcha answer is incorrect.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -59,20 +70,8 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
-                }
-              }
-            },
-            "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              }
-            }
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -110,6 +109,9 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -117,30 +119,37 @@
         ]
       }
     },
-    "/api/v1/session/logout": {
-      "get": {
+    "/api/v1/session": {
+      "delete": {
         "operationId": "dashboard_internet_nl_dashboard_views_session_session_logout_api",
         "summary": "Session Logout Api",
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
-                }
-              }
-            },
+          "204": {
+            "description": "No Content",
             "headers": {
               "API-Version": {
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
           "Session Management"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
         ]
       }
     },
@@ -164,6 +173,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -180,12 +195,20 @@
         "summary": "Save User Settings Api",
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK",
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "description": "Required settings are missing, the selected language is unsupported, or the email address is invalid.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -194,6 +217,30 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "User settings could not be found for the current user.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -227,7 +274,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -236,6 +285,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -252,25 +307,42 @@
         "summary": "Save Report Settings Api",
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
-                }
-              }
-            },
+          "204": {
+            "description": "No Content",
             "headers": {
               "API-Version": {
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
           "Settings"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "title": "Data",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
         "security": [
           {
             "SessionAuth": []
@@ -298,6 +370,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -319,7 +397,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateListResponseSchema"
+                  "$ref": "#/components/schemas/UrlListSummarySchema"
                 }
               }
             },
@@ -328,6 +406,18 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -374,6 +464,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -390,12 +486,14 @@
         "summary": "Upload Spreadsheet",
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -404,6 +502,51 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "503": {
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The spreadsheet import queue is temporarily unavailable. Please try again later.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "examples": {
+                  "SpreadsheetStorageUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+                      "title": "Spreadsheet storage unavailable",
+                      "status": 503,
+                      "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                    }
+                  },
+                  "SpreadsheetQueueUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
+                      "title": "Spreadsheet queue unavailable",
+                      "status": 503,
+                      "detail": "The spreadsheet import queue is temporarily unavailable. Please try again later."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -453,12 +596,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The list does not exist in the current account or has already been deleted.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -467,6 +618,18 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -493,12 +656,12 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateListResponseSchema"
+                  "$ref": "#/components/schemas/UrlListSummarySchema"
                 }
               }
             },
@@ -508,12 +671,12 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "404": {
+            "description": "The list does not exist in the current account or has been deleted.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -522,6 +685,18 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -574,6 +749,15 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -600,12 +784,20 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid list ID, the list exceeds the domain limit, or the configured Internet.nl API credentials are invalid.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -614,6 +806,45 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "The list does not exist in the current account or has been deleted.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "409": {
+            "description": "The list does not currently meet the conditions for starting a scan.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -680,6 +911,96 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "description": "A valid domain name is required for subdomain suggestions.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "tag:internet.nl,2026:dashboard:invalid-suggestion-domain",
+                  "title": "Invalid suggestion domain",
+                  "status": 400,
+                  "detail": "A valid domain name is required for subdomain suggestions."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "503": {
+            "description": "The subdomain suggestion service is temporarily unavailable.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "tag:internet.nl,2026:dashboard:subdomain-suggestions-unavailable",
+                  "title": "Subdomain suggestions unavailable",
+                  "status": 503,
+                  "detail": "The subdomain suggestion service is temporarily unavailable."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "504": {
+            "description": "The subdomain suggestion service did not respond in time.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "tag:internet.nl,2026:dashboard:subdomain-suggestions-timeout",
+                  "title": "Subdomain suggestions timeout",
+                  "status": 504,
+                  "detail": "The subdomain suggestion service did not respond in time."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "502": {
+            "description": "The subdomain suggestion service returned an unusable response.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "tag:internet.nl,2026:dashboard:subdomain-suggestions-failed",
+                  "title": "Subdomain suggestions failed",
+                  "status": 502,
+                  "detail": "The subdomain suggestion service returned an unusable response."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -708,12 +1029,14 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -722,6 +1045,33 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "The list does not exist in the current account or has been deleted.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -753,7 +1103,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -762,6 +1114,30 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "The list does not exist in the current account, has been deleted, or has no discovery scan yet.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -815,6 +1191,18 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -845,11 +1233,80 @@
         "responses": {
           "200": {
             "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            },
             "headers": {
               "API-Version": {
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "description": "The uploaded spreadsheet is invalid or its domains exceed the list limit.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The target list does not exist in the current account.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "503": {
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+                  "title": "Spreadsheet storage unavailable",
+                  "status": 503,
+                  "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -917,6 +1374,15 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -959,6 +1425,15 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -990,7 +1465,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -999,6 +1476,45 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "description": "Invalid request data or adding these domains would exceed the list limit.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The list does not exist in the current account or has been deleted.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1009,6 +1525,63 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AddUrlsInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/{urllist_id}/urls/tags": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_add_tags_operation",
+        "summary": "Add Tags Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "urllist_id",
+            "schema": {
+              "title": "Urllist Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddTagsInputSchema"
               }
             }
           },
@@ -1051,7 +1624,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AlterUrlResponseSchema"
+                  "$ref": "#/components/schemas/AlterUrlDataSchema"
                 }
               }
             },
@@ -1060,6 +1633,45 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "description": "Invalid request data or the new URL has an invalid format.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The list does not exist in the current account, has been deleted, or does not contain the URL.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1105,12 +1717,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The URL does not exist in the requested list belonging to the current account.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -1119,6 +1739,18 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1156,20 +1788,25 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
-                }
-              }
-            },
+          "204": {
+            "description": "No Content",
             "headers": {
               "API-Version": {
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1226,20 +1863,25 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
-                }
-              }
-            },
+          "204": {
+            "description": "No Content",
             "headers": {
               "API-Version": {
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1295,6 +1937,15 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1331,6 +1982,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1359,12 +2016,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "204": {
+            "description": "The scan was cancelled, or was already cancelled. No response body.",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid scan_id; the scan ID must be an integer.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -1373,6 +2038,57 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "No scan with this ID exists in the current account.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "No scan with this ID exists in the current account."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "409": {
+            "description": "A finished scan cannot be cancelled.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "tag:internet.nl,2026:dashboard:scan-already-finished",
+                  "title": "Scan already finished",
+                  "status": 409,
+                  "detail": "A finished scan cannot be cancelled."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1409,6 +2125,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1442,11 +2164,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ReportSchema"
-                  },
-                  "title": "Response",
-                  "type": "array"
+                  "$ref": "#/components/schemas/ReportSchema"
                 }
               }
             },
@@ -1455,6 +2173,36 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "No report with this ID is available in the current account.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "No report with this ID is available in the current account."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1497,6 +2245,15 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1539,6 +2296,15 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1583,6 +2349,15 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1616,7 +2391,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -1625,6 +2402,33 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "The report does not exist in the current account or is already shared.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1666,7 +2470,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -1675,6 +2481,33 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "The report does not exist in the current account or is not currently shared.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1708,7 +2541,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -1717,6 +2552,33 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "The report does not exist in the current account or is not currently shared.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1750,7 +2612,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -1759,6 +2623,33 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "The report does not exist in the current account or is not currently shared.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1781,10 +2672,10 @@
         ]
       }
     },
-    "/api/v1/reports/{report_id}/ad-hoc": {
-      "get": {
-        "operationId": "dashboard_internet_nl_dashboard_views_reports_get_ad_hoc_tagged_report_operation",
-        "summary": "Get Ad Hoc Tagged Report Operation",
+    "/api/v1/reports/{report_id}/ad-hoc/preview": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_preview_ad_hoc_tagged_report_operation",
+        "summary": "Preview Ad Hoc Tagged Report Operation",
         "parameters": [
           {
             "in": "path",
@@ -1802,11 +2693,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ReportSchema"
-                  },
-                  "title": "Response",
-                  "type": "array"
+                  "$ref": "#/components/schemas/ReportSchema"
                 }
               }
             },
@@ -1815,6 +2702,39 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "No report with this ID is available in the current account.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "No report with this ID is available in the current account."
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1835,7 +2755,9 @@
             "SessionAuth": []
           }
         ]
-      },
+      }
+    },
+    "/api/v1/reports/{report_id}/ad-hoc": {
       "post": {
         "operationId": "dashboard_internet_nl_dashboard_views_reports_save_ad_hoc_tagged_report_operation",
         "summary": "Save Ad Hoc Tagged Report Operation",
@@ -1851,12 +2773,26 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "No report with this ID is available in the current account.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "No report with this ID is available in the current account."
                 }
               }
             },
@@ -1865,6 +2801,18 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -1875,6 +2823,80 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/SaveAdHocTaggedReportInputSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/reports/metrics/now": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_reports_get_ad_hoc_live_latest_metrics",
+        "summary": "Get Ad Hoc Live Latest Metrics",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/LiveLatestMetricSchema"
+                    },
+                    "type": "object"
+                  },
+                  "title": "Response",
+                  "type": "object"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "403": {
+            "description": "The current user is not a staff member, or CSRF verification failed.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "description": "Return the live status on a series of metrics on a series of urls.\n\nThe impact of this method scales linearly with the number of urls and metrics.\n\nRequires staff account. Make sure the is_staff flag is set for the user in the admin interface.",
+        "tags": [
+          "Reports"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LiveLatestMetricsInputSchema"
               }
             }
           },
@@ -1911,6 +2933,9 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "description": "List of public reports which are published on the front page of the dashboard. Public reports have to be explicitly configured in the admin interface.",
@@ -1940,11 +2965,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ReportSchema"
-                  },
-                  "title": "Response",
-                  "type": "array"
+                  "$ref": "#/components/schemas/ReportSchema"
                 }
               }
             },
@@ -1954,12 +2975,24 @@
               }
             }
           },
-          "201": {
-            "description": "Created",
+          "403": {
+            "description": "A valid share code is required to access this report.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SharedReportAuthRequiredSchema"
+                  "$ref": "#/components/schemas/SharedReportAccessProblemSchema"
+                },
+                "example": {
+                  "type": "tag:internet.nl,2026:dashboard:report-access-denied",
+                  "title": "Report access denied",
+                  "status": 403,
+                  "detail": "A valid share code is required to access this report.",
+                  "report": {
+                    "public_report_code": "example-report",
+                    "id": 42,
+                    "urllist_name": "Example list",
+                    "at_when": "2026-01-01T00:00:00Z"
+                  }
                 }
               }
             },
@@ -1970,11 +3003,17 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "No publicly shared report exists for this report code.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "No publicly shared report exists for this report code."
                 }
               }
             },
@@ -1983,6 +3022,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2009,15 +3054,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/ReportSchema"
-                    },
-                    {
-                      "$ref": "#/components/schemas/SharedReportAuthRequiredSchema"
-                    }
-                  ],
-                  "title": "Response"
+                  "$ref": "#/components/schemas/ReportSchema"
                 }
               }
             },
@@ -2027,12 +3064,24 @@
               }
             }
           },
-          "201": {
-            "description": "Created",
+          "403": {
+            "description": "A valid share code is required to access this report.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SharedReportAuthRequiredSchema"
+                  "$ref": "#/components/schemas/SharedReportAccessProblemSchema"
+                },
+                "example": {
+                  "type": "tag:internet.nl,2026:dashboard:report-access-denied",
+                  "title": "Report access denied",
+                  "status": 403,
+                  "detail": "A valid share code is required to access this report.",
+                  "report": {
+                    "public_report_code": "example-report",
+                    "id": 42,
+                    "urllist_name": "Example list",
+                    "at_when": "2026-01-01T00:00:00Z"
+                  }
                 }
               }
             },
@@ -2043,11 +3092,17 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "No publicly shared report exists for this report code.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "No publicly shared report exists for this report code."
                 }
               }
             },
@@ -2056,6 +3111,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2107,6 +3168,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2157,6 +3224,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2194,6 +3267,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2240,6 +3319,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2247,50 +3332,40 @@
         ]
       }
     },
-    "/api/v1/mail/unsubscribe/{feed}/{unsubscribe_code}": {
-      "get": {
+    "/api/v1/mail/unsubscriptions": {
+      "post": {
         "operationId": "dashboard_internet_nl_dashboard_views_mail_unsubscribe_api",
         "summary": "Unsubscribe Api",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "feed",
-            "schema": {
-              "title": "Feed",
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "unsubscribe_code",
-            "schema": {
-              "title": "Unsubscribe Code",
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
+        "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
-                }
-              }
-            },
+          "204": {
+            "description": "No Content",
             "headers": {
               "API-Version": {
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
           "Mail"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnsubscribeSchema"
+              }
+            }
+          },
+          "required": true
+        }
       }
     },
     "/api/v1/admin/accounts": {
@@ -2306,6 +3381,12 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2327,7 +3408,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -2338,11 +3421,11 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Required account/user details are missing, the email address is invalid, or the password is too short.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -2353,11 +3436,11 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The selected existing account does not exist.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -2368,11 +3451,11 @@
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "The username or new account name is already in use.",
             "content": {
-              "application/json": {
+              "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "$ref": "#/components/schemas/ProblemSchema"
                 }
               }
             },
@@ -2381,6 +3464,15 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "description": "More elaborate version of save_instant_account, where an admin can create an account and a user separately.\nIt becomes more common that multiple users share the same account.",
@@ -2425,7 +3517,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OperationResponseSchema"
+                  "additionalProperties": true,
+                  "title": "Response",
+                  "type": "object"
                 }
               }
             },
@@ -2434,6 +3528,33 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "404": {
+            "description": "The account to switch to does not exist.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2466,6 +3587,18 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2508,6 +3641,137 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Administration"
+        ],
+        "security": [
+          {
+            "SessionAuthSuperUser": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/action-statistics": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_admin_usage_action_api",
+        "summary": "Usage Action Api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionStatisticsSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Administration"
+        ],
+        "security": [
+          {
+            "SessionAuthSuperUser": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/user-statistics": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_admin_usage_user_api",
+        "summary": "Usage User Api",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Startdate"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Enddate"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "maxRecords",
+            "schema": {
+              "default": 10,
+              "minimum": 1,
+              "title": "Maxrecords",
+              "type": "integer"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserStatisticsSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         },
         "tags": [
@@ -2623,55 +3887,118 @@
         "title": "SubdomainSuggestionSchema",
         "type": "object"
       },
-      "OperationResponseSchema": {
+      "FieldErrorSchema": {
         "properties": {
-          "success": {
-            "default": false,
-            "title": "Success",
-            "type": "boolean"
+          "loc": {
+            "description": "Request location (body, query or path), followed by the field or item path.",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Loc",
+            "type": "array"
           },
-          "error": {
-            "default": false,
-            "title": "Error",
-            "type": "boolean"
-          },
-          "message": {
-            "default": "",
-            "title": "Message",
+          "msg": {
+            "description": "Human-readable validation detail; clients identify the field using loc.",
+            "title": "Msg",
             "type": "string"
-          },
-          "state": {
-            "default": "",
-            "title": "State",
-            "type": "string"
-          },
-          "data": {
-            "anyOf": [
-              {
-                "additionalProperties": true,
-                "type": "object"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Data"
-          },
-          "timestamp": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Timestamp"
           }
         },
-        "title": "OperationResponseSchema",
+        "required": [
+          "loc",
+          "msg"
+        ],
+        "title": "FieldErrorSchema",
         "type": "object"
+      },
+      "ProblemSchema": {
+        "properties": {
+          "type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProblemType"
+              },
+              {
+                "const": "about:blank",
+                "type": "string"
+              }
+            ],
+            "default": "about:blank",
+            "description": "Stable problem type URI. Domain types are listed in ProblemType. Generic HTTP errors use about:blank. Clients must handle unrecognized types.",
+            "title": "Type"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "integer"
+          },
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "errors": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/FieldErrorSchema"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Errors"
+          }
+        },
+        "required": [
+          "title",
+          "status",
+          "detail"
+        ],
+        "title": "ProblemSchema",
+        "type": "object"
+      },
+      "ProblemType": {
+        "enum": [
+          "tag:internet.nl,2026:dashboard:invalid-input",
+          "tag:internet.nl,2026:dashboard:invalid-captcha",
+          "tag:internet.nl,2026:dashboard:user-settings-not-found",
+          "tag:internet.nl,2026:dashboard:unsupported-language",
+          "tag:internet.nl,2026:dashboard:invalid-email-address",
+          "tag:internet.nl,2026:dashboard:username-required",
+          "tag:internet.nl,2026:dashboard:password-too-short",
+          "tag:internet.nl,2026:dashboard:account-name-required",
+          "tag:internet.nl,2026:dashboard:username-already-exists",
+          "tag:internet.nl,2026:dashboard:account-name-already-exists",
+          "tag:internet.nl,2026:dashboard:account-not-found",
+          "tag:internet.nl,2026:dashboard:list-not-found",
+          "tag:internet.nl,2026:dashboard:domain-limit-exceeded",
+          "tag:internet.nl,2026:dashboard:report-sharing-unavailable",
+          "tag:internet.nl,2026:dashboard:discovery-not-started",
+          "tag:internet.nl,2026:dashboard:scan-already-finished",
+          "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+          "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
+          "tag:internet.nl,2026:dashboard:invalid-spreadsheet",
+          "tag:internet.nl,2026:dashboard:invalid-suggestion-domain",
+          "tag:internet.nl,2026:dashboard:subdomain-suggestions-unavailable",
+          "tag:internet.nl,2026:dashboard:subdomain-suggestions-timeout",
+          "tag:internet.nl,2026:dashboard:subdomain-suggestions-failed",
+          "tag:internet.nl,2026:dashboard:staff-account-required",
+          "tag:internet.nl,2026:dashboard:report-access-denied"
+        ],
+        "title": "ProblemType",
+        "type": "string"
       },
       "ProcessApplicationInputSchema": {
         "properties": {
@@ -2767,18 +4094,6 @@
             "title": "Is Superuser",
             "type": "boolean"
           },
-          "second_factor_enabled": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "default": false,
-            "title": "Second Factor Enabled"
-          },
           "account_name": {
             "title": "Account Name",
             "type": "string"
@@ -2816,6 +4131,7 @@
           "date_joined": {
             "anyOf": [
               {
+                "format": "date-time",
                 "type": "string"
               },
               {
@@ -2827,6 +4143,7 @@
           "last_login": {
             "anyOf": [
               {
+                "format": "date-time",
                 "type": "string"
               },
               {
@@ -2989,6 +4306,7 @@
           "last_scan": {
             "anyOf": [
               {
+                "format": "date-time",
                 "type": "string"
               },
               {
@@ -3022,6 +4340,7 @@
           "last_report_date": {
             "anyOf": [
               {
+                "format": "date-time",
                 "type": "string"
               },
               {
@@ -3076,54 +4395,6 @@
           "maximum_domains_per_list"
         ],
         "title": "UrlListsResponseSchema",
-        "type": "object"
-      },
-      "CreateListResponseSchema": {
-        "properties": {
-          "success": {
-            "default": false,
-            "title": "Success",
-            "type": "boolean"
-          },
-          "error": {
-            "default": false,
-            "title": "Error",
-            "type": "boolean"
-          },
-          "message": {
-            "default": "",
-            "title": "Message",
-            "type": "string"
-          },
-          "state": {
-            "default": "",
-            "title": "State",
-            "type": "string"
-          },
-          "data": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/UrlListSummarySchema"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "timestamp": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Timestamp"
-          }
-        },
-        "title": "CreateListResponseSchema",
         "type": "object"
       },
       "CreateUrlListInputSchema": {
@@ -3211,6 +4482,7 @@
             "title": "Message"
           },
           "upload_date": {
+            "format": "date-time",
             "title": "Upload Date",
             "type": "string"
           },
@@ -3523,19 +4795,38 @@
       },
       "AddUrlsInputSchema": {
         "properties": {
-          "urls": {
+          "raw_urls": {
+            "maxLength": 10000,
+            "title": "Raw Urls",
+            "type": "string"
+          }
+        },
+        "required": [
+          "raw_urls"
+        ],
+        "title": "AddUrlsInputSchema",
+        "type": "object"
+      },
+      "AddTagsInputSchema": {
+        "properties": {
+          "tag": {
+            "maxLength": 160,
+            "title": "Tag",
+            "type": "string"
+          },
+          "url_ids": {
             "items": {
-              "maxLength": 255,
-              "type": "string"
+              "type": "integer"
             },
-            "title": "Urls",
+            "title": "Url Ids",
             "type": "array"
           }
         },
         "required": [
-          "urls"
+          "tag",
+          "url_ids"
         ],
-        "title": "AddUrlsInputSchema",
+        "title": "AddTagsInputSchema",
         "type": "object"
       },
       "AlterUrlDataSchema": {
@@ -3558,54 +4849,6 @@
           "created"
         ],
         "title": "AlterUrlDataSchema",
-        "type": "object"
-      },
-      "AlterUrlResponseSchema": {
-        "properties": {
-          "success": {
-            "default": false,
-            "title": "Success",
-            "type": "boolean"
-          },
-          "error": {
-            "default": false,
-            "title": "Error",
-            "type": "boolean"
-          },
-          "message": {
-            "default": "",
-            "title": "Message",
-            "type": "string"
-          },
-          "state": {
-            "default": "",
-            "title": "State",
-            "type": "string"
-          },
-          "data": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/AlterUrlDataSchema"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "timestamp": {
-            "anyOf": [
-              {
-                "format": "date-time",
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Timestamp"
-          }
-        },
-        "title": "AlterUrlResponseSchema",
         "type": "object"
       },
       "UrlChangeItemSchema": {
@@ -3688,7 +4931,7 @@
       "TagInputSchema": {
         "properties": {
           "tag": {
-            "maxLength": 40,
+            "maxLength": 160,
             "title": "Tag",
             "type": "string"
           }
@@ -3702,6 +4945,7 @@
       "UrlListTimelineDataPointSchema": {
         "properties": {
           "date": {
+            "format": "date",
             "title": "Date",
             "type": "string"
           },
@@ -3907,6 +5151,7 @@
             "type": "string"
           },
           "at_when": {
+            "format": "date-time",
             "title": "At When",
             "type": "string"
           },
@@ -4599,6 +5844,7 @@
           "custom_date": {
             "anyOf": [
               {
+                "format": "date",
                 "type": "string"
               },
               {
@@ -4610,6 +5856,7 @@
           "custom_time": {
             "anyOf": [
               {
+                "format": "time-local",
                 "type": "string"
               },
               {
@@ -4622,9 +5869,195 @@
         "title": "SaveAdHocTaggedReportInputSchema",
         "type": "object"
       },
+      "LiveLatestMetricSchema": {
+        "properties": {
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "explanation": {
+            "title": "Explanation",
+            "type": "string"
+          },
+          "evidence": {
+            "title": "Evidence",
+            "type": "string"
+          },
+          "meaning": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Meaning"
+          },
+          "since": {
+            "format": "date-time",
+            "title": "Since",
+            "type": "string"
+          },
+          "last_scan": {
+            "format": "date-time",
+            "title": "Last Scan",
+            "type": "string"
+          },
+          "high": {
+            "title": "High",
+            "type": "integer"
+          },
+          "medium": {
+            "title": "Medium",
+            "type": "integer"
+          },
+          "low": {
+            "title": "Low",
+            "type": "integer"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "integer"
+          },
+          "not_testable": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "title": "Not Testable"
+          },
+          "not_applicable": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "title": "Not Applicable"
+          },
+          "error_in_test": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "title": "Error In Test"
+          },
+          "translation": {
+            "default": "",
+            "title": "Translation",
+            "type": "string"
+          },
+          "technical_details": {
+            "default": "",
+            "title": "Technical Details",
+            "type": "string"
+          },
+          "test_result": {
+            "default": "",
+            "title": "Test Result",
+            "type": "string"
+          },
+          "is_explained": {
+            "title": "Is Explained",
+            "type": "boolean"
+          },
+          "scan": {
+            "title": "Scan",
+            "type": "integer"
+          },
+          "scan_type": {
+            "title": "Scan Type",
+            "type": "string"
+          },
+          "highlight": {
+            "additionalProperties": true,
+            "title": "Highlight",
+            "type": "object"
+          },
+          "impact": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "good"
+            ],
+            "title": "Impact",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "explanation",
+          "evidence",
+          "since",
+          "last_scan",
+          "high",
+          "medium",
+          "low",
+          "ok",
+          "not_testable",
+          "not_applicable",
+          "error_in_test",
+          "is_explained",
+          "scan",
+          "scan_type",
+          "highlight",
+          "impact"
+        ],
+        "title": "LiveLatestMetricSchema",
+        "type": "object"
+      },
+      "LiveLatestMetricsInputSchema": {
+        "example": {
+          "metrics": [
+            "internet_nl_mail_overall_score",
+            "internet_nl_web_overall_score"
+          ],
+          "urls": [
+            "internet.nl"
+          ]
+        },
+        "properties": {
+          "urls": {
+            "default": [
+              "internet.nl"
+            ],
+            "items": {
+              "maxLength": 255,
+              "type": "string"
+            },
+            "title": "Urls",
+            "type": "array"
+          },
+          "metrics": {
+            "default": [
+              "internet_nl_mail_overall_score",
+              "internet_nl_web_overall_score"
+            ],
+            "items": {
+              "maxLength": 60,
+              "type": "string"
+            },
+            "title": "Metrics",
+            "type": "array"
+          }
+        },
+        "title": "LiveLatestMetricsInputSchema",
+        "type": "object"
+      },
       "PublicReportItemSchema": {
         "properties": {
           "at_when": {
+            "format": "date-time",
             "title": "At When",
             "type": "string"
           },
@@ -4660,26 +6093,77 @@
         "title": "PublicReportItemSchema",
         "type": "object"
       },
-      "SharedReportAuthRequiredSchema": {
+      "SharedReportAccessProblemSchema": {
         "properties": {
-          "authentication_required": {
-            "default": true,
-            "title": "Authentication Required",
-            "type": "boolean"
+          "type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProblemType"
+              },
+              {
+                "const": "about:blank",
+                "type": "string"
+              }
+            ],
+            "default": "about:blank",
+            "description": "Stable problem type URI. Domain types are listed in ProblemType. Generic HTTP errors use about:blank. Clients must handle unrecognized types.",
+            "title": "Type"
           },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "integer"
+          },
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "errors": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/FieldErrorSchema"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Errors"
+          },
+          "report": {
+            "$ref": "#/components/schemas/SharedReportMetadataSchema"
+          }
+        },
+        "required": [
+          "title",
+          "status",
+          "detail",
+          "report"
+        ],
+        "title": "SharedReportAccessProblemSchema",
+        "type": "object"
+      },
+      "SharedReportMetadataSchema": {
+        "properties": {
           "public_report_code": {
             "title": "Public Report Code",
             "type": "string"
           },
           "id": {
             "title": "Id",
-            "type": "string"
+            "type": "integer"
           },
           "urllist_name": {
             "title": "Urllist Name",
             "type": "string"
           },
           "at_when": {
+            "format": "date-time",
             "title": "At When",
             "type": "string"
           }
@@ -4690,7 +6174,7 @@
           "urllist_name",
           "at_when"
         ],
-        "title": "SharedReportAuthRequiredSchema",
+        "title": "SharedReportMetadataSchema",
         "type": "object"
       },
       "SharedReportInputSchema": {
@@ -4746,6 +6230,7 @@
             "type": "integer"
           },
           "at_when": {
+            "format": "date-time",
             "title": "At When",
             "type": "string"
           },
@@ -4769,8 +6254,8 @@
             "title": "Total Urls",
             "type": "integer"
           },
-          "urllist__name": {
-            "title": "Urllist  Name",
+          "urllist_name": {
+            "title": "Urllist Name",
             "type": "string"
           }
         },
@@ -4782,7 +6267,7 @@
           "average_internet_nl_score",
           "public_report_code",
           "total_urls",
-          "urllist__name"
+          "urllist_name"
         ],
         "title": "PubliclySharedReportSchema",
         "type": "object"
@@ -4833,11 +6318,39 @@
         "title": "LatestReportCodeSchema",
         "type": "object"
       },
+      "UnsubscribeSchema": {
+        "properties": {
+          "feed": {
+            "const": "scan_finished",
+            "title": "Feed",
+            "type": "string"
+          },
+          "unsubscribe_code": {
+            "maxLength": 128,
+            "minLength": 128,
+            "pattern": "^[a-zA-Z0-9]+$",
+            "title": "Unsubscribe Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "feed",
+          "unsubscribe_code"
+        ],
+        "title": "UnsubscribeSchema",
+        "type": "object"
+      },
       "InstantAccountAndUserCreationSchema": {
         "properties": {
           "new_username": {
             "default": "",
             "title": "New Username",
+            "type": "string"
+          },
+          "new_email_address": {
+            "maxLength": 254,
+            "minLength": 1,
+            "title": "New Email Address",
             "type": "string"
           },
           "new_password": {
@@ -4872,6 +6385,9 @@
             "type": "string"
           }
         },
+        "required": [
+          "new_email_address"
+        ],
         "title": "InstantAccountAndUserCreationSchema",
         "type": "object"
       },
@@ -4949,6 +6465,180 @@
         ],
         "title": "UsageMetricsSchema",
         "type": "object"
+      },
+      "ActionStatisticsSchema": {
+        "properties": {
+          "years": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Years",
+            "type": "array"
+          },
+          "verbs": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Verbs",
+            "type": "array"
+          },
+          "actions": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ActionVerbStatisticsSchema"
+            },
+            "title": "Actions",
+            "type": "object"
+          }
+        },
+        "required": [
+          "years",
+          "verbs",
+          "actions"
+        ],
+        "title": "ActionStatisticsSchema",
+        "type": "object"
+      },
+      "ActionVerbStatisticsSchema": {
+        "properties": {
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "per_year": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Per Year",
+            "type": "object"
+          },
+          "per_month": {
+            "additionalProperties": {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            },
+            "title": "Per Month",
+            "type": "object"
+          }
+        },
+        "required": [
+          "total",
+          "per_year",
+          "per_month"
+        ],
+        "title": "ActionVerbStatisticsSchema",
+        "type": "object"
+      },
+      "UserStatisticsInputSchema": {
+        "properties": {
+          "startDate": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Startdate"
+          },
+          "endDate": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Enddate"
+          },
+          "maxRecords": {
+            "default": 10,
+            "minimum": 1,
+            "title": "Maxrecords",
+            "type": "integer"
+          }
+        },
+        "title": "UserStatisticsInputSchema",
+        "type": "object"
+      },
+      "ActorVerbStatisticsSchema": {
+        "properties": {
+          "actor_content_type_id": {
+            "title": "Actor Content Type Id",
+            "type": "integer"
+          },
+          "actor_object_id": {
+            "title": "Actor Object Id",
+            "type": "string"
+          },
+          "actor": {
+            "title": "Actor",
+            "type": "string"
+          },
+          "total_actions": {
+            "title": "Total Actions",
+            "type": "integer"
+          },
+          "total_distinct_verbs": {
+            "title": "Total Distinct Verbs",
+            "type": "integer"
+          },
+          "verbs": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Verbs",
+            "type": "object"
+          }
+        },
+        "required": [
+          "actor_content_type_id",
+          "actor_object_id",
+          "actor",
+          "total_actions",
+          "total_distinct_verbs",
+          "verbs"
+        ],
+        "title": "ActorVerbStatisticsSchema",
+        "type": "object"
+      },
+      "UserStatisticsSchema": {
+        "properties": {
+          "start_date": {
+            "format": "date",
+            "title": "Start Date",
+            "type": "string"
+          },
+          "end_date": {
+            "format": "date",
+            "title": "End Date",
+            "type": "string"
+          },
+          "max_records": {
+            "title": "Max Records",
+            "type": "integer"
+          },
+          "actors": {
+            "items": {
+              "$ref": "#/components/schemas/ActorVerbStatisticsSchema"
+            },
+            "title": "Actors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date",
+          "max_records",
+          "actors"
+        ],
+        "title": "UserStatisticsSchema",
+        "type": "object"
       }
     },
     "securitySchemes": {
@@ -4969,6 +6659,68 @@
         "schema": {
           "type": "string",
           "example": "1.0.0"
+        }
+      }
+    },
+    "responses": {
+      "InvalidInput": {
+        "description": "A path/query parameter or request body is invalid.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemSchema"
+            }
+          }
+        },
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          }
+        }
+      },
+      "AuthenticationRequired": {
+        "description": "Authentication is missing or does not meet this endpoint's requirements.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemSchema"
+            }
+          }
+        },
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          }
+        }
+      },
+      "CsrfVerificationFailed": {
+        "description": "CSRF verification failed for this session-authenticated request.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemSchema"
+            }
+          }
+        },
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "An unexpected server error prevented completing the request.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemSchema"
+            }
+          }
+        },
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/API-Version"
+          }
         }
       }
     }

@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import {dashboardStore} from '@/dashboardStore'
 
@@ -52,9 +53,9 @@ export default {
             this.scan_now_confirmed = true;
 
             http.post(`/api/v1/urllists/${this.list.id}/scans`).then(server_response => {
-                this.response = server_response.data;
+                this.response = server_response;
 
-                if (server_response.data.success) {
+                if (server_response.status >= 200 && server_response.status < 300) {
                     this.list.scan_now_available = false;
                     this.response = {};
                     this.scan_now_confirmed = false;
@@ -62,10 +63,10 @@ export default {
                     this.$emit('started')
                 }
 
-                if (server_response.data.error) {
+                if (server_response.status >= 400) {
                     this.scan_now_confirmed = false;
                 }
-            });
+            }).catch(error => { this.response = requestError(error); this.scan_now_confirmed = false; });
         },
         schedule_scan_monitor_refresh: function () {
             if (this.scan_monitor_refresh_timeout !== null) {

@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import { dashboardStore } from '@/dashboardStore'
 import {mapState} from "pinia";
@@ -107,13 +108,13 @@ export default {
     },
     update_list_settings: function () {
       http.put(`/api/v1/urllists/${this.list.id}`, this.list).then(server_response => {
-        this.response = server_response.data;
-        if (server_response.data.success) {
-          this.old_list_settings = this.copy_json_value(server_response.data.data);
-          this.list.scheduled_next_scan = server_response.data.data.scheduled_next_scan;
+        this.response = server_response;
+        if (server_response.status >= 200 && server_response.status < 300) {
+          this.old_list_settings = this.copy_json_value(server_response.data);
+          this.list.scheduled_next_scan = server_response.data.scheduled_next_scan;
           this.$emit("done")
         }
-      });
+      }).catch(error => { this.response = requestError(error); });
     },
   },
   mounted: function () {

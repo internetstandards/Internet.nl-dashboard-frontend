@@ -15,6 +15,8 @@
         <loading :loading="reports_to_load > 0"></loading>
     </content-block>
 
+    <server-response v-for="(response, index) in report_errors" :key="index" :response="response" />
+
     <content-block v-if="reports.length === 0 && reports_to_load === 0">
       <h2>{{$t("report.shared-report.not_found.title")}}</h2>
       <b-alert variant="danger" :model-value="true" >

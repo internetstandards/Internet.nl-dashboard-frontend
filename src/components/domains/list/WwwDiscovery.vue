@@ -1,5 +1,6 @@
 <template>
   <span>
+    <server-response :response="response" />
     <template
         v-if="['not_scanned_at_all'].includes(state_message) || ['finished', 'error', 'cancelled'].includes(state)">
 
@@ -23,6 +24,8 @@
 </template>
 
 <script>
+import {problemTypes} from "@/apiProblems";
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import SubdomainDiscoveryModal from "@/components/domains/list/WwwDiscoveryModal.vue";
 import Probe from '@/components/probe.vue'
@@ -39,6 +42,7 @@ export default {
       timer: null,
 
       loading: false,
+      response: {},
 
       state: 'finished',
       state_message: '',
@@ -81,8 +85,9 @@ export default {
     request() {
       this.loading = true;
       http.post(`/api/v1/urllists/${this.list_id}/www-subdomain-discovery`).then(data => {
+        this.response = {};
         this.handle_response(data)
-      });
+      }).catch(error => { this.response = requestError(error); this.loading = false; });
     },
     status_while_scanning() {
       if (this.is_scanning)
@@ -98,26 +103,26 @@ export default {
     status() {
       this.loading = true;
       http.get(`/api/v1/urllists/${this.list_id}/www-subdomain-discovery`).then(data => {
+        this.response = {};
         this.handle_response(data)
+      }).catch(error => {
+        if (error.response?.status === 404 && error.response.data?.type === problemTypes.DISCOVERY_NOT_STARTED) {
+          this.reset();
+          this.response = {};
+          this.state_message = 'not_scanned_at_all';
+        } else {
+          this.response = requestError(error);
+        }
+        this.loading = false;
       });
     },
     handle_response(data) {
       const response = data.data
 
-      // Any operation response that is not happy
-      if (response.error) {
-        this.reset()
-        this.state = 'error'
-        this.state_message = data.data.message
-        this.loading = false
-        return
-      }
-
       // if this component goes from from anything to 'finished' then:
       if (response.state === 'finished' && this.state !== 'finished')
         this.success_while_visible = true;
 
-      // Any happy operation response
       this.state = response.state
       this.state_message = response.state_message
       this.state_changed_on = response.state_changed_on

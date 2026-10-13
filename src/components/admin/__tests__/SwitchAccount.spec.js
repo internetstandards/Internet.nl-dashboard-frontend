@@ -84,19 +84,19 @@ describe('SwitchAccount', () => {
     await SwitchAccount.methods.set_account.call(context, undefined)
 
     expect(http.post).not.toHaveBeenCalled()
-    expect(context.server_response.error).toBe(true)
+    expect(context.server_response.status).toBe(0)
     expect(restoreCurrentAccountSelection).toHaveBeenCalledOnce()
   })
 
   it('reloads the application after a successful account switch', async () => {
-    http.post.mockResolvedValue({data: {success: true, error: false}})
+    http.post.mockResolvedValue({status: 200, data: {account_name: 'Test'}})
     const reloadApplication = vi.fn()
     const context = {
       switching: false,
       server_response: {},
       reloadApplication,
       restoreCurrentAccountSelection: vi.fn(),
-      errorResponse: vi.fn(),
+      errorResponse: SwitchAccount.methods.errorResponse,
     }
 
     await SwitchAccount.methods.set_account.call(context, 20)
@@ -107,7 +107,7 @@ describe('SwitchAccount', () => {
   })
 
   it('keeps the page and restores the current row when switching fails', async () => {
-    http.post.mockResolvedValue({data: {success: false, error: true, message: 'Denied'}})
+    http.post.mockRejectedValue({response: {status: 403, data: {detail: 'Denied'}}})
     const reloadApplication = vi.fn()
     const restoreCurrentAccountSelection = vi.fn()
     const context = {
@@ -115,13 +115,13 @@ describe('SwitchAccount', () => {
       server_response: {},
       reloadApplication,
       restoreCurrentAccountSelection,
-      errorResponse: vi.fn(),
+      errorResponse: SwitchAccount.methods.errorResponse,
     }
 
     await SwitchAccount.methods.set_account.call(context, 20)
 
     expect(reloadApplication).not.toHaveBeenCalled()
     expect(restoreCurrentAccountSelection).toHaveBeenCalledOnce()
-    expect(context.server_response.error).toBe(true)
+    expect(context.server_response.status).toBe(403)
   })
 })

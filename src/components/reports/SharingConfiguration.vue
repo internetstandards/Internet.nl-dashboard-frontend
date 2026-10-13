@@ -107,12 +107,13 @@
           </b-row>
         </template>
         <loading :loading="loading"/>
-        <server-response :response="response" v-if="response" :message="$t('report.sharing_configuration.' + response.message)"></server-response>
+        <server-response :message="success_message" :response="response" v-if="response"></server-response>
       </template>
     </collapse-panel>
   </content-block>
 </template>
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import CollapsePanel from '@/components/CollapsePanel.vue'
 
@@ -127,6 +128,7 @@ export default {
   data() {
     return {
       loading: false,
+      success_message: "",
       response: {},
     }
   },
@@ -148,29 +150,32 @@ export default {
       http.post(`/api/v1/reports/${this.report.id}/share`, {
         'public_share_code': this.report.public_share_code
       }).then(data => {
-        this.response = data.data;
-        this.report.is_publicly_shared = data.data.data.is_publicly_shared;
-        this.report.public_report_code = data.data.data.public_report_code;
+        this.response = data;
+        this.success_message = this.$t("report.sharing_configuration.response_shared");
+        this.report.is_publicly_shared = data.data.is_publicly_shared;
+        this.report.public_report_code = data.data.public_report_code;
         this.loading = false;
-      });
+      }).catch(error => { this.response = requestError(error); this.loading = false; });
     },
     unshare() {
       this.loading = true;
       http.delete(`/api/v1/reports/${this.report.id}/share`).then(data => {
-        this.response = data.data;
-        this.report.is_publicly_shared = data.data.data.is_publicly_shared;
+        this.response = data;
+        this.success_message = this.$t("report.sharing_configuration.response_unshared");
+        this.report.is_publicly_shared = data.data.is_publicly_shared;
         this.loading = false;
-      });
+      }).catch(error => { this.response = requestError(error); this.loading = false; });
     },
     update_share_code() {
       this.loading = true;
       http.put(`/api/v1/reports/${this.report.id}/share/share-code`, {
         'public_share_code': this.report.public_share_code
       }).then(data => {
-        this.response = data.data;
-        this.report.public_share_code = data.data.data.public_share_code;
+        this.response = data;
+        this.success_message = this.$t("report.sharing_configuration.response_updated_share_code");
+        this.report.public_share_code = data.data.public_share_code;
         this.loading = false;
-      });
+      }).catch(error => { this.response = requestError(error); this.loading = false; });
     },
     remove_share_code() {
       this.report.public_share_code = "";
@@ -179,10 +184,11 @@ export default {
     update_report_code() {
       this.loading = true;
       http.put(`/api/v1/reports/${this.report.id}/share/report-code`, {'report_id': this.report.id}).then(data => {
-        this.response = data.data;
-        this.report.public_report_code = data.data.data.public_report_code;
+        this.response = data;
+        this.success_message = this.$t("report.sharing_configuration.response_updated_report_code");
+        this.report.public_report_code = data.data.public_report_code;
         this.loading = false;
-      });
+      }).catch(error => { this.response = requestError(error); this.loading = false; });
     }
   }
 }

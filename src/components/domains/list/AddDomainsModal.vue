@@ -20,9 +20,9 @@
     <template #default>
       <div style="min-height: 50vh;">
 
-      <server-response :response="response" v-if="response" :message='$t("domain.list.add-domains." + response.message)'/>
+      <server-response :message="$t('domain.list.add-domains.add_domains_valid_urls_added')" :response="response" v-if="response"/>
 
-      <ul v-if="response.success === true">
+      <ul v-if="response.status >= 200 && response.status < 300">
         <li v-if="response.data.duplicates_removed">
           {{ $t("domain.list.add-domains.removed_n_duplicates", [response.data.duplicates_removed]) }}
         </li>
@@ -32,7 +32,7 @@
       </ul>
 
       <template v-if="response.data">
-        <span v-if="response.data.incorrect_urls.length">
+        <span v-if="response.data?.incorrect_urls?.length">
             ⚠️ <b>{{ $t("domain.list.add-domains.warning") }}</b><br>
             <span v-html='$t("domain.list.add-domains.warning_message")'></span>:
             <div class="incorrect_urls">{{ response.data.incorrect_urls.join(', ') }}</div>
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import Probe from '@/components/probe.vue'
 
@@ -115,13 +116,13 @@ export default {
 
       http.post(`/api/v1/urllists/${this.list.id}/urls`, {'raw_urls': this.new_domains}).then(data => {
         // {'incorrect_urls': [], 'added_to_list': int, 'already_in_list': int}
-        this.response = data.data;
+        this.response = data;
         this.loading = false;
 
-        if (data.data.success) {
+        if (data.status >= 200 && data.status < 300) {
           this.$emit('added')
         }
-      });
+      }).catch(error => { this.response = requestError(error); this.loading = false; });
     },
   },
 

@@ -36,6 +36,7 @@
 </style>
 
 <template>
+  <server-response :response="response" />
   <div v-if="!editing" class="domain-display">
     <span class="domain-value">
       <template v-if="displayed_url.subdomain">
@@ -112,6 +113,7 @@
 </template>
 
 <script lang="ts">
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import {
   isDomainDeleteConfirmationSuppressed,
@@ -136,6 +138,7 @@ export default {
   },
   data: function () {
     return {
+      response: {},
       editing: false,
       deleteConfirmationVisible: false,
       suppressDeleteConfirmation: false,
@@ -213,20 +216,20 @@ export default {
       * */
       const data = {'new_url_string': this.edited_url_value}
       http.put(`/api/v1/urllists/${this.list.id}/urls/${this.url.id}`, data).then(server_response => {
-        if (server_response.data.success === true) {
+        if (server_response.status >= 200 && server_response.status < 300) {
           // now that saving was succesful, undo=ing should be to the newely saved url.
           this.original_url_value = this.edited_url_value;
 
           // in case the url is the same as the original, do not update it.
-          this.displayed_url.subdomain = server_response.data.data.created.subdomain;
-          this.displayed_url.domain = server_response.data.data.created.domain;
-          this.displayed_url.suffix = server_response.data.data.created.suffix;
+          this.displayed_url.subdomain = server_response.data.created.subdomain;
+          this.displayed_url.domain = server_response.data.created.domain;
+          this.displayed_url.suffix = server_response.data.created.suffix;
 
           this.editing = false;
         } else {
           this.edited_url_value = this.original_url_value;
         }
-      });
+      }).catch(error => { this.response = requestError(error); });
     },
   }
 }

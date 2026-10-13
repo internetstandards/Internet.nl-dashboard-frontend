@@ -45,6 +45,7 @@
 
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import Probe from '@/components/probe.vue'
 
@@ -73,10 +74,10 @@ export default {
         },
         confirm_stop_scan: function () {
             http.delete(`/api/v1/scans/${this.scan.id}`).then(response => {
-                if (response.data.success) {
+                if (response.status >= 200 && response.status < 300) {
                     this.$emit('scan-stopped', this.scan.id)
                 }
-            });
+            }).catch(error => { this.response = requestError(error); });
         },
     }
 }

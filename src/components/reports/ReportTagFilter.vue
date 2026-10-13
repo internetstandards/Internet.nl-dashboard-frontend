@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import Tag from "@/components/domains/domain/tag.vue";
 import {mapState} from 'pinia';
@@ -137,12 +138,12 @@ export default {
     },
     save_ad_hoc_report() {
       http.post(`/api/v1/reports/${this.store.report_ids[0]}/ad-hoc`,
-          {tags: this.selected_tags.map(item => item.label), custom_date: this.custom_date, custom_time: this.custom_time}).then(response => {
+          {tags: this.selected_tags.map(item => item.label), custom_date: this.custom_date || null, custom_time: this.custom_time || null}).then(response => {
         // The report might be empty, because the wrong code has been sent:
         // if the report has been saved, then reload the list report list and give a success message
-        this.server_response = response.data;
+        this.server_response = response;
         this.$emit('ad-report-saved')
-      });
+      }).catch(error => { this.server_response = requestError(error); this.loading = false; });
     }
   },
   ...mapState(dashboardStore, ['report_ids', 'tags']),

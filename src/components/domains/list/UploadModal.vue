@@ -5,7 +5,7 @@
     <template #default>
       <div style="min-height: 50vh;">
 
-      <server-response :response="response" :message="$t(response.message)" v-if="response.message"></server-response>
+      <server-response :response="response"></server-response>
 
       <p>{{ $t("domain.list.upload.introduction") }}</p>
 
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 
 export default {
@@ -98,11 +99,11 @@ export default {
             }
           },
       ).then(server_response => {
-        this.response = server_response.data;
-        if (server_response.data.success) {
+        this.response = server_response;
+        if (server_response.status >= 200 && server_response.status < 300) {
           this.$emit("done")
         }
-      });
+      }).catch(error => { this.response = requestError(error); });
     },
   },
   mounted: function () {

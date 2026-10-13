@@ -209,6 +209,7 @@ Fixed: when deleting a list, it is re-added to the list of lists when adding a n
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import UrlList from './UrlList.vue'
 import http from "@/httpclient";
 import CollapsePanel from '@/components/CollapsePanel.vue'
@@ -285,9 +286,9 @@ export default {
         },
         create_list: function () {
             http.post(`/api/v1/urllists`, this.add_new_new_list).then(server_response => {
-                this.add_new_server_response = server_response.data;
+                this.add_new_server_response = server_response;
                 // if we get data back, the addition was succesful.
-                if (!this.isEmptyObject(this.add_new_server_response.data)) {
+                if (server_response.status === 201) {
 
                     // The managed url list has a property and internal list object. This internal list object is
                     // updated using a watch. This pattern is required to retain reactivity of the 'lists' object
@@ -303,7 +304,7 @@ export default {
 
                     this.reset_add_new_form();
                 }
-            });
+            }).catch(error => { this.add_new_server_response = requestError(error); this.loading = false; });
         }
     },
     watch: {

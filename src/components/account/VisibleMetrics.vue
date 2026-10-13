@@ -2,8 +2,7 @@
 <template>
   <div>
     <p>{{ $t("account.visible-metrics.intro") }}</p>
-    <server-response :response="issue_filters_response"
-                     :message="$t('account.visible-metrics.' + issue_filters_response.message)" v-if="issue_filters_response.message"></server-response>
+    <server-response :message="$t('account.visible-metrics.settings.updated')" :response="issue_filters_response"></server-response>
 
     <div v-for="scan_form in scan_methods" :key="scan_form.name">
       <b-card no-body>
@@ -73,6 +72,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import {mapState} from 'pinia'
 import http from "@/httpclient";
 import report_mixin from "@/components/reports/report_mixin.vue"
@@ -100,8 +100,8 @@ export default {
     reset_issue_filters: function () {
       http.get(`/api/v1/settings/account/report`).then(data => {
         if (!this.isEmptyObject(data.data)) {
-          this.issue_filters = data.data.data;
-          this.issue_filters_response = data.data;
+          this.issue_filters = data.data;
+          this.issue_filters_response = data;
         }
       });
       this.load_visible_metrics();
@@ -129,12 +129,12 @@ export default {
       this.automatically_set_category();
 
       http.post(`/api/v1/settings/account/report`, {'filters': this.issue_filters}).then(server_response => {
-        this.issue_filters_response = server_response.data;
-        if (server_response.data.success) {
+        this.issue_filters_response = server_response;
+        if (server_response.status >= 200 && server_response.status < 300) {
           // load the metrics into the application
           this.load_visible_metrics();
         }
-      });
+      }).catch(error => { this.issue_filters_response = requestError(error); });
     },
     check_fields(list_of_fields) {
       list_of_fields.forEach((field) => {

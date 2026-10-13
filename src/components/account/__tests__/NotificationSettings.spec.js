@@ -3,6 +3,7 @@ import {beforeEach, describe, expect, it, vi} from 'vitest'
 
 import NotificationSettings from '@/components/account/NotificationSettings.vue'
 import http from '@/httpclient'
+import {problemTypes} from '@/apiProblems'
 
 vi.mock('@/httpclient', () => ({
   default: {
@@ -37,7 +38,7 @@ describe('NotificationSettings', () => {
     vi.clearAllMocks()
     http.get.mockResolvedValue({data: {...user}})
     http.post.mockResolvedValue({
-      data: {success: true, message: 'save_user_settings_success'},
+      status: 204, data: '',
     })
   })
 
@@ -60,13 +61,16 @@ describe('NotificationSettings', () => {
     }))
   })
 
-  it('associates a backend 422 language error with the language field', async () => {
+  it.each([
+    {type: problemTypes.UNSUPPORTED_LANGUAGE},
+    {type: problemTypes.INVALID_INPUT, errors: [{loc: ['body', 'mail_preferred_language'], msg: 'Invalid language.'}]},
+  ])('associates a backend 400 language error with the language field: %j', async problem => {
     http.get.mockResolvedValue({data: {...user, mail_preferred_language: 'en'}})
     http.post.mockRejectedValue({
       response: {
-        status: 422,
+        status: 400,
         data: {
-          detail: [{loc: ['body', 'mail_preferred_language']}],
+          detail: 'Invalid input.', ...problem,
         },
       },
     })

@@ -218,9 +218,9 @@ export default {
       this.errorMessage = ''
       http.get('/api/v1/admin/user-statistics', {
         params: {
-          start_date: this.filters.start_date,
-          end_date: this.filters.end_date,
-          max_records: maxRecords
+          startDate: this.filters.start_date,
+          endDate: this.filters.end_date,
+          maxRecords
         }
       }).then((data) => {
         this.s = this.normalizeResponse(data.data)

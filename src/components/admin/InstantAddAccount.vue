@@ -13,8 +13,7 @@
     <content-block>
 
     <div>
-      <server-response :response="server_response"
-                       :message='$t("admin.instant_add_account." + server_response.message)'></server-response>
+      <server-response :response="server_response"></server-response>
 
       <h2>{{ $t("admin.instant_add_account.account_setup") }}</h2>
       {{ $t("admin.instant_add_account.to_which_account_should_the_user_be_added") }}<br>
@@ -78,14 +77,14 @@
       <br/>
       <b-button variant="warning" @click="save_instant_account()">{{ $t("admin.instant_add_account.save") }}</b-button>
       <br><br>
-      <server-response :response="server_response"
-                       :message='$t("admin.instant_add_account." + server_response.message)'></server-response>
+      <server-response :response="server_response"></server-response>
     </div>
 
     </content-block>
   </div>
 </template>
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import vSelect from 'vue-select';
 
@@ -122,7 +121,7 @@ export default {
         .then(server_response => {
           if (server_response.data)
             this.api_credentials_valid = server_response.data.can_connect_to_internet_nl_api;
-        });
+        }).catch(error => { this.server_response = requestError(error); });
     },
     get_accounts: function () {
       this.accounts_loading = true;
@@ -135,10 +134,10 @@ export default {
       http.post('/api/v1/admin/accounts', this.form)
         .then(server_response => {
           if (server_response.data)
-            this.server_response = server_response.data;
+            this.server_response = server_response;
         })
         .catch(error => {
-          this.server_response = error.response.data;
+          this.server_response = requestError(error);
         });
     },
   }

@@ -15,6 +15,8 @@
 
     <loading :loading="reports_to_load > 0"></loading>
 
+    <server-response v-for="(response, index) in report_errors" :key="index" :response="response" />
+
     <div v-if="reports.length > 0 && reports_to_load === 0">
 
       <template v-if="!tags_applied">

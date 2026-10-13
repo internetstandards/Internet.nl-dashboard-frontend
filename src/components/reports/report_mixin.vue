@@ -188,12 +188,12 @@ export default {
 
       http.get(`/api/v1/settings/account/report`).then(settings => {
         const data = settings.data;
-        if (!this.isEmptyObject(data.data)) {
+        if (!this.isEmptyObject(data)) {
           // Get all possible issue fields before overwriting them with whatever is stored.
           const all_possible_fields = Object.keys(default_metric_visibility);
 
           // now overwrite with the custom settings
-          const issue_filters = data.data;
+          const issue_filters = data;
 
           // upgrade the saved issue filters with all fields we know. In case of missing fields, those will
           // be added with a default value (invisible).

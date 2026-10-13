@@ -29,7 +29,7 @@
                 <input id="feed" type="text" maxlength="120" v-model="feed"><br><br>
                 <br>
                 <b>{{ $t("mail.unsubscribe.label_unsubscribe_code") }}</b><br>
-                <input id="unsubscribe_code" type="text" maxlength="120" v-model="unsubscribe_code"><br><br>
+                <input id="unsubscribe_code" type="text" maxlength="128" v-model="unsubscribe_code"><br><br>
                 <template v-if="!unsubscribe_code || !feed">
                     <b-button variant="warning" disabled>
                         {{ $t("mail.unsubscribe.perform_unsubscribe") }}
@@ -69,14 +69,8 @@ export default {
             this.unsubscribe_code = this.$route.query.unsubscribe_code;
         }
 
-        // if both are set, just immediately unsubscribe.
-        // and do not show the form to prevent confusion.
-        if (this.feed && this.unsubscribe_code) {
-            this.unsubscribe()
-            this.show_unsubscribe_form = false;
-        } else {
-            this.show_unsubscribe_form = true;
-        }
+        // Opening an email link prefills the form; the user confirms the mutation.
+        this.show_unsubscribe_form = true;
     },
     methods: {
         unsubscribe: function () {
@@ -86,17 +80,15 @@ export default {
             this.unsubscribed = false;
             this.error_occurred = false;
 
-            const feed = encodeURIComponent(this.feed);
-            const unsubscribeCode = encodeURIComponent(this.unsubscribe_code);
-
-            return http.get(`/api/v1/mail/unsubscribe/${feed}/${unsubscribeCode}`)
+            return http.post('/api/v1/mail/unsubscriptions', {
+                feed: this.feed,
+                unsubscribe_code: this.unsubscribe_code,
+            })
                 .then(response => {
-                    this.unsubscribed = response.data?.success === true;
+                    this.unsubscribed = response.status === 204;
                     this.error_occurred = !this.unsubscribed;
 
-                    if (this.error_occurred) {
-                        this.show_unsubscribe_form = true;
-                    }
+                    this.show_unsubscribe_form = this.error_occurred;
                 })
                 .catch(() => {
                     this.error_occurred = true;

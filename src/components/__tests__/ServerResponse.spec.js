@@ -7,7 +7,7 @@ import ServerResponse from '@/components/ServerResponse.vue'
 describe('ServerResponse', () => {
   it('shows an initial response and updates its visibility when dismissed', async () => {
     const wrapper = mount(ServerResponse, {
-      props: {response: {success: true, message: 'Saved'}},
+      props: {response: {status: 204, data: ''}},
       global: {
         plugins: [createBootstrap()],
         mocks: {
@@ -26,7 +26,7 @@ describe('ServerResponse', () => {
 
     expect(wrapper.vm.show).toBe(false)
 
-    await wrapper.setProps({response: {success: true, message: 'Saved again'}})
+    await wrapper.setProps({response: {status: 204, data: ''}})
 
     expect(wrapper.vm.show).toBe(true)
   })

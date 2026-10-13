@@ -24,9 +24,9 @@
     </b-input-group>
       <p class="mb-2">{{$t("domain.discover-subdomains.will_be_added_to", [list.name])}}</p>
 
-      <server-response :response="response" v-if="response" :message='$t("domain.discover-subdomains." + response.message)'/>
+      <server-response :message="$t('domain.discover-subdomains.add_domains_valid_urls_added')" :response="response" v-if="response"/>
 
-      <b-alert variant="info" v-model="statusReportVisible" v-if="response.success === true" dismissible>
+      <b-alert variant="info" v-model="statusReportVisible" v-if="response.status >= 200 && response.status < 300" dismissible>
         <h4>{{ $t("domain.discover-subdomains.status_report") }}</h4>
         <li v-if="response.data.duplicates_removed">
           {{ $t("domain.discover-subdomains.removed_n_duplicates", [response.data.duplicates_removed]) }}
@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import {requestError} from "@/requestError";
 import http from "@/httpclient";
 import { dashboardStore } from '@/dashboardStore'
 
@@ -160,27 +161,31 @@ export default {
        // send a bulk add to the server, which is already existing logic etc...
        this.loading_add_suggestions = true;
 
-      http.post(`/api/v1/urllists/${this.list.id}/urls`, {'urls': this.selected_suggestions}).then(data => {
+      http.post(`/api/v1/urllists/${this.list.id}/urls`, {'raw_urls': this.selected_suggestions.join(', ')}).then(data => {
         // {'incorrect_urls': [], 'added_to_list': int, 'already_in_list': int}
-        this.response = data.data;
+        this.response = data;
         this.loading_add_suggestions = false;
 
-        if (data.data.success) {
+        if (data.status >= 200 && data.status < 300) {
           this.statusReportVisible = true;
           this.$emit('added')
         }
-      });
+      }).catch(error => { this.response = requestError(error); this.loading_add_suggestions = false; });
     },
     find_suggestions: function () {
-
+      this.response = {};
       this.loading_suggestions = true;
-      http.get(`/api/v1/urllists/${this.list.id}/url-suggestions`, { params: {domain: this.input_domain, period: this.period}}).then(server_response => {
+      return http.get(`/api/v1/urllists/${this.list.id}/url-suggestions`, { params: {domain: this.input_domain, period: this.period}}).then(server_response => {
         if (server_response.data.length > 0) {
           this.suggestions = server_response.data;
         } else {
           console.error("Failed loading suggestions.")
           this.suggestions = [];
         }
+      }).catch(error => {
+        this.response = requestError(error);
+        this.suggestions = [];
+      }).finally(() => {
         this.loading_suggestions = false;
       });
     },
