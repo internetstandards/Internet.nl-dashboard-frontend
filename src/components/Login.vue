@@ -30,7 +30,7 @@
 
 import { dashboardStore } from '@/dashboardStore'
 import {mapState} from 'pinia'
-import http from "@/httpclient";
+import { allauthStore } from '@/allauthStore'
 
 export default {
   name: "login",
@@ -60,9 +60,7 @@ export default {
     login_status: function () {
       this.loading = true;
       console.log("Checking if the user is logged in at the login page.")
-      http.get('/api/v1/session/status').then(data => {
-        this.store.set_user(data.data);
-        this.loading = false;
+      allauthStore().refreshAuth().then(() => {
         if (this.user.is_authenticated) {
           this.reset();
           // This is not a solution to double navigation, but i think the error is weird and incorrect.
@@ -72,6 +70,8 @@ export default {
             });
           }
         }
+      }).finally(() => {
+        this.loading = false;
       });
     },
   },

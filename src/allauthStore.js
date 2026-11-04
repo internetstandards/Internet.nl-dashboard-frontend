@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import * as allauth from '@/allauth/lib/allauth'
 import { pathForPendingFlow } from '@/allauth/flows'
-import http from '@/httpclient'
 import { dashboardStore } from '@/dashboardStore'
 
 let authListenerInstalled = false
@@ -21,7 +20,7 @@ export const allauthStore = defineStore('allauth', {
       if (!state.auth) {
         return false
       }
-      return state.auth.status === 200 || (state.auth.status === 401 && state.auth.meta?.is_authenticated)
+      return state.auth.status === 200 || (state.auth.status === 401 && state.auth.meta?.is_authenticated === true)
     },
 
     requiresReauthentication(state) {
@@ -46,13 +45,9 @@ export const allauthStore = defineStore('allauth', {
         return
       }
 
-      authChangeHandler = async (event) => {
+      authChangeHandler = (event) => {
         this.auth = event.detail
-        try {
-          await this.syncDashboardSession()
-        } catch (error) {
-          console.error('Unable to sync dashboard session status after auth change.', error)
-        }
+        this.syncDashboardSession()
       }
 
       document.addEventListener('allauth.auth.change', authChangeHandler)
@@ -66,14 +61,23 @@ export const allauthStore = defineStore('allauth', {
 
     async loadAuth() {
       this.auth = await allauth.getAuth()
+      this.syncDashboardSession()
       return this.auth
     },
 
-    async syncDashboardSession() {
+    syncDashboardSession() {
       const dashboard = dashboardStore()
-      const response = await http.get('/api/v1/session/status')
-      dashboard.set_user(response.data)
-      return response.data
+      // Allauth can also return a user during incomplete login/password-reset
+      // flows. Only use dashboard account data for an authenticated session.
+      const user = this.isAuthenticated ? this.auth?.data?.user : null
+      const dashboardUser = {
+        is_authenticated: this.isAuthenticated,
+        is_superuser: user?.is_superuser === true,
+        account_name: user?.account_name ?? '',
+        account_id: user?.account_id ?? null
+      }
+      dashboard.set_user(dashboardUser)
+      return dashboardUser
     },
 
     async bootstrap() {
@@ -86,7 +90,12 @@ export const allauthStore = defineStore('allauth', {
 
       try {
         this.installAuthChangeListener()
-        await Promise.all([this.loadConfig(), this.loadAuth()])
+        // Routing still needs the session result when loading config fails.
+        const results = await Promise.allSettled([this.loadConfig(), this.loadAuth()])
+        const failure = results.find(result => result.status === 'rejected')
+        if (failure) {
+          throw failure.reason
+        }
         this.bootstrapped = true
       } catch (error) {
         this.lastError = error
@@ -102,7 +111,12 @@ export const allauthStore = defineStore('allauth', {
 
     async logout() {
       const response = await allauth.logout()
-      await Promise.all([this.refreshAuth(), this.syncDashboardSession()])
+      // Allauth reports a successful logout as an unauthenticated 401.
+      if (![401, 410].includes(response.status) || response.meta?.is_authenticated === true) {
+        throw new Error('Unable to log out.')
+      }
+      this.auth = response
+      this.syncDashboardSession()
       return response
     }
   }

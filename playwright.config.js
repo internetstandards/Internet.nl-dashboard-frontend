@@ -25,7 +25,7 @@ export default defineConfig({
     {
       command: `${quote(python)} e2e/backend.py`,
       env: {DASHBOARD_BACKEND_PATH: backend},
-      url: 'http://127.0.0.1:18765/api/v1/session/status',
+      url: 'http://127.0.0.1:18765/api/v1/allauth/browser/v1/config',
       timeout: 120_000,
       reuseExistingServer: false,
     },

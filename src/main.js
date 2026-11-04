@@ -29,7 +29,6 @@ app.component('server-response', server_response)
 
 import {parseISO, formatDistanceToNow, format, formatDuration, intervalToDuration, add} from 'date-fns'
 import {enGB, nl, pt, de, fr, da, cs} from 'date-fns/locale'
-import http from "@/httpclient.js";
 
 
 // todo: mixins are not recommended in vue3, but composables are. But i don't want to include the same file everywhere.
@@ -89,27 +88,9 @@ app.mixin(
 const store = dashboardStore()
 const authStore = allauthStore()
 
-Promise.allSettled([
-  http.get('/api/v1/session/status'),
-  authStore.bootstrap()
-]).then(([sessionResult, allauthResult]) => {
-  if (sessionResult.status === 'fulfilled') {
-    store.set_user(sessionResult.value.data)
-  } else {
-    console.error('Unable to load dashboard session status.', sessionResult.reason)
-    store.set_user({
-      is_authenticated: false,
-      is_superuser: false,
-      account_name: '',
-      second_factor_enabled: false,
-      account_id: null
-    })
-  }
-
-  if (allauthResult.status === 'rejected') {
-    console.error('Unable to bootstrap allauth configuration/session.', allauthResult.reason)
-  }
-
+authStore.bootstrap().catch(error => {
+  console.error('Unable to bootstrap allauth configuration/session.', error)
+}).then(() => {
   router.beforeEach((to, from, next) => {
     if (to.fullPath.startsWith('/#')) {
       window.location = to.fullPath.substring(2)

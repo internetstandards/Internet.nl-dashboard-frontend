@@ -83,9 +83,11 @@ with TemporaryDirectory(prefix="internetnl-browser-") as temporary:
     from dashboard.internet_nl_dashboard.models import Account, DashboardUser, UrlList
 
     Account.objects.create(name="Fallback account for incomplete new users")
-    for name in ("picker", "drop", "list", "corrections", "text", "failure", "cancel", "stalled", "overwrite"):
+    for name in ("picker", "drop", "list", "corrections", "text", "failure", "cancel", "stalled", "overwrite", "session"):
         account = Account.objects.create(name="Browser " + name)
-        user = User.objects.create_user(username="browser-" + name, password="browser-test-password")
+        user = User.objects.create_user(
+            username="browser-" + name, password="browser-test-password", is_superuser=name == "session"
+        )
         DashboardUser.objects.create(user=user, account=account)
         urllist = UrlList.objects.create(account=account, name="Browser uploads", enable_scans=False)
         existing = Url.add("existing.nl")

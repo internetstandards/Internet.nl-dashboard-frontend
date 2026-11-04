@@ -28,6 +28,7 @@ export const dashboardStore = defineStore('vuex', {
       is_authenticated: false,
       is_superuser: false,
       account_name: '',
+      account_id: null,
     },
 
     // Visible metrics in report, report graphs and visible metrics configuration pane
