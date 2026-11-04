@@ -26,23 +26,14 @@
 
       <server-response :message="$t('domain.discover-subdomains.add_domains_valid_urls_added')" :response="response" v-if="response"/>
 
-      <b-alert variant="info" v-model="statusReportVisible" v-if="response.status >= 200 && response.status < 300" dismissible>
-        <h4>{{ $t("domain.discover-subdomains.status_report") }}</h4>
-        <li v-if="response.data.duplicates_removed">
-          {{ $t("domain.discover-subdomains.removed_n_duplicates", [response.data.duplicates_removed]) }}
-        </li>
-        <li v-if="response.data.already_in_list">{{ $t("domain.discover-subdomains.ignored_n", [response.data.already_in_list]) }}</li>
-        <li>{{ $t("domain.discover-subdomains.added_n_to_list", [response.data.added_to_list]) }}
-        </li>
-      </b-alert>
-
+      <DomainBatchProgress v-if="batch" :batch="batch" :current-list-id="list.id" @completed="$emit('added')" @cancelled="$emit('added')" />
 
       <div v-if="suggestions.length > 0">
         <p>
           {{ $t("domain.discover-subdomains.domains_found", [suggestions.length]) }}, <a @click="dive_into_archive">{{$t("domain.discover-subdomains.dive_into_archive", [period + this.extend_period])}}</a>
         </p>
 
-      <b-button variant="success" @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button><br><br>
+      <b-button variant="success" @click="add_suggestions" :disabled="loading_add_suggestions || !selected_suggestions.length">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button><br><br>
 
       <b-button id="select_all" @click="toggle_all" v-model="select_all" size="sm" class="mr-2">{{ $t("domain.discover-subdomains.select_all") }}</b-button> <b-button size="sm" @click="clear_selection" class="pl-4">{{ $t("domain.discover-subdomains.clear_selection") }}</b-button>
       <br><br>
@@ -61,7 +52,7 @@
         </b-form-checkbox-group>
       </p>
 
-      <b-button variant="success" @click="add_suggestions">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button>
+      <b-button variant="success" @click="add_suggestions" :disabled="loading_add_suggestions || !selected_suggestions.length">{{ $t("domain.discover-subdomains.add_subdomains_button", [selected_suggestions.length]) }} <b-spinner variant="info" label="Spinning" small v-if="loading_add_suggestions"/></b-button>
 
       </div>
 
@@ -81,10 +72,12 @@
 <script>
 import {requestError} from "@/requestError";
 import http from "@/httpclient";
+import DomainBatchProgress from "../DomainBatchProgress.vue";
 import { dashboardStore } from '@/dashboardStore'
 
 export default {
   name: "discover-subdomains",
+  components: {DomainBatchProgress},
   props: {
     list: {
       type: Object,
@@ -98,6 +91,7 @@ export default {
   data: function () {
     return {
       response: {},
+      batch: null,
       suggestions: [],
       selected_suggestions: [],
       select_all: false,
@@ -109,7 +103,6 @@ export default {
 
       loading_suggestions: false,
       loading_add_suggestions: false,
-      statusReportVisible: false,
 
       store: dashboardStore(),
     }
@@ -135,7 +128,6 @@ export default {
 
       this.loading_suggestions = false;
       this.loading_add_suggestions = false;
-      this.statusReportVisible = false;
     },
     clear_selection() {
       this.selected_suggestions = [];
@@ -162,14 +154,10 @@ export default {
        this.loading_add_suggestions = true;
 
       http.post(`/api/v1/urllists/${this.list.id}/urls`, {'raw_urls': this.selected_suggestions.join(', ')}).then(data => {
-        // {'incorrect_urls': [], 'added_to_list': int, 'already_in_list': int}
-        this.response = data;
+        this.response = {};
+        this.batch = data.data;
+        this.$emit('accepted');
         this.loading_add_suggestions = false;
-
-        if (data.status >= 200 && data.status < 300) {
-          this.statusReportVisible = true;
-          this.$emit('added')
-        }
       }).catch(error => { this.response = requestError(error); this.loading_add_suggestions = false; });
     },
     find_suggestions: function () {

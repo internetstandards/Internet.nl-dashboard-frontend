@@ -33,3 +33,7 @@ coverage
 .env.development
 template_app
 .direnv/
+
+# Browser test artifacts
+/playwright-report/
+/test-results/

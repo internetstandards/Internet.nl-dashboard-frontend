@@ -1,113 +1,23 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <template>
-  <b-modal size="lg" @hidden="cancel()" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
-    <template #header><h4>📝 {{ $t("domain.list.upload.title") }}</h4></template>
-    <template #default>
-      <div style="min-height: 50vh;">
-
-      <server-response :response="response"></server-response>
-
-      <p>{{ $t("domain.list.upload.introduction") }}</p>
-
-      <table class="mb-4">
-        <tbody>
-        <tr>
-          <th></th>
-          <th>{{ $t("domain.list.upload.empty_file") }}</th>
-          <th>{{ $t("domain.list.upload.file_with_example_data") }}</th>
-        </tr>
-        <tr>
-          <td>
-            {{ $t("domain.list.upload.open_document_spreadsheet") }}
-          </td>
-          <td>
-            <a href="/static_frontend/sample_spreadsheets/libre_office_spreadsheet_empty.ods">Empty.ods</a>
-          </td>
-          <td>
-            <a href="/static_frontend/sample_spreadsheets/libre_office_spreadsheet_with_example_data.ods">Example.ods</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {{ $t("domain.list.upload.microsoft_office_excel") }}
-          </td>
-          <td>
-            <a href="/static_frontend/sample_spreadsheets/microsoft_office_spreadsheet_empty.xlsx">Empty.xlsx</a>
-          </td>
-          <td>
-            <a href="/static_frontend/sample_spreadsheets/microsoft_office_spreadsheet_with_example_data.xlsx">Example.xlsx</a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-
-      <b-alert variant="danger" :model-value="true">{{ $t("domain.list.upload.warning") }}</b-alert>
-
-      <input
-          type="file"
-          ref="file"
-          id="file"
-          v-on:change="handleFileUpload()"
-          name="file"
-          accept="text/csv, application/vnd.oasis.opendocument.spreadsheet, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      >
-    </div>
-    </template>
+  <b-modal size="lg" @hidden="$emit('cancel')" header-bg-variant="info" header-text-variant="light" no-close-on-backdrop no-fade scrollable>
+    <template #header><h4>📝 {{ $t('domain.list.upload.title') }}</h4></template>
+    <p>{{ $t('domain.batch.merge') }}</p>
+    <p>
+      <a href="/static_frontend/sample_spreadsheets/libre_office_spreadsheet_with_example_data.ods">Example.ods</a>
+      · <a href="/static_frontend/sample_spreadsheets/microsoft_office_spreadsheet_with_example_data.xlsx">Example.xlsx</a>
+    </p>
+    <DomainBatchForm :list="list" mode="spreadsheet" auto-upload @accepted="$emit('accepted')" @added="$emit('added')" />
     <template #footer>
-      <b-button variant="secondary" @click="cancel()">{{ $t("domain.list.upload.cancel") }}</b-button>
-      &nbsp;
-      <b-button variant="danger" @click="upload()">
-        {{ $t("domain.list.upload.ok") }}
-      </b-button>
+      <b-button variant="secondary" @click="$emit('cancel')">{{ $t('domain.batch.close') }}</b-button>
     </template>
   </b-modal>
 </template>
-
 <script>
-import {requestError} from "@/requestError";
-import http from "@/httpclient";
-
+import DomainBatchForm from '../DomainBatchForm.vue'
 export default {
-  name: "upload-domains",
-  props: {
-    list: {
-      type: Object,
-    }
-  },
-  data: function () {
-    return {
-      file: '',
-      response: {}
-    }
-  },
-  methods: {
-    cancel: function () {
-      this.$emit('cancel')
-    },
-    handleFileUpload() {
-      this.file = this.$refs.file.files[0];
-      console.log('>>>> 1st element in files array >>>> ', this.file);
-    },
-    upload: function () {
-
-      const formData = new FormData();
-      formData.append('file', this.file);
-
-      http.post(`/api/v1/urllists/${this.list.id}/spreadsheets`, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          },
-      ).then(server_response => {
-        this.response = server_response;
-        if (server_response.status >= 200 && server_response.status < 300) {
-          this.$emit("done")
-        }
-      }).catch(error => { this.response = requestError(error); });
-    },
-  },
-  mounted: function () {
-    this.response = {};
-  }
+  components: {DomainBatchForm},
+  props: {list: {type: Object, required: true}},
+  emits: ['accepted', 'added', 'cancel'],
 }
 </script>

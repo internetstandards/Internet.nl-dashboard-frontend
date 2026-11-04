@@ -110,7 +110,7 @@ h2 {
           <b-button variant="success" @click="visible.discover_subdomains = true" v-if="store.config.app.subdomain_suggestion.enabled" size="sm">🌪️️ {{ $t("domain.urllist.button.discover_subdomains") }}</b-button>
           <b-button variant="success" @click="visible.upload = true" size="sm">⬆️ {{ $t("domain.urllist.button.upload") }}</b-button>
           <!-- <button class="border-success" @click="get_urls()">⬆️ {{ $t("button.reload") }}</button> -->
-          <WwwDiscovery v-if="urls.length" :list_id="list.id" @finished="get_urls"/>
+          <WwwDiscovery v-if="urls.length" :list_id="list.id" @finished="imports_changed()"/>
         </div>
       </div>
 
@@ -129,18 +129,20 @@ h2 {
 
     </div>
 
+    <DomainBatchHistory ref="batch_history" v-if="is_opened" :list-id="list.id" @added="imports_changed()" />
+
     <Configure :list="list" :show="visible.configure" v-model="visible.configure" @cancel="visible.configure = false"
                @done="visible.configure = false"></Configure>
     <DiscoverSubdomains :list="list" :show="visible.discover_subdomains" v-model="visible.discover_subdomains" @cancel="visible.discover_subdomains = false"
-               @done="visible.discover_subdomains = false; get_urls();"></DiscoverSubdomains>
+               @accepted="$refs.batch_history?.refresh()" @added="imports_changed()" @done="visible.discover_subdomains = false; get_urls(true);"></DiscoverSubdomains>
     <Upload :list="list" :show="visible.upload" v-model="visible.upload" @cancel="visible.upload = false"
-               @done="visible.upload = false; get_urls();"></Upload>
+               @accepted="$refs.batch_history?.refresh()" @added="imports_changed()"></Upload>
     <Delete :list="list" :show="visible.delete" v-model="visible.delete" @cancel="visible.delete = false"
             @removelist="is_deleted = true; visible.delete = false"></Delete>
     <Scan :list="list" :show="visible.scan" v-model="visible.scan" @cancel="visible.scan = false"
           @started="visible.scan = false"></Scan>
     <AddDomains :list="list" :show="visible.add_domains" v-model="visible.add_domains"
-                @added="get_urls()" @cancel="visible.add_domains = false"></AddDomains>
+                @accepted="$refs.batch_history?.refresh()" @added="imports_changed()" @cancel="visible.add_domains = false"></AddDomains>
 
     <!-- This is already auto-refreshed by a watch, but we keep this as a backup solution for edge cases like
      the monitor page not loading or the used did not open the monitor page. -->
@@ -152,6 +154,7 @@ h2 {
 
 <script>
 
+import DomainBatchHistory from "./DomainBatchHistory.vue"
 import Delete from './list/DeleteListModal.vue'
 import Scan from './list/ScanModal.vue'
 import AddDomains from './list/AddDomainsModal.vue'
@@ -171,6 +174,7 @@ import { dashboardStore } from '@/dashboardStore'
 
 export default {
   components: {
+    DomainBatchHistory,
     WwwDiscovery,
     DiscoverSubdomains,
 
@@ -283,12 +287,17 @@ export default {
         this.$nextTick(() => this.$el?.scrollIntoView({block: 'start'}))
       }
     },
-    get_urls: function () {
-      this.loading = true;
-      http.get(`/api/v1/urllists/${this.list.id}/urls`).then(data => {
+    imports_changed: function () {
+      this.get_urls(true);
+      this.$refs.batch_history?.refresh();
+    },
+    get_urls: function (background = false) {
+      if (!background) this.loading = true;
+      return http.get(`/api/v1/urllists/${this.list.id}/urls`).then(data => {
         this.urls = data.data.urls;
-        this.loading = false;
         this.update_list_warnings();
+      }).finally(() => {
+        if (!background) this.loading = false;
       });
     },
     // update the list with the most recent data regarding reports and scanning, not intruding on the UI experience

@@ -5,7 +5,7 @@ import ServerResponse from '@/components/ServerResponse.vue'
 import EditDomain from '@/components/domains/domain/editDomain.vue'
 import StopScanModal from '@/components/scans/stopScanModal.vue'
 import ScanModal from '@/components/domains/list/ScanModal.vue'
-import AddDomainsModal from '@/components/domains/list/AddDomainsModal.vue'
+import DomainBatchForm from '@/components/domains/DomainBatchForm.vue'
 import DiscoverSubdomainsModal from '@/components/domains/list/DiscoverSubdomainsModal.vue'
 import WwwDiscovery from '@/components/domains/list/WwwDiscovery.vue'
 import SignupForm from '@/components/signup/SignupForm.vue'
@@ -78,18 +78,14 @@ describe('HTTP response messages', () => {
 })
 
 describe('mutation flows', () => {
-  it.each([
-    [problemTypes.DISCOVERY_NOT_STARTED, true],
-    [problemTypes.LIST_NOT_FOUND, false],
-  ])('handles discovery 404 according to its problem type: %s', async (type, initialState) => {
-    const response = {status: 404, data: {type, detail: 'Unavailable.'}}
-    http.get.mockRejectedValue({response})
-    const context = {list_id: 8, reset: vi.fn(), response: {}, loading: false, state_message: ''}
-    WwwDiscovery.methods.status.call(context)
-    await flushPromises()
-    expect(context.reset.mock.calls.length, 'Only an unstarted scan should show the initial discovery state.').toBe(initialState ? 1 : 0)
-    expect(context.response, 'A missing list must remain visible as an error.').toEqual(initialState ? {} : response)
-    expect(context.loading, 'Both 404 cases must finish loading.').toBe(false)
+  it('shows a failed www discovery request without claiming completion', async () => {
+    const response = {status: 404, data: {type: problemTypes.LIST_NOT_FOUND, detail: 'Unavailable.'}}
+    http.post.mockRejectedValue({response})
+    const context = {list_id: 8, response: null, loading: false, batch: null, $emit: vi.fn()}
+    await WwwDiscovery.methods.request.call(context)
+    expect(context.response, 'The missing list must remain visible as an error.').toBe(response)
+    expect(context.loading, 'A failed request must allow another attempt.').toBe(false)
+    expect(context.$emit, 'Failed discovery must not announce completion.').not.toHaveBeenCalled()
   })
 
   it('closes cancellation on 204 without reading a response body', async () => {
@@ -123,14 +119,15 @@ describe('mutation flows', () => {
     expect(context.list.scan_now_available, 'Failure must not alter the local list state.').toBe(true)
   })
 
-  it('stores domain counters directly from a 201 response', async () => {
-    const response = {status: 201, data: {incorrect_urls: [], added_to_list: 2, already_in_list: 1, duplicates_removed: 1}}
+  it('keeps the batch from a 202 response and waits for background completion', async () => {
+    const response = {status: 202, data: {id: 42, status: 'queued', stage: 'validation'}}
     http.post.mockResolvedValue(response)
-    const context = {list: {id: 8}, new_domains: 'example.com', response: {}, loading: false, $emit: vi.fn()}
-    AddDomainsModal.methods.bulk_add_new.call(context)
-    await flushPromises()
-    expect(context.response.data.added_to_list, 'Useful import counters should remain available.').toBe(2)
-    expect(context.$emit, 'A successful import should refresh the list.').toHaveBeenCalledWith('added')
+    const context = {list: {id: 8}, mode: 'text', text: 'example.com', response: null,
+      submitting: false, uploadPercentage: 0, batch: null, $emit: vi.fn()}
+    await DomainBatchForm.methods.submit.call(context)
+    expect(context.batch, 'The import ID must remain available for polling and review.').toBe(response.data)
+    expect(context.$emit, 'Accepted input must notify the history view.').toHaveBeenCalledWith('accepted', response.data)
+    expect(context.$emit, 'An accepted request must not claim domains were added.').not.toHaveBeenCalledWith('added')
   })
 
   it('retains the edited domain and displays a rejected update', async () => {

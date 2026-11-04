@@ -491,9 +491,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response",
-                  "type": "object"
+                  "$ref": "#/components/schemas/BatchSchema"
                 }
               }
             },
@@ -504,7 +502,7 @@
             }
           },
           "503": {
-            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The spreadsheet import queue is temporarily unavailable. Please try again later.",
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The domain import queue is temporarily unavailable. Please retry this batch later.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -519,12 +517,12 @@
                       "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
                     }
                   },
-                  "SpreadsheetQueueUnavailable": {
+                  "BatchQueueUnavailable": {
                     "value": {
                       "type": "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
                       "title": "Spreadsheet queue unavailable",
                       "status": 503,
-                      "detail": "The spreadsheet import queue is temporarily unavailable. Please try again later."
+                      "detail": "The domain import queue is temporarily unavailable. Please retry this batch later."
                     }
                   }
                 }
@@ -573,6 +571,667 @@
           },
           "required": true
         },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/domain-batches": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_domain_batches_operation",
+        "summary": "Domain Batches Operation",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "urllistId",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Urllistid"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pendingOnly",
+            "schema": {
+              "default": false,
+              "title": "Pendingonly",
+              "type": "boolean"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/BatchSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/domain-batches/{batch_id}": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_domain_batch_operation",
+        "summary": "Domain Batch Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "batch_id",
+            "schema": {
+              "title": "Batch Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_domain_batch_cancel_operation",
+        "summary": "Domain Batch Cancel Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "batch_id",
+            "schema": {
+              "title": "Batch Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The domain batch does not exist in the current account.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "409": {
+            "description": "Completed domain batches cannot be cancelled.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/domain-batches/{batch_id}/rejections": {
+      "get": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_domain_batch_rejections_operation",
+        "summary": "Domain Batch Rejections Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "batch_id",
+            "schema": {
+              "title": "Batch Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/BatchItemSchema"
+                  },
+                  "title": "Response",
+                  "type": "array"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/domain-batches/{batch_id}/confirm": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_domain_batch_confirm_operation",
+        "summary": "Domain Batch Confirm Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "batch_id",
+            "schema": {
+              "title": "Batch Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The list does not exist in the current account.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "503": {
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The domain import queue is temporarily unavailable. Please retry this batch later.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "examples": {
+                  "SpreadsheetStorageUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+                      "title": "Spreadsheet storage unavailable",
+                      "status": 503,
+                      "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                    }
+                  },
+                  "BatchQueueUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
+                      "title": "Spreadsheet queue unavailable",
+                      "status": 503,
+                      "detail": "The domain import queue is temporarily unavailable. Please retry this batch later."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/BatchConfirmSchema"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "required": false
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/domain-batches/{batch_id}/corrections": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_domain_batch_correct_operation",
+        "summary": "Domain Batch Correct Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "batch_id",
+            "schema": {
+              "title": "Batch Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The list does not exist in the current account.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "503": {
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The domain import queue is temporarily unavailable. Please retry this batch later.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "examples": {
+                  "SpreadsheetStorageUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+                      "title": "Spreadsheet storage unavailable",
+                      "status": 503,
+                      "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                    }
+                  },
+                  "BatchQueueUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
+                      "title": "Spreadsheet queue unavailable",
+                      "status": 503,
+                      "detail": "The domain import queue is temporarily unavailable. Please retry this batch later."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CorrectionsSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "SessionAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/urllists/domain-batches/{batch_id}/retry": {
+      "post": {
+        "operationId": "dashboard_internet_nl_dashboard_views_urllists_domain_batch_retry_operation",
+        "summary": "Domain Batch Retry Operation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "batch_id",
+            "schema": {
+              "title": "Batch Id",
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "404": {
+            "description": "The list does not exist in the current account.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "503": {
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The domain import queue is temporarily unavailable. Please retry this batch later.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "examples": {
+                  "SpreadsheetStorageUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+                      "title": "Spreadsheet storage unavailable",
+                      "status": 503,
+                      "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                    }
+                  },
+                  "BatchQueueUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
+                      "title": "Spreadsheet queue unavailable",
+                      "status": 503,
+                      "detail": "The domain import queue is temporarily unavailable. Please retry this batch later."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationRequired"
+          },
+          "403": {
+            "$ref": "#/components/responses/CsrfVerificationFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "tags": [
+          "Url Lists"
+        ],
         "security": [
           {
             "SessionAuth": []
@@ -1034,9 +1693,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response",
-                  "type": "object"
+                  "$ref": "#/components/schemas/BatchSchema"
                 }
               }
             },
@@ -1047,11 +1704,44 @@
             }
           },
           "404": {
-            "description": "The list does not exist in the current account or has been deleted.",
+            "description": "The list does not exist in the current account.",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemSchema"
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "503": {
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The domain import queue is temporarily unavailable. Please retry this batch later.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "examples": {
+                  "SpreadsheetStorageUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+                      "title": "Spreadsheet storage unavailable",
+                      "status": 503,
+                      "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                    }
+                  },
+                  "BatchQueueUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
+                      "title": "Spreadsheet queue unavailable",
+                      "status": 503,
+                      "detail": "The domain import queue is temporarily unavailable. Please retry this batch later."
+                    }
+                  }
                 }
               }
             },
@@ -1231,29 +1921,12 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response",
-                  "type": "object"
-                }
-              }
-            },
-            "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              }
-            }
-          },
-          "400": {
-            "description": "The uploaded spreadsheet is invalid or its domains exceed the list limit.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemSchema"
+                  "$ref": "#/components/schemas/BatchSchema"
                 }
               }
             },
@@ -1264,7 +1937,7 @@
             }
           },
           "404": {
-            "description": "The target list does not exist in the current account.",
+            "description": "The list does not exist in the current account.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1279,17 +1952,29 @@
             }
           },
           "503": {
-            "description": "Spreadsheet storage is temporarily unavailable. Please try again later.",
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The domain import queue is temporarily unavailable. Please retry this batch later.",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemSchema"
                 },
-                "example": {
-                  "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
-                  "title": "Spreadsheet storage unavailable",
-                  "status": 503,
-                  "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                "examples": {
+                  "SpreadsheetStorageUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+                      "title": "Spreadsheet storage unavailable",
+                      "status": 503,
+                      "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                    }
+                  },
+                  "BatchQueueUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
+                      "title": "Spreadsheet queue unavailable",
+                      "status": 503,
+                      "detail": "The domain import queue is temporarily unavailable. Please retry this batch later."
+                    }
+                  }
                 }
               }
             },
@@ -1298,6 +1983,9 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
           },
           "401": {
             "$ref": "#/components/responses/AuthenticationRequired"
@@ -1460,29 +2148,12 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created",
+          "202": {
+            "description": "Accepted",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response",
-                  "type": "object"
-                }
-              }
-            },
-            "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/API-Version"
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request data or adding these domains would exceed the list limit.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemSchema"
+                  "$ref": "#/components/schemas/BatchSchema"
                 }
               }
             },
@@ -1493,7 +2164,7 @@
             }
           },
           "404": {
-            "description": "The list does not exist in the current account or has been deleted.",
+            "description": "The list does not exist in the current account.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1506,6 +2177,42 @@
                 "$ref": "#/components/headers/API-Version"
               }
             }
+          },
+          "503": {
+            "description": "Spreadsheet storage is temporarily unavailable. Please try again later. The domain import queue is temporarily unavailable. Please retry this batch later.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemSchema"
+                },
+                "examples": {
+                  "SpreadsheetStorageUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-storage-unavailable",
+                      "title": "Spreadsheet storage unavailable",
+                      "status": 503,
+                      "detail": "Spreadsheet storage is temporarily unavailable. Please try again later."
+                    }
+                  },
+                  "BatchQueueUnavailable": {
+                    "value": {
+                      "type": "tag:internet.nl,2026:dashboard:spreadsheet-queue-unavailable",
+                      "title": "Spreadsheet queue unavailable",
+                      "status": 503,
+                      "detail": "The domain import queue is temporarily unavailable. Please retry this batch later."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/API-Version"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidInput"
           },
           "401": {
             "$ref": "#/components/responses/AuthenticationRequired"
@@ -1524,7 +2231,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddUrlsInputSchema"
+                "$ref": "#/components/schemas/BatchInputSchema"
               }
             }
           },
@@ -4512,6 +5219,271 @@
         "title": "UploadHistoryItemSchema",
         "type": "object"
       },
+      "BatchListSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "BatchListSchema",
+        "type": "object"
+      },
+      "BatchSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "target_list": {
+            "title": "Target List",
+            "type": "boolean"
+          },
+          "overwrite": {
+            "default": false,
+            "title": "Overwrite",
+            "type": "boolean"
+          },
+          "lists": {
+            "items": {
+              "$ref": "#/components/schemas/BatchListSchema"
+            },
+            "title": "Lists",
+            "type": "array"
+          },
+          "stage": {
+            "title": "Stage",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "processed": {
+            "title": "Processed",
+            "type": "integer"
+          },
+          "percentage": {
+            "title": "Percentage",
+            "type": "integer"
+          },
+          "counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Counts",
+            "type": "object"
+          },
+          "limits": {
+            "items": {
+              "$ref": "#/components/schemas/ListCapacitySchema"
+            },
+            "title": "Limits",
+            "type": "array"
+          },
+          "resumable": {
+            "title": "Resumable",
+            "type": "boolean"
+          },
+          "created_on": {
+            "format": "date-time",
+            "title": "Created On",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "filename",
+          "source",
+          "target_list",
+          "stage",
+          "status",
+          "message",
+          "total",
+          "processed",
+          "percentage",
+          "counts",
+          "limits",
+          "resumable",
+          "created_on"
+        ],
+        "title": "BatchSchema",
+        "type": "object"
+      },
+      "ListCapacitySchema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "existing": {
+            "title": "Existing",
+            "type": "integer"
+          },
+          "new": {
+            "title": "New",
+            "type": "integer"
+          },
+          "available": {
+            "title": "Available",
+            "type": "integer"
+          },
+          "over_limit": {
+            "title": "Over Limit",
+            "type": "integer"
+          },
+          "maximum": {
+            "title": "Maximum",
+            "type": "integer"
+          },
+          "incoming": {
+            "title": "Incoming",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "existing",
+          "new",
+          "available",
+          "over_limit",
+          "maximum",
+          "incoming"
+        ],
+        "title": "ListCapacitySchema",
+        "type": "object"
+      },
+      "BatchItemSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "row": {
+            "title": "Row",
+            "type": "integer"
+          },
+          "list_name": {
+            "title": "List Name",
+            "type": "string"
+          },
+          "raw_domain": {
+            "title": "Raw Domain",
+            "type": "string"
+          },
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "row",
+          "list_name",
+          "raw_domain",
+          "domain",
+          "status",
+          "reason"
+        ],
+        "title": "BatchItemSchema",
+        "type": "object"
+      },
+      "BatchConfirmSchema": {
+        "properties": {
+          "overwrite": {
+            "default": false,
+            "title": "Overwrite",
+            "type": "boolean"
+          },
+          "confirmation": {
+            "default": "",
+            "title": "Confirmation",
+            "type": "string"
+          }
+        },
+        "title": "BatchConfirmSchema",
+        "type": "object"
+      },
+      "CorrectionSchema": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "value": {
+            "maxLength": 10000,
+            "title": "Value",
+            "type": "string"
+          },
+          "list_name": {
+            "anyOf": [
+              {
+                "maxLength": 120,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "List Name"
+          }
+        },
+        "required": [
+          "id",
+          "value"
+        ],
+        "title": "CorrectionSchema",
+        "type": "object"
+      },
+      "CorrectionsSchema": {
+        "properties": {
+          "corrections": {
+            "items": {
+              "$ref": "#/components/schemas/CorrectionSchema"
+            },
+            "minItems": 1,
+            "title": "Corrections",
+            "type": "array"
+          }
+        },
+        "required": [
+          "corrections"
+        ],
+        "title": "CorrectionsSchema",
+        "type": "object"
+      },
       "UpdateListSettingsInputSchema": {
         "properties": {
           "id": {
@@ -4793,10 +5765,11 @@
         "title": "UrlListContentResponseSchema",
         "type": "object"
       },
-      "AddUrlsInputSchema": {
+      "BatchInputSchema": {
         "properties": {
           "raw_urls": {
-            "maxLength": 10000,
+            "maxLength": 10000000,
+            "minLength": 1,
             "title": "Raw Urls",
             "type": "string"
           }
@@ -4804,7 +5777,7 @@
         "required": [
           "raw_urls"
         ],
-        "title": "AddUrlsInputSchema",
+        "title": "BatchInputSchema",
         "type": "object"
       },
       "AddTagsInputSchema": {

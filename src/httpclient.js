@@ -10,8 +10,8 @@ axios.defaults.withCredentials = true;
 export default axios.create({
   // todo:
   baseURL: `${import.meta.env.VITE_VUE_APP_DJANGO_PATH}/`,
+  // Axios selects JSON for objects and lets the browser set multipart boundaries for FormData.
   headers: {
-    "Content-type": "application/json",
     'Accept': 'application/json',
   }
 });
