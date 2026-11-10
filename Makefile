@@ -1,4 +1,4 @@
-docker_image_name = internetstandards/dashboard-static
+docker_image_name = ghcr.io/internetstandards/dashboard-static
 
 all: lint audit test
 
