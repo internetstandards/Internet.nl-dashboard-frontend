@@ -17,5 +17,6 @@ RUN make build
 
 # Copy all compiled content into simple http server container
 FROM nginx
+LABEL org.opencontainers.image.source="https://github.com/internetstandards/Internet.nl-dashboard-frontend"
 COPY --from=build /src/dist/ /usr/share/nginx/html/
 COPY misc/default.conf /etc/nginx/conf.d/default.conf
